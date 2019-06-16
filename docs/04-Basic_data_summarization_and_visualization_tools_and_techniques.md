@@ -241,7 +241,7 @@ This example also illustrates the complexity of interpreting NHST results or rat
 
 Note that typical implementations of the KS test assume that the underlying distributions are continuous and ties are therefore impossible. However, the KS test can be generalized to discrete and mixed distributions (see R package KSgeneral).
 
-Differences in between distributions can also be assessed visually, through the **QQ-plot**, a plot that compares the quantiles of the two distributions. If the distributions have the same shape, their quantiles, plotted together, should lie on the same line. The samples from the logistic distribution obviously deviate from the theoretical quantiels of a normal distribution:
+Differences in between distributions can also be assessed visually, through the **QQ-plot**, a plot that compares the quantiles of the two distributions. If the distributions have the same shape, their quantiles, plotted together, should lie on the same line. The samples from the logistic distribution obviously deviate from the theoretical quantiles of a normal distribution:
 
 
 ```r
