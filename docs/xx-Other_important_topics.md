@@ -34,7 +34,7 @@ x = rnorm(100)
 plot(x)
 ```
 
-<img src="xx-Other_important_topics_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="xx-Other_important_topics_files/figure-html4/unnamed-chunk-1-1.png" width="672" />
 
 
 ## Python code

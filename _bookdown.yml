@@ -1,7 +1,23 @@
 book_filename: "bookdown-itds"
 chapter_name: "Chapter "
 output_dir: docs
-rmd_files: ["index.Rmd","01-Introduction_to_Python.Rmd","02-Source_code_control.Rmd","03-Web_scraping_for_data.Rmd","04-Basic_data_summarization.Rmd","05-Dynamic_reports_and_reproducibility.Rmd","06-More_data_summarization_and_visualization_tools_and_techniques.Rmd","07-Relational_databases.Rmd","08-Predictive_modelling.Rmd","09-Large_datasets_and_non-relational_databases.Rmd","10-Parallel_and_distributed_computing.Rmd","12-Intellectual_property_and_software_licenses.Rmd","11-Privacy_and_ethics.Rmd","xx-Other_important_topics.Rmd","References.Rmd"]
+rmd_files: [
+  "index.Rmd",
+  "01-Introduction_to_Python.Rmd",
+  "02-Source_code_control.Rmd",
+  "02a-Introduction_to_Docker.Rmd",
+  "03-Web_scraping_for_data.Rmd",
+  "04-Basic_data_summarization.Rmd",
+  "05-Dynamic_reports_and_reproducibility.Rmd",
+  "06-More_data_summarization_and_visualization_tools_and_techniques.Rmd",
+  "07-Relational_databases.Rmd",
+  "08-Predictive_modelling.Rmd",
+  "09-Large_datasets_and_non-relational_databases.Rmd",
+  "10-Parallel_and_distributed_computing.Rmd",
+  "12-Intellectual_property_and_software_licenses.Rmd",
+  "11-Privacy_and_ethics.Rmd",
+  "xx-Other_important_topics.Rmd",
+  "References.Rmd"]
 new_session: yes
 
 

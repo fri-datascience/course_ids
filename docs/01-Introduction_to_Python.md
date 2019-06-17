@@ -37,31 +37,62 @@ The disadvantages of Python are of minor consequence: The data science workflow 
 
 ## Setting up
 
-How to install Python?
+Before using Python, we need first to select and install a desired distribution. One can choose to install pure Python distribution or Anaconda Python distribution. Some advantages of using Anaconda are:
 
-https://www.python.org/downloads/
+* Anaconda gives the User ability to make an easy install of the version of python he/she wants. But generally, it depends on a user preference which distribution to use. Anaconda will also resolve all the problems with admin privileges if a user does not have admin rights for his system.
+* [Anaconda Accelerate](https://docs.continuum.io/accelerate/index.html) can provide a user with high performance computing and several other components.
+* Anaconda removes bottlenecks involved in installing the right packages while taking into considerations their compatibility with various other packages as might be encountered while using the traditional pip.
+* There is no risk of messing up required system libraries. There are also many open source packages available for Anaconda, which are not within the pip repo.
 
-### Python IDE's {-}
+We encourage you to use Anaconda Python distribution but the final choice is yours.
 
-IDLE, PyCharm, ??? (brief descriptions with advantages/disadvantages)
+### Anaconda installation
+
+Install the desired Anaconda Python distribution from [https://www.anaconda.com/distribution/](https://www.anaconda.com/distribution/). A useful way of managing multiple Python project is by using Conda environments. An environment enables you to use a specific Python version along with specific dependencies completely separately. To create and use an environment with a name *itds*, issue the following command:
 
 
-### Python ecosystem for Data Science {-}
+```bash
+conda create -n itds
+conda activate itds
+```
 
-The Python ecosystem of libraries, frameworks, and tools is large and ever-growing. Python can be used for web scraping, machine learning, general scientific computing, and many other computing and scripting uses.
+While in the environment, you can run environment-specific Python and install packages only to the environment (the example below will install additiona Anaconda features to Jupyter notebook):
 
-Some of the most popular packages:
 
-* **scikit-learn** - ???
-* **Scipy** - ???
-* **Matplotlib** - ???
-* **Numpy** - ???
-* ???
+```bash
+conda install nb_conda
+```
 
-Some of the most popular tools:
+To exit the environment, use `conda deactivate`. To show existing environments and their locations, issue `conda info --envs`. 
 
-* **TensorFlow** - Deep learning.
-* ???
+### Pure Python installation
+
+You can also install pure Python directly to your system from [https://www.python.org/downloads/](https://www.python.org/downloads/).
+
+To run Python, issue `python` command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using `python3.5`). After running the command, you should see something similar to the following:
+
+
+```bash
+quaternion:~ slavkoz$ python3.5
+Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25)
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+Packages can be installed using `pip` command: 
+
+
+```bash
+pip install nltk
+```
+
+It can happen that in some cases, packages will be prebuilt or istallation of its dependencies can be tedious. In such cases, *wheel packages* can be provided and installed using the following command:
+
+
+```bash
+pip install YOUR_DOWNLOADED_PACKAGE.whl
+```
 
 ## Python in 15 minutes
 
@@ -223,6 +254,26 @@ while i <= 3:
 
 ???
 
+### Python IDE's {-}
+
+IDLE, PyCharm, Jupyter Notebook, VS Code and similar (brief descriptions with advantages/disadvantages)
+
+
+### Python ecosystem for Data Science {-}
+
+The Python ecosystem of libraries, frameworks, and tools is large and ever-growing. Python can be used for web scraping, machine learning, general scientific computing, and many other computing and scripting uses.
+
+Some of the most popular packages:
+
+* **scikit-learn**
+* **Scipy**
+* **Matplotlib**
+* **Numpy** 
+* **Pandas**
+
+Some of the most popular tools:
+
+* **TensorFlow, Keras** - Deep learning.
 
 ## Further reading and references
 
@@ -242,4 +293,6 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-some practice problems? (=homework)
+* Install Anaconda Python, run the [provided Jupyter notebook](data/01 - Python introduction.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additiona packages manually).
+* Check some Python IDEs to have a subjective opinion for some of them.
+* Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras/tree/master/examples).

@@ -5,19 +5,19 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 1 Python programming language | Introduction to data science</title>
+  <title>Introduction to data science</title>
   <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 1 Python programming language | Introduction to data science" />
+  <meta property="og:title" content="Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
+  <meta property="og:url" content="<a href="https://fri-datascience.github.io/course_itds/" class="uri">https://fri-datascience.github.io/course_itds/</a>" />
   
   <meta property="og:description" content="Course notes" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Python programming language | Introduction to data science" />
+  <meta name="twitter:title" content="Introduction to data science" />
   
   <meta name="twitter:description" content="Course notes" />
   
@@ -36,7 +36,6 @@
 <link rel="next" href="source-code-control.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -51,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -109,8 +136,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1" data-path="python-programming-language.html"><a href="python-programming-language.html#basic-characteristics"><i class="fa fa-check"></i><b>1.1</b> Basic characteristics</a></li>
 <li class="chapter" data-level="1.2" data-path="python-programming-language.html"><a href="python-programming-language.html#why-python"><i class="fa fa-check"></i><b>1.2</b> Why Python?</a></li>
 <li class="chapter" data-level="1.3" data-path="python-programming-language.html"><a href="python-programming-language.html#setting-up"><i class="fa fa-check"></i><b>1.3</b> Setting up</a><ul>
-<li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ides"><i class="fa fa-check"></i>Python IDE’s</a></li>
-<li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ecosystem-for-data-science"><i class="fa fa-check"></i>Python ecosystem for Data Science</a></li>
+<li class="chapter" data-level="1.3.1" data-path="python-programming-language.html"><a href="python-programming-language.html#anaconda-installation"><i class="fa fa-check"></i><b>1.3.1</b> Anaconda installation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="python-programming-language.html"><a href="python-programming-language.html#pure-python-installation"><i class="fa fa-check"></i><b>1.3.2</b> Pure Python installation</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="python-programming-language.html"><a href="python-programming-language.html#python-in-15-minutes"><i class="fa fa-check"></i><b>1.4</b> Python in 15 minutes</a><ul>
 <li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#hello-world"><i class="fa fa-check"></i>Hello world!</a></li>
@@ -120,43 +147,61 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#control-flow"><i class="fa fa-check"></i>Control flow</a></li>
 <li class="chapter" data-level="1.4.1" data-path="python-programming-language.html"><a href="python-programming-language.html#functions"><i class="fa fa-check"></i><b>1.4.1</b> Functions</a></li>
 <li class="chapter" data-level="1.4.2" data-path="python-programming-language.html"><a href="python-programming-language.html#classes-and-objects"><i class="fa fa-check"></i><b>1.4.2</b> Classes and objects</a></li>
+<li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ides"><i class="fa fa-check"></i>Python IDE’s</a></li>
+<li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ecosystem-for-data-science"><i class="fa fa-check"></i>Python ecosystem for Data Science</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="python-programming-language.html"><a href="python-programming-language.html#further-reading-and-references"><i class="fa fa-check"></i><b>1.5</b> Further reading and references</a></li>
 <li class="chapter" data-level="1.6" data-path="python-programming-language.html"><a href="python-programming-language.html#learning-outcomes"><i class="fa fa-check"></i><b>1.6</b> Learning outcomes</a></li>
 <li class="chapter" data-level="1.7" data-path="python-programming-language.html"><a href="python-programming-language.html#practice-problems"><i class="fa fa-check"></i><b>1.7</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="source-code-control.html"><a href="source-code-control.html"><i class="fa fa-check"></i><b>2</b> Source code control</a></li>
-<li class="chapter" data-level="3" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>3</b> Web scraping</a></li>
-<li class="chapter" data-level="4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html"><i class="fa fa-check"></i><b>4</b> Basic data summarization</a><ul>
-<li class="chapter" data-level="4.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>4.1</b> Descriptive statistics for univariate distributions</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#central-tendency"><i class="fa fa-check"></i><b>4.1.1</b> Central tendency</a></li>
-<li class="chapter" data-level="4.1.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#dispersion"><i class="fa fa-check"></i><b>4.1.2</b> Dispersion</a></li>
-<li class="chapter" data-level="4.1.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>4.1.3</b> Skewness and kurtosis</a></li>
-<li class="chapter" data-level="4.1.4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#nominal-variables"><i class="fa fa-check"></i><b>4.1.4</b> Nominal variables</a></li>
-<li class="chapter" data-level="4.1.5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>4.1.5</b> Testing the shape of a distribution</a></li>
+<li class="chapter" data-level="3" data-path="docker-container-platform.html"><a href="docker-container-platform.html"><i class="fa fa-check"></i><b>3</b> Docker container platform</a><ul>
+<li class="chapter" data-level="3.1" data-path="docker-container-platform.html"><a href="docker-container-platform.html#basic-characteristics-1"><i class="fa fa-check"></i><b>3.1</b> Basic characteristics</a></li>
+<li class="chapter" data-level="3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#why-docker"><i class="fa fa-check"></i><b>3.2</b> Why Docker?</a></li>
+<li class="chapter" data-level="3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#setting-up-1"><i class="fa fa-check"></i><b>3.3</b> Setting up</a></li>
+<li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-in-15-minutes"><i class="fa fa-check"></i><b>3.4</b> Docker in 15 minutes</a><ul>
+<li class="chapter" data-level="" data-path="docker-container-platform.html"><a href="docker-container-platform.html#hello-world-1"><i class="fa fa-check"></i>Hello world!</a></li>
+<li class="chapter" data-level="" data-path="docker-container-platform.html"><a href="docker-container-platform.html#images-and-containers"><i class="fa fa-check"></i>Images and containers</a></li>
+<li class="chapter" data-level="" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i>Volumes</a></li>
+<li class="chapter" data-level="" data-path="docker-container-platform.html"><a href="docker-container-platform.html#dockerfiles"><i class="fa fa-check"></i>Dockerfiles</a></li>
+<li class="chapter" data-level="" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-compose"><i class="fa fa-check"></i>Docker compose</a></li>
+<li class="chapter" data-level="" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-hub"><i class="fa fa-check"></i>Docker Hub</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>4.2</b> Descriptive statistics for bivariate distributions</a></li>
-<li class="chapter" data-level="4.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#visualization"><i class="fa fa-check"></i><b>4.3</b> Visualization</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#basic-principles"><i class="fa fa-check"></i><b>4.3.1</b> Basic principles</a></li>
-<li class="chapter" data-level="4.3.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#univariate-data"><i class="fa fa-check"></i><b>4.3.2</b> Univariate data</a></li>
-<li class="chapter" data-level="4.3.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#bivariate-data"><i class="fa fa-check"></i><b>4.3.3</b> Bivariate data</a></li>
+<li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.5</b> Further reading and references</a></li>
+<li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.6</b> Learning outcomes</a></li>
+<li class="chapter" data-level="3.7" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems-1"><i class="fa fa-check"></i><b>3.7</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>4.4</b> Further reading and references</a></li>
-<li class="chapter" data-level="4.5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#learning-outcomes-1"><i class="fa fa-check"></i><b>4.5</b> Learning outcomes</a></li>
-<li class="chapter" data-level="4.6" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#practice-problems-1"><i class="fa fa-check"></i><b>4.6</b> Practice problems</a></li>
+<li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a></li>
+<li class="chapter" data-level="5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html"><i class="fa fa-check"></i><b>5</b> Basic data summarization</a><ul>
+<li class="chapter" data-level="5.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#central-tendency"><i class="fa fa-check"></i><b>5.1.1</b> Central tendency</a></li>
+<li class="chapter" data-level="5.1.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Dispersion</a></li>
+<li class="chapter" data-level="5.1.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>5.1.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="5.1.4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#nominal-variables"><i class="fa fa-check"></i><b>5.1.4</b> Nominal variables</a></li>
+<li class="chapter" data-level="5.1.5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>5.1.5</b> Testing the shape of a distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>5</b> Dynamic reports and reproducibility</a></li>
-<li class="chapter" data-level="6" data-path="more-exploratory-data-analysis.html"><a href="more-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> More exploratory data analysis</a></li>
-<li class="chapter" data-level="7" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>7</b> Relational databases</a></li>
-<li class="chapter" data-level="8" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>8</b> Predictive modelling</a></li>
-<li class="chapter" data-level="9" data-path="large-datasets-and-non-relational-databases.html"><a href="large-datasets-and-non-relational-databases.html"><i class="fa fa-check"></i><b>9</b> Large datasets and non relational databases</a></li>
-<li class="chapter" data-level="10" data-path="parallel-and-distributed-computing.html"><a href="parallel-and-distributed-computing.html"><i class="fa fa-check"></i><b>10</b> Parallel and distributed computing</a></li>
-<li class="chapter" data-level="11" data-path="who-intellectual-property-and-software-licenses.html"><a href="who-intellectual-property-and-software-licenses.html"><i class="fa fa-check"></i><b>11</b> (who?) Intellectual property and software licenses</a></li>
-<li class="chapter" data-level="12" data-path="who-privacy-security-and-ethics.html"><a href="who-privacy-security-and-ethics.html"><i class="fa fa-check"></i><b>12</b> (who?) Privacy, security and ethics</a></li>
-<li class="chapter" data-level="13" data-path="other-important-topics.html"><a href="other-important-topics.html"><i class="fa fa-check"></i><b>13</b> Other important topics</a><ul>
-<li class="chapter" data-level="13.1" data-path="other-important-topics.html"><a href="other-important-topics.html#testing"><i class="fa fa-check"></i><b>13.1</b> Testing</a></li>
-<li class="chapter" data-level="13.2" data-path="other-important-topics.html"><a href="other-important-topics.html#r-code"><i class="fa fa-check"></i><b>13.2</b> R code</a></li>
-<li class="chapter" data-level="13.3" data-path="other-important-topics.html"><a href="other-important-topics.html#python-code"><i class="fa fa-check"></i><b>13.3</b> Python code</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>5.2</b> Descriptive statistics for bivariate distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#visualization"><i class="fa fa-check"></i><b>5.3</b> Visualization</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#basic-principles"><i class="fa fa-check"></i><b>5.3.1</b> Basic principles</a></li>
+<li class="chapter" data-level="5.3.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#univariate-data"><i class="fa fa-check"></i><b>5.3.2</b> Univariate data</a></li>
+<li class="chapter" data-level="5.3.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#bivariate-data"><i class="fa fa-check"></i><b>5.3.3</b> Bivariate data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>5.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#learning-outcomes-2"><i class="fa fa-check"></i><b>5.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#practice-problems-2"><i class="fa fa-check"></i><b>5.6</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>6</b> Dynamic reports and reproducibility</a></li>
+<li class="chapter" data-level="7" data-path="more-exploratory-data-analysis.html"><a href="more-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>7</b> More exploratory data analysis</a></li>
+<li class="chapter" data-level="8" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>8</b> Relational databases</a></li>
+<li class="chapter" data-level="9" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>9</b> Predictive modelling</a></li>
+<li class="chapter" data-level="10" data-path="large-datasets-and-non-relational-databases.html"><a href="large-datasets-and-non-relational-databases.html"><i class="fa fa-check"></i><b>10</b> Large datasets and non relational databases</a></li>
+<li class="chapter" data-level="11" data-path="parallel-and-distributed-computing.html"><a href="parallel-and-distributed-computing.html"><i class="fa fa-check"></i><b>11</b> Parallel and distributed computing</a></li>
+<li class="chapter" data-level="12" data-path="who-intellectual-property-and-software-licenses.html"><a href="who-intellectual-property-and-software-licenses.html"><i class="fa fa-check"></i><b>12</b> (who?) Intellectual property and software licenses</a></li>
+<li class="chapter" data-level="13" data-path="who-privacy-security-and-ethics.html"><a href="who-privacy-security-and-ethics.html"><i class="fa fa-check"></i><b>13</b> (who?) Privacy, security and ethics</a></li>
+<li class="chapter" data-level="14" data-path="other-important-topics.html"><a href="other-important-topics.html"><i class="fa fa-check"></i><b>14</b> Other important topics</a><ul>
+<li class="chapter" data-level="14.1" data-path="other-important-topics.html"><a href="other-important-topics.html#testing"><i class="fa fa-check"></i><b>14.1</b> Testing</a></li>
+<li class="chapter" data-level="14.2" data-path="other-important-topics.html"><a href="other-important-topics.html#r-code"><i class="fa fa-check"></i><b>14.2</b> R code</a></li>
+<li class="chapter" data-level="14.3" data-path="other-important-topics.html"><a href="other-important-topics.html#python-code"><i class="fa fa-check"></i><b>14.3</b> Python code</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -214,75 +259,83 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="setting-up" class="section level2">
 <h2><span class="header-section-number">1.3</span> Setting up</h2>
-<p>How to install Python?</p>
-<p><a href="https://www.python.org/downloads/" class="uri">https://www.python.org/downloads/</a></p>
-<div id="python-ides" class="section level3 unnumbered">
-<h3>Python IDE’s</h3>
-<p>IDLE, PyCharm, ??? (brief descriptions with advantages/disadvantages)</p>
+<p>Before using Python, we need first to select and install a desired distribution. One can choose to install pure Python distribution or Anaconda Python distribution. Some advantages of using Anaconda are:</p>
+<ul>
+<li>Anaconda gives the User ability to make an easy install of the version of python he/she wants. But generally, it depends on a user preference which distribution to use. Anaconda will also resolve all the problems with admin privileges if a user does not have admin rights for his system.</li>
+<li><a href="https://docs.continuum.io/accelerate/index.html">Anaconda Accelerate</a> can provide a user with high performance computing and several other components.</li>
+<li>Anaconda removes bottlenecks involved in installing the right packages while taking into considerations their compatibility with various other packages as might be encountered while using the traditional pip.</li>
+<li>There is no risk of messing up required system libraries. There are also many open source packages available for Anaconda, which are not within the pip repo.</li>
+</ul>
+<p>We encourage you to use Anaconda Python distribution but the final choice is yours.</p>
+<div id="anaconda-installation" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Anaconda installation</h3>
+<p>Install the desired Anaconda Python distribution from <a href="https://www.anaconda.com/distribution/" class="uri">https://www.anaconda.com/distribution/</a>. A useful way of managing multiple Python project is by using Conda environments. An environment enables you to use a specific Python version along with specific dependencies completely separately. To create and use an environment with a name <em>itds</em>, issue the following command:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">conda</span> create -n itds</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ex">conda</span> activate itds</a></code></pre></div>
+<p>While in the environment, you can run environment-specific Python and install packages only to the environment (the example below will install additiona Anaconda features to Jupyter notebook):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ex">conda</span> install nb_conda</a></code></pre></div>
+<p>To exit the environment, use <code>conda deactivate</code>. To show existing environments and their locations, issue <code>conda info --envs</code>.</p>
 </div>
-<div id="python-ecosystem-for-data-science" class="section level3 unnumbered">
-<h3>Python ecosystem for Data Science</h3>
-<p>The Python ecosystem of libraries, frameworks, and tools is large and ever-growing. Python can be used for web scraping, machine learning, general scientific computing, and many other computing and scripting uses.</p>
-<p>Some of the most popular packages:</p>
-<ul>
-<li><strong>scikit-learn</strong> - ???</li>
-<li><strong>Scipy</strong> - ???</li>
-<li><strong>Matplotlib</strong> - ???</li>
-<li><strong>Numpy</strong> - ???</li>
-<li>???</li>
-</ul>
-<p>Some of the most popular tools:</p>
-<ul>
-<li><strong>TensorFlow</strong> - Deep learning.</li>
-<li>???</li>
-</ul>
+<div id="pure-python-installation" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Pure Python installation</h3>
+<p>You can also install pure Python directly to your system from <a href="https://www.python.org/downloads/" class="uri">https://www.python.org/downloads/</a>.</p>
+<p>To run Python, issue <code>python</code> command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using <code>python3.5</code>). After running the command, you should see something similar to the following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">quaternion</span>:~ slavkoz$ python3.5</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">Python</span> 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">[<span class="ex">GCC</span> 4.2.1 (Apple Inc. build 5666) <span class="kw">(</span><span class="ex">dot</span> 3<span class="kw">)</span>] <span class="ex">on</span> darwin</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span></a></code></pre></div>
+<p>Packages can be installed using <code>pip</code> command:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="ex">pip</span> install nltk</a></code></pre></div>
+<p>It can happen that in some cases, packages will be prebuilt or istallation of its dependencies can be tedious. In such cases, <em>wheel packages</em> can be provided and installed using the following command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="ex">pip</span> install YOUR_DOWNLOADED_PACKAGE.whl</a></code></pre></div>
 </div>
 </div>
 <div id="python-in-15-minutes" class="section level2">
 <h2><span class="header-section-number">1.4</span> Python in 15 minutes</h2>
 <div id="hello-world" class="section level3 unnumbered">
 <h3>Hello world!</h3>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</a></code></pre></div>
 <pre><code>## Hello World!</code></pre>
 </div>
 <div id="variables-and-types" class="section level3 unnumbered">
 <h3>Variables and types</h3>
 <div id="numbers-and-basic-operators" class="section level4 unnumbered">
 <h4>Numbers and basic operators</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">3</span>  
-b <span class="op">=</span> <span class="fl">2.5</span>  
-c <span class="op">=</span> a <span class="op">+</span> b 
-c <span class="op">=</span> a <span class="op">*</span> b
-c <span class="op">=</span> a <span class="op">/</span> b</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1">a <span class="op">=</span> <span class="dv">3</span>  </a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">b <span class="op">=</span> <span class="fl">2.5</span>  </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">c <span class="op">=</span> a <span class="op">+</span> b </a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">c <span class="op">=</span> a <span class="op">*</span> b</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">c <span class="op">=</span> a <span class="op">/</span> b</a></code></pre></div>
 </div>
 <div id="strings-and-concatenation" class="section level4 unnumbered">
 <h4>Strings and concatenation</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="st">&quot;data&quot;</span> 
-b <span class="op">=</span> <span class="st">&#39;science&#39;</span> <span class="co"># we can use double and single quotes</span>
-c <span class="op">=</span> a <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> b
-<span class="bu">print</span>(c)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" data-line-number="1">a <span class="op">=</span> <span class="st">&quot;data&quot;</span> </a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">b <span class="op">=</span> <span class="st">&#39;science&#39;</span> <span class="co"># we can use double and single quotes</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">c <span class="op">=</span> a <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> b</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="bu">print</span>(c)</a></code></pre></div>
 <pre><code>## data science</code></pre>
 </div>
 <div id="boolean" class="section level4 unnumbered">
 <h4>Boolean</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="va">True</span>
-b <span class="op">=</span> <span class="va">False</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" data-line-number="1">a <span class="op">=</span> <span class="va">True</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">b <span class="op">=</span> <span class="va">False</span></a></code></pre></div>
 </div>
 <div id="iterables-lists-tuples-sets" class="section level4 unnumbered">
 <h4>Iterables: Lists, Tuples, Sets</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]          <span class="co"># List  </span>
-a <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)          <span class="co"># Tuple (immutable)</span>
-a <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>}    <span class="co"># Set</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1">a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]          <span class="co"># List  </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">a <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)          <span class="co"># Tuple (immutable)</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">a <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>}    <span class="co"># Set</span></a></code></pre></div>
 </div>
 <div id="dictionaries" class="section level4 unnumbered">
 <h4>Dictionaries</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span> <span class="op">=</span> {
-  <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Introduction to Data Science&quot;</span>,
-  <span class="st">&quot;year&quot;</span>: <span class="dv">1</span>,
-  <span class="st">&quot;semester&quot;</span>: <span class="st">&quot;fall&quot;</span>,
-  <span class="st">&quot;classroom&quot;</span>: <span class="st">&quot;P02&quot;</span>
-}
-<span class="bu">dict</span>[<span class="st">&quot;classroom&quot;</span>] <span class="op">=</span> <span class="st">&quot;P03&quot;</span> </code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="bu">dict</span> <span class="op">=</span> {</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Introduction to Data Science&quot;</span>,</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="st">&quot;year&quot;</span>: <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="st">&quot;semester&quot;</span>: <span class="st">&quot;fall&quot;</span>,</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="st">&quot;classroom&quot;</span>: <span class="st">&quot;P02&quot;</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="bu">dict</span>[<span class="st">&quot;classroom&quot;</span>] <span class="op">=</span> <span class="st">&quot;P03&quot;</span> </a></code></pre></div>
 </div>
 </div>
 <div id="string-formatting" class="section level3 unnumbered">
@@ -291,41 +344,41 @@ a <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class=
 </div>
 <div id="more-operators" class="section level3 unnumbered">
 <h3>More operators</h3>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="st">&quot;a&quot;</span>
-<span class="bu">print</span>((a <span class="kw">in</span> {<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>} <span class="kw">and</span> <span class="va">True</span>) <span class="kw">or</span> <span class="va">False</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1">a <span class="op">=</span> <span class="st">&quot;a&quot;</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="bu">print</span>((a <span class="kw">in</span> {<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>} <span class="kw">and</span> <span class="va">True</span>) <span class="kw">or</span> <span class="va">False</span>)</a></code></pre></div>
 <pre><code>## True</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="kw">not</span> <span class="va">True</span>)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="bu">print</span>(<span class="kw">not</span> <span class="va">True</span>)</a></code></pre></div>
 <pre><code>## False</code></pre>
 </div>
 <div id="control-flow" class="section level3 unnumbered">
 <h3>Control flow</h3>
 <div id="if-then-else" class="section level4 unnumbered">
 <h4>If-then-else</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">2</span>  
-<span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">1</span>:  
-    <span class="bu">print</span>(<span class="st">&#39;a is greater than 1&#39;</span>)
-<span class="cf">elif</span> a <span class="op">==</span> <span class="dv">1</span>:  
-    <span class="bu">print</span>(<span class="st">&#39;a is equal to 1&#39;</span>)
-<span class="cf">else</span>:  
-    <span class="bu">print</span>(<span class="st">&#39;a is less than 1&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" data-line-number="1">a <span class="op">=</span> <span class="dv">2</span>  </a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">1</span>:  </a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">    <span class="bu">print</span>(<span class="st">&#39;a is greater than 1&#39;</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="cf">elif</span> a <span class="op">==</span> <span class="dv">1</span>:  </a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">    <span class="bu">print</span>(<span class="st">&#39;a is equal to 1&#39;</span>)</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="cf">else</span>:  </a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">    <span class="bu">print</span>(<span class="st">&#39;a is less than 1&#39;</span>)</a></code></pre></div>
 <pre><code>## a is greater than 1</code></pre>
 </div>
 <div id="loops" class="section level4 unnumbered">
 <h4>Loops</h4>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>, <span class="dv">6</span>):
-    <span class="bu">print</span>(i)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>, <span class="dv">6</span>):</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">    <span class="bu">print</span>(i)</a></code></pre></div>
 <pre><code>## 4
 ## 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">people_list <span class="op">=</span> [<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Charles&#39;</span>]  
-<span class="cf">for</span> person <span class="kw">in</span> people_list:
-    <span class="bu">print</span>(person)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" data-line-number="1">people_list <span class="op">=</span> [<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Charles&#39;</span>]  </a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="cf">for</span> person <span class="kw">in</span> people_list:</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    <span class="bu">print</span>(person)</a></code></pre></div>
 <pre><code>## Ann
 ## Bob
 ## Charles</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">i <span class="op">=</span> <span class="dv">1</span>
-<span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">3</span>:
-  <span class="bu">print</span>(i)
-  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" data-line-number="1">i <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">3</span>:</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">  <span class="bu">print</span>(i)</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></a></code></pre></div>
 <pre><code>## 1
 ## 2
 ## 3</code></pre>
@@ -338,6 +391,26 @@ a <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class=
 <div id="classes-and-objects" class="section level3">
 <h3><span class="header-section-number">1.4.2</span> Classes and objects</h3>
 <p>???</p>
+</div>
+<div id="python-ides" class="section level3 unnumbered">
+<h3>Python IDE’s</h3>
+<p>IDLE, PyCharm, Jupyter Notebook, VS Code and similar (brief descriptions with advantages/disadvantages)</p>
+</div>
+<div id="python-ecosystem-for-data-science" class="section level3 unnumbered">
+<h3>Python ecosystem for Data Science</h3>
+<p>The Python ecosystem of libraries, frameworks, and tools is large and ever-growing. Python can be used for web scraping, machine learning, general scientific computing, and many other computing and scripting uses.</p>
+<p>Some of the most popular packages:</p>
+<ul>
+<li><strong>scikit-learn</strong></li>
+<li><strong>Scipy</strong></li>
+<li><strong>Matplotlib</strong></li>
+<li><strong>Numpy</strong></li>
+<li><strong>Pandas</strong></li>
+</ul>
+<p>Some of the most popular tools:</p>
+<ul>
+<li><strong>TensorFlow, Keras</strong> - Deep learning.</li>
+</ul>
 </div>
 </div>
 <div id="further-reading-and-references" class="section level2">
@@ -359,7 +432,11 @@ a <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class=
 </div>
 <div id="practice-problems" class="section level2">
 <h2><span class="header-section-number">1.7</span> Practice problems</h2>
-<p>some practice problems? (=homework)</p>
+<ul>
+<li>Install Anaconda Python, run the <a href="data/01%20-%20Python%20introduction.ipynb">provided Jupyter notebook</a> within a new conda environment and then export all the installed dependencies into an <em>environment.yml</em> file (see <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">reference</a>). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additiona packages manually).</li>
+<li>Check some Python IDEs to have a subjective opinion for some of them.</li>
+<li>Download, explore and run some scripts from <a href="https://github.com/keras-team/keras/tree/master/examples">the Keras examples repository</a>.</li>
+</ul>
 
 </div>
 </div>
@@ -387,11 +464,10 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
-"linkedin": false,
 "weibo": false,
-"instapaper": false,
+"instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -399,10 +475,6 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
-},
-"history": {
 "link": null,
 "text": null
 },
@@ -419,8 +491,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

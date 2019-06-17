@@ -40,7 +40,7 @@ ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
    geom_vline(xintercept = qgamma(0.5, a, b), colour = "blue", lty = "dashed", lwd = 1.5)
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-1-1.png" width="672" />
 
 In the case of multi-modal distributions, no single measure of central tendency will adequately summarize the distribution - they will all be misleading. For example, look at this bimodal distribution:
 
@@ -55,7 +55,7 @@ ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
    geom_vline(xintercept = 2, colour = "green", lty = "dashed", lwd = 1.5)
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-2-1.png" width="672" />
 
 ### Dispersion
 
@@ -124,7 +124,7 @@ for (i in 1:4) {
 ggplot(tmp, aes(x = x)) + geom_histogram(bins = 50) + facet_wrap(.~name)
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-5-1.png" width="672" />
 
 
 ### Nominal variables
@@ -249,7 +249,7 @@ tmp <- data.frame(y = x1)
 ggplot(tmp, aes(sample = y)) + stat_qq() + stat_qq_line()
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-9-1.png" width="672" />
 
 The **Chi-squared goodness-of-fit** test (CHISQ) is a non-parametric test for testing the equality of two categorical distributions. The CHISQ test can also be used on discrete or even continuous data, if there is a reasonable way of binning the data into a finite number of bins. The test statistic is based on a similar idea as the KS test statistic, but instead of observing just the maximum difference, we sum the squared difference between the relative frequency of the two distributions for a bin across all bins. We illustrate the CHISQ test by testing the samples for a biased coin against a theoretical fair coin and the samples from an unbiased 6-sided die against a theoretical fair 6-sided die.
 
