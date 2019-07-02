@@ -89,6 +89,10 @@ It can happen that in some cases, packages will be prebuilt or istallation of it
 pip install YOUR_DOWNLOADED_PACKAGE.whl
 ```
 
+TODO: dodaj virtualenv
+
+TODO: dodaj jupyter notebook-e
+
 ## Python in 15 minutes
 
 ### Hello world! {-}

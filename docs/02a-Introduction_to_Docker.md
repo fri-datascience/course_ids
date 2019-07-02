@@ -30,6 +30,8 @@ TODO
 
 * Docker tutorial: https://docs.docker.com/get-started/
 
+Kubernetes, Vagrant, ...
+
 ## Learning outcomes
 
 Data science students should work towards obtaining the knowledge and the skills that enable them to:
