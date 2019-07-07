@@ -390,7 +390,6 @@ It is useful to format strings to provide machine readable outputs when needed. 
 ```python
 number = 6/.7
 text = "dyslexia"
-
 format0 = "Number: " + str(round(number*100)/100.0) + ", Text: " + \
 " "*(15-len(text)) + text
 print(format0)
@@ -446,7 +445,6 @@ You will often use inline functions to map, filter or calculate values on a give
 
 ```python
 #from functools import reduce # Python 3 import for reduce (not needed for Python 2)
-
 l = [6, 8, 22, 4, 12]
 doubled = map(lambda x: x*2, l)
 print("Doubled: {}".format(doubled))
@@ -627,7 +625,6 @@ def playWithVariables(value1, list1):
   value1 = 10
   list1.append(22)
   print("Within function: {} and {} and {}".format(value1, list1, globVal))
-
 value1 = 5
 list1 = [3, 6, 9]
 print("Before function: {} and {}".format(value1, list1))
@@ -647,7 +644,6 @@ In some cases we can also define functions that accept undefined number of param
 ```python
 def paramsWriter(*args, **kwargs):
   print("Non-named arguments: {}\nNamed arguments: {}".format(args, kwargs))
-
 paramsWriter(1, "a", [1,5,6], studentIds = [234, 451, 842], maxScore = 100.0)
 ```
 
@@ -703,14 +699,11 @@ class Classroom:
 ```python
 class1 = Classroom("best of millenials")
 class2 = Classroom("old sports")
-
 print("Num classes: {}".format(Classroom.classCounter))
 print("Num classes: {}".format(Classroom.numClasses()))
-
 class2.enroll("Slavko Žitnik")
 class2.enroll("Erik Štrumbelj")
 class2.enroll("Tomaž Curk")
-
 print(class2)
 ```
 

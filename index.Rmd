@@ -1,6 +1,6 @@
 --- 
 title: "Introduction to data science"
-author: "Tomaž Curk, Erik Štrumbelj"
+author: "Slavko Žitnik, Tomaž Curk, Erik Štrumbelj"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
