@@ -1,6 +1,6 @@
 # Basic data summarization
 
-Data summarization, numerical or visual, is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic techniques for univariate and bivariate data. Other, more advanced data summarization techniques will be covered in a later chapter.
+Data summarization - the art of conveying the same information in less time/space or conveying more information in the same amount of time/space.  Data summarization is typically numerical or visual (or combined) and is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic techniques for univariate and bivariate data. Other, more advanced data summarization techniques will be covered in a later chapter.
 
 We will be using R and ggplot2, but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!
 
@@ -40,7 +40,7 @@ ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
    geom_vline(xintercept = qgamma(0.5, a, b), colour = "blue", lty = "dashed", lwd = 1.5)
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-1-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 
 In the case of multi-modal distributions, no single measure of central tendency will adequately summarize the distribution - they will all be misleading. For example, look at this bimodal distribution:
 
@@ -55,7 +55,7 @@ ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
    geom_vline(xintercept = 2, colour = "green", lty = "dashed", lwd = 1.5)
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-2-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 ### Dispersion
 
@@ -124,7 +124,7 @@ for (i in 1:4) {
 ggplot(tmp, aes(x = x)) + geom_histogram(bins = 50) + facet_wrap(.~name)
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-5-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 
 ### Nominal variables
@@ -249,7 +249,7 @@ tmp <- data.frame(y = x1)
 ggplot(tmp, aes(sample = y)) + stat_qq() + stat_qq_line()
 ```
 
-<img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-9-1.png" width="672" />
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 The **Chi-squared goodness-of-fit** test (CHISQ) is a non-parametric test for testing the equality of two categorical distributions. The CHISQ test can also be used on discrete or even continuous data, if there is a reasonable way of binning the data into a finite number of bins. The test statistic is based on a similar idea as the KS test statistic, but instead of observing just the maximum difference, we sum the squared difference between the relative frequency of the two distributions for a bin across all bins. We illustrate the CHISQ test by testing the samples for a biased coin against a theoretical fair coin and the samples from an unbiased 6-sided die against a theoretical fair 6-sided die.
 
@@ -360,17 +360,458 @@ Still, we can at most typical levels of confidence reject the null-hypothesis an
 
 ## Descriptive statistics for bivariate distributions
 
+When dealing with a joint distribution of two variables (that is, paired samples), the first thing we are typically interested in is dependence of the two variables or lack thereof. If two distributions are independent, we can summarize each separately without loss of information. If they are not, then the distributions carry information about eachother. The predictability of one variable from another is another (equivalent) way of looking at dependence of variables.
+
+The most commonly used numerical summary of dependence is the **Pearson correlation coefficient** or Pearson's $\rho$. It summarizes the linear dependence, with $\rho = 1$ and $\rho = - 1$ indicating perfect colinearity (increasing or decreasing) and $\rho = 0$ indicating linear independence. As such, Pearson's $\rho$ is directly related (squared root) to the coefficient of determination $R^2$, a goodness-of-fit measure for linear models and the proportion of variance in one explained by the other variable. An important consideration is that the statement that linear independence implies independence is not true in general (the converse implication is). One notable exception where this implication is true is the multivariate Normal distribution, where the dependence structure is expressed through linear dependence only.
+
+Two of the most popular alternatives to Pearson's $\rho$ are Spearman's $\rho$ and Kendalls $\tau$. The former measures the degree to which one variable can be expressed as monotonic function of the other. The latter measures the proportion of concordant pairs among all possible pairs (pairs (x1,y1) and (x2, y2), wher if x1 > x2 then y1 > y2). As such, they can capture non-linear dependence and is more appropriate for data with outliers or data where distance might have no meaning, such as ordinal data. Spearman's $\rho$ and Kendall's $\tau$ are more robust but do not have as clear an interpretation as Pearson's $\rho$. Kendall's tau is also computationally more expensive.
+
+Below are a few examples of bivariate samples that illustrate the strengths and limitations of the above correlation coefficients:
+
+
+```r
+set.seed(0)
+library(MASS)
+m <- 100
+
+dat <- NULL
+# data 1
+sigma <- matrix(c(1, 0, 0, 1), nrow = 2)
+x <- mvrnorm(m, mu = c(0, 0), Sigma = sigma )
+txt <- sprintf("Pearson's = %.2f\nSpearman's = %.2f\nKendall's = %.2f", cor(x)[1,2], cor(x, method = "spearman")[1,2], cor(x, method = "kendall")[1,2])
+dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
+
+# data 2
+sigma <- matrix(c(1, -0.5, -0.5, 1), nrow = 2)
+x <- mvrnorm(m, mu = c(0, 0), Sigma = sigma )
+txt <- sprintf("Pearson's = %.2f\nSpearman's = %.2f\nKendall's = %.2f", cor(x)[1,2], cor(x, method = "spearman")[1,2], cor(x, method = "kendall")[1,2])
+dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
+
+# data 3
+sigma <- matrix(c(1, 0.95, 0.95, 1), nrow = 2)
+x <- mvrnorm(m, mu = c(0, 0), Sigma = sigma )
+txt <- sprintf("Pearson's = %.2f\nSpearman's = %.2f\nKendall's = %.2f", cor(x)[1,2], cor(x, method = "spearman")[1,2], cor(x, method = "kendall")[1,2])
+dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
+
+# data 4
+x <- rnorm(m, 0, 1)
+y <- 2 * pnorm(x) + rnorm(m, 0, 0.05)
+x <- cbind(x, y)
+txt <- sprintf("Pearson's = %.2f\nSpearman's = %.2f\nKendall's = %.2f", cor(x)[1,2], cor(x, method = "spearman")[1,2], cor(x, method = "kendall")[1,2])
+dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
+
+# data 5
+sigma1 <- matrix(c(1, -0.5, -0.5, 1), nrow = 2)
+sigma2 <- matrix(c(0.1, 0, 0, 0.1), nrow = 2)
+x <- rbind(mvrnorm(m, mu = c(0, 0), Sigma = sigma ), mvrnorm(50, mu = c(3, -2), Sigma = sigma2 ))
+txt <- sprintf("Pearson's = %.2f\nSpearman's = %.2f\nKendall's = %.2f", cor(x)[1,2], cor(x, method = "spearman")[1,2], cor(x, method = "kendall")[1,2])
+dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
+
+# data 6
+z <- runif(m, 0, 2*pi)
+x <- cbind(cos(z), sin(z))
+txt <- sprintf("Pearson's = %.2f\nSpearman's = %.2f\nKendall's = %.2f", cor(x)[1,2], cor(x, method = "spearman")[1,2], cor(x, method = "kendall")[1,2])
+dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
+
+
+ggplot(dat, aes(x = x, y = y)) + geom_point() + facet_wrap(.~example, ncol = 3, scales = "free")
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+
+Like similar questions about other parameters of interest, the question *Is <insert number here> a strong correlation?* is a practical question. Unless the correlation is 0 (no correlation) or 1/-1 (perfectly correlated, can't be more correlated than this), the meaning of the magnitude of correlation depends on the practical setting and its interpretation depends on some reference level. Even a very low correlation, such as 0.001 (if we are reasonably sure that it is around 0.001) can be practically meaningful. For example, if it is correlation between the even and odd numbers generated by a uniform random number generator (RNG), that would be more than enough correlation to stop using this RNG. 
 
 ## Visualization
 
-### Basic principles
+As we mentioned at the beginning - summarization is the art of conveying the same information in less time/space or conveying more information in the same amount of time/space. Visual summaries are often a more informative, faster and more concise alternative to numerical summaries.
 
-### Univariate data
-
-
+Throughout this section we'll be using the NBA players dataset that contains some basic information about nba
 
 
-### Bivariate data
+```r
+dat <- read.csv("./data/NBAplayers.csv")
+dat <- dat[complete.cases(dat),]
+dat$height <- dat$h_feet * 30.48 + dat$h_inches * 2.54 # in cm
+dat$weight <- dat$weight * 0.4536
+summary(dat)
+```
+
+```
+##        ilkid        firstname        lastname    position  firstseason  
+##  ABDELAL01:   1   John   :  90   Williams:  66   C: 627   Min.   :1946  
+##  ABDULKA01:   1   Bob    :  88   Smith   :  54   F:1665   1st Qu.:1967  
+##  ABDULMA01:   1   Jim    :  70   Johnson :  52   G:1614   Median :1980  
+##  ABDULTA01:   1   Mike   :  66   Jones   :  44            Mean   :1979  
+##  ABDURSH01:   1   Bill   :  54   Davis   :  37            3rd Qu.:1995  
+##  ABERNTO01:   1   Tom    :  46   Brown   :  34            Max.   :2009  
+##  (Other)  :3900   (Other):3492   (Other) :3619                          
+##    lastseason       h_feet         h_inches          weight      
+##  Min.   :1946   Min.   :5.000   Min.   :-6.000   Min.   : 60.33  
+##  1st Qu.:1970   1st Qu.:6.000   1st Qu.: 3.000   1st Qu.: 83.92  
+##  Median :1985   Median :6.000   Median : 6.000   Median : 92.99  
+##  Mean   :1983   Mean   :6.022   Mean   : 5.581   Mean   : 93.91  
+##  3rd Qu.:2001   3rd Qu.:6.000   3rd Qu.: 8.000   3rd Qu.:102.06  
+##  Max.   :2009   Max.   :7.000   Max.   :11.500   Max.   :149.69  
+##                                                                  
+##                                    college                   birthdate   
+##                                        : 200   1945-01-01 00:00:00:   8  
+##  University of California - Los Angeles:  72   1944-01-01 00:00:00:   5  
+##  University of North Carolina          :  71   1921-01-01 00:00:00:   4  
+##  University of Kentucky                :  67   1931-01-01 00:00:00:   4  
+##  Indiana University                    :  54   1919-01-01 00:00:00:   3  
+##  University of Kansas                  :  52   1923-09-18 00:00:00:   3  
+##  (Other)                               :3390   (Other)            :3879  
+##      height     
+##  Min.   :160.0  
+##  1st Qu.:190.5  
+##  Median :198.1  
+##  Mean   :197.7  
+##  3rd Qu.:205.7  
+##  Max.   :231.1  
+## 
+```
+
+### The evolution of a plot
+
+The above will also be our guidelines for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!
+
+We'll illustrate this point with an example that features some common mistakes or inefficiencies people do when visualizing data. Our goal will be to summarize how the average height of NBA Centers, Forwards, and Guards that started that year has changed over time.
+
+Let's plot the averages over time:
+
+
+```r
+tmp <- dat[dat$position == "G",]
+plot(tapply(tmp$height, tmp$firstseason, mean))
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+
+```r
+tmp <- dat[dat$position == "F",]
+plot(tapply(tmp$height, tmp$firstseason, mean))
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-15-2.png" width="672" />
+
+```r
+tmp <- dat[dat$position == "C",]
+plot(tapply(tmp$height, tmp$firstseason, mean))
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-15-3.png" width="672" />
+
+The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize plotting 3 things separately that could be plotted on the same plot wastes space and the reader's time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.
+
+Let's remedy this mistake:
+
+
+
+```r
+tmp <- dat[dat$position == "G",]
+plot(tapply(tmp$height, tmp$firstseason, mean), col = "green", ylim = c(180, 220))
+tmp <- dat[dat$position == "F",]
+points(tapply(tmp$height, tmp$firstseason, mean), col = "red")
+tmp <- dat[dat$position == "C",]
+points(tapply(tmp$height, tmp$firstseason, mean), col = "black")
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+This plot uses up only a third of the space and simplifies comparison. This reveals new information, such as that centers (black) are higher than forwards (red) who are higher than guards (green), that there was a more steep increase in the beginning of the period and that forwards these days are as high on average as centers were in the past.
+
+However, there are several things that we can still improve on. The first will be one of the fundamental rules of statistical plotting - **always label your axes**! The reader should never look elsewhere for information about what is plotted. We will also take this opportunity to reorganize our data:
+
+
+```r
+library(reshape2)
+tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
+names(tmp) <- c("position", "year", "height")
+plot(tmp$year, tmp$height, col = tmp$position, xlab = "year", ylab = "average rookie height (cm)")
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+
+This is starting to look better. However, we should also include the legend - if we describe the meaning of the colors in the figure caption (or worse, in text), the reader will have to jump from text to figure, wasting time. Additionally, some people (and publications) prefer to add a title to their plot, explaining concisely what is in it, therefore making it more self containes. Others prefer to explain the plot in the caption. We'll add a title:
+
+
+```r
+tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
+names(tmp) <- c("position", "year", "height")
+plot(tmp$year, tmp$height, col = tmp$position, xlab = "year", ylab = "average rookie height (cm)")
+legend(1997, 190, legend=c("centers", "forwards", "guards"),
+       col=c("black", "red", "green"), lty = 1, cex=0.8)
+title("The average height of NBA rookies by playing position over time.")
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+
+This is now a quite decent and self-contained plot. Next, we'll add a bit of polish. Pleasing aesthetics might not add much to the informativeness of a plot, but they do make our work look more professional. They are also indicate that we put in the extra effort. Of course, we should never let aesthetics get in the way of efficiency and informativeness (see pie-chart example in the following section):
+
+
+```r
+tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
+names(tmp) <- c("position", "year", "height")
+levels(tmp$position) <- c("centers", "forwards", "guards")
+ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + 
+  xlab("year") + ylab("average rookie height (cm)") + ggtitle("The average height of NBA rookies by playing position over time.") +
+  theme_bw()
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+
+By using ggplot2 we can make our visualizations look better, but it is also very convenient for adding some extra layers to our plots. For example, a smoothed line with standard errors to help us focus on the trend and not the individual data points:
+
+
+```r
+tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
+names(tmp) <- c("position", "year", "height")
+levels(tmp$position) <- c("centers", "forwards", "guards")
+ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + geom_smooth(method = "loess") +
+  xlab("year") + ylab("average rookie height (cm)") + ggtitle("The average height of NBA rookies by playing position over time.") +
+  theme_bw()
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+
+There is one more thing that we can typically do in such cases - label the data directly and omit the legend. This saves both space and user's time, especially if we have several lines/colors in our plot:
+
+
+```r
+tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
+names(tmp) <- c("position", "year", "height")
+levels(tmp$position) <- c("centers", "forwards", "guards")
+ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + geom_smooth(method = "loess") +
+  xlab("year") + ylab("average rookie height (cm)") + ggtitle("The average height of NBA rookies by playing position over time.") +
+  theme_bw() + theme(legend.position = "none") + 
+   annotate("text", x = 1970, y = 212, label = "centers", colour = "red") +
+  annotate("text", x = 1970, y = 203, label = "forwards", colour = "darkgreen") +
+  annotate("text", x = 1970, y = 192, label = "guards", colour = "blue")
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-21-1.png" alt="The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-21)The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates.</p>
+</div>
+
+We've equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). There is always something we can tweek and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.
+
+
+
+### Common types of plots
+
+Now we quickly run through some of the most common types of plots for univariate data.
+
+## Histograms and density plots
+
+The most elementary way of summarizing data is to plot their density. Of course, the true density is unknown and we can only estimate it by using a model or a non-parametric (smoothing) kernel density estimation. A histogram (binning the data and plotting the frequencies) can be viewed as a more coarse or discrete way of estimating the density of the data.
+
+In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most build-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.
+
+We illustrate these two plots by summarizing NBA player weight:
+
+
+```r
+ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5, 
+                position="identity", binwidth = 7) + geom_density(lwd = 1, col = "black") + theme_bw()
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-22-1.png" alt="Histogram and density estimation of NBA player weight" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-22)Histogram and density estimation of NBA player weight</p>
+</div>
+
+
+## Bar plot
+
+Bar plots are the most common choice for summarizing the (relative) frequencies for categorical or ordinal data with a manageable number of unique values. It is similar to a histogram, except that the categories/values provide a natural way of binning the data:
+
+
+```r
+set.seed(0)
+tmp <- data.frame(University = dat$college)
+x <- table(tmp)
+x <- x[x >= 5]
+x <- sample(x, 10, rep = F)
+x <- sort(x)
+ggplot(data.frame(x), aes(x = tmp, y = Freq)) + geom_bar(stat = "identity") + coord_flip() +
+  xlab("University") + ylab("number of players")
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-23-1.png" alt="The number of NBA players that came from these 10 Universities." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-23)The number of NBA players that came from these 10 Universities.</p>
+</div>
+
+When the number of unique values is large, it will not be not possible to visualize all of them (try visualizing the frequencies for all universities in the above example). In such cases we may opt to group some values or show only certain values.
+
+
+```r
+set.seed(0)
+tmp <- data.frame(University = dat$college)
+x <- table(tmp)
+x <- x[x >= 5]
+x <- sample(x, 10, rep = F)
+x <- sort(x)
+ggplot(data.frame(x), aes(x = tmp, y = Freq)) + geom_bar(stat = "identity") + coord_flip() +
+  xlab("University") + ylab("number of players")
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-24-1.png" alt="The number of NBA players that came from these Universities." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-24)The number of NBA players that came from these Universities.</p>
+</div>
+
+## Pie chart
+
+Pie charts are quite possibly the easiest chart type to work with, because there is only one rule to using pie charts - **don't use pie charts**. Let's visualize the data from the bar chart example:
+
+
+```r
+y <- x / sum(x)
+ggplot(data.frame(y), aes(x = "", y = Freq, fill = tmp)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + labs(fill = "University")
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-25-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-25)The relative frequencies of NBA players that came from these Universities.</p>
+</div>
+
+The pie chart is a great example (and warning!) of how aesthetics can get in the way of function and effectiveness. It is well documented that people are poor at comparing areas and especially angles. Could you recognize quickly from the above pie chart that University of Washington gave approximately twice as many players as University of Texas? How quickly would you be able to judge these relationships from the bar chart?
+
+Angles can also play tricks on our eyes. Which color pie slice is the largest on the first plot below? Which on the second plot?
+
+
+```r
+y <- data.frame(Name = c("A", "B", "C"), Value = rep(1, 3))
+ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+
+```r
+ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=pi/3) + theme_bw() + theme(legend.position = "none")
+```
+
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-26-2.png" width="672" />
+For more information on how people percieve visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland.
+
+## Scatterplot
+
+The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we've already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.
+
+
+```r
+ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3) + theme_bw() + facet_wrap(.~position)
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-27-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-27)Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.</p>
+</div>
+
+## 2D density plot
+
+When individual points are of little interest and we just want to summarize the density of the joint distribution, a 2D density plot is a good alternative to the scatterplot.
+
+
+```r
+ggplot(dat, aes(x = height, y = weight, colour = position)) + geom_density_2d() + theme_bw() + 
+  theme_bw() + theme(legend.position = "none") + 
+  annotate("text", y = 90, x = 212, label = "centers", colour = "red") +
+  annotate("text", y = 80, x = 203, label = "forwards", colour = "darkgreen") +
+  annotate("text", y = 73, x = 192, label = "guards", colour = "blue")
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-28-1.png" alt="Relationship between player weight and height by player position." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-28)Relationship between player weight and height by player position.</p>
+</div>
+
+## Boxplot
+
+A boxplot is named by the boxes that typicaly summarize the quartiles of the data. Sometimes, whiskers are added to indicate outliers. It useful for quickly visually summarizing, side-by-side, several numerical variables or to summarize the relationship between a categorical/ordinal variable and a numerical variable. Here, we use it so summarize weight by playing position.
+
+
+```r
+ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_bw()
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-29-1.png" alt="Summary of player weight by position." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-29)Summary of player weight by position.</p>
+</div>
+
+## Violin plot
+
+The boxplot shows only the quartiles so it can sometimes be misleading or hide information. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.
+
+
+```r
+ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") + geom_boxplot(width = 0.05) + theme_bw()
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-30-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-30)Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.</p>
+</div>
+
+## Correlogram
+
+When we want to quickly inspect if there are any correlations between numerical variables, we can summarize correlation coefficients in a single plot. Such a plot is also known as a correlogram. Here we do it for the iris dataset:
+
+
+```r
+library(ggcorrplot)
+```
+
+```
+## Warning: package 'ggcorrplot' was built under R version 3.5.3
+```
+
+```r
+corr <- round(cor(iris[,-5]),2)
+ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T)
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-31-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-31)Summary of the numerical variables in the iris dataset.</p>
+</div>
+
+## A comprehensive summary
+
+Sometimes it will be useful to summarize the density/histogram of several numerical variables and the correlation between them. Here is an example of how we can combine histograms/density plots, scatterplots, and information about correlation:
+
+
+```r
+library(psych)
+```
+
+```
+## Warning: package 'psych' was built under R version 3.5.3
+```
+
+```
+## 
+## Attaching package: 'psych'
+```
+
+```
+## The following objects are masked from 'package:ggplot2':
+## 
+##     %+%, alpha
+```
+
+```r
+pairs.panels(iris[,-5])
+```
+
+<div class="figure">
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-32-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-32)Summary of the numerical variables in the iris dataset.</p>
+</div>
+
 
 
 
@@ -405,5 +846,4 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-TODO: practice problems and/or homework
-
+TODO: Basically, take a rich enough dataset and demonstrate most if not all summarization techniques shown here. For each summary, add an interpretation of the insights it provides.
