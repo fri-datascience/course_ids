@@ -5,19 +5,19 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to data science</title>
+  <title>Chapter 5 Basic data summarization | Introduction to data science</title>
   <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introduction to data science" />
+  <meta property="og:title" content="Chapter 5 Basic data summarization | Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="<a href="https://fri-datascience.github.io/course_itds/" class="uri">https://fri-datascience.github.io/course_itds/</a>" />
+  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
   <meta property="og:description" content="Course notes" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to data science" />
+  <meta name="twitter:title" content="Chapter 5 Basic data summarization | Introduction to data science" />
   
   <meta name="twitter:description" content="Course notes" />
   
@@ -36,6 +36,7 @@
 <link rel="next" href="dynamic-reports-and-reproducibility.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -50,69 +51,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -178,13 +151,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>5.2</b> Descriptive statistics for bivariate distributions</a></li>
 <li class="chapter" data-level="5.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#visualization"><i class="fa fa-check"></i><b>5.3</b> Visualization</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#basic-principles"><i class="fa fa-check"></i><b>5.3.1</b> Basic principles</a></li>
-<li class="chapter" data-level="5.3.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#univariate-data"><i class="fa fa-check"></i><b>5.3.2</b> Univariate data</a></li>
-<li class="chapter" data-level="5.3.3" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#bivariate-data"><i class="fa fa-check"></i><b>5.3.3</b> Bivariate data</a></li>
+<li class="chapter" data-level="5.3.1" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#the-evolution-of-a-plot"><i class="fa fa-check"></i><b>5.3.1</b> The evolution of a plot</a></li>
+<li class="chapter" data-level="5.3.2" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#common-types-of-plots"><i class="fa fa-check"></i><b>5.3.2</b> Common types of plots</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>5.4</b> Further reading and references</a></li>
-<li class="chapter" data-level="5.5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#learning-outcomes-2"><i class="fa fa-check"></i><b>5.5</b> Learning outcomes</a></li>
-<li class="chapter" data-level="5.6" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#practice-problems-2"><i class="fa fa-check"></i><b>5.6</b> Practice problems</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>5.4</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#bar-plot"><i class="fa fa-check"></i><b>5.5</b> Bar plot</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#pie-chart"><i class="fa fa-check"></i><b>5.6</b> Pie chart</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#scatterplot"><i class="fa fa-check"></i><b>5.7</b> Scatterplot</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#d-density-plot"><i class="fa fa-check"></i><b>5.8</b> 2D density plot</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#boxplot"><i class="fa fa-check"></i><b>5.9</b> Boxplot</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#violin-plot"><i class="fa fa-check"></i><b>5.10</b> Violin plot</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#correlogram"><i class="fa fa-check"></i><b>5.11</b> Correlogram</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>5.12</b> A comprehensive summary</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>5.13</b> Further reading and references</a></li>
+<li class="chapter" data-level="5.14" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#learning-outcomes-2"><i class="fa fa-check"></i><b>5.14</b> Learning outcomes</a></li>
+<li class="chapter" data-level="5.15" data-path="basic-data-summarization.html"><a href="basic-data-summarization.html#practice-problems-2"><i class="fa fa-check"></i><b>5.15</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>6</b> Dynamic reports and reproducibility</a></li>
 <li class="chapter" data-level="7" data-path="more-exploratory-data-analysis.html"><a href="more-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>7</b> More exploratory data analysis</a></li>
@@ -221,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="basic-data-summarization" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Basic data summarization</h1>
-<p>Data summarization, numerical or visual, is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic techniques for univariate and bivariate data. Other, more advanced data summarization techniques will be covered in a later chapter.</p>
+<p>Data summarization - the art of conveying the same information in less time/space or conveying more information in the same amount of time/space. Data summarization is typically numerical or visual (or combined) and is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic techniques for univariate and bivariate data. Other, more advanced data summarization techniques will be covered in a later chapter.</p>
 <p>We will be using R and ggplot2, but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!</p>
 <div id="descriptive-statistics-for-univariate-distributions" class="section level2">
 <h2><span class="header-section-number">5.1</span> Descriptive statistics for univariate distributions</h2>
@@ -239,26 +220,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Given a sample of data, the mean is the easiest to estimate/compute (we compute the average), but the median and mode are more robust to outliers.</p>
 <p>In the case of unimodal approximately symmetrical distributions, such as the univariate normal distribution, all these measures of central tendency will be similar and all will be an excellent summary of location. If the distribution is asymmetrical or skewed, they will differ. In such cases it is our job to determine what information we want to convey and which summary of central tendency is the most appropriate, if any.</p>
 <p>For example, observe the Gamma(1.5, 0.1) distribution and its mean (red), median (blue) and mode (green):</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="fl">0.01</span>)</a>
-<a class="sourceLine" id="cb96-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="fl">1.5</span></a>
-<a class="sourceLine" id="cb96-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="fl">0.1</span></a>
-<a class="sourceLine" id="cb96-4" data-line-number="4">y &lt;-<span class="st"> </span><span class="kw">dgamma</span>(x, a, b)</a>
-<a class="sourceLine" id="cb96-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb96-7" data-line-number="7"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x,y), <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;p(x)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> (a<span class="dv">-1</span>) <span class="op">/</span><span class="st"> </span>b, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb96-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> a <span class="op">/</span><span class="st"> </span>b, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb96-10" data-line-number="10"><span class="st">   </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">qgamma</span>(<span class="fl">0.5</span>, a, b), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</a></code></pre></div>
-<p><img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="fl">0.01</span>)
+a &lt;-<span class="st"> </span><span class="fl">1.5</span>
+b &lt;-<span class="st"> </span><span class="fl">0.1</span>
+y &lt;-<span class="st"> </span><span class="kw">dgamma</span>(x, a, b)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x,y), <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;p(x)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> (a<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>b, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> a <span class="op">/</span><span class="st"> </span>b, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">qgamma</span>(<span class="fl">0.5</span>, a, b), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>In the case of multi-modal distributions, no single measure of central tendency will adequately summarize the distribution - they will all be misleading. For example, look at this bimodal distribution:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">20</span>, <span class="fl">0.01</span>)</a>
-<a class="sourceLine" id="cb97-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="fl">0.6</span> <span class="op">*</span><span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dv">2</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.4</span> <span class="op">*</span><span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dv">12</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb97-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb97-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb97-5" data-line-number="5"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x,y), <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;p(x)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">0.6</span><span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="st">   </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</a></code></pre></div>
-<p><img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">20</span>, <span class="fl">0.01</span>)
+y &lt;-<span class="st"> </span><span class="fl">0.6</span> <span class="op">*</span><span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dv">2</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.4</span> <span class="op">*</span><span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dv">12</span>, <span class="dv">2</span>)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x,y), <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;p(x)&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">0.6</span><span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="dispersion" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Dispersion</h3>
@@ -271,14 +252,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As the measures of central tendency summarize the centre of the distribution, measures of dispersion summarize how far spread out is the distribution around its centre. Standard deviation is the most commonly used and median absolute deviation is more robust to outliers.</p>
 <p>Again, in the case of distributions that are approximately normal, the standard deviation and the mean will be the practically optimal choice for summarization, because they correspond directly to the two parameters of the normal distribution. That is, they completely summarize the distribution without loss of information. We also know that approximately 95% (99%) of the normal density lies within 2 (3) standard deviations from the mean. Standard deviation is useful even if the distribution is not approximately normal as it does provide some information, combined with the sample size (producing the standard error), on how certain we can be in our estimate of the mean.</p>
 <p>But, as before, the more we deviate from normality, the less meaningful standard deviation becomes and it makes more sense to use quantile-based intervals. For example, if we estimate the mean and <span class="math inline">\(\pm\)</span> 2 standard deviations for samples from the Gamma distribution from before, we get the following:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb98-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1000</span>, a, b)</a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(x), <span class="dv">2</span><span class="op">*</span><span class="kw">sd</span>(x)))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1000</span>, a, b)
+<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(x), <span class="dv">2</span><span class="op">*</span><span class="kw">sd</span>(x)))</code></pre></div>
 <pre><code>## 14.66 +/- 24.49</code></pre>
 <p>That is, the 95% interval estimated this way also includes negative values, which is absurd and misleading - we know the Gamma distributed variables are positive. Computing the IQR or the 95% range interval provides a more sensible summary of this skewed distribution and, together with the mean also serve as an indicator that the distribution is skewed (the mean is not the centre of the intervals):</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb100-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1000</span>, a, b)</a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f, IQR = [%.2f, %.2f], 95pct = [%.2f, %.2f]</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">quantile</span>(x, <span class="fl">0.25</span>), <span class="kw">quantile</span>(x, <span class="fl">0.75</span>), <span class="kw">quantile</span>(x, <span class="fl">0.025</span>), <span class="kw">quantile</span>(x, <span class="fl">0.975</span>)))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1000</span>, a, b)
+<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f, IQR = [%.2f, %.2f], 95pct = [%.2f, %.2f]</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">quantile</span>(x, <span class="fl">0.25</span>), <span class="kw">quantile</span>(x, <span class="fl">0.75</span>), <span class="kw">quantile</span>(x, <span class="fl">0.025</span>), <span class="kw">quantile</span>(x, <span class="fl">0.975</span>)))</code></pre></div>
 <pre><code>## 14.66, IQR = [5.72, 20.76], 95pct = [1.18, 46.09]</code></pre>
 <p>And, again, for multi-modal distributions, we can adequately summarize them only by identifying the modes visually and/or describing each mode individually.</p>
 </div>
@@ -286,43 +267,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.1.3</span> Skewness and kurtosis</h3>
 <p>As mentioned above, ranges can be used to indicate a distributions asymmetry (skewness) or fat-tailedness (kurtosis). Although less commonly used, there exist numerical summaries of skewness and kurtosis that can be used instead.</p>
 <p>The following example shows the kurtosis and skewness for a gamma, normal, logistic and bimodal distribution. Observe how how the bimodal distribution has the lowest kurtosis, because the method fails:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">library</span>(moments)</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb102-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) {</a>
-<a class="sourceLine" id="cb102-6" data-line-number="6">  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1000</span>, a, b)</a>
-<a class="sourceLine" id="cb102-7" data-line-number="7">  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb102-8" data-line-number="8">  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">3</span>) x &lt;-<span class="st"> </span><span class="kw">rlogis</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb102-9" data-line-number="9">  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">700</span>, <span class="dv">0</span>, <span class="dv">9</span>), <span class="kw">rnorm</span>(<span class="dv">300</span>, <span class="dv">35</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb102-10" data-line-number="10">  </a>
-<a class="sourceLine" id="cb102-11" data-line-number="11">  s &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;kurtosis = &quot;</span>, <span class="kw">round</span>(<span class="kw">kurtosis</span>(x), <span class="dv">2</span>), <span class="st">&quot; skewness =&quot;</span>, <span class="kw">round</span>(<span class="kw">skewness</span>(x), <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb102-12" data-line-number="12">  tmp &lt;-<span class="st"> </span><span class="kw">rbind</span>(tmp, <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">name =</span> s))</a>
-<a class="sourceLine" id="cb102-13" data-line-number="13">}</a>
-<a class="sourceLine" id="cb102-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb102-15" data-line-number="15"><span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">x =</span> x)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>name)</a></code></pre></div>
-<p><img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(moments)
+<span class="kw">set.seed</span>(<span class="dv">0</span>)
+tmp &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) {
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1000</span>, a, b)
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">9</span>)
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">3</span>) x &lt;-<span class="st"> </span><span class="kw">rlogis</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">9</span>)
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">700</span>, <span class="dv">0</span>, <span class="dv">9</span>), <span class="kw">rnorm</span>(<span class="dv">300</span>, <span class="dv">35</span>, <span class="dv">4</span>))
+  
+  s &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;kurtosis = &quot;</span>, <span class="kw">round</span>(<span class="kw">kurtosis</span>(x), <span class="dv">2</span>), <span class="st">&quot; skewness =&quot;</span>, <span class="kw">round</span>(<span class="kw">skewness</span>(x), <span class="dv">2</span>))
+  tmp &lt;-<span class="st"> </span><span class="kw">rbind</span>(tmp, <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">name =</span> s))
+}
+
+<span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">x =</span> x)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>name)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="nominal-variables" class="section level3">
 <h3><span class="header-section-number">5.1.4</span> Nominal variables</h3>
 <p>Nominal variables are typically represented with the relative frequencies or probabilities, numerically or visually, but that is not really a summary, because it is also all the information about a nominal variable. That the methods discussed so far in this section apply to numerical variables (rational, interval and to some extent, ordinal) but not nominal variables, because the notions of location and distance do not exist in the nominal case. The only exception to this is the mode, which is the level of the nominal variable with the highest relative frequency or probability.</p>
 <p>One summary that is often useful for summarizing the dispersion or the uncertainty associated with a nominal variable is entropy. Observe the following example:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">entropy &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">  x &lt;-<span class="st"> </span>x[x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>]</a>
-<a class="sourceLine" id="cb103-3" data-line-number="3">  <span class="op">-</span><span class="kw">sum</span>(x <span class="op">*</span><span class="st"> </span><span class="kw">log2</span>(x))</a>
-<a class="sourceLine" id="cb103-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb103-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb103-6" data-line-number="6"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="co"># fair coin</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">entropy &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  x &lt;-<span class="st"> </span>x[x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>]
+  <span class="op">-</span><span class="kw">sum</span>(x <span class="op">*</span><span class="st"> </span><span class="kw">log2</span>(x))
+}
+
+<span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="co"># fair coin</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)) <span class="co"># biased coin</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)) <span class="co"># biased coin</span></code></pre></div>
 <pre><code>## [1] 0.7219281</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">1.0</span>, <span class="fl">0.0</span>)) <span class="co"># coin with heads on both sides</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">1.0</span>, <span class="fl">0.0</span>)) <span class="co"># coin with heads on both sides</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>A fair coin has exactly 1 bit of entropy - we receive 1 bit of information by observing the outcome of a flip. This is also the maximum achievable entropy for a binary variable. A biased coin has lower entropy - we receive less information. In the extreme case of a coin with heads on both sides, the entropy is 0 - the outcome of a flip brings no new information, as we already know it will be heads.</p>
 <p>When we want to compare entropy across variables with different numbers of levels/categories, we can normalize it by dividing it with the maximum achieavable entropy. For example, observe a fair coin and a fair 6-sided die - in absolute terms, the 6-sided die has higher entropy due to having more possible values. However, relatively to the maximum achievable entropy, both represent maximally uncertain distributions:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="co"># fair coin</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">entropy</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="co"># fair coin</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">entropy</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">6</span>, <span class="dv">6</span>)) <span class="co"># fair 6-sided die</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">entropy</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">6</span>, <span class="dv">6</span>)) <span class="co"># fair 6-sided die</span></code></pre></div>
 <pre><code>## [1] 2.584963</code></pre>
 <p>Note that entropy can easily be calculated for any discrete random variable. Entropy also has a continuous analogue - differential entropy.</p>
 </div>
@@ -330,24 +311,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.1.5</span> Testing the shape of a distribution</h3>
 <p>Often we want to check if the distribution that underlies our data has the shape of some hypothesized distribution (for example, the normal distribution) or if two samples come from the same distribution. Here, we will present two of the most common methods used: the Kolmogorov-Smirnov test and the Chi-squared goodness-of-fit test. Both of these are Null-hypothesis significance tests (NHST), so, before we proceed, be aware of two things. First, do not use NHST blindly, without a good understanding of their properties and how to interpret their results. And second, if you are more comfortable with thinking in terms of probabilities of hypotheses as opposed to significance and p-values, there always exist Bayesian alternatives to NHST.</p>
 <p>The <strong>Kolmogorov-Smirnov test</strong> (KS) is a non-parametric test for testing the equality of two cumulative distribution functions (CDF). These can be two empirical CDFs or an empirical CDF and a theoretical CDF. The KS test statistic is the maximum distance between the two corresponding CDFs. That is, we compute the distribution of this statistic under the null-hypothesis that the CDFs are the same and then observe how extreme the maximum distance is on the sample. To illustrate the KS test, we use it to test the normality of the underlying distributions for two samples - one from a logistic distribution, one from a standard normal distribution. And then to test if the two samples come from the same distribution:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2">x1 &lt;-<span class="st"> </span><span class="kw">rlogis</span>(<span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb113-3" data-line-number="3">x2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="kw">ks.test</span>(x1, <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+x1 &lt;-<span class="st"> </span><span class="kw">rlogis</span>(<span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+<span class="kw">ks.test</span>(x1, <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x1
 ## D = 0.1575, p-value = 0.03362
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">ks.test</span>(x2, <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ks.test</span>(x2, <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x2
 ## D = 0.070067, p-value = 0.801
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">ks.test</span>(x1, x2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ks.test</span>(x1, x2)</code></pre></div>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
@@ -358,27 +339,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This example also illustrates the complexity of interpreting NHST results or rather all the tempting traps laid out for us - we might be tempted to conclude, based on the high p-value, that x2 does indeed come from a standard normal, but that then leads us to a weird predicament that we are willing to claim that x1 is not standard normal, x2 is standard normal, but we are less sure that x1 and x2 have different underlying distributions.</p>
 <p>Note that typical implementations of the KS test assume that the underlying distributions are continuous and ties are therefore impossible. However, the KS test can be generalized to discrete and mixed distributions (see R package KSgeneral).</p>
 <p>Differences in between distributions can also be assessed visually, through the <strong>QQ-plot</strong>, a plot that compares the quantiles of the two distributions. If the distributions have the same shape, their quantiles, plotted together, should lie on the same line. The samples from the logistic distribution obviously deviate from the theoretical quantiles of a normal distribution:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> x1)</a>
-<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">sample =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</a></code></pre></div>
-<p><img src="04-Basic_data_summarization_files/figure-html4/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> x1)
+<span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">sample =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>The <strong>Chi-squared goodness-of-fit</strong> test (CHISQ) is a non-parametric test for testing the equality of two categorical distributions. The CHISQ test can also be used on discrete or even continuous data, if there is a reasonable way of binning the data into a finite number of bins. The test statistic is based on a similar idea as the KS test statistic, but instead of observing just the maximum difference, we sum the squared difference between the relative frequency of the two distributions for a bin across all bins. We illustrate the CHISQ test by testing the samples for a biased coin against a theoretical fair coin and the samples from an unbiased 6-sided die against a theoretical fair 6-sided die.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb120-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">30</span>, <span class="dt">rep =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>)))</a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="kw">chisq.test</span>(x, <span class="dt">p =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="co"># the default is to compare with uniform theoretical, but we make it explicit here</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+x &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">30</span>, <span class="dt">rep =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>)))
+<span class="kw">chisq.test</span>(x, <span class="dt">p =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="co"># the default is to compare with uniform theoretical, but we make it explicit here</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  x
 ## X-squared = 3.3333, df = 1, p-value = 0.06789</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">40</span>, <span class="dt">rep =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>)))</a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="kw">chisq.test</span>(x, <span class="dt">p =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">40</span>, <span class="dt">rep =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>)))
+<span class="kw">chisq.test</span>(x, <span class="dt">p =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  x
 ## X-squared = 10, df = 1, p-value = 0.001565</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">40</span>, <span class="dt">rep =</span> T))</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="kw">chisq.test</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">40</span>, <span class="dt">rep =</span> T))
+<span class="kw">chisq.test</span>(x)</code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
@@ -386,32 +367,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## X-squared = 5.3, df = 5, p-value = 0.3804</code></pre>
 <p>So, with a 5% risk (95% confidence), we would reject the null hypothesis that our coin is fair, but only in the case with 40 samples. Because fair or close-to fair coins have high entropy, we typically require a lot of samples to distinguish between their underlying probabilities.</p>
 <p>For a more real-world example, let us take the exit-poll data for the 2016 US Presidential election, broken down by gender, taken from (<a href="https://edition.cnn.com/election/2016/results/exit-polls" class="uri">https://edition.cnn.com/election/2016/results/exit-polls</a>):</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">24588</span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2">male     &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.47</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.41</span>, <span class="fl">0.52</span>, <span class="fl">0.07</span>)) <span class="co"># some rounding, but it should not affect results</span></a>
-<a class="sourceLine" id="cb126-3" data-line-number="3">female   &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.53</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.54</span>, <span class="fl">0.41</span>, <span class="fl">0.05</span>))</a>
-<a class="sourceLine" id="cb126-4" data-line-number="4">x        &lt;-<span class="st"> </span><span class="kw">rbind</span>(male, female)</a>
-<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Clinton&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;other/no answer&quot;</span>)</a>
-<a class="sourceLine" id="cb126-6" data-line-number="6"><span class="kw">print</span>(x)        <span class="co"># this is also known as a contingency table and the subsequent test as a contingency test</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">24588</span>
+male     &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.47</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.41</span>, <span class="fl">0.52</span>, <span class="fl">0.07</span>)) <span class="co"># some rounding, but it should not affect results</span>
+female   &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.53</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.54</span>, <span class="fl">0.41</span>, <span class="fl">0.05</span>))
+x        &lt;-<span class="st"> </span><span class="kw">rbind</span>(male, female)
+<span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Clinton&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;other/no answer&quot;</span>)
+<span class="kw">print</span>(x)        <span class="co"># this is also known as a contingency table and the subsequent test as a contingency test</span></code></pre></div>
 <pre><code>##        Clinton Trump other/no answer
 ## male      4738  6009             809
 ## female    7037  5343             652</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">chisq.test</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(x)</code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  x
 ## X-squared = 417.71, df = 2, p-value &lt; 2.2e-16</code></pre>
 <p>So, at any reasonable confidence level, we would reject the null-hypothesis and conclude that there is a difference in how men and women voted. In fact, we do not even need a test, because the difference is so obvious and the sample size so large. The differences between those who earned less or more than 100k$, however, appear smaller, so a test makes more sense:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">24588</span></a>
-<a class="sourceLine" id="cb130-2" data-line-number="2">less100     &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.66</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.49</span>, <span class="fl">0.45</span>, <span class="fl">0.06</span>)) <span class="co"># some rounding, but it should not affect results</span></a>
-<a class="sourceLine" id="cb130-3" data-line-number="3">more100     &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.34</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.47</span>, <span class="fl">0.47</span>, <span class="fl">0.06</span>))</a>
-<a class="sourceLine" id="cb130-4" data-line-number="4">x           &lt;-<span class="st"> </span><span class="kw">rbind</span>(less100, more100)</a>
-<a class="sourceLine" id="cb130-5" data-line-number="5"><span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Clinton&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;other/no answer&quot;</span>)</a>
-<a class="sourceLine" id="cb130-6" data-line-number="6"><span class="kw">print</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">24588</span>
+less100     &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.66</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.49</span>, <span class="fl">0.45</span>, <span class="fl">0.06</span>)) <span class="co"># some rounding, but it should not affect results</span>
+more100     &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.34</span> <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.47</span>, <span class="fl">0.47</span>, <span class="fl">0.06</span>))
+x           &lt;-<span class="st"> </span><span class="kw">rbind</span>(less100, more100)
+<span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Clinton&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;other/no answer&quot;</span>)
+<span class="kw">print</span>(x)</code></pre></div>
 <pre><code>##         Clinton Trump other/no answer
 ## less100    7952  7303             974
 ## more100    3929  3929             502</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">chisq.test</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(x)</code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -422,33 +403,332 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="descriptive-statistics-for-bivariate-distributions" class="section level2">
 <h2><span class="header-section-number">5.2</span> Descriptive statistics for bivariate distributions</h2>
+<p>When dealing with a joint distribution of two variables (that is, paired samples), the first thing we are typically interested in is dependence of the two variables or lack thereof. If two distributions are independent, we can summarize each separately without loss of information. If they are not, then the distributions carry information about eachother. The predictability of one variable from another is another (equivalent) way of looking at dependence of variables.</p>
+<p>The most commonly used numerical summary of dependence is the <strong>Pearson correlation coefficient</strong> or Pearson’s <span class="math inline">\(\rho\)</span>. It summarizes the linear dependence, with <span class="math inline">\(\rho = 1\)</span> and <span class="math inline">\(\rho = - 1\)</span> indicating perfect colinearity (increasing or decreasing) and <span class="math inline">\(\rho = 0\)</span> indicating linear independence. As such, Pearson’s <span class="math inline">\(\rho\)</span> is directly related (squared root) to the coefficient of determination <span class="math inline">\(R^2\)</span>, a goodness-of-fit measure for linear models and the proportion of variance in one explained by the other variable. An important consideration is that the statement that linear independence implies independence is not true in general (the converse implication is). One notable exception where this implication is true is the multivariate Normal distribution, where the dependence structure is expressed through linear dependence only.</p>
+<p>Two of the most popular alternatives to Pearson’s <span class="math inline">\(\rho\)</span> are Spearman’s <span class="math inline">\(\rho\)</span> and Kendalls <span class="math inline">\(\tau\)</span>. The former measures the degree to which one variable can be expressed as monotonic function of the other. The latter measures the proportion of concordant pairs among all possible pairs (pairs (x1,y1) and (x2, y2), wher if x1 &gt; x2 then y1 &gt; y2). As such, they can capture non-linear dependence and is more appropriate for data with outliers or data where distance might have no meaning, such as ordinal data. Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> are more robust but do not have as clear an interpretation as Pearson’s <span class="math inline">\(\rho\)</span>. Kendall’s tau is also computationally more expensive.</p>
+<p>Below are a few examples of bivariate samples that illustrate the strengths and limitations of the above correlation coefficients:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+<span class="kw">library</span>(MASS)
+m &lt;-<span class="st"> </span><span class="dv">100</span>
+
+dat &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<span class="co"># data 1</span>
+sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(m, <span class="dt">mu =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">Sigma =</span> sigma )
+txt &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;Pearson&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Spearman&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Kendall&#39;s = %.2f&quot;</span>, <span class="kw">cor</span>(x)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat, <span class="kw">data.frame</span>(<span class="dt">x =</span> x[,<span class="dv">1</span>], <span class="dt">y =</span> x[,<span class="dv">2</span>], <span class="dt">example =</span> txt))
+
+<span class="co"># data 2</span>
+sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(m, <span class="dt">mu =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">Sigma =</span> sigma )
+txt &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;Pearson&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Spearman&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Kendall&#39;s = %.2f&quot;</span>, <span class="kw">cor</span>(x)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat, <span class="kw">data.frame</span>(<span class="dt">x =</span> x[,<span class="dv">1</span>], <span class="dt">y =</span> x[,<span class="dv">2</span>], <span class="dt">example =</span> txt))
+
+<span class="co"># data 3</span>
+sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">0.95</span>, <span class="fl">0.95</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(m, <span class="dt">mu =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">Sigma =</span> sigma )
+txt &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;Pearson&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Spearman&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Kendall&#39;s = %.2f&quot;</span>, <span class="kw">cor</span>(x)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat, <span class="kw">data.frame</span>(<span class="dt">x =</span> x[,<span class="dv">1</span>], <span class="dt">y =</span> x[,<span class="dv">2</span>], <span class="dt">example =</span> txt))
+
+<span class="co"># data 4</span>
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m, <span class="dv">0</span>, <span class="dv">1</span>)
+y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pnorm</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(m, <span class="dv">0</span>, <span class="fl">0.05</span>)
+x &lt;-<span class="st"> </span><span class="kw">cbind</span>(x, y)
+txt &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;Pearson&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Spearman&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Kendall&#39;s = %.2f&quot;</span>, <span class="kw">cor</span>(x)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat, <span class="kw">data.frame</span>(<span class="dt">x =</span> x[,<span class="dv">1</span>], <span class="dt">y =</span> x[,<span class="dv">2</span>], <span class="dt">example =</span> txt))
+
+<span class="co"># data 5</span>
+sigma1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+sigma2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">mvrnorm</span>(m, <span class="dt">mu =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">Sigma =</span> sigma ), <span class="kw">mvrnorm</span>(<span class="dv">50</span>, <span class="dt">mu =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>), <span class="dt">Sigma =</span> sigma2 ))
+txt &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;Pearson&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Spearman&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Kendall&#39;s = %.2f&quot;</span>, <span class="kw">cor</span>(x)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat, <span class="kw">data.frame</span>(<span class="dt">x =</span> x[,<span class="dv">1</span>], <span class="dt">y =</span> x[,<span class="dv">2</span>], <span class="dt">example =</span> txt))
+
+<span class="co"># data 6</span>
+z &lt;-<span class="st"> </span><span class="kw">runif</span>(m, <span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi)
+x &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">cos</span>(z), <span class="kw">sin</span>(z))
+txt &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;Pearson&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Spearman&#39;s = %.2f</span><span class="ch">\n</span><span class="st">Kendall&#39;s = %.2f&quot;</span>, <span class="kw">cor</span>(x)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>], <span class="kw">cor</span>(x, <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)[<span class="dv">1</span>,<span class="dv">2</span>])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat, <span class="kw">data.frame</span>(<span class="dt">x =</span> x[,<span class="dv">1</span>], <span class="dt">y =</span> x[,<span class="dv">2</span>], <span class="dt">example =</span> txt))
+
+
+<span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>example, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Like similar questions about other parameters of interest, the question <em>Is <insert number here> a strong correlation?</em> is a practical question. Unless the correlation is 0 (no correlation) or 1/-1 (perfectly correlated, can’t be more correlated than this), the meaning of the magnitude of correlation depends on the practical setting and its interpretation depends on some reference level. Even a very low correlation, such as 0.001 (if we are reasonably sure that it is around 0.001) can be practically meaningful. For example, if it is correlation between the even and odd numbers generated by a uniform random number generator (RNG), that would be more than enough correlation to stop using this RNG.</p>
 </div>
 <div id="visualization" class="section level2">
 <h2><span class="header-section-number">5.3</span> Visualization</h2>
-<div id="basic-principles" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Basic principles</h3>
+<p>As we mentioned at the beginning - summarization is the art of conveying the same information in less time/space or conveying more information in the same amount of time/space. Visual summaries are often a more informative, faster and more concise alternative to numerical summaries.</p>
+<p>Throughout this section we’ll be using the NBA players dataset that contains some basic information about nba</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/NBAplayers.csv&quot;</span>)
+dat &lt;-<span class="st"> </span>dat[<span class="kw">complete.cases</span>(dat),]
+dat<span class="op">$</span>height &lt;-<span class="st"> </span>dat<span class="op">$</span>h_feet <span class="op">*</span><span class="st"> </span><span class="fl">30.48</span> <span class="op">+</span><span class="st"> </span>dat<span class="op">$</span>h_inches <span class="op">*</span><span class="st"> </span><span class="fl">2.54</span> <span class="co"># in cm</span>
+dat<span class="op">$</span>weight &lt;-<span class="st"> </span>dat<span class="op">$</span>weight <span class="op">*</span><span class="st"> </span><span class="fl">0.4536</span>
+<span class="kw">summary</span>(dat)</code></pre></div>
+<pre><code>##        ilkid        firstname        lastname    position  firstseason  
+##  ABDELAL01:   1   John   :  90   Williams:  66   C: 627   Min.   :1946  
+##  ABDULKA01:   1   Bob    :  88   Smith   :  54   F:1665   1st Qu.:1967  
+##  ABDULMA01:   1   Jim    :  70   Johnson :  52   G:1614   Median :1980  
+##  ABDULTA01:   1   Mike   :  66   Jones   :  44            Mean   :1979  
+##  ABDURSH01:   1   Bill   :  54   Davis   :  37            3rd Qu.:1995  
+##  ABERNTO01:   1   Tom    :  46   Brown   :  34            Max.   :2009  
+##  (Other)  :3900   (Other):3492   (Other) :3619                          
+##    lastseason       h_feet         h_inches          weight      
+##  Min.   :1946   Min.   :5.000   Min.   :-6.000   Min.   : 60.33  
+##  1st Qu.:1970   1st Qu.:6.000   1st Qu.: 3.000   1st Qu.: 83.92  
+##  Median :1985   Median :6.000   Median : 6.000   Median : 92.99  
+##  Mean   :1983   Mean   :6.022   Mean   : 5.581   Mean   : 93.91  
+##  3rd Qu.:2001   3rd Qu.:6.000   3rd Qu.: 8.000   3rd Qu.:102.06  
+##  Max.   :2009   Max.   :7.000   Max.   :11.500   Max.   :149.69  
+##                                                                  
+##                                    college                   birthdate   
+##                                        : 200   1945-01-01 00:00:00:   8  
+##  University of California - Los Angeles:  72   1944-01-01 00:00:00:   5  
+##  University of North Carolina          :  71   1921-01-01 00:00:00:   4  
+##  University of Kentucky                :  67   1931-01-01 00:00:00:   4  
+##  Indiana University                    :  54   1919-01-01 00:00:00:   3  
+##  University of Kansas                  :  52   1923-09-18 00:00:00:   3  
+##  (Other)                               :3390   (Other)            :3879  
+##      height     
+##  Min.   :160.0  
+##  1st Qu.:190.5  
+##  Median :198.1  
+##  Mean   :197.7  
+##  3rd Qu.:205.7  
+##  Max.   :231.1  
+## </code></pre>
+<div id="the-evolution-of-a-plot" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> The evolution of a plot</h3>
+<p>The above will also be our guidelines for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!</p>
+<p>We’ll illustrate this point with an example that features some common mistakes or inefficiencies people do when visualizing data. Our goal will be to summarize how the average height of NBA Centers, Forwards, and Guards that started that year has changed over time.</p>
+<p>Let’s plot the averages over time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;G&quot;</span>,]
+<span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean))</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;F&quot;</span>,]
+<span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean))</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;C&quot;</span>,]
+<span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean))</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-15-3.png" width="672" /></p>
+<p>The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize plotting 3 things separately that could be plotted on the same plot wastes space and the reader’s time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.</p>
+<p>Let’s remedy this mistake:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;G&quot;</span>,]
+<span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean), <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">220</span>))
+tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;F&quot;</span>,]
+<span class="kw">points</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
+tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;C&quot;</span>,]
+<span class="kw">points</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>This plot uses up only a third of the space and simplifies comparison. This reveals new information, such as that centers (black) are higher than forwards (red) who are higher than guards (green), that there was a more steep increase in the beginning of the period and that forwards these days are as high on average as centers were in the past.</p>
+<p>However, there are several things that we can still improve on. The first will be one of the fundamental rules of statistical plotting - <strong>always label your axes</strong>! The reader should never look elsewhere for information about what is plotted. We will also take this opportunity to reorganize our data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(reshape2)
+tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">tapply</span>(dat<span class="op">$</span>height, <span class="kw">list</span>(dat<span class="op">$</span>position, dat<span class="op">$</span>firstseason), mean))
+<span class="kw">names</span>(tmp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;position&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;height&quot;</span>)
+<span class="kw">plot</span>(tmp<span class="op">$</span>year, tmp<span class="op">$</span>height, <span class="dt">col =</span> tmp<span class="op">$</span>position, <span class="dt">xlab =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;average rookie height (cm)&quot;</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>This is starting to look better. However, we should also include the legend - if we describe the meaning of the colors in the figure caption (or worse, in text), the reader will have to jump from text to figure, wasting time. Additionally, some people (and publications) prefer to add a title to their plot, explaining concisely what is in it, therefore making it more self containes. Others prefer to explain the plot in the caption. We’ll add a title:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">tapply</span>(dat<span class="op">$</span>height, <span class="kw">list</span>(dat<span class="op">$</span>position, dat<span class="op">$</span>firstseason), mean))
+<span class="kw">names</span>(tmp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;position&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;height&quot;</span>)
+<span class="kw">plot</span>(tmp<span class="op">$</span>year, tmp<span class="op">$</span>height, <span class="dt">col =</span> tmp<span class="op">$</span>position, <span class="dt">xlab =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;average rookie height (cm)&quot;</span>)
+<span class="kw">legend</span>(<span class="dv">1997</span>, <span class="dv">190</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;centers&quot;</span>, <span class="st">&quot;forwards&quot;</span>, <span class="st">&quot;guards&quot;</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>), <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">0.8</span>)
+<span class="kw">title</span>(<span class="st">&quot;The average height of NBA rookies by playing position over time.&quot;</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>This is now a quite decent and self-contained plot. Next, we’ll add a bit of polish. Pleasing aesthetics might not add much to the informativeness of a plot, but they do make our work look more professional. They are also indicate that we put in the extra effort. Of course, we should never let aesthetics get in the way of efficiency and informativeness (see pie-chart example in the following section):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">tapply</span>(dat<span class="op">$</span>height, <span class="kw">list</span>(dat<span class="op">$</span>position, dat<span class="op">$</span>firstseason), mean))
+<span class="kw">names</span>(tmp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;position&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;height&quot;</span>)
+<span class="kw">levels</span>(tmp<span class="op">$</span>position) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;centers&quot;</span>, <span class="st">&quot;forwards&quot;</span>, <span class="st">&quot;guards&quot;</span>)
+<span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> height, <span class="dt">colour =</span> position)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;average rookie height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The average height of NBA rookies by playing position over time.&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>By using ggplot2 we can make our visualizations look better, but it is also very convenient for adding some extra layers to our plots. For example, a smoothed line with standard errors to help us focus on the trend and not the individual data points:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">tapply</span>(dat<span class="op">$</span>height, <span class="kw">list</span>(dat<span class="op">$</span>position, dat<span class="op">$</span>firstseason), mean))
+<span class="kw">names</span>(tmp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;position&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;height&quot;</span>)
+<span class="kw">levels</span>(tmp<span class="op">$</span>position) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;centers&quot;</span>, <span class="st">&quot;forwards&quot;</span>, <span class="st">&quot;guards&quot;</span>)
+<span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> height, <span class="dt">colour =</span> position)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;average rookie height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The average height of NBA rookies by playing position over time.&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>There is one more thing that we can typically do in such cases - label the data directly and omit the legend. This saves both space and user’s time, especially if we have several lines/colors in our plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">tapply</span>(dat<span class="op">$</span>height, <span class="kw">list</span>(dat<span class="op">$</span>position, dat<span class="op">$</span>firstseason), mean))
+<span class="kw">names</span>(tmp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;position&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;height&quot;</span>)
+<span class="kw">levels</span>(tmp<span class="op">$</span>position) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;centers&quot;</span>, <span class="st">&quot;forwards&quot;</span>, <span class="st">&quot;guards&quot;</span>)
+<span class="kw">ggplot</span>(tmp, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> height, <span class="dt">colour =</span> position)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;average rookie height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The average height of NBA rookies by playing position over time.&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1970</span>, <span class="dt">y =</span> <span class="dv">212</span>, <span class="dt">label =</span> <span class="st">&quot;centers&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1970</span>, <span class="dt">y =</span> <span class="dv">203</span>, <span class="dt">label =</span> <span class="st">&quot;forwards&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1970</span>, <span class="dt">y =</span> <span class="dv">192</span>, <span class="dt">label =</span> <span class="st">&quot;guards&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-21"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-21-1.png" alt="The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates." width="672" />
+<p class="caption">
+Figure 5.1: The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates.
+</p>
 </div>
-<div id="univariate-data" class="section level3">
-<h3><span class="header-section-number">5.3.2</span> Univariate data</h3>
+<p>We’ve equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). There is always something we can tweek and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.</p>
 </div>
-<div id="bivariate-data" class="section level3">
-<h3><span class="header-section-number">5.3.3</span> Bivariate data</h3>
+<div id="common-types-of-plots" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Common types of plots</h3>
+<p>Now we quickly run through some of the most common types of plots for univariate data.</p>
+</div>
+</div>
+<div id="histograms-and-density-plots" class="section level2">
+<h2><span class="header-section-number">5.4</span> Histograms and density plots</h2>
+<p>The most elementary way of summarizing data is to plot their density. Of course, the true density is unknown and we can only estimate it by using a model or a non-parametric (smoothing) kernel density estimation. A histogram (binning the data and plotting the frequencies) can be viewed as a more coarse or discrete way of estimating the density of the data.</p>
+<p>In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most build-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.</p>
+<p>We illustrate these two plots by summarizing NBA player weight:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">alpha=</span><span class="fl">0.5</span>, 
+                <span class="dt">position=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">7</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-22"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-22-1.png" alt="Histogram and density estimation of NBA player weight" width="672" />
+<p class="caption">
+Figure 5.2: Histogram and density estimation of NBA player weight
+</p>
+</div>
+</div>
+<div id="bar-plot" class="section level2">
+<h2><span class="header-section-number">5.5</span> Bar plot</h2>
+<p>Bar plots are the most common choice for summarizing the (relative) frequencies for categorical or ordinal data with a manageable number of unique values. It is similar to a histogram, except that the categories/values provide a natural way of binning the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">University =</span> dat<span class="op">$</span>college)
+x &lt;-<span class="st"> </span><span class="kw">table</span>(tmp)
+x &lt;-<span class="st"> </span>x[x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>]
+x &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">10</span>, <span class="dt">rep =</span> F)
+x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x), <span class="kw">aes</span>(<span class="dt">x =</span> tmp, <span class="dt">y =</span> Freq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;University&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;number of players&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-23"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-23-1.png" alt="The number of NBA players that came from these 10 Universities." width="672" />
+<p class="caption">
+Figure 5.3: The number of NBA players that came from these 10 Universities.
+</p>
+</div>
+<p>When the number of unique values is large, it will not be not possible to visualize all of them (try visualizing the frequencies for all universities in the above example). In such cases we may opt to group some values or show only certain values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">University =</span> dat<span class="op">$</span>college)
+x &lt;-<span class="st"> </span><span class="kw">table</span>(tmp)
+x &lt;-<span class="st"> </span>x[x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>]
+x &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">10</span>, <span class="dt">rep =</span> F)
+x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x), <span class="kw">aes</span>(<span class="dt">x =</span> tmp, <span class="dt">y =</span> Freq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;University&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;number of players&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-24"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-24-1.png" alt="The number of NBA players that came from these Universities." width="672" />
+<p class="caption">
+Figure 5.4: The number of NBA players that came from these Universities.
+</p>
+</div>
+</div>
+<div id="pie-chart" class="section level2">
+<h2><span class="header-section-number">5.6</span> Pie chart</h2>
+<p>Pie charts are quite possibly the easiest chart type to work with, because there is only one rule to using pie charts - <strong>don’t use pie charts</strong>. Let’s visualize the data from the bar chart example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(x)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> Freq, <span class="dt">fill =</span> tmp)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;University&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-25"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-25-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
+<p class="caption">
+Figure 5.5: The relative frequencies of NBA players that came from these Universities.
+</p>
+</div>
+<p>The pie chart is a great example (and warning!) of how aesthetics can get in the way of function and effectiveness. It is well documented that people are poor at comparing areas and especially angles. Could you recognize quickly from the above pie chart that University of Washington gave approximately twice as many players as University of Texas? How quickly would you be able to judge these relationships from the bar chart?</p>
+<p>Angles can also play tricks on our eyes. Which color pie slice is the largest on the first plot below? Which on the second plot?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">Value =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>))
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> Value, <span class="dt">fill =</span> Name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> Value, <span class="dt">fill =</span> Name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span>pi<span class="op">/</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
+<p><img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-26-2.png" width="672" /> For more information on how people percieve visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland.</p>
+</div>
+<div id="scatterplot" class="section level2">
+<h2><span class="header-section-number">5.7</span> Scatterplot</h2>
+<p>The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we’ve already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> height, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>position)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-27"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-27-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points." width="672" />
+<p class="caption">
+Figure 5.6: Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.
+</p>
+</div>
+</div>
+<div id="d-density-plot" class="section level2">
+<h2><span class="header-section-number">5.8</span> 2D density plot</h2>
+<p>When individual points are of little interest and we just want to summarize the density of the joint distribution, a 2D density plot is a good alternative to the scatterplot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> height, <span class="dt">y =</span> weight, <span class="dt">colour =</span> position)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density_2d</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">y =</span> <span class="dv">90</span>, <span class="dt">x =</span> <span class="dv">212</span>, <span class="dt">label =</span> <span class="st">&quot;centers&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">y =</span> <span class="dv">80</span>, <span class="dt">x =</span> <span class="dv">203</span>, <span class="dt">label =</span> <span class="st">&quot;forwards&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">y =</span> <span class="dv">73</span>, <span class="dt">x =</span> <span class="dv">192</span>, <span class="dt">label =</span> <span class="st">&quot;guards&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-28"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-28-1.png" alt="Relationship between player weight and height by player position." width="672" />
+<p class="caption">
+Figure 5.7: Relationship between player weight and height by player position.
+</p>
+</div>
+</div>
+<div id="boxplot" class="section level2">
+<h2><span class="header-section-number">5.9</span> Boxplot</h2>
+<p>A boxplot is named by the boxes that typicaly summarize the quartiles of the data. Sometimes, whiskers are added to indicate outliers. It useful for quickly visually summarizing, side-by-side, several numerical variables or to summarize the relationship between a categorical/ordinal variable and a numerical variable. Here, we use it so summarize weight by playing position.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> position, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-29"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-29-1.png" alt="Summary of player weight by position." width="672" />
+<p class="caption">
+Figure 5.8: Summary of player weight by position.
+</p>
+</div>
+</div>
+<div id="violin-plot" class="section level2">
+<h2><span class="header-section-number">5.10</span> Violin plot</h2>
+<p>The boxplot shows only the quartiles so it can sometimes be misleading or hide information. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> position, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.05</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-30"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-30-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="672" />
+<p class="caption">
+Figure 5.9: Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.
+</p>
+</div>
+</div>
+<div id="correlogram" class="section level2">
+<h2><span class="header-section-number">5.11</span> Correlogram</h2>
+<p>When we want to quickly inspect if there are any correlations between numerical variables, we can summarize correlation coefficients in a single plot. Such a plot is also known as a correlogram. Here we do it for the iris dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggcorrplot)</code></pre></div>
+<pre><code>## Warning: package &#39;ggcorrplot&#39; was built under R version 3.5.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corr &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(iris[,<span class="op">-</span><span class="dv">5</span>]),<span class="dv">2</span>)
+<span class="kw">ggcorrplot</span>(corr, <span class="dt">hc.order =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">outline.col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">lab =</span> T)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-31"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-31-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
+<p class="caption">
+Figure 5.10: Summary of the numerical variables in the iris dataset.
+</p>
+</div>
+</div>
+<div id="a-comprehensive-summary" class="section level2">
+<h2><span class="header-section-number">5.12</span> A comprehensive summary</h2>
+<p>Sometimes it will be useful to summarize the density/histogram of several numerical variables and the correlation between them. Here is an example of how we can combine histograms/density plots, scatterplots, and information about correlation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(psych)</code></pre></div>
+<pre><code>## Warning: package &#39;psych&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;psych&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     %+%, alpha</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs.panels</span>(iris[,<span class="op">-</span><span class="dv">5</span>])</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-32"></span>
+<img src="04-Basic_data_summarization_files/figure-html/unnamed-chunk-32-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
+<p class="caption">
+Figure 5.11: Summary of the numerical variables in the iris dataset.
+</p>
 </div>
 </div>
 <div id="further-reading-and-references-2" class="section level2">
-<h2><span class="header-section-number">5.4</span> Further reading and references</h2>
+<h2><span class="header-section-number">5.13</span> Further reading and references</h2>
 <p>Kanji, G. K. (2006). 100 statistical tests. Sage.</p>
-<p>Fundamentals of Descriptive Statistics 1st Edition
-by Zealure Holcomb (Author)</p>
+<p>Fundamentals of Descriptive Statistics 1st Edition by Zealure Holcomb (Author)</p>
 <p>ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition</p>
 <p>Visualize This: The FlowingData Guide to Design, Visualization, and Statistics</p>
-<p>Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods
-William S. Cleveland and Robert McGill
-Journal of the American Statistical Association
-Vol. 79, No. 387 (Sep., 1984), pp. 531-554</p>
+<p>Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods William S. Cleveland and Robert McGill Journal of the American Statistical Association Vol. 79, No. 387 (Sep., 1984), pp. 531-554</p>
 </div>
 <div id="learning-outcomes-2" class="section level2">
-<h2><span class="header-section-number">5.5</span> Learning outcomes</h2>
+<h2><span class="header-section-number">5.14</span> Learning outcomes</h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
 <li>Reproduce the techniques demonstrated in this chapter using their language/tool of choice.</li>
@@ -459,8 +739,8 @@ Vol. 79, No. 387 (Sep., 1984), pp. 531-554</p>
 </ul>
 </div>
 <div id="practice-problems-2" class="section level2">
-<h2><span class="header-section-number">5.6</span> Practice problems</h2>
-<p>TODO: practice problems and/or homework</p>
+<h2><span class="header-section-number">5.15</span> Practice problems</h2>
+<p>TODO: Basically, take a rich enough dataset and demonstrate most if not all summarization techniques shown here. For each summary, add an interpretation of the insights it provides.</p>
 
 </div>
 </div>
@@ -488,10 +768,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -499,6 +780,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },
@@ -515,8 +800,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;
