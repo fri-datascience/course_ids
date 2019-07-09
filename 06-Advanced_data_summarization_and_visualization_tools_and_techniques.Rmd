@@ -1,4 +1,0 @@
-# Basic data summarization and visualisation tools and techniques
-
-
-Now let's talk details.

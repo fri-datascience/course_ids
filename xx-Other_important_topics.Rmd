@@ -1,53 +1,8 @@
 # Other important topics
 
-These are optional, but it would be nice if we can get a visiting lecturer to cover them
+We need visiting lecturers to cover these topis:
 
 * Effective/efficient communication (visual or otherwise)
 * Specifics of data science project management
-
-
-
-## Testing
-
-\begin{equation*} 
-\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x)
-\end{equation*} 
-
-$$\frac{x}{2}$$
-
-```{theorem, label="foo"}
-A labeled theorem here.
-```
-
-See Theorem \@ref(thm:foo)
-
-
-
-@R-base
-
-[@R-base]
-
-## R code
-
-
-```{r, echo=TRUE}
-x = rnorm(100)
-plot(x)
-```
-
-
-## Python code
-
-```{r setup, echo=TRUE}
-library(reticulate)
-```
-
-```{python}
-print("Hello World")
-a = 33
-b = 33
-if b > a:
-  print("b is greater than a")
-elif a == b:
-  print("a and b are equal")
-```
+* privacy, ethics, security
+* IPR
