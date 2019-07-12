@@ -249,6 +249,8 @@ William S. Cleveland and Robert McGill
 Journal of the American Statistical Association
 Vol. 79, No. 387 (Sep., 1984), pp. 531-554 
 
+Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.
+
 
 ## Learning outcomes
 
