@@ -25,7 +25,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
 
 
-<meta name="date" content="2019-07-09">
+<meta name="date" content="2019-07-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -134,7 +134,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#setting-up-the-environment-1"><i class="fa fa-check"></i><b>3.2</b> Setting up the environment</a></li>
 <li class="chapter" data-level="3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>3.3</b> Short introduction to Docker</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="docker-container-platform.html"><a href="docker-container-platform.html#basics-1"><i class="fa fa-check"></i><b>3.3.1</b> Basics</a></li>
-<li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#understanding-docker-ecosystem"><i class="fa fa-check"></i><b>3.3.2</b> Understanding Docker ecosystem</a></li>
+<li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
+<li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
@@ -580,6 +582,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

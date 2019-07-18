@@ -25,7 +25,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
 
 
-<meta name="date" content="2019-07-09">
+<meta name="date" content="2019-07-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="summarizing-data-visualization.html">
-<link rel="next" href="data-summarization-multivariate-data.html">
+<link rel="next" href="summarizing-data-multivariate-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,7 +134,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#setting-up-the-environment-1"><i class="fa fa-check"></i><b>3.2</b> Setting up the environment</a></li>
 <li class="chapter" data-level="3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>3.3</b> Short introduction to Docker</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="docker-container-platform.html"><a href="docker-container-platform.html#basics-1"><i class="fa fa-check"></i><b>3.3.1</b> Basics</a></li>
-<li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#understanding-docker-ecosystem"><i class="fa fa-check"></i><b>3.3.2</b> Understanding Docker ecosystem</a></li>
+<li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
+<li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
@@ -169,7 +171,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.12" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#practice-problems-3"><i class="fa fa-check"></i><b>6.12</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>7</b> Dynamic reports and reproducibility</a></li>
-<li class="chapter" data-level="8" data-path="data-summarization-multivariate-data.html"><a href="data-summarization-multivariate-data.html"><i class="fa fa-check"></i><b>8</b> Data summarization - multivariate data</a></li>
+<li class="chapter" data-level="8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a><ul>
+<li class="chapter" data-level="8.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.2</b> Multi-dimensional scaling (MDS)</a></li>
+<li class="chapter" data-level="8.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.3</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+<li class="chapter" data-level="8.4" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#clustering"><i class="fa fa-check"></i><b>8.4</b> Clustering</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#k-means-clustering"><i class="fa fa-check"></i><b>8.4.1</b> k-means clustering</a></li>
+<li class="chapter" data-level="8.4.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.4.2</b> Determining the number of clusters</a></li>
+<li class="chapter" data-level="8.4.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.4.3</b> Agglomerative hierarchical clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#further-reading-and-references-4"><i class="fa fa-check"></i><b>8.5</b> Further reading and references</a></li>
+<li class="chapter" data-level="8.6" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#learning-outcomes-4"><i class="fa fa-check"></i><b>8.6</b> Learning outcomes</a></li>
+<li class="chapter" data-level="8.7" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#practice-problems-4"><i class="fa fa-check"></i><b>8.7</b> Practice problems</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a></li>
 <li class="chapter" data-level="10" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a></li>
 <li class="chapter" data-level="11" data-path="large-datasets-and-non-relational-databases.html"><a href="large-datasets-and-non-relational-databases.html"><i class="fa fa-check"></i><b>11</b> Large datasets and non relational databases</a></li>
@@ -206,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 <a href="summarizing-data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-summarization-multivariate-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="summarizing-data-multivariate-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

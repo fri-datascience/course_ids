@@ -5,19 +5,19 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to data science</title>
+  <title>Chapter 3 Docker container platform | Introduction to data science</title>
   <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introduction to data science" />
+  <meta property="og:title" content="Chapter 3 Docker container platform | Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="<a href="https://fri-datascience.github.io/course_itds/" class="uri">https://fri-datascience.github.io/course_itds/</a>" />
+  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
   <meta property="og:description" content="Course notes" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to data science" />
+  <meta name="twitter:title" content="Chapter 3 Docker container platform | Introduction to data science" />
   
   <meta name="twitter:description" content="Course notes" />
   
@@ -25,7 +25,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
 
 
-<meta name="date" content="2019-07-09">
+<meta name="date" content="2019-07-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="web-scraping.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -50,69 +51,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -145,62 +118,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="python-programming-language.html"><a href="python-programming-language.html#short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> Short introduction to Python</a><ul>
 <li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="1.6.1" data-path="python-programming-language.html"><a href="python-programming-language.html#control-flow-operations"><i class="fa fa-check"></i><b>1.6.1</b> Control flow operations</a></li>
+<li class="chapter" data-level="1.6.2" data-path="python-programming-language.html"><a href="python-programming-language.html#functions"><i class="fa fa-check"></i><b>1.6.2</b> Functions</a></li>
+<li class="chapter" data-level="1.6.3" data-path="python-programming-language.html"><a href="python-programming-language.html#classes-and-objects"><i class="fa fa-check"></i><b>1.6.3</b> Classes and objects</a></li>
+<li class="chapter" data-level="1.6.4" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ides-and-code-editors"><i class="fa fa-check"></i><b>1.6.4</b> Python IDE’s and code editors</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="python-programming-language.html"><a href="python-programming-language.html#hello-data-science"><i class="fa fa-check"></i><b>1.7</b> Hello Data science!</a></li>
-<li class="chapter" data-level="1.8" data-path="python-programming-language.html"><a href="python-programming-language.html#type-of-a-is-type-int"><i class="fa fa-check"></i><b>1.8</b> Type of a is &lt;type ‘int’&gt;</a></li>
-<li class="chapter" data-level="1.9" data-path="python-programming-language.html"><a href="python-programming-language.html#type-of-b-is-type-long"><i class="fa fa-check"></i><b>1.9</b> Type of b is &lt;type ‘long’&gt;</a></li>
-<li class="chapter" data-level="1.10" data-path="python-programming-language.html"><a href="python-programming-language.html#type-of-c-is-type-complex"><i class="fa fa-check"></i><b>1.10</b> Type of c is &lt;type ‘complex’&gt;</a></li>
-<li class="chapter" data-level="1.11" data-path="python-programming-language.html"><a href="python-programming-language.html#type-of-d-is-type-bool"><i class="fa fa-check"></i><b>1.11</b> Type of d is &lt;type ‘bool’&gt;</a></li>
-<li class="chapter" data-level="1.12" data-path="python-programming-language.html"><a href="python-programming-language.html#type-of-e-is-type-str"><i class="fa fa-check"></i><b>1.12</b> Type of e is &lt;type ‘str’&gt;</a></li>
-<li class="chapter" data-level="1.13" data-path="python-programming-language.html"><a href="python-programming-language.html#type-of-f-is-type-nonetype"><i class="fa fa-check"></i><b>1.13</b> Type of f is &lt;type ‘NoneType’&gt;</a></li>
-<li class="chapter" data-level="1.14" data-path="python-programming-language.html"><a href="python-programming-language.html#addition-5.5"><i class="fa fa-check"></i><b>1.14</b> Addition: 5.5</a></li>
-<li class="chapter" data-level="1.15" data-path="python-programming-language.html"><a href="python-programming-language.html#multiplication-7.5"><i class="fa fa-check"></i><b>1.15</b> Multiplication: 7.5</a></li>
-<li class="chapter" data-level="1.16" data-path="python-programming-language.html"><a href="python-programming-language.html#division-1.2"><i class="fa fa-check"></i><b>1.16</b> Division: 1.2</a></li>
-<li class="chapter" data-level="1.17" data-path="python-programming-language.html"><a href="python-programming-language.html#addition-to-boolean-6"><i class="fa fa-check"></i><b>1.17</b> Addition to Boolean: 6</a></li>
-<li class="chapter" data-level="1.18" data-path="python-programming-language.html"><a href="python-programming-language.html#string-multiplication-55555"><i class="fa fa-check"></i><b>1.18</b> String multiplication: 55555</a></li>
-<li class="chapter" data-level="1.19" data-path="python-programming-language.html"><a href="python-programming-language.html#concatenated-string-data-science-a-multi-disciplinary-field"><i class="fa fa-check"></i><b>1.19</b> Concatenated string: Data science a multi-disciplinary field</a></li>
-<li class="chapter" data-level="1.20" data-path="python-programming-language.html"><a href="python-programming-language.html#first-word-data-and-last-word-field."><i class="fa fa-check"></i><b>1.20</b> First word: ‘Data’ and last word: ‘field’.</a></li>
-<li class="chapter" data-level="1.21" data-path="python-programming-language.html"><a href="python-programming-language.html#first-word-lowercased-data-and-last-word-uppercased-field."><i class="fa fa-check"></i><b>1.21</b> First word lowercased: ‘data’ and last word uppercased: ‘FIELD’.</a></li>
-<li class="chapter" data-level="1.22" data-path="python-programming-language.html"><a href="python-programming-language.html#substring-replacement-data-management-a-multi-disciplinary-field"><i class="fa fa-check"></i><b>1.22</b> Substring replacement: ‘Data management a multi-disciplinary field’</a></li>
-<li><a href="python-programming-language.html#punctuation-symbols--._-number-8.57-text-dyslexia-number-8.57-text-dyslexia-number-8.57-text-dyslexia-data-stuctures-lists-tuples-sets-dictionaries-doubled-12-16-44-8-24-filtered-22-12-sum-value-52-squared-values-between-5-and-10-36-64-control-flow-operations-a-is-greater-than-1-a-is-greater-than-1-4-5-ann-bob-charles-1-2-3-functions-hello-my-friend-janez-hello-mr.janez-hello-mrs.mojca-hello-mrs.mojca-sum-of-all-positive-integers-up-to-50-is-1275-before-function-5-and-3-6-9-within-function-10-and-3-6-9-22-and-3-after-function-5-and-3-6-9-22-and-3-non-named-arguments-1-a-1-5-6-named-arguments-maxscore-100.0-studentids-234-451-842-classes-and-objects-num-classes-2-num-classes-2-class-best-of-data-science-class-old-sports-students-slavko-zitnik-erik-strumbelj-tomaz-curk-python-ides-and-code-editors-python-ecosystem-for-data-science-further-reading-and-references-learning-outcomes-practice-problems"><span class="toc-section-number">1.23</span> Punctuation symbols: ’!“#$%&amp;’()*+,-./:;&lt;=&gt;?@[]^_`{|}~‘## Number: 8.57, Text: dyslexia
-## Number: 8.57, Text: dyslexia
-## Number: 8.57, Text: dyslexia
-#### Data stuctures: Lists, Tuples, Sets, Dictionaries
-## Doubled: [12, 16, 44, 8, 24]
-## Filtered: [22, 12]
-## Sum value: 52
-## Squared values between 5 and 10: [36, 64]
-### Control flow operations
-## a is greater than 1
-## a is greater than 1
-## 4
-## 5
-## Ann
-## Bob
-## Charles
-## 1
-## 2
-## 3
-### Functions
-## Hello my friend Janez!
-## Hello Mr. Janez!
-## Hello Mrs. Mojca!
-## Hello Mrs. Mojca!
-## Sum of all positive integers up to 50 is: 1275
-## Before function: 5 and [3, 6, 9]
-## Within function: 10 and [3, 6, 9, 22] and 3
-## After function: 5 and [3, 6, 9, 22] and 3
-## Non-named arguments: (1, ’a’, [1, 5, 6])
-## Named arguments: {‘maxScore’: 100.0, ‘studentIds’: [234, 451, 842]}
-### Classes and objects
-## Num classes: 2
-## Num classes: 2
-## Class: ‘Best of Data Science class old sports’, students: ‘Slavko Žitnik, Erik Štrumbelj, Tomaž Curk’
-### Python IDE’s and code editors
-## Python ecosystem for Data Science
-## Further reading and references
-## Learning outcomes
-## Practice problems</a></li>
+<li class="chapter" data-level="1.7" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ecosystem-for-data-science"><i class="fa fa-check"></i><b>1.7</b> Python ecosystem for Data Science</a></li>
+<li class="chapter" data-level="1.8" data-path="python-programming-language.html"><a href="python-programming-language.html#further-reading-and-references"><i class="fa fa-check"></i><b>1.8</b> Further reading and references</a></li>
+<li class="chapter" data-level="1.9" data-path="python-programming-language.html"><a href="python-programming-language.html#learning-outcomes"><i class="fa fa-check"></i><b>1.9</b> Learning outcomes</a></li>
+<li class="chapter" data-level="1.10" data-path="python-programming-language.html"><a href="python-programming-language.html#practice-problems"><i class="fa fa-check"></i><b>1.10</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="source-code-control.html"><a href="source-code-control.html"><i class="fa fa-check"></i><b>2</b> Source code control</a></li>
 <li class="chapter" data-level="3" data-path="docker-container-platform.html"><a href="docker-container-platform.html"><i class="fa fa-check"></i><b>3</b> Docker container platform</a><ul>
@@ -212,270 +138,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
 <li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
-<li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
-<li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems"><i class="fa fa-check"></i><b>3.6</b> Practice problems</a></li>
+<li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems-1"><i class="fa fa-check"></i><b>3.6</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a></li>
 <li class="chapter" data-level="5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html"><i class="fa fa-check"></i><b>5</b> Summarizing data - the basics</a><ul>
 <li class="chapter" data-level="5.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#central-tendency"><i class="fa fa-check"></i><b>5.1.1</b> Central tendency</a></li>
 <li class="chapter" data-level="5.1.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Dispersion</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>5.1.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="5.1.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#nominal-variables"><i class="fa fa-check"></i><b>5.1.4</b> Nominal variables</a></li>
+<li class="chapter" data-level="5.1.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>5.1.5</b> Testing the shape of a distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section"><i class="fa fa-check"></i><b>5.2</b> 14.66 +/- 24.49</a></li>
-<li class="chapter" data-level="5.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#iqr-5.72-20.76-95pct-1.18-46.09"><i class="fa fa-check"></i><b>5.3</b> 14.66, IQR = [5.72, 20.76], 95pct = [1.18, 46.09]</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>5.3.1</b> Skewness and kurtosis</a></li>
-<li class="chapter" data-level="5.3.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#nominal-variables"><i class="fa fa-check"></i><b>5.3.2</b> Nominal variables</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-1"><i class="fa fa-check"></i><b>5.4</b> [1] 1</a></li>
-<li class="chapter" data-level="5.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-2"><i class="fa fa-check"></i><b>5.5</b> [1] 0.7219281</a></li>
-<li class="chapter" data-level="5.6" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-3"><i class="fa fa-check"></i><b>5.6</b> [1] 0</a></li>
-<li class="chapter" data-level="5.7" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-4"><i class="fa fa-check"></i><b>5.7</b> [1] 1</a></li>
-<li class="chapter" data-level="5.8" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-5"><i class="fa fa-check"></i><b>5.8</b> [1] 2.584963</a><ul>
-<li class="chapter" data-level="5.8.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>5.8.1</b> Testing the shape of a distribution</a></li>
-</ul></li>
-<li class="chapter" data-level="5.9" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-6"><i class="fa fa-check"></i><b>5.9</b> </a></li>
-<li class="chapter" data-level="5.10" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#one-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>5.10</b> One-sample Kolmogorov-Smirnov test</a></li>
-<li class="chapter" data-level="5.11" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-7"><i class="fa fa-check"></i><b>5.11</b> </a></li>
-<li class="chapter" data-level="5.12" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x1"><i class="fa fa-check"></i><b>5.12</b> data: x1</a></li>
-<li class="chapter" data-level="5.13" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#d-0.1575-p-value-0.03362"><i class="fa fa-check"></i><b>5.13</b> D = 0.1575, p-value = 0.03362</a></li>
-<li class="chapter" data-level="5.14" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#alternative-hypothesis-two-sided"><i class="fa fa-check"></i><b>5.14</b> alternative hypothesis: two-sided</a></li>
-<li class="chapter" data-level="5.15" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-8"><i class="fa fa-check"></i><b>5.15</b> </a></li>
-<li class="chapter" data-level="5.16" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#one-sample-kolmogorov-smirnov-test-1"><i class="fa fa-check"></i><b>5.16</b> One-sample Kolmogorov-Smirnov test</a></li>
-<li class="chapter" data-level="5.17" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-9"><i class="fa fa-check"></i><b>5.17</b> </a></li>
-<li class="chapter" data-level="5.18" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x2"><i class="fa fa-check"></i><b>5.18</b> data: x2</a></li>
-<li class="chapter" data-level="5.19" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#d-0.070067-p-value-0.801"><i class="fa fa-check"></i><b>5.19</b> D = 0.070067, p-value = 0.801</a></li>
-<li class="chapter" data-level="5.20" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#alternative-hypothesis-two-sided-1"><i class="fa fa-check"></i><b>5.20</b> alternative hypothesis: two-sided</a></li>
-<li class="chapter" data-level="5.21" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-10"><i class="fa fa-check"></i><b>5.21</b> </a></li>
-<li class="chapter" data-level="5.22" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#two-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>5.22</b> Two-sample Kolmogorov-Smirnov test</a></li>
-<li class="chapter" data-level="5.23" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-11"><i class="fa fa-check"></i><b>5.23</b> </a></li>
-<li class="chapter" data-level="5.24" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x1-and-x2"><i class="fa fa-check"></i><b>5.24</b> data: x1 and x2</a></li>
-<li class="chapter" data-level="5.25" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#d-0.175-p-value-0.173"><i class="fa fa-check"></i><b>5.25</b> D = 0.175, p-value = 0.173</a></li>
-<li class="chapter" data-level="5.26" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#alternative-hypothesis-two-sided-2"><i class="fa fa-check"></i><b>5.26</b> alternative hypothesis: two-sided</a></li>
-<li class="chapter" data-level="5.27" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-12"><i class="fa fa-check"></i><b>5.27</b> </a></li>
-<li class="chapter" data-level="5.28" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#chi-squared-test-for-given-probabilities"><i class="fa fa-check"></i><b>5.28</b> Chi-squared test for given probabilities</a></li>
-<li class="chapter" data-level="5.29" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-13"><i class="fa fa-check"></i><b>5.29</b> </a></li>
-<li class="chapter" data-level="5.30" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x"><i class="fa fa-check"></i><b>5.30</b> data: x</a></li>
-<li class="chapter" data-level="5.31" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#x-squared-3.3333-df-1-p-value-0.06789"><i class="fa fa-check"></i><b>5.31</b> X-squared = 3.3333, df = 1, p-value = 0.06789</a></li>
-<li class="chapter" data-level="5.32" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-14"><i class="fa fa-check"></i><b>5.32</b> </a></li>
-<li class="chapter" data-level="5.33" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#chi-squared-test-for-given-probabilities-1"><i class="fa fa-check"></i><b>5.33</b> Chi-squared test for given probabilities</a></li>
-<li class="chapter" data-level="5.34" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-15"><i class="fa fa-check"></i><b>5.34</b> </a></li>
-<li class="chapter" data-level="5.35" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x-1"><i class="fa fa-check"></i><b>5.35</b> data: x</a></li>
-<li class="chapter" data-level="5.36" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#x-squared-10-df-1-p-value-0.001565"><i class="fa fa-check"></i><b>5.36</b> X-squared = 10, df = 1, p-value = 0.001565</a></li>
-<li class="chapter" data-level="5.37" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-16"><i class="fa fa-check"></i><b>5.37</b> </a></li>
-<li class="chapter" data-level="5.38" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#chi-squared-test-for-given-probabilities-2"><i class="fa fa-check"></i><b>5.38</b> Chi-squared test for given probabilities</a></li>
-<li class="chapter" data-level="5.39" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-17"><i class="fa fa-check"></i><b>5.39</b> </a></li>
-<li class="chapter" data-level="5.40" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x-2"><i class="fa fa-check"></i><b>5.40</b> data: x</a></li>
-<li class="chapter" data-level="5.41" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#x-squared-5.3-df-5-p-value-0.3804"><i class="fa fa-check"></i><b>5.41</b> X-squared = 5.3, df = 5, p-value = 0.3804</a></li>
-<li class="chapter" data-level="5.42" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#clinton-trump-otherno-answer"><i class="fa fa-check"></i><b>5.42</b> Clinton Trump other/no answer</a></li>
-<li class="chapter" data-level="5.43" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#male-4738-6009-809"><i class="fa fa-check"></i><b>5.43</b> male 4738 6009 809</a></li>
-<li class="chapter" data-level="5.44" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#female-7037-5343-652"><i class="fa fa-check"></i><b>5.44</b> female 7037 5343 652</a></li>
-<li class="chapter" data-level="5.45" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-18"><i class="fa fa-check"></i><b>5.45</b> </a></li>
-<li class="chapter" data-level="5.46" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#pearsons-chi-squared-test"><i class="fa fa-check"></i><b>5.46</b> Pearson’s Chi-squared test</a></li>
-<li class="chapter" data-level="5.47" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-19"><i class="fa fa-check"></i><b>5.47</b> </a></li>
-<li class="chapter" data-level="5.48" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x-3"><i class="fa fa-check"></i><b>5.48</b> data: x</a></li>
-<li class="chapter" data-level="5.49" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#x-squared-417.71-df-2-p-value-2.2e-16"><i class="fa fa-check"></i><b>5.49</b> X-squared = 417.71, df = 2, p-value &lt; 2.2e-16</a></li>
-<li class="chapter" data-level="5.50" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#clinton-trump-otherno-answer-1"><i class="fa fa-check"></i><b>5.50</b> Clinton Trump other/no answer</a></li>
-<li class="chapter" data-level="5.51" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#less100-7952-7303-974"><i class="fa fa-check"></i><b>5.51</b> less100 7952 7303 974</a></li>
-<li class="chapter" data-level="5.52" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#more100-3929-3929-502"><i class="fa fa-check"></i><b>5.52</b> more100 3929 3929 502</a></li>
-<li class="chapter" data-level="5.53" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-20"><i class="fa fa-check"></i><b>5.53</b> </a></li>
-<li class="chapter" data-level="5.54" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#pearsons-chi-squared-test-1"><i class="fa fa-check"></i><b>5.54</b> Pearson’s Chi-squared test</a></li>
-<li class="chapter" data-level="5.55" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#section-21"><i class="fa fa-check"></i><b>5.55</b> </a></li>
-<li class="chapter" data-level="5.56" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#data-x-4"><i class="fa fa-check"></i><b>5.56</b> data: x</a></li>
-<li class="chapter" data-level="5.57" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#x-squared-9.3945-df-2-p-value-0.00912"><i class="fa fa-check"></i><b>5.57</b> X-squared = 9.3945, df = 2, p-value = 0.00912</a></li>
-<li class="chapter" data-level="5.58" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>5.58</b> Descriptive statistics for bivariate distributions</a></li>
-<li class="chapter" data-level="5.59" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>5.59</b> Further reading and references</a></li>
-<li class="chapter" data-level="5.60" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#learning-outcomes-1"><i class="fa fa-check"></i><b>5.60</b> Learning outcomes</a></li>
-<li class="chapter" data-level="5.61" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#practice-problems-1"><i class="fa fa-check"></i><b>5.61</b> Practice problems</a></li>
+<li class="chapter" data-level="5.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>5.2</b> Descriptive statistics for bivariate distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>5.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="5.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#learning-outcomes-2"><i class="fa fa-check"></i><b>5.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="5.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#practice-problems-2"><i class="fa fa-check"></i><b>5.5</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html"><i class="fa fa-check"></i><b>6</b> Summarizing data - visualization</a><ul>
-<li class="chapter" data-level="6.1" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#ilkid-firstname-lastname-position-firstseason"><i class="fa fa-check"></i><b>6.1</b> ilkid firstname lastname position firstseason</a></li>
-<li class="chapter" data-level="6.2" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#abdelal01-1-john-90-williams-66-c-627-min.-1946"><i class="fa fa-check"></i><b>6.2</b> ABDELAL01: 1 John : 90 Williams: 66 C: 627 Min. :1946</a></li>
-<li class="chapter" data-level="6.3" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#abdulka01-1-bob-88-smith-54-f1665-1st-qu.1967"><i class="fa fa-check"></i><b>6.3</b> ABDULKA01: 1 Bob : 88 Smith : 54 F:1665 1st Qu.:1967</a></li>
-<li class="chapter" data-level="6.4" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#abdulma01-1-jim-70-johnson-52-g1614-median-1980"><i class="fa fa-check"></i><b>6.4</b> ABDULMA01: 1 Jim : 70 Johnson : 52 G:1614 Median :1980</a></li>
-<li class="chapter" data-level="6.5" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#abdulta01-1-mike-66-jones-44-mean-1979"><i class="fa fa-check"></i><b>6.5</b> ABDULTA01: 1 Mike : 66 Jones : 44 Mean :1979</a></li>
-<li class="chapter" data-level="6.6" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#abdursh01-1-bill-54-davis-37-3rd-qu.1995"><i class="fa fa-check"></i><b>6.6</b> ABDURSH01: 1 Bill : 54 Davis : 37 3rd Qu.:1995</a></li>
-<li class="chapter" data-level="6.7" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#abernto01-1-tom-46-brown-34-max.-2009"><i class="fa fa-check"></i><b>6.7</b> ABERNTO01: 1 Tom : 46 Brown : 34 Max. :2009</a></li>
-<li class="chapter" data-level="6.8" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#other-3900-other3492-other-3619"><i class="fa fa-check"></i><b>6.8</b> (Other) :3900 (Other):3492 (Other) :3619</a></li>
-<li class="chapter" data-level="6.9" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#lastseason-h_feet-h_inches-weight"><i class="fa fa-check"></i><b>6.9</b> lastseason h_feet h_inches weight</a></li>
-<li class="chapter" data-level="6.10" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#min.-1946-min.-5.000-min.--6.000-min.-60.33"><i class="fa fa-check"></i><b>6.10</b> Min. :1946 Min. :5.000 Min. :-6.000 Min. : 60.33</a></li>
-<li class="chapter" data-level="6.11" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#st-qu.1970-1st-qu.6.000-1st-qu.-3.000-1st-qu.-83.92"><i class="fa fa-check"></i><b>6.11</b> 1st Qu.:1970 1st Qu.:6.000 1st Qu.: 3.000 1st Qu.: 83.92</a></li>
-<li class="chapter" data-level="6.12" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#median-1985-median-6.000-median-6.000-median-92.99"><i class="fa fa-check"></i><b>6.12</b> Median :1985 Median :6.000 Median : 6.000 Median : 92.99</a></li>
-<li class="chapter" data-level="6.13" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#mean-1983-mean-6.022-mean-5.581-mean-93.91"><i class="fa fa-check"></i><b>6.13</b> Mean :1983 Mean :6.022 Mean : 5.581 Mean : 93.91</a></li>
-<li class="chapter" data-level="6.14" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#rd-qu.2001-3rd-qu.6.000-3rd-qu.-8.000-3rd-qu.102.06"><i class="fa fa-check"></i><b>6.14</b> 3rd Qu.:2001 3rd Qu.:6.000 3rd Qu.: 8.000 3rd Qu.:102.06</a></li>
-<li class="chapter" data-level="6.15" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#max.-2009-max.-7.000-max.-11.500-max.-149.69"><i class="fa fa-check"></i><b>6.15</b> Max. :2009 Max. :7.000 Max. :11.500 Max. :149.69</a></li>
-<li class="chapter" data-level="6.16" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#section-22"><i class="fa fa-check"></i><b>6.16</b> </a></li>
-<li class="chapter" data-level="6.17" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#college-birthdate"><i class="fa fa-check"></i><b>6.17</b> college birthdate</a></li>
-<li class="chapter" data-level="6.18" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#section-23"><i class="fa fa-check"></i><b>6.18</b> : 200 1945-01-01 00:00:00: 8</a></li>
-<li class="chapter" data-level="6.19" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#university-of-california---los-angeles-72-1944-01-01-000000-5"><i class="fa fa-check"></i><b>6.19</b> University of California - Los Angeles: 72 1944-01-01 00:00:00: 5</a></li>
-<li class="chapter" data-level="6.20" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#university-of-north-carolina-71-1921-01-01-000000-4"><i class="fa fa-check"></i><b>6.20</b> University of North Carolina : 71 1921-01-01 00:00:00: 4</a></li>
-<li class="chapter" data-level="6.21" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#university-of-kentucky-67-1931-01-01-000000-4"><i class="fa fa-check"></i><b>6.21</b> University of Kentucky : 67 1931-01-01 00:00:00: 4</a></li>
-<li class="chapter" data-level="6.22" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#indiana-university-54-1919-01-01-000000-3"><i class="fa fa-check"></i><b>6.22</b> Indiana University : 54 1919-01-01 00:00:00: 3</a></li>
-<li class="chapter" data-level="6.23" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#university-of-kansas-52-1923-09-18-000000-3"><i class="fa fa-check"></i><b>6.23</b> University of Kansas : 52 1923-09-18 00:00:00: 3</a></li>
-<li class="chapter" data-level="6.24" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#other-3390-other-3879"><i class="fa fa-check"></i><b>6.24</b> (Other) :3390 (Other) :3879</a></li>
-<li class="chapter" data-level="6.25" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#height"><i class="fa fa-check"></i><b>6.25</b> height</a></li>
-<li class="chapter" data-level="6.26" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#min.-160.0"><i class="fa fa-check"></i><b>6.26</b> Min. :160.0</a></li>
-<li class="chapter" data-level="6.27" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#st-qu.190.5"><i class="fa fa-check"></i><b>6.27</b> 1st Qu.:190.5</a></li>
-<li class="chapter" data-level="6.28" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#median-198.1"><i class="fa fa-check"></i><b>6.28</b> Median :198.1</a></li>
-<li class="chapter" data-level="6.29" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#mean-197.7"><i class="fa fa-check"></i><b>6.29</b> Mean :197.7</a></li>
-<li class="chapter" data-level="6.30" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#rd-qu.205.7"><i class="fa fa-check"></i><b>6.30</b> 3rd Qu.:205.7</a></li>
-<li class="chapter" data-level="6.31" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#max.-231.1"><i class="fa fa-check"></i><b>6.31</b> Max. :231.1</a></li>
-<li class="chapter" data-level="6.32" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#section-24"><i class="fa fa-check"></i><b>6.32</b> </a></li>
-<li class="chapter" data-level="6.33" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>6.33</b> Histograms and density plots</a></li>
-<li class="chapter" data-level="6.34" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#bar-plot"><i class="fa fa-check"></i><b>6.34</b> Bar plot</a></li>
-<li class="chapter" data-level="6.35" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#pie-chart"><i class="fa fa-check"></i><b>6.35</b> Pie chart</a></li>
-<li class="chapter" data-level="6.36" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#scatterplot"><i class="fa fa-check"></i><b>6.36</b> Scatterplot</a></li>
-<li class="chapter" data-level="6.37" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#d-density-plot"><i class="fa fa-check"></i><b>6.37</b> 2D density plot</a></li>
-<li class="chapter" data-level="6.38" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#boxplot"><i class="fa fa-check"></i><b>6.38</b> Boxplot</a></li>
-<li class="chapter" data-level="6.39" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#violin-plot"><i class="fa fa-check"></i><b>6.39</b> Violin plot</a></li>
-<li class="chapter" data-level="6.40" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#correlogram"><i class="fa fa-check"></i><b>6.40</b> Correlogram</a></li>
-<li class="chapter" data-level="6.41" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#warning-package-ggcorrplot-was-built-under-r-version-3.5.3"><i class="fa fa-check"></i><b>6.41</b> Warning: package ‘ggcorrplot’ was built under R version 3.5.3</a></li>
-<li class="chapter" data-level="6.42" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>6.42</b> A comprehensive summary</a></li>
-<li class="chapter" data-level="6.43" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#warning-package-psych-was-built-under-r-version-3.5.3"><i class="fa fa-check"></i><b>6.43</b> Warning: package ‘psych’ was built under R version 3.5.3</a></li>
-<li class="chapter" data-level="6.44" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#section-25"><i class="fa fa-check"></i><b>6.44</b> </a></li>
-<li class="chapter" data-level="6.45" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#attaching-package-psych"><i class="fa fa-check"></i><b>6.45</b> Attaching package: ‘psych’</a></li>
-<li class="chapter" data-level="6.46" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#the-following-objects-are-masked-from-packageggplot2"><i class="fa fa-check"></i><b>6.46</b> The following objects are masked from ‘package:ggplot2’:</a></li>
-<li class="chapter" data-level="6.47" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#section-26"><i class="fa fa-check"></i><b>6.47</b> </a></li>
-<li class="chapter" data-level="6.48" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#alpha"><i class="fa fa-check"></i><b>6.48</b> %+%, alpha</a></li>
-<li class="chapter" data-level="6.49" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>6.49</b> Further reading and references</a></li>
-<li class="chapter" data-level="6.50" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#learning-outcomes-2"><i class="fa fa-check"></i><b>6.50</b> Learning outcomes</a></li>
-<li class="chapter" data-level="6.51" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#practice-problems-2"><i class="fa fa-check"></i><b>6.51</b> Practice problems</a></li>
+<li class="chapter" data-level="6.1" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>6.1</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="6.2" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#bar-plot"><i class="fa fa-check"></i><b>6.2</b> Bar plot</a></li>
+<li class="chapter" data-level="6.3" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#pie-chart"><i class="fa fa-check"></i><b>6.3</b> Pie chart</a></li>
+<li class="chapter" data-level="6.4" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#scatterplot"><i class="fa fa-check"></i><b>6.4</b> Scatterplot</a></li>
+<li class="chapter" data-level="6.5" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#d-density-plot"><i class="fa fa-check"></i><b>6.5</b> 2D density plot</a></li>
+<li class="chapter" data-level="6.6" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#boxplot"><i class="fa fa-check"></i><b>6.6</b> Boxplot</a></li>
+<li class="chapter" data-level="6.7" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#violin-plot"><i class="fa fa-check"></i><b>6.7</b> Violin plot</a></li>
+<li class="chapter" data-level="6.8" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#correlogram"><i class="fa fa-check"></i><b>6.8</b> Correlogram</a></li>
+<li class="chapter" data-level="6.9" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>6.9</b> A comprehensive summary</a></li>
+<li class="chapter" data-level="6.10" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>6.10</b> Further reading and references</a></li>
+<li class="chapter" data-level="6.11" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#learning-outcomes-3"><i class="fa fa-check"></i><b>6.11</b> Learning outcomes</a></li>
+<li class="chapter" data-level="6.12" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#practice-problems-3"><i class="fa fa-check"></i><b>6.12</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>7</b> Dynamic reports and reproducibility</a></li>
 <li class="chapter" data-level="8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a><ul>
 <li class="chapter" data-level="8.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
-<li class="chapter" data-level="8.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#x100m-long.jump-shot.put-high.jump"><i class="fa fa-check"></i><b>8.2</b> X100m Long.jump Shot.put High.jump</a></li>
-<li class="chapter" data-level="8.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#min.-10.44-min.-6.61-min.-12.68-min.-1.850"><i class="fa fa-check"></i><b>8.3</b> Min. :10.44 Min. :6.61 Min. :12.68 Min. :1.850</a></li>
-<li class="chapter" data-level="8.4" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#st-qu.10.85-1st-qu.7.03-1st-qu.13.88-1st-qu.1.920"><i class="fa fa-check"></i><b>8.4</b> 1st Qu.:10.85 1st Qu.:7.03 1st Qu.:13.88 1st Qu.:1.920</a></li>
-<li class="chapter" data-level="8.5" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#median-10.98-median-7.30-median-14.57-median-1.950"><i class="fa fa-check"></i><b>8.5</b> Median :10.98 Median :7.30 Median :14.57 Median :1.950</a></li>
-<li class="chapter" data-level="8.6" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#mean-11.00-mean-7.26-mean-14.48-mean-1.977"><i class="fa fa-check"></i><b>8.6</b> Mean :11.00 Mean :7.26 Mean :14.48 Mean :1.977</a></li>
-<li class="chapter" data-level="8.7" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#rd-qu.11.14-3rd-qu.7.48-3rd-qu.14.97-3rd-qu.2.040"><i class="fa fa-check"></i><b>8.7</b> 3rd Qu.:11.14 3rd Qu.:7.48 3rd Qu.:14.97 3rd Qu.:2.040</a></li>
-<li class="chapter" data-level="8.8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#max.-11.64-max.-7.96-max.-16.36-max.-2.150"><i class="fa fa-check"></i><b>8.8</b> Max. :11.64 Max. :7.96 Max. :16.36 Max. :2.150</a></li>
-<li class="chapter" data-level="8.9" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#x400m-x110m.hurdle-discus-pole.vault"><i class="fa fa-check"></i><b>8.9</b> X400m X110m.hurdle Discus Pole.vault</a></li>
-<li class="chapter" data-level="8.10" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#min.-46.81-min.-13.97-min.-37.92-min.-4.200"><i class="fa fa-check"></i><b>8.10</b> Min. :46.81 Min. :13.97 Min. :37.92 Min. :4.200</a></li>
-<li class="chapter" data-level="8.11" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#st-qu.48.93-1st-qu.14.21-1st-qu.41.90-1st-qu.4.500"><i class="fa fa-check"></i><b>8.11</b> 1st Qu.:48.93 1st Qu.:14.21 1st Qu.:41.90 1st Qu.:4.500</a></li>
-<li class="chapter" data-level="8.12" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#median-49.40-median-14.48-median-44.41-median-4.800"><i class="fa fa-check"></i><b>8.12</b> Median :49.40 Median :14.48 Median :44.41 Median :4.800</a></li>
-<li class="chapter" data-level="8.13" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#mean-49.62-mean-14.61-mean-44.33-mean-4.762"><i class="fa fa-check"></i><b>8.13</b> Mean :49.62 Mean :14.61 Mean :44.33 Mean :4.762</a></li>
-<li class="chapter" data-level="8.14" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#rd-qu.50.30-3rd-qu.14.98-3rd-qu.46.07-3rd-qu.4.920"><i class="fa fa-check"></i><b>8.14</b> 3rd Qu.:50.30 3rd Qu.:14.98 3rd Qu.:46.07 3rd Qu.:4.920</a></li>
-<li class="chapter" data-level="8.15" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#max.-53.20-max.-15.67-max.-51.65-max.-5.400"><i class="fa fa-check"></i><b>8.15</b> Max. :53.20 Max. :15.67 Max. :51.65 Max. :5.400</a></li>
-<li class="chapter" data-level="8.16" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#javeline-x1500m"><i class="fa fa-check"></i><b>8.16</b> Javeline X1500m</a></li>
-<li class="chapter" data-level="8.17" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#min.-50.31-min.-262.1"><i class="fa fa-check"></i><b>8.17</b> Min. :50.31 Min. :262.1</a></li>
-<li class="chapter" data-level="8.18" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#st-qu.55.27-1st-qu.271.0"><i class="fa fa-check"></i><b>8.18</b> 1st Qu.:55.27 1st Qu.:271.0</a></li>
-<li class="chapter" data-level="8.19" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#median-58.36-median-278.1"><i class="fa fa-check"></i><b>8.19</b> Median :58.36 Median :278.1</a></li>
-<li class="chapter" data-level="8.20" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#mean-58.32-mean-279.0"><i class="fa fa-check"></i><b>8.20</b> Mean :58.32 Mean :279.0</a></li>
-<li class="chapter" data-level="8.21" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#rd-qu.60.89-3rd-qu.285.1"><i class="fa fa-check"></i><b>8.21</b> 3rd Qu.:60.89 3rd Qu.:285.1</a></li>
-<li class="chapter" data-level="8.22" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#max.-70.52-max.-317.0"><i class="fa fa-check"></i><b>8.22</b> Max. :70.52 Max. :317.0</a></li>
-<li class="chapter" data-level="8.23" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#prop_explained-cumsum.prop_explained."><i class="fa fa-check"></i><b>8.23</b> prop_explained cumsum.prop_explained.</a></li>
-<li class="chapter" data-level="8.24" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-27"><i class="fa fa-check"></i><b>8.24</b> 1 0.32719055 0.3271906</a></li>
-<li class="chapter" data-level="8.25" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-28"><i class="fa fa-check"></i><b>8.25</b> 2 0.17371310 0.5009037</a></li>
-<li class="chapter" data-level="8.26" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-29"><i class="fa fa-check"></i><b>8.26</b> 3 0.14049167 0.6413953</a></li>
-<li class="chapter" data-level="8.27" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-30"><i class="fa fa-check"></i><b>8.27</b> 4 0.10568504 0.7470804</a></li>
-<li class="chapter" data-level="8.28" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-31"><i class="fa fa-check"></i><b>8.28</b> 5 0.06847735 0.8155577</a></li>
-<li class="chapter" data-level="8.29" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-32"><i class="fa fa-check"></i><b>8.29</b> 6 0.05992687 0.8754846</a></li>
-<li class="chapter" data-level="8.30" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-33"><i class="fa fa-check"></i><b>8.30</b> 7 0.04512353 0.9206081</a></li>
-<li class="chapter" data-level="8.31" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-34"><i class="fa fa-check"></i><b>8.31</b> 8 0.03968766 0.9602958</a></li>
-<li class="chapter" data-level="8.32" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-35"><i class="fa fa-check"></i><b>8.32</b> 9 0.02148149 0.9817773</a></li>
-<li class="chapter" data-level="8.33" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-36"><i class="fa fa-check"></i><b>8.33</b> 10 0.01822275 1.0000000</a></li>
-<li class="chapter" data-level="8.34" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#pc1-pc2-pc3-pc4-pc5-pc6-pc7-pc8-pc9-pc10"><i class="fa fa-check"></i><b>8.34</b> PC1 PC2 PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10</a></li>
-<li class="chapter" data-level="8.35" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#x100m-0.43--0.14-0.16--0.04-0.37--0.30-0.38--0.46--0.10-0.42"><i class="fa fa-check"></i><b>8.35</b> X100m 0.43 -0.14 0.16 -0.04 0.37 -0.30 0.38 -0.46 -0.10 0.42</a></li>
-<li class="chapter" data-level="8.36" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#long.jump-0.41--0.26-0.15--0.10--0.04--0.31--0.63--0.02-0.48--0.08"><i class="fa fa-check"></i><b>8.36</b> Long.jump 0.41 -0.26 0.15 -0.10 -0.04 -0.31 -0.63 -0.02 0.48 -0.08</a></li>
-<li class="chapter" data-level="8.37" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#shot.put-0.34-0.45--0.02--0.19--0.13-0.31-0.31--0.31-0.43--0.39"><i class="fa fa-check"></i><b>8.37</b> Shot.put 0.34 0.45 -0.02 -0.19 -0.13 0.31 0.31 -0.31 0.43 -0.39</a></li>
-<li class="chapter" data-level="8.38" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#high.jump--0.32--0.27-0.22--0.13-0.67-0.47--0.09--0.13-0.24--0.11"><i class="fa fa-check"></i><b>8.38</b> High.jump -0.32 -0.27 0.22 -0.13 0.67 0.47 -0.09 -0.13 0.24 -0.11</a></li>
-<li class="chapter" data-level="8.39" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#x400m-0.38--0.43--0.11-0.03--0.11-0.33--0.12--0.21--0.55--0.41"><i class="fa fa-check"></i><b>8.39</b> X400m 0.38 -0.43 -0.11 0.03 -0.11 0.33 -0.12 -0.21 -0.55 -0.41</a></li>
-<li class="chapter" data-level="8.40" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#x110m.hurdle-0.41--0.17-0.08-0.28-0.20-0.10-0.36-0.71-0.15--0.09"><i class="fa fa-check"></i><b>8.40</b> X110m.hurdle 0.41 -0.17 0.08 0.28 0.20 0.10 0.36 0.71 0.15 -0.09</a></li>
-<li class="chapter" data-level="8.41" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#discus-0.31-0.46-0.04-0.25-0.13-0.45--0.43-0.04--0.15-0.45"><i class="fa fa-check"></i><b>8.41</b> Discus 0.31 0.46 0.04 0.25 0.13 0.45 -0.43 0.04 -0.15 0.45</a></li>
-<li class="chapter" data-level="8.42" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#pole.vault-0.03--0.14-0.58--0.54--0.40-0.26-0.10-0.18--0.08-0.28"><i class="fa fa-check"></i><b>8.42</b> Pole.vault 0.03 -0.14 0.58 -0.54 -0.40 0.26 0.10 0.18 -0.08 0.28</a></li>
-<li class="chapter" data-level="8.43" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#javeline-0.15-0.24--0.33--0.69-0.37--0.16--0.11-0.30--0.25--0.09"><i class="fa fa-check"></i><b>8.43</b> Javeline 0.15 0.24 -0.33 -0.69 0.37 -0.16 -0.11 0.30 -0.25 -0.09</a></li>
-<li class="chapter" data-level="8.44" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#x1500m-0.03--0.36--0.66--0.16--0.19-0.30-0.08--0.01-0.31-0.43"><i class="fa fa-check"></i><b>8.44</b> X1500m 0.03 -0.36 -0.66 -0.16 -0.19 0.30 0.08 -0.01 0.31 0.43</a></li>
-<li class="chapter" data-level="8.45" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.45</b> Multi-dimensional scaling (MDS)</a></li>
-<li class="chapter" data-level="8.46" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.46</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
-<li class="chapter" data-level="8.47" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#warning-package-rtsne-was-built-under-r-version-3.5.3"><i class="fa fa-check"></i><b>8.47</b> Warning: package ‘Rtsne’ was built under R version 3.5.3</a></li>
-<li class="chapter" data-level="8.48" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#clustering"><i class="fa fa-check"></i><b>8.48</b> Clustering</a><ul>
-<li class="chapter" data-level="8.48.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#k-means-clustering"><i class="fa fa-check"></i><b>8.48.1</b> k-means clustering</a></li>
+<li class="chapter" data-level="8.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.2</b> Multi-dimensional scaling (MDS)</a></li>
+<li class="chapter" data-level="8.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.3</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+<li class="chapter" data-level="8.4" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#clustering"><i class="fa fa-check"></i><b>8.4</b> Clustering</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#k-means-clustering"><i class="fa fa-check"></i><b>8.4.1</b> k-means clustering</a></li>
+<li class="chapter" data-level="8.4.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.4.2</b> Determining the number of clusters</a></li>
+<li class="chapter" data-level="8.4.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.4.3</b> Agglomerative hierarchical clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="8.49" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#fertility-agriculture-examination-education"><i class="fa fa-check"></i><b>8.49</b> Fertility Agriculture Examination Education</a></li>
-<li class="chapter" data-level="8.50" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#min.-35.00-min.-1.20-min.-3.00-min.-1.00"><i class="fa fa-check"></i><b>8.50</b> Min. :35.00 Min. : 1.20 Min. : 3.00 Min. : 1.00</a></li>
-<li class="chapter" data-level="8.51" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#st-qu.64.70-1st-qu.35.90-1st-qu.12.00-1st-qu.-6.00"><i class="fa fa-check"></i><b>8.51</b> 1st Qu.:64.70 1st Qu.:35.90 1st Qu.:12.00 1st Qu.: 6.00</a></li>
-<li class="chapter" data-level="8.52" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#median-70.40-median-54.10-median-16.00-median-8.00"><i class="fa fa-check"></i><b>8.52</b> Median :70.40 Median :54.10 Median :16.00 Median : 8.00</a></li>
-<li class="chapter" data-level="8.53" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#mean-70.14-mean-50.66-mean-16.49-mean-10.98"><i class="fa fa-check"></i><b>8.53</b> Mean :70.14 Mean :50.66 Mean :16.49 Mean :10.98</a></li>
-<li class="chapter" data-level="8.54" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#rd-qu.78.45-3rd-qu.67.65-3rd-qu.22.00-3rd-qu.12.00"><i class="fa fa-check"></i><b>8.54</b> 3rd Qu.:78.45 3rd Qu.:67.65 3rd Qu.:22.00 3rd Qu.:12.00</a></li>
-<li class="chapter" data-level="8.55" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#max.-92.50-max.-89.70-max.-37.00-max.-53.00"><i class="fa fa-check"></i><b>8.55</b> Max. :92.50 Max. :89.70 Max. :37.00 Max. :53.00</a></li>
-<li class="chapter" data-level="8.56" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#catholic-infant.mortality"><i class="fa fa-check"></i><b>8.56</b> Catholic Infant.Mortality</a></li>
-<li class="chapter" data-level="8.57" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#min.-2.150-min.-10.80"><i class="fa fa-check"></i><b>8.57</b> Min. : 2.150 Min. :10.80</a></li>
-<li class="chapter" data-level="8.58" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#st-qu.-5.195-1st-qu.18.15"><i class="fa fa-check"></i><b>8.58</b> 1st Qu.: 5.195 1st Qu.:18.15</a></li>
-<li class="chapter" data-level="8.59" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#median-15.140-median-20.00"><i class="fa fa-check"></i><b>8.59</b> Median : 15.140 Median :20.00</a></li>
-<li class="chapter" data-level="8.60" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#mean-41.144-mean-19.94"><i class="fa fa-check"></i><b>8.60</b> Mean : 41.144 Mean :19.94</a></li>
-<li class="chapter" data-level="8.61" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#rd-qu.-93.125-3rd-qu.21.70"><i class="fa fa-check"></i><b>8.61</b> 3rd Qu.: 93.125 3rd Qu.:21.70</a></li>
-<li class="chapter" data-level="8.62" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#max.-100.000-max.-26.60"><i class="fa fa-check"></i><b>8.62</b> Max. :100.000 Max. :26.60</a></li>
-<li class="chapter" data-level="8.63" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#courtelary-delemont-franches-mnt-moutier-neuveville"><i class="fa fa-check"></i><b>8.63</b> Courtelary Delemont Franches-Mnt Moutier Neuveville</a></li>
-<li class="chapter" data-level="8.64" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-37"><i class="fa fa-check"></i><b>8.64</b> 1 2 2 1 1</a></li>
-<li class="chapter" data-level="8.65" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#porrentruy-broye-glane-gruyere-sarine"><i class="fa fa-check"></i><b>8.65</b> Porrentruy Broye Glane Gruyere Sarine</a></li>
-<li class="chapter" data-level="8.66" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-38"><i class="fa fa-check"></i><b>8.66</b> 2 2 2 2 2</a></li>
-<li class="chapter" data-level="8.67" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#veveyse-aigle-aubonne-avenches-cossonay"><i class="fa fa-check"></i><b>8.67</b> Veveyse Aigle Aubonne Avenches Cossonay</a></li>
-<li class="chapter" data-level="8.68" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-39"><i class="fa fa-check"></i><b>8.68</b> 2 1 1 1 1</a></li>
-<li class="chapter" data-level="8.69" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#echallens-grandson-lausanne-la-vallee-lavaux"><i class="fa fa-check"></i><b>8.69</b> Echallens Grandson Lausanne La Vallee Lavaux</a></li>
-<li class="chapter" data-level="8.70" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-40"><i class="fa fa-check"></i><b>8.70</b> 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.71" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#morges-moudon-nyone-orbe-oron"><i class="fa fa-check"></i><b>8.71</b> Morges Moudon Nyone Orbe Oron</a></li>
-<li class="chapter" data-level="8.72" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-41"><i class="fa fa-check"></i><b>8.72</b> 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.73" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#payerne-paysdenhaut-rolle-vevey-yverdon"><i class="fa fa-check"></i><b>8.73</b> Payerne Paysd’enhaut Rolle Vevey Yverdon</a></li>
-<li class="chapter" data-level="8.74" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-42"><i class="fa fa-check"></i><b>8.74</b> 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.75" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#conthey-entremont-herens-martigwy-monthey"><i class="fa fa-check"></i><b>8.75</b> Conthey Entremont Herens Martigwy Monthey</a></li>
-<li class="chapter" data-level="8.76" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-43"><i class="fa fa-check"></i><b>8.76</b> 2 2 2 2 2</a></li>
-<li class="chapter" data-level="8.77" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#st-maurice-sierre-sion-boudry-la-chauxdfnd"><i class="fa fa-check"></i><b>8.77</b> St Maurice Sierre Sion Boudry La Chauxdfnd</a></li>
-<li class="chapter" data-level="8.78" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-44"><i class="fa fa-check"></i><b>8.78</b> 2 2 2 1 1</a></li>
-<li class="chapter" data-level="8.79" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#le-locle-neuchatel-val-de-ruz-valdetravers-v.-de-geneve"><i class="fa fa-check"></i><b>8.79</b> Le Locle Neuchatel Val de Ruz ValdeTravers V. De Geneve</a></li>
-<li class="chapter" data-level="8.80" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-45"><i class="fa fa-check"></i><b>8.80</b> 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.81" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#rive-droite-rive-gauche"><i class="fa fa-check"></i><b>8.81</b> Rive Droite Rive Gauche</a></li>
-<li class="chapter" data-level="8.82" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-46"><i class="fa fa-check"></i><b>8.82</b> 1 1</a></li>
-<li class="chapter" data-level="8.83" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#warning-package-factoextra-was-built-under-r-version-3.5.3"><i class="fa fa-check"></i><b>8.83</b> Warning: package ‘factoextra’ was built under R version 3.5.3</a></li>
-<li class="chapter" data-level="8.84" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#loading-required-package-ggplot2"><i class="fa fa-check"></i><b>8.84</b> Loading required package: ggplot2</a></li>
-<li class="chapter" data-level="8.85" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#welcome-related-books-practical-guide-to-cluster-analysis-in-r-at-httpsgoo.gl13efcz"><i class="fa fa-check"></i><b>8.85</b> Welcome! Related Books: <code>Practical Guide To Cluster Analysis in R</code> at <a href="https://goo.gl/13EFCZ" class="uri">https://goo.gl/13EFCZ</a></a><ul>
-<li class="chapter" data-level="8.85.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.85.1</b> Determining the number of clusters</a></li>
-</ul></li>
-<li class="chapter" data-level="8.86" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-47"><i class="fa fa-check"></i><b>8.86</b> [1] 0.0000000 0.6284002 0.5368920 0.4406436 0.4341318 0.4089358 0.4146117</a></li>
-<li class="chapter" data-level="8.87" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-48"><i class="fa fa-check"></i><b>8.87</b> [8] 0.3922444 0.3738533 0.3278620</a><ul>
-<li class="chapter" data-level="8.87.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.87.1</b> Agglomerative hierarchical clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="8.88" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#courtelary-delemont-franches-mnt-moutier-neuveville-porrentruy-broye"><i class="fa fa-check"></i><b>8.88</b> Courtelary Delemont Franches-Mnt Moutier Neuveville Porrentruy Broye</a></li>
-<li class="chapter" data-level="8.89" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-2-2-1-1-2-2"><i class="fa fa-check"></i><b>8.89</b> hk2 1 2 2 1 1 2 2</a></li>
-<li class="chapter" data-level="8.90" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-1-2-2-1-1-2-2"><i class="fa fa-check"></i><b>8.90</b> km2 1 2 2 1 1 2 2</a></li>
-<li class="chapter" data-level="8.91" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#glane-gruyere-sarine-veveyse-aigle-aubonne-avenches-cossonay-echallens"><i class="fa fa-check"></i><b>8.91</b> Glane Gruyere Sarine Veveyse Aigle Aubonne Avenches Cossonay Echallens</a></li>
-<li class="chapter" data-level="8.92" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-2-2-2-2-1-1-1-1-1"><i class="fa fa-check"></i><b>8.92</b> hk2 2 2 2 2 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.93" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-2-2-2-2-1-1-1-1-1"><i class="fa fa-check"></i><b>8.93</b> km2 2 2 2 2 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.94" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#grandson-lausanne-la-vallee-lavaux-morges-moudon-nyone-orbe-oron"><i class="fa fa-check"></i><b>8.94</b> Grandson Lausanne La Vallee Lavaux Morges Moudon Nyone Orbe Oron</a></li>
-<li class="chapter" data-level="8.95" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-1-1-1-1-1-1-1-1"><i class="fa fa-check"></i><b>8.95</b> hk2 1 1 1 1 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.96" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-1-1-1-1-1-1-1-1-1"><i class="fa fa-check"></i><b>8.96</b> km2 1 1 1 1 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.97" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#payerne-paysdenhaut-rolle-vevey-yverdon-conthey-entremont-herens"><i class="fa fa-check"></i><b>8.97</b> Payerne Paysd’enhaut Rolle Vevey Yverdon Conthey Entremont Herens</a></li>
-<li class="chapter" data-level="8.98" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-1-1-1-1-2-2-2"><i class="fa fa-check"></i><b>8.98</b> hk2 1 1 1 1 1 2 2 2</a></li>
-<li class="chapter" data-level="8.99" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-1-1-1-1-1-2-2-2"><i class="fa fa-check"></i><b>8.99</b> km2 1 1 1 1 1 2 2 2</a></li>
-<li class="chapter" data-level="8.100" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#martigwy-monthey-st-maurice-sierre-sion-boudry-la-chauxdfnd-le-locle"><i class="fa fa-check"></i><b>8.100</b> Martigwy Monthey St Maurice Sierre Sion Boudry La Chauxdfnd Le Locle</a></li>
-<li class="chapter" data-level="8.101" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-2-2-2-2-2-1-1-1"><i class="fa fa-check"></i><b>8.101</b> hk2 2 2 2 2 2 1 1 1</a></li>
-<li class="chapter" data-level="8.102" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-2-2-2-2-2-1-1-1"><i class="fa fa-check"></i><b>8.102</b> km2 2 2 2 2 2 1 1 1</a></li>
-<li class="chapter" data-level="8.103" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#neuchatel-val-de-ruz-valdetravers-v.-de-geneve-rive-droite-rive-gauche"><i class="fa fa-check"></i><b>8.103</b> Neuchatel Val de Ruz ValdeTravers V. De Geneve Rive Droite Rive Gauche</a></li>
-<li class="chapter" data-level="8.104" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-1-1-1-1-1"><i class="fa fa-check"></i><b>8.104</b> hk2 1 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.105" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-1-1-1-1-1-1"><i class="fa fa-check"></i><b>8.105</b> km2 1 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.106" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#courtelary-delemont-franches-mnt-moutier-neuveville-porrentruy-broye-1"><i class="fa fa-check"></i><b>8.106</b> Courtelary Delemont Franches-Mnt Moutier Neuveville Porrentruy Broye</a></li>
-<li class="chapter" data-level="8.107" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-2-2-1-1-2-2-1"><i class="fa fa-check"></i><b>8.107</b> hk2 1 2 2 1 1 2 2</a></li>
-<li class="chapter" data-level="8.108" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-3-1-1-3-3-1-1"><i class="fa fa-check"></i><b>8.108</b> km2 3 1 1 3 3 1 1</a></li>
-<li class="chapter" data-level="8.109" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#glane-gruyere-sarine-veveyse-aigle-aubonne-avenches-cossonay-echallens-1"><i class="fa fa-check"></i><b>8.109</b> Glane Gruyere Sarine Veveyse Aigle Aubonne Avenches Cossonay Echallens</a></li>
-<li class="chapter" data-level="8.110" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-2-2-2-2-1-1-1-1-1-1"><i class="fa fa-check"></i><b>8.110</b> hk2 2 2 2 2 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.111" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-1-1-1-1-3-3-3-3-3"><i class="fa fa-check"></i><b>8.111</b> km2 1 1 1 1 3 3 3 3 3</a></li>
-<li class="chapter" data-level="8.112" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#grandson-lausanne-la-vallee-lavaux-morges-moudon-nyone-orbe-oron-1"><i class="fa fa-check"></i><b>8.112</b> Grandson Lausanne La Vallee Lavaux Morges Moudon Nyone Orbe Oron</a></li>
-<li class="chapter" data-level="8.113" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-1-1-1-1-1-1-1-1-1"><i class="fa fa-check"></i><b>8.113</b> hk2 1 1 1 1 1 1 1 1 1</a></li>
-<li class="chapter" data-level="8.114" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-3-3-3-3-3-3-3-3-3"><i class="fa fa-check"></i><b>8.114</b> km2 3 3 3 3 3 3 3 3 3</a></li>
-<li class="chapter" data-level="8.115" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#payerne-paysdenhaut-rolle-vevey-yverdon-conthey-entremont-herens-1"><i class="fa fa-check"></i><b>8.115</b> Payerne Paysd’enhaut Rolle Vevey Yverdon Conthey Entremont Herens</a></li>
-<li class="chapter" data-level="8.116" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-1-1-1-1-2-2-2-1"><i class="fa fa-check"></i><b>8.116</b> hk2 1 1 1 1 1 2 2 2</a></li>
-<li class="chapter" data-level="8.117" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-3-3-3-3-3-2-2-2"><i class="fa fa-check"></i><b>8.117</b> km2 3 3 3 3 3 2 2 2</a></li>
-<li class="chapter" data-level="8.118" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#martigwy-monthey-st-maurice-sierre-sion-boudry-la-chauxdfnd-le-locle-1"><i class="fa fa-check"></i><b>8.118</b> Martigwy Monthey St Maurice Sierre Sion Boudry La Chauxdfnd Le Locle</a></li>
-<li class="chapter" data-level="8.119" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-2-2-2-2-2-1-1-1-1"><i class="fa fa-check"></i><b>8.119</b> hk2 2 2 2 2 2 1 1 1</a></li>
-<li class="chapter" data-level="8.120" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-2-1-2-2-1-3-3-3"><i class="fa fa-check"></i><b>8.120</b> km2 2 1 2 2 1 3 3 3</a></li>
-<li class="chapter" data-level="8.121" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#neuchatel-val-de-ruz-valdetravers-v.-de-geneve-rive-droite-rive-gauche-1"><i class="fa fa-check"></i><b>8.121</b> Neuchatel Val de Ruz ValdeTravers V. De Geneve Rive Droite Rive Gauche</a></li>
-<li class="chapter" data-level="8.122" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#hk2-1-1-1-3-3-3"><i class="fa fa-check"></i><b>8.122</b> hk2 1 1 1 3 3 3</a></li>
-<li class="chapter" data-level="8.123" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#km2-3-3-3-3-3-3"><i class="fa fa-check"></i><b>8.123</b> km2 3 3 3 3 3 3</a></li>
-<li class="chapter" data-level="8.124" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#section-49"><i class="fa fa-check"></i><b>8.124</b> [1] 0.87</a></li>
-<li class="chapter" data-level="8.125" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>8.125</b> Further reading and references</a></li>
-<li class="chapter" data-level="8.126" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#learning-outcomes-3"><i class="fa fa-check"></i><b>8.126</b> Learning outcomes</a></li>
-<li class="chapter" data-level="8.127" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#practice-problems-3"><i class="fa fa-check"></i><b>8.127</b> Practice problems</a></li>
+<li class="chapter" data-level="8.5" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#further-reading-and-references-4"><i class="fa fa-check"></i><b>8.5</b> Further reading and references</a></li>
+<li class="chapter" data-level="8.6" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#learning-outcomes-4"><i class="fa fa-check"></i><b>8.6</b> Learning outcomes</a></li>
+<li class="chapter" data-level="8.7" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#practice-problems-4"><i class="fa fa-check"></i><b>8.7</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a></li>
 <li class="chapter" data-level="10" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a></li>
@@ -505,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="docker-container-platform" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Docker container platform</h1>
 <p>To enable the portability and easier scalability of our applications, there is a need to provide some tools that can package together tho whole environment, needed by our applications, such as library dependencies or language runtime.</p>
-<p>Docker is a set of tools that use operating-system-level virtualization to develop and deliver software in packages called containers. The software that hosts the containers is called Docker Engine and was first started in 2013 by Docker, Inc. Docker producst are available both in community and enterprise editions.</p>
+<p>Docker is a set of tools that use operating-system-level virtualization to develop and deliver software in packages called containers. The software that hosts the containers is called Docker Engine and was first started in 2013 by Docker, Inc. Docker producst are available both in community and enterprise editions.</p>
 <p>Docker containers are isolated from each other and as mentioned above, they bundle their own software, libraries and configuration files. If our application consists of multiple services, a container can communicate with each other through internal or external network configuation. All containers are run by a single (host) operating-system kernel and are thus more lightweight than virtual machines. They are instantiated from Docker images that specify their precise contents. Images are often created by combining and modifying existing standard images downloaded from public repositories (i.e. image registries). An instance of an image (i.e. container) thus contains configured networking, storage, logging, etc. Furthermore, Docker defines an abstraction for these machine-specific settings and the exact same Docker container can run without any changes on many different machines, with many different configurations.</p>
 <p>There exist also similar technologies like Docker, which may not be that well known or are used for different scenarios, such as <a href="https://sylabs.io/">Singularity</a>, <a href="https://nanobox.io/">Nanobox</a> or <a href="https://linuxcontainers.org/">LXC</a>. Another approach of bundling applications into separate environment is using virtual machines, where each virtual machine contains its own whole operating system. Most known such virtualization technologies are <a href="https://www.vmware.com/">VMWare products</a> or <a href="https://www.virtualbox.org/">Virtualbox</a>. A technology in between the both Worlds is <a href="https://www.vagrantup.com/">Vagrant</a>, which enables a user to script the whole environment but when running the app, Vagrant creates a separate virtual machine (e.g. using Virtualbox) and runs it.</p>
 <div id="why-docker" class="section level2">
@@ -529,199 +236,202 @@ Figure 3.1: Dockerized applications vs. VM-virtualized applications (image cour
 <p>To install Docker on your machine, you need to download the appropriate Docker Engine Community distribution from the official <a href="https://hub.docker.com/search/?type=edition&amp;offering=community">download website</a>. You may notice that there exist also <em>Docker Machine</em> installation package, which is a provisioning and installation software for Docker - you do not need it at this point as it helps you managing multiple remote Docker hosts.</p>
 <p>After the installation you can explore different setting in the installation. A part of the installation is also a tool called <em>Kitematic</em>, which provides a handy GUI to overview downloaded images, containers, volumes and their settings. You can use it as a side-tool to command-line commands we introduce below.</p>
 <p>To check your Docker installation, run <code>docker info</code> to view some status details.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">Containers</span>: 0</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"> <span class="ex">Running</span>: 0</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"> <span class="ex">Paused</span>: 0</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"> <span class="ex">Stopped</span>: 0</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="ex">Images</span>: 0</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="ex">Server</span> Version: 18.09.2</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="ex">Storage</span> Driver: overlay2</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="ex">...</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Containers</span>: 0
+ <span class="ex">Running</span>: 0
+ <span class="ex">Paused</span>: 0
+ <span class="ex">Stopped</span>: 0
+<span class="ex">Images</span>: 0
+<span class="ex">Server</span> Version: 18.09.2
+<span class="ex">Storage</span> Driver: overlay2
+<span class="ex">...</span></code></pre></div>
 <p>If you experience some permission problems, you need to allow your user to work with docker. Follow the <a href="https://docs.docker.com/install/linux/linux-postinstall/">post-installation guidelines</a>.</p>
 <p>Now we are ready to test the Docker installation by running command <code>docker run hello-world</code>. If you see a similat message to the below, you are ready to start.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ex">Unable</span> to find image <span class="st">&#39;hello-world:latest&#39;</span> locally</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="ex">latest</span>: Pulling from library/hello-world</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="ex">1b930d010525</span>: Pull complete</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="ex">Digest</span>: sha256:6540fc08ee6e6b7b63468dc3317e3303aae178cb8a45ed3123180328bcc1d20f</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="ex">Status</span>: Downloaded newer image for hello-world:latest</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="ex">Hello</span> from Docker!</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="ex">This</span> message shows that your installation appears to be working correctly.</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="ex">...</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Unable</span> to find image <span class="st">&#39;hello-world:latest&#39;</span> locally
+<span class="ex">latest</span>: Pulling from library/hello-world
+<span class="ex">1b930d010525</span>: Pull complete
+<span class="ex">Digest</span>: sha256:6540fc08ee6e6b7b63468dc3317e3303aae178cb8a45ed3123180328bcc1d20f
+<span class="ex">Status</span>: Downloaded newer image for hello-world:latest
+
+<span class="ex">Hello</span> from Docker!
+<span class="ex">This</span> message shows that your installation appears to be working correctly.
+<span class="ex">...</span></code></pre></div>
 </div>
 <div id="short-introduction-to-docker" class="section level2">
 <h2><span class="header-section-number">3.3</span> Short introduction to Docker</h2>
 <div id="basics-1" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Basics</h3>
 <p>A Docker container is a runtime instance of an image - that is, an image with state, or a user process. You can see a list of available images usinf the command <code>docker image ls</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">REPOSITORY</span>          TAG                 IMAGE ID            CREATED             SIZE</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">docker-app</span>          latest              4b727c80cf90        4 minutes ago       475MB</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="ex">application</span>         latest              cd497ca7013b        19 hours ago        538MB</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">database</span>            latest              428448bc5e2d        19 hours ago        373MB</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="ex">ubuntu</span>              18.04               4c108a37151f        4 weeks ago         64.2MB</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="ex">mysql</span>               5                   a1aa4f76fab9        5 weeks ago         373MB</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="ex">hello-world</span>         latest              fce289e99eb9        6 months ago        1.84kB</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">REPOSITORY</span>          TAG                 IMAGE ID            CREATED             SIZE
+<span class="ex">docker-app</span>          latest              4b727c80cf90        4 minutes ago       475MB
+<span class="ex">application</span>         latest              cd497ca7013b        19 hours ago        538MB
+<span class="ex">database</span>            latest              428448bc5e2d        19 hours ago        373MB
+<span class="ex">ubuntu</span>              18.04               4c108a37151f        4 weeks ago         64.2MB
+<span class="ex">mysql</span>               5                   a1aa4f76fab9        5 weeks ago         373MB
+<span class="ex">hello-world</span>         latest              fce289e99eb9        6 months ago        1.84kB</code></pre></div>
 <p>A container is launched by running an image. An image is an executable package that includes everything needed to run an application - the code, a runtime, libraries, environment variables, and configuration files. We have seen the <em>docker run</em> command that takes image name as a parameter. Image name looks like of <em>[username/]repository[:tag]</em>, where <em>tag</em> is <em>latest</em> by default. To see all the container on your machine, issue the command <code>docker container ls --all</code> (the parameter <em>–all</em> will list also stopped containers):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="ex">CONTAINER</span> ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                    NAMES</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="ex">f6a55e492493</span>        docker-app          <span class="st">&quot;/bin/sh -c &#39;python3…&quot;</span>   14 seconds ago      Up 13 seconds               0.0.0.0:8787-<span class="op">&gt;</span>8787/tcp   kind_blackwell</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="ex">42b33bc532ab</span>        hello-world         <span class="st">&quot;/hello&quot;</span>                 22 minutes ago      Exited (0) <span class="ex">22</span> minutes ago                            unruffled_morse</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">CONTAINER</span> ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                    NAMES
+<span class="ex">f6a55e492493</span>        docker-app          <span class="st">&quot;/bin/sh -c &#39;python3…&quot;</span>   14 seconds ago      Up 13 seconds               0.0.0.0:8787-<span class="op">&gt;</span>8787/tcp   kind_blackwell
+<span class="ex">42b33bc532ab</span>        hello-world         <span class="st">&quot;/hello&quot;</span>                 22 minutes ago      Exited (0) <span class="ex">22</span> minutes ago                            unruffled_morse</code></pre></div>
 </div>
 <div id="docker-application-example" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> Docker application example</h3>
 <p>To better understand everything, let’s develop a simple web application and run it within a docker container (solution of this part is available in folder <em>app_only</em> in <a href="https://github.com/szitnik/docker-itds">the GitHub repository</a>).</p>
 <p>We have a simple Python web server implementation (<em>server.py</em>)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="im">from</span> flask <span class="im">import</span> json</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="im">from</span> flask <span class="im">import</span> request</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="im">from</span> flask <span class="im">import</span> Response</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;GET&#39;</span>])</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">def</span> index():     </a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">    content <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;index.html&quot;</span>).read()</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="cf">return</span> Response(content, mimetype<span class="op">=</span><span class="st">&quot;text/html&quot;</span>)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:    </a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">    app.run(host<span class="op">=</span><span class="st">&#39;0.0.0.0&#39;</span>, port<span class="op">=</span><span class="dv">8787</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> flask <span class="im">import</span> Flask
+<span class="im">from</span> flask <span class="im">import</span> json
+<span class="im">from</span> flask <span class="im">import</span> request
+<span class="im">from</span> flask <span class="im">import</span> Response
+
+app <span class="op">=</span> Flask(<span class="va">__name__</span>)
+
+<span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;GET&#39;</span>])
+<span class="kw">def</span> index():     
+    content <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;index.html&quot;</span>).read()
+    <span class="cf">return</span> Response(content, mimetype<span class="op">=</span><span class="st">&quot;text/html&quot;</span>)
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:    
+    app.run(host<span class="op">=</span><span class="st">&#39;0.0.0.0&#39;</span>, port<span class="op">=</span><span class="dv">8787</span>)</code></pre></div>
 <p>and accompanying HTML web template (<em>index.html</em>)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">&lt;html&gt;</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">&lt;head&gt;</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="kw">&lt;title&gt;</span>..:: Sample application ::..<span class="kw">&lt;/title&gt;</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css&quot;</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="ot">        integrity=</span><span class="st">&quot;sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO&quot;</span><span class="ot"> crossorigin=</span><span class="st">&quot;anonymous&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js&quot;</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="ot">        integrity=</span><span class="st">&quot;sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy&quot;</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="ot">        crossorigin=</span><span class="st">&quot;anonymous&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://code.jquery.com/jquery-3.4.1.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="kw">&lt;script&gt;</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">        <span class="at">$</span>( document ).<span class="at">ready</span>(<span class="kw">function</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">            employees <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">                <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;John Doe&quot;</span><span class="op">,</span> <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="st">&quot;I like cycling, mountain biking and skiing!!!&quot;</span><span class="op">,</span> <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="st">&quot;Director of operations&quot;</span><span class="op">},</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">                <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Melanie Oesch&quot;</span><span class="op">,</span> <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="st">&quot;As the best jodeling singer, the love of my life is singing all day long. I come from Switzerland and have achieved many prizes. Maybe I also visit your hometown and get to know you.&quot;</span><span class="op">,</span> <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="st">&quot;Chairman of kids programme&quot;</span><span class="op">},</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17">                <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Vladimir Zookeeper&quot;</span><span class="op">,</span> <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="st">&quot;Animals are the nicest and very polite creatures in our world. I have observed many species already and I have not found an animal that would harm me without a reason (in comparison to a human being). My dream is to play with animals every day.&quot;</span><span class="op">,</span> <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="st">&quot;Animal feeder&quot;</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">            ]<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">            <span class="kw">function</span> <span class="at">addEmployee</span>(employee) <span class="op">{</span>                </a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">                <span class="at">$</span>(<span class="st">&quot;#personnelListing&quot;</span>).<span class="at">append</span>(<span class="vs">`</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="vs">                    &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action flex-column align-items-start&quot;&gt;</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="vs">                        &lt;div class=&quot;d-flex w-100 justify-content-between&quot;&gt;</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="vs">                            &lt;h5 class=&quot;mb-1&quot;&gt;</span><span class="sc">${</span><span class="va">employee</span>.<span class="at">name</span><span class="sc">}</span><span class="vs">&lt;/h5&gt;</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="vs">                        &lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="vs">                        &lt;p class=&quot;mb-1&quot;&gt;</span><span class="sc">${</span><span class="va">employee</span>.<span class="at">hobbies</span><span class="sc">}</span><span class="vs">&lt;/p&gt;</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="vs">                        &lt;small&gt;</span><span class="sc">${</span><span class="va">employee</span>.<span class="at">role</span><span class="sc">}</span><span class="vs">&lt;/small&gt;</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="vs">                    &lt;/a&gt;</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="vs">                `</span>)<span class="op">;</span>                </a>
-<a class="sourceLine" id="cb6-30" data-line-number="30">            <span class="op">}</span></a>
-<a class="sourceLine" id="cb6-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb6-32" data-line-number="32">            <span class="va">$</span>.<span class="at">each</span>(employees<span class="op">,</span> <span class="kw">function</span>( index<span class="op">,</span> employee ) <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-33" data-line-number="33">                <span class="at">addEmployee</span>(employee)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-34" data-line-number="34">            <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-35" data-line-number="35"></a>
-<a class="sourceLine" id="cb6-36" data-line-number="36">            <span class="kw">function</span> <span class="at">processForm</span>() <span class="op">{</span>                </a>
-<a class="sourceLine" id="cb6-37" data-line-number="37">                employee <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-38" data-line-number="38">                    <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="at">$</span>(<span class="st">&quot;#name&quot;</span>).<span class="at">val</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb6-39" data-line-number="39">                    <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="at">$</span>(<span class="st">&quot;#hobbies&quot;</span>).<span class="at">val</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb6-40" data-line-number="40">                    <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="at">$</span>(<span class="st">&quot;#role&quot;</span>).<span class="at">val</span>()    </a>
-<a class="sourceLine" id="cb6-41" data-line-number="41">                <span class="op">};</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42">                <span class="at">addEmployee</span>(employee)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-43" data-line-number="43">                <span class="at">$</span>(<span class="st">&quot;#name&quot;</span>).<span class="at">val</span>(<span class="st">&quot;&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb6-44" data-line-number="44">                <span class="at">$</span>(<span class="st">&quot;#hobbies&quot;</span>).<span class="at">val</span>(<span class="st">&quot;&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb6-45" data-line-number="45">                <span class="at">$</span>(<span class="st">&quot;#role&quot;</span>).<span class="at">val</span>(<span class="st">&quot;&quot;</span>)    </a>
-<a class="sourceLine" id="cb6-46" data-line-number="46">            <span class="op">}</span></a>
-<a class="sourceLine" id="cb6-47" data-line-number="47"></a>
-<a class="sourceLine" id="cb6-48" data-line-number="48">            <span class="co">// Fetch all the forms we want to apply custom Bootstrap validation styles to</span></a>
-<a class="sourceLine" id="cb6-49" data-line-number="49">            <span class="kw">var</span> forms <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementsByClassName</span>(<span class="st">&#39;needs-validation&#39;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-50" data-line-number="50">                    <span class="co">// Loop over them and prevent submission</span></a>
-<a class="sourceLine" id="cb6-51" data-line-number="51">                    <span class="kw">var</span> validation <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">filter</span>.<span class="at">call</span>(forms<span class="op">,</span> <span class="kw">function</span>(form) <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-52" data-line-number="52">                      <span class="va">form</span>.<span class="at">addEventListener</span>(<span class="st">&#39;submit&#39;</span><span class="op">,</span> <span class="kw">function</span>(event) <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-53" data-line-number="53">                        <span class="va">event</span>.<span class="at">preventDefault</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-54" data-line-number="54">                        <span class="va">event</span>.<span class="at">stopPropagation</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-55" data-line-number="55">                        <span class="cf">if</span> (<span class="va">form</span>.<span class="at">checkValidity</span>() <span class="op">===</span> <span class="kw">true</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-56" data-line-number="56">                            <span class="at">processForm</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-57" data-line-number="57">                            <span class="va">form</span>.<span class="va">classList</span>.<span class="at">remove</span>(<span class="st">&#39;was-validated&#39;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-58" data-line-number="58">                        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-59" data-line-number="59">                            <span class="va">form</span>.<span class="va">classList</span>.<span class="at">add</span>(<span class="st">&#39;was-validated&#39;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-60" data-line-number="60">                        <span class="op">}</span></a>
-<a class="sourceLine" id="cb6-61" data-line-number="61">                        </a>
-<a class="sourceLine" id="cb6-62" data-line-number="62">                        </a>
-<a class="sourceLine" id="cb6-63" data-line-number="63">                      <span class="op">},</span> <span class="kw">false</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-64" data-line-number="64">                    <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-65" data-line-number="65">        <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb6-66" data-line-number="66">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb6-67" data-line-number="67"><span class="kw">&lt;/head&gt;</span></a>
-<a class="sourceLine" id="cb6-68" data-line-number="68"></a>
-<a class="sourceLine" id="cb6-69" data-line-number="69"><span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb6-70" data-line-number="70"></a>
-<a class="sourceLine" id="cb6-71" data-line-number="71">    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;container&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-72" data-line-number="72">        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-73" data-line-number="73">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-74" data-line-number="74">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-75" data-line-number="75">                <span class="kw">&lt;h1&gt;</span>Personnel listing<span class="kw">&lt;/h1&gt;</span></a>
-<a class="sourceLine" id="cb6-76" data-line-number="76">            <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-77" data-line-number="77">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-78" data-line-number="78">        <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-79" data-line-number="79">        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-80" data-line-number="80">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-81" data-line-number="81">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-82" data-line-number="82">                <span class="kw">&lt;h2&gt;</span>Add an employee<span class="kw">&lt;/h2&gt;</span></a>
-<a class="sourceLine" id="cb6-83" data-line-number="83">            <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-84" data-line-number="84">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-85" data-line-number="85">        <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-86" data-line-number="86">        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-87" data-line-number="87">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-88" data-line-number="88">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-89" data-line-number="89">                <span class="kw">&lt;form</span><span class="ot"> id=</span><span class="st">&quot;newEmployeeForm&quot;</span><span class="ot"> class=</span><span class="st">&quot;needs-validation&quot;</span><span class="ot"> novalidate</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-90" data-line-number="90">                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;form-group&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-91" data-line-number="91">                        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name<span class="kw">&lt;/label&gt;</span></a>
-<a class="sourceLine" id="cb6-92" data-line-number="92">                        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> class=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id=</span><span class="st">&quot;name&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Enter your name&quot;</span><span class="ot"> required</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-93" data-line-number="93">                        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;invalid-feedback&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-94" data-line-number="94">                                Please provide a valid city.</a>
-<a class="sourceLine" id="cb6-95" data-line-number="95">                              <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-96" data-line-number="96">                    <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-97" data-line-number="97">                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;form-group&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-98" data-line-number="98">                            <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;hobbies&quot;</span><span class="kw">&gt;</span>Hobbies<span class="kw">&lt;/label&gt;</span></a>
-<a class="sourceLine" id="cb6-99" data-line-number="99">                            <span class="kw">&lt;textarea</span><span class="ot"> rows=</span><span class="st">&quot;3&quot;</span><span class="ot"> class=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id=</span><span class="st">&quot;hobbies&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Describe your hobbies&quot;</span><span class="ot"> required</span><span class="kw">&gt;&lt;/textarea&gt;</span></a>
-<a class="sourceLine" id="cb6-100" data-line-number="100">                    <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-101" data-line-number="101">                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;form-group&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-102" data-line-number="102">                            <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;role&quot;</span><span class="kw">&gt;</span>Role<span class="kw">&lt;/label&gt;</span></a>
-<a class="sourceLine" id="cb6-103" data-line-number="103">                            <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> class=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id=</span><span class="st">&quot;role&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Role in the organization&quot;</span><span class="ot"> required</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-104" data-line-number="104">                    <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-105" data-line-number="105">                    <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> class=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="kw">&gt;</span>Save<span class="kw">&lt;/button&gt;</span></a>
-<a class="sourceLine" id="cb6-106" data-line-number="106">                <span class="kw">&lt;/form&gt;</span></a>
-<a class="sourceLine" id="cb6-107" data-line-number="107">            <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-108" data-line-number="108">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-109" data-line-number="109">        <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-110" data-line-number="110">        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-111" data-line-number="111">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-112" data-line-number="112">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-113" data-line-number="113">                <span class="kw">&lt;h2&gt;</span>Employees<span class="kw">&lt;/h2&gt;</span></a>
-<a class="sourceLine" id="cb6-114" data-line-number="114">            <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-115" data-line-number="115">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-116" data-line-number="116">        <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-117" data-line-number="117">        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-118" data-line-number="118">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-119" data-line-number="119">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-120" data-line-number="120">                <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;list-group&quot;</span><span class="ot"> id=</span><span class="st">&quot;personnelListing&quot;</span><span class="kw">&gt;</span>                    </a>
-<a class="sourceLine" id="cb6-121" data-line-number="121">                <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-122" data-line-number="122">            <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-123" data-line-number="123">            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-124" data-line-number="124">        <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-125" data-line-number="125"></a>
-<a class="sourceLine" id="cb6-126" data-line-number="126"></a>
-<a class="sourceLine" id="cb6-127" data-line-number="127"><span class="kw">&lt;/body&gt;</span></a>
-<a class="sourceLine" id="cb6-128" data-line-number="128"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>..:: Sample application ::..<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css&quot;</span>
+<span class="ot">        integrity=</span><span class="st">&quot;sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO&quot;</span><span class="ot"> crossorigin=</span><span class="st">&quot;anonymous&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js&quot;</span>
+<span class="ot">        integrity=</span><span class="st">&quot;sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy&quot;</span>
+<span class="ot">        crossorigin=</span><span class="st">&quot;anonymous&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://code.jquery.com/jquery-3.4.1.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+
+    <span class="kw">&lt;script&gt;</span>
+        <span class="at">$</span>( document ).<span class="at">ready</span>(<span class="kw">function</span>() <span class="op">{</span>
+            employees <span class="op">=</span> [
+                <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;John Doe&quot;</span><span class="op">,</span> <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="st">&quot;I like cycling, mountain biking and skiing!!!&quot;</span><span class="op">,</span> <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="st">&quot;Director of operations&quot;</span><span class="op">},</span>
+                <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Melanie Oesch&quot;</span><span class="op">,</span> <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="st">&quot;As the best jodeling singer, the love of my life is singing all day long. I come from Switzerland and have achieved many prizes. Maybe I also visit your hometown and get to know you.&quot;</span><span class="op">,</span> <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="st">&quot;Chairman of kids programme&quot;</span><span class="op">},</span>
+                <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Vladimir Zookeeper&quot;</span><span class="op">,</span> <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="st">&quot;Animals are the nicest and very polite creatures in our world. I have observed many species already and I have not found an animal that would harm me without a reason (in comparison to a human being). My dream is to play with animals every day.&quot;</span><span class="op">,</span> <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="st">&quot;Animal feeder&quot;</span><span class="op">}</span>
+            ]<span class="op">;</span>
+
+            <span class="kw">function</span> <span class="at">addEmployee</span>(employee) <span class="op">{</span>                
+                <span class="at">$</span>(<span class="st">&quot;#personnelListing&quot;</span>).<span class="at">append</span>(<span class="vs">`</span>
+<span class="vs">                    &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action flex-column align-items-start&quot;&gt;</span>
+<span class="vs">                        &lt;div class=&quot;d-flex w-100 justify-content-between&quot;&gt;</span>
+<span class="vs">                            &lt;h5 class=&quot;mb-1&quot;&gt;</span><span class="sc">${</span><span class="va">employee</span>.<span class="at">name</span><span class="sc">}</span><span class="vs">&lt;/h5&gt;</span>
+<span class="vs">                        &lt;/div&gt;</span>
+<span class="vs">                        &lt;p class=&quot;mb-1&quot;&gt;</span><span class="sc">${</span><span class="va">employee</span>.<span class="at">hobbies</span><span class="sc">}</span><span class="vs">&lt;/p&gt;</span>
+<span class="vs">                        &lt;small&gt;</span><span class="sc">${</span><span class="va">employee</span>.<span class="at">role</span><span class="sc">}</span><span class="vs">&lt;/small&gt;</span>
+<span class="vs">                    &lt;/a&gt;</span>
+<span class="vs">                `</span>)<span class="op">;</span>                
+            <span class="op">}</span>
+
+            <span class="va">$</span>.<span class="at">each</span>(employees<span class="op">,</span> <span class="kw">function</span>( index<span class="op">,</span> employee ) <span class="op">{</span>
+                <span class="at">addEmployee</span>(employee)<span class="op">;</span>
+            <span class="op">}</span>)<span class="op">;</span>
+
+            <span class="kw">function</span> <span class="at">processForm</span>() <span class="op">{</span>                
+                employee <span class="op">=</span> <span class="op">{</span>
+                    <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="at">$</span>(<span class="st">&quot;#name&quot;</span>).<span class="at">val</span>()<span class="op">,</span>
+                    <span class="st">&quot;hobbies&quot;</span><span class="op">:</span> <span class="at">$</span>(<span class="st">&quot;#hobbies&quot;</span>).<span class="at">val</span>()<span class="op">,</span>
+                    <span class="st">&quot;role&quot;</span><span class="op">:</span> <span class="at">$</span>(<span class="st">&quot;#role&quot;</span>).<span class="at">val</span>()    
+                <span class="op">};</span>
+                <span class="at">addEmployee</span>(employee)<span class="op">;</span>
+                <span class="at">$</span>(<span class="st">&quot;#name&quot;</span>).<span class="at">val</span>(<span class="st">&quot;&quot;</span>)<span class="op">,</span>
+                <span class="at">$</span>(<span class="st">&quot;#hobbies&quot;</span>).<span class="at">val</span>(<span class="st">&quot;&quot;</span>)<span class="op">,</span>
+                <span class="at">$</span>(<span class="st">&quot;#role&quot;</span>).<span class="at">val</span>(<span class="st">&quot;&quot;</span>)    
+            <span class="op">}</span>
+
+            <span class="co">// Fetch all the forms we want to apply custom Bootstrap validation styles to</span>
+            <span class="kw">var</span> forms <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementsByClassName</span>(<span class="st">&#39;needs-validation&#39;</span>)<span class="op">;</span>
+                    <span class="co">// Loop over them and prevent submission</span>
+                    <span class="kw">var</span> validation <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">filter</span>.<span class="at">call</span>(forms<span class="op">,</span> <span class="kw">function</span>(form) <span class="op">{</span>
+                      <span class="va">form</span>.<span class="at">addEventListener</span>(<span class="st">&#39;submit&#39;</span><span class="op">,</span> <span class="kw">function</span>(event) <span class="op">{</span>
+                        <span class="va">event</span>.<span class="at">preventDefault</span>()<span class="op">;</span>
+                        <span class="va">event</span>.<span class="at">stopPropagation</span>()<span class="op">;</span>
+                        <span class="cf">if</span> (<span class="va">form</span>.<span class="at">checkValidity</span>() <span class="op">===</span> <span class="kw">true</span>) <span class="op">{</span>
+                            <span class="at">processForm</span>()<span class="op">;</span>
+                            <span class="va">form</span>.<span class="va">classList</span>.<span class="at">remove</span>(<span class="st">&#39;was-validated&#39;</span>)<span class="op">;</span>
+                        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span>
+                            <span class="va">form</span>.<span class="va">classList</span>.<span class="at">add</span>(<span class="st">&#39;was-validated&#39;</span>)<span class="op">;</span>
+                        <span class="op">}</span>
+                        
+                        
+                      <span class="op">},</span> <span class="kw">false</span>)<span class="op">;</span>
+                    <span class="op">}</span>)<span class="op">;</span>
+        <span class="op">}</span>)<span class="op">;</span>
+    <span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+
+<span class="kw">&lt;body&gt;</span>
+
+    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;container&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;h1&gt;</span>Personnel listing<span class="kw">&lt;/h1&gt;</span>
+            <span class="kw">&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;h2&gt;</span>Add an employee<span class="kw">&lt;/h2&gt;</span>
+            <span class="kw">&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;form</span><span class="ot"> id=</span><span class="st">&quot;newEmployeeForm&quot;</span><span class="ot"> class=</span><span class="st">&quot;needs-validation&quot;</span><span class="ot"> novalidate</span><span class="kw">&gt;</span>
+                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;form-group&quot;</span><span class="kw">&gt;</span>
+                        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name<span class="kw">&lt;/label&gt;</span>
+                        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> class=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id=</span><span class="st">&quot;name&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Enter your name&quot;</span><span class="ot"> required</span><span class="kw">&gt;</span>
+                        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;invalid-feedback&quot;</span><span class="kw">&gt;</span>
+                                Please provide a valid city.
+                              <span class="kw">&lt;/div&gt;</span>
+                    <span class="kw">&lt;/div&gt;</span>
+                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;form-group&quot;</span><span class="kw">&gt;</span>
+                            <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;hobbies&quot;</span><span class="kw">&gt;</span>Hobbies<span class="kw">&lt;/label&gt;</span>
+                            <span class="kw">&lt;textarea</span><span class="ot"> rows=</span><span class="st">&quot;3&quot;</span><span class="ot"> class=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id=</span><span class="st">&quot;hobbies&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Describe your hobbies&quot;</span><span class="ot"> required</span><span class="kw">&gt;&lt;/textarea&gt;</span>
+                    <span class="kw">&lt;/div&gt;</span>
+                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;form-group&quot;</span><span class="kw">&gt;</span>
+                            <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;role&quot;</span><span class="kw">&gt;</span>Role<span class="kw">&lt;/label&gt;</span>
+                            <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> class=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id=</span><span class="st">&quot;role&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Role in the organization&quot;</span><span class="ot"> required</span><span class="kw">&gt;</span>
+                    <span class="kw">&lt;/div&gt;</span>
+                    <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> class=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="kw">&gt;</span>Save<span class="kw">&lt;/button&gt;</span>
+                <span class="kw">&lt;/form&gt;</span>
+            <span class="kw">&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;h2&gt;</span>Employees<span class="kw">&lt;/h2&gt;</span>
+            <span class="kw">&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;row&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-10&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;list-group&quot;</span><span class="ot"> id=</span><span class="st">&quot;personnelListing&quot;</span><span class="kw">&gt;</span>                    
+                <span class="kw">&lt;/div&gt;</span>
+            <span class="kw">&lt;/div&gt;</span>
+            <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;col-1&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
 <p>To run the application above, install Flask library in your Python 3 environment and run the server as <code>python server.py</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1"> <span class="ex">*</span> Serving Flask app <span class="st">&quot;server&quot;</span> (lazy loading)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"> <span class="ex">*</span> Environment: production</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">   <span class="ex">WARNING</span>: This is a development server. Do not use it in a production deployment.</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">   <span class="ex">Use</span> a production WSGI server instead.</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"> <span class="ex">*</span> Debug mode: off</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"> <span class="ex">*</span> Running on http://0.0.0.0:8787/ (Press CTRL+C to quit)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">*</span> Serving Flask app <span class="st">&quot;server&quot;</span> (lazy loading)
+ <span class="ex">*</span> Environment: production
+   <span class="ex">WARNING</span>: This is a development server. Do not use it in a production deployment.
+   <span class="ex">Use</span> a production WSGI server instead.
+ <span class="ex">*</span> Debug mode: off
+ <span class="ex">*</span> Running on http://0.0.0.0:8787/ (Press CTRL+C to quit)</code></pre></div>
 <p>Your web application is now accessible at <a href="http://localhost:8787" class="uri">http://localhost:8787</a>. It is a simple JS-based we page, where you can add new employees into a local JS list.</p>
-<p><img src="data/Docker/webapp.png" /></p>
+<div class="figure">
+<img src="data/Docker/webapp.png" />
+
+</div>
 <div id="dockerfiles" class="section level4">
 <h4><span class="header-section-number">3.3.2.1</span> Dockerfiles</h4>
 <p>To define a container and be able to create an image, we must write a special file, called <em>Dockerfile</em>. Dockerfile defines what goes on in the environment inside your container. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of your system, so you need to map ports to the outside world, and be specific about what files you want to “copy in” to that environment. After doing that, you can expect that the build of your application defined in this Dockerfile behaves exactly the same wherever it runs.</p>
@@ -751,21 +461,21 @@ ENTRYPOINT python3 server.py</code></pre>
 <div id="adding-everything-together" class="section level4">
 <h4><span class="header-section-number">3.3.2.2</span> Adding everything together</h4>
 <p>Now we have the files <em>server.py</em>, <em>index.html</em> and <em>Dockerfile</em> in the same folder. If we move to the same folder, we can build a Docker image named <em>docker-app</em> using the following command <code>docker build -t docker-app .</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="ex">Sending</span> build context to Docker daemon  9.728kB</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="ex">Step</span> 1/6 : FROM ubuntu:18.04</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"> <span class="ex">---</span><span class="op">&gt;</span> 4c108a37151f</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="ex">....</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="ex">Successfully</span> built 4b727c80cf90</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="ex">Successfully</span> tagged docker-app:latest</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Sending</span> build context to Docker daemon  9.728kB
+<span class="ex">Step</span> 1/6 : FROM ubuntu:18.04
+ <span class="ex">---</span><span class="op">&gt;</span> 4c108a37151f
+
+<span class="ex">....</span>
+
+<span class="ex">Successfully</span> built 4b727c80cf90
+<span class="ex">Successfully</span> tagged docker-app:latest</code></pre></div>
 <p>Now the image is available in our Docker system (verify that using <em>docker image</em> command as we did above). To create a running container based on our image, run <code>docker run -p 8787:8787 docker-app</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1"> <span class="ex">*</span> Serving Flask app <span class="st">&quot;server&quot;</span> (lazy loading)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"> <span class="ex">*</span> Environment: production</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">   <span class="ex">WARNING</span>: This is a development server. Do not use it in a production deployment.</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">   <span class="ex">Use</span> a production WSGI server instead.</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"> <span class="ex">*</span> Debug mode: off</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"> <span class="ex">*</span> Running on http://0.0.0.0:8787/ (Press CTRL+C to quit)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">*</span> Serving Flask app <span class="st">&quot;server&quot;</span> (lazy loading)
+ <span class="ex">*</span> Environment: production
+   <span class="ex">WARNING</span>: This is a development server. Do not use it in a production deployment.
+   <span class="ex">Use</span> a production WSGI server instead.
+ <span class="ex">*</span> Debug mode: off
+ <span class="ex">*</span> Running on http://0.0.0.0:8787/ (Press CTRL+C to quit)</code></pre></div>
 <p>With this command we also map host’s port 8787 to Docker container’s port 8787. For additional options of <em>docker run</em> command, see <a href="https://docs.docker.com/engine/reference/run/">the official reference</a>. Our web application is now accessible at the same address as before, but is now running in a Docker container, congratulations!</p>
 <p>Sometimes we would still like to directly access shell of a running Docker container and check something (another option would be to install an ssh server into container and map a port to the host). First we need to get the id of our container using command <code>docker ps</code> and then execute <code>docker exec -it CONTAINER_ID /bin/bash</code>. Now we are connected directly to the “machine” that hosts our web application. If our running application generates logs, we can easily access them using <code>docker logs CONTAINER_ID</code>.</p>
 </div>
@@ -789,13 +499,13 @@ ENTRYPOINT python3 server.py</code></pre>
 <h4><span class="header-section-number">3.3.4.1</span> Web application service</h4>
 <p>Web application service is similar to the example above. The differences are installation of an additional <em>mysql-connector-python</em> library into the container (<em>Dockerfile</em>), implementation of REST calls to the backend (<em>index.html</em>) and server endpoints implementation (<em>server.py</em>).</p>
 <p>In the implementation we should notice the connection settings from the application to the database. As we said, both services will run separately in a Docker container, so we should provide a connection between them. When we run the services, we should name the containers and create a network among running services. Connection settings look like as follows:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" data-line-number="1">config <span class="op">=</span> {</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="st">&#39;user&#39;</span>: <span class="st">&#39;root&#39;</span>,</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="st">&#39;password&#39;</span>: <span class="st">&#39;BeReSeMi.DataScience&#39;</span>,</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="st">&#39;host&#39;</span>: <span class="st">&#39;database&#39;</span>,</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">  <span class="st">&#39;database&#39;</span>: <span class="st">&#39;data_science&#39;</span>,</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="st">&#39;raise_on_warnings&#39;</span>: <span class="va">False</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">config <span class="op">=</span> {
+  <span class="st">&#39;user&#39;</span>: <span class="st">&#39;root&#39;</span>,
+  <span class="st">&#39;password&#39;</span>: <span class="st">&#39;BeReSeMi.DataScience&#39;</span>,
+  <span class="st">&#39;host&#39;</span>: <span class="st">&#39;database&#39;</span>,
+  <span class="st">&#39;database&#39;</span>: <span class="st">&#39;data_science&#39;</span>,
+  <span class="st">&#39;raise_on_warnings&#39;</span>: <span class="va">False</span>
+}</code></pre></div>
 <p>We should notice the <em>host</em> setting and by default, port 3306 is used to connect to a MySQL database. In the MySQL container, that port will also needed to be exposed within the Dockerfile. Docker services can be connected using separate <em>virtual networks</em> and by default, <em>bridge networks</em> are created to interconnect running containers. For more sophisticated examples, see <a href="https://docs.docker.com/network/">the official network setting guidelines</a>.</p>
 </div>
 <div id="database-service" class="section level4">
@@ -861,22 +571,22 @@ volumes:
 <h4><span class="header-section-number">3.3.4.4</span> Image registries</h4>
 <p>We have already mentioned that there exist already prepared images, which can be retried from the public repositories. Repositories can be public or private. Two main public registries are <a href="https://docs.docker.com/docker-hub">Docker Hub</a> and Docker Cloud. Docker Hub is the default registry where Docker looks for images. Docker clients connect to Docker repositories to download (<em>pull</em>) images for use or upload (<em>push</em>) images that they have built.</p>
 <p>We have published the image of the first example in the repository <em>szitnik/docker-ds-app</em> (<a href="https://hub.docker.com/r/szitnik/docker-ds-app">link</a>). You can pull the image (<em>docker pull</em> command) or run it directly with the command:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="ex">docker</span> run -p 8787:8787 szitnik/docker-ds-app</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker</span> run -p 8787:8787 szitnik/docker-ds-app</code></pre></div>
 <p>The functionality should be the same as with the image you created during this tutorial.</p>
 <p>To publish images to Docker Hub, you will need first to create account and then you will be able to publish your own images. Let’s say that you still have built image from the first example, named <em>docker-app</em>. You can push it to the Docker Hub using the following commands:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Provide credentials and login</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="ex">docker</span> login</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># Tag your local image</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="ex">docker</span> tag docker-app USERNAME/PUBLIC_IMAGE_NAME:TAG</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co"># Publish your image</span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="ex">docker</span> push USERNAME/PUBLIC_IMAGE_NAME:TAG</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Provide credentials and login</span>
+<span class="ex">docker</span> login
+
+<span class="co"># Tag your local image</span>
+<span class="ex">docker</span> tag docker-app USERNAME/PUBLIC_IMAGE_NAME:TAG
+
+<span class="co"># Publish your image</span>
+<span class="ex">docker</span> push USERNAME/PUBLIC_IMAGE_NAME:TAG</code></pre></div>
 <p>If you do not define the tag, it will be <em>latest</em> by default. You can access your image via Web interface at <em><a href="https://hub.docker.com/r/USERNAME/PUBLIC_IMAGE_NAME*" class="uri">https://hub.docker.com/r/USERNAME/PUBLIC_IMAGE_NAME*</a>, where you can also add description, instructions, publish the </em>Dockerfile* or connect its content to your Git repository. Now anybody can pull &amp; run your image using the same procedure as we did above.</p>
 </div>
 </div>
 </div>
-<div id="further-reading-and-references" class="section level2">
+<div id="further-reading-and-references-1" class="section level2">
 <h2><span class="header-section-number">3.4</span> Further reading and references</h2>
 <ul>
 <li>Check <a href="https://www.docker.com">the Docker official web page</a> and <a href="https://docs.docker.com/get-started/">the Docker tutorial</a>.</li>
@@ -886,7 +596,7 @@ volumes:
 <li><a href="http://shop.oreilly.com/product/0636920036791.do">Docker Cookbook</a> presents more advanced Docker techniques like mounting data across multiple servers, distributed containers, detailed monitoring, networking across multiple hosts, accessing Docker in the cloud and merging with other platforms like Kubernetes.</li>
 </ul>
 </div>
-<div id="learning-outcomes" class="section level2">
+<div id="learning-outcomes-1" class="section level2">
 <h2><span class="header-section-number">3.5</span> Learning outcomes</h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
@@ -896,7 +606,7 @@ volumes:
 <li>Use and extend existing public Docker images.</li>
 </ul>
 </div>
-<div id="practice-problems" class="section level2">
+<div id="practice-problems-1" class="section level2">
 <h2><span class="header-section-number">3.6</span> Practice problems</h2>
 <ul>
 <li>Create a simple Python program or web application, write a Dockerfile to compile an image an publish it on Docker Hub. If you are more proficient with some other language, use a framework of your choice.</li>
@@ -935,10 +645,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -946,6 +657,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },
@@ -957,6 +672,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
