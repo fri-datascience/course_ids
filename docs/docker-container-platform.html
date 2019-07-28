@@ -211,21 +211,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="docker-container-platform" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Docker container platform</h1>
-<p>To enable the portability and easier scalability of our applications, there is a need to provide some tools that can package together tho whole environment, needed by our applications, such as library dependencies or language runtime.</p>
-<p>Docker is a set of tools that use operating-system-level virtualization to develop and deliver software in packages called containers. The software that hosts the containers is called Docker Engine and was first started in 2013 by Docker, Inc. Docker producst are available both in community and enterprise editions.</p>
-<p>Docker containers are isolated from each other and as mentioned above, they bundle their own software, libraries and configuration files. If our application consists of multiple services, a container can communicate with each other through internal or external network configuation. All containers are run by a single (host) operating-system kernel and are thus more lightweight than virtual machines. They are instantiated from Docker images that specify their precise contents. Images are often created by combining and modifying existing standard images downloaded from public repositories (i.e. image registries). An instance of an image (i.e. container) thus contains configured networking, storage, logging, etc. Furthermore, Docker defines an abstraction for these machine-specific settings and the exact same Docker container can run without any changes on many different machines, with many different configurations.</p>
-<p>There exist also similar technologies like Docker, which may not be that well known or are used for different scenarios, such as <a href="https://sylabs.io/">Singularity</a>, <a href="https://nanobox.io/">Nanobox</a> or <a href="https://linuxcontainers.org/">LXC</a>. Another approach of bundling applications into separate environment is using virtual machines, where each virtual machine contains its own whole operating system. Most known such virtualization technologies are <a href="https://www.vmware.com/">VMWare products</a> or <a href="https://www.virtualbox.org/">Virtualbox</a>. A technology in between the both Worlds is <a href="https://www.vagrantup.com/">Vagrant</a>, which enables a user to script the whole environment but when running the app, Vagrant creates a separate virtual machine (e.g. using Virtualbox) and runs it.</p>
+<p>For extreme portability and scalability of our applications there exist tools that can package together the entire required application environment, such as library dependencies or language runtime.</p>
+<p>Docker is a set of tools that use operating system-level virtualization to develop and deliver software in packages called containers. The software that hosts the containers is called Docker Engine and was first started in 2013 by Docker, Inc. Docker products are available both in Community and Enterprise editions.</p>
+<p>Docker containers are isolated from each other and they bundle their own software, libraries and configuration files. If our application consists of multiple services, containers can communicate with each other through internal or external network configuations. All containers are run by a single host operating system kernel and are thus more lightweight than virtual machines. They are instantiated from Docker images that specify their precise contents. We often create images by combining and modifying existing standard images downloaded from public repositories, also known as image registries. An instance of an image (a container) thus contains configured networking, storage, logging, etc. Furthermore, Docker defines an abstraction for these machine-specific settings and the exact same Docker container can run without any changes on many different machines with many different configurations.</p>
+<p>There exist other tools similar to Docker, which may not be that well known or are used for different scenarios, such as <a href="https://sylabs.io/">Singularity</a>, <a href="https://nanobox.io/">Nanobox</a> or <a href="https://linuxcontainers.org/">LXC</a>. Another approach of bundling applications into separate environment is using virtual machines, where each virtual machine contains its own operating system. Most common virtualization technologies are <a href="https://www.vmware.com/">VMWare products</a> or <a href="https://www.virtualbox.org/">Virtualbox</a>. A technology in-between both worlds is <a href="https://www.vagrantup.com/">Vagrant</a>, which enables a user to script the entire environment but when running the app, Vagrant creates a separate virtual machine (e.g. using Virtualbox) and runs it.</p>
 <div id="why-docker" class="section level2">
 <h2><span class="header-section-number">3.1</span> Why Docker?</h2>
 <p>Author of a Linux.com article <span class="citation">(Noyes <a href="#ref-docker">2008</a>)</span> described Docker as follows:</p>
 <blockquote>
 <p>Docker is a tool that can package an application and its dependencies in a virtual container that can run on any Linux server. This helps enable flexibility and portability on where the application can run, whether on premises, public cloud, private cloud, bare metal, etc.</p>
 </blockquote>
-<p>Virtual machines and containers have similar resource isolation and allocation benefits, but containers virtualize the operating system comparing to virtual machines which virtualize hardware. Therefore, containers are more portable and efficient.</p>
-<p>Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up much less space than virtual machines (container images are typically tens of MBs in size) can handle more applications and require fewer operating systems.</p>
-<p>Virtual machines as an abstraction of physical hardware turn one server into many servers. The hypervisor allows multiple virtual machines to run on a single machine. Each virtual machine contains a full copy of an operating system, the application, necessary binaries and libraries. All these takes GBs of data and therefore virtual machines require more disk space, physical resources and are slower to boot. The Figure below shows a comparison between multiple running Docker containers (left side) and multiple virtual machines (right side).</p>
+<p>Virtual machines and containers have similar resource isolation and allocation benefits, but containers virtualize the operating system whereas virtual machines virtualize hardware. Therefore, containers are more portable and efficient.</p>
+<p>Multiple containers can run on the same machine and share the operating system kernel with other containers, each running as isolated processes in user space. Containers images are typically tens of MBs in size, which is much than typical virtual machines. Containers can handle more applications and require fewer operating systems.</p>
+<p>Virtual machines as an abstraction of physical hardware turn one server into many servers. The hypervisor allows multiple virtual machines to run on a single machine. Each virtual machine contains a full copy of an operating system, the application, necessary binaries and libraries. This requires GBs of data - virtual machines require more disk space, physical resources and are slower to boot. The Figure below shows a comparison between multiple running Docker containers (left hand side) and multiple virtual machines (right hand side):</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
-<img src="data/Docker/dockerVsVM.png" alt="Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com)."  />
+<img src="data/Docker/dockerVsVM.png" alt="Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com)." width="636" />
 <p class="caption">
 Figure 3.1: Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com).
 </p>
@@ -233,9 +233,9 @@ Figure 3.1: Dockerized applications vs. VM-virtualized applications (image cour
 </div>
 <div id="setting-up-the-environment-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Setting up the environment</h2>
-<p>To install Docker on your machine, you need to download the appropriate Docker Engine Community distribution from the official <a href="https://hub.docker.com/search/?type=edition&amp;offering=community">download website</a>. You may notice that there exist also <em>Docker Machine</em> installation package, which is a provisioning and installation software for Docker - you do not need it at this point as it helps you managing multiple remote Docker hosts.</p>
-<p>After the installation you can explore different setting in the installation. A part of the installation is also a tool called <em>Kitematic</em>, which provides a handy GUI to overview downloaded images, containers, volumes and their settings. You can use it as a side-tool to command-line commands we introduce below.</p>
-<p>To check your Docker installation, run <code>docker info</code> to view some status details.</p>
+<p>To install Docker on your machine, you need to download the appropriate Docker Engine Community distribution from the official <a href="https://hub.docker.com/search/?type=edition&amp;offering=community">download website</a>. There also exists a <em>Docker Machine</em> installation package, which is a provisioning and installation software for Docker - we do not need it at this point as it helps us manage multiple remote Docker hosts.</p>
+<p>After first installation we can explore different installation settings and tools. <em>Kitematic</em> is a tool which provides a handy GUI to overview downloaded images, containers, volumes and their settings. We can use it as a side-tool for command-line commands we introduce below.</p>
+<p>We can check our Docker installation by running <code>docker info</code> to view some status details.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Containers</span>: 0
  <span class="ex">Running</span>: 0
  <span class="ex">Paused</span>: 0
@@ -244,8 +244,8 @@ Figure 3.1: Dockerized applications vs. VM-virtualized applications (image cour
 <span class="ex">Server</span> Version: 18.09.2
 <span class="ex">Storage</span> Driver: overlay2
 <span class="ex">...</span></code></pre></div>
-<p>If you experience some permission problems, you need to allow your user to work with docker. Follow the <a href="https://docs.docker.com/install/linux/linux-postinstall/">post-installation guidelines</a>.</p>
-<p>Now we are ready to test the Docker installation by running command <code>docker run hello-world</code>. If you see a similat message to the below, you are ready to start.</p>
+<p>If we experience permission problems, we need to allow our user to work with Docker. Follow the <a href="https://docs.docker.com/install/linux/linux-postinstall/">post-installation guidelines</a>.</p>
+<p>Now we are ready to test the Docker installation by running the command <code>docker run hello-world</code>. If we see a similar message to the one below, we are ready to begin.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Unable</span> to find image <span class="st">&#39;hello-world:latest&#39;</span> locally
 <span class="ex">latest</span>: Pulling from library/hello-world
 <span class="ex">1b930d010525</span>: Pull complete
@@ -260,7 +260,7 @@ Figure 3.1: Dockerized applications vs. VM-virtualized applications (image cour
 <h2><span class="header-section-number">3.3</span> Short introduction to Docker</h2>
 <div id="basics-1" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Basics</h3>
-<p>A Docker container is a runtime instance of an image - that is, an image with state, or a user process. You can see a list of available images usinf the command <code>docker image ls</code>:</p>
+<p>A Docker container is a runtime instance of an image - that is, an image with state, or a user process. You can see a list of available images using the command <code>docker image ls</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">REPOSITORY</span>          TAG                 IMAGE ID            CREATED             SIZE
 <span class="ex">docker-app</span>          latest              4b727c80cf90        4 minutes ago       475MB
 <span class="ex">application</span>         latest              cd497ca7013b        19 hours ago        538MB
@@ -268,7 +268,7 @@ Figure 3.1: Dockerized applications vs. VM-virtualized applications (image cour
 <span class="ex">ubuntu</span>              18.04               4c108a37151f        4 weeks ago         64.2MB
 <span class="ex">mysql</span>               5                   a1aa4f76fab9        5 weeks ago         373MB
 <span class="ex">hello-world</span>         latest              fce289e99eb9        6 months ago        1.84kB</code></pre></div>
-<p>A container is launched by running an image. An image is an executable package that includes everything needed to run an application - the code, a runtime, libraries, environment variables, and configuration files. We have seen the <em>docker run</em> command that takes image name as a parameter. Image name looks like of <em>[username/]repository[:tag]</em>, where <em>tag</em> is <em>latest</em> by default. To see all the container on your machine, issue the command <code>docker container ls --all</code> (the parameter <em>–all</em> will list also stopped containers):</p>
+<p>A container is launched by running an image. An image is an executable package that includes everything needed to run an application - the code, a runtime, libraries, environment variables, and configuration files. We have seen the <em>docker run</em> command that takes image name as a parameter. Image name looks like <em>[username/]repository[:tag]</em>, where <em>tag</em> is <em>latest</em> by default. To see all the containers on your machine, issue the command <code>docker container ls --all</code> (the parameter <em>–all</em> will also list stopped containers):</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">CONTAINER</span> ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                    NAMES
 <span class="ex">f6a55e492493</span>        docker-app          <span class="st">&quot;/bin/sh -c &#39;python3…&quot;</span>   14 seconds ago      Up 13 seconds               0.0.0.0:8787-<span class="op">&gt;</span>8787/tcp   kind_blackwell
 <span class="ex">42b33bc532ab</span>        hello-world         <span class="st">&quot;/hello&quot;</span>                 22 minutes ago      Exited (0) <span class="ex">22</span> minutes ago                            unruffled_morse</code></pre></div>
@@ -420,7 +420,7 @@ app <span class="op">=</span> Flask(<span class="va">__name__</span>)
 
 <span class="kw">&lt;/body&gt;</span>
 <span class="kw">&lt;/html&gt;</span></code></pre></div>
-<p>To run the application above, install Flask library in your Python 3 environment and run the server as <code>python server.py</code>:</p>
+<p>To run the application above, install the Flask library in your Python 3 environment and run the server as <code>python server.py</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">*</span> Serving Flask app <span class="st">&quot;server&quot;</span> (lazy loading)
  <span class="ex">*</span> Environment: production
    <span class="ex">WARNING</span>: This is a development server. Do not use it in a production deployment.
@@ -434,8 +434,8 @@ app <span class="op">=</span> Flask(<span class="va">__name__</span>)
 </div>
 <div id="dockerfiles" class="section level4">
 <h4><span class="header-section-number">3.3.2.1</span> Dockerfiles</h4>
-<p>To define a container and be able to create an image, we must write a special file, called <em>Dockerfile</em>. Dockerfile defines what goes on in the environment inside your container. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of your system, so you need to map ports to the outside world, and be specific about what files you want to “copy in” to that environment. After doing that, you can expect that the build of your application defined in this Dockerfile behaves exactly the same wherever it runs.</p>
-<p>Let’s create a file, named <em>Dockerfile</em> with the following content:</p>
+<p>To define a container and be able to create an image, we must write a special file, called <em>Dockerfile</em>. Dockerfile defines what goes on in the environment inside your container. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of our system, so we need to map ports to the outside world, and be specific about what files we want to “copy in” to that environment. After doing that, we can expect that the build of our application defined in this Dockerfile behaves identically wherever it runs.</p>
+<p>Let’s create a fil named <em>Dockerfile</em> with the following content:</p>
 <pre class="docker"><code># Use an official Ubuntu runtime as a parent image
 FROM ubuntu:18.04
 
@@ -476,19 +476,20 @@ ENTRYPOINT python3 server.py</code></pre>
    <span class="ex">Use</span> a production WSGI server instead.
  <span class="ex">*</span> Debug mode: off
  <span class="ex">*</span> Running on http://0.0.0.0:8787/ (Press CTRL+C to quit)</code></pre></div>
-<p>With this command we also map host’s port 8787 to Docker container’s port 8787. For additional options of <em>docker run</em> command, see <a href="https://docs.docker.com/engine/reference/run/">the official reference</a>. Our web application is now accessible at the same address as before, but is now running in a Docker container, congratulations!</p>
-<p>Sometimes we would still like to directly access shell of a running Docker container and check something (another option would be to install an ssh server into container and map a port to the host). First we need to get the id of our container using command <code>docker ps</code> and then execute <code>docker exec -it CONTAINER_ID /bin/bash</code>. Now we are connected directly to the “machine” that hosts our web application. If our running application generates logs, we can easily access them using <code>docker logs CONTAINER_ID</code>.</p>
+<p>With this command we also map the host’s port 8787 to the Docker container’s port 8787. For additional options of <em>docker run</em> command, see <a href="https://docs.docker.com/engine/reference/run/">the official reference</a>. Our web application is now accessible at the same address as before, but is now running in a Docker container!</p>
+<p>Sometimes we would still like to directly access the shell of a running Docker container and check something (another option would be to install an ssh server into the container and map a port to the host). First, we get the ID of our container using the command <code>docker ps</code>, then we execute <code>docker exec -it CONTAINER_ID /bin/bash</code>. Now we are connected directly to the “machine” that hosts our web application. If our running application generates logs, we can easily access them using <code>docker logs CONTAINER_ID</code>.</p>
 </div>
 </div>
 <div id="volumes" class="section level3">
 <h3><span class="header-section-number">3.3.3</span> Volumes</h3>
-<p>By default all files created inside a container are stored on a writable container layer. The main points to notice here are:</p>
+<p>By default all files created inside a container are stored on a writable container layer. Note that:</p>
 <ul>
-<li>The data doesn’t persist when that container no longer exists, and it can be difficult to get the data out of the container if another process needs it.</li>
-<li>A container’s writable layer is tightly coupled to the host machine where the container is running. You can’t easily move the data somewhere else.</li>
+<li>The data doesn’t persist when that container no longer exists and it can be difficult to get the data out of the container if another process needs it.</li>
+<li>A container’s writable layer is tightly coupled to the host machine on which the container is running. You can’t easily move the data somewhere else.</li>
 <li>Writing into a container’s writable layer requires a storage driver to manage the filesystem. The storage driver provides a union filesystem, using the Linux kernel. This extra abstraction reduces performance as compared to using data volumes, which write directly to the host filesystem.</li>
 </ul>
-<p>As a result, best practices are to always create containers read-only. Docker thus provides two solutions to store files, which are persisted also after the container removal - volumes and bind mounts. <a href="https://docs.docker.com/storage/volumes/">Volumes</a> are the best way to persist data in Docker.</p>
+<p>As a result, best practices are to always create containers read-only. Docker thus provides two solutions to store files, which are persisted also after the container removal - volumes and bind mounts.</p>
+<p><a href="https://docs.docker.com/storage/volumes/">Volumes</a> are the best way to persist data in Docker.</p>
 <p>Commands to manage Docker volumes start with <code>docker volume</code> (add <em>–help</em> parameter to list all options). After the volume is created, we can map it to a specific mount point when running the container (see <a href="https://docs.docker.com/engine/reference/run/">docker run command reference</a> for more).</p>
 </div>
 <div id="docker-application-example-with-multiple-services" class="section level3">
@@ -497,8 +498,8 @@ ENTRYPOINT python3 server.py</code></pre>
 <p>Let’s upgrade our web application and add database support to it (solution of this part is available in folder <em>app_and_database</em> in <a href="https://github.com/szitnik/docker-itds">the GitHub repository</a>).</p>
 <div id="web-application-service" class="section level4">
 <h4><span class="header-section-number">3.3.4.1</span> Web application service</h4>
-<p>Web application service is similar to the example above. The differences are installation of an additional <em>mysql-connector-python</em> library into the container (<em>Dockerfile</em>), implementation of REST calls to the backend (<em>index.html</em>) and server endpoints implementation (<em>server.py</em>).</p>
-<p>In the implementation we should notice the connection settings from the application to the database. As we said, both services will run separately in a Docker container, so we should provide a connection between them. When we run the services, we should name the containers and create a network among running services. Connection settings look like as follows:</p>
+<p>The web application service is similar to the example above. The differences are the installation of an additional <em>mysql-connector-python</em> library into the container (<em>Dockerfile</em>), implementation of REST calls to the backend (<em>index.html</em>) and server endpoints implementation (<em>server.py</em>).</p>
+<p>In the implementation we should notice the connection settings from the application to the database. As we said, both services will run separately in a Docker container, so we should provide a connection. When we run the services, we should name the containers and create a network among running services. Connection settings look like:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">config <span class="op">=</span> {
   <span class="st">&#39;user&#39;</span>: <span class="st">&#39;root&#39;</span>,
   <span class="st">&#39;password&#39;</span>: <span class="st">&#39;BeReSeMi.DataScience&#39;</span>,
@@ -506,12 +507,12 @@ ENTRYPOINT python3 server.py</code></pre>
   <span class="st">&#39;database&#39;</span>: <span class="st">&#39;data_science&#39;</span>,
   <span class="st">&#39;raise_on_warnings&#39;</span>: <span class="va">False</span>
 }</code></pre></div>
-<p>We should notice the <em>host</em> setting and by default, port 3306 is used to connect to a MySQL database. In the MySQL container, that port will also needed to be exposed within the Dockerfile. Docker services can be connected using separate <em>virtual networks</em> and by default, <em>bridge networks</em> are created to interconnect running containers. For more sophisticated examples, see <a href="https://docs.docker.com/network/">the official network setting guidelines</a>.</p>
+<p>Note that the <em>host</em> setting and port 3306 are used to connect to a MySQL database. In the MySQL container that port will also needed to be exposed within the Dockerfile. Docker services can be connected using separate <em>virtual networks</em> and by default, <em>bridge networks</em> are created to interconnect running containers. For more sophisticated examples, see <a href="https://docs.docker.com/network/">the official network setting guidelines</a>.</p>
 </div>
 <div id="database-service" class="section level4">
 <h4><span class="header-section-number">3.3.4.2</span> Database service</h4>
-<p>For the database service, we will use already created image, which is available from <a href="https://hub.docker.com/_/mysql">the public MySQL image repository</a> (for more info on repositories, see section <a href="docker-container-platform.html#registries">3.3.4.4</a>). Along with the image, there are also instructions of how to use it with the parameters, where to put initial script files, … to ease the deployment process without creating complicated Dockerfiles.</p>
-<p>In our case, the database dockerfile looks as follows:</p>
+<p>For the database service, we will use already created image, which is available from <a href="https://hub.docker.com/_/mysql">the public MySQL image repository</a> (for more info on repositories, see section <a href="docker-container-platform.html#registries">3.3.4.4</a>). Along with the image, there are also instructions of how to use it with the parameters, where to put initial script files, …????(TU NEKAJ MANJKA?) to ease the deployment process without creating complicated Dockerfiles.</p>
+<p>In our case the database dockerfile looks as follows:</p>
 <pre><code># Parent image
 FROM mysql:5
 
@@ -520,14 +521,14 @@ ADD ./ /docker-entrypoint-initdb.d
 
 # Updating permissions for the copied files
 RUN /bin/bash -c &#39;chmod a+rx /docker-entrypoint-initdb.d/*&#39;</code></pre>
-<p>We observe that only thing we did is just copying files into a special folder in the container (<em>/docker-entrypoint-initdb.d</em>) which was previously set as init folder, where all the <em>.sql</em> scripts are run at startup.</p>
-<p>To test our Dockerfile, we can also run it separately using the command (from the <em>database</em> folder) <code>docker build -t docker-db . &amp;&amp; docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=BeReSeMi docker-db</code>. We set the database password of the root user using an environment variable, which can be used to connect to the database. Now we can connect to the database from the host machine - e.g. use <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a> and connection settings to <em>localhost:3306</em>. If everything is okay, a database named <em>data_science</em> should be created along with the <em>employees</em> table and few entries in it.</p>
+<p>Observe that we only copied files into a special folder in the container (<em>/docker-entrypoint-initdb.d</em>) which was previously set as init folder, where all the <em>.sql</em> scripts are run at startup.</p>
+<p>To test our Dockerfile, we can also run it separately using the command (from the <em>database</em> folder) <code>docker build -t docker-db . &amp;&amp; docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=BeReSeMi docker-db</code>. We set the database password of the root user using an environment variable, which can be used to connect to the database. Now we can connect to the database from the host machine - e.g. use <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a> and connection settings to <em>localhost:3306</em>. A database named <em>data_science</em> should now be created along with the <em>employees</em> table and few entries.</p>
 </div>
 <div id="docker-compose" class="section level4">
 <h4><span class="header-section-number">3.3.4.3</span> Docker compose</h4>
-<p>Congratulations! Now you know how to create docker containers separately. We just need to glue them together and run them more easily. Docker compose is the easiest tool to help us out.</p>
-<p>Docker Compose is a tool for defining and running multi-container Docker applications. It uses YAML files to configure the application’s services and performs the creation and start-up process of all the containers with a single command. The docker-compose CLI utility allows you to run commands on multiple containers at once, for example, building images, scaling containers, running containers that were stopped, and more. The docker-compose.yml file is used to define an application’s services and includes various configuration options.</p>
-<p>Before continuing, stop all running containers and move to the <code>app_and_database</code> folder. First, let’s check the <em>docker-compose.yml</em> file:</p>
+<p>Now we know how to create docker containers separately. What remains is to connect them and run them more easily. We will utilize the Docker compose tool.</p>
+<p>Docker Compose is a tool for defining and running multi-container Docker applications. It uses YAML files to configure the application’s services and performs the creation and start-up process of all the containers with a single command. The docker-compose CLI utility allows us to run commands on multiple containers at once, for example, building images, scaling containers, running containers that were stopped, and more. The docker-compose.yml file is used to define an application’s services and includes various configuration options.</p>
+<p>Before proceeding, we’ll stop all running containers and move to the <code>app_and_database</code> folder. First, let’s check the <em>docker-compose.yml</em> file:</p>
 <pre><code>version: &#39;3.7&#39;
 
 services:
@@ -563,7 +564,9 @@ networks:
 
 volumes:
   ds_databases:  </code></pre>
-<p>In the <em>docker-compose</em> configuration we define two containers, one named <em>database</em> and other <em>application</em>. Parameter <em>build</em> defines the folder with an appropriate Dockerfile or directly an already built image name. Parameter <em>restart</em> instructs the container to automaticallt restart its service if is suddenly stopped (due to crash, error, …). Parameter <em>depends_on</em> created dependencies between containers, so the application container will be started after the database container is running (tip: be aware that this is based on the time when service is beginning to start, so if database script initialization takes long time, database service may be running later than the application service). With the volumes parameter we map a specific folder in the container to a named volume <em>db_databases</em> - this folder will contain the database data. We also define a network named <em>dsnet</em> with the bridge configuration and therefore both containers will be able to communicate with each other.</p>
+<p>In the <em>docker-compose</em> configuration we define two containers, one named <em>database</em> and other <em>application</em>. Parameter <em>build</em> defines the folder with an appropriate Dockerfile or directly an already built image name. Parameter <em>restart</em> instructs the container to automaticallt restart its service if it suddenly stops due to crash or error.</p>
+<p>Parameter <em>depends_on</em> created dependencies between containers, so the application container will be started after the database container is running. Be aware that this is based on the time when service is initializing, so if database script initialization takes a long time, the database service may run later than the application service.</p>
+<p>With the volumes parameter we map a specific folder in the container to a named volume <em>db_databases</em> - this folder will contain the database data. We also define a network named <em>dsnet</em> with the bridge configuration and therefore both containers will be able to communicate with each other.</p>
 <p>To run the <em>docker-compose</em> configuration, run <code>docker-compose up</code> (for detached mode add parameter <em>-d</em> at the end). Both containers should be created and running - to verify, navigate to <a href="http://localhost:8787" class="uri">http://localhost:8787</a> and add some employees. Data should be persistent and stored into the database.</p>
 <p>To shut down the containers, press CTRL+C (or run <code>docker-compose down</code> if you started containers in a detached mode).</p>
 </div>
@@ -672,19 +675,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
