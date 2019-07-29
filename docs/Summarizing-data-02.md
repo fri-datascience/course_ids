@@ -1,8 +1,10 @@
 # Summarizing data - visualization
 
-Data summarization - the art of conveying the same information in less time/space or conveying more information in the same amount of time/space.  Data summarization is typically numerical or visual (or combined) and is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic visualization techniques for univariate and bivariate data. Advanced data summarization techniques will be covered in a later chapter.
+Data summarization is the science and art of conveying information more effectivelly and efficiently. Data summarization is typically numerical, visual or a combination of the two. It is a key skill in data analysis - we use it to provide insights both to others and to ourselves. Data summarization is also an integral part of exploratory data analysis.
 
-We will be using R and ggplot2, but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!
+In this chapter we will focus on the basic visualization techniques for univariate and bivariate data. Advanced data summarization techniques will be covered in a later chapter.
+
+We will be using R and ggplot2 but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!
 
 In most examples in this section we'll be using the NBA players dataset that contains some basic information about NBA players in the period up to year 2009.
 
@@ -51,7 +53,7 @@ summary(dat)
 ## 
 ```
 
-As we mentioned at the beginning - summarization is the art of conveying the same information in less time/space or conveying more information in the same amount of time/space. Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guidelines for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!
+Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guideline for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!
 
 We'll illustrate this point with an example that features some common mistakes or inefficiencies people do when visualizing data. Our goal will be to summarize how the average height of NBA Centers, Forwards, and Guards that started that year has changed over time.
 
@@ -63,23 +65,23 @@ tmp <- dat[dat$position == "G",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" width="480" />
 
 ```r
 tmp <- dat[dat$position == "F",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" width="672" />
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" width="480" />
 
 ```r
 tmp <- dat[dat$position == "C",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-3.png" width="672" />
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-3.png" width="480" />
 
-The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize plotting 3 things separately that could be plotted on the same plot wastes space and the reader's time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.
+The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize that plotting 3 things separately that could be plotted on the same plot wastes space. It also wastes the reader's time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.
 
 Let's remedy this mistake:
 
@@ -152,7 +154,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + geom_
 
 <img src="Summarizing-data-02_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
-There is one more thing that we can typically do in such cases - label the data directly and omit the legend. This saves both space and user's time, especially if we have several lines/colors in our plot:
+There is one more thing that we can typically do in such cases - label the data directly and omit the legend. Always keep related objects visually close! This saves both space and user's time, especially if we have several lines/colors in our plot:
 
 
 ```r
@@ -174,12 +176,11 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + geom_
 
 We've equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). There is always something we can tweek and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.
 
-
 ## Histograms and density plots
 
 The most elementary way of summarizing data is to plot their density. Of course, the true density is unknown and we can only estimate it by using a model or a non-parametric (smoothing) kernel density estimation. A histogram (binning the data and plotting the frequencies) can be viewed as a more coarse or discrete way of estimating the density of the data.
 
-In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most build-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.
+In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most built-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.
 
 We illustrate these two plots by summarizing NBA player weight:
 
@@ -190,10 +191,9 @@ ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5,
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-9-1.png" alt="Histogram and density estimation of NBA player weight" width="672" />
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-9-1.png" alt="Histogram and density estimation of NBA player weight" width="384" />
 <p class="caption">(\#fig:unnamed-chunk-9)Histogram and density estimation of NBA player weight</p>
 </div>
-
 
 ## Bar plot
 
@@ -218,23 +218,6 @@ ggplot(data.frame(x), aes(x = tmp, y = Freq)) + geom_bar(stat = "identity") + co
 
 When the number of unique values is large, it will not be not possible to visualize all of them (try visualizing the frequencies for all universities in the above example). In such cases we may opt to group some values or show only certain values.
 
-
-```r
-set.seed(0)
-tmp <- data.frame(University = dat$college)
-x <- table(tmp)
-x <- x[x >= 5]
-x <- sample(x, 10, rep = F)
-x <- sort(x)
-ggplot(data.frame(x), aes(x = tmp, y = Freq)) + geom_bar(stat = "identity") + coord_flip() +
-  xlab("University") + ylab("number of players")
-```
-
-<div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-11-1.png" alt="The number of NBA players that came from these Universities." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-11)The number of NBA players that came from these Universities.</p>
-</div>
-
 ## Pie chart
 
 Pie charts are quite possibly the easiest chart type to work with, because there is only one rule to using pie charts - **don't use pie charts**. Let's visualize the data from the bar chart example:
@@ -246,8 +229,8 @@ ggplot(data.frame(y), aes(x = "", y = Freq, fill = tmp)) + geom_bar(width = 1, s
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-12)The relative frequencies of NBA players that came from these Universities.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-11-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-11)The relative frequencies of NBA players that came from these Universities.</p>
 </div>
 
 The pie chart is a great example (and warning!) of how aesthetics can get in the way of function and effectiveness. It is well documented that people are poor at comparing areas and especially angles. Could you recognize quickly from the above pie chart that University of Washington gave approximately twice as many players as University of Texas? How quickly would you be able to judge these relationships from the bar chart?
@@ -260,14 +243,14 @@ y <- data.frame(Name = c("A", "B", "C"), Value = rep(1, 3))
 ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
 ```
 
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" width="384" />
 
 ```r
 ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=pi/3) + theme_bw() + theme(legend.position = "none")
 ```
 
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-13-2.png" width="672" />
-For more information on how people percieve visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland.
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-12-2.png" width="384" />
+For more information on how people perceive visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland and McGill (see Further reading). Note that while a pie chart (the same applies to donut charts) is arguably a poor chart from a statistical graphics perspective, it is visually appealing and more engaging. That is, the pie chart still has merit as a techinque for visual presentation of information as witnessed by its widespread use.
 
 ## Scatterplot
 
@@ -279,8 +262,8 @@ ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3) + theme_bw() +
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-14-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-14)Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-13-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-13)Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.</p>
 </div>
 
 ## 2D density plot
@@ -297,8 +280,8 @@ ggplot(dat, aes(x = height, y = weight, colour = position)) + geom_density_2d() 
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-15-1.png" alt="Relationship between player weight and height by player position." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-15)Relationship between player weight and height by player position.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-14-1.png" alt="Relationship between player weight and height by player position." width="403.2" />
+<p class="caption">(\#fig:unnamed-chunk-14)Relationship between player weight and height by player position.</p>
 </div>
 
 ## Boxplot
@@ -311,8 +294,8 @@ ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_b
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-16-1.png" alt="Summary of player weight by position." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-16)Summary of player weight by position.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-15-1.png" alt="Summary of player weight by position." width="403.2" />
+<p class="caption">(\#fig:unnamed-chunk-15)Summary of player weight by position.</p>
 </div>
 
 ## Violin plot
@@ -325,8 +308,8 @@ ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") + g
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-17-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-17)Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-16-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="403.2" />
+<p class="caption">(\#fig:unnamed-chunk-16)Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.</p>
 </div>
 
 ## Correlogram
@@ -348,8 +331,8 @@ ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-18-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-18)Summary of the numerical variables in the iris dataset.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-17-1.png" alt="Summary of the numerical variables in the iris dataset." width="336" />
+<p class="caption">(\#fig:unnamed-chunk-17)Summary of the numerical variables in the iris dataset.</p>
 </div>
 
 ## A comprehensive summary
@@ -381,24 +364,20 @@ pairs.panels(iris[,-5])
 ```
 
 <div class="figure">
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-19-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-19)Summary of the numerical variables in the iris dataset.</p>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-18-1.png" alt="Summary of the numerical variables in the iris dataset." width="499.2" />
+<p class="caption">(\#fig:unnamed-chunk-18)Summary of the numerical variables in the iris dataset.</p>
 </div>
 
 
 ## Further reading and references
 
-ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition
+* This book is a must-read for anyone that aspires to be a professional data analyst: Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.
 
-Visualize This: The FlowingData Guide to Design, Visualization, and Statistics
+* To learn more about ggplot2, the go-to plotting library for R users, see: ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition.
 
- Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods
-William S. Cleveland and Robert McGill
-Journal of the American Statistical Association
-Vol. 79, No. 387 (Sep., 1984), pp. 531-554 
+* The go-to plotting library for Python users is [Matplotlib](https://matplotlib.org/gallery/index.html).
 
-Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.
-
+* A great starting point for understanding human perception of graphical representations: Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods William S. Cleveland and Robert McGill Journal of the American Statistical Association Vol. 79, No. 387 (Sep., 1984), pp. 531-554.
 
 ## Learning outcomes
 
@@ -412,4 +391,7 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-TODO: Basically, take a rich enough dataset and demonstrate most if not all summarization techniques shown here. For each summary, add an interpretation of the insights it provides.
+1. Read Chapter 1 of Tufte's book (see Further reading).
+2. Gather 3-5 statistical plots from popular media and 3-5 statistical plots from scientific research papers. Comment on if and how each plot could be improved. 
+3. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. Use Python or R to demonstrate each of the visualization techniques used in this chapter to provide insights into the data.
+

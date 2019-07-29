@@ -1,26 +1,32 @@
 # Summarizing data - the basics
 
-Data summarization - the art of conveying the same information in less time/space or conveying more information in the same amount of time/space.  Data summarization is typically numerical or visual (or combined) and is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic techniques for univariate and bivariate data. Visualization and more advanced data summarization techniques will be covered in later chapters.
+Data summarization is the science and art of conveying information more effectivelly and efficiently. Data summarization is typically numerical, visual or a combination of the two. It is a key skill in data analysis - we use it to provide insights both to others and to ourselves. Data summarization is also an integral part of exploratory data analysis.
+
+In this chapter we focus on the basic techniques for univariate and bivariate data. Visualization and more advanced data summarization techniques will be covered in later chapters.
 
 ## Descriptive statistics for univariate distributions
 
-We humans are on average not particularly good at thinking in multiple dimensions, so, in practice, there will be a tendency to look at individual variables/dimensions. That is, in practice, we will most of the time be summarizing univariate distributions.
+We humans are not particularly good at thinking in multiple dimensions, so, in practice, there will be a tendency to look at individual variables and dimensions. That is, in practice, we will most of the time be summarizing univariate distributions.
 
-Univariate distributions come from various sources. It might be a theoretical distribution, an empirical cumulative distribution function of a data sample, a probabilistic opinion from a person, a posterior distribution of a parameter from a Bayesian model, and many others. Descriptive statistics apply to all of these cases in the same way, regardless of the source of the distribution.
+Univariate distributions come from various sources. It might be a theoretical distribution, an empirical distribution of a data sample, a probabilistic opinion from a person, a posterior distribution of a parameter from a Bayesian model, and many others. Descriptive statistics apply to all of these cases in the same way, regardless of the source of the distribution.
 
-Before we proceed with introducing the most commonly used descriptive statistics, let us discuss their main purpose. The main purpose of any sort of data summarization technique is to (a) reduce the time/effort of delivering information to the reader in a way that (b) we lose as little relevant information as possible. That is, to compress the information. For example, in the extreme case we could just show the reader the entire distribution/density ever time, but that would consume a lot of space and a lot of the readers time and effort. All summarization methods do (a) but we must be careful to choose an appropriate method so that we also get (b). Summarizing out relevant information can lead to misleading summaries, as we will illustrate with several examples later in the chapter.
+Before we proceed with introducing the most commonly used descriptive statistics, we discuss their main purpose. The main purpose of any sort of data summarization technique is to (a) reduce the time and effort of delivering information to the reader in a way that (b) we lose as little relevant information as possible. That is, to compress the information. 
+
+All summarization methods do (a) but we must be careful to choose an appropriate method so that we also get (b). Summarizing out relevant information can lead to misleading summaries, as we will illustrate with several examples.
 
 ### Central tendency
 
-The most common ways of measuring central tendency (or location) of a distribution are:
+The most common first summary of a distribution is its typical value, also known as the location or central tendency of a distribution.
 
-* the mean (the mass centre of the distribution),
-* the median or 2nd quartile (the value such that half of the mass is on one and half on the other side),
-* the mode (the most probable value or the value with the highest density).
+The most common summaries of the location of a distribution are:
 
-Given a sample of data, the mean is the easiest to estimate/compute (we compute the average), but the median and mode are more robust to outliers.
+* the **mean** (the mass centre of the distribution),
+* the **median** or 2nd quartile (the value such that half of the mass is on one and half on the other side),
+* the **mode** (the most probable value or the value with the highest density).
 
-In the case of unimodal approximately symmetrical distributions, such as the univariate normal distribution, all these measures of central tendency will be similar and all will be an excellent summary of location. If the distribution is asymmetrical or skewed, they will differ. In such cases it is our job to determine what information we want to convey and which summary of central tendency is the most appropriate, if any. 
+Given a sample of data, the estimate of the mean is the easiest to compute (we compute the average), but the median and mode are more robust to outliers - extreme and possibly unrepresentative values.
+
+In the case of unimodal approximately symmetrical distributions, such as the univariate normal distribution, all these measures of central tendency will be similar and all will be an excellent summary of location. However, if the distribution is asymmetrical or skewed, they will differ. In such cases it is our job to determine what information we want to convey and which summary of central tendency is the most appropriate, if any. 
 
 For example, observe the Gamma(1.5, 0.1) distribution and its mean (red), median (blue) and mode (green):
 
@@ -34,11 +40,11 @@ y <- dgamma(x, a, b)
 library(ggplot2)
 ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
   geom_vline(xintercept = (a-1) / b, colour = "green", lty = "dashed", lwd = 1.5) + 
-    geom_vline(xintercept = a / b, colour = "red", lty = "dashed", lwd = 1.5) + 
-   geom_vline(xintercept = qgamma(0.5, a, b), colour = "blue", lty = "dashed", lwd = 1.5)
+  geom_vline(xintercept = a / b, colour = "red", lty = "dashed", lwd = 1.5) + 
+  geom_vline(xintercept = qgamma(0.5, a, b), colour = "blue", lty = "dashed", lwd = 1.5)
 ```
 
-<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-1-1.png" width="384" />
 
 In the case of multi-modal distributions, no single measure of central tendency will adequately summarize the distribution - they will all be misleading. For example, look at this bimodal distribution:
 
@@ -53,17 +59,19 @@ ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
    geom_vline(xintercept = 2, colour = "green", lty = "dashed", lwd = 1.5)
 ```
 
-<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-2-1.png" width="384" />
 
 ### Dispersion
 
-The most common ways of measuring dispersion (or spread or scale) of a distribution are:
+Once location is established, we are typically interested in whether the values of the distribution cluster close to the location or are spread far from the location. 
 
-* variance (mean of quadratic distances from mean) or, more commonly, standard deviation (root of variance, so we are on the same scale as the measurement)
-* median absolute deviation (median of absolute distances from mean),
-* quantile-based intervals, in particular the inter-quartile range (IQR) (interval between the 1st and 3rd quartiles, 50% of the mass/density lies in this interval).
+The most common ways of measuring such dispersion (or spread or scale) of a distribution are:
 
-As the measures of central tendency summarize the centre of the distribution, measures of dispersion summarize how far spread out is the distribution around its centre. Standard deviation is the most commonly used and median absolute deviation is more robust to outliers.
+* **variance** (mean of quadratic distances from mean) or, more commonly, **standard deviation** (root of variance, so we are on the same scale as the measurement)
+* ***median absolute deviation*** (median of absolute distances from mean),
+* **quantile-based intervals**, in particular the inter-quartile range (IQR) (interval between the 1st and 3rd quartiles, 50% of the mass/density lies in this interval).
+
+Standard deviation is the most commonly used and median absolute deviation is more robust to outliers.
 
 Again, in the case of distributions that are approximately normal, the standard deviation and the mean will be the practically optimal choice for summarization, because they correspond directly to the two parameters of the normal distribution. That is, they completely summarize the distribution without loss of information. We also know that approximately 95% (99%) of the normal density lies within 2 (3) standard deviations from the mean. Standard deviation is useful even if the distribution is not approximately normal as it does provide some information, combined with the sample size (producing the standard error), on how certain we can be in our estimate of the mean.
 
@@ -80,7 +88,7 @@ cat(sprintf("%.2f +/- %.2f\n", mean(x), 2*sd(x)))
 ## 14.66 +/- 24.49
 ```
 
-That is, the 95% interval estimated this way also includes negative values, which is absurd and misleading - we know the Gamma distributed variables are positive. Computing the IQR or the 95% range interval provides a more sensible summary of this skewed distribution and, together with the mean also serve as an indicator that the distribution is skewed (the mean is not the centre of the intervals):
+That is, the 95% interval estimated this way also includes negative values, which is misleading and absurd - Gamma distributed variables are positive. Computing the IQR or the 95% range interval provides a more sensible summary of this skewed distribution and, together with the mean also serve as an indicator that the distribution is skewed (the mean is not the centre of the intervals):
 
 
 ```r
@@ -100,7 +108,7 @@ And, again, for multi-modal distributions, we can adequately summarize them only
 
 As mentioned above, ranges can be used to indicate a distributions asymmetry (skewness) or fat-tailedness (kurtosis). Although less commonly used, there exist numerical summaries of skewness and kurtosis that can be used instead.
 
-The following example shows the kurtosis and skewness for a gamma, normal, logistic and bimodal distribution. Observe how how the bimodal distribution has the lowest kurtosis, because the method fails:
+The following example shows the kurtosis and skewness for a gamma, normal, logistic and bimodal distribution. Observe how how the standard way of calculating kurtosis fails for the bimodal and assigns it the lowest kurtosis:
 
 
 
@@ -122,14 +130,14 @@ for (i in 1:4) {
 ggplot(tmp, aes(x = x)) + geom_histogram(bins = 50) + facet_wrap(.~name)
 ```
 
-<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-5-1.png" width="480" />
 
 
 ### Nominal variables
 
-Nominal variables are typically represented with the relative frequencies or probabilities, numerically or visually, but that is not really a summary, because it is also all the information about a nominal variable. That the methods discussed so far in this section apply to numerical variables (rational, interval and to some extent, ordinal) but not nominal variables, because the notions of location and distance do not exist in the nominal case. The only exception to this is the mode, which is the level of the nominal variable with the highest relative frequency or probability. 
+Nominal variables are typically represented with the relative frequencies or probabilities, numerically or visually. Note that the methods discussed so far in this chapter apply to numerical variables (rational, interval and to some extent, ordinal) but not nominal variables, because the notions of location and distance (dispersion) do not exist in the nominal case. The only exception to this is the mode, which is the level of the nominal variable with the highest relative frequency or probability. 
 
-One summary that is often useful for summarizing the dispersion or the uncertainty associated with a nominal variable is entropy. Observe the following example:
+One summary that is often useful for summarizing the dispersion or the uncertainty associated with a nominal variable is **entropy**. Observe the following example:
 
 
 ```r
@@ -182,13 +190,17 @@ entropy(rep(1/6, 6)) # fair 6-sided die
 ## [1] 2.584963
 ```
 
-Note that entropy can easily be calculated for any discrete random variable. Entropy also has a continuous analogue - differential entropy.
+Note that entropy can easily be calculated for any discrete random variable. Entropy also has a continuous analogue - differential entropy, which we will not discuss here.
 
 ### Testing the shape of a distribution
 
-Often we want to check if the distribution that underlies our data has the shape of some hypothesized distribution (for example, the normal distribution) or if two samples come from the same distribution. Here, we will present two of the most common methods used: the Kolmogorov-Smirnov test and the Chi-squared goodness-of-fit test. Both of these are Null-hypothesis significance tests (NHST), so, before we proceed, be aware of two things. First, do not use NHST blindly, without a good understanding of their properties and how to interpret their results. And second, if you are more comfortable with thinking in terms of probabilities of hypotheses as opposed to significance and p-values, there always exist Bayesian alternatives to NHST.
+Often we want to check if the distribution that underlies our data has the shape of some hypothesized distribution (for example, the normal distribution) or if two samples come from the same distribution.
 
-The **Kolmogorov-Smirnov test** (KS) is a non-parametric test for testing the equality of two cumulative distribution functions (CDF). These can be two empirical CDFs or an empirical CDF and a theoretical CDF. The KS test statistic is the maximum distance between the two corresponding CDFs. That is, we compute the distribution of this statistic under the null-hypothesis that the CDFs are the same and then observe how extreme the maximum distance is on the sample. To illustrate the KS test, we use it to test the normality of the underlying distributions for two samples - one from a logistic distribution, one from a standard normal distribution. And then to test if the two samples come from the same distribution:
+Here, we will present two of the most common methods used: the **Kolmogorov-Smirnov** test and the ***Chi-squared goodness-of-fit** test. Both of these are Null-hypothesis significance tests (NHST), so, before we proceed, be aware of two things. First, do not use NHST blindly, without a good understanding of their properties and how to interpret their results. And second, if you are more comfortable with thinking in terms of probabilities of hypotheses as opposed to significance and p-values, there always exist Bayesian alternatives to NHST.
+
+The **Kolmogorov-Smirnov test** (KS) is a non-parametric test for testing the equality of two cumulative distribution functions (CDF). These can be two empirical CDFs or an empirical CDF and a theoretical CDF. The KS test statistic is the maximum distance between the two corresponding CDFs. That is, we compute the distribution of this statistic under the null-hypothesis that the CDFs are the same and then observe how extreme the maximum distance is on the sample.
+
+To illustrate the KS test, we use it to test the normality of the underlying distributions for two samples - one from a logistic distribution, one from a standard normal distribution. And then to test if the two samples come from the same distribution:
 
 
 ```r
@@ -237,9 +249,9 @@ So, with a 5% risk (95% confidence), we would reject the null hypothesis that ou
 
 This example also illustrates the complexity of interpreting NHST results or rather all the tempting traps laid out for us - we might be tempted to conclude, based on the high p-value, that x2 does indeed come from a standard normal, but that then leads us to a weird predicament that we are willing to claim that x1 is not standard normal, x2 is standard normal, but we are less sure that x1 and x2 have different underlying distributions.
 
-Note that typical implementations of the KS test assume that the underlying distributions are continuous and ties are therefore impossible. However, the KS test can be generalized to discrete and mixed distributions (see R package KSgeneral).
+Note that typical implementations of the KS test assume that the underlying distributions are continuous and ties are therefore impossible. However, the KS test can be generalized to discrete and mixed distributions (see R package [KSgeneral](https://cran.r-project.org/web/packages/KSgeneral/index.html)).
 
-Differences in between distributions can also be assessed visually, through the **QQ-plot**, a plot that compares the quantiles of the two distributions. If the distributions have the same shape, their quantiles, plotted together, should lie on the same line. The samples from the logistic distribution obviously deviate from the theoretical quantiles of a normal distribution:
+Differences in between distributions can also be assessed visually, through the **QQ-plot**, a plot that compares the quantiles of the two distributions. If the distributions have the same shape, their quantiles, plotted together, should lie on a line. The samples from the logistic distribution obviously deviate from the theoretical quantiles of a normal distribution:
 
 
 ```r
@@ -247,9 +259,11 @@ tmp <- data.frame(y = x1)
 ggplot(tmp, aes(sample = y)) + stat_qq() + stat_qq_line()
 ```
 
-<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-9-1.png" width="288" />
 
-The **Chi-squared goodness-of-fit** test (CHISQ) is a non-parametric test for testing the equality of two categorical distributions. The CHISQ test can also be used on discrete or even continuous data, if there is a reasonable way of binning the data into a finite number of bins. The test statistic is based on a similar idea as the KS test statistic, but instead of observing just the maximum difference, we sum the squared difference between the relative frequency of the two distributions for a bin across all bins. We illustrate the CHISQ test by testing the samples for a biased coin against a theoretical fair coin and the samples from an unbiased 6-sided die against a theoretical fair 6-sided die.
+The **Chi-squared goodness-of-fit** (CHISQ) test is a non-parametric test for testing the equality of two categorical distributions. The CHISQ test can also be used on discrete or even continuous data, if there is a reasonable way of binning the data into a finite number of bins. The test statistic is based on a similar idea as the KS test statistic, but instead of observing just the maximum difference, we sum the squared difference between the relative frequency of the two distributions for a bin across all bins.
+
+We illustrate the CHISQ test by testing the samples for a biased coin against a theoretical fair coin and the samples from an unbiased 6-sided die against a theoretical fair 6-sided die.
 
 
 ```r
@@ -294,7 +308,7 @@ chisq.test(x)
 
 So, with a 5% risk (95% confidence), we would reject the null hypothesis that our coin is fair, but only in the case with 40 samples. Because fair or close-to fair coins have high entropy, we typically require a lot of samples to distinguish between their underlying probabilities.
 
-For a more real-world example, let us take the exit-poll data for the 2016 US Presidential election, broken down by gender, taken from (https://edition.cnn.com/election/2016/results/exit-polls):
+For a more real-world example, let us take the exit-poll data for the 2016 US Presidential election, broken down by gender, taken from [here](https://edition.cnn.com/election/2016/results/exit-polls):
 
 
 ```r
@@ -358,9 +372,9 @@ Still, we can at most typical levels of confidence reject the null-hypothesis an
 
 ## Descriptive statistics for bivariate distributions
 
-When dealing with a joint distribution of two variables (that is, paired samples), the first thing we are typically interested in is dependence of the two variables or lack thereof. If two distributions are independent, we can summarize each separately without loss of information. If they are not, then the distributions carry information about eachother. The predictability of one variable from another is another (equivalent) way of looking at dependence of variables.
+When dealing with a joint distribution of two variables (that is, paired samples), the first thing we are typically interested in is dependence between the two variables or lack thereof. **If two distributions are independent, we can summarize each separately without loss of information.** If they are not, then the distributions carry information about eachother. The predictability of one variable from another is another (equivalent) way of looking at dependence of variables.
 
-The most commonly used numerical summary of dependence is the **Pearson correlation coefficient** or Pearson's $\rho$. It summarizes the linear dependence, with $\rho = 1$ and $\rho = - 1$ indicating perfect colinearity (increasing or decreasing) and $\rho = 0$ indicating linear independence. As such, Pearson's $\rho$ is directly related (squared root) to the coefficient of determination $R^2$, a goodness-of-fit measure for linear models and the proportion of variance in one explained by the other variable. An important consideration is that the statement that linear independence implies independence is not true in general (the converse implication is). One notable exception where this implication is true is the multivariate Normal distribution, where the dependence structure is expressed through linear dependence only.
+The most commonly used numerical summary of dependence is the **Pearson correlation coefficient** or Pearson's $\rho$. It summarizes the linear dependence, with $\rho = 1$ and $\rho = - 1$ indicating perfect colinearity (increasing or decreasing) and $\rho = 0$ indicating linear independence. As such, Pearson's $\rho$ is directly related (the squared root) to the coefficient of determination $R^2$, a goodness-of-fit measure for linear models and the proportion of variance in one explained by the other variable. An important consideration is that the statement that linear independence implies independence is not true in general (the converse implication is). One notable exception where this implication is true is the multivariate Normal distribution, where the dependence structure is expressed through linear dependence only.
 
 Two of the most popular alternatives to Pearson's $\rho$ are Spearman's $\rho$ and Kendalls $\tau$. The former measures the degree to which one variable can be expressed as monotonic function of the other. The latter measures the proportion of concordant pairs among all possible pairs (pairs (x1,y1) and (x2, y2), wher if x1 > x2 then y1 > y2). As such, they can capture non-linear dependence and is more appropriate for data with outliers or data where distance might have no meaning, such as ordinal data. Spearman's $\rho$ and Kendall's $\tau$ are more robust but do not have as clear an interpretation as Pearson's $\rho$. Kendall's tau is also computationally more expensive.
 
@@ -415,17 +429,14 @@ dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
 ggplot(dat, aes(x = x, y = y)) + geom_point() + facet_wrap(.~example, ncol = 3, scales = "free")
 ```
 
-<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="Summarizing-data-01_files/figure-html/unnamed-chunk-13-1.png" width="576" />
 
 Like similar questions about other parameters of interest, the question *Is <insert number here> a strong correlation?* is a practical question. Unless the correlation is 0 (no correlation) or 1/-1 (perfectly correlated, can't be more correlated than this), the meaning of the magnitude of correlation depends on the practical setting and its interpretation depends on some reference level. Even a very low correlation, such as 0.001 (if we are reasonably sure that it is around 0.001) can be practically meaningful. For example, if it is correlation between the even and odd numbers generated by a uniform random number generator (RNG), that would be more than enough correlation to stop using this RNG. 
 
 ## Further reading and references
 
-Kanji, G. K. (2006). 100 statistical tests. Sage.
-
-
-Fundamentals of Descriptive Statistics 1st Edition
-by Zealure Holcomb (Author) 
+* For a more comprehensive treatment of the most commonly used summarization techniques see: Holcomb, Z. C. (2016). Fundamentals of descriptive statistics. Routledge.
+* More on the practice of summarization techniques and hypothesis testing: Bruce, P., & Bruce, A. (2017). Practical statistics for data scientists: 50 essential concepts. " O'Reilly Media, Inc.". *(Chapters 1 and 3)*
 
 
 ## Learning outcomes
@@ -434,9 +445,10 @@ Data science students should work towards obtaining the knowledge and the skills
 
 * Reproduce the techniques demonstrated in this chapter using their language/tool of choice.
 * Recognize when a type of summary is appropriate and when it is not.
-* Apply data summarization techiques to obain insights from data.
+* Apply data summarization techiques to obtain insights from data.
 * Once introduced to the bootstrap and other estimation techniques, to be able to combine descriptive statistics with a quantification of uncertainty, such as confidence intervals.
 
 ## Practice problems
 
-TODO: Basically, take a rich enough dataset and demonstrate most if not all summarization techniques shown here. For each summary, add an interpretation of the insights it provides.
+1. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. Demonstrate each of the summarization techniques used in this chapter to provide insights into the data.
+2. Find one or more real-world examples (data sets) where a standard summary of univariate or bivariate data fails. That is, where important information is lost in the summary.

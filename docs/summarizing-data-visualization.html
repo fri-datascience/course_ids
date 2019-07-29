@@ -211,8 +211,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="summarizing-data---visualization" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Summarizing data - visualization</h1>
-<p>Data summarization - the art of conveying the same information in less time/space or conveying more information in the same amount of time/space. Data summarization is typically numerical or visual (or combined) and is a key skill in data analysis as we use it to provide insights both to others and to ourselves. Data summarization is also an important component of exploratory data analysis. In this chapter we will focus on the basic visualization techniques for univariate and bivariate data. Advanced data summarization techniques will be covered in a later chapter.</p>
-<p>We will be using R and ggplot2, but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!</p>
+<p>Data summarization is the science and art of conveying information more effectivelly and efficiently. Data summarization is typically numerical, visual or a combination of the two. It is a key skill in data analysis - we use it to provide insights both to others and to ourselves. Data summarization is also an integral part of exploratory data analysis.</p>
+<p>In this chapter we will focus on the basic visualization techniques for univariate and bivariate data. Advanced data summarization techniques will be covered in a later chapter.</p>
+<p>We will be using R and ggplot2 but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!</p>
 <p>In most examples in this section we’ll be using the NBA players dataset that contains some basic information about NBA players in the period up to year 2009.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/NBAplayers.csv&quot;</span>)
@@ -252,19 +253,19 @@ dat<span class="op">$</span>weight &lt;-<span class="st"> </span>dat<span class=
 ##  3rd Qu.:205.7  
 ##  Max.   :231.1  
 ## </code></pre>
-<p>As we mentioned at the beginning - summarization is the art of conveying the same information in less time/space or conveying more information in the same amount of time/space. Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guidelines for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!</p>
+<p>Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guideline for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!</p>
 <p>We’ll illustrate this point with an example that features some common mistakes or inefficiencies people do when visualizing data. Our goal will be to summarize how the average height of NBA Centers, Forwards, and Guards that started that year has changed over time.</p>
 <p>Let’s plot the averages over time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;G&quot;</span>,]
 <span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean))</code></pre></div>
-<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" width="480" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;F&quot;</span>,]
 <span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean))</code></pre></div>
-<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" width="480" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;C&quot;</span>,]
 <span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean))</code></pre></div>
-<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
-<p>The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize plotting 3 things separately that could be plotted on the same plot wastes space and the reader’s time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.</p>
+<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-2-3.png" width="480" /></p>
+<p>The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize that plotting 3 things separately that could be plotted on the same plot wastes space. It also wastes the reader’s time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.</p>
 <p>Let’s remedy this mistake:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>position <span class="op">==</span><span class="st"> &quot;G&quot;</span>,]
 <span class="kw">plot</span>(<span class="kw">tapply</span>(tmp<span class="op">$</span>height, tmp<span class="op">$</span>firstseason, mean), <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">220</span>))
@@ -304,7 +305,7 @@ tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;average rookie height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The average height of NBA rookies by playing position over time.&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>There is one more thing that we can typically do in such cases - label the data directly and omit the legend. This saves both space and user’s time, especially if we have several lines/colors in our plot:</p>
+<p>There is one more thing that we can typically do in such cases - label the data directly and omit the legend. Always keep related objects visually close! This saves both space and user’s time, especially if we have several lines/colors in our plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="kw">tapply</span>(dat<span class="op">$</span>height, <span class="kw">list</span>(dat<span class="op">$</span>position, dat<span class="op">$</span>firstseason), mean))
 <span class="kw">names</span>(tmp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;position&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;height&quot;</span>)
 <span class="kw">levels</span>(tmp<span class="op">$</span>position) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;centers&quot;</span>, <span class="st">&quot;forwards&quot;</span>, <span class="st">&quot;guards&quot;</span>)
@@ -324,12 +325,12 @@ Figure 6.1: The data show that the average heights of all three groups of player
 <div id="histograms-and-density-plots" class="section level2">
 <h2><span class="header-section-number">6.1</span> Histograms and density plots</h2>
 <p>The most elementary way of summarizing data is to plot their density. Of course, the true density is unknown and we can only estimate it by using a model or a non-parametric (smoothing) kernel density estimation. A histogram (binning the data and plotting the frequencies) can be viewed as a more coarse or discrete way of estimating the density of the data.</p>
-<p>In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most build-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.</p>
+<p>In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most built-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.</p>
 <p>We illustrate these two plots by summarizing NBA player weight:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">alpha=</span><span class="fl">0.5</span>, 
                 <span class="dt">position=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">7</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-9"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-9-1.png" alt="Histogram and density estimation of NBA player weight" width="672" />
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-9-1.png" alt="Histogram and density estimation of NBA player weight" width="384" />
 <p class="caption">
 Figure 6.2: Histogram and density estimation of NBA player weight
 </p>
@@ -353,48 +354,34 @@ Figure 6.3: The number of NBA players that came from these 10 Universities.
 </p>
 </div>
 <p>When the number of unique values is large, it will not be not possible to visualize all of them (try visualizing the frequencies for all universities in the above example). In such cases we may opt to group some values or show only certain values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
-tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">University =</span> dat<span class="op">$</span>college)
-x &lt;-<span class="st"> </span><span class="kw">table</span>(tmp)
-x &lt;-<span class="st"> </span>x[x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>]
-x &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">10</span>, <span class="dt">rep =</span> F)
-x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)
-<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x), <span class="kw">aes</span>(<span class="dt">x =</span> tmp, <span class="dt">y =</span> Freq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;University&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;number of players&quot;</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-11"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-11-1.png" alt="The number of NBA players that came from these Universities." width="672" />
-<p class="caption">
-Figure 6.4: The number of NBA players that came from these Universities.
-</p>
-</div>
 </div>
 <div id="pie-chart" class="section level2">
 <h2><span class="header-section-number">6.3</span> Pie chart</h2>
 <p>Pie charts are quite possibly the easiest chart type to work with, because there is only one rule to using pie charts - <strong>don’t use pie charts</strong>. Let’s visualize the data from the bar chart example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(x)
 <span class="kw">ggplot</span>(<span class="kw">data.frame</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> Freq, <span class="dt">fill =</span> tmp)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;University&quot;</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-12"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-11"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-11-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
 <p class="caption">
-Figure 6.5: The relative frequencies of NBA players that came from these Universities.
+Figure 6.4: The relative frequencies of NBA players that came from these Universities.
 </p>
 </div>
 <p>The pie chart is a great example (and warning!) of how aesthetics can get in the way of function and effectiveness. It is well documented that people are poor at comparing areas and especially angles. Could you recognize quickly from the above pie chart that University of Washington gave approximately twice as many players as University of Texas? How quickly would you be able to judge these relationships from the bar chart?</p>
 <p>Angles can also play tricks on our eyes. Which color pie slice is the largest on the first plot below? Which on the second plot?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">Value =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>))
 <span class="kw">ggplot</span>(<span class="kw">data.frame</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> Value, <span class="dt">fill =</span> Name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
-<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" width="384" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> Value, <span class="dt">fill =</span> Name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span>pi<span class="op">/</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
-<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-13-2.png" width="672" /> For more information on how people percieve visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland.</p>
+<p><img src="Summarizing-data-02_files/figure-html/unnamed-chunk-12-2.png" width="384" /> For more information on how people perceive visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland and McGill (see Further reading). Note that while a pie chart (the same applies to donut charts) is arguably a poor chart from a statistical graphics perspective, it is visually appealing and more engaging. That is, the pie chart still has merit as a techinque for visual presentation of information as witnessed by its widespread use.</p>
 </div>
 <div id="scatterplot" class="section level2">
 <h2><span class="header-section-number">6.4</span> Scatterplot</h2>
 <p>The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we’ve already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> height, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>position)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-14"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-14-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-13-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points." width="672" />
 <p class="caption">
-Figure 6.6: Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.
+Figure 6.5: Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.
 </p>
 </div>
 </div>
@@ -406,10 +393,10 @@ Figure 6.6: Relationship between player weight and height by player position. No
 <span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">y =</span> <span class="dv">90</span>, <span class="dt">x =</span> <span class="dv">212</span>, <span class="dt">label =</span> <span class="st">&quot;centers&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">y =</span> <span class="dv">80</span>, <span class="dt">x =</span> <span class="dv">203</span>, <span class="dt">label =</span> <span class="st">&quot;forwards&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">y =</span> <span class="dv">73</span>, <span class="dt">x =</span> <span class="dv">192</span>, <span class="dt">label =</span> <span class="st">&quot;guards&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-15"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-15-1.png" alt="Relationship between player weight and height by player position." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-14"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-14-1.png" alt="Relationship between player weight and height by player position." width="403.2" />
 <p class="caption">
-Figure 6.7: Relationship between player weight and height by player position.
+Figure 6.6: Relationship between player weight and height by player position.
 </p>
 </div>
 </div>
@@ -417,10 +404,10 @@ Figure 6.7: Relationship between player weight and height by player position.
 <h2><span class="header-section-number">6.6</span> Boxplot</h2>
 <p>A boxplot is named by the boxes that typicaly summarize the quartiles of the data. Sometimes, whiskers are added to indicate outliers. It useful for quickly visually summarizing, side-by-side, several numerical variables or to summarize the relationship between a categorical/ordinal variable and a numerical variable. Here, we use it so summarize weight by playing position.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> position, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-16"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-16-1.png" alt="Summary of player weight by position." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-15"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-15-1.png" alt="Summary of player weight by position." width="403.2" />
 <p class="caption">
-Figure 6.8: Summary of player weight by position.
+Figure 6.7: Summary of player weight by position.
 </p>
 </div>
 </div>
@@ -428,10 +415,10 @@ Figure 6.8: Summary of player weight by position.
 <h2><span class="header-section-number">6.7</span> Violin plot</h2>
 <p>The boxplot shows only the quartiles so it can sometimes be misleading or hide information. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> position, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.05</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-17"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-17-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-16"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-16-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="403.2" />
 <p class="caption">
-Figure 6.9: Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.
+Figure 6.8: Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.
 </p>
 </div>
 </div>
@@ -442,10 +429,10 @@ Figure 6.9: Summary of player weight by position. Note that we combined the viol
 <pre><code>## Warning: package &#39;ggcorrplot&#39; was built under R version 3.5.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corr &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(iris[,<span class="op">-</span><span class="dv">5</span>]),<span class="dv">2</span>)
 <span class="kw">ggcorrplot</span>(corr, <span class="dt">hc.order =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">outline.col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">lab =</span> T)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-18"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-18-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-17"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-17-1.png" alt="Summary of the numerical variables in the iris dataset." width="336" />
 <p class="caption">
-Figure 6.10: Summary of the numerical variables in the iris dataset.
+Figure 6.9: Summary of the numerical variables in the iris dataset.
 </p>
 </div>
 </div>
@@ -460,19 +447,21 @@ Figure 6.10: Summary of the numerical variables in the iris dataset.
 ## 
 ##     %+%, alpha</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs.panels</span>(iris[,<span class="op">-</span><span class="dv">5</span>])</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-19"></span>
-<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-19-1.png" alt="Summary of the numerical variables in the iris dataset." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-18"></span>
+<img src="Summarizing-data-02_files/figure-html/unnamed-chunk-18-1.png" alt="Summary of the numerical variables in the iris dataset." width="499.2" />
 <p class="caption">
-Figure 6.11: Summary of the numerical variables in the iris dataset.
+Figure 6.10: Summary of the numerical variables in the iris dataset.
 </p>
 </div>
 </div>
 <div id="further-reading-and-references-3" class="section level2">
 <h2><span class="header-section-number">6.10</span> Further reading and references</h2>
-<p>ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition</p>
-<p>Visualize This: The FlowingData Guide to Design, Visualization, and Statistics</p>
-<p>Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods William S. Cleveland and Robert McGill Journal of the American Statistical Association Vol. 79, No. 387 (Sep., 1984), pp. 531-554</p>
-<p>Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.</p>
+<ul>
+<li><p>This book is a must-read for anyone that aspires to be a professional data analyst: Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.</p></li>
+<li><p>To learn more about ggplot2, the go-to plotting library for R users, see: ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition.</p></li>
+<li><p>The go-to plotting library for Python users is <a href="https://matplotlib.org/gallery/index.html">Matplotlib</a>.</p></li>
+<li><p>A great starting point for understanding human perception of graphical representations: Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods William S. Cleveland and Robert McGill Journal of the American Statistical Association Vol. 79, No. 387 (Sep., 1984), pp. 531-554.</p></li>
+</ul>
 </div>
 <div id="learning-outcomes-3" class="section level2">
 <h2><span class="header-section-number">6.11</span> Learning outcomes</h2>
@@ -487,7 +476,11 @@ Figure 6.11: Summary of the numerical variables in the iris dataset.
 </div>
 <div id="practice-problems-3" class="section level2">
 <h2><span class="header-section-number">6.12</span> Practice problems</h2>
-<p>TODO: Basically, take a rich enough dataset and demonstrate most if not all summarization techniques shown here. For each summary, add an interpretation of the insights it provides.</p>
+<ol style="list-style-type: decimal">
+<li>Read Chapter 1 of Tufte’s book (see Further reading).</li>
+<li>Gather 3-5 statistical plots from popular media and 3-5 statistical plots from scientific research papers. Comment on if and how each plot could be improved.</li>
+<li>Download the <a href="https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2">Football Manager Players</a> dataset or use a similarly rich dataset with numerical, binary and categorical variables. Use Python or R to demonstrate each of the visualization techniques used in this chapter to provide insights into the data.</li>
+</ol>
 
 </div>
 </div>
@@ -542,19 +535,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
