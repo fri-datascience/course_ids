@@ -1,4 +1,4 @@
-# Other important topics
+# Other important topics {-}
 
 We need visiting lecturers to cover these topis:
 
