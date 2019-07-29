@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 2 Source code control | Introduction to data science</title>
+  <title>Chapter 13 Predictive modelling - Feature selection | Introduction to data science</title>
   <meta name="description" content="Course notes">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 2 Source code control | Introduction to data science" />
+  <meta property="og:title" content="Chapter 13 Predictive modelling - Feature selection | Introduction to data science" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Source code control | Introduction to data science" />
+  <meta name="twitter:title" content="Chapter 13 Predictive modelling - Feature selection | Introduction to data science" />
   
   <meta name="twitter:description" content="Course notes" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="python-programming-language.html">
-<link rel="next" href="docker-container-platform.html">
+<link rel="prev" href="predictive-modelling-learning-paradigms.html">
+<link rel="next" href="large-datasets-and-non-relational-databases.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,9 +213,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="source-code-control" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Source code control</h1>
-<p>Now let’s talk details.</p>
+<div id="predictive-modelling---feature-selection" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> Predictive modelling - Feature selection</h1>
+<p>Key: sometimes we need to reduce number of features to even run the model; often we can run the model, but we still want to reduce the number of features to speed it up and improve interpretability of the model.</p>
+<p>Main approaches: - Use a method that scales (linear models), - Dimensionality reduction via removing features or transforming feature space (already partially covered in previous summarization chapters): * before the model is applied (filtering) * together with the model (wrapper-based)</p>
 
 </div>
             </section>
@@ -223,8 +224,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="python-programming-language.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="docker-container-platform.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="predictive-modelling-learning-paradigms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="large-datasets-and-non-relational-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

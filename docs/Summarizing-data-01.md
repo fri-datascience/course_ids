@@ -450,5 +450,5 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. Demonstrate each of the summarization techniques used in this chapter to provide insights into the data.
+1. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the summarization techniques from this chapter.
 2. Find one or more real-world examples (data sets) where a standard summary of univariate or bivariate data fails. That is, where important information is lost in the summary.

@@ -1,0 +1,7 @@
+# Predictive modelling - Learning paradigms
+
+Things to consider when choosing a learning paradigm: empirical error, complexity, interpretability, computational intensity.
+
+A few typical paradigms (linear models, kNN, decision trees, SVM?, ANN?), how to use them and their advantages disadvantages. Purely descriptive, no math.
+
+

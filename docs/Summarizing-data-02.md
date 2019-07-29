@@ -393,5 +393,4 @@ Data science students should work towards obtaining the knowledge and the skills
 
 1. Read Chapter 1 of Tufte's book (see Further reading).
 2. Gather 3-5 statistical plots from popular media and 3-5 statistical plots from scientific research papers. Comment on if and how each plot could be improved. 
-3. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. Use Python or R to demonstrate each of the visualization techniques used in this chapter to provide insights into the data.
-
+3. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the visualization techniques from this chapter.
