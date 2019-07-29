@@ -77,7 +77,7 @@ To exit the environment, use `conda deactivate`. To show existing environments a
 
 ### Pure Python distribution installation
 
-You can also install a [pure Python distribution](https://www.python.org/downloads/) directly to your system from ????
+You can also install a pure Python distributiondirectly to your system from [the official Python Downloads web page](https://www.python.org/downloads/).
 
 To run Python, issue the `python` command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using `python3.5`). After running the command, you should see something similar to the following:
 
@@ -389,6 +389,7 @@ String manipulation is essential for parsing and providing machine readable outp
 ```python
 number = 6/.7
 text = "dyslexia"
+
 format0 = "Number: " + str(round(number*100)/100.0) + ", Text: " + \
 " "*(15-len(text)) + text
 print(format0)
@@ -444,6 +445,7 @@ We often use inline functions to map, filter or calculate values on an iterable 
 
 ```python
 #from functools import reduce # Python 3 import for reduce (not needed for Python 2)
+
 l = [6, 8, 22, 4, 12]
 doubled = map(lambda x: x*2, l)
 print("Doubled: {}".format(doubled))
@@ -624,6 +626,7 @@ def playWithVariables(value1, list1):
   value1 = 10
   list1.append(22)
   print("Within function: {} and {} and {}".format(value1, list1, globVal))
+
 value1 = 5
 list1 = [3, 6, 9]
 print("Before function: {} and {}".format(value1, list1))
@@ -643,6 +646,7 @@ In some cases we can also define functions that accept an arbitrary number of un
 ```python
 def paramsWriter(*args, **kwargs):
   print("Non-named arguments: {}\nNamed arguments: {}".format(args, kwargs))
+
 paramsWriter(1, "a", [1,5,6], studentIds = [234, 451, 842], maxScore = 100.0)
 ```
 
@@ -702,11 +706,14 @@ class Classroom:
 ```python
 class1 = Classroom("best of millenials")
 class2 = Classroom("old sports")
+
 print("Num classes: {}".format(Classroom.classCounter))
 print("Num classes: {}".format(Classroom.numClasses()))
+
 class2.enroll("Slavko Žitnik")
 class2.enroll("Erik Štrumbelj")
 class2.enroll("Tomaž Curk")
+
 print(class2)
 ```
 
@@ -770,4 +777,4 @@ Data science students should work towards obtaining the knowledge and the skills
 1. Install Anaconda Python, run the [provided Jupyter notebook](data/01 - Python introduction.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additiona packages manually).
 2. Try different Python IDEs and form a personal opinion of their advantages and disadvantaged.
 3. Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras/tree/master/examples).
-4. ???? Load and manipulate some data
+4. Download [the CMU Seminar Announcements dataset](https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz) and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar anncouncement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.

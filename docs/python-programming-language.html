@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Python programming language | Introduction to data science</title>
-  <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Course notes" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Python programming language | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="Course notes" />
   
 
-<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
+<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-07-18">
+<meta name="date" content="2019-07-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="index.html">
@@ -51,41 +50,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -259,76 +285,70 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="anaconda-distribution-installation" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> Anaconda distribution installation</h3>
 <p>Install the desired <a href="https://www.anaconda.com/distribution/">Anaconda Python distribution</a>. A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment with a name <em>itds</em>, issue the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">conda</span> create -n itds
-$ <span class="ex">conda</span> activate itds</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1">$ <span class="ex">conda</span> create -n itds</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">$ <span class="ex">conda</span> activate itds</a></code></pre></div>
 <p>At the beginning of a line in the console you can see currently active environment. To run Python within this evironment, issue the <code>python</code> command in the console. You should see something similar to the following:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">(</span><span class="ex">itds</span><span class="kw">)</span>$ <span class="ex">python</span>
-<span class="ex">Python</span> 3.6.8 <span class="kw">|</span><span class="ex">Anaconda</span>, Inc.<span class="kw">|</span> <span class="kw">(</span><span class="ex">default</span>, Dec 29 2018, 19:04:46<span class="kw">)</span>
-[<span class="ex">GCC</span> 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] <span class="ex">on</span> darwin
-<span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.
-<span class="op">&gt;&gt;&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">(</span><span class="ex">itds</span><span class="kw">)</span>$ <span class="ex">python</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="ex">Python</span> 3.6.8 <span class="kw">|</span><span class="ex">Anaconda</span>, Inc.<span class="kw">|</span> <span class="kw">(</span><span class="ex">default</span>, Dec 29 2018, 19:04:46<span class="kw">)</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">[<span class="ex">GCC</span> 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] <span class="ex">on</span> darwin</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span></a></code></pre></div>
 <p>To exit the Python interpreter, enter and commit the command <code>exit()</code>;</p>
 <p>To exit the environment, use <code>conda deactivate</code>. To show existing environments and their locations, issue <code>conda info --envs</code>.</p>
 </div>
 <div id="pure-python-distribution-installation" class="section level3">
 <h3><span class="header-section-number">1.3.2</span> Pure Python distribution installation</h3>
-<p>You can also install a <a href="https://www.python.org/downloads/">pure Python distribution</a> directly to your system from ????</p>
+<p>You can also install a pure Python distributiondirectly to your system from <a href="https://www.python.org/downloads/">the official Python Downloads web page</a>.</p>
 <p>To run Python, issue the <code>python</code> command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using <code>python3.5</code>). After running the command, you should see something similar to the following:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">python</span>
-<span class="ex">Python</span> 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25)
-[<span class="ex">GCC</span> 4.2.1 (Apple Inc. build 5666) <span class="kw">(</span><span class="ex">dot</span> 3<span class="kw">)</span>] <span class="ex">on</span> darwin
-<span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.
-<span class="op">&gt;&gt;&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="ex">python</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">Python</span> 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">[<span class="ex">GCC</span> 4.2.1 (Apple Inc. build 5666) <span class="kw">(</span><span class="ex">dot</span> 3<span class="kw">)</span>] <span class="ex">on</span> darwin</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span></a></code></pre></div>
 <p>When using the distribution directly, all packages and settings are changed system-wide, which may lead to problems when maintaining multiple Python projects (e.g. problems in having installed different versions of a specific library). Similar to an Anaconda distribution, one can use <em>virtualenv</em> virtual environments. First, we need to install <em>virtualenv</em> via <em>pip</em>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">pip3</span> install virtualenv
-$ <span class="ex">virtualenv</span> --version
-<span class="ex">16.6.1</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1">$ <span class="ex">pip3</span> install virtualenv</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">$ <span class="ex">virtualenv</span> --version</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="ex">16.6.1</span></a></code></pre></div>
 <p>To set up a virtual environment for a project, first create a project folder and set up a new environment in that folder. The latter will create Python executables within that folder and a copy of <em>pip</em> library that is used to install libraries local to the environment (parameter <em>p</em> is optional).</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> itds_project
-$ <span class="ex">virtualenv</span> -p /usr/local/bin/python2 itds</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1">$ <span class="bu">cd</span> itds_project</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">$ <span class="ex">virtualenv</span> -p /usr/local/bin/python2 itds</a></code></pre></div>
 <p>To activate the environment, run the script <code>venv/bin/activate</code> from the project folder and use project specific Python:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">source</span> itds/bin/activate
-<span class="kw">(</span><span class="ex">itds</span><span class="kw">)</span>$ <span class="ex">python</span>
-<span class="ex">Python</span> 2.7.14 (default, Mar  9 2018, 23:57:12)
-[<span class="ex">GCC</span> 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] <span class="ex">on</span> darwin
-<span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.
-<span class="op">&gt;&gt;&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="bu">source</span> itds/bin/activate</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">(</span><span class="ex">itds</span><span class="kw">)</span>$ <span class="ex">python</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="ex">Python</span> 2.7.14 (default, Mar  9 2018, 23:57:12)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">[<span class="ex">GCC</span> 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] <span class="ex">on</span> darwin</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span></a></code></pre></div>
 <p>After you finish working on your project, deactivate the current virtual environment:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">(</span><span class="ex">itds</span><span class="kw">)</span>$ <span class="ex">deactivate</span>
-$</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">(</span><span class="ex">itds</span><span class="kw">)</span>$ <span class="ex">deactivate</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">$</a></code></pre></div>
 </div>
 </div>
 <div id="installing-dependencies" class="section level2">
 <h2><span class="header-section-number">1.4</span> Installing dependencies</h2>
 <p>Many useful libraries are available online, mostly in the <a href="https://pypi.org/">Python Package Index (PyPI) repository</a>. Well-built libraries consist of installation instructions and a <em>setup.py</em> file to install them. The common location for installing libraries is the folder <em>%PYTHON_BASE%/lib</em>, <em>%PYTHON_BASE%/site-packages</em> or <em>%PYTHON_BASE%/Lib</em>.</p>
 <p>Packages can be installed using the <code>pip</code> command. For example, to install the <a href="https://www.nltk.org/">NLTK library</a>, we issue the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">pip</span> install nltk</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1">$ <span class="ex">pip</span> install nltk</a></code></pre></div>
 <p>In some cases packages will be prebuilt for a specific OS, because the installation of its dependencies can be tedious. In such cases, <em>wheel packages</em> can be provided and installed using the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">pip</span> install YOUR_DOWNLOADED_PACKAGE.whl</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1">$ <span class="ex">pip</span> install YOUR_DOWNLOADED_PACKAGE.whl</a></code></pre></div>
 <p>An Anaconda distribution provides its own package repository and in addition to pip, Anaconda packages can be installed as follows:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">conda</span> install nltk</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1">$ <span class="ex">conda</span> install nltk</a></code></pre></div>
 <p>If a package is not available in the official repository, it may be available from some private or community-led channels, for example <em>conda-forge</em>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">conda</span> install -c conda-forge pyspark</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1">$ <span class="ex">conda</span> install -c conda-forge pyspark</a></code></pre></div>
 </div>
 <div id="jupyter-notebooks" class="section level2">
 <h2><span class="header-section-number">1.5</span> Jupyter notebooks</h2>
 <p>The <a href="https://jupyter.org/">Jupyter Notebook</a> is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.</p>
 <p>To add support for Anaconda environments to Jupyter, issue the command below. This will add Conda extensions to Jupyter. The feature will be installed for currently active environment, so you can also install it to the base environment and always run Jupyter from it. When running Jupyter, you will notice a Conda tab in the file browser, which will enable the listing and selection of existing Anaconda environments, overview of the installed packages in the environment, installing new packages from the available package list, checking for updates packages and updating packages in the environment.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">conda</span> install nb_conda</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1">$ <span class="ex">conda</span> install nb_conda</a></code></pre></div>
 <div id="running-a-jupyter-notebook" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> Running a Jupyter notebook</h3>
 <p>Prior to running a Jupyter notebook we first need to start a Jupyter web server by issuing a command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">jupyter</span> notebook</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" data-line-number="1">$ <span class="ex">jupyter</span> notebook</a></code></pre></div>
 <p>By default the server is started in the current folder and accessible via the web interface: <a href="http://localhost:8888" class="uri">http://localhost:8888</a>. The root web page shows a file browser where we can create a new Jupyter notebook or open an existing one:</p>
-<div class="figure">
-<img src="data/PythonIntroduction/JupyterFileBrowser.png" />
-
-</div>
+<p><img src="data/PythonIntroduction/JupyterFileBrowser.png" /></p>
 <p>To get a similar view, save the provided <a href="jupyter/Python%20programming%20language.ipynb">Jupyter notebook</a> into the folder where you ran <code>jupyter notebook</code> command. Click the filename of the notebook and it will open in a new window:</p>
-<div class="figure">
-<img src="data/PythonIntroduction/JupyterNotebook.png" />
-
-</div>
+<p><img src="data/PythonIntroduction/JupyterNotebook.png" /></p>
 <p>As you notice, a notebook consists of linearly ordered block of types <em>Markdown</em>, <em>Code</em>, <em>Raw NBConvert</em> and <em>Heading</em>. If you double click a text block you can edit it using <a href="https://www.markdownguide.org/basic-syntax/">Markdown syntax</a>. To evaluate the block again and show rendered view, click the <em>Run</em> button or press <em>Alt+Enter</em>. The same holds for other types of blocks.</p>
 <p>Sometimes we just want to view or execute a notebook online. There exist multiple services offering this functionality, for example <a href="https://gke.mybinder.org/" class="uri">https://gke.mybinder.org/</a>.</p>
 </div>
@@ -339,153 +359,155 @@ $</code></pre></div>
 <div id="basics" class="section level3 unnumbered">
 <h3>Basics</h3>
 <p>Let’s first say hello:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="st">&quot;Hello Data science!&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello Data science!&quot;</span>)</a></code></pre></div>
 <pre><code>## Hello Data science!</code></pre>
 <div id="variables-and-types" class="section level4">
 <h4><span class="header-section-number">1.6.0.1</span> Variables and types</h4>
 <p>Python defines whole numbers (<em>int</em>, <em>long</em>) and real numbers (<em>float</em>). Whole numbers are integers (<span class="math inline">\(\pm 2^{31}\)</span> or <span class="math inline">\(\pm 2^{63}\)</span>) and long numbers, limited by the memory size. Long is a number with a trailing <em>L</em> added at the end (Python 2, in Python 3, long is merged with int). Complex numbers are also supported using a trailing <em>j</em> to the imaginary part. Bool type is based on integer - value of 1 as <em>True</em> or anything else as <em>False</em>.</p>
 <p>String values are represented as sequence of characters within &quot; or '.</p>
 <p>A constant <em>None</em> is defined to represent the nonexistence of a value.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">2864</span>
-<span class="bu">print</span>(<span class="st">&quot;Type of a is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(a)))</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1">a <span class="op">=</span> <span class="dv">2864</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Type of a is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(a)))</a></code></pre></div>
 <pre><code>## Type of a is &lt;type &#39;int&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">b <span class="op">=</span> 2864L
-<span class="bu">print</span>(<span class="st">&quot;Type of b is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(b)))</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" data-line-number="1">b <span class="op">=</span> 2864L</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Type of b is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(b)))</a></code></pre></div>
 <pre><code>## Type of b is &lt;type &#39;long&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">c <span class="op">=</span> <span class="dv">18</span><span class="op">+</span>64j
-<span class="bu">print</span>(<span class="st">&quot;Type of c is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(c)))</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" data-line-number="1">c <span class="op">=</span> <span class="dv">18</span><span class="op">+</span>64j</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Type of c is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(c)))</a></code></pre></div>
 <pre><code>## Type of c is &lt;type &#39;complex&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">d <span class="op">=</span> <span class="va">False</span>
-<span class="bu">print</span>(<span class="st">&quot;Type of d is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(d)))</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" data-line-number="1">d <span class="op">=</span> <span class="va">False</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Type of d is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(d)))</a></code></pre></div>
 <pre><code>## Type of d is &lt;type &#39;bool&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">e <span class="op">=</span> <span class="st">&quot;I&#39;m loving it!&quot;</span>
-<span class="bu">print</span>(<span class="st">&quot;Type of e is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(e)))</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" data-line-number="1">e <span class="op">=</span> <span class="st">&quot;I&#39;m loving it!&quot;</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Type of e is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(e)))</a></code></pre></div>
 <pre><code>## Type of e is &lt;type &#39;str&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">f <span class="op">=</span> <span class="va">None</span>
-<span class="bu">print</span>(<span class="st">&quot;Type of f is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(f)))</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" data-line-number="1">f <span class="op">=</span> <span class="va">None</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Type of f is </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">type</span>(f)))</a></code></pre></div>
 <pre><code>## Type of f is &lt;type &#39;NoneType&#39;&gt;</code></pre>
 </div>
 <div id="numbers-and-basic-operators" class="section level4 unnumbered">
 <h4>Numbers and basic operators</h4>
 <p>Basic data manipulations:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">3</span>  
-b <span class="op">=</span> <span class="fl">2.5</span>  
-c <span class="op">=</span> a <span class="op">+</span> b 
-<span class="bu">print</span>(<span class="st">&quot;Addition: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" data-line-number="1">a <span class="op">=</span> <span class="dv">3</span>  </a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">b <span class="op">=</span> <span class="fl">2.5</span>  </a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">c <span class="op">=</span> a <span class="op">+</span> b </a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="bu">print</span>(<span class="st">&quot;Addition: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</a></code></pre></div>
 <pre><code>## Addition: 5.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">c <span class="op">=</span> a <span class="op">*</span> b
-<span class="bu">print</span>(<span class="st">&quot;Multiplication: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" data-line-number="1">c <span class="op">=</span> a <span class="op">*</span> b</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Multiplication: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</a></code></pre></div>
 <pre><code>## Multiplication: 7.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">c <span class="op">=</span> a <span class="op">/</span> b
-<span class="bu">print</span>(<span class="st">&quot;Division: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb32-1" data-line-number="1">c <span class="op">=</span> a <span class="op">/</span> b</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Division: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</a></code></pre></div>
 <pre><code>## Division: 1.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">c <span class="op">=</span> <span class="va">True</span> <span class="op">+</span> <span class="dv">5</span>
-<span class="bu">print</span>(<span class="st">&quot;Addition to Boolean: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" data-line-number="1">c <span class="op">=</span> <span class="va">True</span> <span class="op">+</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Addition to Boolean: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</a></code></pre></div>
 <pre><code>## Addition to Boolean: 6</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">c <span class="op">=</span> <span class="st">&quot;5&quot;</span> <span class="op">*</span> <span class="dv">5</span>
-<span class="bu">print</span>(<span class="st">&quot;String multiplication: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb36-1" data-line-number="1">c <span class="op">=</span> <span class="st">&quot;5&quot;</span> <span class="op">*</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;String multiplication: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</a></code></pre></div>
 <pre><code>## String multiplication: 55555</code></pre>
 </div>
 <div id="strings-concatenation-and-formatting" class="section level4">
 <h4><span class="header-section-number">1.6.0.2</span> Strings, concatenation and formatting</h4>
 <p>Basic strings manipulations:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="st">&quot;Data science&quot;</span> 
-b <span class="op">=</span> <span class="st">&#39;a multi-disciplinary field&#39;</span> <span class="co"># we can use double or single quotes</span>
-c <span class="op">=</span> a <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> b
-<span class="bu">print</span>(<span class="st">&quot;Concatenated string: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb38-1" data-line-number="1">a <span class="op">=</span> <span class="st">&quot;Data science&quot;</span> </a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">b <span class="op">=</span> <span class="st">&#39;a multi-disciplinary field&#39;</span> <span class="co"># we can use double or single quotes</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">c <span class="op">=</span> a <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> b</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="bu">print</span>(<span class="st">&quot;Concatenated string: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(c))</a></code></pre></div>
 <pre><code>## Concatenated string: Data science a multi-disciplinary field</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">first <span class="op">=</span> c[:<span class="dv">4</span>]
-last <span class="op">=</span> c[<span class="op">-</span><span class="dv">5</span>:]
-<span class="bu">print</span>(<span class="st">&quot;First word: &#39;</span><span class="sc">{}</span><span class="st">&#39; and last word: &#39;</span><span class="sc">{}</span><span class="st">&#39;.&quot;</span>.<span class="bu">format</span>(first, last))</code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb40-1" data-line-number="1">first <span class="op">=</span> c[:<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">last <span class="op">=</span> c[<span class="op">-</span><span class="dv">5</span>:]</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="bu">print</span>(<span class="st">&quot;First word: &#39;</span><span class="sc">{}</span><span class="st">&#39; and last word: &#39;</span><span class="sc">{}</span><span class="st">&#39;.&quot;</span>.<span class="bu">format</span>(first, last))</a></code></pre></div>
 <pre><code>## First word: &#39;Data&#39; and last word: &#39;field&#39;.</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">firstLower <span class="op">=</span> first.lower()
-lastUpper <span class="op">=</span> last.upper()
-<span class="bu">print</span>(<span class="st">&quot;First word lowercased: &#39;</span><span class="sc">{}</span><span class="st">&#39; and last word uppercased: &#39;</span><span class="sc">{}</span><span class="st">&#39;.&quot;</span>.<span class="op">\</span>
-  <span class="bu">format</span>(firstLower, lastUpper))</code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb42-1" data-line-number="1">firstLower <span class="op">=</span> first.lower()</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">lastUpper <span class="op">=</span> last.upper()</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="bu">print</span>(<span class="st">&quot;First word lowercased: &#39;</span><span class="sc">{}</span><span class="st">&#39; and last word uppercased: &#39;</span><span class="sc">{}</span><span class="st">&#39;.&quot;</span>.<span class="op">\</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">  <span class="bu">format</span>(firstLower, lastUpper))</a></code></pre></div>
 <pre><code>## First word lowercased: &#39;data&#39; and last word uppercased: &#39;FIELD&#39;.</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">management <span class="op">=</span> c.replace(<span class="st">&quot;science&quot;</span>, <span class="st">&quot;management&quot;</span>)
-<span class="bu">print</span>(<span class="st">&quot;Substring replacement: &#39;</span><span class="sc">{}</span><span class="st">&#39;&quot;</span>.<span class="bu">format</span>(management))</code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb44-1" data-line-number="1">management <span class="op">=</span> c.replace(<span class="st">&quot;science&quot;</span>, <span class="st">&quot;management&quot;</span>)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Substring replacement: &#39;</span><span class="sc">{}</span><span class="st">&#39;&quot;</span>.<span class="bu">format</span>(management))</a></code></pre></div>
 <pre><code>## Substring replacement: &#39;Data management a multi-disciplinary field&#39;</code></pre>
 <p>Explore more about strings in the official <a href="https://docs.python.org/3/library/string.html">Python 3 documentation for strings</a>.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># string package</span>
-<span class="im">import</span> string
-<span class="bu">print</span>(<span class="st">&quot;Punctuation symbols: &#39;</span><span class="sc">{}</span><span class="st">&#39;&quot;</span>.<span class="bu">format</span>(string.punctuation))</code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co"># string package</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="im">import</span> string</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="bu">print</span>(<span class="st">&quot;Punctuation symbols: &#39;</span><span class="sc">{}</span><span class="st">&#39;&quot;</span>.<span class="bu">format</span>(string.punctuation))</a></code></pre></div>
 <pre><code>## Punctuation symbols: &#39;!&quot;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~&#39;</code></pre>
 <p>String manipulation is essential for parsing and providing machine readable outputs when needed. For more sophisticated examples, see <a href="https://pyformat.info/" class="uri">https://pyformat.info/</a>.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">number <span class="op">=</span> <span class="dv">6</span><span class="op">/</span>.<span class="dv">7</span>
-text <span class="op">=</span> <span class="st">&quot;dyslexia&quot;</span>
-format0 <span class="op">=</span> <span class="st">&quot;Number: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(number<span class="op">*</span><span class="dv">100</span>)<span class="op">/</span><span class="fl">100.0</span>) <span class="op">+</span> <span class="st">&quot;, Text: &quot;</span> <span class="op">+</span> <span class="op">\</span>
-<span class="co">&quot; &quot;</span><span class="op">*</span>(<span class="dv">15</span><span class="op">-</span><span class="bu">len</span>(text)) <span class="op">+</span> text
-<span class="bu">print</span>(format0)</code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb48-1" data-line-number="1">number <span class="op">=</span> <span class="dv">6</span><span class="op">/</span>.<span class="dv">7</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">text <span class="op">=</span> <span class="st">&quot;dyslexia&quot;</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">format0 <span class="op">=</span> <span class="st">&quot;Number: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(number<span class="op">*</span><span class="dv">100</span>)<span class="op">/</span><span class="fl">100.0</span>) <span class="op">+</span> <span class="st">&quot;, Text: &quot;</span> <span class="op">+</span> <span class="op">\</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co">&quot; &quot;</span><span class="op">*</span>(<span class="dv">15</span><span class="op">-</span><span class="bu">len</span>(text)) <span class="op">+</span> text</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="bu">print</span>(format0)</a></code></pre></div>
 <pre><code>## Number: 8.57, Text:        dyslexia</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">format1 <span class="op">=</span> <span class="st">&quot;Number: </span><span class="sc">{:5.2f}</span><span class="st">, Text: </span><span class="sc">{:&gt;15}</span><span class="st">&quot;</span>.<span class="bu">format</span>(number, text)
-<span class="bu">print</span>(format1)</code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb50-1" data-line-number="1">format1 <span class="op">=</span> <span class="st">&quot;Number: </span><span class="sc">{:5.2f}</span><span class="st">, Text: </span><span class="sc">{:&gt;15}</span><span class="st">&quot;</span>.<span class="bu">format</span>(number, text)</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="bu">print</span>(format1)</a></code></pre></div>
 <pre><code>## Number:  8.57, Text:        dyslexia</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">format2 <span class="op">=</span> <span class="st">&quot;Number: </span><span class="sc">%5.2f</span><span class="st">, Text: </span><span class="sc">%15s</span><span class="st">&quot;</span> <span class="op">%</span> (number, text)
-<span class="bu">print</span>(format2)</code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb52-1" data-line-number="1">format2 <span class="op">=</span> <span class="st">&quot;Number: </span><span class="sc">%5.2f</span><span class="st">, Text: </span><span class="sc">%15s</span><span class="st">&quot;</span> <span class="op">%</span> (number, text)</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="bu">print</span>(format2)</a></code></pre></div>
 <pre><code>## Number:  8.57, Text:        dyslexia</code></pre>
 </div>
 <div id="data-stuctures-lists-tuples-sets-dictionaries" class="section level4">
 <h4><span class="header-section-number">1.6.0.3</span> Data stuctures: Lists, Tuples, Sets, Dictionaries</h4>
 <p>Below we create some of the data structures available in Python. Explore more of their functionality in <a href="https://docs.python.org/3/tutorial/datastructures.html">the official Python documentation</a>.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">10</span>] <span class="co"># List  </span>
-t <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">10</span>) <span class="co"># Tuple (immutable)</span>
-s <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>}     <span class="co"># Set</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span> <span class="op">=</span> {
-  <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Introduction to Data Science&quot;</span>,
-  <span class="st">&quot;year&quot;</span>: <span class="dv">1</span>,
-  <span class="st">&quot;semester&quot;</span>: <span class="st">&quot;fall&quot;</span>,
-  <span class="st">&quot;classroom&quot;</span>: <span class="st">&quot;P02&quot;</span>
-}
-<span class="bu">dict</span>[<span class="st">&quot;classroom&quot;</span>] <span class="op">=</span> <span class="st">&quot;P03&quot;</span> </code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb54-1" data-line-number="1">l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">10</span>] <span class="co"># List  </span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">t <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">10</span>) <span class="co"># Tuple (immutable)</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">s <span class="op">=</span> {<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>}     <span class="co"># Set</span></a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="bu">dict</span> <span class="op">=</span> {</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">  <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Introduction to Data Science&quot;</span>,</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">  <span class="st">&quot;year&quot;</span>: <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">  <span class="st">&quot;semester&quot;</span>: <span class="st">&quot;fall&quot;</span>,</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">  <span class="st">&quot;classroom&quot;</span>: <span class="st">&quot;P02&quot;</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb55-7" data-line-number="7"><span class="bu">dict</span>[<span class="st">&quot;classroom&quot;</span>] <span class="op">=</span> <span class="st">&quot;P03&quot;</span> </a></code></pre></div>
 <p>We often use inline functions to map, filter or calculate values on an iterable data structure. For example, to apply a function to all values (map), filter out unnecessary values or use all values in a calculation:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">#from functools import reduce # Python 3 import for reduce (not needed for Python 2)</span>
-l <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">22</span>, <span class="dv">4</span>, <span class="dv">12</span>]
-doubled <span class="op">=</span> <span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">*</span><span class="dv">2</span>, l)
-<span class="bu">print</span>(<span class="st">&quot;Doubled: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(doubled))</code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co">#from functools import reduce # Python 3 import for reduce (not needed for Python 2)</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3">l <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">22</span>, <span class="dv">4</span>, <span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">doubled <span class="op">=</span> <span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">*</span><span class="dv">2</span>, l)</a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="bu">print</span>(<span class="st">&quot;Doubled: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(doubled))</a></code></pre></div>
 <pre><code>## Doubled: [12, 16, 44, 8, 24]</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">filtered <span class="op">=</span> <span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">10</span>, l)
-<span class="bu">print</span>(<span class="st">&quot;Filtered: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(filtered))</code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb58-1" data-line-number="1">filtered <span class="op">=</span> <span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">10</span>, l)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Filtered: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(filtered))</a></code></pre></div>
 <pre><code>## Filtered: [22, 12]</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">sum</span> <span class="op">=</span> <span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: x<span class="op">+</span>y, l)
-<span class="bu">print</span>(<span class="st">&quot;Sum value: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">sum</span>))</code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="bu">sum</span> <span class="op">=</span> <span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: x<span class="op">+</span>y, l)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="bu">print</span>(<span class="st">&quot;Sum value: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="bu">sum</span>))</a></code></pre></div>
 <pre><code>## Sum value: 52</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">l <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">22</span>, <span class="dv">4</span>, <span class="dv">12</span>]
-newList <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> l <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">5</span> <span class="kw">and</span> x <span class="op">&lt;=</span> <span class="dv">10</span>]
-<span class="bu">print</span>(<span class="st">&quot;Squared values between 5 and 10: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(newList))</code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb62-1" data-line-number="1">l <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">22</span>, <span class="dv">4</span>, <span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">newList <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> l <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">5</span> <span class="kw">and</span> x <span class="op">&lt;=</span> <span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="bu">print</span>(<span class="st">&quot;Squared values between 5 and 10: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(newList))</a></code></pre></div>
 <pre><code>## Squared values between 5 and 10: [36, 64]</code></pre>
 </div>
 </div>
 <div id="control-flow-operations" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> Control flow operations</h3>
 <p>Many operations can be written inline or using multiple lines. Let’s check how to use <em>if</em> statements and <em>loops</em>.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">2</span>  
-<span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">1</span>:  
-    <span class="bu">print</span>(<span class="st">&#39;a is greater than 1&#39;</span>)
-<span class="cf">elif</span> a <span class="op">==</span> <span class="dv">1</span>:  
-    <span class="bu">print</span>(<span class="st">&#39;a is equal to 1&#39;</span>)
-<span class="cf">else</span>:  
-    <span class="bu">print</span>(<span class="st">&#39;a is less than 1&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb64-1" data-line-number="1">a <span class="op">=</span> <span class="dv">2</span>  </a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">1</span>:  </a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">    <span class="bu">print</span>(<span class="st">&#39;a is greater than 1&#39;</span>)</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="cf">elif</span> a <span class="op">==</span> <span class="dv">1</span>:  </a>
+<a class="sourceLine" id="cb64-5" data-line-number="5">    <span class="bu">print</span>(<span class="st">&#39;a is equal to 1&#39;</span>)</a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="cf">else</span>:  </a>
+<a class="sourceLine" id="cb64-7" data-line-number="7">    <span class="bu">print</span>(<span class="st">&#39;a is less than 1&#39;</span>)</a></code></pre></div>
 <pre><code>## a is greater than 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Inline if statement</span>
-a <span class="op">=</span> <span class="dv">2</span>
-<span class="bu">print</span>(<span class="st">&#39;a is greater than 1&#39;</span> <span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">&#39;a is lower or equal to 2&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># Inline if statement</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">a <span class="op">=</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="bu">print</span>(<span class="st">&#39;a is greater than 1&#39;</span> <span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">&#39;a is lower or equal to 2&#39;</span>)</a></code></pre></div>
 <pre><code>## a is greater than 1</code></pre>
 <p>Loops:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>, <span class="dv">6</span>):
-    <span class="bu">print</span>(i)</code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>, <span class="dv">6</span>):</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">    <span class="bu">print</span>(i)</a></code></pre></div>
 <pre><code>## 4
 ## 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">people_list <span class="op">=</span> [<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Charles&#39;</span>]  
-<span class="cf">for</span> person <span class="kw">in</span> people_list:
-    <span class="bu">print</span>(person)</code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb70-1" data-line-number="1">people_list <span class="op">=</span> [<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Charles&#39;</span>]  </a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="cf">for</span> person <span class="kw">in</span> people_list:</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">    <span class="bu">print</span>(person)</a></code></pre></div>
 <pre><code>## Ann
 ## Bob
 ## Charles</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">i <span class="op">=</span> <span class="dv">1</span>
-<span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">3</span>:
-  <span class="bu">print</span>(i)
-  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb72-1" data-line-number="1">i <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">3</span>:</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3">  <span class="bu">print</span>(i)</a>
+<a class="sourceLine" id="cb72-4" data-line-number="4">  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></a></code></pre></div>
 <pre><code>## 1
 ## 2
 ## 3</code></pre>
@@ -493,59 +515,61 @@ a <span class="op">=</span> <span class="dv">2</span>
 <div id="functions" class="section level3">
 <h3><span class="header-section-number">1.6.2</span> Functions</h3>
 <p>We organize (encapsulate) our code into logical units, so we can reuse them and reduce the amount of duplicate, boilerplate code. Below write the function <em>greetMe</em> that takes one argument (<em>name</em>) as input and prints some string. The function’s code will be executed when we call the function.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> greetMe(name):
-  <span class="bu">print</span>(<span class="st">&quot;Hello my friend </span><span class="sc">{}</span><span class="st">!&quot;</span>.<span class="bu">format</span>(name))
-  
-greetMe(<span class="st">&quot;Janez&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">def</span> greetMe(name):</a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">  <span class="bu">print</span>(<span class="st">&quot;Hello my friend </span><span class="sc">{}</span><span class="st">!&quot;</span>.<span class="bu">format</span>(name))</a>
+<a class="sourceLine" id="cb74-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb74-4" data-line-number="4">greetMe(<span class="st">&quot;Janez&quot;</span>)</a></code></pre></div>
 <pre><code>## Hello my friend Janez!</code></pre>
 <p>Sometimes our functions will have many arguments, some of which might be optional or have a default value. In the example below we add a argument with a default value. If there are multiple optional arguments we can set their values by naming them.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> greet(name, title <span class="op">=</span> <span class="st">&quot;Mr.&quot;</span>):
-  <span class="bu">print</span>(<span class="st">&quot;Hello </span><span class="sc">{}</span><span class="st"> </span><span class="sc">{}</span><span class="st">!&quot;</span>.<span class="bu">format</span>(title, name))
-  
-greet(<span class="st">&quot;Janez&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">def</span> greet(name, title <span class="op">=</span> <span class="st">&quot;Mr.&quot;</span>):</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">  <span class="bu">print</span>(<span class="st">&quot;Hello </span><span class="sc">{}</span><span class="st"> </span><span class="sc">{}</span><span class="st">!&quot;</span>.<span class="bu">format</span>(title, name))</a>
+<a class="sourceLine" id="cb76-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb76-4" data-line-number="4">greet(<span class="st">&quot;Janez&quot;</span>)</a></code></pre></div>
 <pre><code>## Hello Mr. Janez!</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">greet(<span class="st">&quot;Mojca&quot;</span>, <span class="st">&quot;Mrs.&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb78-1" data-line-number="1">greet(<span class="st">&quot;Mojca&quot;</span>, <span class="st">&quot;Mrs.&quot;</span>)</a></code></pre></div>
 <pre><code>## Hello Mrs. Mojca!</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">greet(<span class="st">&quot;Mojca&quot;</span>, title <span class="op">=</span> <span class="st">&quot;Mrs.&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb80-1" data-line-number="1">greet(<span class="st">&quot;Mojca&quot;</span>, title <span class="op">=</span> <span class="st">&quot;Mrs.&quot;</span>)</a></code></pre></div>
 <pre><code>## Hello Mrs. Mojca!</code></pre>
 <p>A function can also call itself and return a value.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> sumUpTo(value):
-  <span class="cf">if</span> value <span class="op">&gt;</span> <span class="dv">0</span>:
-    <span class="cf">return</span> value <span class="op">+</span> sumUpTo(value<span class="op">-</span><span class="dv">1</span>)
-  <span class="cf">else</span>: 
-    <span class="cf">return</span> <span class="dv">0</span>
-  
-<span class="bu">print</span>(<span class="st">&quot;Sum of all positive integers up to 50 is: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(sumUpTo(<span class="dv">50</span>)))</code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">def</span> sumUpTo(value):</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2">  <span class="cf">if</span> value <span class="op">&gt;</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb82-3" data-line-number="3">    <span class="cf">return</span> value <span class="op">+</span> sumUpTo(value<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb82-4" data-line-number="4">  <span class="cf">else</span>: </a>
+<a class="sourceLine" id="cb82-5" data-line-number="5">    <span class="cf">return</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb82-6" data-line-number="6">  </a>
+<a class="sourceLine" id="cb82-7" data-line-number="7"><span class="bu">print</span>(<span class="st">&quot;Sum of all positive integers up to 50 is: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(sumUpTo(<span class="dv">50</span>)))</a></code></pre></div>
 <pre><code>## Sum of all positive integers up to 50 is: 1275</code></pre>
 <p>Python encapsulates variables within functions - they are not accessible outside the function. When we want variables to be accessible globally, we can use the <em>global</em> keyword. This can result in some difficult to predict behaviour and interactions, so use with caution!</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> playWithVariables(value1, list1):
-  <span class="kw">global</span> globVal 
-  globVal <span class="op">=</span> <span class="dv">3</span>
-  
-  value1 <span class="op">=</span> <span class="dv">10</span>
-  list1.append(<span class="dv">22</span>)
-  <span class="bu">print</span>(<span class="st">&quot;Within function: </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(value1, list1, globVal))
-value1 <span class="op">=</span> <span class="dv">5</span>
-list1 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>]
-<span class="bu">print</span>(<span class="st">&quot;Before function: </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(value1, list1))
-playWithVariables(value1, list1)
-<span class="bu">print</span>(<span class="st">&quot;After function: </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(value1, list1, globVal))</code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">def</span> playWithVariables(value1, list1):</a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">  <span class="kw">global</span> globVal </a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">  globVal <span class="op">=</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb84-5" data-line-number="5">  value1 <span class="op">=</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb84-6" data-line-number="6">  list1.append(<span class="dv">22</span>)</a>
+<a class="sourceLine" id="cb84-7" data-line-number="7">  <span class="bu">print</span>(<span class="st">&quot;Within function: </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(value1, list1, globVal))</a>
+<a class="sourceLine" id="cb84-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb84-9" data-line-number="9">value1 <span class="op">=</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb84-10" data-line-number="10">list1 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>]</a>
+<a class="sourceLine" id="cb84-11" data-line-number="11"><span class="bu">print</span>(<span class="st">&quot;Before function: </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(value1, list1))</a>
+<a class="sourceLine" id="cb84-12" data-line-number="12">playWithVariables(value1, list1)</a>
+<a class="sourceLine" id="cb84-13" data-line-number="13"><span class="bu">print</span>(<span class="st">&quot;After function: </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(value1, list1, globVal))</a></code></pre></div>
 <pre><code>## Before function: 5 and [3, 6, 9]
 ## Within function: 10 and [3, 6, 9, 22] and 3
 ## After function: 5 and [3, 6, 9, 22] and 3</code></pre>
 <p>In some cases we can also define functions that accept an arbitrary number of unnamed (<em>args</em>) and/or named (<em>kwargs</em>) arguments.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> paramsWriter(<span class="op">*</span>args, <span class="op">**</span>kwargs):
-  <span class="bu">print</span>(<span class="st">&quot;Non-named arguments: </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">Named arguments: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(args, kwargs))
-paramsWriter(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, [<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>], studentIds <span class="op">=</span> [<span class="dv">234</span>, <span class="dv">451</span>, <span class="dv">842</span>], maxScore <span class="op">=</span> <span class="fl">100.0</span>)</code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">def</span> paramsWriter(<span class="op">*</span>args, <span class="op">**</span>kwargs):</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">  <span class="bu">print</span>(<span class="st">&quot;Non-named arguments: </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">Named arguments: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(args, kwargs))</a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4">paramsWriter(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, [<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>], studentIds <span class="op">=</span> [<span class="dv">234</span>, <span class="dv">451</span>, <span class="dv">842</span>], maxScore <span class="op">=</span> <span class="fl">100.0</span>)</a></code></pre></div>
 <pre><code>## Non-named arguments: (1, &#39;a&#39;, [1, 5, 6])
 ## Named arguments: {&#39;maxScore&#39;: 100.0, &#39;studentIds&#39;: [234, 451, 842]}</code></pre>
 <p>When naming functions, classes, objects, packages, etc. we need to be careful not to overwrite existing objects. Bugs such as this one can be difficult to find:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> greeter():
-  <span class="bu">print</span>(<span class="st">&quot;Hello to everyone!&quot;</span>)
-  
-greeter()
-greeter <span class="op">=</span> <span class="st">&quot;Mr. John Hopkins&quot;</span>
-greeter()                     <span class="co"># Error - greeter is now string value</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">def</span> greeter():</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">  <span class="bu">print</span>(<span class="st">&quot;Hello to everyone!&quot;</span>)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb88-4" data-line-number="4">greeter()</a>
+<a class="sourceLine" id="cb88-5" data-line-number="5">greeter <span class="op">=</span> <span class="st">&quot;Mr. John Hopkins&quot;</span></a>
+<a class="sourceLine" id="cb88-6" data-line-number="6">greeter()                     <span class="co"># Error - greeter is now string value</span></a></code></pre></div>
 <pre><code>Hello to everyone!
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
@@ -556,30 +580,33 @@ TypeError: &#39;str&#39; object is not callable</code></pre>
 <p>Python is also object-oriented and therefore enables us to encapsulate data and functionality into classes. Instances of classes are objects.</p>
 <p>The class below consists of one class variable, one class method, three object methods and two object variables. All class-based variables are accessible using the class name directly without having instantiated the object. Object-based methods are accessible only through an instantiated object and can also directly modify object properties (<em>self.*</em>). All object methods accept <em>self</em> as an implicit parameter, which points to the current object.</p>
 <p>elow we show an example of object declaration and its use. A detailed explanation can be found in the <a href="https://docs.python.org/3/tutorial/classes.html">official Python documentation</a>.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Classroom:
-  classCounter <span class="op">=</span> <span class="dv">0</span>
-  
-  <span class="kw">def</span> numClasses():
-    <span class="cf">return</span> Classroom.classCounter
-  
-  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
-    Classroom.classCounter <span class="op">+=</span> <span class="dv">1</span>
-    <span class="va">self</span>.name <span class="op">=</span> <span class="st">&quot;Best of Data Science class &quot;</span> <span class="op">+</span> name
-    <span class="va">self</span>.students <span class="op">=</span> []
-    
-  <span class="kw">def</span> enroll(<span class="va">self</span>, student):
-    <span class="va">self</span>.students.append(student)
-    
-  <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):
-    <span class="cf">return</span> <span class="st">&quot;Class: &#39;</span><span class="sc">{}</span><span class="st">&#39;, students: &#39;</span><span class="sc">{}</span><span class="st">&#39;&quot;</span>.<span class="bu">format</span>(<span class="va">self</span>.name, <span class="st">&quot;, &quot;</span>.join(<span class="va">self</span>.students))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">class1 <span class="op">=</span> Classroom(<span class="st">&quot;best of millenials&quot;</span>)
-class2 <span class="op">=</span> Classroom(<span class="st">&quot;old sports&quot;</span>)
-<span class="bu">print</span>(<span class="st">&quot;Num classes: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(Classroom.classCounter))
-<span class="bu">print</span>(<span class="st">&quot;Num classes: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(Classroom.numClasses()))
-class2.enroll(<span class="st">&quot;Slavko Žitnik&quot;</span>)
-class2.enroll(<span class="st">&quot;Erik Štrumbelj&quot;</span>)
-class2.enroll(<span class="st">&quot;Tomaž Curk&quot;</span>)
-<span class="bu">print</span>(class2)</code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">class</span> Classroom:</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">  classCounter <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb90-4" data-line-number="4">  <span class="kw">def</span> numClasses():</a>
+<a class="sourceLine" id="cb90-5" data-line-number="5">    <span class="cf">return</span> Classroom.classCounter</a>
+<a class="sourceLine" id="cb90-6" data-line-number="6">  </a>
+<a class="sourceLine" id="cb90-7" data-line-number="7">  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</a>
+<a class="sourceLine" id="cb90-8" data-line-number="8">    Classroom.classCounter <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb90-9" data-line-number="9">    <span class="va">self</span>.name <span class="op">=</span> <span class="st">&quot;Best of Data Science class &quot;</span> <span class="op">+</span> name</a>
+<a class="sourceLine" id="cb90-10" data-line-number="10">    <span class="va">self</span>.students <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb90-11" data-line-number="11">    </a>
+<a class="sourceLine" id="cb90-12" data-line-number="12">  <span class="kw">def</span> enroll(<span class="va">self</span>, student):</a>
+<a class="sourceLine" id="cb90-13" data-line-number="13">    <span class="va">self</span>.students.append(student)</a>
+<a class="sourceLine" id="cb90-14" data-line-number="14">    </a>
+<a class="sourceLine" id="cb90-15" data-line-number="15">  <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</a>
+<a class="sourceLine" id="cb90-16" data-line-number="16">    <span class="cf">return</span> <span class="st">&quot;Class: &#39;</span><span class="sc">{}</span><span class="st">&#39;, students: &#39;</span><span class="sc">{}</span><span class="st">&#39;&quot;</span>.<span class="bu">format</span>(<span class="va">self</span>.name, <span class="st">&quot;, &quot;</span>.join(<span class="va">self</span>.students))</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb91-1" data-line-number="1">class1 <span class="op">=</span> Classroom(<span class="st">&quot;best of millenials&quot;</span>)</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">class2 <span class="op">=</span> Classroom(<span class="st">&quot;old sports&quot;</span>)</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="bu">print</span>(<span class="st">&quot;Num classes: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(Classroom.classCounter))</a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="bu">print</span>(<span class="st">&quot;Num classes: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(Classroom.numClasses()))</a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7">class2.enroll(<span class="st">&quot;Slavko Žitnik&quot;</span>)</a>
+<a class="sourceLine" id="cb91-8" data-line-number="8">class2.enroll(<span class="st">&quot;Erik Štrumbelj&quot;</span>)</a>
+<a class="sourceLine" id="cb91-9" data-line-number="9">class2.enroll(<span class="st">&quot;Tomaž Curk&quot;</span>)</a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="bu">print</span>(class2)</a></code></pre></div>
 <pre><code>## Num classes: 2
 ## Num classes: 2
 ## Class: &#39;Best of Data Science class old sports&#39;, students: &#39;Slavko Žitnik, Erik Štrumbelj, Tomaž Curk&#39;</code></pre>
@@ -643,7 +670,7 @@ class2.enroll(<span class="st">&quot;Tomaž Curk&quot;</span>)
 <li>Install Anaconda Python, run the <a href="data/01%20-%20Python%20introduction.ipynb">provided Jupyter notebook</a> within a new conda environment and then export all the installed dependencies into an <em>environment.yml</em> file (see <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">reference</a>). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additiona packages manually).</li>
 <li>Try different Python IDEs and form a personal opinion of their advantages and disadvantaged.</li>
 <li>Download, explore and run some scripts from <a href="https://github.com/keras-team/keras/tree/master/examples">the Keras examples repository</a>.</li>
-<li>???? Load and manipulate some data</li>
+<li>Download <a href="https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz">the CMU Seminar Announcements dataset</a> and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar anncouncement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.</li>
 </ol>
 
 </div>
@@ -704,7 +731,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

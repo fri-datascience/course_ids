@@ -351,7 +351,7 @@ Note that the *host* setting and port 3306 are used to connect to a MySQL databa
 
 #### Database service
 
-For the database service, we will use already created image, which is available from [the public MySQL image repository](https://hub.docker.com/_/mysql) (for more info on repositories, see section \@ref(registries)). Along with the image, there are also instructions of how to use it with the parameters, where to put initial script files, ...????(TU NEKAJ MANJKA?) to ease the deployment process without creating complicated Dockerfiles.
+For the database service, we will use already created image, which is available from [the public MySQL image repository](https://hub.docker.com/_/mysql) (for more info on repositories, see section \@ref(registries)). Along with the image, there are also instructions of how to use it with the parameters, where to put initial script files, versions, Dockerfile sources and other references, which ease the deployment process without creating complicated Dockerfiles by ourselves.
 
 In our case the database dockerfile looks as follows:
 

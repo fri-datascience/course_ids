@@ -21,7 +21,7 @@ Multiple containers can run on the same machine and share the operating system k
 Virtual machines as an abstraction of physical hardware turn one server into many servers. The hypervisor allows multiple virtual machines to run on a single machine. Each virtual machine contains a full copy of an operating system, the application, necessary binaries and libraries. This requires GBs of data - virtual machines require more disk space, physical resources and are slower to boot. The Figure below shows a comparison between multiple running Docker containers (left hand side) and multiple virtual machines (right hand side):
 
 <div class="figure" style="text-align: center">
-<img src="data/Docker/dockerVsVM.png" alt="Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com)." width="636" />
+<img src="data/Docker/dockerVsVM.png" alt="Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com)."  />
 <p class="caption">(\#fig:unnamed-chunk-1)Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com).</p>
 </div>
 
@@ -352,7 +352,7 @@ Note that the *host* setting and port 3306 are used to connect to a MySQL databa
 
 #### Database service
 
-For the database service, we will use already created image, which is available from [the public MySQL image repository](https://hub.docker.com/_/mysql) (for more info on repositories, see section \@ref(registries)). Along with the image, there are also instructions of how to use it with the parameters, where to put initial script files, ...????(TU NEKAJ MANJKA?) to ease the deployment process without creating complicated Dockerfiles.
+For the database service, we will use already created image, which is available from [the public MySQL image repository](https://hub.docker.com/_/mysql) (for more info on repositories, see section \@ref(registries)). Along with the image, there are also instructions of how to use it with the parameters, where to put initial script files, versions, Dockerfile sources and other references, which ease the deployment process without creating complicated Dockerfiles by ourselves.
 
 In our case the database dockerfile looks as follows:
 
@@ -422,15 +422,15 @@ In the *docker-compose* configuration we define two containers, one named *datab
 
 Parameter *depends_on* created dependencies between containers, so the application container will be started after the database container is running. Be aware that this is based on the time when service is initializing, so if database script initialization takes a long time, the database service may run later than the application service.
 
-With the volumes parameter we map a specific folder in the container to a named volume *db_databases* - this folder will contain the database data. We also define a network named *dsnet* with the bridge configuration and therefore both containers will be able to communicate with each other.
+With the *volumes* parameter we map a specific folder in the container to a named volume *db_databases* - this folder will contain the database data. We also define a network named *dsnet* with the bridge configuration and therefore both containers will be able to communicate with each other.
 
 To run the *docker-compose* configuration, run `docker-compose up` (for detached mode add parameter *-d* at the end). Both containers should be created and running - to verify, navigate to [http://localhost:8787](http://localhost:8787) and add some employees. Data should be persistent and stored into the database.
 
-To shut down the containers, press CTRL+C (or run `docker-compose down` if you started containers in a detached mode).
+To shutdown the containers, press CTRL+C (or run `docker-compose down` if you started containers in a detached mode).
 
 #### Image registries {#registries}
 
-We have already mentioned that there exist already prepared images, which can be retried from the public repositories. Repositories can be public or private. Two main public registries are [Docker Hub](https://docs.docker.com/docker-hub) and Docker Cloud. Docker Hub is the default registry where Docker looks for images. Docker clients connect to Docker repositories to download (*pull*) images for use or upload (*push*) images that they have built. 
+We have already mentioned that there exist prepared images, which can be retried from the public repositories. Repositories can be public or private. Two main public registries are [Docker Hub](https://docs.docker.com/docker-hub) and Docker Cloud. Docker Hub is the default registry where Docker looks for images. Docker clients connect to Docker repositories to download (*pull*) images for use or upload (*push*) images that they have built. 
 
 We have published the image of the first example in the repository *szitnik/docker-ds-app* ([link](https://hub.docker.com/r/szitnik/docker-ds-app)). You can pull the image (*docker pull* command) or run it directly with the command:
 
@@ -440,7 +440,7 @@ docker run -p 8787:8787 szitnik/docker-ds-app
 
 The functionality should be the same as with the image you created during this tutorial.
 
-To publish images to Docker Hub, you will need first to create account and then you will be able to publish your own images. Let's say that you still have built image from the first example, named *docker-app*. You can push it to the Docker Hub using the following commands:
+To publish images to Docker Hub, we first need to create and account. For example, we could take the built image *docker-app* from the first example and push it to the Docker Hub using the following commands:
 
 ```bash
 # Provide credentials and login
@@ -453,7 +453,7 @@ docker tag docker-app USERNAME/PUBLIC_IMAGE_NAME:TAG
 docker push USERNAME/PUBLIC_IMAGE_NAME:TAG
 ```
 
-If you do not define the tag, it will be *latest* by default. You can access your image via Web interface at *https://hub.docker.com/r/USERNAME/PUBLIC_IMAGE_NAME*, where you can also add description, instructions, publish the *Dockerfile* or connect its content to your Git repository. Now anybody can pull & run your image using the same procedure as we did above.
+If we do not define the tag, it will be *latest* by default. We can access our image via Web interface at *https://hub.docker.com/r/USERNAME/PUBLIC_IMAGE_NAME*, where we can also add a description, instructions, publish the *Dockerfile* or connect its content to your Git repository. Now anybody can pull & run our image using the above procedure.
 
 ## Further reading and references
 
@@ -467,12 +467,11 @@ If you do not define the tag, it will be *latest* by default. You can access you
 
 Data science students should work towards obtaining the knowledge and the skills that enable them to:
 
-* Use an existing Docker image.
-* Package and application consisting of multiple services into one or more containers and manage them.
-* Publish reproducive algorithms to Docker Hub.
-* Use and extend existing public Docker images.
+* Use and extend existing Docker image.
+* Package an application consisting of multiple services into one or more containers and manage them.
+* Publish reproducible algorithms to Docker Hub.
 
 ## Practice problems
 
 * Create a simple Python program or web application, write a Dockerfile to compile an image an publish it on Docker Hub. If you are more proficient with some other language, use a framework of your choice.
-* Write a service, which needs multiple servers deployed and run everything using docker compose. Dockerize your Introduction to Data Science project and publish it to Docke Hub. Add instructions of how to use your image.
+* Write a service which needs multiple servers deployed and run everything using Docker Compose. Dockerize your Introduction to Data Science project and publish it to Docker Hub. Add instructions of how to use your image.

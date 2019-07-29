@@ -75,7 +75,7 @@ To exit the environment, use `conda deactivate`. To show existing environments a
 
 ### Pure Python distribution installation
 
-You can also install a [pure Python distribution](https://www.python.org/downloads/) directly to your system from ????
+You can also install a pure Python distributiondirectly to your system from [the official Python Downloads web page](https://www.python.org/downloads/).
 
 To run Python, issue the `python` command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using `python3.5`). After running the command, you should see something similar to the following:
 
@@ -539,4 +539,4 @@ Data science students should work towards obtaining the knowledge and the skills
 1. Install Anaconda Python, run the [provided Jupyter notebook](data/01 - Python introduction.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additiona packages manually).
 2. Try different Python IDEs and form a personal opinion of their advantages and disadvantaged.
 3. Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras/tree/master/examples).
-4. ???? Load and manipulate some data
+4. Download [the CMU Seminar Announcements dataset](https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz) and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar anncouncement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.
