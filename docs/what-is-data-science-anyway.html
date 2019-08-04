@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>What is data science anyway? | Introduction to data science</title>
+  <meta name="description" content="Course notes">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="What is data science anyway? | Introduction to data science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
+  
+  <meta property="og:description" content="Course notes" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="What is data science anyway? | Introduction to data science" />
+  
+  <meta name="twitter:description" content="Course notes" />
+  
+
+<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
+
+
+<meta name="date" content="2019-08-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="python-programming-language.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to data science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a><ul>
+<li class="chapter" data-level="0.1" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html#label"><i class="fa fa-check"></i><b>0.1</b> The role of this course</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="python-programming-language.html"><a href="python-programming-language.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a><ul>
+<li class="chapter" data-level="1.1" data-path="python-programming-language.html"><a href="python-programming-language.html#basic-characteristics"><i class="fa fa-check"></i><b>1.1</b> Basic characteristics</a></li>
+<li class="chapter" data-level="1.2" data-path="python-programming-language.html"><a href="python-programming-language.html#why-python"><i class="fa fa-check"></i><b>1.2</b> Why Python?</a></li>
+<li class="chapter" data-level="1.3" data-path="python-programming-language.html"><a href="python-programming-language.html#setting-up-the-environment"><i class="fa fa-check"></i><b>1.3</b> Setting up the environment</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="python-programming-language.html"><a href="python-programming-language.html#anaconda-distribution-installation"><i class="fa fa-check"></i><b>1.3.1</b> Anaconda distribution installation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="python-programming-language.html"><a href="python-programming-language.html#pure-python-distribution-installation"><i class="fa fa-check"></i><b>1.3.2</b> Pure Python distribution installation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="python-programming-language.html"><a href="python-programming-language.html#installing-dependencies"><i class="fa fa-check"></i><b>1.4</b> Installing dependencies</a></li>
+<li class="chapter" data-level="1.5" data-path="python-programming-language.html"><a href="python-programming-language.html#jupyter-notebooks"><i class="fa fa-check"></i><b>1.5</b> Jupyter notebooks</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="python-programming-language.html"><a href="python-programming-language.html#running-a-jupyter-notebook"><i class="fa fa-check"></i><b>1.5.1</b> Running a Jupyter notebook</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="python-programming-language.html"><a href="python-programming-language.html#short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> Short introduction to Python</a><ul>
+<li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="1.6.1" data-path="python-programming-language.html"><a href="python-programming-language.html#control-flow-operations"><i class="fa fa-check"></i><b>1.6.1</b> Control flow operations</a></li>
+<li class="chapter" data-level="1.6.2" data-path="python-programming-language.html"><a href="python-programming-language.html#functions"><i class="fa fa-check"></i><b>1.6.2</b> Functions</a></li>
+<li class="chapter" data-level="1.6.3" data-path="python-programming-language.html"><a href="python-programming-language.html#classes-and-objects"><i class="fa fa-check"></i><b>1.6.3</b> Classes and objects</a></li>
+<li class="chapter" data-level="1.6.4" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ides-and-code-editors"><i class="fa fa-check"></i><b>1.6.4</b> Python IDE’s and code editors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ecosystem-for-data-science"><i class="fa fa-check"></i><b>1.7</b> Python ecosystem for Data Science</a></li>
+<li class="chapter" data-level="1.8" data-path="python-programming-language.html"><a href="python-programming-language.html#further-reading-and-references"><i class="fa fa-check"></i><b>1.8</b> Further reading and references</a></li>
+<li class="chapter" data-level="1.9" data-path="python-programming-language.html"><a href="python-programming-language.html#learning-outcomes"><i class="fa fa-check"></i><b>1.9</b> Learning outcomes</a></li>
+<li class="chapter" data-level="1.10" data-path="python-programming-language.html"><a href="python-programming-language.html#practice-problems"><i class="fa fa-check"></i><b>1.10</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="source-code-control.html"><a href="source-code-control.html"><i class="fa fa-check"></i><b>2</b> Source code control</a></li>
+<li class="chapter" data-level="3" data-path="docker-container-platform.html"><a href="docker-container-platform.html"><i class="fa fa-check"></i><b>3</b> Docker container platform</a><ul>
+<li class="chapter" data-level="3.1" data-path="docker-container-platform.html"><a href="docker-container-platform.html#why-docker"><i class="fa fa-check"></i><b>3.1</b> Why Docker?</a></li>
+<li class="chapter" data-level="3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#setting-up-the-environment-1"><i class="fa fa-check"></i><b>3.2</b> Setting up the environment</a></li>
+<li class="chapter" data-level="3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>3.3</b> Short introduction to Docker</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="docker-container-platform.html"><a href="docker-container-platform.html#basics-1"><i class="fa fa-check"></i><b>3.3.1</b> Basics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
+<li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems-1"><i class="fa fa-check"></i><b>3.6</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a></li>
+<li class="chapter" data-level="5" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>5</b> Dynamic reports and reproducibility</a></li>
+<li class="chapter" data-level="6" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html"><i class="fa fa-check"></i><b>6</b> Summarizing data - the basics</a><ul>
+<li class="chapter" data-level="6.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>6.1</b> Descriptive statistics for univariate distributions</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#central-tendency"><i class="fa fa-check"></i><b>6.1.1</b> Central tendency</a></li>
+<li class="chapter" data-level="6.1.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#dispersion"><i class="fa fa-check"></i><b>6.1.2</b> Dispersion</a></li>
+<li class="chapter" data-level="6.1.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>6.1.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="6.1.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#nominal-variables"><i class="fa fa-check"></i><b>6.1.4</b> Nominal variables</a></li>
+<li class="chapter" data-level="6.1.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>6.1.5</b> Testing the shape of a distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>6.2</b> Descriptive statistics for bivariate distributions</a></li>
+<li class="chapter" data-level="6.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>6.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="6.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#learning-outcomes-2"><i class="fa fa-check"></i><b>6.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="6.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#practice-problems-2"><i class="fa fa-check"></i><b>6.5</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a><ul>
+<li class="chapter" data-level="7.1" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>7.1</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="7.2" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#bar-plot"><i class="fa fa-check"></i><b>7.2</b> Bar plot</a></li>
+<li class="chapter" data-level="7.3" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#pie-chart"><i class="fa fa-check"></i><b>7.3</b> Pie chart</a></li>
+<li class="chapter" data-level="7.4" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#scatterplot"><i class="fa fa-check"></i><b>7.4</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.5" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#d-density-plot"><i class="fa fa-check"></i><b>7.5</b> 2D density plot</a></li>
+<li class="chapter" data-level="7.6" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#boxplot"><i class="fa fa-check"></i><b>7.6</b> Boxplot</a></li>
+<li class="chapter" data-level="7.7" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#violin-plot"><i class="fa fa-check"></i><b>7.7</b> Violin plot</a></li>
+<li class="chapter" data-level="7.8" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#correlogram"><i class="fa fa-check"></i><b>7.8</b> Correlogram</a></li>
+<li class="chapter" data-level="7.9" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>7.9</b> A comprehensive summary</a></li>
+<li class="chapter" data-level="7.10" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>7.10</b> Further reading and references</a></li>
+<li class="chapter" data-level="7.11" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#learning-outcomes-3"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
+<li class="chapter" data-level="7.12" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#practice-problems-3"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a><ul>
+<li class="chapter" data-level="8.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#factor-analysis-fa"><i class="fa fa-check"></i><b>8.2</b> Factor analysis (FA)</a></li>
+<li class="chapter" data-level="8.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.3</b> Multi-dimensional scaling (MDS)</a></li>
+<li class="chapter" data-level="8.4" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.4</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+<li class="chapter" data-level="8.5" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#clustering"><i class="fa fa-check"></i><b>8.5</b> Clustering</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#k-means-clustering"><i class="fa fa-check"></i><b>8.5.1</b> k-means clustering</a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.5.2</b> Determining the number of clusters</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.5.3</b> Agglomerative hierarchical clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#further-reading-and-references-4"><i class="fa fa-check"></i><b>8.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="8.7" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#learning-outcomes-4"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="8.8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#practice-problems-4"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a></li>
+<li class="chapter" data-level="10" data-path="predictive-modelling-introduction.html"><a href="predictive-modelling-introduction.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling - Introduction</a></li>
+<li class="chapter" data-level="11" data-path="predictive-modelling-learning-paradigms.html"><a href="predictive-modelling-learning-paradigms.html"><i class="fa fa-check"></i><b>11</b> Predictive modelling - Learning paradigms</a></li>
+<li class="chapter" data-level="12" data-path="predictive-modelling-feature-selection.html"><a href="predictive-modelling-feature-selection.html"><i class="fa fa-check"></i><b>12</b> Predictive modelling - Feature selection</a></li>
+<li class="chapter" data-level="13" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>13</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="13.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>13.1</b> The severity of the missing data problem</a></li>
+<li class="chapter" data-level="13.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>13.2</b> Visually exploring missingness</a></li>
+<li class="chapter" data-level="13.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>13.3</b> Deletion methods</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>13.3.1</b> Column deletion</a></li>
+<li class="chapter" data-level="13.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>13.3.2</b> Row deletion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>13.3.3</b> Pairwise deletion</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>13.4</b> Imputation methods</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>13.4.1</b> Single imputation with the mean</a></li>
+<li class="chapter" data-level="13.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>13.4.2</b> Single imputation with prediction</a></li>
+<li class="chapter" data-level="13.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>13.4.3</b> Multiple imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>13.5</b> Summary</a></li>
+<li class="chapter" data-level="13.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-5"><i class="fa fa-check"></i><b>13.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="13.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-5"><i class="fa fa-check"></i><b>13.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="13.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-5"><i class="fa fa-check"></i><b>13.8</b> Practice problems</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>      
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to data science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="what-is-data-science-anyway" class="section level1 unnumbered">
+<h1>What is data science anyway?</h1>
+<p>There is no generally accepted definition of what data science is. We would probably all agree that it is a relatively new term and that it is field that requires a mix of IT, analytics and soft skills.</p>
+<p>Our view is that data science is synonymous with empirical science and that this is a result of two major changes. First, the evolution of empirical science to a level that now requires a much broader skill set. And second, the evolution of business, industry and other non-scientific areas to a level where more and more processes require treatment at the level of empirical science.</p>
+<p>Examples of empirical science go back as far as recorded history itself. From censuses in ancient Egypt that were used to scale the pyramid labor force]() to <a href="https://en.wikipedia.org/wiki/Thales_of_Miletus">weather forecasting to profit from olive oil futures in ancient Greece</a>. Historically, even as little as 100 years ago, empirical science was much more difficult than it is today (not that it is not still very difficult if done properly). Data were recorded and manipulated by hand. If one was not an expert mathematician and well-equipped with logarithm and quantile tables, it was near-impossible to do even the most basic statistical analyses. And to spread the results, one would write their report and plot their graphs by hand.</p>
+<p>Over time, this skill set has evolved, with computers playing the leading role. Pens were replaced by typsetting software. Graphing paper was replaced by visualization packages. And logarithm tables were replaced by computer code. Indeed, a lot of the brain-intensive mathematics gave way to computationally intensive numerical approaches, both out of convenience and out of necessity. On the other hand, progress also brought new challenges and raised standards in data management, software development, reproducible research and visualization.</p>
+<p>The names that describe people with this skill set have also evolved. From scientist, empirical scientist, researcher, and statistician to more cool names, such as quantitative analyst, quant, predictive analyst, data miner, machine learning expert and now data scientist. Tomorrow, data science will probably be replaced by another even catchier term. But the core skills will remain the same: analytical thinking, attention to detail, communication and domain-specific knowledge. Mathematics and computation. Science.</p>
+<p>Like the skill set itself the demand for it has also always been present. And growing. To the point where we now live in an increasingly data-driven world: all empirical sciences, finance, marketing, sports training, politics, HR and medicine, to name just a few, rely on data. Today, the practical reality is that there is a big shortage of people with such skills or even just some of them. This is great opportunity for those considering to become data scientists, but also a challenge for educational institutions on how to best prepare students for a career in this data-driven world.</p>
+<div id="label" class="section level2">
+<h2><span class="header-section-number">0.1</span> The role of this course</h2>
+<p>This course aims at breadth not depth. The goal is to familiarize ourselves with all key ingredients of data science from a practitioners perspective. We will learn enough methods, techniques and tools to deal with the vast majority of data science scenarios we encounter in real life. However, only with practice and through more academic courses will we be able to develop a fundamental understanding of some of these methods and refine their use to a professional standard. That is, this course focuses on <em>doing</em>. With time, study, practice and through mistakes, we will learn how to <em>do better</em>.</p>
+<p>So what do we think are the key ingredients of a data science practitioner? The first and most important is <strong>computer programming</strong>. Data science requires data manipulation and computation that can not be done without a computer. Working with data also represents most of the workload in a typical data science scenario. And if we are not able to tell the computer exactly what to do, we can’t be a professional data scientist. So, it should come as no surprise that Chapter <a href="what-is-data-science-anyway.html#label">0.1</a> dedicated to the <strong>Python</strong> programming language. Python and R are the two most common languages in data science and we advocate that a professional data scientist should learn both. Python is the more versatile of the two and thus more suitable for an introductory course such as this one.</p>
+<p>Once we are able to do something, it becomes very important that we do it in a transparent and easily repeatable way. We put a lot of emphasis on <strong>reproducibility</strong> and the tools that help us achieve it. Why? First, because we need to be true to the word <strong>science</strong> in data science. If it is not clear how something was done, if some steps cannot be reproduced, then we cannot have confidence in the results and that is not science! And second, from a purely practical perspective, if our work is easily reproducible, we ourselves will have a much easier job of repeating our analyses on different data or with slightly modified methodology. What time we invest into reproducibility we will recieve 10-fold savings later on. We will cover <strong>source code control</strong> in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a>, <strong>Docker</strong> for portability in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a> and <strong>Jupyter notebooks</strong> and other <strong>dynamic reporting</strong> tools in Chapters <a href="what-is-data-science-anyway.html#label">0.1</a> and <a href="what-is-data-science-anyway.html#label">0.1</a>.</p>
+<p>In practice, data are in most cases not in tabular format and stored in a csv file. It is important to know how to <strong>retrieve and deal with less structured data</strong> and how to <strong>store data</strong> in a more systematic and efficent way. We will cover <strong>web scraping</strong> in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a> and <strong>relational databases</strong> and <strong>SQL</strong> in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a>.</p>
+<p>While most of the work is in getting, preprocessing and storing the data, most of the added value in data science is in extracting valuable information from data. First, we need to learn how to efficiently and effectively <strong>summarize data</strong> and do <strong>exploratory data analysis</strong>. In most cases, these techniques combined with some method of quantifying uncertainty in our summaries will be all that is required to successfully complete our analysis! This broad topic will be covered in three chapters: basic <strong>numerical summaries for univariate and bivariate data</strong> are covered in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a>, <strong>standard visualization techiques</strong> are covered in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a> and <strong>techniques for multivariate data</strong> are covered in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a>.</p>
+<p>What <strong>predictive modelling</strong>. This topic is also split into several parts: TODO, ONCE CHAPTERS ARE DONE???</p>
+<p>And finally, <strong>dealing with missing data</strong> - a very important topic and a topic that requires us to combine all the summarization, exploratory and predictive techniques - is covered in Chapter <a href="what-is-data-science-anyway.html#label">0.1</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="python-programming-language.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
