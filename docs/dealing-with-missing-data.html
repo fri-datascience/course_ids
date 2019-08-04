@@ -105,7 +105,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a><ul>
+<li class="chapter" data-level="0.1" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html#label"><i class="fa fa-check"></i><b>0.1</b> The role of this course</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="python-programming-language.html"><a href="python-programming-language.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a><ul>
 <li class="chapter" data-level="1.1" data-path="python-programming-language.html"><a href="python-programming-language.html#basic-characteristics"><i class="fa fa-check"></i><b>1.1</b> Basic characteristics</a></li>
 <li class="chapter" data-level="1.2" data-path="python-programming-language.html"><a href="python-programming-language.html#why-python"><i class="fa fa-check"></i><b>1.2</b> Why Python?</a></li>
@@ -373,14 +375,14 @@ tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09395</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.09895</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8486</code></pre>
+## X-squared = 1.4154, df = NA, p-value = 0.8461</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -399,7 +401,7 @@ tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04598</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.05547</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]
 tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]
 <span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</code></pre></div>
@@ -410,7 +412,7 @@ tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9445</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.953</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]
 tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]
 <span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</code></pre></div>
