@@ -8,19 +8,15 @@ rmd_files: [
   "02-Source_code_control.Rmd",
   "02a-Introduction_to_Docker.Rmd",
   "03-Web_scraping_for_data.Rmd",
+  "05-Dynamic_reports_and_reproducibility.Rmd",
   "Summarizing-data-01.Rmd",
   "Summarizing-data-02.Rmd",
-  "05-Dynamic_reports_and_reproducibility.Rmd",
-  "Missing-data.Rmd",
   "Summarizing-data-03.Rmd",
   "07-Relational_databases.Rmd",
   "PM-01.Rmd",
   "PM-02.Rmd",
   "PM-03.Rmd",
-  "09-Large_datasets_and_non-relational_databases.Rmd",
-  "10-Parallel_and_distributed_computing.Rmd",
-  "xx-Other_important_topics.Rmd",
-  "References.Rmd"]
+  "Missing-data.Rmd"]
 new_session: yes
 
 
