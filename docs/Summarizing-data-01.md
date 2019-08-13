@@ -303,7 +303,7 @@ chisq.test(x)
 ## 	Chi-squared test for given probabilities
 ## 
 ## data:  x
-## X-squared = 5.3, df = 5, p-value = 0.3804
+## X-squared = 3.8, df = 5, p-value = 0.5786
 ```
 
 So, with a 5% risk (95% confidence), we would reject the null hypothesis that our coin is fair, but only in the case with 40 samples. Because fair or close-to fair coins have high entropy, we typically require a lot of samples to distinguish between their underlying probabilities.

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Web scraping | Introduction to data science</title>
-  <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Course notes" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Web scraping | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="Course notes" />
   
 
-<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
+<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-04">
+<meta name="date" content="2019-08-12" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="docker-container-platform.html">
@@ -51,41 +50,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -145,7 +171,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems-1"><i class="fa fa-check"></i><b>3.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a></li>
+<li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a><ul>
+<li class="chapter" data-level="4.1" data-path="web-scraping.html"><a href="web-scraping.html#www-and-its-structure-basics"><i class="fa fa-check"></i><b>4.1</b> WWW and its structure basics</a></li>
+<li class="chapter" data-level="4.2" data-path="web-scraping.html"><a href="web-scraping.html#web-sites-organization"><i class="fa fa-check"></i><b>4.2</b> Web sites organization</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="web-scraping.html"><a href="web-scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.2.1</b> Modern web sites and JS frameworks</a></li>
+<li class="chapter" data-level="4.2.2" data-path="web-scraping.html"><a href="web-scraping.html#web-apis"><i class="fa fa-check"></i><b>4.2.2</b> Web APIs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="web-scraping.html"><a href="web-scraping.html#crawling-resources-and-policies"><i class="fa fa-check"></i><b>4.3</b> Crawling, resources and policies</a></li>
+<li class="chapter" data-level="4.4" data-path="web-scraping.html"><a href="web-scraping.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>4.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="4.5" data-path="web-scraping.html"><a href="web-scraping.html#learning-outcomes-2"><i class="fa fa-check"></i><b>4.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="4.6" data-path="web-scraping.html"><a href="web-scraping.html#practice-problems-2"><i class="fa fa-check"></i><b>4.6</b> Practice problems</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>5</b> Dynamic reports and reproducibility</a></li>
 <li class="chapter" data-level="6" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html"><i class="fa fa-check"></i><b>6</b> Summarizing data - the basics</a><ul>
 <li class="chapter" data-level="6.1" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>6.1</b> Descriptive statistics for univariate distributions</a><ul>
@@ -156,9 +192,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>6.1.5</b> Testing the shape of a distribution</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>6.2</b> Descriptive statistics for bivariate distributions</a></li>
-<li class="chapter" data-level="6.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>6.3</b> Further reading and references</a></li>
-<li class="chapter" data-level="6.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#learning-outcomes-2"><i class="fa fa-check"></i><b>6.4</b> Learning outcomes</a></li>
-<li class="chapter" data-level="6.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#practice-problems-2"><i class="fa fa-check"></i><b>6.5</b> Practice problems</a></li>
+<li class="chapter" data-level="6.3" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>6.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="6.4" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#learning-outcomes-3"><i class="fa fa-check"></i><b>6.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="6.5" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html#practice-problems-3"><i class="fa fa-check"></i><b>6.5</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a><ul>
 <li class="chapter" data-level="7.1" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>7.1</b> Histograms and density plots</a></li>
@@ -170,9 +206,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.7" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#violin-plot"><i class="fa fa-check"></i><b>7.7</b> Violin plot</a></li>
 <li class="chapter" data-level="7.8" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#correlogram"><i class="fa fa-check"></i><b>7.8</b> Correlogram</a></li>
 <li class="chapter" data-level="7.9" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>7.9</b> A comprehensive summary</a></li>
-<li class="chapter" data-level="7.10" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>7.10</b> Further reading and references</a></li>
-<li class="chapter" data-level="7.11" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#learning-outcomes-3"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
-<li class="chapter" data-level="7.12" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#practice-problems-3"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
+<li class="chapter" data-level="7.10" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#further-reading-and-references-4"><i class="fa fa-check"></i><b>7.10</b> Further reading and references</a></li>
+<li class="chapter" data-level="7.11" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#learning-outcomes-4"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
+<li class="chapter" data-level="7.12" data-path="summarizing-data-visualization.html"><a href="summarizing-data-visualization.html#practice-problems-4"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a><ul>
 <li class="chapter" data-level="8.1" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
@@ -184,11 +220,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.5.2" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.5.2</b> Determining the number of clusters</a></li>
 <li class="chapter" data-level="8.5.3" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.5.3</b> Agglomerative hierarchical clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#further-reading-and-references-4"><i class="fa fa-check"></i><b>8.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="8.7" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#learning-outcomes-4"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="8.8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#practice-problems-4"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
+<li class="chapter" data-level="8.6" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#further-reading-and-references-5"><i class="fa fa-check"></i><b>8.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="8.7" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#learning-outcomes-5"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="8.8" data-path="summarizing-data-multivariate-data.html"><a href="summarizing-data-multivariate-data.html#practice-problems-5"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a></li>
+<li class="chapter" data-level="9" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a><ul>
+<li class="chapter" data-level="9.1" data-path="relational-databases.html"><a href="relational-databases.html#introduction-to-sql"><i class="fa fa-check"></i><b>9.1</b> Introduction to SQL</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="relational-databases.html"><a href="relational-databases.html#data-definition-language"><i class="fa fa-check"></i><b>9.1.1</b> Data definition language</a></li>
+<li class="chapter" data-level="9.1.2" data-path="relational-databases.html"><a href="relational-databases.html#data-manipulation-language"><i class="fa fa-check"></i><b>9.1.2</b> Data manipulation language</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="relational-databases.html"><a href="relational-databases.html#sqlite"><i class="fa fa-check"></i><b>9.2</b> SQLite</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="relational-databases.html"><a href="relational-databases.html#environment-setup"><i class="fa fa-check"></i><b>9.2.1</b> Environment setup</a></li>
+<li class="chapter" data-level="9.2.2" data-path="relational-databases.html"><a href="relational-databases.html#sqlite-example"><i class="fa fa-check"></i><b>9.2.2</b> SQLite database usage</a></li>
+<li class="chapter" data-level="9.2.3" data-path="relational-databases.html"><a href="relational-databases.html#sqlite-in-python"><i class="fa fa-check"></i><b>9.2.3</b> SQLite in Python</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="relational-databases.html"><a href="relational-databases.html#postgresql"><i class="fa fa-check"></i><b>9.3</b> PostgreSQL</a></li>
+<li class="chapter" data-level="9.4" data-path="relational-databases.html"><a href="relational-databases.html#further-reading-and-references-6"><i class="fa fa-check"></i><b>9.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="9.5" data-path="relational-databases.html"><a href="relational-databases.html#learning-outcomes-6"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="9.6" data-path="relational-databases.html"><a href="relational-databases.html#practice-problems-6"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="predictive-modelling-introduction.html"><a href="predictive-modelling-introduction.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling - Introduction</a></li>
 <li class="chapter" data-level="11" data-path="predictive-modelling-learning-paradigms.html"><a href="predictive-modelling-learning-paradigms.html"><i class="fa fa-check"></i><b>11</b> Predictive modelling - Learning paradigms</a></li>
 <li class="chapter" data-level="12" data-path="predictive-modelling-feature-selection.html"><a href="predictive-modelling-feature-selection.html"><i class="fa fa-check"></i><b>12</b> Predictive modelling - Feature selection</a></li>
@@ -206,9 +256,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>13.4.3</b> Multiple imputation</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>13.5</b> Summary</a></li>
-<li class="chapter" data-level="13.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-5"><i class="fa fa-check"></i><b>13.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="13.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-5"><i class="fa fa-check"></i><b>13.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="13.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-5"><i class="fa fa-check"></i><b>13.8</b> Practice problems</a></li>
+<li class="chapter" data-level="13.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>13.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="13.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-7"><i class="fa fa-check"></i><b>13.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="13.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-7"><i class="fa fa-check"></i><b>13.8</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>      
@@ -231,9 +281,46 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="web-scraping" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Web scraping</h1>
-<p>Now let’s talk details.</p>
-<p>TODO: dodati branje podatkov iz JSON-a, XML-ja</p>
+<div id="www-and-its-structure-basics" class="section level2">
+<h2><span class="header-section-number">4.1</span> WWW and its structure basics</h2>
+</div>
+<div id="web-sites-organization" class="section level2">
+<h2><span class="header-section-number">4.2</span> Web sites organization</h2>
+<p>TODO: introduce scraping libraries</p>
+<div id="modern-web-sites-and-js-frameworks" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Modern web sites and JS frameworks</h3>
+<p>TODO: introduce JS rendering libraries</p>
+</div>
+<div id="web-apis" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Web APIs</h3>
+<p>TODO: introduce REST (SOAP)
+TODO: introduce JSON, XML reading</p>
+</div>
+</div>
+<div id="crawling-resources-and-policies" class="section level2">
+<h2><span class="header-section-number">4.3</span> Crawling, resources and policies</h2>
+<p>TODO: mention also automatic data extraction, data cleaning, integration, …</p>
+</div>
+<div id="further-reading-and-references-2" class="section level2">
+<h2><span class="header-section-number">4.4</span> Further reading and references</h2>
+<ul>
+<li>TODO</li>
+</ul>
+</div>
+<div id="learning-outcomes-2" class="section level2">
+<h2><span class="header-section-number">4.5</span> Learning outcomes</h2>
+<p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
+<ul>
+<li>TODO</li>
+</ul>
+</div>
+<div id="practice-problems-2" class="section level2">
+<h2><span class="header-section-number">4.6</span> Practice problems</h2>
+<ul>
+<li>TODO</li>
+</ul>
 
+</div>
 </div>
             </section>
 
@@ -291,7 +378,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
