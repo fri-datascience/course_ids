@@ -13,14 +13,14 @@ library(ggplot2)
 dat <- read.csv("./data/NBAplayers.csv")
 dat <- dat[complete.cases(dat),]
 dat$height <- dat$h_feet * 30.48 + dat$h_inches * 2.54 # in cm
-dat$weight <- dat$weight * 0.4536
+dat$weight <- dat$weight * 0.4536                      # in kg
 summary(dat)
 
 ```
 
 Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guideline for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!
 
-We'll illustrate this point with an example that features some common mistakes or inefficiencies people do when visualizing data. Our goal will be to summarize how the average height of NBA Centers, Forwards, and Guards that started that year has changed over time.
+We'll illustrate this point with an example that features some common mistakes or inefficiencies people do when visualizing data. Our goal will be to summarize how the average height of NBA Centers, Forwards, and Guards has changed over time. We'll focus on rookies - for each year we'll look at the players that started their NBA career that year.
 
 Let's plot the averages over time:
 
@@ -33,14 +33,17 @@ tmp <- dat[dat$position == "C",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. However, we should immediately recognize that plotting 3 things separately that could be plotted on the same plot wastes space. It also wastes the reader's time, having to jump back and forth from one plot to another. This also makes comparison of the time series very difficult. Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.
+The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. We should immediately recognize that we are wasting space by plotting each plot separately. We are also wasting the reader's time, having to jump back and forth from one plot to another when making comparisons. So, by plotting all three groups together, we save space and allow the reader to make inter-group comparisons more efficiently.
+
+Remember that how we present our results is how we treat our reader. These kind of plots say to the reader that our time and convenience are more important than theirs.
 
 Let's remedy this mistake:
 
 
 ```{r fig.width=7, fig.height=5}
 tmp <- dat[dat$position == "G",]
-plot(tapply(tmp$height, tmp$firstseason, mean), col = "green", ylim = c(180, 220))
+plot(tapply(tmp$height, tmp$firstseason, mean), col = "green", 
+     ylim = c(180, 220))
 tmp <- dat[dat$position == "F",]
 points(tapply(tmp$height, tmp$firstseason, mean), col = "red")
 tmp <- dat[dat$position == "C",]
@@ -55,7 +58,9 @@ However, there are several things that we can still improve on. The first will b
 library(reshape2)
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
-plot(tmp$year, tmp$height, col = tmp$position, xlab = "year", ylab = "average rookie height (cm)")
+plot(tmp$year, tmp$height, 
+     col = tmp$position, xlab = "year", 
+     ylab = "average rookie height (cm)")
 ```
 
 This is starting to look better. However, we should also include the legend - if we describe the meaning of the colors in the figure caption (or worse, in text), the reader will have to jump from text to figure, wasting time. Additionally, some people (and publications) prefer to add a title to their plot, explaining concisely what is in it, therefore making it more self containes. Others prefer to explain the plot in the caption. We'll add a title:
@@ -63,7 +68,8 @@ This is starting to look better. However, we should also include the legend - if
 ```{r fig.width=7, fig.height=5}
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
-plot(tmp$year, tmp$height, col = tmp$position, xlab = "year", ylab = "average rookie height (cm)")
+plot(tmp$year, tmp$height, col = tmp$position, 
+     xlab = "year", ylab = "average rookie height (cm)")
 legend(1997, 190, legend=c("centers", "forwards", "guards"),
        col=c("black", "red", "green"), lty = 1, cex=0.8)
 title("The average height of NBA rookies by playing position over time.")
@@ -76,18 +82,21 @@ tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
 ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + 
-  xlab("year") + ylab("average rookie height (cm)") + ggtitle("The average height of NBA rookies by playing position over time.") +
+  xlab("year") + ylab("average rookie height (cm)") + 
+  ggtitle("The average height of NBA rookies by playing position over time.") +
   theme_bw()
 ```
 
-By using ggplot2 we can make our visualizations look better, but it is also very convenient for adding some extra layers to our plots. For example, a smoothed line with standard errors to help us focus on the trend and not the individual data points:
+By using ggplot2 we can make our visualizations look better, but it is also very convenient for adding some extra layers to our plots. Additional layers are draw on top of eachother, in order. For example, let's add a smoothed line with standard errors to help us focus on the trend and not the individual data points:
 
 ```{r fig.width=7, fig.height=5}
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
-ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + geom_smooth(method = "loess") +
-  xlab("year") + ylab("average rookie height (cm)") + ggtitle("The average height of NBA rookies by playing position over time.") +
+ggplot(tmp, aes(x = year, y = height, colour = position)) + 
+  geom_point() + geom_smooth(method = "loess") +
+  xlab("year") + ylab("average rookie height (cm)") + 
+  ggtitle("The average height of NBA rookies by playing position over time.") +
   theme_bw()
 ```
 
@@ -97,15 +106,17 @@ There is one more thing that we can typically do in such cases - label the data 
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
-ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() + geom_smooth(method = "loess") +
-  xlab("year") + ylab("average rookie height (cm)") + ggtitle("The average height of NBA rookies by playing position over time.") +
+ggplot(tmp, aes(x = year, y = height, colour = position)) + 
+  geom_point(alpha = 0.5) + geom_smooth(method = "loess") +
+  xlab("year") + ylab("average rookie height (cm)") + 
+  ggtitle("The average height of NBA rookies by playing position over time.") +
   theme_bw() + theme(legend.position = "none") + 
    annotate("text", x = 1970, y = 212, label = "centers", colour = "red") +
   annotate("text", x = 1970, y = 203, label = "forwards", colour = "darkgreen") +
   annotate("text", x = 1970, y = 192, label = "guards", colour = "blue")
 ```
 
-We've equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). There is always something we can tweek and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.
+We've equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). We've also made the points transparent, to put more focus on the lines. There is always something we can tweek and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.
 
 ## Histograms and density plots
 
@@ -113,11 +124,12 @@ The most elementary way of summarizing data is to plot their density. Of course,
 
 In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most built-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.
 
-We illustrate these two plots by summarizing NBA player weight:
+We illustrate these two plots by summarizing the NBA players' weight:
 
 ```{r fig.width=4, fig.height=3,fig.cap = c("Histogram and density estimation of NBA player weight")}
 ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5, 
-                position="identity", binwidth = 7) + geom_density(lwd = 1, col = "black") + theme_bw()
+                position="identity", binwidth = 7) + 
+  geom_density(lwd = 1, col = "black") + theme_bw()
 
 ```
 
@@ -132,7 +144,8 @@ x <- table(tmp)
 x <- x[x >= 5]
 x <- sample(x, 10, rep = F)
 x <- sort(x)
-ggplot(data.frame(x), aes(x = tmp, y = Freq)) + geom_bar(stat = "identity") + coord_flip() +
+ggplot(data.frame(x), aes(x = tmp, y = Freq)) + 
+  geom_bar(stat = "identity") + coord_flip() +
   xlab("University") + ylab("number of players")
 
 ```
@@ -145,7 +158,8 @@ Pie charts are quite possibly the easiest chart type to work with, because there
 
 ```{r fig.width=7, fig.height=3,fig.cap = c("The relative frequencies of NBA players that came from these Universities.")}
 y <- x / sum(x)
-ggplot(data.frame(y), aes(x = "", y = Freq, fill = tmp)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + labs(fill = "University")
+ggplot(data.frame(y), aes(x = "", y = Freq, fill = tmp)) + 
+  geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + labs(fill = "University")
 
 ```
 
@@ -155,30 +169,36 @@ Angles can also play tricks on our eyes. Which color pie slice is the largest on
 
 ```{r fig.width=4, fig.height=4}
 y <- data.frame(Name = c("A", "B", "C"), Value = rep(1, 3))
-ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
+ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + 
+  geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
 
-ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=pi/3) + theme_bw() + theme(legend.position = "none")
+ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + 
+  geom_bar(width = 1, stat = "identity") + coord_polar("y", start=pi/3) + 
+  theme_bw() + theme(legend.position = "none")
 
 ```
+
 For more information on how people perceive visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland and McGill (see Further reading). Note that while a pie chart (the same applies to donut charts) is arguably a poor chart from a statistical graphics perspective, it is visually appealing and more engaging. That is, the pie chart still has merit as a techinque for visual presentation of information as witnessed by its widespread use.
 
 ## Scatterplot
 
 The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we've already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.
 
-```{r fig.width=7, fig.height=3,fig.cap = c("Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data)to reveal where we have more points.")}
+```{r fig.width=7, fig.height=3,fig.cap = c("Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data) to reveal where we have more points.")}
 
-ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3) + theme_bw() + facet_wrap(.~position)
+ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3, alpha = 0.3) + 
+  theme_bw() + facet_wrap(.~position)
 
 ```
 
 ## 2D density plot
 
-When individual points are of little interest and we just want to summarize the density of the joint distribution, a 2D density plot is a good alternative to the scatterplot.
+When individual points are of little interest and we just want to summarize the density of the joint distribution, a 2D density plot is a good alternative to the scatterplot:
 
 ```{r fig.width=4.2, fig.height=4, fig.cap = c("Relationship between player weight and height by player position.")}
 
-ggplot(dat, aes(x = height, y = weight, colour = position)) + geom_density_2d() + theme_bw() + 
+ggplot(dat, aes(x = height, y = weight, colour = position)) + 
+  geom_density_2d() + theme_bw() + 
   theme_bw() + theme(legend.position = "none") + 
   annotate("text", y = 90, x = 212, label = "centers", colour = "red") +
   annotate("text", y = 80, x = 203, label = "forwards", colour = "darkgreen") +
@@ -186,9 +206,14 @@ ggplot(dat, aes(x = height, y = weight, colour = position)) + geom_density_2d() 
 
 ```
 
+Density plots should be read as maps - the contours represent points of equal height (in our case, density). Where contour lines lie closer together, we have a steeper hill.
+
+Note that drawing a density plot from a point cloud requires some sort of density estimation or smoothing. Statistical graphics packages typically use non-parameteric smooting which has at least one relevant parameter with which we can control the amount of smoothing (for example, smoothing kernel width). The default or automatic selection of this parameter gives satisfactory results in most cases, but sometimes we can improve the plot by manually selecting the parameter value.
+
 ## Boxplot
 
-A boxplot is named by the boxes that typicaly summarize the quartiles of the data. Sometimes, whiskers are added to indicate outliers. It useful for quickly visually summarizing, side-by-side, several numerical variables or to summarize the relationship between a categorical/ordinal variable and a numerical variable. Here, we use it so summarize weight by playing position.
+The boxes (where the boxplot gets is name) typicaly summarize the quartiles of the data (1st, meadian and 3rd quartile). Sometimes, whiskers are used to represent the IQR (Inter-Quartile Range) and points beyond that range are plotted - the IQR is a common approach to defining what an outlier is.
+
 
 ```{r fig.width=4.2, fig.height=4, fig.cap = c("Summary of player weight by position.")}
 
@@ -198,11 +223,12 @@ ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_b
 
 ## Violin plot
 
-The boxplot shows only the quartiles so it can sometimes be misleading or hide information. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.
+The boxplot shows only the quartiles so it can sometimes hide relevant information and mislead us. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.
 
 ```{r fig.width=4.2, fig.height=4,fig.cap = c("Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.")}
 
-ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") + geom_boxplot(width = 0.05) + theme_bw()
+ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") + 
+  geom_boxplot(width = 0.05) + theme_bw()
 
 ```
 
@@ -228,13 +254,13 @@ pairs.panels(iris[,-5])
 
 ## Further reading and references
 
-* This book is a must-read for anyone that aspires to be a professional data analyst: Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.
+* This book is a must-read for anyone that aspires to be a professional data analyst: *Tufte, E. R. (2001). The visual display of quantitative information (Vol. 2). Cheshire, CT: Graphics press.*
 
-* To learn more about ggplot2, the go-to plotting library for R users, see: ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition.
+* To learn more about ggplot2, the go-to plotting library for R users, see: *ggplot2: Elegant Graphics for Data Analysis (Use R!) 1st ed. 2009. Corr. 3rd printing 2010 Edition.*
 
 * The go-to plotting library for Python users is [Matplotlib](https://matplotlib.org/gallery/index.html).
 
-* A great starting point for understanding human perception of graphical representations: Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods William S. Cleveland and Robert McGill Journal of the American Statistical Association Vol. 79, No. 387 (Sep., 1984), pp. 531-554.
+* A great starting point for understanding human perception of graphical representations: *Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. Journal of the American statistical association, 79(387), 531-554.*
 
 ## Learning outcomes
 
