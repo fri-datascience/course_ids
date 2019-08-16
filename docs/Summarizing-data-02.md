@@ -345,13 +345,6 @@ When we want to quickly inspect if there are any correlations between numerical 
 
 ```r
 library(ggcorrplot)
-```
-
-```
-## Warning: package 'ggcorrplot' was built under R version 3.5.3
-```
-
-```r
 corr <- round(cor(iris[,-5]),2)
 ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T)
 ```
@@ -368,10 +361,6 @@ Sometimes it will be useful to summarize the density/histogram of several numeri
 
 ```r
 library(psych)
-```
-
-```
-## Warning: package 'psych' was built under R version 3.5.3
 ```
 
 ```

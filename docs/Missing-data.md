@@ -75,13 +75,6 @@ If our dataset does not have too many variables, a visual summary such as this o
 
 ```r
 library(naniar)
-```
-
-```
-## Warning: package 'naniar' was built under R version 3.5.3
-```
-
-```r
 vis_miss(dat, warn_large_data = F)
 ```
 
@@ -91,13 +84,6 @@ Another useful visualization is the frequency of different patterns of missingne
 
 ```r
 library(UpSetR)
-```
-
-```
-## Warning: package 'UpSetR' was built under R version 3.5.3
-```
-
-```r
 gg_miss_upset(dat)
 ```
 
@@ -258,7 +244,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09895
+## X-squared = 4.6808, df = NA, p-value = 0.1019
 ```
 
 ```r
@@ -271,7 +257,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8461
+## X-squared = 1.4154, df = NA, p-value = 0.8516
 ```
 
 ```r
@@ -310,7 +296,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05547
+## X-squared = 5.8535, df = NA, p-value = 0.05247
 ```
 
 ```r
@@ -333,7 +319,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.953
+## X-squared = 0.72928, df = NA, p-value = 0.952
 ```
 
 ```r
@@ -520,10 +506,6 @@ library(mice)
 ```
 
 ```
-## Warning: package 'mice' was built under R version 3.5.3
-```
-
-```
 ## Loading required package: lattice
 ```
 
@@ -550,8 +532,10 @@ library(mice)
 ```
 
 ```r
+# Uncomment the lines below to generate tmp data first time
 #imputed_tmp <- mice(tmp, m = 50, seed = 0)
 #saveRDS(imputed_tmp, "./data/imputed_tmp.rds")
+
 imputed_tmp <- readRDS("./data/imputed_tmp.rds") # we load the precomputed data to save time
 ```
 
@@ -591,7 +575,7 @@ cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
 ```
 
 ```
-## 0.65 +/- 0.016
+## 0.64 +/- 0.016
 ```
 
 ```r
