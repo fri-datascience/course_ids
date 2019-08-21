@@ -4,6 +4,8 @@ Data summarization is the science and art of conveying information more effectiv
 
 In this chapter we focus on the basic techniques for univariate and bivariate data. Visualization and more advanced data summarization techniques will be covered in later chapters.
 
+We will be using R and ggplot2 but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!
+
 ## Descriptive statistics for univariate distributions
 
 We humans are not particularly good at thinking in multiple dimensions, so, in practice, there will be a tendency to look at individual variables and dimensions. That is, in practice, we will most of the time be summarizing univariate distributions.
@@ -26,9 +28,9 @@ The most common summaries of the location of a distribution are:
 
 Given a sample of data, the estimate of the mean is the easiest to compute (we compute the average), but the median and mode are more robust to outliers - extreme and possibly unrepresentative values.
 
-In the case of unimodal approximately symmetrical distributions, such as the univariate normal distribution, all these measures of central tendency will be similar and all will be an excellent summary of location. However, if the distribution is asymmetrical or skewed, they will differ. In such cases it is our job to determine what information we want to convey and which summary of central tendency is the most appropriate, if any. 
+In the case of unimodal approximately symmetrical distributions, such as the univariate normal distribution, all these measures of central tendency will be similar and all will be an excellent summary of location. However, if the distribution is asymmetrical (skewed), they will differ. In such cases it is our job to determine what information we want to convey and which summary of central tendency is the most appropriate, if any. 
 
-For example, observe the Gamma(1.5, 0.1) distribution and its mean (red), median (blue) and mode (green):
+For example, observe the Gamma(1.5, 0.1) distribution and its mean, median and mode:
 
 ```{r fig.width=4, fig.height=2.5}
 x <- seq(0, 50, 0.01)
@@ -38,9 +40,12 @@ y <- dgamma(x, a, b)
 
 library(ggplot2)
 ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
-  geom_vline(xintercept = (a-1) / b, colour = "green", lty = "dashed", lwd = 1.5) + 
-  geom_vline(xintercept = a / b, colour = "red", lty = "dashed", lwd = 1.5) + 
-  geom_vline(xintercept = qgamma(0.5, a, b), colour = "blue", lty = "dashed", lwd = 1.5)
+  geom_vline(xintercept = (a-1) / b, colour = "orange", lty = "dashed") + 
+  geom_vline(xintercept = a / b, colour = "red", lty = "dashed") + 
+  geom_vline(xintercept = qgamma(0.5, a, b), colour = "blue", lty = "dashed") +
+  annotate(geom = "text", x = (a-1) / b - 1.7, y = 0.01, colour = "orange", label = "mode", angle = 90) +
+  annotate(geom = "text", x = a / b - 1.7, y = 0.01, colour = "red", label = "mean", angle = 90) +
+  annotate(geom = "text", qgamma(0.5, a, b) - 1.7, y = 0.01, colour = "blue", label = "median", angle = 90)
 ```
 
 In the case of multi-modal distributions, no single measure of central tendency will adequately summarize the distribution - they will all be misleading. For example, look at this bimodal distribution:
@@ -48,11 +53,16 @@ In the case of multi-modal distributions, no single measure of central tendency 
 ```{r fig.width=4, fig.height=2.5}
 x <- seq(-10, 20, 0.01)
 y <- 0.6 * dnorm(x, 2, 1) + 0.4 * dnorm(x, 12, 2)
+z <- c(rnorm(600, 2, 1), rnorm(400, 12, 2)) # approximating the median
 
 library(ggplot2)
 ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
-    geom_vline(xintercept = 0.6* 2 + 0.4 * 15, colour = "red", lty = "dashed", lwd = 1.5) +
-   geom_vline(xintercept = 2, colour = "green", lty = "dashed", lwd = 1.5)
+  geom_vline(xintercept = 0.6* 2 + 0.4 * 15, colour = "red", lty = "dashed") +
+  geom_vline(xintercept = 2, colour = "orange", lty = "dashed") +
+  geom_vline(xintercept = median(z), colour = "blue", lty = "dashed") +
+  annotate(geom = "text", x = 2 - 1, y = 0.025, colour = "orange", label = "mode", angle = 90) +
+  annotate(geom = "text", x = 0.6* 2 + 0.4 * 15 - 1, y = 0.025, colour = "red", label = "mean", angle = 90) +
+  annotate(geom = "text", x = median(z) + 0.5, y = 0.025, colour = "blue", label = "median", angle = 90)
 ```
 
 ### Dispersion
@@ -67,7 +77,7 @@ The most common ways of measuring such dispersion (or spread or scale) of a dist
 
 Standard deviation is the most commonly used and median absolute deviation is more robust to outliers.
 
-Again, in the case of distributions that are approximately normal, the standard deviation and the mean will be the practically optimal choice for summarization, because they correspond directly to the two parameters of the normal distribution. That is, they completely summarize the distribution without loss of information. We also know that approximately 95% (99%) of the normal density lies within 2 (3) standard deviations from the mean. Standard deviation is useful even if the distribution is not approximately normal as it does provide some information, combined with the sample size (producing the standard error), on how certain we can be in our estimate of the mean.
+In the case of distributions that are approximately normal, the mean and standard deviation will be the optimal choice for summarization, because they correspond directly to the two parameters of the normal distribution. That is, they completely summarize the distribution without loss of information. We also know that approximately 95% (99%) of the normal density lies within 2 (3) standard deviations from the mean. Standard deviation is useful even if the distribution is not approximately normal as it does provide some information, combined with the sample size (producing the standard error), on how certain we can be in our estimate of the mean.
 
 But, as before, the more we deviate from normality, the less meaningful standard deviation becomes and it makes more sense to use quantile-based intervals. For example, if we estimate the mean and $\pm$ 2 standard deviations for samples from the Gamma distribution from before, we get the following:
 
@@ -146,7 +156,7 @@ Note that entropy can easily be calculated for any discrete random variable. Ent
 
 Often we want to check if the distribution that underlies our data has the shape of some hypothesized distribution (for example, the normal distribution) or if two samples come from the same distribution.
 
-Here, we will present two of the most common methods used: the **Kolmogorov-Smirnov** test and the ***Chi-squared goodness-of-fit** test. Both of these are Null-hypothesis significance tests (NHST), so, before we proceed, be aware of two things. First, do not use NHST blindly, without a good understanding of their properties and how to interpret their results. And second, if you are more comfortable with thinking in terms of probabilities of hypotheses as opposed to significance and p-values, there always exist Bayesian alternatives to NHST.
+Here, we will present two of the most common methods used: the **Kolmogorov-Smirnov** test and the **Chi-squared goodness-of-fit** test. Both of these are Null-hypothesis significance tests (NHST), so, before we proceed, be aware of two things. First, do not use NHST blindly, without a good understanding of their properties and how to interpret their results. And second, if you are more comfortable with thinking in terms of probabilities of hypotheses as opposed to significance and p-values, there always exist Bayesian alternatives to NHST.
 
 The **Kolmogorov-Smirnov test** (KS) is a non-parametric test for testing the equality of two cumulative distribution functions (CDF). These can be two empirical CDFs or an empirical CDF and a theoretical CDF. The KS test statistic is the maximum distance between the two corresponding CDFs. That is, we compute the distribution of this statistic under the null-hypothesis that the CDFs are the same and then observe how extreme the maximum distance is on the sample.
 
@@ -161,7 +171,7 @@ ks.test(x2, y = "pnorm", 0, 1)
 ks.test(x1, x2)
 ```
 
-So, with a 5% risk (95% confidence), we would reject the null hypothesis that our sample x1 is from a standard normal distribution. On the other hand, we would not reject that our sample x1 is from a standard normal distribution. Finally, we would not reject the null hypothesis that x1 and x2 come from the same distribution. The only guarantee that comes with these results is that we will in the long run falsely reject a true null-hypothesis at most 5% of the time. It says very little about our overall performance, because we do not know the ratio of cases when the null-hypothesis will be true.
+So, with a 5% confidence level (95% confidence), we would reject the null hypothesis that our sample x1 is from a standard normal distribution. On the other hand, we would not reject that our sample x2 is from a standard normal distribution. Finally, we would not reject the null hypothesis that x1 and x2 come from the same distribution. The only guarantee that comes with these results is that we will in the long run falsely reject a true null-hypothesis at most 5% of the time. It says very little about our overall performance, because we do not know the ratio of cases when the null-hypothesis will be true.
 
 This example also illustrates the complexity of interpreting NHST results or rather all the tempting traps laid out for us - we might be tempted to conclude, based on the high p-value, that x2 does indeed come from a standard normal, but that then leads us to a weird predicament that we are willing to claim that x1 is not standard normal, x2 is standard normal, but we are less sure that x1 and x2 have different underlying distributions.
 
@@ -182,17 +192,20 @@ We illustrate the CHISQ test by testing the samples for a biased coin against a 
 ```{r}
 set.seed(0)
 x <- table(sample(0:1, 30, rep = T, prob = c(0.7, 0.3)))
+x
 chisq.test(x, p = c(0.5, 0.5)) # the default is to compare with uniform theoretical, but we make it explicit here
 
 x <- table(sample(0:1, 40, rep = T, prob = c(0.7, 0.3)))
+x
 chisq.test(x, p = c(0.5, 0.5))
 
 x <- table(sample(1:6, 40, rep = T))
+x
 chisq.test(x)
 
 ```
 
-So, with a 5% risk (95% confidence), we would reject the null hypothesis that our coin is fair, but only in the case with 40 samples. Because fair or close-to fair coins have high entropy, we typically require a lot of samples to distinguish between their underlying probabilities.
+So, with a 5% significance level (95% confidence), we would reject the null hypothesis that our coin is fair, but only in the case with 40 samples. Because fair or close-to fair coins have high entropy, we typically require a lot of samples to distinguish between their underlying probabilities. We would not reject the null-hypothesis that the die is fair.
 
 For a more real-world example, let us take the exit-poll data for the 2016 US Presidential election, broken down by gender, taken from [here](https://edition.cnn.com/election/2016/results/exit-polls):
 
@@ -228,7 +241,7 @@ When dealing with a joint distribution of two variables (that is, paired samples
 
 The most commonly used numerical summary of dependence is the **Pearson correlation coefficient** or Pearson's $\rho$. It summarizes the linear dependence, with $\rho = 1$ and $\rho = - 1$ indicating perfect colinearity (increasing or decreasing) and $\rho = 0$ indicating linear independence. As such, Pearson's $\rho$ is directly related (the squared root) to the coefficient of determination $R^2$, a goodness-of-fit measure for linear models and the proportion of variance in one explained by the other variable. An important consideration is that the statement that linear independence implies independence is not true in general (the converse implication is). One notable exception where this implication is true is the multivariate Normal distribution, where the dependence structure is expressed through linear dependence only.
 
-Two of the most popular alternatives to Pearson's $\rho$ are Spearman's $\rho$ and Kendalls $\tau$. The former measures the degree to which one variable can be expressed as monotonic function of the other. The latter measures the proportion of concordant pairs among all possible pairs (pairs (x1,y1) and (x2, y2), wher if x1 > x2 then y1 > y2). As such, they can capture non-linear dependence and is more appropriate for data with outliers or data where distance might have no meaning, such as ordinal data. Spearman's $\rho$ and Kendall's $\tau$ are more robust but do not have as clear an interpretation as Pearson's $\rho$. Kendall's tau is also computationally more expensive.
+Two of the most popular alternatives to Pearson's $\rho$ are Spearman's $\rho$ and Kendalls $\tau$. The former measures the degree to which one variable can be expressed as monotonic function of the other. The latter measures the proportion of concordant pairs among all possible pairs (pairs (x1,y1) and (x2, y2), where if x1 > x2 then y1 > y2). As such, they can capture non-linear dependence and are more appropriate for data with outliers or data where distance might have no meaning, such as ordinal data. Spearman's $\rho$ and Kendall's $\tau$ are more robust but do not have as clear an interpretation as Pearson's $\rho$. Kendall's tau is also computationally more expensive.
 
 Below are a few examples of bivariate samples that illustrate the strengths and limitations of the above correlation coefficients:
 
@@ -280,12 +293,12 @@ dat <- rbind(dat, data.frame(x = x[,1], y = x[,2], example = txt))
 ggplot(dat, aes(x = x, y = y)) + geom_point() + facet_wrap(.~example, ncol = 3, scales = "free")
 ```
 
-Like similar questions about other parameters of interest, the question *Is <insert number here> a strong correlation?* is a practical question. Unless the correlation is 0 (no correlation) or 1/-1 (perfectly correlated, can't be more correlated than this), the meaning of the magnitude of correlation depends on the practical setting and its interpretation depends on some reference level. Even a very low correlation, such as 0.001 (if we are reasonably sure that it is around 0.001) can be practically meaningful. For example, if it is correlation between the even and odd numbers generated by a uniform random number generator (RNG), that would be more than enough correlation to stop using this RNG. 
+Like similar questions about other parameters of interest, the question *Is <insert number here> a strong correlation?* is a practical question. Unless the correlation is 0 (no correlation) or 1/-1 (perfectly correlated, can't be more correlated than this), the meaning of the magnitude of correlation depends on the practical setting and its interpretation depends on some reference level. Even a very low correlation, such as 0.001 (if we are reasonably sure that it is around 0.001) can be practically meaningful. For example, if it is correlation between neighboring numbers in sequences generated by a uniform random number generator (RNG), that would be more than enough correlation to stop using this RNG. 
 
 ## Further reading and references
 
-* For a more comprehensive treatment of the most commonly used summarization techniques see: Holcomb, Z. C. (2016). Fundamentals of descriptive statistics. Routledge.
-* More on the practice of summarization techniques and hypothesis testing: Bruce, P., & Bruce, A. (2017). Practical statistics for data scientists: 50 essential concepts. " O'Reilly Media, Inc.". *(Chapters 1 and 3)*
+* For a more comprehensive treatment of the most commonly used summarization techniques see: *Holcomb, Z. C. (2016). Fundamentals of descriptive statistics. Routledge.*
+* More on the practice of summarization techniques and hypothesis testing: *Bruce, P., & Bruce, A. (2017). Practical statistics for data scientists: 50 essential concepts. " O'Reilly Media, Inc.".* *(Chapters 1 and 3)*
 
 
 ## Learning outcomes

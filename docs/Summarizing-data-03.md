@@ -132,6 +132,13 @@ dat <- scale(dat)
 res <- factanal(dat, factors = 2)
 
 library(psych)
+```
+
+```
+## Warning: package 'psych' was built under R version 3.5.3
+```
+
+```r
 library(GPArotation)
 res <- fa(dat, nfactors =  2, rotate = "varimax")
 biplot(res)
@@ -278,6 +285,13 @@ t-SNE on the other hand projects the data manifold into 2 dimensions, which prod
 
 ```r
 library(Rtsne)
+```
+
+```
+## Warning: package 'Rtsne' was built under R version 3.5.3
+```
+
+```r
 set.seed(321)
 res <- Rtsne(dataset[,1:3], perplexity = 50)
 plot(res$Y, col = dataset[,4], xlab = "t-SNE1", ylab = "t-SNE2")
@@ -327,25 +341,25 @@ print(res$cluster)
 
 ```
 ##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville 
-##            2            1            1            2            2 
+##            1            2            2            1            1 
 ##   Porrentruy        Broye        Glane      Gruyere       Sarine 
-##            1            1            1            1            1 
+##            2            2            2            2            2 
 ##      Veveyse        Aigle      Aubonne     Avenches     Cossonay 
-##            1            2            2            2            2 
+##            2            1            1            1            1 
 ##    Echallens     Grandson     Lausanne    La Vallee       Lavaux 
-##            2            2            2            2            2 
-##       Morges       Moudon        Nyone         Orbe         Oron 
-##            2            2            2            2            2 
-##      Payerne Paysd'enhaut        Rolle        Vevey      Yverdon 
-##            2            2            2            2            2 
-##      Conthey    Entremont       Herens     Martigwy      Monthey 
 ##            1            1            1            1            1 
-##   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
-##            1            1            1            2            2 
-##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve 
+##       Morges       Moudon        Nyone         Orbe         Oron 
+##            1            1            1            1            1 
+##      Payerne Paysd'enhaut        Rolle        Vevey      Yverdon 
+##            1            1            1            1            1 
+##      Conthey    Entremont       Herens     Martigwy      Monthey 
 ##            2            2            2            2            2 
+##   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
+##            2            2            2            1            1 
+##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve 
+##            1            1            1            1            1 
 ##  Rive Droite  Rive Gauche 
-##            2            2
+##            1            1
 ```
 
 Unless we understand the meaning of the observations (in this case, province names), cluster assignments carry little information. This is similar to latent factors - unless we have some domain specific knowledge, we will not be able to interpret the meaning of the clusters. In fact, clustering is only a special case of latent modeling. Instead of a set of numerical factors we have one factor that explains the data - the cluster assignment.
@@ -355,6 +369,10 @@ To gain more insight, we can plot the clusters. This is typically done with some
 
 ```r
 library(factoextra)
+```
+
+```
+## Warning: package 'factoextra' was built under R version 3.5.3
 ```
 
 ```
@@ -436,8 +454,8 @@ si
 ```
 
 ```
-##  [1] 0.0000000 0.6284002 0.5368920 0.4406436 0.4495773 0.4056314 0.3703828
-##  [8] 0.3806726 0.3447439 0.3502419
+##  [1] 0.0000000 0.6284002 0.5368920 0.4406436 0.4341318 0.4089358 0.4146117
+##  [8] 0.3922444 0.3738533 0.3278620
 ```
 In this case the Silhouette technique leads to the same conclusion - k = 2 is the best choice for the number of clusters.
 
@@ -508,22 +526,22 @@ rbind(hk2, km2)
 ```
 ##     Courtelary Delemont Franches-Mnt Moutier Neuveville Porrentruy Broye
 ## hk2          1        2            2       1          1          2     2
-## km2          1        3            3       2          2          3     3
+## km2          3        1            1       3          3          1     1
 ##     Glane Gruyere Sarine Veveyse Aigle Aubonne Avenches Cossonay Echallens
 ## hk2     2       2      2       2     1       1        1        1         1
-## km2     3       3      3       3     2       2        2        2         2
+## km2     1       1      1       1     3       3        3        3         3
 ##     Grandson Lausanne La Vallee Lavaux Morges Moudon Nyone Orbe Oron
 ## hk2        1        1         1      1      1      1     1    1    1
-## km2        2        1         1      2      2      2     2    2    2
+## km2        3        3         3      3      3      3     3    3    3
 ##     Payerne Paysd'enhaut Rolle Vevey Yverdon Conthey Entremont Herens
 ## hk2       1            1     1     1       1       2         2      2
-## km2       2            2     2     1       2       3         3      3
+## km2       3            3     3     3       3       2         2      2
 ##     Martigwy Monthey St Maurice Sierre Sion Boudry La Chauxdfnd Le Locle
 ## hk2        2       2          2      2    2      1            1        1
-## km2        3       3          3      3    3      2            1        1
+## km2        2       1          2      2    1      3            3        3
 ##     Neuchatel Val de Ruz ValdeTravers V. De Geneve Rive Droite Rive Gauche
 ## hk2         1          1            1            3           3           3
-## km2         1          2            1            1           1           1
+## km2         3          3            3            3           3           3
 ```
 
 When comparing different clusterings of the same data, we must keep in mind that a clustering is invariant to relabelling. That is, the cluster label or number has no meaning - a clusters meaning is determined by the observations in that cluster. This is anoter case of the invariance to rotation problem with FA that is common to all latent models.
@@ -545,7 +563,7 @@ round(rand_idx, 2)
 ```
 
 ```
-## [1] 0.83
+## [1] 0.87
 ```
 
 By definition, the Rand index is between 0 and 1.
