@@ -6,6 +6,8 @@ In all of our data analyses so far we implicitly assumed that we don't have any 
 
 If we judge by the imputation or data removing methods that are most commonly used in practice, we might conclude that missing data is a relatively simple problem that is secondary to the inference, predictive modelling, etc. that are the primary goal of our analysis. Unfortunately, that is not the case. Dealing with missing values is very challenging, often in itself a modelling problem.
 
+### Three classes of missingness {-}
+
 The choice of an appropriate method is inseparable from our understanding of or assumptions about the process that generated the missing values (the *missingness mechanism*). Based on the characteristics of this process we typically characterize the missing data problem as one of these three cases:  
 
 a. **MCAR** (Missing Completely At Random): Whether or not a value is missing is independent of both the observed values and the missing (unobserved) values. For example, if we had temperature measuring devices at different locations and they occassionally and random intervals stopped working. Or, in surveys, where respondents don't respond with a certain probability, independent of the characteristics that we are surveying.
@@ -14,17 +16,44 @@ b. **MAR** (Missing At Random): Whether or not a value is missing is independent
 
 c. **MNAR** (Missing Not At Random): Whether or not a value is missing also depends on the missing (unobserved) values in a way that can't be explained by the observed values. That is, there is a pattern to how the values are missing, but we wouldn't be able to fully explain it without observing the values that are missing. For example, if our temperature measuring device had a tendency to stop working when the temperature is very low. Or, in surveys, if a person was less likely to report their salary if their salary was high.
 
+### Determining the missingness mechanism {-}
+
 Every variable in our data might have a different missingness mechanism. So, how do we determine whether it is MCAR, MAR, or MNAR?
 
 Showing with a reasonable degree of certainty that the mechanism is not MCAR is equivalent to showing that the missingness (whether or not a value is missing) can be predicted from observed values. That is, it is a prediction problem and it is sufficient to show *one way* that missingness can be predicted. On the other hand, it is infeasible to show that the mechanism is MCAR, because that would require us to show that there is *no way* of predicting missingness from observed values. We can, however, rule out certain kinds of dependency (for example, linear dependency).
 
-For MNAR, the situation is even worse. In general, it is impossible to determine the relationship between missingness and the value that is missing, because we don't know what is missing. That is, unless we are able to somehow measure the values that are missing, we won't be able to determine whether or not the missingness regime is MNAR. Getting our hands on the missing values is rarely possible.
+For MNAR, the situation is even worse. In general, it is impossible to determine from the data the relationship between missingness and the value that is missing, because we don't know what is missing. That is, unless we are able to somehow measure the values that are missing, we won't be able to determine whether or not the missingness regime is MNAR. Getting our hands on the missing values, however, is in most cases impossible or infeasible.
 
-To summarize, we'll often be able to show that our missingness regime is not MCAR and never that it is MCAR. Subsequently, we'll often know that the missingness regime is at least MAR, but we'll rarely be able to determine whether it is MAR or MNAR, unless we can get our hands on the missing data.
+To summarize, we'll often be able to show that our missingness regime is not MCAR and never that it is MCAR. Subsequently, we'll often know that the missingness regime is at least MAR, but we'll rarely be able to determine whether it is MAR or MNAR, unless we can get our hands on the missing data. Therefore, it becomes very important to utilize not only data but also domain-specific background knowledge, when applicable. In particular, known relationships between the variables in our data and what caused the values to be missing.
+
+### Causes for missing data {-}
+
+Understanding the cause for missing data can often help us identify the missingness mechanism and avoid introducing a bias. In general, we can split the causes into two classes: *intentional* or *unintentional*. 
+
+Intentionally or systematically missing data are missing by design. For example:
+
+* patients that did not experience pain were not asked to rate their pain,
+* a patient that has not been discharged from the hospital doesn't have a 'days spent in hospital care' data point (although we can infer a lower bound from the day of arrival) and
+* a particular prediction algorithm's performance was measured on datasets with fewer than 100 variables, due to its time complexity and
+* some measurements were not made because it was too costly to make all of them.
+
+Unintentionally missing data were not planned. For example:
+
+* data missing due to measurement error,
+* a subject skipping a survey question, 
+* a patient prematurely dropping out of a study
+
+and other reasons not planned by and outside the control of the data collector.
+
+There is no general rule and further conclusions can only be made on a case-by-case basis, using domain specific knowledge. Measurement error can range from completly random to completely not-at-random, such a temperature sensor breaking down at high temperatures. Subjects typically do not drop out of studies at random, but that is also a possiblity. When not all measurements are made to reduce cost, they are often omitted completely at random, but sometimes a different design is used.
+
+### Introducing bias {-}
 
 The discussion in this section is very relevant for the remainder of this chapter. It will help us understand the limitations of the methods for dealing with missing data and the consequences of making the wrong choice.
 
-We will discuss two of the most common types of methods - deletion methods and imputation methods. Both types of methods can introduce a bias to our data. That is, they can result in data that are no longer a completely representative (simple random) sample from the process that generated the data and that is the focus of our analysis. Note that the extent of the bias depends the amount of missingness and the strength of the dependencies, so there is no general rule. We must deal with each situation individually
+We will discuss two of the most common types of methods - deletion methods and imputation methods. Both types of methods can introduce a bias into our data. That is, they can result in data that are no longer a completely representative (simple random) sample from the process that generated the data and that is the focus of our analysis. This can have an adverse effect on our analysis, regardless of whether we are doing inference, clustering or prediction.
+
+Note that the extent of the bias depends the amount of missingness and the strength of the dependencies, so there is no general rule. Again, we must deal with such problems on a case-by-case basis.
 
 ## Visually exploring missingness
 
@@ -258,7 +287,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.08946
+## X-squared = 4.6808, df = NA, p-value = 0.09145
 ```
 
 ```r
@@ -271,7 +300,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8541
+## X-squared = 1.4154, df = NA, p-value = 0.8531
 ```
 
 ```r
@@ -310,7 +339,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04748
+## X-squared = 5.8535, df = NA, p-value = 0.06247
 ```
 
 ```r
@@ -333,7 +362,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.946
+## X-squared = 0.72928, df = NA, p-value = 0.953
 ```
 
 ```r
@@ -612,9 +641,13 @@ Note that in this chapter we focused on standard tabular data. There are many ot
 
 * A gentle introduction from a practitioners perspective: Blankers, M., Koeter, M. W., & Schippers, G. M. (2010). Missing data approaches in eHealth research: simulation study and a tutorial for nonmathematically inclined researchers. Journal of medical Internet research, 12(5), e54.
 
-* A great book on basic and some advance techniques: Allison, P. D. (2001). Missing data (Vol. 136). Sage publications.
+* A great book on basic and some advance techniques: *Allison, P. D. (2001). Missing data (Vol. 136). Sage publications.*
+
+* Another great book with many examples and case-studies: *Van Buuren, S. (2018). Flexible imputation of missing data. Chapman and Hall/CRC.*
 
 * Understanding multiple imputation with chained equations (in R): Buuren, S. V., & Groothuis-Oudshoorn, K. (2010). mice: Multivariate imputation by chained equations in R. Journal of statistical software, 1-68.
+
+* When doing missing data value handling and prediction separately, we should be aware that certain types of prediction models might work better with certain methods for handling missing values. A paper that illustrate this: *Yadav, M. L., & Roychoudhury, B. (2018). Handling missing values: A study of popular imputation packages in R. Knowledge-Based Systems, 160, 104-118.*
 
 ## Learning outcomes
 
