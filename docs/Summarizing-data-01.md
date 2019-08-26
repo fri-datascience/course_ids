@@ -331,7 +331,7 @@ x
 ```
 ## 
 ##  1  2  3  4  5  6 
-##  4  6 11  4  7  8
+##  7  3  6  7  7 10
 ```
 
 ```r
@@ -343,7 +343,7 @@ chisq.test(x)
 ## 	Chi-squared test for given probabilities
 ## 
 ## data:  x
-## X-squared = 5.3, df = 5, p-value = 0.3804
+## X-squared = 3.8, df = 5, p-value = 0.5786
 ```
 
 So, with a 5% significance level (95% confidence), we would reject the null hypothesis that our coin is fair, but only in the case with 40 samples. Because fair or close-to fair coins have high entropy, we typically require a lot of samples to distinguish between their underlying probabilities. We would not reject the null-hypothesis that the die is fair.

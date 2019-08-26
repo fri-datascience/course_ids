@@ -104,13 +104,6 @@ If our dataset does not have too many variables, a visual summary such as this o
 
 ```r
 library(naniar)
-```
-
-```
-## Warning: package 'naniar' was built under R version 3.5.3
-```
-
-```r
 vis_miss(dat, warn_large_data = F)
 ```
 
@@ -120,13 +113,6 @@ Another useful visualization is the frequency of different patterns of missingne
 
 ```r
 library(UpSetR)
-```
-
-```
-## Warning: package 'UpSetR' was built under R version 3.5.3
-```
-
-```r
 gg_miss_upset(dat)
 ```
 
@@ -287,7 +273,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09145
+## X-squared = 4.6808, df = NA, p-value = 0.08396
 ```
 
 ```r
@@ -300,7 +286,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8531
+## X-squared = 1.4154, df = NA, p-value = 0.8501
 ```
 
 ```r
@@ -339,7 +325,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.06247
+## X-squared = 5.8535, df = NA, p-value = 0.04798
 ```
 
 ```r
@@ -362,7 +348,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.953
+## X-squared = 0.72928, df = NA, p-value = 0.9435
 ```
 
 ```r
@@ -549,10 +535,6 @@ library(mice)
 ```
 
 ```
-## Warning: package 'mice' was built under R version 3.5.3
-```
-
-```
 ## Loading required package: lattice
 ```
 
@@ -622,7 +604,7 @@ cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
 ```
 
 ```
-## 0.65 +/- 0.016
+## 0.64 +/- 0.016
 ```
 
 ```r
