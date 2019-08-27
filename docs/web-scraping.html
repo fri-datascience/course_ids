@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-26" />
+<meta name="date" content="2019-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,10 +179,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.3" data-path="web-scraping.html"><a href="web-scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.2.3</b> Modern Web sites and JS frameworks</a></li>
 <li class="chapter" data-level="4.2.4" data-path="web-scraping.html"><a href="web-scraping.html#crawling-resources-and-policies"><i class="fa fa-check"></i><b>4.2.4</b> Crawling, resources and policies</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="web-scraping.html"><a href="web-scraping.html#libraries-and-software-suites"><i class="fa fa-check"></i><b>4.3</b> Libraries and software suites</a></li>
-<li class="chapter" data-level="4.4" data-path="web-scraping.html"><a href="web-scraping.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>4.4</b> Further reading and references</a></li>
-<li class="chapter" data-level="4.5" data-path="web-scraping.html"><a href="web-scraping.html#learning-outcomes-2"><i class="fa fa-check"></i><b>4.5</b> Learning outcomes</a></li>
-<li class="chapter" data-level="4.6" data-path="web-scraping.html"><a href="web-scraping.html#practice-problems-2"><i class="fa fa-check"></i><b>4.6</b> Practice problems</a></li>
+<li class="chapter" data-level="4.3" data-path="web-scraping.html"><a href="web-scraping.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>4.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="4.4" data-path="web-scraping.html"><a href="web-scraping.html#learning-outcomes-2"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="4.5" data-path="web-scraping.html"><a href="web-scraping.html#practice-problems-2"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>5</b> Dynamic reports and reproducibility</a></li>
 <li class="chapter" data-level="6" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html"><i class="fa fa-check"></i><b>6</b> Summarizing data - the basics</a><ul>
@@ -324,15 +323,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>HTML is the predominant language for implementing Web pages and it is largely supported by World Wide Web consortium. HTML pages can be regarded as a form of semi-structured data (even if less structured than other sources like XML documents) in which information follows a nested structure; HTML features can be profitably used in the design of suitable wrappers. However, we acknowledge that a large amount of semi-structured information is present in non-HTML formats (think of e-mail messages, software code and related documentations, system logs and so on) but the research approaches targeting at extracting information from this type of sources are the focus of general information extraction.</p>
 <p>The backbone of a Web page is a Hypertext Markup Language (HTML) document which consists of HTML tags. According to the <a href="http://www.w3.org/DOM">Document Object Model</a> (DOM), every HTML tag is an object. Nested tags are called children of the enclosing tag. Generally we first parse a web page into a DOM tree representation. Then we specify extraction patterns as paths from the root of the DOM tree to the node containing the values to extract. Special languages such as XPath or XQuery support searching and querying elements of a DOM tree.</p>
 <p>Below we show a simple HTML Web page and it’s representation as a HTML DOM tree.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="web-scraping.html#cb1-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb1-2"><a href="web-scraping.html#cb1-2"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb1-3"><a href="web-scraping.html#cb1-3"></a>    <span class="kw">&lt;title&gt;</span>My Title<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb1-4"><a href="web-scraping.html#cb1-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb1-5"><a href="web-scraping.html#cb1-5"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb1-6"><a href="web-scraping.html#cb1-6"></a>    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>My link<span class="kw">&lt;/a&gt;</span></span>
-<span id="cb1-7"><a href="web-scraping.html#cb1-7"></a>    <span class="kw">&lt;h1&gt;</span>My header<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb1-8"><a href="web-scraping.html#cb1-8"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb1-9"><a href="web-scraping.html#cb1-9"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb108-1"><a href="web-scraping.html#cb108-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb108-2"><a href="web-scraping.html#cb108-2"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb108-3"><a href="web-scraping.html#cb108-3"></a>    <span class="kw">&lt;title&gt;</span>My Title<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb108-4"><a href="web-scraping.html#cb108-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb108-5"><a href="web-scraping.html#cb108-5"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb108-6"><a href="web-scraping.html#cb108-6"></a>    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>My link<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb108-7"><a href="web-scraping.html#cb108-7"></a>    <span class="kw">&lt;h1&gt;</span>My header<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb108-8"><a href="web-scraping.html#cb108-8"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb108-9"><a href="web-scraping.html#cb108-9"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:htmlDOM"></span>
 <img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page."  />
 <p class="caption">
@@ -357,19 +356,19 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <h3><span class="header-section-number">4.2.2</span> XPath</h3>
 <p>One of the main advantage of the adoption of the Document Object Model for Web Content Extraction is the possibility of exploiting some tools typical of XML languages (and HTML is to all effects a dialect of the XML). In particular, the XML Path Language (XPath) provides with a powerful syntax to address specific elements of an XML document (and, to the same extent, of HTML Web pages) in a simple manner. XPath has been defined by the World Wide Web consortium, so as DOM.</p>
 <p>Below we provide an XML example to explain how XPath can be used to address elements of a Web page.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="web-scraping.html#cb2-1"></a><span class="kw">&lt;persons&gt;</span></span>
-<span id="cb2-2"><a href="web-scraping.html#cb2-2"></a>  <span class="kw">&lt;person&gt;</span></span>
-<span id="cb2-3"><a href="web-scraping.html#cb2-3"></a>    <span class="kw">&lt;name&gt;</span>John<span class="kw">&lt;/name&gt;</span></span>
-<span id="cb2-4"><a href="web-scraping.html#cb2-4"></a>    <span class="kw">&lt;height</span><span class="ot"> unit=</span><span class="st">”cm”</span><span class="kw">&gt;</span>191<span class="kw">&lt;/height&gt;</span></span>
-<span id="cb2-5"><a href="web-scraping.html#cb2-5"></a>    <span class="kw">&lt;sport&gt;</span>Running<span class="kw">&lt;/sport&gt;</span></span>
-<span id="cb2-6"><a href="web-scraping.html#cb2-6"></a>    <span class="kw">&lt;sport&gt;</span>Cycling<span class="kw">&lt;/sport&gt;</span></span>
-<span id="cb2-7"><a href="web-scraping.html#cb2-7"></a>  <span class="kw">&lt;/person&gt;</span></span>
-<span id="cb2-8"><a href="web-scraping.html#cb2-8"></a>  <span class="kw">&lt;person&gt;</span></span>
-<span id="cb2-9"><a href="web-scraping.html#cb2-9"></a>    <span class="kw">&lt;name&gt;</span>Mandy<span class="kw">&lt;/name&gt;</span></span>
-<span id="cb2-10"><a href="web-scraping.html#cb2-10"></a>    <span class="kw">&lt;height&gt;</span>140<span class="kw">&lt;/height&gt;</span></span>
-<span id="cb2-11"><a href="web-scraping.html#cb2-11"></a>   <span class="kw">&lt;sport&gt;</span>Swimming<span class="kw">&lt;/sport&gt;</span></span>
-<span id="cb2-12"><a href="web-scraping.html#cb2-12"></a>  <span class="kw">&lt;/person&gt;</span></span>
-<span id="cb2-13"><a href="web-scraping.html#cb2-13"></a><span class="kw">&lt;/persons&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb109-1"><a href="web-scraping.html#cb109-1"></a><span class="kw">&lt;persons&gt;</span></span>
+<span id="cb109-2"><a href="web-scraping.html#cb109-2"></a>  <span class="kw">&lt;person&gt;</span></span>
+<span id="cb109-3"><a href="web-scraping.html#cb109-3"></a>    <span class="kw">&lt;name&gt;</span>John<span class="kw">&lt;/name&gt;</span></span>
+<span id="cb109-4"><a href="web-scraping.html#cb109-4"></a>    <span class="kw">&lt;height</span><span class="ot"> unit=</span><span class="st">”cm”</span><span class="kw">&gt;</span>191<span class="kw">&lt;/height&gt;</span></span>
+<span id="cb109-5"><a href="web-scraping.html#cb109-5"></a>    <span class="kw">&lt;sport&gt;</span>Running<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb109-6"><a href="web-scraping.html#cb109-6"></a>    <span class="kw">&lt;sport&gt;</span>Cycling<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb109-7"><a href="web-scraping.html#cb109-7"></a>  <span class="kw">&lt;/person&gt;</span></span>
+<span id="cb109-8"><a href="web-scraping.html#cb109-8"></a>  <span class="kw">&lt;person&gt;</span></span>
+<span id="cb109-9"><a href="web-scraping.html#cb109-9"></a>    <span class="kw">&lt;name&gt;</span>Mandy<span class="kw">&lt;/name&gt;</span></span>
+<span id="cb109-10"><a href="web-scraping.html#cb109-10"></a>    <span class="kw">&lt;height&gt;</span>140<span class="kw">&lt;/height&gt;</span></span>
+<span id="cb109-11"><a href="web-scraping.html#cb109-11"></a>   <span class="kw">&lt;sport&gt;</span>Swimming<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb109-12"><a href="web-scraping.html#cb109-12"></a>  <span class="kw">&lt;/person&gt;</span></span>
+<span id="cb109-13"><a href="web-scraping.html#cb109-13"></a><span class="kw">&lt;/persons&gt;</span></span></code></pre></div>
 <p>There exist two possible ways to use XPath: (A) to identify a single element in the document tree, or (B) to address multiple occurrences of elements. We show some XPath queries against the above XML document:</p>
 <ul>
 <li><code>/persons/person/name</code> - Extract all elements in the provided path. The result is <code>&lt;name&gt;John&lt;/name&gt;</code> and <code>&lt;name&gt;Mandy&lt;/name&gt;</code>.</li>
@@ -454,9 +453,8 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 </div>
 <div id="crawling-resources-and-policies" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Crawling, resources and policies</h3>
-<p>TODO: mention also automatic data extraction, data cleaning, integration, …
-TODO: libraries to retrieve/download pages - some libraries from above already support this</p>
-<p>The goal of this programming assignment is to build a standalone crawler that will crawl only <em>.gov.si</em> web sites. The crawler will roughly consist of the following components (Figure <a href="web-scraping.html#fig:crawlerArchitecture">4.2</a>):</p>
+<p>Crawling is a process of automatic navigation among Web pages within defined Web sites. When we deal with continuous retrieval of content from a large amount of Web pages, there are many aspects we need to take care of. For example, (A) we need to track which pages were already visited, (B) we need to decide how to handle HTTP redirects or HTTP error codes in case of a delayed retry, (C) we must follow the rules written in <em>robots.txt</em> for each domain or should follow general crawling ethics so that we not send too many request to a specific server, (D) we need to track changes on Web pages to identify approximate change-rate, etc.</p>
+<p>Generally, a crawler architecture will consist of the following components (Figure <a href="web-scraping.html#fig:crawlerArchitecture">4.2</a>):</p>
 <ul>
 <li>HTTP downloader and renderer: To retrieve and render a web page.</li>
 <li>Data extractor: Minimal functionalities to extract images and hyperlinks.</li>
@@ -465,117 +463,59 @@ TODO: libraries to retrieve/download pages - some libraries from above already s
 <li>Datastore: To store the data and additional metadata used by the crawler.</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:crawlerArchitecture"></span>
-<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture." width="500" />
+<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture."  />
 <p class="caption">
 Figure 4.2: Web crawler architecture.
 </p>
 </div>
-<p>To make sure that you correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server. A nice session on crawling modern web sites built using JS frameworks, link parsing and image indexing was a part of Google IO 2018 and it is suggested for you to check it:</p>
-<p>TODO: mention again SPA-s</p>
+<p>As we already mentioned before, we need to understand all the specifics how Web pages are built and generated. To make sure that we correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Google’s crawler - Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server. A nice session on crawling modern web sites built using JS frameworks, link parsing and image indexing was a part of Google IO 2018 and it is suggested for you to view it to get a rough impression of problems that can appear:</p>
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUbgvpdaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </center>
+<p>Also, when we retrieve all the needed Web page content, the next steps include data cleaning, data integration, etc. in order to prepare data for further data science analysis.</p>
+<p>Sometimes we can decide to design our own small crawler but we must be aware of many aspects to be taken care of to efficiently retrieve the needed content. For example, a crawler needs to identify links to follow them which can be encoded in different ways. They can be explicityl given within <em>href</em> attributes, <em>onclick</em> Javascript events (e.g. <em>location.href</em> or <em>document.location</em>), etc. Similarly, images can be generated in different formats, shown dynamically, … In order to cover the most common scenarios we propose to use a crawler package or suite that will help us retrieve the pages we need. Some examples of crawler libraries or standalone crawlers are the following:</p>
+<ul>
+<li><a href="https://scrapy.org/">Scrapy</a>,</li>
+<li><a href="https://nutch.apache.org/">Apache Nutch</a>,</li>
+<li><a href="https://github.com/yasserg/crawler4j">crawler4j</a>,</li>
+<li><a href="https://github.com/xtuhcy/gecco">gecco</a>,</li>
+<li><a href="https://www.norconex.com/collectors/collector-http/">Norconex HTTP Collector</a>,</li>
+<li><a href="https://github.com/code4craft/webmagic">webmagic</a>,</li>
+<li><a href="https://github.com/dadepo/Webmuncher">Webmuncher</a>.</li>
+</ul>
+<p>Apart from web pages only, the Web consists also of other files that web pages point to, for example PDF files, Word/OpenOffice documents, Excel spreadsheets, presentations, etc. They may also include some relevant information for us. Therefore we propose to use special libraries to parse these kinds of files:</p>
+<ul>
+<li><a href="https://tika.apache.org/">Apache Tika</a> toolkit detects and extracts metadata and text from over a thousand different file types (such as PPT, XLS, and PDF). All of these file types can be parsed through a single interface, making Tika useful for search engine indexing, content analysis, translation, and much more.</li>
+<li><a href="https://poi.apache.org/">Apache Poi</a> focus on manipulating various file formats based upon the Office Open XML standards (OOXML) and Microsoft’s OLE 2 Compound Document format (OLE2). In short, you can read and write MS Excel files using Java.</li>
+<li><a href="https://pdfbox.apache.org/">Apache PDFBox</a> library is an open source Java tool for working with PDF documents. This project allows creation of new PDF documents, manipulation of existing documents and the ability to extract content from documents. It also includes several command-line utilities.</li>
+</ul>
 </div>
-</div>
-<div id="libraries-and-software-suites" class="section level2">
-<h2><span class="header-section-number">4.3</span> Libraries and software suites</h2>
-<p>When your crawler fetches and renders a web page, do some simple parsing to detect images and next links.</p>
-<ul>
-<li>When parsing links, include links from <em>href</em> attributes and <em>onclick</em> Javascript events (e.g. <em>location.href</em> or <em>document.location</em>). Be careful to correctly extend the relative URLs before adding them to the frontier.</li>
-<li>Detect images on a web page only based on <em>img</em> tag, where the <em>src</em> attribute points to an image URL.</li>
-</ul>
-<p>Apart from web pages only, download also other files that web pages point to (there is no need to parse them). File formats that you should take into account are <em>.pdf</em>, <em>.doc</em>, <em>.docx</em>, <em>.ppt</em> and <em>.pptx</em>.</p>
-<p>On the other hand, you <strong>MUST NOT</strong> use libraries like the following:</p>
-<ul>
-<li><p><a href="https://scrapy.org/">Scrapy</a></p></li>
-<li><p><a href="https://nutch.apache.org/">Apache Nutch</a></p></li>
-<li><p><a href="https://github.com/yasserg/crawler4j">crawler4j</a></p></li>
-<li><p><a href="https://github.com/xtuhcy/gecco">gecco</a></p></li>
-<li><p><a href="https://www.norconex.com/collectors/collector-http/">Norconex HTTP Collector</a></p></li>
-<li><p><a href="https://github.com/code4craft/webmagic">webmagic</a></p></li>
-<li><p><a href="https://github.com/dadepo/Webmuncher">Webmuncher</a></p></li>
-<li><p>etc.</p></li>
-<li><p>Apache Nutch</p></li>
-</ul>
-<p><img src="img/tools/nutch.png" />
-<a href="http://nutch.apache.org/">http://nutch.apache.org/</a></p>
-<ul>
-<li>Apache Lucene</li>
-</ul>
-<p><img src="img/tools/lucene.png" />
-<a href="https://lucene.apache.org/">https://lucene.apache.org/</a></p>
-<ul>
-<li>Apache Nifi</li>
-</ul>
-<p><img src="img/tools/nifi.svg" width="300px" />
-<a href="https://nifi.apache.org/">https://nifi.apache.org/</a></p>
-<ul>
-<li>Apache Solr</li>
-</ul>
-<p><img src="img/tools/solr.png" width="300px" />
-<a href="http://lucene.apache.org/solr/">http://lucene.apache.org/solr/</a></p>
-<ul>
-<li>Scrapy</li>
-</ul>
-<p><img src="img/tools/scrapy.png" />
-<a href="https://scrapy.org/">https://scrapy.org/</a></p>
-<ul>
-<li>Apache Hadoop</li>
-</ul>
-<p><img src="img/tools/hadoop.jpg" />
-<a href="http://hadoop.apache.org/">http://hadoop.apache.org/</a></p>
-<ul>
-<li>Apache HBase</li>
-</ul>
-<p><img src="img/tools/hbase.png" />
-<a href="https://hbase.apache.org/">https://hbase.apache.org/</a></p>
-<ul>
-<li>Apache Tika</li>
-</ul>
-<p><img src="img/tools/tika.png" />
-<a href="https://tika.apache.org/">https://tika.apache.org/</a></p>
-<ul>
-<li>Apache Poi</li>
-</ul>
-<p><img src="img/tools/poi.png" />
-<a href="https://poi.apache.org/">https://poi.apache.org/</a></p>
-<ul>
-<li>Apache PDFBox</li>
-</ul>
-<p><a href="https://pdfbox.apache.org/">https://pdfbox.apache.org/</a></p>
-<ul>
-<li>Apache OpenNLP</li>
-</ul>
-<p><img src="img/tools/opennlp.png" width="300px" />
-<a href="https://opennlp.apache.org/">https://opennlp.apache.org/</a></p>
-<ul>
-<li>Elastic</li>
-</ul>
-<p><img src="img/tools/elastic.svg" width="300px" />
-<a href="https://www.elastic.co/">https://www.elastic.co/</a></p>
 </div>
 <div id="further-reading-and-references-2" class="section level2">
-<h2><span class="header-section-number">4.4</span> Further reading and references</h2>
+<h2><span class="header-section-number">4.3</span> Further reading and references</h2>
 <ul>
-<li>TODO</li>
+<li><a href="https://www.apress.com/gp/book/9781484235812">Practical Web Scraping for Data Science, Best Practices and Examples with Python (2018), Seppe vanden Broucke and Bart Baesens.</a></li>
 <li><a href="https://www.amazon.de/Web-Scraping-Python-Ryan-Mitchell/dp/1491910291">Web Scraping with Python (2015), Ryan Mitchell</a></li>
-<li>Liu, Bing. 2011. Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data. 2nd ed. Springer Publishing Company, Incorporated.</li>
-<li>Check also related Faculty’s bachelor or master theses: <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1537726403">Vmesnik za dostop do portala odprtih podatkov Slovenije (2018), Sašo Marić</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1537211331">Analiza dimenzij kakovosti informacij spletnih strani slovenskih podjetij (2016), Matic Jazbec</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1536570819">Zajem in obdelava podatkov s spleta (2015), Marko Balažic</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/10715988">Napredno iskanje nepremičnin (2014), Nina Žakelj</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/9990484">Tehnike spletnega luščenja podatkov (2013), Peter Grlica</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/10152276">Spletni iskalnik podatkov o osebah (2013), Matej Žniderič</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/9454420">Delno samodejna izdelava ovojnic za spletne vire (2012), Rok Burgar</a>,ipd.</li>
+<li><a href="https://www.amazon.com/Web-Data-Mining-Data-Centric-Applications/dp/3642194591">Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data. 2nd ed. (2011), Bing Liu</a></li>
+<li>Check also related Faculty’s bachelor or master theses: <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1537726403">Vmesnik za dostop do portala odprtih podatkov Slovenije (2018), Sašo Marić</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1537211331">Analiza dimenzij kakovosti informacij spletnih strani slovenskih podjetij (2016), Matic Jazbec</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1536570819">Zajem in obdelava podatkov s spleta (2015), Marko Balažic</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/10715988">Napredno iskanje nepremičnin (2014), Nina Žakelj</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/9990484">Tehnike spletnega luščenja podatkov (2013), Peter Grlica</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/10152276">Spletni iskalnik podatkov o osebah (2013), Matej Žniderič</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/9454420">Delno samodejna izdelava ovojnic za spletne vire (2012), Rok Burgar</a>, etc.</li>
 </ul>
 </div>
 <div id="learning-outcomes-2" class="section level2">
-<h2><span class="header-section-number">4.5</span> Learning outcomes</h2>
+<h2><span class="header-section-number">4.4</span> Learning outcomes</h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
-<li>TODO</li>
+<li>Understand the architecture and different tecchnologies used in the WWW.</li>
+<li>Use or build a standalone Web crawler to gather all the needed data.</li>
+<li>Identify and automatically extract the needed portions of Web page contents.</li>
 </ul>
 </div>
 <div id="practice-problems-2" class="section level2">
-<h2><span class="header-section-number">4.6</span> Practice problems</h2>
+<h2><span class="header-section-number">4.5</span> Practice problems</h2>
 <ul>
-<li>TODO</li>
-<li>debug, js/nojs web page - e-uprava, evem.gov.si, … structure of a page, …</li>
+<li>Explore the Web and find some dynamic Web sites. Using your favourite browser inspect the structure of specific Web pages and try to load the same Web pages with disabled Javascript rendering.</li>
+<li>Review all your projects you are working on and search the Web to identify Web sites with relevant information that could enrich your project’s data. Build and run a focused crawler. After that clean and export data in your preferred format (JSON or XML).</li>
+<li>An example project: Build a general crawler that will crawl the Web and retrieve the data about primary schools (or high schools) in Spain (or in USA or Germany). Implement a custom wrapper that will extract school name, contact e-mail and school address.</li>
 </ul>
 
 </div>
@@ -655,6 +595,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

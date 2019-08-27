@@ -158,10 +158,9 @@ Running a headless browser and executing Javascript can take long time and may n
 
 ### Crawling, resources and policies
 
-TODO: mention also automatic data extraction, data cleaning, integration, ...
-TODO: libraries to retrieve/download pages - some libraries from above already support this
+Crawling is a process of automatic navigation among Web pages within defined Web sites. When we deal with continuous retrieval of content from a large amount of Web pages, there are many aspects we need to take care of. For example, (A) we need to track which pages were already visited, (B) we need to decide how to handle HTTP redirects or HTTP error codes in case of a delayed retry, (C) we must follow the rules written in *robots.txt* for each domain or should follow general crawling ethics so that we not send too many request to a specific server, (D) we need to track changes on Web pages to identify approximate change-rate, etc.
 
-The goal of this programming assignment is to build a standalone crawler that will crawl only *.gov.si* web sites. The crawler will roughly consist of the following components (Figure \@ref(fig:crawlerArchitecture)):
+Generally, a crawler architecture will consist of the following components (Figure \@ref(fig:crawlerArchitecture)):
 
 * HTTP downloader and renderer: To retrieve and render a web page.
 * Data extractor: Minimal functionalities to extract images and hyperlinks.
@@ -170,114 +169,52 @@ The goal of this programming assignment is to build a standalone crawler that wi
 * Datastore: To store the data and additional metadata used by the crawler.
 
 <div class="figure" style="text-align: center">
-<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture." width="500" />
+<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture."  />
 <p class="caption">(\#fig:crawlerArchitecture)Web crawler architecture.</p>
 </div>
 
-To make sure that you correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server. A nice session on crawling modern web sites built using JS frameworks, link parsing and image indexing was a part of Google IO 2018 and it is suggested for you to check it:
-
-TODO: mention again SPA-s
+As we already mentioned before, we need to understand all the specifics how Web pages are built and generated. To make sure that we correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Google's crawler - Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server. A nice session on crawling modern web sites built using JS frameworks, link parsing and image indexing was a part of Google IO 2018 and it is suggested for you to view it to get a rough impression of problems that can appear:
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUbgvpdaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
 
-## Libraries and software suites
+Also, when we retrieve all the needed Web page content, the next steps include data cleaning, data integration, etc. in order to prepare data for further data science analysis. 
 
-When your crawler fetches and renders a web page, do some simple parsing to detect images and next links.
+Sometimes we can decide to design our own small crawler but we must be aware of many aspects to be taken care of to efficiently retrieve the needed content. For example, a crawler needs to identify links to follow them which can be encoded in different ways. They can be explicityl given within *href* attributes, *onclick* Javascript events (e.g. *location.href* or *document.location*), etc. Similarly, images can be generated in different formats, shown dynamically, ... In order to cover the most common scenarios we propose to use a crawler package or suite that will help us retrieve the pages we need. Some examples of crawler libraries or standalone crawlers are the following:
 
-  * When parsing links, include links from *href* attributes and *onclick* Javascript events (e.g. *location.href* or *document.location*). Be careful to correctly extend the relative URLs before adding them to the frontier.
-  * Detect images on a web page only based on *img* tag, where the *src* attribute points to an image URL.
-  
-Apart from web pages only, download also other files that web pages point to (there is no need to parse them). File formats that you should take into account are *.pdf*, *.doc*, *.docx*, *.ppt* and *.pptx*.
+* [Scrapy](https://scrapy.org/),
+* [Apache Nutch](https://nutch.apache.org/),
+* [crawler4j](https://github.com/yasserg/crawler4j),
+* [gecco](https://github.com/xtuhcy/gecco),
+* [Norconex HTTP Collector](https://www.norconex.com/collectors/collector-http/),
+* [webmagic](https://github.com/code4craft/webmagic),
+* [Webmuncher](https://github.com/dadepo/Webmuncher).
 
+Apart from web pages only, the Web consists also of other files that web pages point to, for example PDF files, Word/OpenOffice documents, Excel spreadsheets, presentations, etc. They may also include some relevant information for us. Therefore we propose to use special libraries to parse these kinds of files:
 
-On the other hand, you **MUST NOT** use libraries like the following:
+* [Apache Tika](https://tika.apache.org/) toolkit detects and extracts metadata and text from over a thousand different file types (such as PPT, XLS, and PDF). All of these file types can be parsed through a single interface, making Tika useful for search engine indexing, content analysis, translation, and much more.
+* [Apache Poi](https://poi.apache.org/) focus on manipulating various file formats based upon the Office Open XML standards (OOXML) and Microsoft's OLE 2 Compound Document format (OLE2). In short, you can read and write MS Excel files using Java.
+* [Apache PDFBox](https://pdfbox.apache.org/) library is an open source Java tool for working with PDF documents. This project allows creation of new PDF documents, manipulation of existing documents and the ability to extract content from documents. It also includes several command-line utilities. 
 
-  * [Scrapy](https://scrapy.org/)
-  * [Apache Nutch](https://nutch.apache.org/)
-  * [crawler4j](https://github.com/yasserg/crawler4j)
-  * [gecco](https://github.com/xtuhcy/gecco)
-  * [Norconex HTTP Collector](https://www.norconex.com/collectors/collector-http/)
-  * [webmagic](https://github.com/code4craft/webmagic)
-  * [Webmuncher](https://github.com/dadepo/Webmuncher)
-  * etc.
-
-
-
-* Apache Nutch
-
-<img src="img/tools/nutch.png" />
-[http://nutch.apache.org/](http://nutch.apache.org/)
-
-* Apache Lucene
-
-<img src="img/tools/lucene.png" />
-[https://lucene.apache.org/](https://lucene.apache.org/)
-
-* Apache Nifi
-
-<img src="img/tools/nifi.svg" width="300px" />
-[https://nifi.apache.org/](https://nifi.apache.org/)
-
-* Apache Solr
-
-<img src="img/tools/solr.png" width="300px" />
-[http://lucene.apache.org/solr/](http://lucene.apache.org/solr/)
-
-* Scrapy
-
-<img src="img/tools/scrapy.png" />
-[https://scrapy.org/](https://scrapy.org/)
-
-* Apache Hadoop
-
-<img src="img/tools/hadoop.jpg" />
-[http://hadoop.apache.org/](http://hadoop.apache.org/)
-
-* Apache HBase
-
-<img src="img/tools/hbase.png" />
-[https://hbase.apache.org/](https://hbase.apache.org/)
-
-* Apache Tika
-
-<img src="img/tools/tika.png" />
-[https://tika.apache.org/](https://tika.apache.org/)
-
-* Apache Poi
-
-<img src="img/tools/poi.png" />
-[https://poi.apache.org/](https://poi.apache.org/)
-
-* Apache PDFBox
-
-[https://pdfbox.apache.org/](https://pdfbox.apache.org/)
-
-* Apache OpenNLP
-
-<img src="img/tools/opennlp.png" width="300px" />
-[https://opennlp.apache.org/](https://opennlp.apache.org/)
-
-* Elastic
-
-<img src="img/tools/elastic.svg" width="300px" />
-[https://www.elastic.co/](https://www.elastic.co/)
 
 ## Further reading and references
 
-* TODO
+* [Practical Web Scraping for Data Science, Best Practices and Examples with Python (2018), Seppe vanden Broucke and Bart Baesens.](https://www.apress.com/gp/book/9781484235812)
 * [Web Scraping with Python (2015), Ryan Mitchell](https://www.amazon.de/Web-Scraping-Python-Ryan-Mitchell/dp/1491910291)
-* Liu, Bing. 2011. Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data. 2nd ed. Springer Publishing Company, Incorporated.
-* Check also related Faculty's bachelor or master theses: [Vmesnik za dostop do portala odprtih podatkov Slovenije (2018), Sašo Marić](https://plus.si.cobiss.net/opac7/bib/fkkri/1537726403), [Analiza dimenzij kakovosti informacij spletnih strani slovenskih podjetij (2016), Matic Jazbec](https://plus.si.cobiss.net/opac7/bib/fkkri/1537211331), [Zajem in obdelava podatkov s spleta (2015), Marko Balažic](https://plus.si.cobiss.net/opac7/bib/fkkri/1536570819), [Napredno iskanje nepremičnin (2014), Nina Žakelj](https://plus.si.cobiss.net/opac7/bib/fkkri/10715988), [Tehnike spletnega luščenja podatkov (2013), Peter Grlica](https://plus.si.cobiss.net/opac7/bib/fkkri/9990484), [Spletni iskalnik podatkov o osebah (2013), Matej Žniderič](https://plus.si.cobiss.net/opac7/bib/fkkri/10152276), [Delno samodejna izdelava ovojnic za spletne vire (2012), Rok Burgar](https://plus.si.cobiss.net/opac7/bib/fkkri/9454420),ipd.
+* [Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data. 2nd ed. (2011), Bing Liu](https://www.amazon.com/Web-Data-Mining-Data-Centric-Applications/dp/3642194591)
+* Check also related Faculty's bachelor or master theses: [Vmesnik za dostop do portala odprtih podatkov Slovenije (2018), Sašo Marić](https://plus.si.cobiss.net/opac7/bib/fkkri/1537726403), [Analiza dimenzij kakovosti informacij spletnih strani slovenskih podjetij (2016), Matic Jazbec](https://plus.si.cobiss.net/opac7/bib/fkkri/1537211331), [Zajem in obdelava podatkov s spleta (2015), Marko Balažic](https://plus.si.cobiss.net/opac7/bib/fkkri/1536570819), [Napredno iskanje nepremičnin (2014), Nina Žakelj](https://plus.si.cobiss.net/opac7/bib/fkkri/10715988), [Tehnike spletnega luščenja podatkov (2013), Peter Grlica](https://plus.si.cobiss.net/opac7/bib/fkkri/9990484), [Spletni iskalnik podatkov o osebah (2013), Matej Žniderič](https://plus.si.cobiss.net/opac7/bib/fkkri/10152276), [Delno samodejna izdelava ovojnic za spletne vire (2012), Rok Burgar](https://plus.si.cobiss.net/opac7/bib/fkkri/9454420), etc.
 
 ## Learning outcomes
 
 Data science students should work towards obtaining the knowledge and the skills that enable them to:
 
-* TODO
+* Understand the architecture and different tecchnologies used in the WWW.
+* Use or build a standalone Web crawler to gather all the needed data.
+* Identify and automatically extract the needed portions of Web page contents.
 
 ## Practice problems
 
-* TODO
-* debug, js/nojs web page - e-uprava, evem.gov.si, ... structure of a page, ...
+* Explore the Web and find some dynamic Web sites. Using your favourite browser inspect the structure of specific Web pages and try to load the same Web pages with disabled Javascript rendering.
+* Review all your projects you are working on and search the Web to identify Web sites with relevant information that could enrich your project's data. Build and run a focused crawler. After that clean and export data in your preferred format (JSON or XML).
+* An example project: Build a general crawler that will crawl the Web and retrieve the data about primary schools (or high schools) in Spain (or in USA or Germany). Implement a custom wrapper that will extract school name, contact e-mail and school address.
 
 

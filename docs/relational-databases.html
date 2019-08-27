@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-26" />
+<meta name="date" content="2019-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,17 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a><ul>
 <li class="chapter" data-level="4.1" data-path="web-scraping.html"><a href="web-scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a></li>
 <li class="chapter" data-level="4.2" data-path="web-scraping.html"><a href="web-scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="web-scraping.html"><a href="web-scraping.html#addressing-elements-in-the-document-tree-xpath"><i class="fa fa-check"></i><b>4.2.1</b> Addressing elements in the document tree: XPath</a></li>
+<li class="chapter" data-level="4.2.1" data-path="web-scraping.html"><a href="web-scraping.html#html-dom"><i class="fa fa-check"></i><b>4.2.1</b> HTML DOM</a></li>
+<li class="chapter" data-level="4.2.2" data-path="web-scraping.html"><a href="web-scraping.html#xpath"><i class="fa fa-check"></i><b>4.2.2</b> XPath</a></li>
+<li class="chapter" data-level="4.2.3" data-path="web-scraping.html"><a href="web-scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.2.3</b> Modern Web sites and JS frameworks</a></li>
+<li class="chapter" data-level="4.2.4" data-path="web-scraping.html"><a href="web-scraping.html#crawling-resources-and-policies"><i class="fa fa-check"></i><b>4.2.4</b> Crawling, resources and policies</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="web-scraping.html"><a href="web-scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.3</b> Modern web sites and JS frameworks</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="web-scraping.html"><a href="web-scraping.html#html-dom"><i class="fa fa-check"></i><b>4.3.1</b> HTML DOM</a></li>
-<li class="chapter" data-level="4.3.2" data-path="web-scraping.html"><a href="web-scraping.html#crawling-resources-and-policies"><i class="fa fa-check"></i><b>4.3.2</b> Crawling, resources and policies</a></li>
-<li class="chapter" data-level="4.3.3" data-path="web-scraping.html"><a href="web-scraping.html#web-apis"><i class="fa fa-check"></i><b>4.3.3</b> Web APIs</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="web-scraping.html"><a href="web-scraping.html#libraries-and-software-suites"><i class="fa fa-check"></i><b>4.4</b> Libraries and software suites</a></li>
-<li class="chapter" data-level="4.5" data-path="web-scraping.html"><a href="web-scraping.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>4.5</b> Further reading and references</a></li>
-<li class="chapter" data-level="4.6" data-path="web-scraping.html"><a href="web-scraping.html#learning-outcomes-2"><i class="fa fa-check"></i><b>4.6</b> Learning outcomes</a></li>
-<li class="chapter" data-level="4.7" data-path="web-scraping.html"><a href="web-scraping.html#practice-problems-2"><i class="fa fa-check"></i><b>4.7</b> Practice problems</a></li>
+<li class="chapter" data-level="4.3" data-path="web-scraping.html"><a href="web-scraping.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>4.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="4.4" data-path="web-scraping.html"><a href="web-scraping.html#learning-outcomes-2"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="4.5" data-path="web-scraping.html"><a href="web-scraping.html#practice-problems-2"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dynamic-reports-and-reproducibility.html"><a href="dynamic-reports-and-reproducibility.html"><i class="fa fa-check"></i><b>5</b> Dynamic reports and reproducibility</a></li>
 <li class="chapter" data-level="6" data-path="summarizing-data-the-basics.html"><a href="summarizing-data-the-basics.html"><i class="fa fa-check"></i><b>6</b> Summarizing data - the basics</a><ul>
@@ -332,31 +329,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Many database management systems can host multiple schemas or databases and therefore we need first to create the database using <code>CREATE DATABASE DatabaseName</code>. After that we need to explicity say which database will be used by the following commands using <code>USE DatabaseName</code>. If we do not issue that command, we need to addres every database object as <code>DatabaseName.ObjectName</code>.</p>
 <p>To create new tables, we use the CREATE TABLE statement, which looks as follows:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb218-1"><a href="relational-databases.html#cb218-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TableName (</span>
-<span id="cb218-2"><a href="relational-databases.html#cb218-2"></a>    {colName dataType [<span class="kw">NOT</span> <span class="kw">NULL</span>] [<span class="kw">UNIQUE</span>]</span>
-<span id="cb218-3"><a href="relational-databases.html#cb218-3"></a>    [<span class="kw">DEFAULT</span> defaultOption]</span>
-<span id="cb218-4"><a href="relational-databases.html#cb218-4"></a>    [<span class="kw">CHECK</span> searchCondition] [,<span class="op">..</span>.]}</span>
-<span id="cb218-5"><a href="relational-databases.html#cb218-5"></a>    [<span class="kw">PRIMARY</span> <span class="kw">KEY</span> (listOfColumns),]</span>
-<span id="cb218-6"><a href="relational-databases.html#cb218-6"></a>    {[<span class="kw">UNIQUE</span> (listOfColumns),] [<span class="op">..</span>.,]}</span>
-<span id="cb218-7"><a href="relational-databases.html#cb218-7"></a>    {[<span class="kw">FOREIGN</span> <span class="kw">KEY</span> (listOfFKColumns)</span>
-<span id="cb218-8"><a href="relational-databases.html#cb218-8"></a>       <span class="kw">REFERENCES</span> ParentTableName [(listOfCKColumns)],</span>
-<span id="cb218-9"><a href="relational-databases.html#cb218-9"></a>       [<span class="kw">ON</span> <span class="kw">UPDATE</span> referentialAction]</span>
-<span id="cb218-10"><a href="relational-databases.html#cb218-10"></a>       [<span class="kw">ON</span> <span class="kw">DELETE</span> referentialAction ]] [,<span class="op">..</span>.]}</span>
-<span id="cb218-11"><a href="relational-databases.html#cb218-11"></a>    {[<span class="kw">CHECK</span> (searchCondition)]}) </span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb219-1"><a href="relational-databases.html#cb219-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TableName (</span>
+<span id="cb219-2"><a href="relational-databases.html#cb219-2"></a>    {colName dataType [<span class="kw">NOT</span> <span class="kw">NULL</span>] [<span class="kw">UNIQUE</span>]</span>
+<span id="cb219-3"><a href="relational-databases.html#cb219-3"></a>    [<span class="kw">DEFAULT</span> defaultOption]</span>
+<span id="cb219-4"><a href="relational-databases.html#cb219-4"></a>    [<span class="kw">CHECK</span> searchCondition] [,<span class="op">..</span>.]}</span>
+<span id="cb219-5"><a href="relational-databases.html#cb219-5"></a>    [<span class="kw">PRIMARY</span> <span class="kw">KEY</span> (listOfColumns),]</span>
+<span id="cb219-6"><a href="relational-databases.html#cb219-6"></a>    {[<span class="kw">UNIQUE</span> (listOfColumns),] [<span class="op">..</span>.,]}</span>
+<span id="cb219-7"><a href="relational-databases.html#cb219-7"></a>    {[<span class="kw">FOREIGN</span> <span class="kw">KEY</span> (listOfFKColumns)</span>
+<span id="cb219-8"><a href="relational-databases.html#cb219-8"></a>       <span class="kw">REFERENCES</span> ParentTableName [(listOfCKColumns)],</span>
+<span id="cb219-9"><a href="relational-databases.html#cb219-9"></a>       [<span class="kw">ON</span> <span class="kw">UPDATE</span> referentialAction]</span>
+<span id="cb219-10"><a href="relational-databases.html#cb219-10"></a>       [<span class="kw">ON</span> <span class="kw">DELETE</span> referentialAction ]] [,<span class="op">..</span>.]}</span>
+<span id="cb219-11"><a href="relational-databases.html#cb219-11"></a>    {[<span class="kw">CHECK</span> (searchCondition)]}) </span></code></pre></div>
 <p>Apart from the data types, constraints are useful to use so that the database’s referential integrity protection will take care of data correctness. With the command <code>NULL</code> or <code>NOT NULL</code> we define that a column may or may not contain a missing value. The parameter <code>UNIQUE</code> defines a constraint on a specific column that must not contain duplicated values in the whole table. We can also define it separately for more columns at once, similarly to the primary key syntax.</p>
 <p>Using this statement we can also define column specifics, such as data type, constraints, foreign keys or primary keys. All of these can be changed later using ALTER commands. For example, to drop an existing constraint or foreign key, we use:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb219-1"><a href="relational-databases.html#cb219-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">DROP</span> <span class="kw">CONSTRAINT</span> fkName;</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb220-1"><a href="relational-databases.html#cb220-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">DROP</span> <span class="kw">CONSTRAINT</span> fkName;</span></code></pre></div>
 <p>To add a new integer-type column that must not be undefined and has a specific default value if not set to database, we issue:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb220-1"><a href="relational-databases.html#cb220-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">ADD</span> NewColumnName <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb221-1"><a href="relational-databases.html#cb221-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">ADD</span> NewColumnName <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>;</span></code></pre></div>
 <p>When we create a table, an index is created for the columns that represent the primary key. There exist a number of different indexes, which are various and implemented differently across the database management systems. To create an index, we use the following syntax:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb221-1"><a href="relational-databases.html#cb221-1"></a><span class="kw">CREATE</span> [<span class="kw">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="kw">INDEX</span> index_name</span>
-<span id="cb221-2"><a href="relational-databases.html#cb221-2"></a>   <span class="kw">ON</span> table_name</span>
-<span id="cb221-3"><a href="relational-databases.html#cb221-3"></a>      (column1 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
-<span id="cb221-4"><a href="relational-databases.html#cb221-4"></a>       column2 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
-<span id="cb221-5"><a href="relational-databases.html#cb221-5"></a><span class="op">..</span>.);</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb222-1"><a href="relational-databases.html#cb222-1"></a><span class="kw">CREATE</span> [<span class="kw">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="kw">INDEX</span> index_name</span>
+<span id="cb222-2"><a href="relational-databases.html#cb222-2"></a>   <span class="kw">ON</span> table_name</span>
+<span id="cb222-3"><a href="relational-databases.html#cb222-3"></a>      (column1 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
+<span id="cb222-4"><a href="relational-databases.html#cb222-4"></a>       column2 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
+<span id="cb222-5"><a href="relational-databases.html#cb222-5"></a><span class="op">..</span>.);</span></code></pre></div>
 <p>Indexes can improve our query performances but are costly to build and can consume a lot of space, so they need to be created wisely when needed.</p>
 <p>To delete a database object, a DROP command is used. Using a DROP command we can delete any database object or a whole database. To delete a table, we use following command:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb222-1"><a href="relational-databases.html#cb222-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> TableName [<span class="kw">RESTRICT</span> | <span class="kw">CASCADE</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb223-1"><a href="relational-databases.html#cb223-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> TableName [<span class="kw">RESTRICT</span> | <span class="kw">CASCADE</span>]</span></code></pre></div>
 <p>Analogously, the command is used for constraints, indexes, users, databases, etc. In the example above we see two additional arguments - RESTRICT and CASCADE. They specifically define, whether the table can be deleted if there exist some columns in other tables that reference columns in the table we wish to delete.</p>
 </div>
 <div id="data-manipulation-language" class="section level3">
@@ -365,36 +362,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="inserting" class="section level4">
 <h4><span class="header-section-number">9.1.2.1</span> Inserting</h4>
 <p>Statements for inserting rows into a database table looks as follows:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb223-1"><a href="relational-databases.html#cb223-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TableName [ (columnList) ] <span class="kw">VALUES</span></span>
-<span id="cb223-2"><a href="relational-databases.html#cb223-2"></a>  (dataValueList)[, (dataValueList), <span class="op">..</span>.]</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb224-1"><a href="relational-databases.html#cb224-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TableName [ (columnList) ] <span class="kw">VALUES</span></span>
+<span id="cb224-2"><a href="relational-databases.html#cb224-2"></a>  (dataValueList)[, (dataValueList), <span class="op">..</span>.]</span></code></pre></div>
 <p>The list of columns is not necessary if we provide all the columns in the same order that were defined at the table creation time. In the data values we need to provide at least all the values that are of NOT NULL type and do not have the default value set. The order of values in the list need correspond to the column list.</p>
 <p>To insert more rows at a time, multiple data value lists can be used. When doing a bulk inserts, this will speed up our insertion time. To insert enormous amounts of data into relational database, some database management systems provide their own mechanisms of bulk data importing, as well as for data export.</p>
 </div>
 <div id="updating" class="section level4">
 <h4><span class="header-section-number">9.1.2.2</span> Updating</h4>
 <p>The UPDATE statements allows us to change values within the existing data rows. It is defined as follows:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb224-1"><a href="relational-databases.html#cb224-1"></a><span class="kw">UPDATE</span> TableName</span>
-<span id="cb224-2"><a href="relational-databases.html#cb224-2"></a><span class="kw">SET</span> columnName1 <span class="op">=</span> dataValue1</span>
-<span id="cb224-3"><a href="relational-databases.html#cb224-3"></a>   [, columnName2 <span class="op">=</span> dataValue2<span class="op">..</span>.]</span>
-<span id="cb224-4"><a href="relational-databases.html#cb224-4"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb225-1"><a href="relational-databases.html#cb225-1"></a><span class="kw">UPDATE</span> TableName</span>
+<span id="cb225-2"><a href="relational-databases.html#cb225-2"></a><span class="kw">SET</span> columnName1 <span class="op">=</span> dataValue1</span>
+<span id="cb225-3"><a href="relational-databases.html#cb225-3"></a>   [, columnName2 <span class="op">=</span> dataValue2<span class="op">..</span>.]</span>
+<span id="cb225-4"><a href="relational-databases.html#cb225-4"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
 <p>We can update one or more column values in the selected table. The statement will update all the rows that initially satisfy the search condition. The search condition is optional but we must take care when updating or deleting rows as our command may change too many rows if search condition not defined correctly.</p>
 </div>
 <div id="deleting" class="section level4">
 <h4><span class="header-section-number">9.1.2.3</span> Deleting</h4>
 <p>Statement for deleting rows is similar to updating without setting new values. The sentence deletes all the rows in a table that match the search condition is defined as follows:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb225-1"><a href="relational-databases.html#cb225-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> TableName</span>
-<span id="cb225-2"><a href="relational-databases.html#cb225-2"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb226-1"><a href="relational-databases.html#cb226-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> TableName</span>
+<span id="cb226-2"><a href="relational-databases.html#cb226-2"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
 </div>
 <div id="querying" class="section level4">
 <h4><span class="header-section-number">9.1.2.4</span> Querying</h4>
 <p>Querying is enabled by the SELECT statement which is the most comprehensive as provides multiple mechanisms to access the data from a database:</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb226-1"><a href="relational-databases.html#cb226-1"></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span> | <span class="kw">ALL</span>] {<span class="op">*</span> | [columnExpression [<span class="kw">AS</span> newName]] [,<span class="op">..</span>.] }</span>
-<span id="cb226-2"><a href="relational-databases.html#cb226-2"></a><span class="kw">FROM</span> </span>
-<span id="cb226-3"><a href="relational-databases.html#cb226-3"></a>  TableName [alias] [, <span class="op">..</span>.] </span>
-<span id="cb226-4"><a href="relational-databases.html#cb226-4"></a>[<span class="kw">WHERE</span> condition]</span>
-<span id="cb226-5"><a href="relational-databases.html#cb226-5"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> columnList] </span>
-<span id="cb226-6"><a href="relational-databases.html#cb226-6"></a>[<span class="kw">HAVING</span> condition]</span>
-<span id="cb226-7"><a href="relational-databases.html#cb226-7"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> columnList [<span class="kw">ASC</span>|<span class="kw">DESC</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb227-1"><a href="relational-databases.html#cb227-1"></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span> | <span class="kw">ALL</span>] {<span class="op">*</span> | [columnExpression [<span class="kw">AS</span> newName]] [,<span class="op">..</span>.] }</span>
+<span id="cb227-2"><a href="relational-databases.html#cb227-2"></a><span class="kw">FROM</span> </span>
+<span id="cb227-3"><a href="relational-databases.html#cb227-3"></a>  TableName [alias] [, <span class="op">..</span>.] </span>
+<span id="cb227-4"><a href="relational-databases.html#cb227-4"></a>[<span class="kw">WHERE</span> condition]</span>
+<span id="cb227-5"><a href="relational-databases.html#cb227-5"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> columnList] </span>
+<span id="cb227-6"><a href="relational-databases.html#cb227-6"></a>[<span class="kw">HAVING</span> condition]</span>
+<span id="cb227-7"><a href="relational-databases.html#cb227-7"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> columnList [<span class="kw">ASC</span>|<span class="kw">DESC</span>]]</span></code></pre></div>
 <p>In the SELECT part we can define whether the returned results must be distinct or not. Then we list columns that should be returned as the result. The columns may be named or changed using a special function provided by a database management system (DBMS). Some DBMS also support nested SELECT statements in this part when statement returns only one value.</p>
 <p>In the FROM part we list tables that are needed for the query to execute. It is possible to nest a SELECT statement instead of using a table - write a query within brackets and give it an alias. Depending on our needs we can use joins in this part to connect the rows between tables. To see which joins are supported by a specific DBMS, we need to check its documentation.</p>
 <p>In the WHERE part we provide conditions that need to be true for the row to be returned. In this part we can use equality operators (&gt;, &lt;, =, &lt;=, &gt;=, BETWEEN), text comparisons (LIKE), set comparisons (IN, ALL, ANY), null value comparisons (IS NULL, IS NOT NULL) or specific functions supported by our DBMS.</p>
@@ -419,12 +416,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>sqlite3_analyzer</code>: The utility that outputs a human-readable ASCII text report which provides information on the space utilization of the database file.</li>
 </ul>
 <p>To start working with a database, just run the <code>sqlite3</code> command in the command-line:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb227-1"><a href="relational-databases.html#cb227-1"></a>$ <span class="ex">sqlite3</span></span>
-<span id="cb227-2"><a href="relational-databases.html#cb227-2"></a><span class="ex">SQLite</span> version 3.23.1 2018-04-10 17:39:29</span>
-<span id="cb227-3"><a href="relational-databases.html#cb227-3"></a><span class="ex">Enter</span> <span class="st">&quot;.help&quot;</span> for usage hints.</span>
-<span id="cb227-4"><a href="relational-databases.html#cb227-4"></a><span class="ex">Connected</span> to a transient in-memory database.</span>
-<span id="cb227-5"><a href="relational-databases.html#cb227-5"></a><span class="ex">Use</span> <span class="st">&quot;.open FILENAME&quot;</span> to reopen on a persistent database.</span>
-<span id="cb227-6"><a href="relational-databases.html#cb227-6"></a><span class="ex">sqlite</span><span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb228-1"><a href="relational-databases.html#cb228-1"></a>$ <span class="ex">sqlite3</span></span>
+<span id="cb228-2"><a href="relational-databases.html#cb228-2"></a><span class="ex">SQLite</span> version 3.23.1 2018-04-10 17:39:29</span>
+<span id="cb228-3"><a href="relational-databases.html#cb228-3"></a><span class="ex">Enter</span> <span class="st">&quot;.help&quot;</span> for usage hints.</span>
+<span id="cb228-4"><a href="relational-databases.html#cb228-4"></a><span class="ex">Connected</span> to a transient in-memory database.</span>
+<span id="cb228-5"><a href="relational-databases.html#cb228-5"></a><span class="ex">Use</span> <span class="st">&quot;.open FILENAME&quot;</span> to reopen on a persistent database.</span>
+<span id="cb228-6"><a href="relational-databases.html#cb228-6"></a><span class="ex">sqlite</span><span class="op">&gt;</span></span></code></pre></div>
 <p>We exit the console by entering the <em>CTRL+C</em> command twice. The example above created just a temporary database in our memory, so no data was stored on disk. To work with or create a newd database if not exists, we need to provide a filename when starting the executable - <code>sqlite3 itds_course.db</code>. When we change the defaults of the database or enter some data, the database file will be created.</p>
 <p>There exist a lot of standalone graphical user interfaces to work with SQLite database files. An example of a nice and lightweight software to create, open or manage SQLite databases is <a href="https://sqlitebrowser.org/">DB Browser for SQLite</a> and is available for multiple operating systems.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
@@ -446,164 +443,164 @@ Figure 9.1: Employee logical database model.
 </div>
 <p>Let’s first create the model from the Figure above. The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text.</p>
 <p>SQLite supports foreign keys but it does not enforce their referential integrity if we do not say this explicitly at each database connection session. To enable checks, we need to issue the following command:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb228-1"><a href="relational-databases.html#cb228-1"></a><span class="co">-- Set the foreign keys checking on</span></span>
-<span id="cb228-2"><a href="relational-databases.html#cb228-2"></a>PRAGMA foreign_keys <span class="op">=</span> <span class="kw">ON</span>;</span>
-<span id="cb228-3"><a href="relational-databases.html#cb228-3"></a><span class="co">-- Check the foreign keys setting (1=ON, 0=OFF)</span></span>
-<span id="cb228-4"><a href="relational-databases.html#cb228-4"></a>PRAGMA foreign_keys;</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb229-1"><a href="relational-databases.html#cb229-1"></a><span class="co">-- Set the foreign keys checking on</span></span>
+<span id="cb229-2"><a href="relational-databases.html#cb229-2"></a>PRAGMA foreign_keys <span class="op">=</span> <span class="kw">ON</span>;</span>
+<span id="cb229-3"><a href="relational-databases.html#cb229-3"></a><span class="co">-- Check the foreign keys setting (1=ON, 0=OFF)</span></span>
+<span id="cb229-4"><a href="relational-databases.html#cb229-4"></a>PRAGMA foreign_keys;</span></code></pre></div>
 <p>We observe that by default, each SQL statement is terminated using a semicolon. Now we can continue and create all the tables:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb229-1"><a href="relational-databases.html#cb229-1"></a><span class="co">-- Creating Branch table</span></span>
-<span id="cb229-2"><a href="relational-databases.html#cb229-2"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Branch (</span>
-<span id="cb229-3"><a href="relational-databases.html#cb229-3"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
-<span id="cb229-4"><a href="relational-databases.html#cb229-4"></a>    name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-5"><a href="relational-databases.html#cb229-5"></a>    address TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-6"><a href="relational-databases.html#cb229-6"></a>    telephone TEXT</span>
-<span id="cb229-7"><a href="relational-databases.html#cb229-7"></a>);</span>
-<span id="cb229-8"><a href="relational-databases.html#cb229-8"></a></span>
-<span id="cb229-9"><a href="relational-databases.html#cb229-9"></a><span class="co">-- Employee</span></span>
-<span id="cb229-10"><a href="relational-databases.html#cb229-10"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Employee (</span>
-<span id="cb229-11"><a href="relational-databases.html#cb229-11"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
-<span id="cb229-12"><a href="relational-databases.html#cb229-12"></a>    id_branch <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-13"><a href="relational-databases.html#cb229-13"></a>    first_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-14"><a href="relational-databases.html#cb229-14"></a>    last_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-15"><a href="relational-databases.html#cb229-15"></a>    employment_start TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-16"><a href="relational-databases.html#cb229-16"></a>    employment_end TEXT,</span>
-<span id="cb229-17"><a href="relational-databases.html#cb229-17"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_branch) <span class="kw">REFERENCES</span> Branch(<span class="kw">id</span>)</span>
-<span id="cb229-18"><a href="relational-databases.html#cb229-18"></a>);</span>
-<span id="cb229-19"><a href="relational-databases.html#cb229-19"></a></span>
-<span id="cb229-20"><a href="relational-databases.html#cb229-20"></a><span class="co">-- Salary</span></span>
-<span id="cb229-21"><a href="relational-databases.html#cb229-21"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Salary (</span>
-<span id="cb229-22"><a href="relational-databases.html#cb229-22"></a>    <span class="dt">year</span> <span class="dt">INTEGER</span>,</span>
-<span id="cb229-23"><a href="relational-databases.html#cb229-23"></a>    <span class="dt">month</span> <span class="dt">INTEGER</span>,</span>
-<span id="cb229-24"><a href="relational-databases.html#cb229-24"></a>    id_employee <span class="dt">INTEGER</span>,</span>
-<span id="cb229-25"><a href="relational-databases.html#cb229-25"></a>    amount <span class="dt">REAL</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb229-26"><a href="relational-databases.html#cb229-26"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="dt">year</span>, <span class="dt">month</span>, id_employee),</span>
-<span id="cb229-27"><a href="relational-databases.html#cb229-27"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_employee) <span class="kw">REFERENCES</span> Employee(<span class="kw">id</span>)</span>
-<span id="cb229-28"><a href="relational-databases.html#cb229-28"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb230-1"><a href="relational-databases.html#cb230-1"></a><span class="co">-- Creating Branch table</span></span>
+<span id="cb230-2"><a href="relational-databases.html#cb230-2"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Branch (</span>
+<span id="cb230-3"><a href="relational-databases.html#cb230-3"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
+<span id="cb230-4"><a href="relational-databases.html#cb230-4"></a>    name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-5"><a href="relational-databases.html#cb230-5"></a>    address TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-6"><a href="relational-databases.html#cb230-6"></a>    telephone TEXT</span>
+<span id="cb230-7"><a href="relational-databases.html#cb230-7"></a>);</span>
+<span id="cb230-8"><a href="relational-databases.html#cb230-8"></a></span>
+<span id="cb230-9"><a href="relational-databases.html#cb230-9"></a><span class="co">-- Employee</span></span>
+<span id="cb230-10"><a href="relational-databases.html#cb230-10"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Employee (</span>
+<span id="cb230-11"><a href="relational-databases.html#cb230-11"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
+<span id="cb230-12"><a href="relational-databases.html#cb230-12"></a>    id_branch <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-13"><a href="relational-databases.html#cb230-13"></a>    first_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-14"><a href="relational-databases.html#cb230-14"></a>    last_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-15"><a href="relational-databases.html#cb230-15"></a>    employment_start TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-16"><a href="relational-databases.html#cb230-16"></a>    employment_end TEXT,</span>
+<span id="cb230-17"><a href="relational-databases.html#cb230-17"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_branch) <span class="kw">REFERENCES</span> Branch(<span class="kw">id</span>)</span>
+<span id="cb230-18"><a href="relational-databases.html#cb230-18"></a>);</span>
+<span id="cb230-19"><a href="relational-databases.html#cb230-19"></a></span>
+<span id="cb230-20"><a href="relational-databases.html#cb230-20"></a><span class="co">-- Salary</span></span>
+<span id="cb230-21"><a href="relational-databases.html#cb230-21"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Salary (</span>
+<span id="cb230-22"><a href="relational-databases.html#cb230-22"></a>    <span class="dt">year</span> <span class="dt">INTEGER</span>,</span>
+<span id="cb230-23"><a href="relational-databases.html#cb230-23"></a>    <span class="dt">month</span> <span class="dt">INTEGER</span>,</span>
+<span id="cb230-24"><a href="relational-databases.html#cb230-24"></a>    id_employee <span class="dt">INTEGER</span>,</span>
+<span id="cb230-25"><a href="relational-databases.html#cb230-25"></a>    amount <span class="dt">REAL</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb230-26"><a href="relational-databases.html#cb230-26"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="dt">year</span>, <span class="dt">month</span>, id_employee),</span>
+<span id="cb230-27"><a href="relational-databases.html#cb230-27"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_employee) <span class="kw">REFERENCES</span> Employee(<span class="kw">id</span>)</span>
+<span id="cb230-28"><a href="relational-databases.html#cb230-28"></a>);</span></code></pre></div>
 <p>When creating tables, we should be consistent in naming them - capitalization, singular/plural and similarly for the columns, especially foreign keys. The most readable tables have clearly identifiable primary key and foreign keys. Naming of the foreign key columns should reflect the name of the related table. In the Branch and Employee tables we defined the primary key columns as AUTOINCREMENT. This enables the database to automatically set the id of a new record and we do not need to define it explicitly.</p>
 <p>Now we can insert some data into our tables. The insertion into the Employee table could be done also using one statement only. For the still employed employeed we would just set their employment_end value to NULL.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb230-1"><a href="relational-databases.html#cb230-1"></a><span class="co">-- Branches</span></span>
-<span id="cb230-2"><a href="relational-databases.html#cb230-2"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address, telephone) <span class="kw">VALUES</span> </span>
-<span id="cb230-3"><a href="relational-databases.html#cb230-3"></a>    (<span class="ot">&quot;Grosuplje&#39;s Fried Chicken&quot;</span>, <span class="ot">&quot;Kolodvorska 1, Grosuplje&quot;</span>, <span class="ot">&quot;01/786-42-31&quot;</span>);</span>
-<span id="cb230-4"><a href="relational-databases.html#cb230-4"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address) <span class="kw">VALUES</span> </span>
-<span id="cb230-5"><a href="relational-databases.html#cb230-5"></a>    (<span class="ot">&quot;Hot Pork Wings&quot;</span>, <span class="ot">&quot;Cesta v Kranj 35, Ljubljana&quot;</span>);</span>
-<span id="cb230-6"><a href="relational-databases.html#cb230-6"></a></span>
-<span id="cb230-7"><a href="relational-databases.html#cb230-7"></a><span class="co">-- Employees (still employed)</span></span>
-<span id="cb230-8"><a href="relational-databases.html#cb230-8"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start) <span class="kw">VALUES</span></span>
-<span id="cb230-9"><a href="relational-databases.html#cb230-9"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Marko&quot;</span>, <span class="ot">&quot;Novaković&quot;</span>, <span class="ot">&quot;1972-01-25&quot;</span>),</span>
-<span id="cb230-10"><a href="relational-databases.html#cb230-10"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jože&quot;, &quot;</span>Novak<span class="ot">&quot;, &quot;</span><span class="dv">1995</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">22</span><span class="ot">&quot;),</span></span>
-<span id="cb230-11"><a href="relational-databases.html#cb230-11"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Janez&quot;</span>, <span class="ot">&quot;Gruden&quot;</span>, <span class="ot">&quot;1999-12-07&quot;</span>),</span>
-<span id="cb230-12"><a href="relational-databases.html#cb230-12"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Tine&quot;</span>, <span class="ot">&quot;Stegel&quot;</span>, <span class="ot">&quot;2002-04-28&quot;</span>),</span>
-<span id="cb230-13"><a href="relational-databases.html#cb230-13"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Nina&quot;</span>, <span class="ot">&quot;Gec&quot;</span>, <span class="ot">&quot;2010-03-08&quot;</span>),</span>
-<span id="cb230-14"><a href="relational-databases.html#cb230-14"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Petar&quot;</span>, <span class="ot">&quot;Stankovski&quot;</span>, <span class="ot">&quot;2018-10-01&quot;</span>);</span>
-<span id="cb230-15"><a href="relational-databases.html#cb230-15"></a></span>
-<span id="cb230-16"><a href="relational-databases.html#cb230-16"></a><span class="co">-- Employees (retired)</span></span>
-<span id="cb230-17"><a href="relational-databases.html#cb230-17"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start, employment_end) <span class="kw">VALUES</span></span>
-<span id="cb230-18"><a href="relational-databases.html#cb230-18"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jana&quot;</span>, <span class="ot">&quot;Žitnik&quot;</span>, <span class="ot">&quot;1987-06-07&quot;</span>, <span class="ot">&quot;1987-06-12&quot;</span>),</span>
-<span id="cb230-19"><a href="relational-databases.html#cb230-19"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Patricio&quot;</span>, <span class="ot">&quot;Rozman&quot;</span>, <span class="ot">&quot;2010-04-22&quot;</span>, <span class="ot">&quot;2022-01-01&quot;</span>),</span>
-<span id="cb230-20"><a href="relational-databases.html#cb230-20"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Robert&quot;</span>, <span class="ot">&quot;Demšar&quot;</span>, <span class="ot">&quot;1996-12-06&quot;</span>, <span class="ot">&quot;1997-07-02&quot;</span>);</span>
-<span id="cb230-21"><a href="relational-databases.html#cb230-21"></a></span>
-<span id="cb230-22"><a href="relational-databases.html#cb230-22"></a><span class="co">-- Salaries</span></span>
-<span id="cb230-23"><a href="relational-databases.html#cb230-23"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Salary (<span class="dt">year</span>, <span class="dt">month</span>, id_employee, amount) <span class="kw">VALUES</span> </span>
-<span id="cb230-24"><a href="relational-databases.html#cb230-24"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">2</span>, <span class="fl">950.37</span>),</span>
-<span id="cb230-25"><a href="relational-databases.html#cb230-25"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">2</span>, <span class="fl">955.2</span>),</span>
-<span id="cb230-26"><a href="relational-databases.html#cb230-26"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">2</span>, <span class="fl">990.49</span>),</span>
-<span id="cb230-27"><a href="relational-databases.html#cb230-27"></a>    (<span class="dv">2010</span>, <span class="dv">08</span>, <span class="dv">2</span>, <span class="fl">1200.5</span>),</span>
-<span id="cb230-28"><a href="relational-databases.html#cb230-28"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">6</span>, <span class="fl">980.43</span>),</span>
-<span id="cb230-29"><a href="relational-databases.html#cb230-29"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">7</span>, <span class="fl">1320.2</span>),</span>
-<span id="cb230-30"><a href="relational-databases.html#cb230-30"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">8</span>, <span class="fl">2100.67</span>),</span>
-<span id="cb230-31"><a href="relational-databases.html#cb230-31"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">8</span>, <span class="fl">2140.99</span>),</span>
-<span id="cb230-32"><a href="relational-databases.html#cb230-32"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">8</span>, <span class="fl">2099.11</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb231-1"><a href="relational-databases.html#cb231-1"></a><span class="co">-- Branches</span></span>
+<span id="cb231-2"><a href="relational-databases.html#cb231-2"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address, telephone) <span class="kw">VALUES</span> </span>
+<span id="cb231-3"><a href="relational-databases.html#cb231-3"></a>    (<span class="ot">&quot;Grosuplje&#39;s Fried Chicken&quot;</span>, <span class="ot">&quot;Kolodvorska 1, Grosuplje&quot;</span>, <span class="ot">&quot;01/786-42-31&quot;</span>);</span>
+<span id="cb231-4"><a href="relational-databases.html#cb231-4"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address) <span class="kw">VALUES</span> </span>
+<span id="cb231-5"><a href="relational-databases.html#cb231-5"></a>    (<span class="ot">&quot;Hot Pork Wings&quot;</span>, <span class="ot">&quot;Cesta v Kranj 35, Ljubljana&quot;</span>);</span>
+<span id="cb231-6"><a href="relational-databases.html#cb231-6"></a></span>
+<span id="cb231-7"><a href="relational-databases.html#cb231-7"></a><span class="co">-- Employees (still employed)</span></span>
+<span id="cb231-8"><a href="relational-databases.html#cb231-8"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start) <span class="kw">VALUES</span></span>
+<span id="cb231-9"><a href="relational-databases.html#cb231-9"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Marko&quot;</span>, <span class="ot">&quot;Novaković&quot;</span>, <span class="ot">&quot;1972-01-25&quot;</span>),</span>
+<span id="cb231-10"><a href="relational-databases.html#cb231-10"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jože&quot;, &quot;</span>Novak<span class="ot">&quot;, &quot;</span><span class="dv">1995</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">22</span><span class="ot">&quot;),</span></span>
+<span id="cb231-11"><a href="relational-databases.html#cb231-11"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Janez&quot;</span>, <span class="ot">&quot;Gruden&quot;</span>, <span class="ot">&quot;1999-12-07&quot;</span>),</span>
+<span id="cb231-12"><a href="relational-databases.html#cb231-12"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Tine&quot;</span>, <span class="ot">&quot;Stegel&quot;</span>, <span class="ot">&quot;2002-04-28&quot;</span>),</span>
+<span id="cb231-13"><a href="relational-databases.html#cb231-13"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Nina&quot;</span>, <span class="ot">&quot;Gec&quot;</span>, <span class="ot">&quot;2010-03-08&quot;</span>),</span>
+<span id="cb231-14"><a href="relational-databases.html#cb231-14"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Petar&quot;</span>, <span class="ot">&quot;Stankovski&quot;</span>, <span class="ot">&quot;2018-10-01&quot;</span>);</span>
+<span id="cb231-15"><a href="relational-databases.html#cb231-15"></a></span>
+<span id="cb231-16"><a href="relational-databases.html#cb231-16"></a><span class="co">-- Employees (retired)</span></span>
+<span id="cb231-17"><a href="relational-databases.html#cb231-17"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start, employment_end) <span class="kw">VALUES</span></span>
+<span id="cb231-18"><a href="relational-databases.html#cb231-18"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jana&quot;</span>, <span class="ot">&quot;Žitnik&quot;</span>, <span class="ot">&quot;1987-06-07&quot;</span>, <span class="ot">&quot;1987-06-12&quot;</span>),</span>
+<span id="cb231-19"><a href="relational-databases.html#cb231-19"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Patricio&quot;</span>, <span class="ot">&quot;Rozman&quot;</span>, <span class="ot">&quot;2010-04-22&quot;</span>, <span class="ot">&quot;2022-01-01&quot;</span>),</span>
+<span id="cb231-20"><a href="relational-databases.html#cb231-20"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Robert&quot;</span>, <span class="ot">&quot;Demšar&quot;</span>, <span class="ot">&quot;1996-12-06&quot;</span>, <span class="ot">&quot;1997-07-02&quot;</span>);</span>
+<span id="cb231-21"><a href="relational-databases.html#cb231-21"></a></span>
+<span id="cb231-22"><a href="relational-databases.html#cb231-22"></a><span class="co">-- Salaries</span></span>
+<span id="cb231-23"><a href="relational-databases.html#cb231-23"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Salary (<span class="dt">year</span>, <span class="dt">month</span>, id_employee, amount) <span class="kw">VALUES</span> </span>
+<span id="cb231-24"><a href="relational-databases.html#cb231-24"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">2</span>, <span class="fl">950.37</span>),</span>
+<span id="cb231-25"><a href="relational-databases.html#cb231-25"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">2</span>, <span class="fl">955.2</span>),</span>
+<span id="cb231-26"><a href="relational-databases.html#cb231-26"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">2</span>, <span class="fl">990.49</span>),</span>
+<span id="cb231-27"><a href="relational-databases.html#cb231-27"></a>    (<span class="dv">2010</span>, <span class="dv">08</span>, <span class="dv">2</span>, <span class="fl">1200.5</span>),</span>
+<span id="cb231-28"><a href="relational-databases.html#cb231-28"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">6</span>, <span class="fl">980.43</span>),</span>
+<span id="cb231-29"><a href="relational-databases.html#cb231-29"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">7</span>, <span class="fl">1320.2</span>),</span>
+<span id="cb231-30"><a href="relational-databases.html#cb231-30"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">8</span>, <span class="fl">2100.67</span>),</span>
+<span id="cb231-31"><a href="relational-databases.html#cb231-31"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">8</span>, <span class="fl">2140.99</span>),</span>
+<span id="cb231-32"><a href="relational-databases.html#cb231-32"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">8</span>, <span class="fl">2099.11</span>);</span></code></pre></div>
 <p>Now the data is in the database and we can perform querying. Below we show just some basic queries.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb231-1"><a href="relational-databases.html#cb231-1"></a><span class="co">-- Selecting all columns</span></span>
-<span id="cb231-2"><a href="relational-databases.html#cb231-2"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Branch;</span></code></pre></div>
-<div class="sourceCode" id="cb232"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb232-1"><a href="relational-databases.html#cb232-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|Kolodvorska 1, Grosuplje|01/786-42-31</span></span>
-<span id="cb232-2"><a href="relational-databases.html#cb232-2"></a><span class="st">2|Hot Pork Wings|Cesta v Kranj 35, Ljubljana|</span></span></code></pre></div>
-<div class="sourceCode" id="cb233"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb233-1"><a href="relational-databases.html#cb233-1"></a><span class="co">-- Selecting a column with a condition</span></span>
-<span id="cb233-2"><a href="relational-databases.html#cb233-2"></a><span class="kw">SELECT</span> employment_start </span>
-<span id="cb233-3"><a href="relational-databases.html#cb233-3"></a><span class="kw">FROM</span> Employee </span>
-<span id="cb233-4"><a href="relational-databases.html#cb233-4"></a><span class="kw">WHERE</span> last_name <span class="op">=</span> <span class="ot">&quot;Gec&quot;</span>;</span></code></pre></div>
-<div class="sourceCode" id="cb234"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb234-1"><a href="relational-databases.html#cb234-1"></a><span class="ex">2010-03-08</span></span></code></pre></div>
-<div class="sourceCode" id="cb235"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb235-1"><a href="relational-databases.html#cb235-1"></a><span class="co">-- Result value concatenation</span></span>
-<span id="cb235-2"><a href="relational-databases.html#cb235-2"></a><span class="kw">SELECT</span> <span class="kw">id</span>, first_name <span class="op">||</span> <span class="st">&#39; &#39;</span> <span class="op">||</span> last_name <span class="kw">AS</span> name </span>
-<span id="cb235-3"><a href="relational-databases.html#cb235-3"></a><span class="kw">FROM</span> Employee </span>
-<span id="cb235-4"><a href="relational-databases.html#cb235-4"></a><span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div>
-<div class="sourceCode" id="cb236"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb236-1"><a href="relational-databases.html#cb236-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Marko</span> Novaković</span>
-<span id="cb236-2"><a href="relational-databases.html#cb236-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">Joe</span> Novak</span>
-<span id="cb236-3"><a href="relational-databases.html#cb236-3"></a><span class="ex">3</span><span class="kw">|</span><span class="ex">Janez</span> Gruden</span>
-<span id="cb236-4"><a href="relational-databases.html#cb236-4"></a><span class="ex">4</span><span class="kw">|</span><span class="ex">Tine</span> Stegel</span>
-<span id="cb236-5"><a href="relational-databases.html#cb236-5"></a><span class="ex">5</span><span class="kw">|</span><span class="ex">Nina</span> Gec</span>
-<span id="cb236-6"><a href="relational-databases.html#cb236-6"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">Petar</span> Stankovski</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb232-1"><a href="relational-databases.html#cb232-1"></a><span class="co">-- Selecting all columns</span></span>
+<span id="cb232-2"><a href="relational-databases.html#cb232-2"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Branch;</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb233-1"><a href="relational-databases.html#cb233-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|Kolodvorska 1, Grosuplje|01/786-42-31</span></span>
+<span id="cb233-2"><a href="relational-databases.html#cb233-2"></a><span class="st">2|Hot Pork Wings|Cesta v Kranj 35, Ljubljana|</span></span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb234-1"><a href="relational-databases.html#cb234-1"></a><span class="co">-- Selecting a column with a condition</span></span>
+<span id="cb234-2"><a href="relational-databases.html#cb234-2"></a><span class="kw">SELECT</span> employment_start </span>
+<span id="cb234-3"><a href="relational-databases.html#cb234-3"></a><span class="kw">FROM</span> Employee </span>
+<span id="cb234-4"><a href="relational-databases.html#cb234-4"></a><span class="kw">WHERE</span> last_name <span class="op">=</span> <span class="ot">&quot;Gec&quot;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb235-1"><a href="relational-databases.html#cb235-1"></a><span class="ex">2010-03-08</span></span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb236-1"><a href="relational-databases.html#cb236-1"></a><span class="co">-- Result value concatenation</span></span>
+<span id="cb236-2"><a href="relational-databases.html#cb236-2"></a><span class="kw">SELECT</span> <span class="kw">id</span>, first_name <span class="op">||</span> <span class="st">&#39; &#39;</span> <span class="op">||</span> last_name <span class="kw">AS</span> name </span>
+<span id="cb236-3"><a href="relational-databases.html#cb236-3"></a><span class="kw">FROM</span> Employee </span>
+<span id="cb236-4"><a href="relational-databases.html#cb236-4"></a><span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb237-1"><a href="relational-databases.html#cb237-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Marko</span> Novaković</span>
+<span id="cb237-2"><a href="relational-databases.html#cb237-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">Joe</span> Novak</span>
+<span id="cb237-3"><a href="relational-databases.html#cb237-3"></a><span class="ex">3</span><span class="kw">|</span><span class="ex">Janez</span> Gruden</span>
+<span id="cb237-4"><a href="relational-databases.html#cb237-4"></a><span class="ex">4</span><span class="kw">|</span><span class="ex">Tine</span> Stegel</span>
+<span id="cb237-5"><a href="relational-databases.html#cb237-5"></a><span class="ex">5</span><span class="kw">|</span><span class="ex">Nina</span> Gec</span>
+<span id="cb237-6"><a href="relational-databases.html#cb237-6"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">Petar</span> Stankovski</span></code></pre></div>
 <p>SQLite also supports advanced querying, for example:</p>
 <ul>
 <li>Show the number of employees and a maximum salary for each branch.</li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb237-1"><a href="relational-databases.html#cb237-1"></a><span class="co">-- Grouping and aggregations</span></span>
-<span id="cb237-2"><a href="relational-databases.html#cb237-2"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
-<span id="cb237-3"><a href="relational-databases.html#cb237-3"></a><span class="kw">FROM</span> Branch b, Employee e, Salary s</span>
-<span id="cb237-4"><a href="relational-databases.html#cb237-4"></a><span class="kw">WHERE</span></span>
-<span id="cb237-5"><a href="relational-databases.html#cb237-5"></a>    e.id_branch <span class="op">=</span> b.<span class="kw">id</span> <span class="kw">AND</span>  </span>
-<span id="cb237-6"><a href="relational-databases.html#cb237-6"></a>    s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
-<span id="cb237-7"><a href="relational-databases.html#cb237-7"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
-<div class="sourceCode" id="cb238"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb238-1"><a href="relational-databases.html#cb238-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|9|2140.99</span></span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb238-1"><a href="relational-databases.html#cb238-1"></a><span class="co">-- Grouping and aggregations</span></span>
+<span id="cb238-2"><a href="relational-databases.html#cb238-2"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
+<span id="cb238-3"><a href="relational-databases.html#cb238-3"></a><span class="kw">FROM</span> Branch b, Employee e, Salary s</span>
+<span id="cb238-4"><a href="relational-databases.html#cb238-4"></a><span class="kw">WHERE</span></span>
+<span id="cb238-5"><a href="relational-databases.html#cb238-5"></a>    e.id_branch <span class="op">=</span> b.<span class="kw">id</span> <span class="kw">AND</span>  </span>
+<span id="cb238-6"><a href="relational-databases.html#cb238-6"></a>    s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
+<span id="cb238-7"><a href="relational-databases.html#cb238-7"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb239-1"><a href="relational-databases.html#cb239-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|9|2140.99</span></span></code></pre></div>
 <ul>
 <li>The query above does not return branches with no employees, which is not expected. To improve the query, we need to introduce outer joins. They enable outputs even of there are no matching records in a related table. You may think also of other solutions to solve the problem.</li>
 </ul>
-<div class="sourceCode" id="cb239"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb239-1"><a href="relational-databases.html#cb239-1"></a><span class="co">-- Grouping and outer joins</span></span>
-<span id="cb239-2"><a href="relational-databases.html#cb239-2"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
-<span id="cb239-3"><a href="relational-databases.html#cb239-3"></a><span class="kw">FROM</span> Branch b <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Employee e <span class="kw">ON</span> e.id_branch <span class="op">=</span> b.<span class="kw">id</span></span>
-<span id="cb239-4"><a href="relational-databases.html#cb239-4"></a>     <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
-<span id="cb239-5"><a href="relational-databases.html#cb239-5"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
-<div class="sourceCode" id="cb240"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb240-1"><a href="relational-databases.html#cb240-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|14|2140.99</span></span>
-<span id="cb240-2"><a href="relational-databases.html#cb240-2"></a><span class="st">2|Hot Pork Wings|0|</span></span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb240-1"><a href="relational-databases.html#cb240-1"></a><span class="co">-- Grouping and outer joins</span></span>
+<span id="cb240-2"><a href="relational-databases.html#cb240-2"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
+<span id="cb240-3"><a href="relational-databases.html#cb240-3"></a><span class="kw">FROM</span> Branch b <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Employee e <span class="kw">ON</span> e.id_branch <span class="op">=</span> b.<span class="kw">id</span></span>
+<span id="cb240-4"><a href="relational-databases.html#cb240-4"></a>     <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
+<span id="cb240-5"><a href="relational-databases.html#cb240-5"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb241-1"><a href="relational-databases.html#cb241-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|14|2140.99</span></span>
+<span id="cb241-2"><a href="relational-databases.html#cb241-2"></a><span class="st">2|Hot Pork Wings|0|</span></span></code></pre></div>
 <ul>
 <li>Select all the employees that got their salary even though they were not employed any more by a branch. Instead of using data from a table directly, we pre-prepare the data using a nested query which is used then in the same way as a new table in a query.</li>
 </ul>
-<div class="sourceCode" id="cb241"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb241-1"><a href="relational-databases.html#cb241-1"></a><span class="co">-- Nested select statement</span></span>
-<span id="cb241-2"><a href="relational-databases.html#cb241-2"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb241-3"><a href="relational-databases.html#cb241-3"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> e.<span class="kw">id</span>, e.first_name, e.last_name, s.amount, e.employment_end, s.<span class="dt">year</span>, s.<span class="dt">month</span></span>
-<span id="cb241-4"><a href="relational-databases.html#cb241-4"></a>      <span class="kw">FROM</span> Employee e, Salary s</span>
-<span id="cb241-5"><a href="relational-databases.html#cb241-5"></a>      <span class="kw">WHERE</span></span>
-<span id="cb241-6"><a href="relational-databases.html#cb241-6"></a>         e.<span class="kw">id</span> <span class="op">=</span> s.id_employee <span class="kw">AND</span></span>
-<span id="cb241-7"><a href="relational-databases.html#cb241-7"></a>         e.employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>) t</span>
-<span id="cb241-8"><a href="relational-databases.html#cb241-8"></a><span class="kw">WHERE</span></span>
-<span id="cb241-9"><a href="relational-databases.html#cb241-9"></a>    strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">year</span> <span class="kw">OR</span></span>
-<span id="cb241-10"><a href="relational-databases.html#cb241-10"></a>    (strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">=</span> t.<span class="dt">year</span> <span class="kw">AND</span></span>
-<span id="cb241-11"><a href="relational-databases.html#cb241-11"></a>     strftime(<span class="st">&#39;%m&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">month</span>);</span></code></pre></div>
-<div class="sourceCode" id="cb242"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb242-1"><a href="relational-databases.html#cb242-1"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">Jana</span><span class="kw">|</span>Ž<span class="ex">itnik</span><span class="kw">|</span><span class="ex">1320.2</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010</span><span class="kw">|</span><span class="ex">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb242-1"><a href="relational-databases.html#cb242-1"></a><span class="co">-- Nested select statement</span></span>
+<span id="cb242-2"><a href="relational-databases.html#cb242-2"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb242-3"><a href="relational-databases.html#cb242-3"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> e.<span class="kw">id</span>, e.first_name, e.last_name, s.amount, e.employment_end, s.<span class="dt">year</span>, s.<span class="dt">month</span></span>
+<span id="cb242-4"><a href="relational-databases.html#cb242-4"></a>      <span class="kw">FROM</span> Employee e, Salary s</span>
+<span id="cb242-5"><a href="relational-databases.html#cb242-5"></a>      <span class="kw">WHERE</span></span>
+<span id="cb242-6"><a href="relational-databases.html#cb242-6"></a>         e.<span class="kw">id</span> <span class="op">=</span> s.id_employee <span class="kw">AND</span></span>
+<span id="cb242-7"><a href="relational-databases.html#cb242-7"></a>         e.employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>) t</span>
+<span id="cb242-8"><a href="relational-databases.html#cb242-8"></a><span class="kw">WHERE</span></span>
+<span id="cb242-9"><a href="relational-databases.html#cb242-9"></a>    strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">year</span> <span class="kw">OR</span></span>
+<span id="cb242-10"><a href="relational-databases.html#cb242-10"></a>    (strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">=</span> t.<span class="dt">year</span> <span class="kw">AND</span></span>
+<span id="cb242-11"><a href="relational-databases.html#cb242-11"></a>     strftime(<span class="st">&#39;%m&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">month</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb243-1"><a href="relational-databases.html#cb243-1"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">Jana</span><span class="kw">|</span>Ž<span class="ex">itnik</span><span class="kw">|</span><span class="ex">1320.2</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010</span><span class="kw">|</span><span class="ex">5</span></span></code></pre></div>
 <p>Sometimes we would like our results of a query to be stored into a new table. We can achieve this using a CREATE AS statement. The example above prepares a table with all the employees and their salaries that we can further analyse using data science methods:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb243-1"><a href="relational-databases.html#cb243-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> SalaryAnalysis <span class="kw">AS</span></span>
-<span id="cb243-2"><a href="relational-databases.html#cb243-2"></a><span class="kw">SELECT</span> e.<span class="kw">id</span>, e.employment_start, e.employment_end, </span>
-<span id="cb243-3"><a href="relational-databases.html#cb243-3"></a>       s.<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-&#39;</span> <span class="op">||</span> s.<span class="dt">month</span> <span class="op">||</span> <span class="st">&#39;-01&#39;</span> <span class="kw">AS</span> <span class="dt">month</span>, s.amount </span>
-<span id="cb243-4"><a href="relational-databases.html#cb243-4"></a><span class="kw">FROM</span> Employee e <span class="kw">INNER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> e.<span class="kw">id</span> <span class="op">=</span> s.id_employee;</span>
-<span id="cb243-5"><a href="relational-databases.html#cb243-5"></a></span>
-<span id="cb243-6"><a href="relational-databases.html#cb243-6"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SalaryAnalysis;</span></code></pre></div>
-<div class="sourceCode" id="cb244"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb244-1"><a href="relational-databases.html#cb244-1"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">950.37</span></span>
-<span id="cb244-2"><a href="relational-databases.html#cb244-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">955.2</span></span>
-<span id="cb244-3"><a href="relational-databases.html#cb244-3"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">990.49</span></span>
-<span id="cb244-4"><a href="relational-databases.html#cb244-4"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-8-01</span><span class="kw">|</span><span class="ex">1200.5</span></span>
-<span id="cb244-5"><a href="relational-databases.html#cb244-5"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">2018-10-01</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">980.43</span></span>
-<span id="cb244-6"><a href="relational-databases.html#cb244-6"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">1987-06-07</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">1320.2</span></span>
-<span id="cb244-7"><a href="relational-databases.html#cb244-7"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">2100.67</span></span>
-<span id="cb244-8"><a href="relational-databases.html#cb244-8"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">2140.99</span></span>
-<span id="cb244-9"><a href="relational-databases.html#cb244-9"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">2099.11</span></span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb244-1"><a href="relational-databases.html#cb244-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> SalaryAnalysis <span class="kw">AS</span></span>
+<span id="cb244-2"><a href="relational-databases.html#cb244-2"></a><span class="kw">SELECT</span> e.<span class="kw">id</span>, e.employment_start, e.employment_end, </span>
+<span id="cb244-3"><a href="relational-databases.html#cb244-3"></a>       s.<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-&#39;</span> <span class="op">||</span> s.<span class="dt">month</span> <span class="op">||</span> <span class="st">&#39;-01&#39;</span> <span class="kw">AS</span> <span class="dt">month</span>, s.amount </span>
+<span id="cb244-4"><a href="relational-databases.html#cb244-4"></a><span class="kw">FROM</span> Employee e <span class="kw">INNER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> e.<span class="kw">id</span> <span class="op">=</span> s.id_employee;</span>
+<span id="cb244-5"><a href="relational-databases.html#cb244-5"></a></span>
+<span id="cb244-6"><a href="relational-databases.html#cb244-6"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SalaryAnalysis;</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb245-1"><a href="relational-databases.html#cb245-1"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">950.37</span></span>
+<span id="cb245-2"><a href="relational-databases.html#cb245-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">955.2</span></span>
+<span id="cb245-3"><a href="relational-databases.html#cb245-3"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">990.49</span></span>
+<span id="cb245-4"><a href="relational-databases.html#cb245-4"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-8-01</span><span class="kw">|</span><span class="ex">1200.5</span></span>
+<span id="cb245-5"><a href="relational-databases.html#cb245-5"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">2018-10-01</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">980.43</span></span>
+<span id="cb245-6"><a href="relational-databases.html#cb245-6"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">1987-06-07</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">1320.2</span></span>
+<span id="cb245-7"><a href="relational-databases.html#cb245-7"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">2100.67</span></span>
+<span id="cb245-8"><a href="relational-databases.html#cb245-8"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">2140.99</span></span>
+<span id="cb245-9"><a href="relational-databases.html#cb245-9"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">2099.11</span></span></code></pre></div>
 <p>There is also option to update our data using the UPDATE statement:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb245-1"><a href="relational-databases.html#cb245-1"></a><span class="co">-- Set new phone number to the Hot Pork Wings branch</span></span>
-<span id="cb245-2"><a href="relational-databases.html#cb245-2"></a><span class="kw">UPDATE</span> Branch</span>
-<span id="cb245-3"><a href="relational-databases.html#cb245-3"></a> <span class="kw">SET</span> telephone <span class="op">=</span> <span class="ot">&quot;05/869-22-54&quot;</span></span>
-<span id="cb245-4"><a href="relational-databases.html#cb245-4"></a> <span class="kw">WHERE</span> name <span class="op">=</span> <span class="ot">&quot;Hot Pork Wings&quot;</span>;</span>
-<span id="cb245-5"><a href="relational-databases.html#cb245-5"></a></span>
-<span id="cb245-6"><a href="relational-databases.html#cb245-6"></a><span class="co">-- Retire the Employee 3 starting today</span></span>
-<span id="cb245-7"><a href="relational-databases.html#cb245-7"></a><span class="kw">UPDATE</span> Employee</span>
-<span id="cb245-8"><a href="relational-databases.html#cb245-8"></a> <span class="kw">SET</span> employment_end <span class="op">=</span> <span class="dt">date</span>(<span class="st">&#39;now&#39;</span>)</span>
-<span id="cb245-9"><a href="relational-databases.html#cb245-9"></a> <span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> <span class="dv">3</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb246-1"><a href="relational-databases.html#cb246-1"></a><span class="co">-- Set new phone number to the Hot Pork Wings branch</span></span>
+<span id="cb246-2"><a href="relational-databases.html#cb246-2"></a><span class="kw">UPDATE</span> Branch</span>
+<span id="cb246-3"><a href="relational-databases.html#cb246-3"></a> <span class="kw">SET</span> telephone <span class="op">=</span> <span class="ot">&quot;05/869-22-54&quot;</span></span>
+<span id="cb246-4"><a href="relational-databases.html#cb246-4"></a> <span class="kw">WHERE</span> name <span class="op">=</span> <span class="ot">&quot;Hot Pork Wings&quot;</span>;</span>
+<span id="cb246-5"><a href="relational-databases.html#cb246-5"></a></span>
+<span id="cb246-6"><a href="relational-databases.html#cb246-6"></a><span class="co">-- Retire the Employee 3 starting today</span></span>
+<span id="cb246-7"><a href="relational-databases.html#cb246-7"></a><span class="kw">UPDATE</span> Employee</span>
+<span id="cb246-8"><a href="relational-databases.html#cb246-8"></a> <span class="kw">SET</span> employment_end <span class="op">=</span> <span class="dt">date</span>(<span class="st">&#39;now&#39;</span>)</span>
+<span id="cb246-9"><a href="relational-databases.html#cb246-9"></a> <span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> <span class="dv">3</span>;</span></code></pre></div>
 <p>The DELETE statements are similar to the UPDATE statements. In both cases we must be careful about the WHERE condition as we may quickly delete or update too many rows.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb246-1"><a href="relational-databases.html#cb246-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb247-1"><a href="relational-databases.html#cb247-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
 <p>The statement above could not delete Employees as there exist rows in the Salary table that refer to the rows in the Employee table. Therefore, we need first delete the rows from the Salary table and then from the Employee table. More advanced databases support the CASCADE mechanism in the DELETE statement already which can be used for such scenarios.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb247-1"><a href="relational-databases.html#cb247-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Salary <span class="kw">WHERE</span> id_employee <span class="kw">IN</span> (</span>
-<span id="cb247-2"><a href="relational-databases.html#cb247-2"></a>    <span class="kw">SELECT</span> <span class="kw">id</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb247-3"><a href="relational-databases.html#cb247-3"></a>);</span>
-<span id="cb247-4"><a href="relational-databases.html#cb247-4"></a></span>
-<span id="cb247-5"><a href="relational-databases.html#cb247-5"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb248-1"><a href="relational-databases.html#cb248-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Salary <span class="kw">WHERE</span> id_employee <span class="kw">IN</span> (</span>
+<span id="cb248-2"><a href="relational-databases.html#cb248-2"></a>    <span class="kw">SELECT</span> <span class="kw">id</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb248-3"><a href="relational-databases.html#cb248-3"></a>);</span>
+<span id="cb248-4"><a href="relational-databases.html#cb248-4"></a></span>
+<span id="cb248-5"><a href="relational-databases.html#cb248-5"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
 <p>We presented just some basic examples of how to use an SQLite database. Feel free to investigate its possibilities further.</p>
 </div>
 <div id="sqlite-in-python" class="section level3">
@@ -611,57 +608,57 @@ Figure 9.1: Employee logical database model.
 <p>SQLite can be used by many different programming languages. We show an example of how to use an SQLite database from Python. The database we prepared in the previous section is also available <a href="data/SQL/itds_course.db">here</a>.</p>
 <p>First we need to install library for SQLite database file manipulation. If you use Anaconda Python distribution, just issue the <code>conda install -c anaconda sqlite</code> command.</p>
 <p>First we need to connect to a database. If the database file does not exist in the path provided, an empty database file will be created automatically.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb248-1"><a href="relational-databases.html#cb248-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb248-2"><a href="relational-databases.html#cb248-2"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;itds_course.db&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb249-1"><a href="relational-databases.html#cb249-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb249-2"><a href="relational-databases.html#cb249-2"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;itds_course.db&#39;</span>)</span></code></pre></div>
 <div id="inserting-data" class="section level4">
 <h4><span class="header-section-number">9.2.3.1</span> Inserting data</h4>
 <p>We assume that we are connected to the database from the previous section. Let’s first insert a record.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb249-1"><a href="relational-databases.html#cb249-1"></a>c <span class="op">=</span> conn.cursor()</span>
-<span id="cb249-2"><a href="relational-databases.html#cb249-2"></a></span>
-<span id="cb249-3"><a href="relational-databases.html#cb249-3"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb249-4"><a href="relational-databases.html#cb249-4"></a><span class="st">    INSERT INTO Employee (id_branch, first_name, last_name, employment_start) VALUES</span></span>
-<span id="cb249-5"><a href="relational-databases.html#cb249-5"></a><span class="st">      (2, &quot;Mija&quot;, &quot;Zblaznela&quot;, &quot;1999-07-12&quot;);</span></span>
-<span id="cb249-6"><a href="relational-databases.html#cb249-6"></a><span class="st">&#39;&#39;&#39;</span>)</span>
-<span id="cb249-7"><a href="relational-databases.html#cb249-7"></a></span>
-<span id="cb249-8"><a href="relational-databases.html#cb249-8"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb249-9"><a href="relational-databases.html#cb249-9"></a><span class="st">    INSERT INTO Salary (year, month, id_employee, amount) VALUES </span></span>
-<span id="cb249-10"><a href="relational-databases.html#cb249-10"></a><span class="st">      (2010, 05, last_insert_rowid(), 1243.67);</span></span>
-<span id="cb249-11"><a href="relational-databases.html#cb249-11"></a><span class="st">&#39;&#39;&#39;</span>)</span>
-<span id="cb249-12"><a href="relational-databases.html#cb249-12"></a></span>
-<span id="cb249-13"><a href="relational-databases.html#cb249-13"></a></span>
-<span id="cb249-14"><a href="relational-databases.html#cb249-14"></a><span class="co"># Save (commit) the changes</span></span>
-<span id="cb249-15"><a href="relational-databases.html#cb249-15"></a>conn.commit()</span>
-<span id="cb249-16"><a href="relational-databases.html#cb249-16"></a></span>
-<span id="cb249-17"><a href="relational-databases.html#cb249-17"></a><span class="co"># We can also close the connection if we are done with it.</span></span>
-<span id="cb249-18"><a href="relational-databases.html#cb249-18"></a><span class="co"># Just be sure any changes have been committed or they will be lost.</span></span>
-<span id="cb249-19"><a href="relational-databases.html#cb249-19"></a><span class="co"># conn.close()</span></span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb250-1"><a href="relational-databases.html#cb250-1"></a>c <span class="op">=</span> conn.cursor()</span>
+<span id="cb250-2"><a href="relational-databases.html#cb250-2"></a></span>
+<span id="cb250-3"><a href="relational-databases.html#cb250-3"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb250-4"><a href="relational-databases.html#cb250-4"></a><span class="st">    INSERT INTO Employee (id_branch, first_name, last_name, employment_start) VALUES</span></span>
+<span id="cb250-5"><a href="relational-databases.html#cb250-5"></a><span class="st">      (2, &quot;Mija&quot;, &quot;Zblaznela&quot;, &quot;1999-07-12&quot;);</span></span>
+<span id="cb250-6"><a href="relational-databases.html#cb250-6"></a><span class="st">&#39;&#39;&#39;</span>)</span>
+<span id="cb250-7"><a href="relational-databases.html#cb250-7"></a></span>
+<span id="cb250-8"><a href="relational-databases.html#cb250-8"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb250-9"><a href="relational-databases.html#cb250-9"></a><span class="st">    INSERT INTO Salary (year, month, id_employee, amount) VALUES </span></span>
+<span id="cb250-10"><a href="relational-databases.html#cb250-10"></a><span class="st">      (2010, 05, last_insert_rowid(), 1243.67);</span></span>
+<span id="cb250-11"><a href="relational-databases.html#cb250-11"></a><span class="st">&#39;&#39;&#39;</span>)</span>
+<span id="cb250-12"><a href="relational-databases.html#cb250-12"></a></span>
+<span id="cb250-13"><a href="relational-databases.html#cb250-13"></a></span>
+<span id="cb250-14"><a href="relational-databases.html#cb250-14"></a><span class="co"># Save (commit) the changes</span></span>
+<span id="cb250-15"><a href="relational-databases.html#cb250-15"></a>conn.commit()</span>
+<span id="cb250-16"><a href="relational-databases.html#cb250-16"></a></span>
+<span id="cb250-17"><a href="relational-databases.html#cb250-17"></a><span class="co"># We can also close the connection if we are done with it.</span></span>
+<span id="cb250-18"><a href="relational-databases.html#cb250-18"></a><span class="co"># Just be sure any changes have been committed or they will be lost.</span></span>
+<span id="cb250-19"><a href="relational-databases.html#cb250-19"></a><span class="co"># conn.close()</span></span></code></pre></div>
 <p>After every change to a database, we must call the commit command which actually saves the results into the database.</p>
 <p>Now let’s examine if our insert statement was successful. You may have noticed the call to the function <code>last_insert_rowid()</code>. This function returns the id of the last inserted row when we are using AUTOINCREMENT option for the primary key.</p>
 </div>
 <div id="selecting-data" class="section level4">
 <h4><span class="header-section-number">9.2.3.2</span> Selecting data</h4>
 <p>Let’s check, what is in the database.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb250-1"><a href="relational-databases.html#cb250-1"></a>cursor <span class="op">=</span> c.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb250-2"><a href="relational-databases.html#cb250-2"></a><span class="st">    SELECT b.id, b.name, COUNT(e.id), MAX(s.amount)</span></span>
-<span id="cb250-3"><a href="relational-databases.html#cb250-3"></a><span class="st">    FROM Branch b LEFT OUTER JOIN Employee e ON e.id_branch = b.id</span></span>
-<span id="cb250-4"><a href="relational-databases.html#cb250-4"></a><span class="st">         LEFT OUTER JOIN Salary s ON s.id_employee = e.id</span></span>
-<span id="cb250-5"><a href="relational-databases.html#cb250-5"></a><span class="st">    GROUP BY b.id, b.name;</span></span>
-<span id="cb250-6"><a href="relational-databases.html#cb250-6"></a><span class="st">&#39;&#39;&#39;</span>)</span>
-<span id="cb250-7"><a href="relational-databases.html#cb250-7"></a></span>
-<span id="cb250-8"><a href="relational-databases.html#cb250-8"></a><span class="cf">for</span> row <span class="kw">in</span> cursor:</span>
-<span id="cb250-9"><a href="relational-databases.html#cb250-9"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\t</span><span class="st">Branch id: </span><span class="sc">%d</span><span class="ch">\n\t\t</span><span class="st">Branch name: &#39;</span><span class="sc">%s</span><span class="st">&#39;</span><span class="ch">\n\t\t</span><span class="st">Employee number: </span><span class="sc">%s</span><span class="ch">\n\t\t</span><span class="st">Maximum salary: </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>], row[<span class="dv">3</span>]))</span>
-<span id="cb250-10"><a href="relational-databases.html#cb250-10"></a></span>
-<span id="cb250-11"><a href="relational-databases.html#cb250-11"></a><span class="co"># You should close the connection when stopped using the database.</span></span>
-<span id="cb250-12"><a href="relational-databases.html#cb250-12"></a>conn.close()</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb251-1"><a href="relational-databases.html#cb251-1"></a>cursor <span class="op">=</span> c.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb251-2"><a href="relational-databases.html#cb251-2"></a><span class="st">    SELECT b.id, b.name, COUNT(e.id), MAX(s.amount)</span></span>
+<span id="cb251-3"><a href="relational-databases.html#cb251-3"></a><span class="st">    FROM Branch b LEFT OUTER JOIN Employee e ON e.id_branch = b.id</span></span>
+<span id="cb251-4"><a href="relational-databases.html#cb251-4"></a><span class="st">         LEFT OUTER JOIN Salary s ON s.id_employee = e.id</span></span>
+<span id="cb251-5"><a href="relational-databases.html#cb251-5"></a><span class="st">    GROUP BY b.id, b.name;</span></span>
+<span id="cb251-6"><a href="relational-databases.html#cb251-6"></a><span class="st">&#39;&#39;&#39;</span>)</span>
+<span id="cb251-7"><a href="relational-databases.html#cb251-7"></a></span>
+<span id="cb251-8"><a href="relational-databases.html#cb251-8"></a><span class="cf">for</span> row <span class="kw">in</span> cursor:</span>
+<span id="cb251-9"><a href="relational-databases.html#cb251-9"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\t</span><span class="st">Branch id: </span><span class="sc">%d</span><span class="ch">\n\t\t</span><span class="st">Branch name: &#39;</span><span class="sc">%s</span><span class="st">&#39;</span><span class="ch">\n\t\t</span><span class="st">Employee number: </span><span class="sc">%s</span><span class="ch">\n\t\t</span><span class="st">Maximum salary: </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>], row[<span class="dv">3</span>]))</span>
+<span id="cb251-10"><a href="relational-databases.html#cb251-10"></a></span>
+<span id="cb251-11"><a href="relational-databases.html#cb251-11"></a><span class="co"># You should close the connection when stopped using the database.</span></span>
+<span id="cb251-12"><a href="relational-databases.html#cb251-12"></a>conn.close()</span></code></pre></div>
 <p>We can observe that now also the Hot Pork Wings branch employs an employee.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb251-1"><a href="relational-databases.html#cb251-1"></a>    <span class="ex">Branch</span> id: 1</span>
-<span id="cb251-2"><a href="relational-databases.html#cb251-2"></a>        <span class="ex">Branch</span> name: <span class="st">&#39;Grosuplje&#39;</span>s Fried Chicken<span class="st">&#39;</span></span>
-<span id="cb251-3"><a href="relational-databases.html#cb251-3"></a><span class="st">        Employee number: 14</span></span>
-<span id="cb251-4"><a href="relational-databases.html#cb251-4"></a><span class="st">        Maximum salary: 2140.99</span></span>
-<span id="cb251-5"><a href="relational-databases.html#cb251-5"></a><span class="st">    Branch id: 2</span></span>
-<span id="cb251-6"><a href="relational-databases.html#cb251-6"></a><span class="st">        Branch name: &#39;</span>Hot Pork Wings<span class="st">&#39;</span></span>
-<span id="cb251-7"><a href="relational-databases.html#cb251-7"></a><span class="st">        Employee number: 1</span></span>
-<span id="cb251-8"><a href="relational-databases.html#cb251-8"></a><span class="st">        Maximum salary: 1243.67</span></span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb252-1"><a href="relational-databases.html#cb252-1"></a>    <span class="ex">Branch</span> id: 1</span>
+<span id="cb252-2"><a href="relational-databases.html#cb252-2"></a>        <span class="ex">Branch</span> name: <span class="st">&#39;Grosuplje&#39;</span>s Fried Chicken<span class="st">&#39;</span></span>
+<span id="cb252-3"><a href="relational-databases.html#cb252-3"></a><span class="st">        Employee number: 14</span></span>
+<span id="cb252-4"><a href="relational-databases.html#cb252-4"></a><span class="st">        Maximum salary: 2140.99</span></span>
+<span id="cb252-5"><a href="relational-databases.html#cb252-5"></a><span class="st">    Branch id: 2</span></span>
+<span id="cb252-6"><a href="relational-databases.html#cb252-6"></a><span class="st">        Branch name: &#39;</span>Hot Pork Wings<span class="st">&#39;</span></span>
+<span id="cb252-7"><a href="relational-databases.html#cb252-7"></a><span class="st">        Employee number: 1</span></span>
+<span id="cb252-8"><a href="relational-databases.html#cb252-8"></a><span class="st">        Maximum salary: 1243.67</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -669,15 +666,15 @@ Figure 9.1: Employee logical database model.
 <h2><span class="header-section-number">9.3</span> PostgreSQL</h2>
 <p>In some cases we need more powerful relational database features. In this case we propose to use a real relational database management system, such as PostgreSQL, MS SQL, MySQL or others.</p>
 <p>In previous chapters we introduced Docker environment. Now we will use <a href="https://hub.docker.com/_/postgres">an official PostgreSQL database image</a> and run it:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb252-1"><a href="relational-databases.html#cb252-1"></a><span class="ex">docker</span> run --name pg-server -e POSTGRES_PASSWORD=BeReSeMi.DataScience -d -p 5432:5432 postgres:10</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb253-1"><a href="relational-databases.html#cb253-1"></a><span class="ex">docker</span> run --name pg-server -e POSTGRES_PASSWORD=BeReSeMi.DataScience -d -p 5432:5432 postgres:10</span></code></pre></div>
 <p>The command will run a PostgreSQL v10.0 database in a Docker container. Also, it will name the container <code>pg-server</code>, set the default database user’s postgres’ password to <code>BeReSeMi.DataScience</code> and share the port 5432 to the host machine.</p>
 <p>When the container is running, we can use our preffered database client and connect to the database server. We can also directly connect to the database using the following command:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb253-1"><a href="relational-databases.html#cb253-1"></a><span class="ex">docker</span> exec -it pg-server psql -U postgres -W</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb254-1"><a href="relational-databases.html#cb254-1"></a><span class="ex">docker</span> exec -it pg-server psql -U postgres -W</span></code></pre></div>
 <p>First we need to create a database, called <code>courseitds</code> and connect to it:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb254-1"><a href="relational-databases.html#cb254-1"></a><span class="va">postgres=</span># <span class="ex">create</span> database courseitds<span class="kw">;</span></span>
-<span id="cb254-2"><a href="relational-databases.html#cb254-2"></a><span class="ex">CREATE</span> DATABASE</span>
-<span id="cb254-3"><a href="relational-databases.html#cb254-3"></a><span class="va">postgres=</span># \<span class="ex">c</span> courseitds</span>
-<span id="cb254-4"><a href="relational-databases.html#cb254-4"></a><span class="ex">You</span> are now connected to database <span class="st">&quot;courseitds&quot;</span> as user <span class="st">&quot;postgres&quot;</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb255-1"><a href="relational-databases.html#cb255-1"></a><span class="va">postgres=</span># <span class="ex">create</span> database courseitds<span class="kw">;</span></span>
+<span id="cb255-2"><a href="relational-databases.html#cb255-2"></a><span class="ex">CREATE</span> DATABASE</span>
+<span id="cb255-3"><a href="relational-databases.html#cb255-3"></a><span class="va">postgres=</span># \<span class="ex">c</span> courseitds</span>
+<span id="cb255-4"><a href="relational-databases.html#cb255-4"></a><span class="ex">You</span> are now connected to database <span class="st">&quot;courseitds&quot;</span> as user <span class="st">&quot;postgres&quot;</span>.</span></code></pre></div>
 <p>Now we can use the SQL statements from the example above (Section <a href="relational-databases.html#sqlite-example">9.2.2</a>). PostgreSQL supports a SQL a little bit differently, so we need to adapt the following:</p>
 <ul>
 <li>Foreign key constraint check are enabled by default so there is no need to enable them.</li>
