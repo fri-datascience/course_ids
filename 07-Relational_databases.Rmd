@@ -1,8 +1,8 @@
 # Relational databases
 
-Organizations have been using SQL databaseses almost from the time they exist. In databases they store transactional data as well as business intelligence related data. In some cases and depending on a company, they may use other types of databases such as NoSQL databases which provide their own data organization and different mechanisms to access the data. Therefore, to help companies work on their problems and provide data intelligence for them, data scientists and analysts need to understand relational data stores. Relational databases share a common basic query language - SQL using which we can perform common data science tasks, including finding, exploration, and extraction within relational databases. 
+Organizations have been using SQL databases almost from the time they exist. In databases they store transactional data as well as business intelligence related data. In some cases and depending on a company, they may use other types of databases such as NoSQL databases which provide their own data organization and different mechanisms to access the data. Therefore, to help companies work on their problems and provide data intelligence for them, data scientists and analysts need to understand relational data stores. Relational databases share a common basic query language - SQL using which we can perform common data science tasks, including finding, exploration, and extraction within relational databases. 
 
-Software that implements a specific database is called a database management system. It provides a whole software solution to work with larger data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provise a common interface using SQL query language. Examples of such datases used in real-world scenarios are [Oracle](http://www.oracle.com/index.html), [Sybase](http://www.sybase.com/), [IBM DB2](http://www-306.ibm.com/software/data/db2/), [MSSQL](http://www.microsoft.com/sql/default.mspx), [MySQL](http://www.mysql.com/),  [PostgreSQL](http://www.postgresql.org/) or [SQLite](https://www.sqlite.org/index.html).
+Software that implements a specific database is called a database management system. It provides a whole software solution to work with larger data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provide a common interface using SQL query language. Examples of such datases used in real-world scenarios are [Oracle](http://www.oracle.com/index.html), [IBM DB2](http://www-306.ibm.com/software/data/db2/), [MSSQL](http://www.microsoft.com/sql/default.mspx), [MySQL](http://www.mysql.com/),  [PostgreSQL](http://www.postgresql.org/) or [SQLite](https://www.sqlite.org/index.html).
 
 ## Introduction to SQL
 
@@ -55,7 +55,7 @@ To add a new integer-type column that must not be undefined and has a specific d
 ALTER TABLE TableName ADD NewColumnName INTEGER NOT NULL DEFAULT 0;
 ```
 
-When we create a table, an index is created for the columns that represent the primary key. There exist a number of different indexes, which are various and implemented differently across the database management systems. To create an index, we use the following syntax: 
+When we create a table, an index is created for the columns that represent the primary key. There exist a number of different indexes, which are various and implemented differently across the database management systems. Indexes can improve our query performances but are costly to build and can consume a lot of space, so they need to be created wisely when needed. To create an index, we use the following syntax: 
 
 ```sql
 CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name
@@ -64,8 +64,6 @@ CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name
        column2 [ASC|DESC],
 ...);
 ```
-
-Indexes can improve our query performances but are costly to build and can consume a lot of space, so they need to be created wisely when needed.
 
 To delete a database object, a DROP command is used. Using a DROP command we can delete any database object or a whole database. To delete a table, we use following command:
 
@@ -133,7 +131,7 @@ In the FROM part we list tables that are needed for the query to execute. It is 
 
 In the WHERE part we provide conditions that need to be true for the row to be returned. In this part we can use equality operators (>, <, =, <=, >=, BETWEEN), text comparisons (LIKE), set comparisons (IN, ALL, ANY), null value comparisons (IS NULL, IS NOT NULL) or specific functions supported by our DBMS.
 
-The GROUP BY part groups together rows of the same value by the defined columns. On this group of columns we can run further aggregate functions. When using grouping, we can output only columns that are grouped by or aggregate functions of other columns in the SELECT part! Use with caution as some DBMS do not provide warnings if grouping used wrongly. Standard aggregate functions are COUNT, SUM, AVG, MIN and MAX. Each DBMS provides also additional grouping functions such as GROUP_CONCAT.
+The GROUP BY part groups together rows of the same value by the defined columns. On this group of columns we can run further aggregate functions. When using grouping, we can output only columns that are grouped by or aggregate functions of other columns in the SELECT part! Use with caution as some DBMS do not provide warnings if grouping used wrongly. Standard aggregate functions are COUNT, SUM, AVG, MIN and MAX. Each DBMS provides also additional grouping functions such as GROUP_CONCAT (MySQL specific, other databases name proprietary functions differently).
 
 The HAVING part can be used only together with GROUP BY. Its role is to provide filtering of rows based on the aggregate functions - these cannot be used in the WHERE part of the query.
 
@@ -180,13 +178,13 @@ knitr::include_graphics("data/SQL/screenshot.png")
 
 In this section we show how to create a new SQLite database and manage it manually using SQL language directly. First we create a new database file called `itds_course.db`. 
 
-We will create a new database model, presented in the Figure below. Modeling database schemas can be quite complex task, especially for larger databases consisting of many tables. The modeler needs to to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
+We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be quite complex task, especially for larger databases consisting of many tables. The modeler needs to to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
 
-```{r, echo=FALSE, fig.align='center', fig.cap='Employee logical database model.'}
+```{r model, echo=FALSE, fig.align='center', fig.cap='Employee logical database model.'}
 knitr::include_graphics("data/SQL/model.png")
 ```
 
-Let's first create the model from the Figure above. The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text. 
+Let's first create the model from the Figure \@ref(fig:model). The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text. 
 
 SQLite supports foreign keys but it does not enforce their referential integrity if we do not say this explicitly at each database connection session. To enable checks, we need to issue the following command:
 
@@ -232,7 +230,7 @@ CREATE TABLE Salary (
 
 When creating tables, we should be consistent in naming them - capitalization, singular/plural and similarly for the columns, especially foreign keys. The most readable tables have clearly identifiable primary key and foreign keys. Naming of the foreign key columns should reflect the name of the related table. In the Branch and Employee tables we defined the primary key columns as AUTOINCREMENT. This enables the database to automatically set the id of a new record and we do not need to define it explicitly.
 
-Now we can insert some data into our tables. The insertion into the Employee table could be done also using one statement only. For the still employed employeed we would just set their employment_end value to NULL.
+Now we can insert some data into our tables. The insertion into the Employee table could be done also using one statement only. For the still employed employees we would just set their employment_end value to NULL.
 
 ```sql
 -- Branches
@@ -269,7 +267,7 @@ INSERT INTO Salary (year, month, id_employee, amount) VALUES
     (2010, 07, 8, 2099.11);
 ```
 
-Now the data is in the database and we can perform querying. Below we show just some basic queries.
+Now the data is in the database and we can perform querying. Below we show just some basic queries. The command-line does not include column names in the output, so when they are not defined in the query, their order from the table is followed.
 
 ```sql
 -- Selecting all columns
@@ -384,6 +382,29 @@ SELECT * FROM SalaryAnalysis;
 8|2010-04-22|2022-01-01|2010-7-01|2099.11
 ```
 
+Another option is to create a dynamic object, called VIEW. The CREATE VIEW command assigns a name to a pre-packaged SELECT statement. Once the view is created, it can be used in the FROM clause of another SELECT in place of a table name. We can also rename columns when creating a view. The same example as we used above for creating a table, we now use to create a VIEW:
+
+```sql
+CREATE VIEW SalaryAnalysisView (id, start, end, month, amount) AS
+SELECT e.id, e.employment_start, e.employment_end, 
+       s.year || '-' || s.month || '-01' AS month, s.amount 
+FROM Employee e INNER JOIN Salary s ON e.id = s.id_employee;
+
+SELECT * FROM SalaryAnalysisView;
+```
+
+```bash
+2|1995-08-22||2010-5-01|950.37
+2|1995-08-22||2010-6-01|955.2
+2|1995-08-22||2010-7-01|990.49
+2|1995-08-22||2010-8-01|1200.5
+6|2018-10-01||2010-5-01|980.43
+7|1987-06-07|1987-06-12|2010-5-01|1320.2
+8|2010-04-22|2022-01-01|2010-5-01|2100.67
+8|2010-04-22|2022-01-01|2010-6-01|2140.99
+8|2010-04-22|2022-01-01|2010-7-01|2099.11
+```
+
 There is also option to update our data using the UPDATE statement:
 
 ```sql
@@ -422,7 +443,7 @@ SQLite can be used by many different programming languages. We show an example o
 
 First we need to install library for SQLite database file manipulation. If you use Anaconda Python distribution, just issue the `conda install -c anaconda sqlite` command.
 
-First we need to connect to a database. If the database file does not exist in the path provided, an empty database file will be created automatically.
+Then we need to connect to a database. If the database file does not exist in the path provided, an empty database file will be created automatically.
 
 ```python
 import sqlite3
@@ -472,7 +493,8 @@ cursor = c.execute('''
 ''')
 
 for row in cursor:
-    print("\tBranch id: %d\n\t\tBranch name: '%s'\n\t\tEmployee number: %s\n\t\tMaximum salary: %s" % (row[0], row[1], row[2], row[3]))
+    print("\tBranch id: %d\n\t\tBranch name: '%s'\n\t\tEmployee number: \
+    %s\n\t\tMaximum salary: %s" % (row[0], row[1], row[2], row[3]))
 
 # You should close the connection when stopped using the database.
 conn.close()
@@ -493,12 +515,13 @@ We can observe that now also the Hot Pork Wings branch employs an employee.
 
 ## PostgreSQL
 
-In some cases we need more powerful relational database features. In this case we propose to use a real relational database management system, such as PostgreSQL, MS SQL, MySQL or others.
+In some cases we need more powerful relational database features. In this case we propose to use a more advanced relational database management system, such as PostgreSQL, MS SQL, MySQL or others.
 
 In previous chapters we introduced Docker environment. Now we will use [an official PostgreSQL database image](https://hub.docker.com/_/postgres) and run it:
 
 ```bash
-docker run --name pg-server -e POSTGRES_PASSWORD=BeReSeMi.DataScience -d -p 5432:5432 postgres:10
+docker run --name pg-server -e POSTGRES_PASSWORD=BeReSeMi.DataScience \
+  -d -p 5432:5432 postgres:10
 ```
 
 The command will run a PostgreSQL v10.0 database in a Docker container. Also, it will name the container `pg-server`, set the default database user's postgres' password to `BeReSeMi.DataScience` and share the port 5432 to the host machine. 

@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-27" />
+<meta name="date" content="2019-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,10 +147,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="python-programming-language.html"><a href="python-programming-language.html#short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> Short introduction to Python</a><ul>
 <li class="chapter" data-level="" data-path="python-programming-language.html"><a href="python-programming-language.html#basics"><i class="fa fa-check"></i>Basics</a></li>
-<li class="chapter" data-level="1.6.1" data-path="python-programming-language.html"><a href="python-programming-language.html#control-flow-operations"><i class="fa fa-check"></i><b>1.6.1</b> Control flow operations</a></li>
+<li class="chapter" data-level="1.6.1" data-path="python-programming-language.html"><a href="python-programming-language.html#flow-control"><i class="fa fa-check"></i><b>1.6.1</b> Flow control</a></li>
 <li class="chapter" data-level="1.6.2" data-path="python-programming-language.html"><a href="python-programming-language.html#functions"><i class="fa fa-check"></i><b>1.6.2</b> Functions</a></li>
 <li class="chapter" data-level="1.6.3" data-path="python-programming-language.html"><a href="python-programming-language.html#classes-and-objects"><i class="fa fa-check"></i><b>1.6.3</b> Classes and objects</a></li>
-<li class="chapter" data-level="1.6.4" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ides-and-code-editors"><i class="fa fa-check"></i><b>1.6.4</b> Python IDE’s and code editors</a></li>
+<li class="chapter" data-level="1.6.4" data-path="python-programming-language.html"><a href="python-programming-language.html#reading-and-writing-files"><i class="fa fa-check"></i><b>1.6.4</b> Reading and writing files</a></li>
+<li class="chapter" data-level="1.6.5" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ides-and-code-editors"><i class="fa fa-check"></i><b>1.6.5</b> Python IDE’s and code editors</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="python-programming-language.html"><a href="python-programming-language.html#python-ecosystem-for-data-science"><i class="fa fa-check"></i><b>1.7</b> Python ecosystem for Data Science</a></li>
 <li class="chapter" data-level="1.8" data-path="python-programming-language.html"><a href="python-programming-language.html#further-reading-and-references"><i class="fa fa-check"></i><b>1.8</b> Further reading and references</a></li>
@@ -323,15 +324,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>HTML is the predominant language for implementing Web pages and it is largely supported by World Wide Web consortium. HTML pages can be regarded as a form of semi-structured data (even if less structured than other sources like XML documents) in which information follows a nested structure; HTML features can be profitably used in the design of suitable wrappers. However, we acknowledge that a large amount of semi-structured information is present in non-HTML formats (think of e-mail messages, software code and related documentations, system logs and so on) but the research approaches targeting at extracting information from this type of sources are the focus of general information extraction.</p>
 <p>The backbone of a Web page is a Hypertext Markup Language (HTML) document which consists of HTML tags. According to the <a href="http://www.w3.org/DOM">Document Object Model</a> (DOM), every HTML tag is an object. Nested tags are called children of the enclosing tag. Generally we first parse a web page into a DOM tree representation. Then we specify extraction patterns as paths from the root of the DOM tree to the node containing the values to extract. Special languages such as XPath or XQuery support searching and querying elements of a DOM tree.</p>
 <p>Below we show a simple HTML Web page and it’s representation as a HTML DOM tree.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb108-1"><a href="web-scraping.html#cb108-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb108-2"><a href="web-scraping.html#cb108-2"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb108-3"><a href="web-scraping.html#cb108-3"></a>    <span class="kw">&lt;title&gt;</span>My Title<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb108-4"><a href="web-scraping.html#cb108-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb108-5"><a href="web-scraping.html#cb108-5"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb108-6"><a href="web-scraping.html#cb108-6"></a>    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>My link<span class="kw">&lt;/a&gt;</span></span>
-<span id="cb108-7"><a href="web-scraping.html#cb108-7"></a>    <span class="kw">&lt;h1&gt;</span>My header<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb108-8"><a href="web-scraping.html#cb108-8"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb108-9"><a href="web-scraping.html#cb108-9"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb84-1"><a href="web-scraping.html#cb84-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb84-2"><a href="web-scraping.html#cb84-2"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb84-3"><a href="web-scraping.html#cb84-3"></a>    <span class="kw">&lt;title&gt;</span>My Title<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb84-4"><a href="web-scraping.html#cb84-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb84-5"><a href="web-scraping.html#cb84-5"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb84-6"><a href="web-scraping.html#cb84-6"></a>    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>My link<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb84-7"><a href="web-scraping.html#cb84-7"></a>    <span class="kw">&lt;h1&gt;</span>My header<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb84-8"><a href="web-scraping.html#cb84-8"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb84-9"><a href="web-scraping.html#cb84-9"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:htmlDOM"></span>
 <img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page."  />
 <p class="caption">
@@ -356,19 +357,19 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <h3><span class="header-section-number">4.2.2</span> XPath</h3>
 <p>One of the main advantage of the adoption of the Document Object Model for Web Content Extraction is the possibility of exploiting some tools typical of XML languages (and HTML is to all effects a dialect of the XML). In particular, the XML Path Language (XPath) provides with a powerful syntax to address specific elements of an XML document (and, to the same extent, of HTML Web pages) in a simple manner. XPath has been defined by the World Wide Web consortium, so as DOM.</p>
 <p>Below we provide an XML example to explain how XPath can be used to address elements of a Web page.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb109-1"><a href="web-scraping.html#cb109-1"></a><span class="kw">&lt;persons&gt;</span></span>
-<span id="cb109-2"><a href="web-scraping.html#cb109-2"></a>  <span class="kw">&lt;person&gt;</span></span>
-<span id="cb109-3"><a href="web-scraping.html#cb109-3"></a>    <span class="kw">&lt;name&gt;</span>John<span class="kw">&lt;/name&gt;</span></span>
-<span id="cb109-4"><a href="web-scraping.html#cb109-4"></a>    <span class="kw">&lt;height</span><span class="ot"> unit=</span><span class="st">”cm”</span><span class="kw">&gt;</span>191<span class="kw">&lt;/height&gt;</span></span>
-<span id="cb109-5"><a href="web-scraping.html#cb109-5"></a>    <span class="kw">&lt;sport&gt;</span>Running<span class="kw">&lt;/sport&gt;</span></span>
-<span id="cb109-6"><a href="web-scraping.html#cb109-6"></a>    <span class="kw">&lt;sport&gt;</span>Cycling<span class="kw">&lt;/sport&gt;</span></span>
-<span id="cb109-7"><a href="web-scraping.html#cb109-7"></a>  <span class="kw">&lt;/person&gt;</span></span>
-<span id="cb109-8"><a href="web-scraping.html#cb109-8"></a>  <span class="kw">&lt;person&gt;</span></span>
-<span id="cb109-9"><a href="web-scraping.html#cb109-9"></a>    <span class="kw">&lt;name&gt;</span>Mandy<span class="kw">&lt;/name&gt;</span></span>
-<span id="cb109-10"><a href="web-scraping.html#cb109-10"></a>    <span class="kw">&lt;height&gt;</span>140<span class="kw">&lt;/height&gt;</span></span>
-<span id="cb109-11"><a href="web-scraping.html#cb109-11"></a>   <span class="kw">&lt;sport&gt;</span>Swimming<span class="kw">&lt;/sport&gt;</span></span>
-<span id="cb109-12"><a href="web-scraping.html#cb109-12"></a>  <span class="kw">&lt;/person&gt;</span></span>
-<span id="cb109-13"><a href="web-scraping.html#cb109-13"></a><span class="kw">&lt;/persons&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb85-1"><a href="web-scraping.html#cb85-1"></a><span class="kw">&lt;persons&gt;</span></span>
+<span id="cb85-2"><a href="web-scraping.html#cb85-2"></a>  <span class="kw">&lt;person&gt;</span></span>
+<span id="cb85-3"><a href="web-scraping.html#cb85-3"></a>    <span class="kw">&lt;name&gt;</span>John<span class="kw">&lt;/name&gt;</span></span>
+<span id="cb85-4"><a href="web-scraping.html#cb85-4"></a>    <span class="kw">&lt;height</span><span class="ot"> unit=</span><span class="st">”cm”</span><span class="kw">&gt;</span>191<span class="kw">&lt;/height&gt;</span></span>
+<span id="cb85-5"><a href="web-scraping.html#cb85-5"></a>    <span class="kw">&lt;sport&gt;</span>Running<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb85-6"><a href="web-scraping.html#cb85-6"></a>    <span class="kw">&lt;sport&gt;</span>Cycling<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb85-7"><a href="web-scraping.html#cb85-7"></a>  <span class="kw">&lt;/person&gt;</span></span>
+<span id="cb85-8"><a href="web-scraping.html#cb85-8"></a>  <span class="kw">&lt;person&gt;</span></span>
+<span id="cb85-9"><a href="web-scraping.html#cb85-9"></a>    <span class="kw">&lt;name&gt;</span>Mandy<span class="kw">&lt;/name&gt;</span></span>
+<span id="cb85-10"><a href="web-scraping.html#cb85-10"></a>    <span class="kw">&lt;height&gt;</span>140<span class="kw">&lt;/height&gt;</span></span>
+<span id="cb85-11"><a href="web-scraping.html#cb85-11"></a>   <span class="kw">&lt;sport&gt;</span>Swimming<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb85-12"><a href="web-scraping.html#cb85-12"></a>  <span class="kw">&lt;/person&gt;</span></span>
+<span id="cb85-13"><a href="web-scraping.html#cb85-13"></a><span class="kw">&lt;/persons&gt;</span></span></code></pre></div>
 <p>There exist two possible ways to use XPath: (A) to identify a single element in the document tree, or (B) to address multiple occurrences of elements. We show some XPath queries against the above XML document:</p>
 <ul>
 <li><code>/persons/person/name</code> - Extract all elements in the provided path. The result is <code>&lt;name&gt;John&lt;/name&gt;</code> and <code>&lt;name&gt;Mandy&lt;/name&gt;</code>.</li>

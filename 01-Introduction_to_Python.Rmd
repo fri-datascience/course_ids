@@ -36,7 +36,7 @@ The typical data science workflow consists of acquiring and manipulating data an
 
 The advantages of Python are extremely beneficial to such a workflow: Being simple, easy to learn and free, it is accessible to a larger user base, including users with little or no prior programming experience. Being an interpreted language (and straightforward piecewise execution through read-eval-print loop shells or REPL) makes Python very flexible - multiple alternatives can be explored and quick decisions made on how to procede, depending on intermediary results.
 
-The disadvantages of Python are of minor consequence: The data science workflow is not time-critical - even an order-of-magnitude slowdown typically makes little difference. Code maintainability is less important - data science scripts are often short and discarded after use. Specific platforms development or enterprise-level applications development are also not part of the typical data science workflow. Data science products used in such applications are normally rewritten as final models in a production-ready code.
+The disadvantages of Python are of minor consequence: The data science workflow is not time-critical - even an order-of-magnitude slowdown typically makes little difference. Memory and time consumption can be significantly decreased by using popular libraries such as numpy and scipy. Code maintainability is less important - data science scripts are often short and discarded after use. Specific platforms development or enterprise-level applications development are also not part of the typical data science workflow. Data science products used in such applications are normally rewritten as final models in a production-ready code.
 
 
 ## Setting up the environment
@@ -122,7 +122,19 @@ $
 
 ## Installing dependencies
 
-Many useful libraries are available online, mostly in the [Python Package Index (PyPI) repository](https://pypi.org/). Well-built libraries consist of installation instructions and a *setup.py* file to install them. The common location for installing libraries is the folder *%PYTHON_BASE%/lib*, *%PYTHON_BASE%/site-packages* or *%PYTHON_BASE%/Lib*.
+An Anaconda distribution provides its own [package repository](https://anaconda.org/anaconda/repo) and Anaconda packages can be installed as follows:
+
+```{bash, eval=FALSE}
+$ conda install nltk
+```
+
+If a package is not available in the official repository, it may be available from some private or community-led channels, for example *conda-forge*:
+
+```{bash, eval=FALSE}
+$ conda install -c conda-forge pyspark
+```
+
+Many useful libraries are available online, mostly in the [Python Package Index (PyPI) repository](https://pypi.org/) which can also be used directly in a conda environment. Well-built libraries consist of installation instructions and a *setup.py* file to install them. The common location for installing libraries is the folder *%PYTHON_BASE%/lib*, *%PYTHON_BASE%/site-packages* or *%PYTHON_BASE%/Lib*.
  
 Packages can be installed using the `pip` command. For example, to install the [NLTK library](https://www.nltk.org/), we issue the following command: 
 
@@ -136,23 +148,11 @@ In some cases packages will be prebuilt for a specific OS, because the installat
 $ pip install YOUR_DOWNLOADED_PACKAGE.whl
 ```
 
-An Anaconda distribution provides its own package repository and in addition to pip, Anaconda packages can be installed as follows:
-
-```{bash, eval=FALSE}
-$ conda install nltk
-```
-
-If a package is not available in the official repository, it may be available from some private or community-led channels, for example *conda-forge*:
-
-```{bash, eval=FALSE}
-$ conda install -c conda-forge pyspark
-```
-
 ## Jupyter notebooks
 
 The [Jupyter Notebook](https://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
 
-To add support for Anaconda environments to Jupyter, issue the command below. This will add Conda extensions to Jupyter. The feature will be installed for currently active environment, so you can also install it to the base environment and always run Jupyter from it. When running Jupyter, you will notice a Conda tab in the file browser, which will enable the listing and selection of existing Anaconda environments, overview of the installed packages in the environment, installing new packages from the available package list, checking for updates packages and updating packages in the environment.
+To add support for Anaconda environments to Jupyter, issue the command below. This will add Conda extensions to Jupyter. The feature will be installed for currently active environment. When running Jupyter, you will notice a Conda tab in the file browser, which will enable the listing and selection of existing Anaconda environments, overview of the installed packages in the environment, installing new packages from the available package list, checking for updates packages and updating packages in the environment.
 
 ```{bash, eval=FALSE}
 $ conda install nb_conda
@@ -170,11 +170,11 @@ By default the server is started in the current folder and accessible via the we
 
 ![](data/PythonIntroduction/JupyterFileBrowser.png)
 
-To get a similar view, save the provided [Jupyter notebook](jupyter/Python programming language.ipynb) into the folder where you ran `jupyter notebook` command. Click the filename of the notebook and it will open in a new window:
+To get a similar view, save the provided [Jupyter notebook](jupyter/Python programming language.ipynb) into the folder where you run `jupyter notebook` command. Click the filename of the notebook and it will open in a new window:
 
 ![](data/PythonIntroduction/JupyterNotebook.png)
 
-As you notice, a notebook consists of linearly ordered block of types *Markdown*, *Code*, *Raw NBConvert* and *Heading*. If you double click a text block you can edit it using [Markdown syntax](https://www.markdownguide.org/basic-syntax/). To evaluate the block again and show rendered view, click the *Run* button or press *Alt+Enter*. The same holds for other types of blocks. 
+As you notice, a notebook consists of linearly ordered blocks of types *Markdown*, *Code*, *Raw NBConvert* and *Heading*. If you double click a text block you can edit it using [Markdown syntax](https://www.markdownguide.org/basic-syntax/). To evaluate the block again and show rendered view, click the *Run* button or press *Alt+Enter*. The same holds for other types of blocks. 
 
 Sometimes we just want to view or execute a notebook online. There exist multiple services offering this functionality, for example [https://gke.mybinder.org/](https://gke.mybinder.org/).
 
@@ -191,89 +191,155 @@ Let's first say hello:
 print("Hello Data science!")
 ```
 
+Now we know how to print something to the output. Before we dive into details, let's first check how we can easily output literal values and variables. Let's have a variable *name* and *age* with specific values and form a form a final string to show to a user.
+
+```{python, eval=FALSE}
+name = "Mark"
+age = 42
+
+# Basic old-style string concatenation
+print("Hi, I am " + name + " and I am " + str(age) + " years old.")
+
+# %-formatting
+print("Hi, I am %s and I am %d years old." % (name, age))
+
+# Cleaner syntax using format function
+print("Hi, I am {} and I am {} years old.".format(name, age))
+
+# Format function with extended features of parameter naming and output formatting
+print("Hi, I am {name} and I am {age:3d} years old.".format(age=age, name=name))
+
+# Same features as format function with evaluations directly within curly braces
+print(f"Hi, I am {name} and I am {age:3d} years old")
+
+# Another example
+f = 91
+print(f"{f:.2f} Fahrenheit is {(f - 32) * 5 / 9:.2f} Celsius")
+```
+
+```bash
+## Hi, I am Mark and I am 42 years old.
+## Hi, I am Mark and I am 42 years old.
+## Hi, I am Mark and I am 42 years old.
+## Hi, I am Mark and I am  42 years old.
+## Hi, I am Mark and I am  42 years old
+## 91.00 Fahrenheit is 32.78 Celsius
+```
+
+The last example seems the most readable and we will use it from now on. It is also called *f-string* and you can read more about its features in [the official documentation about literal string interpolation](https://www.python.org/dev/peps/pep-0498/).
+
 #### Variables and types
 
-Python defines whole numbers (*int*, *long*) and real numbers (*float*). Whole numbers are integers ($\pm 2^{31}$ or $\pm 2^{63}$) and long numbers, limited by the memory size. Long is a number with a trailing *L* added at the end (Python 2, in Python 3, long is merged with int). Complex numbers are also supported using a trailing *j* to the imaginary part. Bool type is based on integer - value of 1 as *True* or anything else as *False*.
+Python defines whole numbers (*int*, *long*) and real numbers (*float*). Whole numbers are integers ($\pm 2^{31}$ or $\pm 2^{63}$) and long numbers, limited by the memory size. Long is a number with a trailing *L* added at the end (Python 2, in Python 3, long is merged with int). Complex numbers are also supported using a trailing *j* to the imaginary part. Bool type is based on integer - value of 1 is *True* and value of 0 is *False*. For the boolean expressions, integer value of 1 will be interpreted as *True* and all other values as *False*.
 
 String values are represented as sequence of characters within \" or \'. 
 
 A constant *None* is defined to represent the nonexistence of a value.
 
-```{python}
+```{python, eval=FALSE}
 a = 2864
-print("Type of a is {}".format(type(a)))
-b = 2864L
-print("Type of b is {}".format(type(b)))
-c = 18+64j
-print("Type of c is {}".format(type(c)))
-d = False
-print("Type of d is {}".format(type(d)))
-e = "I'm loving it!"
-print("Type of e is {}".format(type(e)))
-f = None
-print("Type of f is {}".format(type(f)))
+print(f"Type of a is {type(a)}")
+b = 18+64j
+print(f"Type of c is {type(b)}")
+c = False
+print(f"Type of d is {type(c)}")
+d = "I'm loving it!"
+print(f"Type of e is {type(d)}")
+e = None
+print(f"Type of f is {type(e)}")
+```
+
+```bash
+## Type of a is <class 'int'>
+## Type of c is <class 'complex'>
+## Type of d is <class 'bool'>
+## Type of e is <class 'str'>
+## Type of f is <class 'NoneType'>
 ```
 
 #### Numbers and basic operators {-}
 
 Basic data manipulations:
 
-```{python}
+```{python, eval=FALSE}
 a = 3  
 b = 2.5  
 c = a + b 
-print("Addition: {}".format(c))
+print(f"Addition: {c}")
 c = a * b
-print("Multiplication: {}".format(c))
+print(f"Multiplication: {c}")
 c = a / b
-print("Division: {}".format(c))
+print(f"Division: {c}")
 c = True + 5
-print("Addition to Boolean: {}".format(c))
+print(f"Addition to Boolean: {c}")
 c = "5" * 5
-print("String multiplication: {}".format(c))
+print(f"String multiplication: {c}")
+```
+
+```bash
+## Addition: 5.5
+## Multiplication: 7.5
+## Division: 1.2
+## Addition to Boolean: 6
+## String multiplication: 55555
 ```
 
 #### Strings, concatenation and formatting
 
 Basic strings manipulations:
 
-```{python}
+```{python, eval=FALSE}
 a = "Data science" 
 b = 'a multi-disciplinary field' # we can use double or single quotes
 c = a + " " + b
-print("Concatenated string: {}".format(c))
+print(f"Concatenated string: '{c}'")
 first = c[:4]
 last = c[-5:]
-print("First word: '{}' and last word: '{}'.".format(first, last))
+print(f"First word: '{first}' and last word: '{last}'.")
 firstLower = first.lower()
 lastUpper = last.upper()
-print("First word lowercased: '{}' and last word uppercased: '{}'.".\
-  format(firstLower, lastUpper))
+print(
+  (f"First word lowercased: '{firstLower}'"
+   f"and last word uppercased: '{lastUpper}'.")
+)
 management = c.replace("science", "management")
-print("Substring replacement: '{}'".format(management))
+print(f"Substring replacement: '{management}'")
+```
+
+```bash
+## Concatenated string: 'Data science a multi-disciplinary field'
+## First word: 'Data' and last word: 'field'.
+## First word lowercased: 'data'and last word uppercased: 'FIELD'.
+## Substring replacement: 'Data management a multi-disciplinary field'
 ```
 
 Explore more about strings in the official [Python 3 documentation for strings](https://docs.python.org/3/library/string.html).
 
-```{python}
+```{python, eval=FALSE}
 # string package
 import string
-print("Punctuation symbols: '{}'".format(string.punctuation))
+print(f"Punctuation symbols: '{string.punctuation}'")
 ```
 
-String manipulation is essential for parsing and providing machine readable outputs when needed. For more sophisticated examples, see [https://pyformat.info/](https://pyformat.info/).
+```bash
+## Punctuation symbols: '!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~'
+```
 
-```{python}
+String manipulation is essential for parsing and providing machine readable outputs when needed. Below we show additional two examples of how to set print length of a variable using *f-string* method. For more sophisticated examples, see [https://pyformat.info/](https://pyformat.info/) - *f-string* method is the new equivalent of the *format* method.
+
+```{python, eval=FALSE}
 number = 6/.7
 text = "dyslexia"
 
-format0 = "Number: " + str(round(number*100)/100.0) + ", Text: " + \
-" "*(15-len(text)) + text
+format0 = f"Number: {round(number*100)/100.0}, Text: {' '*(15-len(text))} {text}"
 print(format0)
-format1 = "Number: {:5.2f}, Text: {:>15}".format(number, text)
+format1 = f"Number: {number:5.2f}, Text: {text:>15}"
 print(format1)
-format2 = "Number: %5.2f, Text: %15s" % (number, text)
-print(format2)
+```
+
+```bash
+## Number: 8.57, Text:         dyslexia
+## Number:  8.57, Text:        dyslexia
 ```
 
 #### Data stuctures: Lists, Tuples, Sets, Dictionaries
@@ -299,25 +365,65 @@ dict["classroom"] = "P03"
 
 We often use inline functions to map, filter or calculate values on an iterable data structure. For example, to apply a function to all values (map), filter out unnecessary values or use all values in a calculation:
 
-```{python}
-#from functools import reduce # Python 3 import for reduce (not needed for Python 2)
+```{python, eval=FALSE}
+# Python 3 import for reduce (not needed for Python 2)
+from functools import reduce 
 
 l = [6, 8, 22, 4, 12]
 doubled = map(lambda x: x*2, l)
-print("Doubled: {}".format(doubled))
+print(f"Doubled: {doubled}")
 filtered = filter(lambda x: x > 10, l)
-print("Filtered: {}".format(filtered))
+print(f"Filtered: {filtered}")
 sum = reduce(lambda x, y: x+y, l)
-print("Sum value: {}".format(sum))
+print(f"Sum value: {sum}")
 ```
 
-```{python}
+```bash
+## Doubled: <map object at 0x103dd2f50>
+## Filtered: <filter object at 0x103dd2cd0>
+## Sum value: 52
+```
+
+Functions filter, reduce and map create a generator since Python 3. Generators enable declaring functions that behaves like an iterator. To print all the values of the aobve generator objects, we need to evaluate them, for example transform them into a list.
+
+```{python, eval=FALSE}
+print(f"Doubled: {list(doubled)}")
+print(f"Filtered: {list(filtered)}")
+```
+
+```bash
+## Doubled: [12, 16, 44, 8, 24]
+## Filtered: [22, 12]
+```
+
+In comparison to generators we propose to use list comprehension on iterable types, which is more readable and also faster.
+
+```{python, eval=FALSE}
 l = [6, 8, 22, 4, 12]
 newList = [x**2 for x in l if x >= 5 and x <= 10]
-print("Squared values between 5 and 10: {}".format(newList))
+print(f"Squared values between 5 and 10: {newList}")
 ```
 
-### Control flow operations
+```bash
+Squared values between 5 and 10: [36, 64]
+```
+
+Sometimes we would like to generate a repeated sequence of select (i.e. *slice*) only specific values from a string, bytes, tuple, list or range. Slice object represents the indices specified by `range(start, stop, step)`:
+
+```{python, eval=FALSE}
+l = list(range(10))
+print(f"List: {l}")
+
+slice_indexes = slice(2,8,2)
+print(f"Sliced list: {l[slice_indexes]}")
+```
+
+```bash
+List: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Sliced list: [2, 4, 6]
+```
+
+### Flow control
 
 Many operations can be written inline or using multiple lines. Let's check how to use *if* statements and *loops*. 
 
@@ -357,37 +463,87 @@ while i <= 3:
 
 We organize (encapsulate) our code into logical units, so we can reuse them and reduce the amount of duplicate, boilerplate code. Below write the function *greetMe* that takes one argument (*name*) as input and prints some string. The function's code will be executed when we call the function.
 
-```{python}
+```{python, eval=FALSE}
 def greetMe(name):
-  print("Hello my friend {}!".format(name))
+  print(f"Hello my friend {name}!")
   
 greetMe("Janez")
 ```
 
+```bash
+## Hello my friend Janez!
+```
+
 Sometimes our functions will have many arguments, some of which might be optional or have a default value. In the example below we add a argument with a default value. If there are multiple optional arguments we can set their values by naming them.
 
-```{python}
+```{python, eval=FALSE}
 def greet(name, title = "Mr."):
-  print("Hello {} {}!".format(title, name))
+  print(f"Hello {title} {name}!")
   
 greet("Janez")
 greet("Mojca", "Mrs.")
 greet("Mojca", title = "Mrs.")
 ```
 
+```bash
+## Hello Mr. Janez!
+## Hello Mrs. Mojca!
+## Hello Mrs. Mojca!
+```
+
 A function can also call itself and return a value.
 
-```{python}
+```{python, eval=FALSE}
 def sumUpTo(value):
   if value > 0:
     return value + sumUpTo(value-1)
   else: 
     return 0
   
-print("Sum of all positive integers up to 50 is: {}".format(sumUpTo(50)))
+print(f"Sum of all positive integers up to 50 is: {sumUpTo(50)}")
 ```
 
-Python encapsulates variables within functions - they are not accessible outside the function. When we want variables to be accessible globally, we can use the *global* keyword. This can result in some difficult to predict behaviour and interactions, so use with caution!
+```bash
+## Sum of all positive integers up to 50 is: 1275
+```
+
+Functions can also return multiple values in a tuple. Tuple can be then also automatically unpacked into separate values:
+
+```{python, eval=FALSE}
+def calculateHealth(height_cm, weight_kg, age, gender = 'male'):
+  # Body mass index
+  bmi = weight_kg/(height_cm/100)**2
+  # Basal metabolic rate (Revised Harris-Benedict Equation)
+  bmr = 0
+  # Ideal body weight
+  ibw = 0
+  if gender == 'male':
+    bmr = 13.397*weight_kg + 4.799*height_cm - 5.677*age + 88.362
+    ibw = 50 + (0.91 * (height_cm - 152.4))
+  else:
+    bmr = 9.247*weight_kg + 3.098*height_cm - 4.330*age + 447.593
+    ibw = 45.5 + (0.91 * (height_cm - 152.4))
+  return (bmi, bmr, ibw)
+
+janez_health = calculateHealth(184, 79, 42)
+(bmi, bmr, ibw) = calculateHealth(178, 66, 35, 'female')
+
+print(f"Janez:\n\tBMI: {janez_health[0]}\n\tBMR: {janez_health[1]}\n\tIBW: {janez_health[2]}")
+print(f"Mojca:\n\tBMI: {bmi}\n\tBMR: {bmr}\n\tIBW: {ibw}")
+```
+
+```bash
+Janez:
+	BMI: 23.334120982986768
+	BMR: 1791.3070000000002
+	IBW: 78.756
+Mojca:
+	BMI: 20.830703194041156
+	BMR: 1457.7890000000002
+	IBW: 68.79599999999999
+```
+
+Python encapsulates variables within functions - they are not accessible outside the function. When we want variables to be accessible globally, we can use the *global* keyword. This can result in some difficulties to predict behaviour and interactions, so use with caution!
 
 ```{python, eval=FALSE}
 def playWithVariables(value1, list1):
@@ -396,13 +552,13 @@ def playWithVariables(value1, list1):
   
   value1 = 10
   list1.append(22)
-  print("Within function: {} and {} and {}".format(value1, list1, globVal))
+  print(f"Within function: {value1} and {list1} and {globVal}")
 
 value1 = 5
 list1 = [3, 6, 9]
-print("Before function: {} and {}".format(value1, list1))
+print(f"Before function: {value1} and {list1}")
 playWithVariables(value1, list1)
-print("After function: {} and {} and {}".format(value1, list1, globVal))
+print(f"After function: {value1} and {list1} and {globVal}")
 ```
 
 ```
@@ -413,11 +569,16 @@ print("After function: {} and {} and {}".format(value1, list1, globVal))
 
 In some cases we can also define functions that accept an arbitrary number of unnamed (*args*) and/or named (*kwargs*) arguments.
 
-```{python}
+```{python, eval=FALSE}
 def paramsWriter(*args, **kwargs):
-  print("Non-named arguments: {}\nNamed arguments: {}".format(args, kwargs))
+  print(f"Non-named arguments: '{args}'\nNamed arguments: '{kwargs}'")
 
 paramsWriter(1, "a", [1,5,6], studentIds = [234, 451, 842], maxScore = 100.0)
+```
+
+```bash
+## Non-named arguments: '(1, 'a', [1, 5, 6])'
+## Named arguments: '{'studentIds': [234, 451, 842], 'maxScore': 100.0}'
 ```
 
 When naming functions, classes, objects, packages, etc. we need to be careful not to overwrite existing objects. Bugs such as this one can be difficult to find:
@@ -444,17 +605,17 @@ Python is also object-oriented and therefore enables us to encapsulate data and 
 
 The class below consists of one class variable, one class method, three object methods and two object variables. All class-based variables are accessible using the class name directly without having instantiated the object. Object-based methods are accessible only through an instantiated object and can also directly modify object properties (*self.\**). All object methods accept *self* as an implicit parameter, which points to the current object.
 
-elow we show an example of object declaration and its use. A detailed explanation can be found in the [official Python documentation](https://docs.python.org/3/tutorial/classes.html).
+Below we show an example of object declaration and its use. A detailed explanation can be found in the [official Python documentation](https://docs.python.org/3/tutorial/classes.html).
 
 ```{python, eval=FALSE}
 class Classroom:
-  classCounter = 0
+  class_counter = 0
   
-  def numClasses():
-    return Classroom.classCounter
+  def num_classes():
+    return Classroom.class_counter
   
   def __init__(self, name):
-    Classroom.classCounter += 1
+    Classroom.class_counter += 1
     self.name = "Best of Data Science class " + name
     self.students = []
     
@@ -462,15 +623,15 @@ class Classroom:
     self.students.append(student)
     
   def __str__(self):
-    return "Class: '{}', students: '{}'".format(self.name, ", ".join(self.students))
+    return f"Class: '{self.name}', students: '{self.students}'"
 ```
 
 ```{python, eval=FALSE}
 class1 = Classroom("best of millenials")
 class2 = Classroom("old sports")
 
-print("Num classes: {}".format(Classroom.classCounter))
-print("Num classes: {}".format(Classroom.numClasses()))
+print(f"Num classes: {Classroom.class_counter}")
+print(f"Num classes: {Classroom.num_classes()}")
 
 class2.enroll("Slavko Žitnik")
 class2.enroll("Erik Štrumbelj")
@@ -483,6 +644,67 @@ print(class2)
 ## Num classes: 2
 ## Num classes: 2
 ## Class: 'Best of Data Science class old sports', students: 'Slavko Žitnik, Erik Štrumbelj, Tomaž Curk'
+```
+
+### Reading and writing files
+
+Sometimes the data is stored in a well-formatted file which we must read. Also, it is expected that we output results into a file, so let's check how to read and write to files using Python.
+
+To open a file, call function *open(FILENAME, MODE)*. The function returns handle to work with a file. We must select the mode type which can be one of:
+
+* *r* - reading only,
+* *w* - writing to a file (previous content will be deleted),
+* *x* - creating a new file (function fails of a file already exists),
+* *a* - appending to a file,
+* *t* - opening a file in text mode,
+* *b* - opening a file in binary mode and
+* *+* - opening a file for reading and writind (updating).
+
+Writing content to a file:
+
+```{python, eval=FALSE}
+file = open("itds.txt","w+")
+for i in range(10):
+     file.write(f"This is line {i}.\r\n")
+file.close()
+```
+
+Reading content (output omitted):
+
+```{python, eval=FALSE}
+#Open the file and read the contents
+file = open("itds.txt", "r")
+
+# Reading the whole content into a variable
+contents = file.read()
+
+# Reading file into a list of lines
+file.seek(0) #Move to the beginning as we already readt the whole file
+lines = file.readlines() 
+
+# Reading line by line
+file.seek(0)
+for line in file:
+  print(line)
+```
+
+It is also useful to read and write JSON data directly. Python can automatically write and read JSON files for built-in objects:
+
+```{python, eval=FALSE}
+import json
+
+json_obj = {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'ITDS': 6, 'WIER': 10}]}
+
+# Write json to a file
+json.dump(json_obj, open('json_output.json', 'w'))
+
+# Read json to a variable from file
+janez = json.load(open('json_output.json', 'r'))
+print(janez)
+```
+
+```bash
+## {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'ITDS': 6, 'WIER': 10}]}
 ```
 
 ### Python IDE's and code editors
@@ -517,6 +739,7 @@ The Python ecosystem of libraries, frameworks and tools is large and ever-growin
 
 Here is a list of more comprehensive guides to Python programming:
 
+* [Fluent Python: Clear, Concise, and Effective Programming](https://www.amazon.com/Fluent-Python-Concise-Effective-Programming/dp/1491946008)
 * [Official Python Tutorials](https://docs.python.org/3/tutorial/index.html) - Tutorial accompanying official Python documentation. See this resource for latest features.
 * [Beginning Python](http://books.google.com/books?id=S0l1YFpRFVAC&dq=magnus+hetland+beginning+python&printsec=frontcover&source=bn&hl=en&ei=YYLDSvWTNJGPsAb1wNmhBA&sa=X&oi=book_result&ct=result&resnum=4&ved=0CBUQ6AEwAw#v=onepage&q=&f=false) by Magnus Hetland - The book is written for beginners but last chapters are useful also for more experienced programmers.
 * [Non-Programmer's Tutorial for Python](https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3) - a well organized Wikibook.
