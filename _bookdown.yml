@@ -14,8 +14,6 @@ rmd_files: [
   "Summarizing-data-03.Rmd",
   "07-Relational_databases.Rmd",
   "PM-01.Rmd",
-  "PM-02.Rmd",
-  "PM-03.Rmd",
   "Missing-data.Rmd"]
 new_session: yes
 
