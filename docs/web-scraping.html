@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Web scraping | Introduction to data science</title>
-  <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Course notes" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Web scraping | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="Course notes" />
   
 
-<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
+<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-28">
+<meta name="date" content="2019-09-13" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="docker-container-platform.html">
-<link rel="next" href="dynamic-reports-and-reproducibility.html">
+<link rel="prev" href="docker-container-platform.html"/>
+<link rel="next" href="dynamic-reports-and-reproducibility.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,41 +50,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -141,6 +167,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
 <li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
 <li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
+<li class="chapter" data-level="3.3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#dockerfile-optimizations"><i class="fa fa-check"></i><b>3.3.5</b> Dockerfile optimizations</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
@@ -217,31 +244,53 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5" data-path="relational-databases.html"><a href="relational-databases.html#learning-outcomes-6"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="9.6" data-path="relational-databases.html"><a href="relational-databases.html#practice-problems-6"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="predictive-modelling-introduction.html"><a href="predictive-modelling-introduction.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling - Introduction</a></li>
-<li class="chapter" data-level="11" data-path="predictive-modelling-learning-paradigms.html"><a href="predictive-modelling-learning-paradigms.html"><i class="fa fa-check"></i><b>11</b> Predictive modelling - Learning paradigms</a></li>
-<li class="chapter" data-level="12" data-path="predictive-modelling-feature-selection.html"><a href="predictive-modelling-feature-selection.html"><i class="fa fa-check"></i><b>12</b> Predictive modelling - Feature selection</a></li>
-<li class="chapter" data-level="13" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>13</b> Dealing with missing data</a><ul>
-<li class="chapter" data-level="13.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>13.1</b> The severity of the missing data problem</a><ul>
+<li class="chapter" data-level="10" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a><ul>
+<li class="chapter" data-level="10.1" data-path="predictive-modelling.html"><a href="predictive-modelling.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#key-terms"><i class="fa fa-check"></i>Key terms</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#an-illustrative-example"><i class="fa fa-check"></i>An illustrative example</a></li>
+<li class="chapter" data-level="10.1.1" data-path="predictive-modelling.html"><a href="predictive-modelling.html#the-process-of-predictive-modelling"><i class="fa fa-check"></i><b>10.1.1</b> The process of predictive modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="predictive-modelling.html"><a href="predictive-modelling.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#generalized-linear-models"><i class="fa fa-check"></i>Generalized linear models</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#neural-networks"><i class="fa fa-check"></i>Neural networks</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#kernel-based-learning"><i class="fa fa-check"></i>Kernel-based learning</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#ensemble-learning"><i class="fa fa-check"></i>Ensemble learning</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#common-predictive-modelling-paradigms"><i class="fa fa-check"></i>Common predictive modelling paradigms</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="predictive-modelling.html"><a href="predictive-modelling.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#measuring-predictive-performance"><i class="fa fa-check"></i>Measuring predictive performance</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#estimating-how-performance-will-generalize"><i class="fa fa-check"></i>Estimating how performance will generalize</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="predictive-modelling.html"><a href="predictive-modelling.html#practical-considerations"><i class="fa fa-check"></i><b>10.4</b> Practical considerations</a></li>
+<li class="chapter" data-level="10.5" data-path="predictive-modelling.html"><a href="predictive-modelling.html#putting-it-all-together-with-r"><i class="fa fa-check"></i><b>10.5</b> Putting it all together with R</a></li>
+<li class="chapter" data-level="10.6" data-path="predictive-modelling.html"><a href="predictive-modelling.html#python-tools-for-predictive-modelling"><i class="fa fa-check"></i><b>10.6</b> Python tools for predictive modelling</a></li>
+<li class="chapter" data-level="10.7" data-path="predictive-modelling.html"><a href="predictive-modelling.html#putting-it-all-together-with-python"><i class="fa fa-check"></i><b>10.7</b> Putting it all together with Python</a></li>
+<li class="chapter" data-level="10.8" data-path="predictive-modelling.html"><a href="predictive-modelling.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>10.8</b> Further reading and references</a></li>
+<li class="chapter" data-level="10.9" data-path="predictive-modelling.html"><a href="predictive-modelling.html#learning-outcomes-7"><i class="fa fa-check"></i><b>10.9</b> Learning outcomes</a></li>
+<li class="chapter" data-level="10.10" data-path="predictive-modelling.html"><a href="predictive-modelling.html#practice-problems-7"><i class="fa fa-check"></i><b>10.10</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a><ul>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#three-classes-of-missingness"><i class="fa fa-check"></i>Three classes of missingness</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#determining-the-missingness-mechanism"><i class="fa fa-check"></i>Determining the missingness mechanism</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#causes-for-missing-data"><i class="fa fa-check"></i>Causes for missing data</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#introducing-bias"><i class="fa fa-check"></i>Introducing bias</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>13.2</b> Visually exploring missingness</a></li>
-<li class="chapter" data-level="13.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>13.3</b> Deletion methods</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>13.3.1</b> Column deletion</a></li>
-<li class="chapter" data-level="13.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>13.3.2</b> Row deletion</a></li>
-<li class="chapter" data-level="13.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>13.3.3</b> Pairwise deletion</a></li>
+<li class="chapter" data-level="11.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>11.2</b> Visually exploring missingness</a></li>
+<li class="chapter" data-level="11.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>11.3.1</b> Column deletion</a></li>
+<li class="chapter" data-level="11.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>11.3.2</b> Row deletion</a></li>
+<li class="chapter" data-level="11.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>11.3.3</b> Pairwise deletion</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>13.4</b> Imputation methods</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>13.4.1</b> Single imputation with the mean</a></li>
-<li class="chapter" data-level="13.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>13.4.2</b> Single imputation with prediction</a></li>
-<li class="chapter" data-level="13.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>13.4.3</b> Multiple imputation</a></li>
+<li class="chapter" data-level="11.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>11.4.1</b> Single imputation with the mean</a></li>
+<li class="chapter" data-level="11.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>11.4.2</b> Single imputation with prediction</a></li>
+<li class="chapter" data-level="11.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>11.4.3</b> Multiple imputation</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>13.5</b> Summary</a></li>
-<li class="chapter" data-level="13.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>13.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="13.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-7"><i class="fa fa-check"></i><b>13.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="13.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-7"><i class="fa fa-check"></i><b>13.8</b> Practice problems</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>11.5</b> Summary</a></li>
+<li class="chapter" data-level="11.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-8"><i class="fa fa-check"></i><b>11.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="11.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-8"><i class="fa fa-check"></i><b>11.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="11.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-8"><i class="fa fa-check"></i><b>11.8</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>      
@@ -264,11 +313,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="web-scraping" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Web scraping</h1>
-<p>Today there are more than <strong>3.7 billion Internet users</strong>, which almost <strong>50% of the entire population</strong> <span class="citation">(Internet World Stats <a href="#ref-InternetWorldStats">2017</a>)</span>. Taking into account all the existing Internet-enabled devices, we can estimate that approximatelly 30 billion devices are connected to the network <span class="citation">(P. Deitel, Deitel, and Deitel <a href="#ref-deitel2011">2011</a>)</span>.</p>
-<p>In this chapter we focus on Web data extraction (Web scraping) - automatically extracting data from websites and storing it in a structured format. However, the broader field of Wb information extraction also requires the knowledge of natural language processing techniques such as text pre-processing, information extraction (entity extraction, relationship extraction, coreference resolution), sentiment analysis, text categorization/classification and language models. Students that are interested in learning more about these techniques are encouraged to enrol in a Natural language processing course. For introduction to natural language techniques please see the Further reading references <span class="citation">(Liu <a href="#ref-liu2011">2011</a>)</span> (Chapter 11), <span class="citation">(Christopher, Prabhakar, and Hinrich <a href="#ref-manning2008">2008</a>)</span> (Chapters 12, 13, 15-17, 20), <span class="citation">(Aggarwal and Zhai <a href="#ref-aggarwal2012">2012</a>)</span> (Chapters 1-8, 12-14) or other specialized books on natural language processing.</p>
+<p>Today there are more than <strong>3.7 billion Internet users</strong>, which almost <strong>50% of the entire population</strong> <span class="citation">(Internet World Stats <a href="#ref-InternetWorldStats" role="doc-biblioref">2017</a>)</span>. Taking into account all the existing Internet-enabled devices, we can estimate that approximatelly 30 billion devices are connected to the network <span class="citation">(Deitel, Deitel, and Deitel <a href="#ref-deitel2011" role="doc-biblioref">2011</a>)</span>.</p>
+<p>In this chapter we focus on Web data extraction (Web scraping) - automatically extracting data from websites and storing it in a structured format. However, the broader field of Wb information extraction also requires the knowledge of natural language processing techniques such as text pre-processing, information extraction (entity extraction, relationship extraction, coreference resolution), sentiment analysis, text categorization/classification and language models. Students that are interested in learning more about these techniques are encouraged to enrol in a Natural language processing course. For introduction to natural language techniques please see the Further reading references <span class="citation">(Liu <a href="#ref-liu2011" role="doc-biblioref">2011</a>)</span> (Chapter 11), <span class="citation">(Christopher, Prabhakar, and Hinrich <a href="#ref-manning2008" role="doc-biblioref">2008</a>)</span> (Chapters 12, 13, 15-17, 20), <span class="citation">(Aggarwal and Zhai <a href="#ref-aggarwal2012" role="doc-biblioref">2012</a>)</span> (Chapters 1-8, 12-14) or other specialized books on natural language processing.</p>
 <div id="introduction-to-web-data-extraction" class="section level2">
 <h2><span class="header-section-number">4.1</span> Introduction to Web data extraction</h2>
-<p>Web data extraction systems <span class="citation">(Ferrara et al. <a href="#ref-ferrara2014">2014</a>)</span> are a broad class of software applications that focus on extracting data from Web sources. A Web data extraction system usually interacts with a Web source and extracts data stored in it: for instance, if the source is an HTML Web page, the extracted content could consist of elements in the page as well as the full-text of the page itself. Eventually, extracted data might be post-processed, converted to the most convenient structured format and stored for further usage. The design and implementation of Web data extraction systems has been discussed from different perspectives and it leverages on scientific methods from different disciplines including machine learning, logic and natural language processing.</p>
+<p>Web data extraction systems <span class="citation">(Ferrara et al. <a href="#ref-ferrara2014" role="doc-biblioref">2014</a>)</span> are a broad class of software applications that focus on extracting data from Web sources. A Web data extraction system usually interacts with a Web source and extracts data stored in it: for instance, if the source is an HTML Web page, the extracted content could consist of elements in the page as well as the full-text of the page itself. Eventually, extracted data might be post-processed, converted to the most convenient structured format and stored for further usage. The design and implementation of Web data extraction systems has been discussed from different perspectives and it leverages on scientific methods from different disciplines including machine learning, logic and natural language processing.</p>
 <p>Web data extraction systems find extensive use in a wide range of applications including the analysis of text-based documents available to a company (like e-mails, support forums, technical and legal documentation, and so on), Business and Competitive Intelligence, crawling of Social Web platforms, Bioinformatics and so on. The importance of Web data extraction systems depends on the fact that a large (and steadily growing) amount of data is continuously produced, shared and consumed online: Web data extraction systems allow us to efficiently collect these data with limited human effort. The availability and analysis of collected data is vital to understanding complex social, scientific and economic phenomena which generate the data. For example, collecting digital traces produced by users of social Web platforms such as Facebook, YouTube or Flickr is the key step to understand, model and predict human behavior.</p>
 <p>In commercial fields, the Web provides a wealth of public information. A company can probe the Web to acquire and analyze information about the activity of its competitors. This process is known as Competitive Intelligence and it is crucial to quickly identify the opportunities provided by the market, to anticipate the decisions of the competitors as well as to learn from their faults and successes.</p>
 <div id="the-challenges-of-web-data-extraction" class="section level3 unnumbered">
@@ -296,24 +345,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><em>Wrapper execution</em>: the wrapper runs and extracts data continuously.</li>
 <li><em>Wrapper maintenance</em>: the structure of data sources may change and the wrapper should be adapted accordingly.</li>
 </ol>
-<p>The first two steps of a wrapper life-cycle, generation and execution, might be implemented manually, for example, by defining and executing regular expressions over the HTML documents. Alternatively, which is the aim of Web data extraction systems, wrappers might be defined and executed by using an inductive approach – a process commonly known as wrapper induction <span class="citation">(Kushmerick, Weld, and Doorenbos <a href="#ref-kushmerick1997">1997</a>)</span>. Web wrapper induction is challenging because it requires high-level automation strategies. There exist also hybrid approaches that make it possible for users to generate and run wrappers semi-automatically by means of visual interfaces.</p>
+<p>The first two steps of a wrapper life-cycle, generation and execution, might be implemented manually, for example, by defining and executing regular expressions over the HTML documents. Alternatively, which is the aim of Web data extraction systems, wrappers might be defined and executed by using an inductive approach – a process commonly known as wrapper induction <span class="citation">(Kushmerick, Weld, and Doorenbos <a href="#ref-kushmerick1997" role="doc-biblioref">1997</a>)</span>. Web wrapper induction is challenging because it requires high-level automation strategies. Induction methods try to uncover structures from an HTML document to form a robust wrapper. There exist also hybrid approaches that make it possible for users to generate and run wrappers semi-automatically by means of visual interfaces.</p>
 <p>The third and final step of a wrapper’s life-cycle is maintenance: Web pages change their structure continuously and without forewarning. This might affect the correct functioning of a Web wrapper, whose definition is usually tightly bound to the structure of the Web pages adopted. Defining automated strategies for wrapper maintenance is vital to the correctness of extracted data and the robustness of Web data extraction platforms. Wrapper maintenance is especially important for long-term extractions. For the purposes of acquiring data in a typical data-science project, wrappers are mostly run once or over a short period of time. In such cases it is less likely that a Web site would change, so automation is not a priority and is typicaly not implemented.</p>
 <div id="html-dom" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> HTML DOM</h3>
 <p>HTML is the predominant language for implementing Web pages and it is largely supported by the World Wide Web consortium. HTML pages can be regarded as a form of semi-structured data (even if less structured than other sources like XML documents) in which information follows a nested structure. HTML structure can be exploided in the design of suitable wrappers. While semi-structured information is often also available in non-HTML formats (for example, e-mail messages, code, system logs), extracting information of this type is the subject of more general information extraction and not the focus of this chapter.</p>
 <p>The backbone of a Web page is a Hypertext Markup Language (HTML) document which consists of HTML tags. According to the <a href="http://www.w3.org/DOM">Document Object Model</a> (DOM), every HTML tag is an object. Nested tags are called children of the enclosing tag. Generally we first parse a web page into a DOM tree representation. Then we specify extraction patterns as paths from the root of the DOM tree to the node containing the values to extract. Special languages such as XPath or XQuery support searching and querying elements of a DOM tree.</p>
 <p>Below we show a simple HTML Web page and its representation as a HTML DOM tree.</p>
-<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
-  <span class="kw">&lt;head&gt;</span>
-    <span class="kw">&lt;title&gt;</span>My Title<span class="kw">&lt;/title&gt;</span>
-  <span class="kw">&lt;/head&gt;</span>
-  <span class="kw">&lt;body&gt;</span>
-    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>My link<span class="kw">&lt;/a&gt;</span>
-    <span class="kw">&lt;h1&gt;</span>My header<span class="kw">&lt;/h1&gt;</span>
-  <span class="kw">&lt;/body&gt;</span>
-<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb86-1"><a href="web-scraping.html#cb86-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb86-2"><a href="web-scraping.html#cb86-2"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb86-3"><a href="web-scraping.html#cb86-3"></a>    <span class="kw">&lt;title&gt;</span>My Title<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb86-4"><a href="web-scraping.html#cb86-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb86-5"><a href="web-scraping.html#cb86-5"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb86-6"><a href="web-scraping.html#cb86-6"></a>    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>My link<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb86-7"><a href="web-scraping.html#cb86-7"></a>    <span class="kw">&lt;h1&gt;</span>My header<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb86-8"><a href="web-scraping.html#cb86-8"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb86-9"><a href="web-scraping.html#cb86-9"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:htmlDOM"></span>
-<img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page." width="744" />
+<img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page."  />
 <p class="caption">
 Figure 4.1: DOM tree representation of the above HTML Web page.
 </p>
@@ -336,29 +385,29 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <h3><span class="header-section-number">4.2.2</span> XPath</h3>
 <p>One of the main advantage of the adoption of the Document Object Model for Web Content Extraction is the possibility of exploiting the tools for XML languages (and HTML is to all effects a dialect of the XML). In particular, the XML Path Language (XPath) provides with a powerful syntax to succintly address specific elements of an XML document. XPath was also defined by the World Wide Web consortium, as was DOM.</p>
 <p>Below we provide an XML example to explain how XPath can be used to address elements of a Web page.</p>
-<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;persons&gt;</span>
-  <span class="kw">&lt;person&gt;</span>
-    <span class="kw">&lt;name&gt;</span>John<span class="kw">&lt;/name&gt;</span>
-    <span class="kw">&lt;height</span><span class="ot"> unit=</span><span class="st">”cm”</span><span class="kw">&gt;</span>191<span class="kw">&lt;/height&gt;</span>
-    <span class="kw">&lt;sport&gt;</span>Running<span class="kw">&lt;/sport&gt;</span>
-    <span class="kw">&lt;sport&gt;</span>Cycling<span class="kw">&lt;/sport&gt;</span>
-  <span class="kw">&lt;/person&gt;</span>
-  <span class="kw">&lt;person&gt;</span>
-    <span class="kw">&lt;name&gt;</span>Mandy<span class="kw">&lt;/name&gt;</span>
-    <span class="kw">&lt;height&gt;</span>140<span class="kw">&lt;/height&gt;</span>
-   <span class="kw">&lt;sport&gt;</span>Swimming<span class="kw">&lt;/sport&gt;</span>
-  <span class="kw">&lt;/person&gt;</span>
-<span class="kw">&lt;/persons&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb87-1"><a href="web-scraping.html#cb87-1"></a><span class="kw">&lt;persons&gt;</span></span>
+<span id="cb87-2"><a href="web-scraping.html#cb87-2"></a>  <span class="kw">&lt;person&gt;</span></span>
+<span id="cb87-3"><a href="web-scraping.html#cb87-3"></a>    <span class="kw">&lt;name&gt;</span>John<span class="kw">&lt;/name&gt;</span></span>
+<span id="cb87-4"><a href="web-scraping.html#cb87-4"></a>    <span class="kw">&lt;height</span><span class="ot"> unit=</span><span class="st">”cm”</span><span class="kw">&gt;</span>191<span class="kw">&lt;/height&gt;</span></span>
+<span id="cb87-5"><a href="web-scraping.html#cb87-5"></a>    <span class="kw">&lt;sport&gt;</span>Running<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb87-6"><a href="web-scraping.html#cb87-6"></a>    <span class="kw">&lt;sport&gt;</span>Cycling<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb87-7"><a href="web-scraping.html#cb87-7"></a>  <span class="kw">&lt;/person&gt;</span></span>
+<span id="cb87-8"><a href="web-scraping.html#cb87-8"></a>  <span class="kw">&lt;person&gt;</span></span>
+<span id="cb87-9"><a href="web-scraping.html#cb87-9"></a>    <span class="kw">&lt;name&gt;</span>Mandy<span class="kw">&lt;/name&gt;</span></span>
+<span id="cb87-10"><a href="web-scraping.html#cb87-10"></a>    <span class="kw">&lt;height&gt;</span>140<span class="kw">&lt;/height&gt;</span></span>
+<span id="cb87-11"><a href="web-scraping.html#cb87-11"></a>   <span class="kw">&lt;sport&gt;</span>Swimming<span class="kw">&lt;/sport&gt;</span></span>
+<span id="cb87-12"><a href="web-scraping.html#cb87-12"></a>  <span class="kw">&lt;/person&gt;</span></span>
+<span id="cb87-13"><a href="web-scraping.html#cb87-13"></a><span class="kw">&lt;/persons&gt;</span></span></code></pre></div>
 <p>There exist two possible ways to use XPath: (A) to identify a single element in the document tree, or (B) to address multiple occurrences of elements. We show some XPath queries against the above XML document:</p>
 <ul>
 <li><code>/persons/person/name</code> - Extract all elements in the provided path. The result is <code>&lt;name&gt;John&lt;/name&gt;</code> and <code>&lt;name&gt;Mandy&lt;/name&gt;</code>.</li>
 <li><code>/persons/person/name/text()</code> - Get contents of all the elements that match the provided path. The result is <code>John</code> and <code>Mandy</code>.</li>
-<li><code>//person/height[@unit=&quot;cm&quot;]/text()</code> - Extract contents of all <em>height</em> objects that have set attribute <em>unit</em> to <em>cm</em> and have their parent element named as <em>person</em>. Result is <code>191</code>.</li>
+<li><code>//person/height[@unit="cm"]/text()</code> - Extract contents of all <em>height</em> objects that have set attribute <em>unit</em> to <em>cm</em> and have their parent element named as <em>person</em>. Result is <code>191</code>.</li>
 <li><code>//sport</code> - Extract all elements that appear at any level of XML and are named <em>sport</em>. The result is <code>&lt;sport&gt;Running&lt;/sport&gt;</code>, <code>&lt;sport&gt;Cycling&lt;/sport&gt;</code> and <code>&lt;sport&gt;Swimming&lt;/sport&gt;</code>.</li>
-<li><code>//person[name=&quot;Mandy&quot;]/sport/text()</code> - Extract contents of <em>sport</em> objects that are nested directly under <em>person</em> objects which contain a <em>name</em> object with value <em>Mandy</em>. The result is <code>Swimming</code>.</li>
+<li><code>//person[name="Mandy"]/sport/text()</code> - Extract contents of <em>sport</em> objects that are nested directly under <em>person</em> objects which contain a <em>name</em> object with value <em>Mandy</em>. The result is <code>Swimming</code>.</li>
 </ul>
 <p>The major weakness of XPath is its lack of flexibility: each XPath expression is strictly related to the structure of the Web page. However, this limitation has been partially mitigated with the introduction of relative path expressions. In general, even minor changes to the structure of a Web page might corrupt the correct functioning of an XPath expression defined on a previous version of the page. Still, due to the ease of use, many Web extraction libraries support the use of XPath in to addition of their own extraction API.</p>
-<p>Let us consider Web pages generated by a script (e.g. the information about a book in an e-commerce Web site). Now assume that the script undergoes some changes. We can expect that the tree structure of the HTML page generated by that script will change accordingly. To keep the Web data extraction process functional, we should update the expression every time the underlying page generation model changes. Such an operation would require a substantial human effort and would therefore be very costly. To this end, the concept of <em>wrapper robustness</em> was introduced. From the perspective of XPath the idea is to find, among all the XPath expressions capable of extracting the same information from a Web page, the one that is least influenced by potential changes in the structure of the page and such an expression identifies the more robust wrapper. In general, to make the entire Web data extraction process robust, we need tools allowing ufor measuring document similarity. Such a task can be accomplished by detecting structural variations in the DOM trees associated with the documents. Techniques called tree-matching strategies are a good candidate to detect similarities between two trees. The discussion of these techniques is outside the scope of this chapter.</p>
+<p>Let us consider Web pages generated by a script (e.g. the information about a book in an e-commerce Web site). Now assume that the script undergoes some changes. We can expect that the tree structure of the HTML page generated by that script will change accordingly. To keep the Web data extraction process functional, we should update the expression every time the underlying page generation model changes. Such an operation would require a substantial human effort and would therefore be very costly. To this end, the concept of <em>wrapper robustness</em> was introduced. From the perspective of XPath the idea is to find, among all the XPath expressions capable of extracting the same information from a Web page, the one that is least influenced by potential changes in the structure of the page and such an expression identifies the more robust wrapper. In general, to make the entire Web data extraction process robust, we need tools allowing ufor measuring document similarity. Such a task can be accomplished by detecting structural variations in the DOM trees associated with the documents. Techniques called tree-matching strategies are a good candidate to detect similarities between two trees <span class="citation">(Tai <a href="#ref-treeMatching" role="doc-biblioref">1979</a>)</span>. The discussion of these techniques is outside the scope of this chapter.</p>
 </div>
 <div id="modern-web-sites-and-js-frameworks" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Modern Web sites and JS frameworks</h3>
@@ -449,7 +498,7 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <li>Datastore: To store the data and additional metadata used by the crawler.</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:crawlerArchitecture"></span>
-<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture." width="1710" />
+<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture."  />
 <p class="caption">
 Figure 4.2: Web crawler architecture.
 </p>
@@ -459,15 +508,10 @@ Figure 4.2: Web crawler architecture.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUbgvpdaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </center>
-<p>A crawler needs to identify links, which can be encoded in several different ways. They can be explicilty given within <em>href</em> attributes, as <em>onclick</em> Javascript events (e.g. <em>location.href</em> or <em>document.location</em>), etc. Similarly, images can be generated in different formats, shown dynamically, etc. While in some circumstances it might be better to implement a custom crawler, a crawler package or suite is typically a better choice. Here are some examples of cralwer libraries and standalone crawlers:</p>
+<p>A crawler needs to identify links, which can be encoded in several different ways. They can be explicilty given within <em>href</em> attributes, as <em>onclick</em> Javascript events (e.g. <em>location.href</em> or <em>document.location</em>), etc. Similarly, images can be generated in different formats, shown dynamically, etc. While in some circumstances it might be better to implement a custom crawler, a crawler package or suite is typically a better choice. Here are two examples:</p>
 <ul>
-<li><a href="https://scrapy.org/">Scrapy</a>,</li>
 <li><a href="https://nutch.apache.org/">Apache Nutch</a>,</li>
-<li><a href="https://github.com/yasserg/crawler4j">crawler4j</a>,</li>
-<li><a href="https://github.com/xtuhcy/gecco">gecco</a>,</li>
-<li><a href="https://www.norconex.com/collectors/collector-http/">Norconex HTTP Collector</a>,</li>
-<li><a href="https://github.com/code4craft/webmagic">webmagic</a>,</li>
-<li><a href="https://github.com/dadepo/Webmuncher">Webmuncher</a>.</li>
+<li><a href="https://scrapy.org/">Scrapy</a>.</li>
 </ul>
 <p>The Web consists also of other files that web pages point to, for example PDF files, Word/OpenOffice documents, Excel spreadsheets, presentations, etc. They may also include some relevant information. We recommend the following tools for parsing such content:</p>
 <ul>
@@ -482,8 +526,8 @@ Figure 4.2: Web crawler architecture.
 <ul>
 <li><a href="https://www.apress.com/gp/book/9781484235812">Practical Web Scraping for Data Science, Best Practices and Examples with Python (2018), Seppe vanden Broucke and Bart Baesens.</a></li>
 <li><a href="https://www.amazon.de/Web-Scraping-Python-Ryan-Mitchell/dp/1491910291">Web Scraping with Python (2015), Ryan Mitchell</a></li>
-<li><a href="https://www.amazon.com/Web-Data-Mining-Data-Centric-Applications/dp/3642194591">Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data. 2nd ed. (2011), Bing Liu</a></li>
-<li>Check also related Faculty’s bachelor or master theses: <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1537726403">Vmesnik za dostop do portala odprtih podatkov Slovenije (2018), Sašo Marić</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1537211331">Analiza dimenzij kakovosti informacij spletnih strani slovenskih podjetij (2016), Matic Jazbec</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/1536570819">Zajem in obdelava podatkov s spleta (2015), Marko Balažic</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/10715988">Napredno iskanje nepremičnin (2014), Nina Žakelj</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/9990484">Tehnike spletnega luščenja podatkov (2013), Peter Grlica</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/10152276">Spletni iskalnik podatkov o osebah (2013), Matej Žniderič</a>, <a href="https://plus.si.cobiss.net/opac7/bib/fkkri/9454420">Delno samodejna izdelava ovojnic za spletne vire (2012), Rok Burgar</a>, etc.</li>
+<li><a href="https://www.amazon.com/Web-Data-Mining-Data-Centric-Applications/dp/3642194591">Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data. 2nd ed. (2011), Bing Liu</a></li>
+<li><a href="https://www.w3schools.com/xml/xpath_intro.asp">XPath W3schools tutorial</a></li>
 </ul>
 </div>
 <div id="learning-outcomes-2" class="section level2">
@@ -500,7 +544,7 @@ Figure 4.2: Web crawler architecture.
 <ul>
 <li>Explore the Web and find some dynamic Web sites. Using your favourite browser inspect the structure of specific Web pages and try to load the same Web pages with Javascript disabled.</li>
 <li>Implement and run a crawler that will target <a href="https://fri.uni-lj.si/sl/o-fakulteti/osebje" class="uri">https://fri.uni-lj.si/sl/o-fakulteti/osebje</a> and extract the following information about every employee: name, email, phone number, title/job position, and the number of courses they teach and number of projects they have listed. Save the data in CSV format.</li>
-<li>An example project: Build a general crawler that will crawl the Web and retrieve the data about primary schools (or high schools) in Spain (or in USA or Germany). Implement a custom wrapper that will extract school name, contact e-mail and school address.</li>
+<li>An example project: Recently, <a href="http://gov.si">gov.si</a> Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account <em>robots.txt</em>, etc. Store rendered HTML data and also extracted data into a database.</li>
 </ul>
 
 </div>
@@ -514,19 +558,22 @@ Figure 4.2: Web crawler architecture.
 <p>Christopher, D Manning, Raghavan Prabhakar, and Schacetzel Hinrich. 2008. “Introduction to Information Retrieval.” <em>An Introduction to Information Retrieval</em> 151 (177): 5.</p>
 </div>
 <div id="ref-deitel2011">
-<p>Deitel, Paul, Harvey Deitel, and Abbey Deitel. 2011. <em>Internet &amp; World Wide Web: How to Program</em>. 5th ed. Pearson. <a href="https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006" class="uri">https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006</a>.</p>
+<p>Deitel, Paul, Harvey Deitel, and Abbey Deitel. 2011. <em>Internet &amp; World Wide Web: How to Program</em>. 5th ed. Pearson. <a href="https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006">https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006</a>.</p>
 </div>
 <div id="ref-ferrara2014">
-<p>Ferrara, Emilio, Pasquale De Meo, Giacomo Fiumara, and Robert Baumgartner. 2014. “Web Data Extraction, Applications and Techniques: A Survey.” <em>Knowledge-Based Systems</em> 70. Elsevier: 301–23.</p>
+<p>Ferrara, Emilio, Pasquale De Meo, Giacomo Fiumara, and Robert Baumgartner. 2014. “Web Data Extraction, Applications and Techniques: A Survey.” <em>Knowledge-Based Systems</em> 70: 301–23.</p>
 </div>
 <div id="ref-InternetWorldStats">
-<p>Internet World Stats. 2017. “Usage and Population Statistics.” <a href="http://www.internetworldstats.com/stats.htm" class="uri">http://www.internetworldstats.com/stats.htm</a>.</p>
+<p>Internet World Stats. 2017. “Usage and Population Statistics.” 2017. <a href="http://www.internetworldstats.com/stats.htm">http://www.internetworldstats.com/stats.htm</a>.</p>
 </div>
 <div id="ref-kushmerick1997">
-<p>Kushmerick, Nicholas, Daniel S Weld, and Robert Doorenbos. 1997. “Wrapper Induction for Information Extraction.” University of Washington Washington.</p>
+<p>Kushmerick, Nicholas, Daniel S Weld, and Robert Doorenbos. 1997. “Wrapper Induction for Information Extraction.”</p>
 </div>
 <div id="ref-liu2011">
 <p>Liu, Bing. 2011. <em>Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data</em>. 2nd ed. Springer Publishing Company, Incorporated.</p>
+</div>
+<div id="ref-treeMatching">
+<p>Tai, Kuo-Chung. 1979. “The Tree-to-Tree Correction Problem.” <em>J. ACM</em> 26 (3): 422–33. <a href="https://doi.org/10.1145/322139.322143">https://doi.org/10.1145/322139.322143</a>.</p>
 </div>
 </div>
             </section>
@@ -580,6 +627,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

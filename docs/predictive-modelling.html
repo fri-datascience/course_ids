@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Predictive modelling | Introduction to data science</title>
-  <meta name="description" content="Course notes">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Course notes" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Predictive modelling | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="Course notes" />
   
 
-<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj">
+<meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-28">
+<meta name="date" content="2019-09-13" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="relational-databases.html">
-<link rel="next" href="dealing-with-missing-data.html">
+<link rel="prev" href="relational-databases.html"/>
+<link rel="next" href="dealing-with-missing-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,41 +50,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -141,6 +167,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
 <li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
 <li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
+<li class="chapter" data-level="3.3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#dockerfile-optimizations"><i class="fa fa-check"></i><b>3.3.5</b> Dockerfile optimizations</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
@@ -300,119 +327,119 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="an-illustrative-example" class="section level3 unnumbered">
 <h3>An illustrative example</h3>
 <p>Let’s reinforce the terms from the previous section with an illustrative example. We’ll use a simple data set with 200 <em>observations</em> and 2 variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The task is to predict the value of <span class="math inline">\(Y\)</span> from the value of <span class="math inline">\(X\)</span>. That is, we have a single <em>input variable</em> (<span class="math inline">\(X\)</span>) and a single <em>target variable</em> (<span class="math inline">\(Y\)</span>). Before we proceed, we’ll randomly split the dataset into two subsets of equal size. We’ll use one set to <em>train</em> our model and the other to <em>test</em> its performance.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simple linear regression example ---------------------------------------------</span>
-<span class="kw">library</span>(ggplot2)
-
-<span class="co"># read dataset</span>
-dataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/simpleReg.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">h =</span> T)
-
-<span class="co"># train-test split</span>
-<span class="kw">set.seed</span>(<span class="dv">0</span>)
-idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">200</span>, <span class="dv">100</span>, <span class="dt">rep =</span> F)
-dataset<span class="op">$</span>IsTest &lt;-<span class="st"> </span>T
-dataset<span class="op">$</span>IsTest[idx] &lt;-<span class="st"> </span>F
-<span class="co"># plot the data</span>
-g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset, <span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
-<span class="kw">plot</span>(g1)</code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="predictive-modelling.html#cb236-1"></a><span class="co"># Simple linear regression example ---------------------------------------------</span></span>
+<span id="cb236-2"><a href="predictive-modelling.html#cb236-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb236-3"><a href="predictive-modelling.html#cb236-3"></a></span>
+<span id="cb236-4"><a href="predictive-modelling.html#cb236-4"></a><span class="co"># read dataset</span></span>
+<span id="cb236-5"><a href="predictive-modelling.html#cb236-5"></a>dataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/simpleReg.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">h =</span> T)</span>
+<span id="cb236-6"><a href="predictive-modelling.html#cb236-6"></a></span>
+<span id="cb236-7"><a href="predictive-modelling.html#cb236-7"></a><span class="co"># train-test split</span></span>
+<span id="cb236-8"><a href="predictive-modelling.html#cb236-8"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb236-9"><a href="predictive-modelling.html#cb236-9"></a>idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">200</span>, <span class="dv">100</span>, <span class="dt">rep =</span> F)</span>
+<span id="cb236-10"><a href="predictive-modelling.html#cb236-10"></a>dataset<span class="op">$</span>IsTest &lt;-<span class="st"> </span>T</span>
+<span id="cb236-11"><a href="predictive-modelling.html#cb236-11"></a>dataset<span class="op">$</span>IsTest[idx] &lt;-<span class="st"> </span>F</span>
+<span id="cb236-12"><a href="predictive-modelling.html#cb236-12"></a><span class="co"># plot the data</span></span>
+<span id="cb236-13"><a href="predictive-modelling.html#cb236-13"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset, <span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb236-14"><a href="predictive-modelling.html#cb236-14"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
 <p><img src="PM-01_files/figure-html/unnamed-chunk-1-1.png" width="470.4" /></p>
 <p>Now we have to choose a <em>training algorithm</em> that we’ll use to produce a <em>model</em> for the process that generated this dataset. We’ll use simple least-squares linear regression. This tranining algorithm assumes that the functional relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is <span class="math inline">\(X_i = kY_i+n + \epsilon_i\)</span>. Or, in simpler terms, we assume that the points lie on a straight line and we account for the deviations with the residual terms <span class="math inline">\(\epsilon_i\)</span>. Clearly, the data suggest a non-linear relationship and that linear regression is not the best choice, but we’ll ignore that for now.</p>
 <p>The next step is to run the linear regression algorithm to find the best values of our two model <em>parameters</em> slope (<span class="math inline">\(k\)</span>) and intercept (<span class="math inline">\(n\)</span>). In the case of least-squares linear regression, best is defined as the one that minimizes the sum of squared residuals <span class="math inline">\(\epsilon_i\)</span>. That is, within the black-box of least-squares regression we’d find just a simple optimization algorithm:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># train the model</span>
-train_data &lt;-<span class="st"> </span>dataset[dataset<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>F,]
-test_data  &lt;-<span class="st"> </span>dataset[dataset<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>T,]
-
-lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, <span class="dt">data =</span> train_data)
-n  &lt;-<span class="st"> </span>lr<span class="op">$</span>coefficients[<span class="dv">1</span>]
-k  &lt;-<span class="st"> </span>lr<span class="op">$</span>coefficients[<span class="dv">2</span>]
-<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;n = %.2f, k = %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, n, k))</code></pre></div>
-<pre><code>## n = -8.60, k = 6.65</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset, <span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n)
-<span class="kw">plot</span>(g1)</code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="predictive-modelling.html#cb237-1"></a><span class="co"># train the model</span></span>
+<span id="cb237-2"><a href="predictive-modelling.html#cb237-2"></a>train_data &lt;-<span class="st"> </span>dataset[dataset<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>F,]</span>
+<span id="cb237-3"><a href="predictive-modelling.html#cb237-3"></a>test_data  &lt;-<span class="st"> </span>dataset[dataset<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>T,]</span>
+<span id="cb237-4"><a href="predictive-modelling.html#cb237-4"></a></span>
+<span id="cb237-5"><a href="predictive-modelling.html#cb237-5"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, <span class="dt">data =</span> train_data)</span>
+<span id="cb237-6"><a href="predictive-modelling.html#cb237-6"></a>n  &lt;-<span class="st"> </span>lr<span class="op">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb237-7"><a href="predictive-modelling.html#cb237-7"></a>k  &lt;-<span class="st"> </span>lr<span class="op">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb237-8"><a href="predictive-modelling.html#cb237-8"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;n = %.2f, k = %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, n, k))</span></code></pre></div>
+<pre><code>## n = -6.31, k = 6.38</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="predictive-modelling.html#cb239-1"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset, <span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n)</span>
+<span id="cb239-2"><a href="predictive-modelling.html#cb239-2"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
 <p><img src="PM-01_files/figure-html/unnamed-chunk-2-1.png" width="470.4" /></p>
 <p>We can see that the best linear model is probably not the best model for this data, but it still captures part of the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and could be used to predict new values better than the naive approach of just predicting with the mean. Note that in practice the term <em>model</em> is used interchangeably for the training algorithm and the model it produces (in our case <span class="math inline">\(Y_i = 6.65X_i - 8.60\)</span>). That is, the term <em>linear regression model</em> is often used to refer to the entire algorithm of assuming a liner relationship and finding the parameters using optimization.</p>
 <p>Now we’ll try to produce a better model. We’ll use the least-squares algorithm, but we’ll add the squared and cubic terms <span class="math inline">\(X^2\)</span> and <span class="math inline">\(X^3\)</span>. This is also called polynomial regression:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)
-x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)
-y &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))
-
-g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)
-<span class="kw">plot</span>(g1)</code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="predictive-modelling.html#cb240-1"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)</span>
+<span id="cb240-2"><a href="predictive-modelling.html#cb240-2"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb240-3"><a href="predictive-modelling.html#cb240-3"></a>y &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))</span>
+<span id="cb240-4"><a href="predictive-modelling.html#cb240-4"></a></span>
+<span id="cb240-5"><a href="predictive-modelling.html#cb240-5"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n) <span class="op">+</span></span>
+<span id="cb240-6"><a href="predictive-modelling.html#cb240-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb240-7"><a href="predictive-modelling.html#cb240-7"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
 <p><img src="PM-01_files/figure-html/unnamed-chunk-3-1.png" width="470.4" /></p>
 <p>The cubic polynomial appears to be a much better fit for the training data and the test data. Let’s check if that is indeed the case:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, <span class="dt">data =</span> train_data)
-y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)
-e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)
-e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-
-lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)
-y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)
-e2_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)
-e2_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-
-<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;test and training data mean squared error for line: %.2f / %.2f and poly: %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr, e2_te, e2_tr))</code></pre></div>
-<pre><code>## test and training data mean squared error for line: 538.85 / 431.80 and poly: 236.58 / 169.79</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="predictive-modelling.html#cb241-1"></a>lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, <span class="dt">data =</span> train_data)</span>
+<span id="cb241-2"><a href="predictive-modelling.html#cb241-2"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)</span>
+<span id="cb241-3"><a href="predictive-modelling.html#cb241-3"></a>e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb241-4"><a href="predictive-modelling.html#cb241-4"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)</span>
+<span id="cb241-5"><a href="predictive-modelling.html#cb241-5"></a>e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb241-6"><a href="predictive-modelling.html#cb241-6"></a></span>
+<span id="cb241-7"><a href="predictive-modelling.html#cb241-7"></a>lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)</span>
+<span id="cb241-8"><a href="predictive-modelling.html#cb241-8"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)</span>
+<span id="cb241-9"><a href="predictive-modelling.html#cb241-9"></a>e2_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb241-10"><a href="predictive-modelling.html#cb241-10"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)</span>
+<span id="cb241-11"><a href="predictive-modelling.html#cb241-11"></a>e2_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb241-12"><a href="predictive-modelling.html#cb241-12"></a></span>
+<span id="cb241-13"><a href="predictive-modelling.html#cb241-13"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;test and training data mean squared error for line: %.2f / %.2f and poly: %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr, e2_te, e2_tr))</span></code></pre></div>
+<pre><code>## test and training data mean squared error for line: 462.06 / 477.82 and poly: 184.59 / 229.72</code></pre>
 <p>The numbers confirm that the polynomial regression model has lower training and test error. The latter implies that the polynomial regression model will better generalize to new or unseen examples and should be, in terms of predictive performance, used instead of the linear regression model.</p>
 <p>To illustrate another important concept, we’ll also use a 25th degree polynomial model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)
-x  &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)
-y1 &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))
-
-lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">25</span>, <span class="dt">raw =</span> T), <span class="dt">data =</span> train_data)
-y2 &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))
-
-g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y2), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y2), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)
-<span class="kw">plot</span>(g1)</code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="predictive-modelling.html#cb243-1"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)</span>
+<span id="cb243-2"><a href="predictive-modelling.html#cb243-2"></a>x  &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb243-3"><a href="predictive-modelling.html#cb243-3"></a>y1 &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))</span>
+<span id="cb243-4"><a href="predictive-modelling.html#cb243-4"></a></span>
+<span id="cb243-5"><a href="predictive-modelling.html#cb243-5"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">25</span>, <span class="dt">raw =</span> T), <span class="dt">data =</span> train_data)</span>
+<span id="cb243-6"><a href="predictive-modelling.html#cb243-6"></a>y2 &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))</span>
+<span id="cb243-7"><a href="predictive-modelling.html#cb243-7"></a></span>
+<span id="cb243-8"><a href="predictive-modelling.html#cb243-8"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb243-9"><a href="predictive-modelling.html#cb243-9"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="op">+</span></span>
+<span id="cb243-10"><a href="predictive-modelling.html#cb243-10"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n) <span class="op">+</span></span>
+<span id="cb243-11"><a href="predictive-modelling.html#cb243-11"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb243-12"><a href="predictive-modelling.html#cb243-12"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y2), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y2), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb243-13"><a href="predictive-modelling.html#cb243-13"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
 <pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
 <pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
 <p><img src="PM-01_files/figure-html/unnamed-chunk-5-1.png" width="470.4" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">25</span>, <span class="dt">raw =</span> T), <span class="dt">data =</span> train_data)
-y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)
-e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)
-e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-
-<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;poly (25): %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</code></pre></div>
-<pre><code>## poly (25): 303.08 / 136.18</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="predictive-modelling.html#cb247-1"></a>lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">25</span>, <span class="dt">raw =</span> T), <span class="dt">data =</span> train_data)</span>
+<span id="cb247-2"><a href="predictive-modelling.html#cb247-2"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)</span>
+<span id="cb247-3"><a href="predictive-modelling.html#cb247-3"></a>e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb247-4"><a href="predictive-modelling.html#cb247-4"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)</span>
+<span id="cb247-5"><a href="predictive-modelling.html#cb247-5"></a>e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb247-6"><a href="predictive-modelling.html#cb247-6"></a></span>
+<span id="cb247-7"><a href="predictive-modelling.html#cb247-7"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;poly (25): %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
+<pre><code>## poly (25): 71336.91 / 162.80</code></pre>
 <p>We can see that the 20th degree polynomial model, which has 17 more parameters than the 3rd degree polynomial model, is able to fit the training data better. However, its performance on the test data is worse! This is an important concept that we call <em>overfitting</em> - the model was too expressive for the amount of data we have and it started fitting not just the underlying true functional relationship but also the noise in the data. An extreme example of this would be using a 100th degree polynomial, which would be able to perfectly fit the training data, but it would perform very poorly on test data.</p>
 <p>Finally, let’s use a <span class="math inline">\(k\)</span>-nearest neighbors model with <span class="math inline">\(k = 10\)</span>. In other words, we assume that the value of an observation is the average of the 10 nearest points:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we&#39;ll manually code k-nearest neighbors for this simple example</span>
-tmp &lt;-<span class="st"> </span>dataset
-tmp<span class="op">$</span>PredictedY &lt;-<span class="st"> </span><span class="ot">NA</span>
-
-knearest &lt;-<span class="st"> </span><span class="cf">function</span>(x, df, k) {
-  <span class="kw">mean</span>(df[<span class="kw">rank</span>(<span class="kw">abs</span>(df<span class="op">$</span>X <span class="op">-</span><span class="st"> </span>x)) <span class="op">&lt;=</span><span class="st"> </span>k,]<span class="op">$</span>Y)
-}
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {
-  tmp[i,]<span class="op">$</span>PredictedY &lt;-<span class="st"> </span><span class="kw">knearest</span>(tmp<span class="op">$</span>X[i], train_data, <span class="dv">10</span>)
-}
-
-y     &lt;-<span class="st"> </span>tmp[tmp<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>T,]<span class="op">$</span>PredictedY
-e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-y     &lt;-<span class="st"> </span>tmp[tmp<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>F,]<span class="op">$</span>PredictedY
-e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)
-
-<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;knn (10): %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</code></pre></div>
-<pre><code>## knn (10): 245.82 / 188.89</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y  &lt;-<span class="st"> </span><span class="kw">c</span>()
-x  &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)
-<span class="cf">for</span> (pt <span class="cf">in</span> x) {
-  y &lt;-<span class="st"> </span><span class="kw">c</span>(y, <span class="kw">knearest</span>(pt, train_data, <span class="dv">10</span>))
-}
-
-
-g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1))
-<span class="kw">plot</span>(g1)</code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="predictive-modelling.html#cb249-1"></a><span class="co"># we&#39;ll manually code k-nearest neighbors for this simple example</span></span>
+<span id="cb249-2"><a href="predictive-modelling.html#cb249-2"></a>tmp &lt;-<span class="st"> </span>dataset</span>
+<span id="cb249-3"><a href="predictive-modelling.html#cb249-3"></a>tmp<span class="op">$</span>PredictedY &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb249-4"><a href="predictive-modelling.html#cb249-4"></a></span>
+<span id="cb249-5"><a href="predictive-modelling.html#cb249-5"></a>knearest &lt;-<span class="st"> </span><span class="cf">function</span>(x, df, k) {</span>
+<span id="cb249-6"><a href="predictive-modelling.html#cb249-6"></a>  <span class="kw">mean</span>(df[<span class="kw">rank</span>(<span class="kw">abs</span>(df<span class="op">$</span>X <span class="op">-</span><span class="st"> </span>x)) <span class="op">&lt;=</span><span class="st"> </span>k,]<span class="op">$</span>Y)</span>
+<span id="cb249-7"><a href="predictive-modelling.html#cb249-7"></a>}</span>
+<span id="cb249-8"><a href="predictive-modelling.html#cb249-8"></a></span>
+<span id="cb249-9"><a href="predictive-modelling.html#cb249-9"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {</span>
+<span id="cb249-10"><a href="predictive-modelling.html#cb249-10"></a>  tmp[i,]<span class="op">$</span>PredictedY &lt;-<span class="st"> </span><span class="kw">knearest</span>(tmp<span class="op">$</span>X[i], train_data, <span class="dv">10</span>)</span>
+<span id="cb249-11"><a href="predictive-modelling.html#cb249-11"></a>}</span>
+<span id="cb249-12"><a href="predictive-modelling.html#cb249-12"></a></span>
+<span id="cb249-13"><a href="predictive-modelling.html#cb249-13"></a>y     &lt;-<span class="st"> </span>tmp[tmp<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>T,]<span class="op">$</span>PredictedY</span>
+<span id="cb249-14"><a href="predictive-modelling.html#cb249-14"></a>e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb249-15"><a href="predictive-modelling.html#cb249-15"></a>y     &lt;-<span class="st"> </span>tmp[tmp<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>F,]<span class="op">$</span>PredictedY</span>
+<span id="cb249-16"><a href="predictive-modelling.html#cb249-16"></a>e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb249-17"><a href="predictive-modelling.html#cb249-17"></a></span>
+<span id="cb249-18"><a href="predictive-modelling.html#cb249-18"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;knn (10): %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
+<pre><code>## knn (10): 214.64 / 257.63</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="predictive-modelling.html#cb251-1"></a>y  &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb251-2"><a href="predictive-modelling.html#cb251-2"></a>x  &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb251-3"><a href="predictive-modelling.html#cb251-3"></a><span class="cf">for</span> (pt <span class="cf">in</span> x) {</span>
+<span id="cb251-4"><a href="predictive-modelling.html#cb251-4"></a>  y &lt;-<span class="st"> </span><span class="kw">c</span>(y, <span class="kw">knearest</span>(pt, train_data, <span class="dv">10</span>))</span>
+<span id="cb251-5"><a href="predictive-modelling.html#cb251-5"></a>}</span>
+<span id="cb251-6"><a href="predictive-modelling.html#cb251-6"></a></span>
+<span id="cb251-7"><a href="predictive-modelling.html#cb251-7"></a></span>
+<span id="cb251-8"><a href="predictive-modelling.html#cb251-8"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb251-9"><a href="predictive-modelling.html#cb251-9"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="op">+</span></span>
+<span id="cb251-10"><a href="predictive-modelling.html#cb251-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1))</span>
+<span id="cb251-11"><a href="predictive-modelling.html#cb251-11"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
 <pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
 <pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
 <p><img src="PM-01_files/figure-html/unnamed-chunk-7-1.png" width="470.4" /></p>
@@ -443,7 +470,9 @@ g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span c
 <p>So, it is inevitable that we have many general-purpose predictive modelling training algorithms and a plethora of specialized methods, each with its own advantages and disadvantages. Taking into account that there are also other practical considerations, such as model simplicity, time complexity, etc. (covered in more detail later in the chapter), we can conclude that a practitioner must familiarize himself with many different training algorithms and models. Here we briefly discuss a few of the most common ones:</p>
 <div id="generalized-linear-models" class="section level3 unnumbered">
 <h3>Generalized linear models</h3>
-<p>Linear regression is a special case of <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">generalized linear models</a>, which generalize the linear combination approach to other types of target variables, such as logistic regression for classification and Poisson regression for count data. Linear models are computationally simple, relatively easy to interpret and are less likely to overfit, due to their limited expressiveness. Linear models can also be used to model non-linear relationships by transforming the input space. This is the idea behind polynomial regression, spline models, etc. . ### Decision trees {-}</p>
+<p>Linear regression is a special case of <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">generalized linear models</a>, which generalize the linear combination approach to other types of target variables, such as logistic regression for classification and Poisson regression for count data. Linear models are computationally simple, relatively easy to interpret and are less likely to overfit, due to their limited expressiveness. Linear models can also be used to model non-linear relationships by transforming the input space. This is the idea behind polynomial regression, spline models, etc.
+.
+### Decision trees {-}</p>
 <p><a href="https://en.wikipedia.org/wiki/Decision_tree">Decision trees</a> are a broad family of models, which are based on partitioning the input variable space into different regions. The prediction of a new observation is based on the values of other observations in its region. The model is typically derived via recursive partitioning of the input space and can be represented with a tree structure. This makes decision trees very useful when model interpretability is important. In fact, (small) decision trees are the most easy-to-understand representation for non-experts.</p>
 </div>
 <div id="neural-networks" class="section level3 unnumbered">
@@ -480,7 +509,8 @@ g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span c
 <h2><span class="header-section-number">10.3</span> Model selection</h2>
 <p>In this section we will focus on the most important subtask, selecting the model that has the best predictions. Note that in practice, the best model for us might not be the one that gives the best predictions - we discuss this in the next section - but for now we focus on models’ predictive quality.</p>
 <p>First, we let us unwrap the statement <em>selecting the model that has the best predictions</em>. Best predictions where? And what do we mean by best? Making this statement precise is key to desiging a proper <strong>model selection process</strong> for the problem at hand.</p>
-<p>We can provide a very general answer to the <em>where</em> question - we want the model that will perform the best not on the data we have, but on future on unseen observations. The model that best <strong>generalizes</strong> the underlying functional relationship, not the observed relationships in the data. The <strong>what do we mean by best</strong> question, however, has to be answered on a case-by-case basis, because it depends highly on what we are trying to achieve. So, every model selection process has two main components: (1) choosing the appropriate measure(s) of quality and (2) estimating the expected value of those measures on future or unseen observations.</p>
+<p>We can provide a very general answer to the <em>where</em> question - we want the model that will perform the best not on the data we have, but on future on unseen observations. The model that best <strong>generalizes</strong> the underlying functional relationship, not the observed relationships in the data. The <strong>what do we mean by best</strong> question, however, has to be answered on a case-by-case basis, because it depends highly on what we are trying to achieve.
+So, every model selection process has two main components: (1) choosing the appropriate measure(s) of quality and (2) estimating the expected value of those measures on future or unseen observations.</p>
 <div id="measuring-predictive-performance" class="section level3 unnumbered">
 <h3>Measuring predictive performance</h3>
 <p>Our choice of measure of predictive preformance (also known as prediction error, loss, score) should depend on what we are trying to achieve. There are, however, some common scenarios and commonly used measures.</p>
@@ -514,8 +544,8 @@ g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span c
 <h2><span class="header-section-number">10.5</span> Putting it all together with R</h2>
 <p>We’ll apply what we have learned to an interesting dataset from the paper <em>Stengos, T., &amp; Zacharias, E. (2006). Intertemporal pricing and price discrimination: a semiparametric hedonic analysis of the personal computer market. Journal of Applied Econometrics, 21(3), 371-386.</em></p>
 <p>The dataset contains PC price and specifications from the 90:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/computers.csv&quot;</span>)[,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]
-<span class="kw">summary</span>(df)</code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="predictive-modelling.html#cb254-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/computers.csv&quot;</span>)[,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]</span>
+<span id="cb254-2"><a href="predictive-modelling.html#cb254-2"></a><span class="kw">summary</span>(df)</span></code></pre></div>
 <pre><code>##      price          speed              hd              ram        
 ##  Min.   : 949   Min.   : 25.00   Min.   :  80.0   Min.   : 2.000  
 ##  1st Qu.:1794   1st Qu.: 33.00   1st Qu.: 214.0   1st Qu.: 4.000  
@@ -533,84 +563,83 @@ g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span c
 <p>Although this is probably not true, we’ll assume, for the purposes of this analysis, that all observations are independent observations from the distribution of computers in that time period.</p>
 <p>The goal is to predict PC price and the input variables we’ll use are <em>…the clock speed (in MHz) of the 486 processor, the size of the hard drive (in MB), the size of the RAM (in MB), the size of the screen (in inches), the presence of a CD-ROM, the presence of a multi-media kit that includes speakers and a sound card..</em>.</p>
 <p>Now we are ready to proceed. First, before we do anything, we will set aside 1000 randomly chosen observations. These will be used as the final test set after we have decided on the best model. We can afford this, because we have a lot of observations (relative to the size of the input space). We will also recode the yes/no variables as binary:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>)
-idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), <span class="dv">1000</span>, <span class="dt">rep =</span> F)
-df<span class="op">$</span>cd &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>cd)
-df<span class="op">$</span>multi &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>multi)
-df.main &lt;-<span class="st"> </span>df[<span class="op">-</span>idx,]
-df.test &lt;-<span class="st"> </span>df[ idx,]</code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="predictive-modelling.html#cb256-1"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb256-2"><a href="predictive-modelling.html#cb256-2"></a>idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), <span class="dv">1000</span>, <span class="dt">rep =</span> F)</span>
+<span id="cb256-3"><a href="predictive-modelling.html#cb256-3"></a>df<span class="op">$</span>cd &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>cd)</span>
+<span id="cb256-4"><a href="predictive-modelling.html#cb256-4"></a>df<span class="op">$</span>multi &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>multi)</span>
+<span id="cb256-5"><a href="predictive-modelling.html#cb256-5"></a>df.main &lt;-<span class="st"> </span>df[<span class="op">-</span>idx,]</span>
+<span id="cb256-6"><a href="predictive-modelling.html#cb256-6"></a>df.test &lt;-<span class="st"> </span>df[ idx,]</span></code></pre></div>
 <p>Next, we identify that the target variable is numerical, so we are dealing with a regression problem. Some input variables are numerical and some are binary, which means that we have a standard regression problem.</p>
 <p>To minimize the amount of effort, we’ll utilize the <em>caret</em> package for R. The package includes many functions and interfaces over 100 different classification and regression models.</p>
 <p>We will consider 3 different regression training algorithms - linear regression (no tunable parameters), a stochastic gradient boosting (we’ll run it over a range of values suggested by caret) and k-nearest neighbors (we’ll test it across several manually selected values of <span class="math inline">\(k\)</span>).</p>
 <p>We’ll choose (root) mean squared error as our measure of quality, because our objective is to get the best predictor of the mean. And we’ll estimate how the models’ errors will generalize using 10 repetitions of 10-fold cross-validation:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)</code></pre></div>
-<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.5.3</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="predictive-modelling.html#cb257-1"></a><span class="kw">library</span>(caret)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># setting-up the cross validation</span>
-fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(## 10-fold CV
-                           <span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,
-                           <span class="dt">number =</span> <span class="dv">10</span>,
-                           <span class="dt">repeats =</span> <span class="dv">10</span>)
-
-all &lt;-<span class="st"> </span><span class="ot">NULL</span>
-
-<span class="co"># gradient boosting</span>
-<span class="kw">set.seed</span>(<span class="dv">0</span>) <span class="co"># set seed to get the same folds for all models</span>
-fit_gb &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, 
-                <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>, 
-                <span class="dt">trControl =</span> fitControl,
-                <span class="dt">tuneLength =</span> <span class="dv">2</span>,
-                <span class="dt">verbose =</span> F)
-tmp &lt;-<span class="st"> </span>fit_gb<span class="op">$</span>results
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {
-  all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="kw">paste</span>(<span class="st">&quot;gb[&quot;</span>, <span class="kw">paste</span>(tmp[i,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE[i], <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD[i]))
-}
-
-<span class="co"># k-nn</span>
-<span class="kw">set.seed</span>(<span class="dv">0</span>)
-grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">k=</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>))
-fit_nn &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, 
-                 <span class="dt">method =</span> <span class="st">&quot;knn&quot;</span>, 
-                 <span class="dt">trControl =</span> fitControl,
-                 <span class="dt">tuneGrid =</span> grid)
-tmp &lt;-<span class="st"> </span>fit_nn<span class="op">$</span>results
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {
-  all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="kw">paste</span>(<span class="st">&quot;nn[&quot;</span>, <span class="kw">paste</span>(tmp[i,<span class="dv">1</span>], <span class="dt">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE[i], <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD[i]))
-}
-
-<span class="co"># linear regression</span>
-<span class="kw">set.seed</span>(<span class="dv">0</span>)
-fit_lm &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, 
-                 <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, 
-                 <span class="dt">trControl =</span> fitControl)
-tmp &lt;-<span class="st"> </span>fit_lm<span class="op">$</span>results
-
-all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE, <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD))</code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="predictive-modelling.html#cb259-1"></a><span class="co"># setting-up the cross validation</span></span>
+<span id="cb259-2"><a href="predictive-modelling.html#cb259-2"></a>fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="co">## 10-fold CV</span></span>
+<span id="cb259-3"><a href="predictive-modelling.html#cb259-3"></a>                           <span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</span>
+<span id="cb259-4"><a href="predictive-modelling.html#cb259-4"></a>                           <span class="dt">number =</span> <span class="dv">10</span>,</span>
+<span id="cb259-5"><a href="predictive-modelling.html#cb259-5"></a>                           <span class="dt">repeats =</span> <span class="dv">10</span>)</span>
+<span id="cb259-6"><a href="predictive-modelling.html#cb259-6"></a></span>
+<span id="cb259-7"><a href="predictive-modelling.html#cb259-7"></a>all &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb259-8"><a href="predictive-modelling.html#cb259-8"></a></span>
+<span id="cb259-9"><a href="predictive-modelling.html#cb259-9"></a><span class="co"># gradient boosting</span></span>
+<span id="cb259-10"><a href="predictive-modelling.html#cb259-10"></a><span class="kw">set.seed</span>(<span class="dv">0</span>) <span class="co"># set seed to get the same folds for all models</span></span>
+<span id="cb259-11"><a href="predictive-modelling.html#cb259-11"></a>fit_gb &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, </span>
+<span id="cb259-12"><a href="predictive-modelling.html#cb259-12"></a>                <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>, </span>
+<span id="cb259-13"><a href="predictive-modelling.html#cb259-13"></a>                <span class="dt">trControl =</span> fitControl,</span>
+<span id="cb259-14"><a href="predictive-modelling.html#cb259-14"></a>                <span class="dt">tuneLength =</span> <span class="dv">2</span>,</span>
+<span id="cb259-15"><a href="predictive-modelling.html#cb259-15"></a>                <span class="dt">verbose =</span> F)</span>
+<span id="cb259-16"><a href="predictive-modelling.html#cb259-16"></a>tmp &lt;-<span class="st"> </span>fit_gb<span class="op">$</span>results</span>
+<span id="cb259-17"><a href="predictive-modelling.html#cb259-17"></a></span>
+<span id="cb259-18"><a href="predictive-modelling.html#cb259-18"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {</span>
+<span id="cb259-19"><a href="predictive-modelling.html#cb259-19"></a>  all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="kw">paste</span>(<span class="st">&quot;gb[&quot;</span>, <span class="kw">paste</span>(tmp[i,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE[i], <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD[i]))</span>
+<span id="cb259-20"><a href="predictive-modelling.html#cb259-20"></a>}</span>
+<span id="cb259-21"><a href="predictive-modelling.html#cb259-21"></a></span>
+<span id="cb259-22"><a href="predictive-modelling.html#cb259-22"></a><span class="co"># k-nn</span></span>
+<span id="cb259-23"><a href="predictive-modelling.html#cb259-23"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb259-24"><a href="predictive-modelling.html#cb259-24"></a>grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">k=</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>))</span>
+<span id="cb259-25"><a href="predictive-modelling.html#cb259-25"></a>fit_nn &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, </span>
+<span id="cb259-26"><a href="predictive-modelling.html#cb259-26"></a>                 <span class="dt">method =</span> <span class="st">&quot;knn&quot;</span>, </span>
+<span id="cb259-27"><a href="predictive-modelling.html#cb259-27"></a>                 <span class="dt">trControl =</span> fitControl,</span>
+<span id="cb259-28"><a href="predictive-modelling.html#cb259-28"></a>                 <span class="dt">tuneGrid =</span> grid)</span>
+<span id="cb259-29"><a href="predictive-modelling.html#cb259-29"></a>tmp &lt;-<span class="st"> </span>fit_nn<span class="op">$</span>results</span>
+<span id="cb259-30"><a href="predictive-modelling.html#cb259-30"></a></span>
+<span id="cb259-31"><a href="predictive-modelling.html#cb259-31"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {</span>
+<span id="cb259-32"><a href="predictive-modelling.html#cb259-32"></a>  all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="kw">paste</span>(<span class="st">&quot;nn[&quot;</span>, <span class="kw">paste</span>(tmp[i,<span class="dv">1</span>], <span class="dt">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE[i], <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD[i]))</span>
+<span id="cb259-33"><a href="predictive-modelling.html#cb259-33"></a>}</span>
+<span id="cb259-34"><a href="predictive-modelling.html#cb259-34"></a></span>
+<span id="cb259-35"><a href="predictive-modelling.html#cb259-35"></a><span class="co"># linear regression</span></span>
+<span id="cb259-36"><a href="predictive-modelling.html#cb259-36"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb259-37"><a href="predictive-modelling.html#cb259-37"></a>fit_lm &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, </span>
+<span id="cb259-38"><a href="predictive-modelling.html#cb259-38"></a>                 <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb259-39"><a href="predictive-modelling.html#cb259-39"></a>                 <span class="dt">trControl =</span> fitControl)</span>
+<span id="cb259-40"><a href="predictive-modelling.html#cb259-40"></a>tmp &lt;-<span class="st"> </span>fit_lm<span class="op">$</span>results</span>
+<span id="cb259-41"><a href="predictive-modelling.html#cb259-41"></a></span>
+<span id="cb259-42"><a href="predictive-modelling.html#cb259-42"></a>all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE, <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD))</span></code></pre></div>
 <p>Now we can summarize the results, ordered by predictive quality:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all[<span class="kw">order</span>(all<span class="op">$</span>RMSE),]</code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="predictive-modelling.html#cb260-1"></a>all[<span class="kw">order</span>(all<span class="op">$</span>RMSE),]</span></code></pre></div>
 <pre><code>##                 Model     RMSE       SD
-## 5             nn[,1,] 299.2662 18.77678
-## 6             nn[,2,] 302.3632 17.31984
-## 7             nn[,3,] 307.2155 17.53858
-## 8             nn[,5,] 321.7015 19.84699
-## 9             nn[,7,] 327.8086 19.69451
-## 10           nn[,10,] 340.0496 20.45675
-## 4  gb[,0.1,2,10,100,] 372.8050 19.10691
-## 2   gb[,0.1,2,10,50,] 397.4642 21.06404
-## 3  gb[,0.1,1,10,100,] 404.7123 20.67550
-## 1   gb[,0.1,1,10,50,] 422.0167 20.65022
-## 11                 lm 422.5391 21.52405</code></pre>
+## 5             nn[,1,] 292.6001 15.38815
+## 6             nn[,2,] 299.6639 14.76814
+## 7             nn[,3,] 306.2012 14.37591
+## 8             nn[,5,] 319.4619 15.12788
+## 9             nn[,7,] 328.1494 15.58832
+## 10           nn[,10,] 338.8986 15.71369
+## 4  gb[,0.1,2,10,100,] 373.1816 16.46013
+## 2   gb[,0.1,2,10,50,] 397.5234 18.73404
+## 3  gb[,0.1,1,10,100,] 405.8163 18.78367
+## 1   gb[,0.1,1,10,50,] 422.1510 18.91172
+## 11                 lm 422.7391 20.96899</code></pre>
 <p>When interpreting results of estimation, we should always keep in mind that estimates are not the underlying truth - there is a degree of uncertainty (variability) associated with them and possibly bias. Differences between models that are of the same size as the uncertainty or smaller are likely due to chance and not due to actual differences.</p>
 <p>The field of statistics offers many different approaches to estimation and quantifying uncertainty. Here, we’ll use a relatively simple but often sufficient approach - the standard deviation of the root mean squared error (SD). That is, how RMSE deviates across different folds of cross-validation. This deviation captures the variability due to models being trained and tested on different data and the variability of cross-validation itself, because we made 10 repetitions of 10-fold cross-validation.</p>
 <p>1-nearest neighbors is estimated to be the best model. However, the differences are small (relative to the scale of random noise, measured by SD), so based solely on these numbers, we can’t be certain that k = 2 or k = 3 are not better models. We can, however, with reasonable certainty conclude that the best nearest neighbors model is better than the best gradient boosting model which is in turn better than linear regression.</p>
 <p>Once we are happy with our choice of model, we proceed with the final check - how the model performs on the held-out final test data. This final test is extremely important as it will catch any errors that we might have made in the estimation procedure. It will also catch any overfitting due to so-called <em>user’s degrees of freedom</em>. In practice, we typically don’t run the estimation procedure only once. Instead, it is an iterative process - if we aren’t happy with the results, we try to improve them by trying another model, setting different tuning parameters, inspecting and possiblty transforming the data, etc. With this we create a feedback loop where models and transformations with good cross-validation results are more likely to be included in the next iteration. This creates a positive bias - the estimate for the model we finally select is more likely than not to overestimate its predictive quality. In practice, this bias will typically be very small, unless we have very little data and we many different models. However, if we can afford a separate final test set, we should always use it.</p>
 <p>The problem from the previous paragraph can be illustrated by an extreme example. Imagine a training algorithm that creates a model that makes completely random predictions (its prediction for the same observation will always be the same, but the value is chosen at random for every observation). If we created a sufficient number of such models, we will eventually get a model that gets an estimated error of close to 0, even if we use cross-validation. But if we took that model and evaluated it on a held-out test set or in <em>production</em>, it would perform as poorly as random predictions. In practice, the problem is not nearly as extreme, but we should always be aware of the fact that cross-validation helps us detect models that overfit, but we can still overfit by repeating the process or by testing many different models.</p>
 <p>Finally, we test the estimated best (k = 1) nearest neighbors model on the held-out final test set:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_nn<span class="op">$</span>finalModel, <span class="dt">newdata =</span> df.test[,<span class="op">-</span><span class="dv">1</span>])
-<span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="kw">mean</span>((p <span class="op">-</span><span class="st"> </span>df.test<span class="op">$</span>price)<span class="op">^</span><span class="dv">2</span>)), <span class="dv">2</span>)</code></pre></div>
-<pre><code>## [1] 284.34</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="predictive-modelling.html#cb262-1"></a>p &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_nn<span class="op">$</span>finalModel, <span class="dt">newdata =</span> df.test[,<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb262-2"><a href="predictive-modelling.html#cb262-2"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="kw">mean</span>((p <span class="op">-</span><span class="st"> </span>df.test<span class="op">$</span>price)<span class="op">^</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 296.16</code></pre>
 <p>This estimate is even better than the one on the main data we used for cross-validation-based estimation. However, the difference is withing the above estimates of standard error of our measure of predictive quality, so there is no reason for concern. At this point we can conclude that our previous estimate of the generalized performance of the 1-nearest neighbor model is valid. We can also conclude that for this data predicting the price of the most similar PC performs at least as well as all the other models that we have tested.</p>
 </div>
 <div id="python-tools-for-predictive-modelling" class="section level2">
@@ -705,10 +734,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

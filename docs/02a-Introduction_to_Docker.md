@@ -257,7 +257,7 @@ Your web application is now accessible at [http://localhost:8787](http://localho
 
 To define a container and be able to create an image, we must write a special file, called *Dockerfile*. Dockerfile defines what goes on in the environment inside your container. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of our system, so we need to map ports to the outside world, and be specific about what files we want to "copy in" to that environment. After doing that, we can expect that the build of our application defined in this Dockerfile behaves identically wherever it runs.
 
-Let's create a fil  named *Dockerfile* with the following content:
+Let's create a file  named *Dockerfile* with the following content:
 
 ```docker
 # Use an official Ubuntu runtime as a parent image
@@ -454,6 +454,50 @@ docker push USERNAME/PUBLIC_IMAGE_NAME:TAG
 ```
 
 If we do not define the tag, it will be *latest* by default. We can access our image via Web interface at *https://hub.docker.com/r/USERNAME/PUBLIC_IMAGE_NAME*, where we can also add a description, instructions, publish the *Dockerfile* or connect its content to your Git repository. Now anybody can pull & run our image using the above procedure.
+
+### Dockerfile optimizations
+
+The Dockerfile for image running the Flask server we created above is not written directly according to good practices. Some major remarks:
+
+* If we copy project files as a first step, this invalidates Docker cache and causes all others step to execute again. This means that it will install all the further requirements and this causes a significant delay as it has to fetch and install them all from the Internet. In Dockerfiles, a proper ordering of commands in very important. Files (as they change frequently) have to be copied into the container as late as possible.
+* For Python, it is a good practice to use *virtualenv* even in the container. But using virtualenv in the container may introduce some adaptations in how to activate the environment and run an application in it. 
+* Python modules in the official Ubuntu repository are old. It is a good practice (very important in production environments!) to lock dependency versions in *requirements.txt* file. If you do not lock the versions, the build is not deterministic as it can brake later when a new version of a package is introduced.
+
+Below we show an updated version of a Dockerfile:
+
+```docker
+FROM ubuntu:18.04
+
+# Install Python
+RUN apt-get update && \ 
+    apt-get install -y --no-install-recommends python3 python3-virtualenv
+
+# Create virtualenv
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 8787 available to the world outside this container (i.e. docker world)
+EXPOSE 8787
+
+# Copy the application:
+COPY server.py .
+COPY index.html .
+
+# Run the application
+CMD ["python3", "server.py"]
+```
+
+and a *requirements.txt* file: 
+
+```
+Flask==1.1.1
+```
+
 
 ## Further reading and references
 

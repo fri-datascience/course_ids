@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Dealing with missing data | Introduction to data science</title>
+  <title>Chapter 11 Dealing with missing data | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Dealing with missing data | Introduction to data science" />
+  <meta property="og:title" content="Chapter 11 Dealing with missing data | Introduction to data science" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Dealing with missing data | Introduction to data science" />
+  <meta name="twitter:title" content="Chapter 11 Dealing with missing data | Introduction to data science" />
   
   <meta name="twitter:description" content="Course notes" />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-28" />
+<meta name="date" content="2019-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="predictive-modelling-feature-selection.html">
+<link rel="prev" href="predictive-modelling.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -167,13 +167,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
 <li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
 <li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
+<li class="chapter" data-level="3.3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#dockerfile-optimizations"><i class="fa fa-check"></i><b>3.3.5</b> Dockerfile optimizations</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems-1"><i class="fa fa-check"></i><b>3.6</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a><ul>
-<li class="chapter" data-level="4.1" data-path="web-scraping.html"><a href="web-scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a></li>
+<li class="chapter" data-level="4.1" data-path="web-scraping.html"><a href="web-scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a><ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#the-challenges-of-web-data-extraction"><i class="fa fa-check"></i>The challenges of Web data extraction</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="web-scraping.html"><a href="web-scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="web-scraping.html"><a href="web-scraping.html#html-dom"><i class="fa fa-check"></i><b>4.2.1</b> HTML DOM</a></li>
 <li class="chapter" data-level="4.2.2" data-path="web-scraping.html"><a href="web-scraping.html#xpath"><i class="fa fa-check"></i><b>4.2.2</b> XPath</a></li>
@@ -241,31 +244,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="relational-databases.html"><a href="relational-databases.html#learning-outcomes-6"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="9.6" data-path="relational-databases.html"><a href="relational-databases.html#practice-problems-6"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="predictive-modelling-introduction.html"><a href="predictive-modelling-introduction.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling - Introduction</a></li>
-<li class="chapter" data-level="11" data-path="predictive-modelling-learning-paradigms.html"><a href="predictive-modelling-learning-paradigms.html"><i class="fa fa-check"></i><b>11</b> Predictive modelling - Learning paradigms</a></li>
-<li class="chapter" data-level="12" data-path="predictive-modelling-feature-selection.html"><a href="predictive-modelling-feature-selection.html"><i class="fa fa-check"></i><b>12</b> Predictive modelling - Feature selection</a></li>
-<li class="chapter" data-level="13" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>13</b> Dealing with missing data</a><ul>
-<li class="chapter" data-level="13.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>13.1</b> The severity of the missing data problem</a><ul>
+<li class="chapter" data-level="10" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a><ul>
+<li class="chapter" data-level="10.1" data-path="predictive-modelling.html"><a href="predictive-modelling.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#key-terms"><i class="fa fa-check"></i>Key terms</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#an-illustrative-example"><i class="fa fa-check"></i>An illustrative example</a></li>
+<li class="chapter" data-level="10.1.1" data-path="predictive-modelling.html"><a href="predictive-modelling.html#the-process-of-predictive-modelling"><i class="fa fa-check"></i><b>10.1.1</b> The process of predictive modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="predictive-modelling.html"><a href="predictive-modelling.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#generalized-linear-models"><i class="fa fa-check"></i>Generalized linear models</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#neural-networks"><i class="fa fa-check"></i>Neural networks</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#kernel-based-learning"><i class="fa fa-check"></i>Kernel-based learning</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#ensemble-learning"><i class="fa fa-check"></i>Ensemble learning</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#common-predictive-modelling-paradigms"><i class="fa fa-check"></i>Common predictive modelling paradigms</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="predictive-modelling.html"><a href="predictive-modelling.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#measuring-predictive-performance"><i class="fa fa-check"></i>Measuring predictive performance</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#estimating-how-performance-will-generalize"><i class="fa fa-check"></i>Estimating how performance will generalize</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="predictive-modelling.html"><a href="predictive-modelling.html#practical-considerations"><i class="fa fa-check"></i><b>10.4</b> Practical considerations</a></li>
+<li class="chapter" data-level="10.5" data-path="predictive-modelling.html"><a href="predictive-modelling.html#putting-it-all-together-with-r"><i class="fa fa-check"></i><b>10.5</b> Putting it all together with R</a></li>
+<li class="chapter" data-level="10.6" data-path="predictive-modelling.html"><a href="predictive-modelling.html#python-tools-for-predictive-modelling"><i class="fa fa-check"></i><b>10.6</b> Python tools for predictive modelling</a></li>
+<li class="chapter" data-level="10.7" data-path="predictive-modelling.html"><a href="predictive-modelling.html#putting-it-all-together-with-python"><i class="fa fa-check"></i><b>10.7</b> Putting it all together with Python</a></li>
+<li class="chapter" data-level="10.8" data-path="predictive-modelling.html"><a href="predictive-modelling.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>10.8</b> Further reading and references</a></li>
+<li class="chapter" data-level="10.9" data-path="predictive-modelling.html"><a href="predictive-modelling.html#learning-outcomes-7"><i class="fa fa-check"></i><b>10.9</b> Learning outcomes</a></li>
+<li class="chapter" data-level="10.10" data-path="predictive-modelling.html"><a href="predictive-modelling.html#practice-problems-7"><i class="fa fa-check"></i><b>10.10</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a><ul>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#three-classes-of-missingness"><i class="fa fa-check"></i>Three classes of missingness</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#determining-the-missingness-mechanism"><i class="fa fa-check"></i>Determining the missingness mechanism</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#causes-for-missing-data"><i class="fa fa-check"></i>Causes for missing data</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#introducing-bias"><i class="fa fa-check"></i>Introducing bias</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>13.2</b> Visually exploring missingness</a></li>
-<li class="chapter" data-level="13.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>13.3</b> Deletion methods</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>13.3.1</b> Column deletion</a></li>
-<li class="chapter" data-level="13.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>13.3.2</b> Row deletion</a></li>
-<li class="chapter" data-level="13.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>13.3.3</b> Pairwise deletion</a></li>
+<li class="chapter" data-level="11.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>11.2</b> Visually exploring missingness</a></li>
+<li class="chapter" data-level="11.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>11.3.1</b> Column deletion</a></li>
+<li class="chapter" data-level="11.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>11.3.2</b> Row deletion</a></li>
+<li class="chapter" data-level="11.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>11.3.3</b> Pairwise deletion</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>13.4</b> Imputation methods</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>13.4.1</b> Single imputation with the mean</a></li>
-<li class="chapter" data-level="13.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>13.4.2</b> Single imputation with prediction</a></li>
-<li class="chapter" data-level="13.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>13.4.3</b> Multiple imputation</a></li>
+<li class="chapter" data-level="11.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>11.4.1</b> Single imputation with the mean</a></li>
+<li class="chapter" data-level="11.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>11.4.2</b> Single imputation with prediction</a></li>
+<li class="chapter" data-level="11.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>11.4.3</b> Multiple imputation</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>13.5</b> Summary</a></li>
-<li class="chapter" data-level="13.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>13.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="13.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-7"><i class="fa fa-check"></i><b>13.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="13.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-7"><i class="fa fa-check"></i><b>13.8</b> Practice problems</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>11.5</b> Summary</a></li>
+<li class="chapter" data-level="11.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-8"><i class="fa fa-check"></i><b>11.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="11.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-8"><i class="fa fa-check"></i><b>11.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="11.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-8"><i class="fa fa-check"></i><b>11.8</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>      
@@ -287,10 +312,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="dealing-with-missing-data" class="section level1">
-<h1><span class="header-section-number">Chapter 13</span> Dealing with missing data</h1>
+<h1><span class="header-section-number">Chapter 11</span> Dealing with missing data</h1>
 <p>In all of our data analyses so far we implicitly assumed that we don’t have any missing values in our data. In practice, that is often not the case. While some statistical and machine learning methods work with missing data, many commonly used methods can’t, so it is important to learn how to deal with missing values. In this chapter we will discuss a few of the most common methods.</p>
 <div id="the-severity-of-the-missing-data-problem" class="section level2">
-<h2><span class="header-section-number">13.1</span> The severity of the missing data problem</h2>
+<h2><span class="header-section-number">11.1</span> The severity of the missing data problem</h2>
 <p>If we judge by the imputation or data removing methods that are most commonly used in practice, we might conclude that missing data is a relatively simple problem that is secondary to the inference, predictive modelling, etc. that are the primary goal of our analysis. Unfortunately, that is not the case. Dealing with missing values is very challenging, often in itself a modelling problem.</p>
 <div id="three-classes-of-missingness" class="section level3 unnumbered">
 <h3>Three classes of missingness</h3>
@@ -335,12 +360,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="visually-exploring-missingness" class="section level2">
-<h2><span class="header-section-number">13.2</span> Visually exploring missingness</h2>
+<h2><span class="header-section-number">11.2</span> Visually exploring missingness</h2>
 <p>Throughout the remainder of the chapter we will be using a dataset from</p>
 <p><em>Pampaka, M., Hutcheson, G., &amp; Williams, J. (2016). Handling missing data: analysis of a challenging data set using multiple imputation. International Journal of Research &amp; Method in Education, 39(1), 19-37.</em></p>
 <p>as an illustrative example:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="dealing-with-missing-data.html#cb234-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/imputationDATASET.csv&quot;</span>)</span>
-<span id="cb234-2"><a href="dealing-with-missing-data.html#cb234-2"></a><span class="kw">summary</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dealing-with-missing-data.html#cb264-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/imputationDATASET.csv&quot;</span>)</span>
+<span id="cb264-2"><a href="dealing-with-missing-data.html#cb264-2"></a><span class="kw">summary</span>(dat)</span></code></pre></div>
 <pre><code>##      GCSEgrade      Course      Disposition      SelfEfficacy    
 ##  1_intC   :201   ASTrad:1014   Min.   :-6.840   Min.   :-4.5500  
 ##  2_higherC: 80   UoM   : 360   1st Qu.: 0.500   1st Qu.: 0.0000  
@@ -368,107 +393,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this analysis, the authors were interested in modelling dropout from mathematics courses (<em>dropOUToriginal</em>) which had a lot of missing values. The actual values were later retreived (<em>dropOUTretrieved</em>), but we will only use these to verify the quality of our methods.</p>
 <p>The other variables include their previous GCSE qualifications results in mathematics (<em>GCSEgrade</em>), type of course (<em>Course</em>), their disposition to study mathematics at a higher level (<em>Disposition</em>), their self-efficacy rating (<em>SelfEfficacy</em>), gender, language, whether the student was holding an Educational Maintenance Allowance (<em>EMA</em>), ethnicity, whether the student was from Low Participation Neighbourhood (<em>LPN</em>), socio-economic status (<em>HEFCE</em>) and whether the student was not first generation at HE (<em>uniFAM</em>).</p>
 <p>If our dataset does not have too many variables, a visual summary such as this one can be very effective at revealing the extend and patterns of missingness in our data:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dealing-with-missing-data.html#cb236-1"></a><span class="kw">library</span>(naniar)</span>
-<span id="cb236-2"><a href="dealing-with-missing-data.html#cb236-2"></a><span class="kw">vis_miss</span>(dat, <span class="dt">warn_large_data =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dealing-with-missing-data.html#cb266-1"></a><span class="kw">library</span>(naniar)</span>
+<span id="cb266-2"><a href="dealing-with-missing-data.html#cb266-2"></a><span class="kw">vis_miss</span>(dat, <span class="dt">warn_large_data =</span> F)</span></code></pre></div>
 <p><img src="Missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Another useful visualization is the frequency of different patterns of missingness:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="dealing-with-missing-data.html#cb237-1"></a><span class="kw">library</span>(UpSetR)</span>
-<span id="cb237-2"><a href="dealing-with-missing-data.html#cb237-2"></a><span class="kw">gg_miss_upset</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dealing-with-missing-data.html#cb267-1"></a><span class="kw">library</span>(UpSetR)</span>
+<span id="cb267-2"><a href="dealing-with-missing-data.html#cb267-2"></a><span class="kw">gg_miss_upset</span>(dat)</span></code></pre></div>
 <p><img src="Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.</p>
 </div>
 <div id="deletion-methods" class="section level2">
-<h2><span class="header-section-number">13.3</span> Deletion methods</h2>
+<h2><span class="header-section-number">11.3</span> Deletion methods</h2>
 <p>In this section we will cover deletion methods - dealing with missing values by deleting the columns and/or rows that have them.</p>
 <div id="column-deletion" class="section level3">
-<h3><span class="header-section-number">13.3.1</span> Column deletion</h3>
+<h3><span class="header-section-number">11.3.1</span> Column deletion</h3>
 <p>The most simple way of dealing with missing values is to delete the column that holds the variable. That is, to remove that variable from all observations.</p>
 <p>Such complete removal of potentially useful data is never the optimal choice in terms of available information. And it is not even an option if we are interested in doing inference with/about that variable. In our illustrative example we would, for example, be able to use only the GCSEgrade, Course, Disposition and SelfEfficacy variables to predict dropout.</p>
 <p>However, if we have reason to believe that the variable is not practically important for our analysis and/or the fraction of missing values is so large, it might be more easier to just remove the variable. That is, in some cases, the effort of dealing with missing values might outweigh the potential benefits of the extra information.</p>
 <p>By removing a variable we of course completely remove all information about the dependency of its (missing) values with other variables. So, regardless of what the missingness mechanism is, we will <em>not</em> introduce a bias to our analyses by removing a column.</p>
 </div>
 <div id="row-deletion" class="section level3">
-<h3><span class="header-section-number">13.3.2</span> Row deletion</h3>
+<h3><span class="header-section-number">11.3.2</span> Row deletion</h3>
 <p>The most common deletion approach is to delete all rows with missing values. If we are not interested in those rows directly and there are not many such rows than this is a completely viable alternative to imputation methods.</p>
 <p>However, we must be aware that unless the missingness mechanism is MCAR, we will be introducing a bias into our data. Let’s estimate the dropout rate from the data that are available. That is, we remove all rows where we don’t know whether the student dropped out or not:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dealing-with-missing-data.html#cb238-1"></a>stderr &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb238-2"><a href="dealing-with-missing-data.html#cb238-2"></a>  N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb238-3"><a href="dealing-with-missing-data.html#cb238-3"></a>  <span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(N)</span>
-<span id="cb238-4"><a href="dealing-with-missing-data.html#cb238-4"></a>}</span>
-<span id="cb238-5"><a href="dealing-with-missing-data.html#cb238-5"></a></span>
-<span id="cb238-6"><a href="dealing-with-missing-data.html#cb238-6"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span></span>
-<span id="cb238-7"><a href="dealing-with-missing-data.html#cb238-7"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb238-8"><a href="dealing-with-missing-data.html#cb238-8"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb238-9"><a href="dealing-with-missing-data.html#cb238-9"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
-<span id="cb238-10"><a href="dealing-with-missing-data.html#cb238-10"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="dealing-with-missing-data.html#cb268-1"></a>stderr &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb268-2"><a href="dealing-with-missing-data.html#cb268-2"></a>  N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb268-3"><a href="dealing-with-missing-data.html#cb268-3"></a>  <span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(N)</span>
+<span id="cb268-4"><a href="dealing-with-missing-data.html#cb268-4"></a>}</span>
+<span id="cb268-5"><a href="dealing-with-missing-data.html#cb268-5"></a></span>
+<span id="cb268-6"><a href="dealing-with-missing-data.html#cb268-6"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span></span>
+<span id="cb268-7"><a href="dealing-with-missing-data.html#cb268-7"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb268-8"><a href="dealing-with-missing-data.html#cb268-8"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb268-9"><a href="dealing-with-missing-data.html#cb268-9"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
+<span id="cb268-10"><a href="dealing-with-missing-data.html#cb268-10"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>## 0.42 +/- 0.022 (n = 495)</code></pre>
 <p>So, this suggest that we can be reasonably certain that the dropout rate is around 42%. However, this is only valid if the observed values are also a representative sample from our original data (we’re assuming that the original data are a representative sample from the population). That will always be the case if the missingness mechanism is MCAR - if missingness is completely random then row deletion will also be completely random.</p>
 <p>As we stated at the begining, there is no way of proving that the mechanism is MCAR, however, we can do our best to show that it is not and then account for it. We’ll do the latter in the imputation methods section. Here, we just show how incorrect conclusions could be reached if we rely only on row deletion.</p>
 <p>Observe that the relative frequency of missing values depends on ethnicity:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="dealing-with-missing-data.html#cb240-1"></a>x  &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)[dat<span class="op">$</span>Ethnicity <span class="op">==</span><span class="st"> &quot;WHITE&quot;</span>]</span>
-<span id="cb240-2"><a href="dealing-with-missing-data.html#cb240-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb240-3"><a href="dealing-with-missing-data.html#cb240-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb240-4"><a href="dealing-with-missing-data.html#cb240-4"></a>SE &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(N)</span>
-<span id="cb240-5"><a href="dealing-with-missing-data.html#cb240-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;==WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="dealing-with-missing-data.html#cb270-1"></a>x  &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)[dat<span class="op">$</span>Ethnicity <span class="op">==</span><span class="st"> &quot;WHITE&quot;</span>]</span>
+<span id="cb270-2"><a href="dealing-with-missing-data.html#cb270-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb270-3"><a href="dealing-with-missing-data.html#cb270-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb270-4"><a href="dealing-with-missing-data.html#cb270-4"></a>SE &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(N)</span>
+<span id="cb270-5"><a href="dealing-with-missing-data.html#cb270-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;==WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>## ==WHITE: 0.61 +/- 0.023 (n = 449)</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dealing-with-missing-data.html#cb242-1"></a>x  &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)[dat<span class="op">$</span>Ethnicity <span class="op">!=</span><span class="st"> &quot;WHITE&quot;</span>]</span>
-<span id="cb242-2"><a href="dealing-with-missing-data.html#cb242-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb242-3"><a href="dealing-with-missing-data.html#cb242-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb242-4"><a href="dealing-with-missing-data.html#cb242-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
-<span id="cb242-5"><a href="dealing-with-missing-data.html#cb242-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;!=WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="dealing-with-missing-data.html#cb272-1"></a>x  &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)[dat<span class="op">$</span>Ethnicity <span class="op">!=</span><span class="st"> &quot;WHITE&quot;</span>]</span>
+<span id="cb272-2"><a href="dealing-with-missing-data.html#cb272-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb272-3"><a href="dealing-with-missing-data.html#cb272-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb272-4"><a href="dealing-with-missing-data.html#cb272-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
+<span id="cb272-5"><a href="dealing-with-missing-data.html#cb272-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;!=WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>## !=WHITE: 0.70 +/- 0.022 (n = 431)</code></pre>
 <p>So, we can be reasonably certain that the missingness mechanism is at least MAR! Now, if those of white ethnicity would be more (less) prone to dropping out, our estimate of 42% from above would underestimate (overestimate) true dropout rate! Before using row deletion, we should check if dropout rate depends on ethnicity:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="dealing-with-missing-data.html#cb244-1"></a>x  &lt;-<span class="st"> </span>(dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span>)[dat<span class="op">$</span>Ethnicity <span class="op">==</span><span class="st"> &quot;WHITE&quot;</span>]</span>
-<span id="cb244-2"><a href="dealing-with-missing-data.html#cb244-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb244-3"><a href="dealing-with-missing-data.html#cb244-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb244-4"><a href="dealing-with-missing-data.html#cb244-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
-<span id="cb244-5"><a href="dealing-with-missing-data.html#cb244-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;==WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="dealing-with-missing-data.html#cb274-1"></a>x  &lt;-<span class="st"> </span>(dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span>)[dat<span class="op">$</span>Ethnicity <span class="op">==</span><span class="st"> &quot;WHITE&quot;</span>]</span>
+<span id="cb274-2"><a href="dealing-with-missing-data.html#cb274-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb274-3"><a href="dealing-with-missing-data.html#cb274-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb274-4"><a href="dealing-with-missing-data.html#cb274-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
+<span id="cb274-5"><a href="dealing-with-missing-data.html#cb274-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;==WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>## ==WHITE: 0.45 +/- 0.037 (n = 177)</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dealing-with-missing-data.html#cb246-1"></a>x  &lt;-<span class="st"> </span>(dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span>)[dat<span class="op">$</span>Ethnicity <span class="op">!=</span><span class="st"> &quot;WHITE&quot;</span>]</span>
-<span id="cb246-2"><a href="dealing-with-missing-data.html#cb246-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb246-3"><a href="dealing-with-missing-data.html#cb246-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb246-4"><a href="dealing-with-missing-data.html#cb246-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
-<span id="cb246-5"><a href="dealing-with-missing-data.html#cb246-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;!=WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="dealing-with-missing-data.html#cb276-1"></a>x  &lt;-<span class="st"> </span>(dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span>)[dat<span class="op">$</span>Ethnicity <span class="op">!=</span><span class="st"> &quot;WHITE&quot;</span>]</span>
+<span id="cb276-2"><a href="dealing-with-missing-data.html#cb276-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb276-3"><a href="dealing-with-missing-data.html#cb276-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb276-4"><a href="dealing-with-missing-data.html#cb276-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
+<span id="cb276-5"><a href="dealing-with-missing-data.html#cb276-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;!=WHITE: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>## !=WHITE: 0.43 +/- 0.044 (n = 130)</code></pre>
 <p>In this case, there is no discernible difference. So, the bias that we might be introducing, is small. Of course, we should do this check for every variable that can reasonably be dependent on/off missigness of dropout!</p>
 <p>If the missingness mechanism is MNAR, there is not much we can do. For example, it is not unreasonable to assume that people that dropped out might be less likely to report the dropout information. However, we could not be able to verify if that is the case unless we gathered some of the missing data. Our illustrative example is one of those rare exceptions - the authors gathered the true values hidden behind the missing values, so we can compare:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dealing-with-missing-data.html#cb248-1"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span></span>
-<span id="cb248-2"><a href="dealing-with-missing-data.html#cb248-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb248-3"><a href="dealing-with-missing-data.html#cb248-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb248-4"><a href="dealing-with-missing-data.html#cb248-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
-<span id="cb248-5"><a href="dealing-with-missing-data.html#cb248-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;ORIGINAL: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="dealing-with-missing-data.html#cb278-1"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal <span class="op">==</span><span class="st"> &quot;yes&quot;</span></span>
+<span id="cb278-2"><a href="dealing-with-missing-data.html#cb278-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb278-3"><a href="dealing-with-missing-data.html#cb278-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb278-4"><a href="dealing-with-missing-data.html#cb278-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
+<span id="cb278-5"><a href="dealing-with-missing-data.html#cb278-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;ORIGINAL: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>## ORIGINAL: 0.42 +/- 0.022 (n = 495)</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dealing-with-missing-data.html#cb250-1"></a>x  &lt;-<span class="st"> </span>dat[<span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal),]<span class="op">$</span>dropOUTretrieved <span class="op">==</span><span class="st"> &quot;yes&quot;</span> </span>
-<span id="cb250-2"><a href="dealing-with-missing-data.html#cb250-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb250-3"><a href="dealing-with-missing-data.html#cb250-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
-<span id="cb250-4"><a href="dealing-with-missing-data.html#cb250-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
-<span id="cb250-5"><a href="dealing-with-missing-data.html#cb250-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot; MISSING: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dealing-with-missing-data.html#cb280-1"></a>x  &lt;-<span class="st"> </span>dat[<span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal),]<span class="op">$</span>dropOUTretrieved <span class="op">==</span><span class="st"> &quot;yes&quot;</span> </span>
+<span id="cb280-2"><a href="dealing-with-missing-data.html#cb280-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb280-3"><a href="dealing-with-missing-data.html#cb280-3"></a>N  &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x), <span class="dt">na.rm =</span> T)</span>
+<span id="cb280-4"><a href="dealing-with-missing-data.html#cb280-4"></a>SE &lt;-<span class="st"> </span><span class="kw">stderr</span>(x)</span>
+<span id="cb280-5"><a href="dealing-with-missing-data.html#cb280-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot; MISSING: %.2f +/- %.3f (n = %d)</span><span class="ch">\n</span><span class="st">&quot;</span>, mu, SE, N))</span></code></pre></div>
 <pre><code>##  MISSING: 0.44 +/- 0.017 (n = 879)</code></pre>
 <p>There is no discernible difference, so, for practical purposes, we’ll conclude that the missingness mechanism is MAR and not MNAR.</p>
 <p>To summarize this section: row deletion can be useful, but if we are deleting many rows, we should always check if the missingness mechanism is at least MAR and check if we need to account for dependencies between other variables and missingness.</p>
 </div>
 <div id="pairwise-deletion" class="section level3">
-<h3><span class="header-section-number">13.3.3</span> Pairwise deletion</h3>
+<h3><span class="header-section-number">11.3.3</span> Pairwise deletion</h3>
 <p>Pairwise deletion is a special case of row deletion where we delete only the rows with missing values in the variables of interest for a particular part of the analysis. For example, suppose that we are interested in whether or not there is a dependency between dropout, language and ethnicity. First, lets investigate this on the subset of the three columns where we also drop all rows with missing values. We’ll use a Chi-squared test (see Basic summarization chapter for details) to test for dependency between the categorical variables:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dealing-with-missing-data.html#cb252-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
-<span id="cb252-2"><a href="dealing-with-missing-data.html#cb252-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
-<span id="cb252-3"><a href="dealing-with-missing-data.html#cb252-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dealing-with-missing-data.html#cb282-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
+<span id="cb282-2"><a href="dealing-with-missing-data.html#cb282-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
+<span id="cb282-3"><a href="dealing-with-missing-data.html#cb282-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
 <pre><code>## Rows before = 1374, rows after deletion = 291</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dealing-with-missing-data.html#cb254-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="dealing-with-missing-data.html#cb284-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
 ## X-squared = 4.6808, df = NA, p-value = 0.08996</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dealing-with-missing-data.html#cb256-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="dealing-with-missing-data.html#cb286-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8466</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dealing-with-missing-data.html#cb258-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+## X-squared = 1.4154, df = NA, p-value = 0.8366</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="dealing-with-missing-data.html#cb288-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
@@ -476,33 +501,33 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 ## data:  table(tmp$Ethnicity, tmp$Language)
 ## X-squared = 123.1, df = NA, p-value = 0.0004998</code></pre>
 <p>So, if we dropped all rows with missing values in any of the three columns, we’d be left with 291 observations. If we instead remove for each pair only the rows that are missing one of those values, we get 474, 307 and 841 observations, respectively. If we had used a 5% risk level, we’d in fact reject the null hypothesis with pairwise deletion but not with row deletion:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dealing-with-missing-data.html#cb260-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">8</span>)]</span>
-<span id="cb260-2"><a href="dealing-with-missing-data.html#cb260-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
-<span id="cb260-3"><a href="dealing-with-missing-data.html#cb260-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dealing-with-missing-data.html#cb290-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">8</span>)]</span>
+<span id="cb290-2"><a href="dealing-with-missing-data.html#cb290-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
+<span id="cb290-3"><a href="dealing-with-missing-data.html#cb290-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
 <pre><code>## Rows before = 1374, rows after deletion = 474</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dealing-with-missing-data.html#cb262-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dealing-with-missing-data.html#cb292-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05697</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dealing-with-missing-data.html#cb264-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
-<span id="cb264-2"><a href="dealing-with-missing-data.html#cb264-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
-<span id="cb264-3"><a href="dealing-with-missing-data.html#cb264-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
+## X-squared = 5.8535, df = NA, p-value = 0.04598</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="dealing-with-missing-data.html#cb294-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
+<span id="cb294-2"><a href="dealing-with-missing-data.html#cb294-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
+<span id="cb294-3"><a href="dealing-with-missing-data.html#cb294-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
 <pre><code>## Rows before = 1374, rows after deletion = 307</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dealing-with-missing-data.html#cb266-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="dealing-with-missing-data.html#cb296-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9445</code></pre>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="dealing-with-missing-data.html#cb268-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
-<span id="cb268-2"><a href="dealing-with-missing-data.html#cb268-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
-<span id="cb268-3"><a href="dealing-with-missing-data.html#cb268-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
+## X-squared = 0.72928, df = NA, p-value = 0.96</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="dealing-with-missing-data.html#cb298-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
+<span id="cb298-2"><a href="dealing-with-missing-data.html#cb298-2"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
+<span id="cb298-3"><a href="dealing-with-missing-data.html#cb298-3"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
 <pre><code>## Rows before = 1374, rows after deletion = 841</code></pre>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="dealing-with-missing-data.html#cb270-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="dealing-with-missing-data.html#cb300-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
@@ -513,83 +538,83 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 </div>
 </div>
 <div id="imputation-methods" class="section level2">
-<h2><span class="header-section-number">13.4</span> Imputation methods</h2>
+<h2><span class="header-section-number">11.4</span> Imputation methods</h2>
 <p>The alternative to deleting rows or columns with missing values is to replace missing data with a value. When a single value is used, we refer to it as single imputation, when multiple values (a distribution) is used to replace a missing value, we refer to it as multiple imputation. In this section we’ll cover some of the most common variants of both single and multiple imputation.</p>
 <div id="single-imputation-with-the-mean" class="section level3">
-<h3><span class="header-section-number">13.4.1</span> Single imputation with the mean</h3>
+<h3><span class="header-section-number">11.4.1</span> Single imputation with the mean</h3>
 <p>Single imputation with the mean is a simple procedure of replacing all missing values with the mean of the observed values.</p>
 <p>Imputation with the mean has the advantage of not introducing a bias automatically - changing all missing values to the mean will not change the sample mean across all variable values. However, similar to deletion methods, if the missingness mechanism is not MCAR, we risk introducing a bias.</p>
 <p>Replacing missing values with the median or mode (with categorical variables mode is the only reasonable central tendency) can be more representative of the underlying distribution, but we must be aware that it automatically introduces a bias. That is, we are inserting values that are not the mean and therefore by definition changing the expectation and introducing a bias. Note that for categorical variables we can also treat missing values as a new separate category and procede with inference and prediction - if we specify the model correctly, such data will be sufficient to account for bias, even if the missingness mechanism is MAR.</p>
 <p>A major disadvantage of single imputation is that it typically reduces the variance of the variable. Subsequently, it also reduces any covariance of that variable with other variables. Observe how the variability of the HEFCE variable and its correlation with SelfEfficacy reduce after mean imputation:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="dealing-with-missing-data.html#cb272-1"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>HEFCE</span>
-<span id="cb272-2"><a href="dealing-with-missing-data.html#cb272-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb272-3"><a href="dealing-with-missing-data.html#cb272-3"></a>sd &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb272-4"><a href="dealing-with-missing-data.html#cb272-4"></a>pr &lt;-<span class="st"> </span><span class="kw">cor</span>(x, dat<span class="op">$</span>SelfEfficacy, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb272-5"><a href="dealing-with-missing-data.html#cb272-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;row deletion   : mu = %.3f  sd = %.3f  cor = %.3f </span><span class="ch">\n</span><span class="st">&quot;</span>,  mu, sd, pr))</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="dealing-with-missing-data.html#cb302-1"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>HEFCE</span>
+<span id="cb302-2"><a href="dealing-with-missing-data.html#cb302-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb302-3"><a href="dealing-with-missing-data.html#cb302-3"></a>sd &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb302-4"><a href="dealing-with-missing-data.html#cb302-4"></a>pr &lt;-<span class="st"> </span><span class="kw">cor</span>(x, dat<span class="op">$</span>SelfEfficacy, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb302-5"><a href="dealing-with-missing-data.html#cb302-5"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;row deletion   : mu = %.3f  sd = %.3f  cor = %.3f </span><span class="ch">\n</span><span class="st">&quot;</span>,  mu, sd, pr))</span></code></pre></div>
 <pre><code>## row deletion   : mu = 3.843  sd = 2.011  cor = -0.064</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="dealing-with-missing-data.html#cb274-1"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>HEFCE</span>
-<span id="cb274-2"><a href="dealing-with-missing-data.html#cb274-2"></a>x[<span class="kw">is.na</span>(x)] &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb274-3"><a href="dealing-with-missing-data.html#cb274-3"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb274-4"><a href="dealing-with-missing-data.html#cb274-4"></a>sd &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T)</span>
-<span id="cb274-5"><a href="dealing-with-missing-data.html#cb274-5"></a>pr &lt;-<span class="st"> </span><span class="kw">cor</span>(x, dat<span class="op">$</span>SelfEfficacy, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb274-6"><a href="dealing-with-missing-data.html#cb274-6"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;mean imputation: mu = %.3f  sd = %.3f  cor = %.3f </span><span class="ch">\n</span><span class="st">&quot;</span>,  mu, sd, pr))</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dealing-with-missing-data.html#cb304-1"></a>x  &lt;-<span class="st"> </span>dat<span class="op">$</span>HEFCE</span>
+<span id="cb304-2"><a href="dealing-with-missing-data.html#cb304-2"></a>x[<span class="kw">is.na</span>(x)] &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb304-3"><a href="dealing-with-missing-data.html#cb304-3"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb304-4"><a href="dealing-with-missing-data.html#cb304-4"></a>sd &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> T)</span>
+<span id="cb304-5"><a href="dealing-with-missing-data.html#cb304-5"></a>pr &lt;-<span class="st"> </span><span class="kw">cor</span>(x, dat<span class="op">$</span>SelfEfficacy, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb304-6"><a href="dealing-with-missing-data.html#cb304-6"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;mean imputation: mu = %.3f  sd = %.3f  cor = %.3f </span><span class="ch">\n</span><span class="st">&quot;</span>,  mu, sd, pr))</span></code></pre></div>
 <pre><code>## mean imputation: mu = 3.843  sd = 1.885  cor = -0.060</code></pre>
 <p>Such underestimation of variability would also transfer to underestimating uncertainty in our predictions or parameter estimates, which is a serious problem if the goal is to understand uncertainty and not just point estimates.</p>
 </div>
 <div id="single-imputation-with-prediction" class="section level3">
-<h3><span class="header-section-number">13.4.2</span> Single imputation with prediction</h3>
+<h3><span class="header-section-number">11.4.2</span> Single imputation with prediction</h3>
 <p>A generalization of imputation with the mean is to predict the missing value using all other available data. This translates to a fully fledged predictive modelling problem with all the complexity of model selection, etc.</p>
 <p>We demonstrate the approach by using logistic regression to predict missing dropout values from all variables without missing values:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="dealing-with-missing-data.html#cb276-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">6</span>)]</span>
-<span id="cb276-2"><a href="dealing-with-missing-data.html#cb276-2"></a>mod &lt;-<span class="st"> </span><span class="kw">glm</span>(dropOUToriginal <span class="op">~</span><span class="st"> </span>., tmp, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)  <span class="co"># prediction model</span></span>
-<span id="cb276-3"><a href="dealing-with-missing-data.html#cb276-3"></a>idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb276-4"><a href="dealing-with-missing-data.html#cb276-4"></a></span>
-<span id="cb276-5"><a href="dealing-with-missing-data.html#cb276-5"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">predict</span>(mod, <span class="dt">newdata =</span> tmp, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
-<span id="cb276-6"><a href="dealing-with-missing-data.html#cb276-6"></a>tmp<span class="op">$</span>dropOUToriginal &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb276-7"><a href="dealing-with-missing-data.html#cb276-7"></a></span>
-<span id="cb276-8"><a href="dealing-with-missing-data.html#cb276-8"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
-<span id="cb276-9"><a href="dealing-with-missing-data.html#cb276-9"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>dropOUToriginal[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
-<span id="cb276-10"><a href="dealing-with-missing-data.html#cb276-10"></a></span>
-<span id="cb276-11"><a href="dealing-with-missing-data.html#cb276-11"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="dealing-with-missing-data.html#cb306-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">6</span>)]</span>
+<span id="cb306-2"><a href="dealing-with-missing-data.html#cb306-2"></a>mod &lt;-<span class="st"> </span><span class="kw">glm</span>(dropOUToriginal <span class="op">~</span><span class="st"> </span>., tmp, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)  <span class="co"># prediction model</span></span>
+<span id="cb306-3"><a href="dealing-with-missing-data.html#cb306-3"></a>idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb306-4"><a href="dealing-with-missing-data.html#cb306-4"></a></span>
+<span id="cb306-5"><a href="dealing-with-missing-data.html#cb306-5"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">predict</span>(mod, <span class="dt">newdata =</span> tmp, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
+<span id="cb306-6"><a href="dealing-with-missing-data.html#cb306-6"></a>tmp<span class="op">$</span>dropOUToriginal &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb306-7"><a href="dealing-with-missing-data.html#cb306-7"></a></span>
+<span id="cb306-8"><a href="dealing-with-missing-data.html#cb306-8"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
+<span id="cb306-9"><a href="dealing-with-missing-data.html#cb306-9"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>dropOUToriginal[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
+<span id="cb306-10"><a href="dealing-with-missing-data.html#cb306-10"></a></span>
+<span id="cb306-11"><a href="dealing-with-missing-data.html#cb306-11"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
 <pre><code>## 0.65 +/- 0.016</code></pre>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="dealing-with-missing-data.html#cb278-1"></a><span class="kw">round</span>(<span class="kw">mean</span>(dat<span class="op">$</span>dropOUTretrieved[idx] <span class="op">==</span><span class="st"> &quot;no&quot;</span>), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dealing-with-missing-data.html#cb308-1"></a><span class="kw">round</span>(<span class="kw">mean</span>(dat<span class="op">$</span>dropOUTretrieved[idx] <span class="op">==</span><span class="st"> &quot;no&quot;</span>), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.56</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dealing-with-missing-data.html#cb280-1"></a><span class="co"># </span></span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dealing-with-missing-data.html#cb310-1"></a><span class="co"># </span></span></code></pre></div>
 <p>The predictions are not very accurate, but still above the relative frequency of the mode of dropout (<em>no</em>), which is 0.56.</p>
 <p>We could take the extra step of imputing the remaining variables with mean/mode and using them in the model as well:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="dealing-with-missing-data.html#cb281-1"></a>mode &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb281-2"><a href="dealing-with-missing-data.html#cb281-2"></a>  ux &lt;-<span class="st"> </span><span class="kw">unique</span>(x)</span>
-<span id="cb281-3"><a href="dealing-with-missing-data.html#cb281-3"></a>  ux[<span class="kw">which.max</span>(<span class="kw">tabulate</span>(<span class="kw">match</span>(x, ux)))]</span>
-<span id="cb281-4"><a href="dealing-with-missing-data.html#cb281-4"></a>}</span>
-<span id="cb281-5"><a href="dealing-with-missing-data.html#cb281-5"></a></span>
-<span id="cb281-6"><a href="dealing-with-missing-data.html#cb281-6"></a>impute &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb281-7"><a href="dealing-with-missing-data.html#cb281-7"></a>  <span class="cf">if</span> (<span class="kw">is.numeric</span>(x)) {</span>
-<span id="cb281-8"><a href="dealing-with-missing-data.html#cb281-8"></a>    <span class="kw">return</span> (<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T), x))</span>
-<span id="cb281-9"><a href="dealing-with-missing-data.html#cb281-9"></a>  } <span class="cf">else</span> {</span>
-<span id="cb281-10"><a href="dealing-with-missing-data.html#cb281-10"></a>    <span class="kw">return</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="kw">mode</span>(x[<span class="op">!</span><span class="kw">is.na</span>(x)]), x))</span>
-<span id="cb281-11"><a href="dealing-with-missing-data.html#cb281-11"></a>  }</span>
-<span id="cb281-12"><a href="dealing-with-missing-data.html#cb281-12"></a>}</span>
-<span id="cb281-13"><a href="dealing-with-missing-data.html#cb281-13"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="dv">5</span>]</span>
-<span id="cb281-14"><a href="dealing-with-missing-data.html#cb281-14"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(tmp)) {</span>
-<span id="cb281-15"><a href="dealing-with-missing-data.html#cb281-15"></a>  <span class="cf">if</span> (<span class="kw">names</span>(tmp)[i] <span class="op">!=</span><span class="st"> &quot;dropOUToriginal&quot;</span>) tmp[,i] &lt;-<span class="st"> </span><span class="kw">impute</span>(tmp[,i])</span>
-<span id="cb281-16"><a href="dealing-with-missing-data.html#cb281-16"></a>}</span>
-<span id="cb281-17"><a href="dealing-with-missing-data.html#cb281-17"></a></span>
-<span id="cb281-18"><a href="dealing-with-missing-data.html#cb281-18"></a>mod &lt;-<span class="st"> </span><span class="kw">glm</span>(dropOUToriginal <span class="op">~</span><span class="st"> </span>., tmp, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)  <span class="co"># prediction model</span></span>
-<span id="cb281-19"><a href="dealing-with-missing-data.html#cb281-19"></a>idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb281-20"><a href="dealing-with-missing-data.html#cb281-20"></a></span>
-<span id="cb281-21"><a href="dealing-with-missing-data.html#cb281-21"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">predict</span>(mod, <span class="dt">newdata =</span> tmp, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
-<span id="cb281-22"><a href="dealing-with-missing-data.html#cb281-22"></a>tmp<span class="op">$</span>dropOUToriginal &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb281-23"><a href="dealing-with-missing-data.html#cb281-23"></a></span>
-<span id="cb281-24"><a href="dealing-with-missing-data.html#cb281-24"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
-<span id="cb281-25"><a href="dealing-with-missing-data.html#cb281-25"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>dropOUToriginal[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
-<span id="cb281-26"><a href="dealing-with-missing-data.html#cb281-26"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="dealing-with-missing-data.html#cb311-1"></a>mode &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb311-2"><a href="dealing-with-missing-data.html#cb311-2"></a>  ux &lt;-<span class="st"> </span><span class="kw">unique</span>(x)</span>
+<span id="cb311-3"><a href="dealing-with-missing-data.html#cb311-3"></a>  ux[<span class="kw">which.max</span>(<span class="kw">tabulate</span>(<span class="kw">match</span>(x, ux)))]</span>
+<span id="cb311-4"><a href="dealing-with-missing-data.html#cb311-4"></a>}</span>
+<span id="cb311-5"><a href="dealing-with-missing-data.html#cb311-5"></a></span>
+<span id="cb311-6"><a href="dealing-with-missing-data.html#cb311-6"></a>impute &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb311-7"><a href="dealing-with-missing-data.html#cb311-7"></a>  <span class="cf">if</span> (<span class="kw">is.numeric</span>(x)) {</span>
+<span id="cb311-8"><a href="dealing-with-missing-data.html#cb311-8"></a>    <span class="kw">return</span> (<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T), x))</span>
+<span id="cb311-9"><a href="dealing-with-missing-data.html#cb311-9"></a>  } <span class="cf">else</span> {</span>
+<span id="cb311-10"><a href="dealing-with-missing-data.html#cb311-10"></a>    <span class="kw">return</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="kw">mode</span>(x[<span class="op">!</span><span class="kw">is.na</span>(x)]), x))</span>
+<span id="cb311-11"><a href="dealing-with-missing-data.html#cb311-11"></a>  }</span>
+<span id="cb311-12"><a href="dealing-with-missing-data.html#cb311-12"></a>}</span>
+<span id="cb311-13"><a href="dealing-with-missing-data.html#cb311-13"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="dv">5</span>]</span>
+<span id="cb311-14"><a href="dealing-with-missing-data.html#cb311-14"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(tmp)) {</span>
+<span id="cb311-15"><a href="dealing-with-missing-data.html#cb311-15"></a>  <span class="cf">if</span> (<span class="kw">names</span>(tmp)[i] <span class="op">!=</span><span class="st"> &quot;dropOUToriginal&quot;</span>) tmp[,i] &lt;-<span class="st"> </span><span class="kw">impute</span>(tmp[,i])</span>
+<span id="cb311-16"><a href="dealing-with-missing-data.html#cb311-16"></a>}</span>
+<span id="cb311-17"><a href="dealing-with-missing-data.html#cb311-17"></a></span>
+<span id="cb311-18"><a href="dealing-with-missing-data.html#cb311-18"></a>mod &lt;-<span class="st"> </span><span class="kw">glm</span>(dropOUToriginal <span class="op">~</span><span class="st"> </span>., tmp, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)  <span class="co"># prediction model</span></span>
+<span id="cb311-19"><a href="dealing-with-missing-data.html#cb311-19"></a>idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb311-20"><a href="dealing-with-missing-data.html#cb311-20"></a></span>
+<span id="cb311-21"><a href="dealing-with-missing-data.html#cb311-21"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">predict</span>(mod, <span class="dt">newdata =</span> tmp, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
+<span id="cb311-22"><a href="dealing-with-missing-data.html#cb311-22"></a>tmp<span class="op">$</span>dropOUToriginal &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb311-23"><a href="dealing-with-missing-data.html#cb311-23"></a></span>
+<span id="cb311-24"><a href="dealing-with-missing-data.html#cb311-24"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
+<span id="cb311-25"><a href="dealing-with-missing-data.html#cb311-25"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>dropOUToriginal[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
+<span id="cb311-26"><a href="dealing-with-missing-data.html#cb311-26"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
 <pre><code>## 0.67 +/- 0.016</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="dealing-with-missing-data.html#cb283-1"></a><span class="co"># </span></span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="dealing-with-missing-data.html#cb313-1"></a><span class="co"># </span></span></code></pre></div>
 <p>Using the other variables did not lead to an improvement in accuracy. Either there is nothing more we can extract from the given variables or we would need to pick a better model or engineer better input variables.</p>
 <p>The advantage of a predictive approach over imputation with mean is that, if we manage to capture the relationships in the data, imputation with a predictive model can account for bias caused by a MAR missingness regime! However, as with any single imputation method, we will still underestimate variability. In order to fully capture variability, we must use a distribution or multiple values - multiple imputation.</p>
 </div>
 <div id="multiple-imputation" class="section level3">
-<h3><span class="header-section-number">13.4.3</span> Multiple imputation</h3>
+<h3><span class="header-section-number">11.4.3</span> Multiple imputation</h3>
 <p>The imputation with prediction example from the previous section illustrates how imputation is in itself a prediction problem. Even more, it is potentially a set of many prediction problems, because we have to account for every possible combination of missing values when predicting the missing value of one variable. In the previous example we circumvented that problem by using imputation with mean, but that is not an ideal solution as it underestimates variability. To solve the problem in general, we would have to specify a generative model for all the variables. That is, to specify the data generation process in a way that can be used to generate values for missing data regardless of the pattern of missingness for that observation. This also solves the variability underestimation problem of single imputation - if we have a distribution over all possible missing values, we have a full characterization of the uncertainty or we can generate many datasets which as a whole capture that uncertainty (hence the term <em>multiple</em> imputation)</p>
 <p>Specifying a full generative model is the most difficult of all modelling problems. A common approach is to use a multivariate normal distribution, because under that modelling assumption all the conditional distributions are also multivariate normal and it is relatively easy to derive their parameters. In R, we can find it implemented in the <a href="https://cran.r-project.org/web/packages/Amelia/index.html">amelia</a> package. However, this approach can be used out-of-the-box only if all of our data are numerical.</p>
 <p>A popular alternative is multiple imputation with chained equations (MICE):</p>
@@ -602,12 +627,12 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <p>This generates one imputed dataset. We repeate steps (2-4) several times to generate multiple imputed datasets. Any further analysis we do should be based on all those datasets, because they capture the variability in the missing data - our uncertainty about what the missing data values might be.</p>
 <p>Those familiar with Gibbs sampling, a popular inference algorithm in Bayesian statistics, will quickly recognize that MICE is based on the same ideas. A full generative model can be specified by specifying just the full conditional distributions (a distribution of a variable with all other variables known) and we can use Markov Chain Monte Carlo (in this case Gibbs sampling) to generate samples from the posterior of that model.</p>
 <p>Implementations of MICE typically do all the work for us. We only need to specify the number of imputed datasets we need. We’ll use the R package <a href="https://cran.r-project.org/web/packages/mice/index.html">mice</a> to create 50 imputed datasets for our data. We then use logistic regression to predict dropout for each of those datasets and combine the predictions of all the models into a final prediction of dropout. First, we impute the predictor variables:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="dealing-with-missing-data.html#cb284-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
-<span id="cb284-2"><a href="dealing-with-missing-data.html#cb284-2"></a>tgt &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal</span>
-<span id="cb284-3"><a href="dealing-with-missing-data.html#cb284-3"></a></span>
-<span id="cb284-4"><a href="dealing-with-missing-data.html#cb284-4"></a><span class="co"># multiple imputation</span></span>
-<span id="cb284-5"><a href="dealing-with-missing-data.html#cb284-5"></a></span>
-<span id="cb284-6"><a href="dealing-with-missing-data.html#cb284-6"></a><span class="kw">library</span>(mice)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="dealing-with-missing-data.html#cb314-1"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
+<span id="cb314-2"><a href="dealing-with-missing-data.html#cb314-2"></a>tgt &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal</span>
+<span id="cb314-3"><a href="dealing-with-missing-data.html#cb314-3"></a></span>
+<span id="cb314-4"><a href="dealing-with-missing-data.html#cb314-4"></a><span class="co"># multiple imputation</span></span>
+<span id="cb314-5"><a href="dealing-with-missing-data.html#cb314-5"></a></span>
+<span id="cb314-6"><a href="dealing-with-missing-data.html#cb314-6"></a><span class="kw">library</span>(mice)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lattice&#39;</code></pre>
@@ -619,13 +644,13 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     cbind, rbind</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dealing-with-missing-data.html#cb290-1"></a><span class="co"># Uncomment the lines below to generate tmp data first time</span></span>
-<span id="cb290-2"><a href="dealing-with-missing-data.html#cb290-2"></a><span class="co">#imputed_tmp &lt;- mice(tmp, m = 50, seed = 0)</span></span>
-<span id="cb290-3"><a href="dealing-with-missing-data.html#cb290-3"></a><span class="co">#saveRDS(imputed_tmp, &quot;./data/imputed_tmp.rds&quot;)</span></span>
-<span id="cb290-4"><a href="dealing-with-missing-data.html#cb290-4"></a></span>
-<span id="cb290-5"><a href="dealing-with-missing-data.html#cb290-5"></a>imputed_tmp &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/imputed_tmp.rds&quot;</span>) <span class="co"># we load the precomputed data to save time</span></span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="dealing-with-missing-data.html#cb320-1"></a><span class="co"># Uncomment the lines below to generate tmp data first time</span></span>
+<span id="cb320-2"><a href="dealing-with-missing-data.html#cb320-2"></a><span class="co">#imputed_tmp &lt;- mice(tmp, m = 50, seed = 0)</span></span>
+<span id="cb320-3"><a href="dealing-with-missing-data.html#cb320-3"></a><span class="co">#saveRDS(imputed_tmp, &quot;./data/imputed_tmp.rds&quot;)</span></span>
+<span id="cb320-4"><a href="dealing-with-missing-data.html#cb320-4"></a></span>
+<span id="cb320-5"><a href="dealing-with-missing-data.html#cb320-5"></a>imputed_tmp &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/imputed_tmp.rds&quot;</span>) <span class="co"># we load the precomputed data to save time</span></span></code></pre></div>
 <p>We can inspect which types of models were used:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="dealing-with-missing-data.html#cb291-1"></a><span class="kw">print</span>(imputed_tmp<span class="op">$</span>method)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="dealing-with-missing-data.html#cb321-1"></a><span class="kw">print</span>(imputed_tmp<span class="op">$</span>method)</span></code></pre></div>
 <pre><code>##    GCSEgrade       Course  Disposition SelfEfficacy       Gender 
 ##           &quot;&quot;           &quot;&quot;           &quot;&quot;           &quot;&quot;     &quot;logreg&quot; 
 ##     Language          EMA    Ethnicity          LPN        HEFCE 
@@ -633,33 +658,33 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 ##       uniFAM 
 ##    &quot;polyreg&quot;</code></pre>
 <p>Now we iterate through all the imputed datasets, predict outcome and pool the predictions:</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="dealing-with-missing-data.html#cb293-1"></a>pre &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(x))</span>
-<span id="cb293-2"><a href="dealing-with-missing-data.html#cb293-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>) {</span>
-<span id="cb293-3"><a href="dealing-with-missing-data.html#cb293-3"></a>  df &lt;-<span class="st"> </span><span class="kw">complete</span>(imputed_tmp, <span class="dv">1</span>)</span>
-<span id="cb293-4"><a href="dealing-with-missing-data.html#cb293-4"></a>  df<span class="op">$</span>tgt &lt;-<span class="st"> </span>tgt <span class="co"># add dropout</span></span>
-<span id="cb293-5"><a href="dealing-with-missing-data.html#cb293-5"></a>  mod &lt;-<span class="st"> </span><span class="kw">glm</span>(tgt <span class="op">~</span><span class="st"> </span>., df, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb293-6"><a href="dealing-with-missing-data.html#cb293-6"></a>  idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb293-7"><a href="dealing-with-missing-data.html#cb293-7"></a>  pre &lt;-<span class="st"> </span>pre <span class="op">+</span><span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> df, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">/</span><span class="st"> </span><span class="dv">50</span></span>
-<span id="cb293-8"><a href="dealing-with-missing-data.html#cb293-8"></a>}</span>
-<span id="cb293-9"><a href="dealing-with-missing-data.html#cb293-9"></a></span>
-<span id="cb293-10"><a href="dealing-with-missing-data.html#cb293-10"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pre <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
-<span id="cb293-11"><a href="dealing-with-missing-data.html#cb293-11"></a>tmp<span class="op">$</span>tgt &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb293-12"><a href="dealing-with-missing-data.html#cb293-12"></a></span>
-<span id="cb293-13"><a href="dealing-with-missing-data.html#cb293-13"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
-<span id="cb293-14"><a href="dealing-with-missing-data.html#cb293-14"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>tgt[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
-<span id="cb293-15"><a href="dealing-with-missing-data.html#cb293-15"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="dealing-with-missing-data.html#cb323-1"></a>pre &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(x))</span>
+<span id="cb323-2"><a href="dealing-with-missing-data.html#cb323-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>) {</span>
+<span id="cb323-3"><a href="dealing-with-missing-data.html#cb323-3"></a>  df &lt;-<span class="st"> </span><span class="kw">complete</span>(imputed_tmp, <span class="dv">1</span>)</span>
+<span id="cb323-4"><a href="dealing-with-missing-data.html#cb323-4"></a>  df<span class="op">$</span>tgt &lt;-<span class="st"> </span>tgt <span class="co"># add dropout</span></span>
+<span id="cb323-5"><a href="dealing-with-missing-data.html#cb323-5"></a>  mod &lt;-<span class="st"> </span><span class="kw">glm</span>(tgt <span class="op">~</span><span class="st"> </span>., df, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb323-6"><a href="dealing-with-missing-data.html#cb323-6"></a>  idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb323-7"><a href="dealing-with-missing-data.html#cb323-7"></a>  pre &lt;-<span class="st"> </span>pre <span class="op">+</span><span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> df, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">/</span><span class="st"> </span><span class="dv">50</span></span>
+<span id="cb323-8"><a href="dealing-with-missing-data.html#cb323-8"></a>}</span>
+<span id="cb323-9"><a href="dealing-with-missing-data.html#cb323-9"></a></span>
+<span id="cb323-10"><a href="dealing-with-missing-data.html#cb323-10"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pre <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
+<span id="cb323-11"><a href="dealing-with-missing-data.html#cb323-11"></a>tmp<span class="op">$</span>tgt &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb323-12"><a href="dealing-with-missing-data.html#cb323-12"></a></span>
+<span id="cb323-13"><a href="dealing-with-missing-data.html#cb323-13"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
+<span id="cb323-14"><a href="dealing-with-missing-data.html#cb323-14"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>tgt[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
+<span id="cb323-15"><a href="dealing-with-missing-data.html#cb323-15"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
 <pre><code>## 0.64 +/- 0.016</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="dealing-with-missing-data.html#cb295-1"></a><span class="co"># </span></span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="dealing-with-missing-data.html#cb325-1"></a><span class="co"># </span></span></code></pre></div>
 <p>In this case MICE doesn’t seem to have helped. In general, MICE is a very robust procedure and it performs really well in many different situations. The main issue with MICE is that it is computationally very intensive.</p>
 </div>
 </div>
 <div id="summary" class="section level2">
-<h2><span class="header-section-number">13.5</span> Summary</h2>
+<h2><span class="header-section-number">11.5</span> Summary</h2>
 <p>If we are to take away one thing from this chapter it should be that dealing with missing data is not an easy problem. Data will rarely be missing in a <em>nice</em> (completely random) way, so if we want to resort to more simple removal or imputation techniques, we must put reasonable effort into determining whether or not the dependencies between observed data and missingness are a cause for concern. If strong dependencies exist and/or there is a lot of data missing, the missing data problem becomes a prediction problem (or a series of prediction problems). We should also be aware of the possibility that missingness depends on the missing value in a way that can’t be explained by observed variables. This can also cause bias in our analyses and we will not be able to detect it unless we get our hands on some of the missing values.</p>
 <p>Note that in this chapter we focused on standard tabular data. There are many other types of data, such as time-series data, spatial data, images, sound, graphs, etc. The basic principles remain unchanged. We must be aware of the missingness mechanism and introducing bias. We can deal with missing values either by removing observations/variables or by imputing them. However, different, sometimes additional models and techniques will be appropriate. For example, temporal and spatial data lend themselves to interpolation of missing values.</p>
 </div>
-<div id="further-reading-and-references-7" class="section level2">
-<h2><span class="header-section-number">13.6</span> Further reading and references</h2>
+<div id="further-reading-and-references-8" class="section level2">
+<h2><span class="header-section-number">11.6</span> Further reading and references</h2>
 <ul>
 <li><p>A gentle introduction from a practitioners perspective: Blankers, M., Koeter, M. W., &amp; Schippers, G. M. (2010). Missing data approaches in eHealth research: simulation study and a tutorial for nonmathematically inclined researchers. Journal of medical Internet research, 12(5), e54.</p></li>
 <li><p>A great book on basic and some advance techniques: <em>Allison, P. D. (2001). Missing data (Vol. 136). Sage publications.</em></p></li>
@@ -668,8 +693,8 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <li><p>When doing missing data value handling and prediction separately, we should be aware that certain types of prediction models might work better with certain methods for handling missing values. A paper that illustrate this: <em>Yadav, M. L., &amp; Roychoudhury, B. (2018). Handling missing values: A study of popular imputation packages in R. Knowledge-Based Systems, 160, 104-118.</em></p></li>
 </ul>
 </div>
-<div id="learning-outcomes-7" class="section level2">
-<h2><span class="header-section-number">13.7</span> Learning outcomes</h2>
+<div id="learning-outcomes-8" class="section level2">
+<h2><span class="header-section-number">11.7</span> Learning outcomes</h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
 <li>Reproduce the techniques demonstrated in this chapter using their language/tool of choice.</li>
@@ -677,8 +702,8 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <li>Recognize when a technique is appropriate and what are its limitations.</li>
 </ul>
 </div>
-<div id="practice-problems-7" class="section level2">
-<h2><span class="header-section-number">13.8</span> Practice problems</h2>
+<div id="practice-problems-8" class="section level2">
+<h2><span class="header-section-number">11.8</span> Practice problems</h2>
 <ol style="list-style-type: decimal">
 <li>We prepared a subset of the <a href="https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2">Football Manager Players</a> dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (<em>football-manager-complete.rds</em>). We then introduced missing values to this data based on various missingness mechanisms (<em>football-manager-missing.rds</em>) and in a way that could also have a reasonable practical explanation. Your task is to:</li>
 </ol>
@@ -717,6 +742,9 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <div>
 <p>Noyes, Katherine. 2008. “Docker: A ’Shipping Container’ for Linux Code.” <a href="https://www.linux.com/news/docker-shipping-container-linux-code">https://www.linux.com/news/docker-shipping-container-linux-code</a>.</p>
 </div>
+<div>
+<p>Tai, Kuo-Chung. 1979. “The Tree-to-Tree Correction Problem.” <em>J. ACM</em> 26 (3): 422–33. <a href="https://doi.org/10.1145/322139.322143">https://doi.org/10.1145/322139.322143</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -725,7 +753,7 @@ From the above plot we can see that dropout and ethnicity have the most missing 
           </div>
         </div>
       </div>
-<a href="predictive-modelling-feature-selection.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="predictive-modelling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -778,8 +806,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

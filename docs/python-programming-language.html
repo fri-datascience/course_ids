@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Python programming language | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Python programming language | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-08-28" />
+<meta name="date" content="2019-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="what-is-data-science-anyway.html">
-<link rel="next" href="source-code-control.html">
+<link rel="prev" href="what-is-data-science-anyway.html"/>
+<link rel="next" href="source-code-control.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -167,13 +167,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.2" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example"><i class="fa fa-check"></i><b>3.3.2</b> Docker application example</a></li>
 <li class="chapter" data-level="3.3.3" data-path="docker-container-platform.html"><a href="docker-container-platform.html#volumes"><i class="fa fa-check"></i><b>3.3.3</b> Volumes</a></li>
 <li class="chapter" data-level="3.3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>3.3.4</b> Docker application example with multiple services</a></li>
+<li class="chapter" data-level="3.3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#dockerfile-optimizations"><i class="fa fa-check"></i><b>3.3.5</b> Dockerfile optimizations</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="docker-container-platform.html"><a href="docker-container-platform.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>3.4</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.5" data-path="docker-container-platform.html"><a href="docker-container-platform.html#learning-outcomes-1"><i class="fa fa-check"></i><b>3.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="3.6" data-path="docker-container-platform.html"><a href="docker-container-platform.html#practice-problems-1"><i class="fa fa-check"></i><b>3.6</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a><ul>
-<li class="chapter" data-level="4.1" data-path="web-scraping.html"><a href="web-scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a></li>
+<li class="chapter" data-level="4.1" data-path="web-scraping.html"><a href="web-scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a><ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#the-challenges-of-web-data-extraction"><i class="fa fa-check"></i>The challenges of Web data extraction</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="web-scraping.html"><a href="web-scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="web-scraping.html"><a href="web-scraping.html#html-dom"><i class="fa fa-check"></i><b>4.2.1</b> HTML DOM</a></li>
 <li class="chapter" data-level="4.2.2" data-path="web-scraping.html"><a href="web-scraping.html#xpath"><i class="fa fa-check"></i><b>4.2.2</b> XPath</a></li>
@@ -241,31 +244,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="relational-databases.html"><a href="relational-databases.html#learning-outcomes-6"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="9.6" data-path="relational-databases.html"><a href="relational-databases.html#practice-problems-6"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="predictive-modelling-introduction.html"><a href="predictive-modelling-introduction.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling - Introduction</a></li>
-<li class="chapter" data-level="11" data-path="predictive-modelling-learning-paradigms.html"><a href="predictive-modelling-learning-paradigms.html"><i class="fa fa-check"></i><b>11</b> Predictive modelling - Learning paradigms</a></li>
-<li class="chapter" data-level="12" data-path="predictive-modelling-feature-selection.html"><a href="predictive-modelling-feature-selection.html"><i class="fa fa-check"></i><b>12</b> Predictive modelling - Feature selection</a></li>
-<li class="chapter" data-level="13" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>13</b> Dealing with missing data</a><ul>
-<li class="chapter" data-level="13.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>13.1</b> The severity of the missing data problem</a><ul>
+<li class="chapter" data-level="10" data-path="predictive-modelling.html"><a href="predictive-modelling.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a><ul>
+<li class="chapter" data-level="10.1" data-path="predictive-modelling.html"><a href="predictive-modelling.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#key-terms"><i class="fa fa-check"></i>Key terms</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#an-illustrative-example"><i class="fa fa-check"></i>An illustrative example</a></li>
+<li class="chapter" data-level="10.1.1" data-path="predictive-modelling.html"><a href="predictive-modelling.html#the-process-of-predictive-modelling"><i class="fa fa-check"></i><b>10.1.1</b> The process of predictive modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="predictive-modelling.html"><a href="predictive-modelling.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#generalized-linear-models"><i class="fa fa-check"></i>Generalized linear models</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#neural-networks"><i class="fa fa-check"></i>Neural networks</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#kernel-based-learning"><i class="fa fa-check"></i>Kernel-based learning</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#ensemble-learning"><i class="fa fa-check"></i>Ensemble learning</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#common-predictive-modelling-paradigms"><i class="fa fa-check"></i>Common predictive modelling paradigms</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="predictive-modelling.html"><a href="predictive-modelling.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a><ul>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#measuring-predictive-performance"><i class="fa fa-check"></i>Measuring predictive performance</a></li>
+<li class="chapter" data-level="" data-path="predictive-modelling.html"><a href="predictive-modelling.html#estimating-how-performance-will-generalize"><i class="fa fa-check"></i>Estimating how performance will generalize</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="predictive-modelling.html"><a href="predictive-modelling.html#practical-considerations"><i class="fa fa-check"></i><b>10.4</b> Practical considerations</a></li>
+<li class="chapter" data-level="10.5" data-path="predictive-modelling.html"><a href="predictive-modelling.html#putting-it-all-together-with-r"><i class="fa fa-check"></i><b>10.5</b> Putting it all together with R</a></li>
+<li class="chapter" data-level="10.6" data-path="predictive-modelling.html"><a href="predictive-modelling.html#python-tools-for-predictive-modelling"><i class="fa fa-check"></i><b>10.6</b> Python tools for predictive modelling</a></li>
+<li class="chapter" data-level="10.7" data-path="predictive-modelling.html"><a href="predictive-modelling.html#putting-it-all-together-with-python"><i class="fa fa-check"></i><b>10.7</b> Putting it all together with Python</a></li>
+<li class="chapter" data-level="10.8" data-path="predictive-modelling.html"><a href="predictive-modelling.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>10.8</b> Further reading and references</a></li>
+<li class="chapter" data-level="10.9" data-path="predictive-modelling.html"><a href="predictive-modelling.html#learning-outcomes-7"><i class="fa fa-check"></i><b>10.9</b> Learning outcomes</a></li>
+<li class="chapter" data-level="10.10" data-path="predictive-modelling.html"><a href="predictive-modelling.html#practice-problems-7"><i class="fa fa-check"></i><b>10.10</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a><ul>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#three-classes-of-missingness"><i class="fa fa-check"></i>Three classes of missingness</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#determining-the-missingness-mechanism"><i class="fa fa-check"></i>Determining the missingness mechanism</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#causes-for-missing-data"><i class="fa fa-check"></i>Causes for missing data</a></li>
 <li class="chapter" data-level="" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#introducing-bias"><i class="fa fa-check"></i>Introducing bias</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>13.2</b> Visually exploring missingness</a></li>
-<li class="chapter" data-level="13.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>13.3</b> Deletion methods</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>13.3.1</b> Column deletion</a></li>
-<li class="chapter" data-level="13.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>13.3.2</b> Row deletion</a></li>
-<li class="chapter" data-level="13.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>13.3.3</b> Pairwise deletion</a></li>
+<li class="chapter" data-level="11.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>11.2</b> Visually exploring missingness</a></li>
+<li class="chapter" data-level="11.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#column-deletion"><i class="fa fa-check"></i><b>11.3.1</b> Column deletion</a></li>
+<li class="chapter" data-level="11.3.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#row-deletion"><i class="fa fa-check"></i><b>11.3.2</b> Row deletion</a></li>
+<li class="chapter" data-level="11.3.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>11.3.3</b> Pairwise deletion</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>13.4</b> Imputation methods</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>13.4.1</b> Single imputation with the mean</a></li>
-<li class="chapter" data-level="13.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>13.4.2</b> Single imputation with prediction</a></li>
-<li class="chapter" data-level="13.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>13.4.3</b> Multiple imputation</a></li>
+<li class="chapter" data-level="11.4" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>11.4.1</b> Single imputation with the mean</a></li>
+<li class="chapter" data-level="11.4.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>11.4.2</b> Single imputation with prediction</a></li>
+<li class="chapter" data-level="11.4.3" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>11.4.3</b> Multiple imputation</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>13.5</b> Summary</a></li>
-<li class="chapter" data-level="13.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>13.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="13.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-7"><i class="fa fa-check"></i><b>13.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="13.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-7"><i class="fa fa-check"></i><b>13.8</b> Practice problems</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#summary"><i class="fa fa-check"></i><b>11.5</b> Summary</a></li>
+<li class="chapter" data-level="11.6" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-reading-and-references-8"><i class="fa fa-check"></i><b>11.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="11.7" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#learning-outcomes-8"><i class="fa fa-check"></i><b>11.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="11.8" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#practice-problems-8"><i class="fa fa-check"></i><b>11.8</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>      
@@ -899,8 +924,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
