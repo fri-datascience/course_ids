@@ -1,3 +1,45 @@
-# Dynamic reports and reproducibility
+# Reproducible research
 
-Now let's talk details.
+## Scientific inquiry
+
+The term *data science* contains the word science. It is our view that data science is more or less synonimous with with modern empirical science and as such it should adhere to the standards for scientific inquiry.
+
+Ideally, scientific inquiry would always be objective and correct. However, these are unattainable  ideals! Science will always be subjective at least in the sense of what we investigate and how we choose to investigate it. And scientists like all people, even with the best intentions and practices, make mistakes. Instead, the realistic standard is lower, albeit still surprisingly difficult to attain - research should be **reproducible**.
+
+We will borrow two definitions from the [American Statistical Association](https://www.amstat.org/asa/files/pdfs/POL-ReproducibleResearchRecommendations.pdf):
+
+> **Reproducibility:** A study is reproducible if you can take the original data and the
+computer code used to analyze the data and reproduce all of the numerical findings
+from the study.
+
+> **Replicability:** This is the act of repeating an entire study, independently of the original
+investigator without the use of original data (but generally using the same methods).
+
+In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, **if our research is not reproducible it is of much less value!**
+
+**Reproducibility is the minimum standard for scientific enquiry** and a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.
+
+## From principles to practice
+
+
+
+## Reproducibility tools in Python
+
+## Reproducibility tools in R
+
+
+## Further reading and references
+
+https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
+
+* When doing missing data value handling and prediction separately, we should be aware that certain types of prediction models might work better with certain methods for handling missing values. A paper that illustrate this: *Yadav, M. L., & Roychoudhury, B. (2018). Handling missing values: A study of popular imputation packages in R. Knowledge-Based Systems, 160, 104-118.*
+
+## Learning outcomes
+
+Data science students should work towards obtaining the knowledge and the skills that enable them to:
+
+* Reproduce the techniques demonstrated in this chapter using their language/tool of choice.
+* Analyze the severity of their missing data problem.
+* Recognize when a technique is appropriate and what are its limitations.
+
+## Practice problems
