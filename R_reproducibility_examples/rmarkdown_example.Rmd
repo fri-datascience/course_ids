@@ -1,0 +1,21 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data
+
+```{r}
+set.seed(0)
+x <- rnorm(100)
+y <- rnorm(100)
+```
+
+```{r fig.width=4, fig.height=4, fig.cap = paste("Relationship between high jump and long jump performance (n =", length(x), ").")}
+plot(x,y)
+```
+
+We can also use inline R core: there are `r length(y)` observations in our data.

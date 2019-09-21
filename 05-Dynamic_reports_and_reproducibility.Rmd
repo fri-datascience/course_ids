@@ -17,29 +17,117 @@ investigator without the use of original data (but generally using the same meth
 
 In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, **if our research is not reproducible it is of much less value!**
 
-**Reproducibility is the minimum standard for scientific enquiry** and a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.
+**Reproducibility will be our minimum standard for scientific enquiry** and is also a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.
 
 ## From principles to practice
 
+Perfect reproducibility is also unattainable, because not all factors can be feasibly accounted for (time, location, hardware used, etc.). Instead, we will strive for a high but practically feasible level of reproducibility. We will also introduce the practical dimension of how *easy to reproduce* research is. For example, if we precisely describe all data manipulations in a text document, the data manipulation part of our research will be reproducible. However, it will be much more difficult to reproduce than, for example, if we provided well-documented code that did the same manipulations.
 
+The modern standard for reproduciblity from data to results is to use computer code for everything. This includes even minimal changes to the original data (for example, renaming a column), generating and including plots and tables and even single-number data in the text of our report or paper. Computer code is, by definition, clear and unambiguous - there is no room for misinterpretation of what has been done. And, if we have everything in code, we completely avoid the possiblity of introducing errors or undetectable changes through manual manipulation of the data or copying the results
 
-## Reproducibility tools in Python
+Such code together with the original data and a precise description of the platform and software used (relevant hardware, operating system, packages, including versions) constitutes as highly and easily reproducible research. This process can be made much easier with the use of standard tools. In particular, integrated analyses and reports, such as Jupyter notebooks and R markdown and notebooks, which we introduce later in the chapter.
+
+### Preregistration - the future standard
+
+As we already discussed above, reprodiciblity is concerned only with the completeness and unambiguity of the description of the study. All studies should be reproducible, but we expect that some studies will not replicate. Some due to the inherent risk of statistical procedures, some due to researchers' mistakes and some due to accidental or deliberate manipulation of the *researcher's degrees of freedom* or *data dredging*. These refer to the choices that we make during a study (some of which should strictly be made before the study). For example:
+
+* the researcher chooses the method or statistical test that confirms the desired hypothesis,
+* the researcher selects the hypotheses only after seeing the data,
+* the researcher splits the data into subgroups that lead to desired results,
+* and many others.
+
+In order to deal with this problem and enforce a higher standard of research (and subsequently fewer studies that do not replicate) **preregistration** is very slowly but surely becoming the norm for professional research. In essence, preregistration is the practice of registering all relevant aspects of a scientific study (how the data will be collected, hypotheses, methods used, etc.) before we begin with the study itself. Preregistration is made with some central authority, such as the [Open science framework](https://osf.io/) and many reputable scientific journals already promote and support preregistered research.
 
 ## Reproducibility tools in R
 
+In this section we introduce four different approaches to integrating R code and text to produce dynamic reports, fully reproducible reports that can automatically be updated if the data change. All four approaches are integrated into RStudio.
+
+### R Markdown {-}
+
+R Markdown (knitr) is the most popular approach to dynamic reporting with R. It combines the lightweight [Markdown language](https://www.markdownguide.org/basic-syntax) with R code *chunks*. R Markdown documents can be rendered as html, pdf, word, etc.
+
+Here is an example of a R markdown file (.Rmd extension) that features R code, inline R code and an image:
+
+````
+`r paste(readLines('./R_reproducibility_examples/rmarkdown_example.Rmd'), collapse = '\n')`
+````
+
+R Markdown is very easy to use and can produce nice documents. However, it lacks the control of more specialized typesetting languages such as LaTeX.
+
+A good starting point for learning R Markdown is the free online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/). Note that the textbook you are reading was also produced with R Markdown and the [Bookdown](https://bookdown.org/) extension. R Markdown can also be used with chunks from other programming languages, for example, Python, with the help of the [reticulate](https://cloud.r-project.org/web/packages/reticulate/index.html) package.
+
+### R Notebook {-}
+
+A R Notebook is identical to a R Markdown document, except that we replace the output to *html_notebook*:
+
+````
+`r paste(readLines('./R_reproducibility_examples/rnotebook_example.Rmd'), collapse = '\n')`
+````
+
+R Notebooks are more interactive - code chunk results are shown inline and are rendered in real time. That is, we can render individual chunks instead of the entire document.
+
+### Sweave {-}
+
+When we require more control over the typsetting, for example, when we are trying to produce an elegant pdf document or adhere to the typsetting standards of an academic journal, we might prefer *Sweave*. Sweave is an integration of LaTeX and R code - in essence, a LaTeX document with R code chunks. R code is executed when we compile the Sweave document with Sweave and LaTeX.
+
+Here is an example of a Sweave file (.Rnw extension) that demonstrates the use of R code, inline R code and an image:
+
+````
+`r paste(readLines('./R_reproducibility_examples/sweave_example.Rnw'), collapse = '\n')`
+````
+
+Sweave gives us all the typsetting control of LaTeX at the expense of more code and having to compile the LaTeX as well. A good starting point for Sweave is this compact [Sweave manual](https://stat.ethz.ch/R-manual/R-devel/library/utils/doc/Sweave.pdf).
+
+### Shiny web apps and dashboards {-}
+
+[Shiny](https://cran.r-project.org/web/packages/shiny/index.html) is an R package that makes it easy to build interactive applications with R. Shiny can be used to produce standalone web apps and dashboards or it can be embedded into R Markdown documents.
+
+Shiny is useful for rapid development of user-friendly interfaces to interactive analyses of our data. These [Shiny tutorials](https://shiny.rstudio.com/tutorial/) are a good starting point for further study.
+
+## Reproducibility tools in Python
+
+### Jupyter Notebooks {-}
+
+
+### Jupyter Dashboards {-}
 
 ## Further reading and references
 
-https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
+* Science is in a replication and reproducibility crisis. In some fields more than half of published studes fail to replicate and most studies are not reproducible: *Baker, M. (2016). 1,500 scientists lift the lid on reproducibility. Nature News, 533(7604), 452.*
 
-* When doing missing data value handling and prediction separately, we should be aware that certain types of prediction models might work better with certain methods for handling missing values. A paper that illustrate this: *Yadav, M. L., & Roychoudhury, B. (2018). Handling missing values: A study of popular imputation packages in R. Knowledge-Based Systems, 160, 104-118.*
+* Preregistration will eventually become the standard for publication of empirical research: *Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. Proceedings of the National Academy of Sciences, 115(11), 2600-2606.*
 
 ## Learning outcomes
 
 Data science students should work towards obtaining the knowledge and the skills that enable them to:
 
-* Reproduce the techniques demonstrated in this chapter using their language/tool of choice.
-* Analyze the severity of their missing data problem.
-* Recognize when a technique is appropriate and what are its limitations.
+* Produce reproducible data science analyses.
+* Identify reproducibility flaws in own and other peoples' research.
+* Distinguish between reproducibility and replication.
 
 ## Practice problems
+
+1. Create a short R Markdown, Sweave and/or Jupyter Notebook that loads some data, draws a plot, prints a table and contains some text with an example of inline use of code.
+
+2. Consider the following experiment of drawing $m > 1$ samples from a distribution (standard normal or uniform) and taking their average, repeating this process for $n > 1$ times and plotting the histogram of these $n$ averages:
+
+```{r}
+n <- 5000
+m <- 10
+set.seed(0)
+dist <- "normal"
+
+all <- c()
+for (i in 1:n) {
+  if (dist == "normal") {
+    x <- rnorm(m)
+  } else {
+    x <- runif(m)
+  }
+  all <- c(mean(x), all)
+}
+
+hist(all, breaks = sqrt(n))
+```
+
+Create a Shiny App/Dashboard and/or Jupyter Dashboard that draws such a histogram and allows you to interactively change $n$, $m$ and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as $m$ grows larger.
