@@ -1,4 +1,4 @@
-# Summarizing data - multivariate data
+# Summarizing data - multivariate data {#multivariate-data-chapter}
 
 Data summarization is the science and art of conveying information more effectivelly and efficiently. Data summarization is typically numerical, visual or a combination of the two. It is a key skill in data analysis - we use it to provide insights both to others and to ourselves. Data summarization is also an integral part of exploratory data analysis.
 
