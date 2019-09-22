@@ -1,4 +1,4 @@
-# Dealing with missing data
+# Dealing with missing data {#missing-data}
 
 In all of our data analyses so far we implicitly assumed that we don't have any missing values in our data. In practice, that is often not the case. While some statistical and machine learning methods work with missing data, many commonly used methods can't, so it is important to learn how to deal with missing values. In this chapter we will discuss a few of the most common methods.
 

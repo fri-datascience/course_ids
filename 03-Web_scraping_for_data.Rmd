@@ -1,4 +1,4 @@
-# Web scraping
+# Web scraping {#scraping}
 
 Today there are more than **3.7 billion Internet users**, which almost **50% of the entire population** [@InternetWorldStats]. Taking into account all the existing Internet-enabled devices, we can estimate that approximatelly 30 billion devices are connected to the network [@deitel2011].
 

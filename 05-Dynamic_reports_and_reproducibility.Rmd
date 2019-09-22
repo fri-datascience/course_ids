@@ -1,4 +1,4 @@
-# Reproducible research
+# Reproducible research {#reproducibility}
 
 ## Scientific inquiry
 
