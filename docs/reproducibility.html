@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>What is data science anyway? | Introduction to data science</title>
+  <title>Chapter 5 Reproducible research | Introduction to data science</title>
   <meta name="description" content="Course notes" />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="What is data science anyway? | Introduction to data science" />
+  <meta property="og:title" content="Chapter 5 Reproducible research | Introduction to data science" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="What is data science anyway? | Introduction to data science" />
+  <meta name="twitter:title" content="Chapter 5 Reproducible research | Introduction to data science" />
   
   <meta name="twitter:description" content="Course notes" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="python-introduction-chapter.html"/>
+<link rel="prev" href="scraping.html"/>
+<link rel="next" href="summarizing-data-basics.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -329,22 +329,184 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-is-data-science-anyway" class="section level1 unnumbered">
-<h1>What is data science anyway?</h1>
-<p>There is no generally accepted definition of what data science is. We would probably all agree that it is a relatively new term and that it is field that requires a mix of IT, analytics and soft skills.</p>
-<p>Our view is that data science is synonymous with empirical science and that this is a result of two major changes. First, the evolution of empirical science to a level that now requires a much broader skill set. And second, the evolution of business, industry and other non-scientific areas to a level where more and more processes require treatment at the level of empirical science.</p>
-<p>Examples of empirical science go back as far as recorded history itself. From censuses in ancient Egypt that were used to scale the pyramid labor force]() to <a href="https://en.wikipedia.org/wiki/Thales_of_Miletus">weather forecasting to profit from olive oil futures in ancient Greece</a>. Historically, even as little as 100 years ago, empirical science was much more difficult than it is today (not that it is not still very difficult if done properly). Data were recorded and manipulated by hand. If one was not an expert mathematician and well-equipped with logarithm and quantile tables, it was near-impossible to do even the most basic statistical analyses. And to spread the results, one would write their report and plot their graphs by hand.</p>
-<p>Over time, this skill set has evolved, with computers playing the leading role. Pens were replaced by typsetting software. Graphing paper was replaced by visualization packages. And logarithm tables were replaced by computer code. Indeed, a lot of the brain-intensive mathematics gave way to computationally intensive numerical approaches, both out of convenience and out of necessity. On the other hand, progress also brought new challenges and raised standards in data management, software development, reproducible research and visualization.</p>
-<p>The names that describe people with this skill set have also evolved. From scientist, empirical scientist, researcher, and statistician to more cool names, such as quantitative analyst, quant, predictive analyst, data miner, machine learning expert and now data scientist. Tomorrow, data science will probably be replaced by another even catchier term. But the core skills will remain the same: analytical thinking, attention to detail, communication and domain-specific knowledge. Mathematics and computation. Science.</p>
-<p>Like the skill set itself the demand for it has also always been present. And growing. To the point where we now live in an increasingly data-driven world: all empirical sciences, finance, marketing, sports training, politics, HR and medicine, to name just a few, rely on data. Today, the practical reality is that there is a big shortage of people with such skills or even just some of them. This is great opportunity for those considering to become data scientists, but also a challenge for educational institutions on how to best prepare students for a career in this data-driven world.</p>
-<div id="the-role-of-this-course" class="section level2">
-<h2><span class="header-section-number">0.1</span> The role of this course</h2>
-<p>This course aims at breadth not depth. The goal is to familiarize ourselves with all key ingredients of data science from a practitioners perspective. We will learn enough methods, techniques and tools to deal with the vast majority of data science scenarios we encounter in real life. However, only with practice and through more academic courses will we be able to develop a fundamental understanding of some of these methods and refine their use to a professional standard. That is, this course focuses on <em>doing</em>. With time, study, practice and through mistakes, we will learn how to <em>do better</em>.</p>
-<p>So what do we think are the key ingredients of a data science practitioner? The first and most important is <strong>computer programming</strong>. Data science requires data manipulation and computation that can not be done without a computer. Working with data also represents most of the workload in a typical data science scenario. And if we are not able to tell the computer exactly what to do, we can’t be a professional data scientist. So, it should come as no surprise that Chapter <a href="python-introduction-chapter.html#python-introduction-chapter">1</a> is dedicated to the <strong>Python</strong> programming language. Python and R are the two most common languages in data science and we advocate that a professional data scientist should learn both. Python is the more versatile of the two and thus more suitable for an introductory course such as this one.</p>
-<p>Once we are able to do something, it becomes very important that we do it in a transparent and easily repeatable way. We put a lot of emphasis on <strong>reproducibility</strong> and the tools that help us achieve it. Why? First, because we need to be true to the word <strong>science</strong> in data science. If it is not clear how something was done, if some steps cannot be reproduced, then we cannot have confidence in the results and that is not science! And second, from a purely practical perspective, if our work is easily reproducible, we ourselves will have a much easier job of repeating our analyses on different data or with slightly modified methodology. What time we invest into reproducibility we will recieve 10-fold savings later on. We will cover <strong>source code control</strong> in Chapter <a href="git.html#git">2</a>, <strong>Docker</strong> for portability in Chapter <a href="docker.html#docker">3</a> and <strong>Jupyter notebooks</strong> and other <strong>dynamic reporting</strong> tools in Chapter <a href="reproducibility.html#reproducibility">5</a>.</p>
-<p>In practice, data are in most cases not in tabular format and stored in a csv file. It is important to know how to <strong>retrieve and deal with less structured data</strong> and how to <strong>store data</strong> in a more systematic and efficent way. We will cover <strong>web scraping</strong> in Chapter <a href="scraping.html#scraping">4</a> and <strong>relational databases</strong> and <strong>SQL</strong> in Chapter <a href="databases.html#databases">9</a>.</p>
-<p>While most of the work is in getting, preprocessing and storing the data, most of the added value in data science is in extracting valuable information from data. First, we need to learn how to efficiently and effectively <strong>summarize data</strong> and do <strong>exploratory data analysis</strong>. In most cases, these techniques combined with some method of quantifying uncertainty in our summaries will be all that is required to successfully complete our analysis! This broad topic will be covered in three chapters: basic <strong>numerical summaries for univariate and bivariate data</strong> are covered in Chapter <a href="summarizing-data-basics.html#summarizing-data-basics">6</a>, <strong>standard visualization techiques</strong> are covered in Chapter <a href="summarize2.html#summarize2">7</a> and <strong>techniques for multivariate data</strong> are covered in Chapter <a href="multivariate-data-chapter.html#multivariate-data-chapter">8</a>.</p>
-<p><strong>Predictive modelling</strong>, the family of tasks that includes a vast majority of the analytic tasks we encounter in practice, is covered in Chapter <a href="predictive.html#predictive">10</a>. And finally, <strong>dealing with missing data</strong> - a very important topic and a topic that requires us to combine all the summarization, exploratory and predictive techniques - is covered in Chapter <a href="missing-data.html#missing-data">11</a>.</p>
+<div id="reproducibility" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Reproducible research</h1>
+<div id="scientific-inquiry" class="section level2">
+<h2><span class="header-section-number">5.1</span> Scientific inquiry</h2>
+<p>The term <em>data science</em> contains the word science. It is our view that data science is more or less synonimous with with modern empirical science and as such it should adhere to the standards for scientific inquiry.</p>
+<p>Ideally, scientific inquiry would always be objective and correct. However, these are unattainable ideals! Science will always be subjective at least in the sense of what we investigate and how we choose to investigate it. And scientists like all people, even with the best intentions and practices, make mistakes. Instead, the realistic standard is lower, albeit still surprisingly difficult to attain - research should be <strong>reproducible</strong>.</p>
+<p>We will borrow two definitions from the <a href="https://www.amstat.org/asa/files/pdfs/POL-ReproducibleResearchRecommendations.pdf">American Statistical Association</a>:</p>
+<blockquote>
+<p><strong>Reproducibility:</strong> A study is reproducible if you can take the original data and the
+computer code used to analyze the data and reproduce all of the numerical findings
+from the study.</p>
+</blockquote>
+<blockquote>
+<p><strong>Replicability:</strong> This is the act of repeating an entire study, independently of the original
+investigator without the use of original data (but generally using the same methods).</p>
+</blockquote>
+<p>In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, <strong>if our research is not reproducible it is of much less value!</strong></p>
+<p><strong>Reproducibility will be our minimum standard for scientific enquiry</strong> and is also a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.</p>
+</div>
+<div id="from-principles-to-practice" class="section level2">
+<h2><span class="header-section-number">5.2</span> From principles to practice</h2>
+<p>Perfect reproducibility is also unattainable, because not all factors can be feasibly accounted for (time, location, hardware used, etc.). Instead, we will strive for a high but practically feasible level of reproducibility. We will also introduce the practical dimension of how <em>easy to reproduce</em> research is. For example, if we precisely describe all data manipulations in a text document, the data manipulation part of our research will be reproducible. However, it will be much more difficult to reproduce than, for example, if we provided well-documented code that did the same manipulations.</p>
+<p>The modern standard for reproduciblity from data to results is to use computer code for everything. This includes even minimal changes to the original data (for example, renaming a column), generating and including plots and tables and even single-number data in the text of our report or paper. Computer code is, by definition, clear and unambiguous - there is no room for misinterpretation of what has been done. And, if we have everything in code, we completely avoid the possiblity of introducing errors or undetectable changes through manual manipulation of the data or copying the results</p>
+<p>Such code together with the original data and a precise description of the platform and software used (relevant hardware, operating system, packages, including versions) constitutes as highly and easily reproducible research. This process can be made much easier with the use of standard tools. In particular, integrated analyses and reports, such as Jupyter notebooks and R markdown and notebooks, which we introduce later in the chapter.</p>
+<div id="preregistration---the-future-standard" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Preregistration - the future standard</h3>
+<p>As we already discussed above, reprodiciblity is concerned only with the completeness and unambiguity of the description of the study. All studies should be reproducible, but we expect that some studies will not replicate. Some due to the inherent risk of statistical procedures, some due to researchers’ mistakes and some due to accidental or deliberate manipulation of the <em>researcher’s degrees of freedom</em> or <em>data dredging</em>. These refer to the choices that we make during a study (some of which should strictly be made before the study). For example:</p>
+<ul>
+<li>the researcher chooses the method or statistical test that confirms the desired hypothesis,</li>
+<li>the researcher selects the hypotheses only after seeing the data,</li>
+<li>the researcher splits the data into subgroups that lead to desired results,</li>
+<li>and many others.</li>
+</ul>
+<p>In order to deal with this problem and enforce a higher standard of research (and subsequently fewer studies that do not replicate) <strong>preregistration</strong> is very slowly but surely becoming the norm for professional research. In essence, preregistration is the practice of registering all relevant aspects of a scientific study (how the data will be collected, hypotheses, methods used, etc.) before we begin with the study itself. Preregistration is made with some central authority, such as the <a href="https://osf.io/">Open science framework</a> and many reputable scientific journals already promote and support preregistered research.</p>
+</div>
+</div>
+<div id="reproducibility-tools-in-r" class="section level2">
+<h2><span class="header-section-number">5.3</span> Reproducibility tools in R</h2>
+<p>In this section we introduce four different approaches to integrating R code and text to produce dynamic reports, fully reproducible reports that can automatically be updated if the data change. All four approaches are integrated into RStudio.</p>
+<div id="r-markdown" class="section level3 unnumbered">
+<h3>R Markdown</h3>
+<p>R Markdown (knitr) is the most popular approach to dynamic reporting with R. It combines the lightweight <a href="https://www.markdownguide.org/basic-syntax">Markdown language</a> with R code <em>chunks</em>. R Markdown documents can be rendered as html, pdf, word, etc.</p>
+<p>Here is an example of a R markdown file (.Rmd extension) that features R code, inline R code and an image:</p>
+<pre><code>---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data
+
+```{r}
+set.seed(0)
+x &lt;- rnorm(100)
+y &lt;- rnorm(100)
+```
+
+```{r fig.width=4, fig.height=4, fig.cap = paste(&quot;Relationship between high jump and long jump performance (n =&quot;, length(x), &quot;).&quot;)}
+plot(x,y)
+```
+
+We can also use inline R core: there are `r length(y)` observations in our data.</code></pre>
+<p>R Markdown is very easy to use and can produce nice documents. However, it lacks the control of more specialized typesetting languages such as LaTeX.</p>
+<p>A good starting point for learning R Markdown is the free online book <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a>. Note that the textbook you are reading was also produced with R Markdown and the <a href="https://bookdown.org/">Bookdown</a> extension. R Markdown can also be used with chunks from other programming languages, for example, Python, with the help of the <a href="https://cloud.r-project.org/web/packages/reticulate/index.html">reticulate</a> package.</p>
+</div>
+<div id="r-notebook" class="section level3 unnumbered">
+<h3>R Notebook</h3>
+<p>A R Notebook is identical to a R Markdown document, except that we replace the output to <em>html_notebook</em>:</p>
+<pre><code>---
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data
+
+```{r}
+set.seed(0)
+x &lt;- rnorm(100)
+y &lt;- rnorm(100)
+```
+
+```{r fig.width=4, fig.height=4, fig.cap = paste(&quot;Relationship between high jump and long jump performance (n =&quot;, length(x), &quot;).&quot;)}
+plot(x,y)
+```
+
+We can also use inline R core: there are `r length(y)` observations in our data.</code></pre>
+<p>R Notebooks are more interactive - code chunk results are shown inline and are rendered in real time. That is, we can render individual chunks instead of the entire document.</p>
+</div>
+<div id="sweave" class="section level3 unnumbered">
+<h3>Sweave</h3>
+<p>When we require more control over the typsetting, for example, when we are trying to produce an elegant pdf document or adhere to the typsetting standards of an academic journal, we might prefer <em>Sweave</em>. Sweave is an integration of LaTeX and R code - in essence, a LaTeX document with R code chunks. R code is executed when we compile the Sweave document with Sweave and LaTeX.</p>
+<p>Here is an example of a Sweave file (.Rnw extension) that demonstrates the use of R code, inline R code and an image:</p>
+<pre><code>\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE,echo=FALSE}
+
+\section*{Data}
+
+&lt;&lt;&gt;&gt;=
+set.seed(0)
+x &lt;- rnorm(100)
+y &lt;- rnorm(100)
+@
+
+Look at the nice plot in Figure \ref{fig1}.
+
+\begin{figure}
+&lt;&lt;fig=T&gt;&gt;=
+plot(x,y)
+@
+\caption{Relationship between high jump and long jump performance (n = \Sexpr{length(x))}.}\label{fig1}
+\end{figure}
+
+
+\end{document}</code></pre>
+<p>Sweave gives us all the typsetting control of LaTeX at the expense of more code and having to compile the LaTeX as well. A good starting point for Sweave is this compact <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/doc/Sweave.pdf">Sweave manual</a>.</p>
+</div>
+<div id="shiny-web-apps-and-dashboards" class="section level3 unnumbered">
+<h3>Shiny web apps and dashboards</h3>
+<p><a href="https://cran.r-project.org/web/packages/shiny/index.html">Shiny</a> is an R package that makes it easy to build interactive applications with R. Shiny can be used to produce standalone web apps and dashboards or it can be embedded into R Markdown documents.</p>
+<p>Shiny is useful for rapid development of user-friendly interfaces to interactive analyses of our data. These <a href="https://shiny.rstudio.com/tutorial/">Shiny tutorials</a> are a good starting point for further study.</p>
+</div>
+</div>
+<div id="reproducibility-tools-in-python" class="section level2">
+<h2><span class="header-section-number">5.4</span> Reproducibility tools in Python</h2>
+<div id="jupyter-notebooks-1" class="section level3 unnumbered">
+<h3>Jupyter Notebooks</h3>
+</div>
+<div id="jupyter-dashboards" class="section level3 unnumbered">
+<h3>Jupyter Dashboards</h3>
+</div>
+</div>
+<div id="further-reading-and-references-3" class="section level2">
+<h2><span class="header-section-number">5.5</span> Further reading and references</h2>
+<ul>
+<li><p>Science is in a replication and reproducibility crisis. In some fields more than half of published studes fail to replicate and most studies are not reproducible: <em>Baker, M. (2016). 1,500 scientists lift the lid on reproducibility. Nature News, 533(7604), 452.</em></p></li>
+<li><p>Preregistration will eventually become the standard for publication of empirical research: <em>Nosek, B. A., Ebersole, C. R., DeHaven, A. C., &amp; Mellor, D. T. (2018). The preregistration revolution. Proceedings of the National Academy of Sciences, 115(11), 2600-2606.</em></p></li>
+</ul>
+</div>
+<div id="learning-outcomes-3" class="section level2">
+<h2><span class="header-section-number">5.6</span> Learning outcomes</h2>
+<p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
+<ul>
+<li>Produce reproducible data science analyses.</li>
+<li>Identify reproducibility flaws in own and other peoples’ research.</li>
+<li>Distinguish between reproducibility and replication.</li>
+</ul>
+</div>
+<div id="practice-problems-3" class="section level2">
+<h2><span class="header-section-number">5.7</span> Practice problems</h2>
+<ol style="list-style-type: decimal">
+<li><p>Create a short R Markdown, Sweave and/or Jupyter Notebook that loads some data, draws a plot, prints a table and contains some text with an example of inline use of code.</p></li>
+<li><p>Consider the following experiment of drawing <span class="math inline">\(m &gt; 1\)</span> samples from a distribution (standard normal or uniform) and taking their average, repeating this process for <span class="math inline">\(n &gt; 1\)</span> times and plotting the histogram of these <span class="math inline">\(n\)</span> averages:</p></li>
+</ol>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="reproducibility.html#cb91-1"></a>n &lt;-<span class="st"> </span><span class="dv">5000</span></span>
+<span id="cb91-2"><a href="reproducibility.html#cb91-2"></a>m &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb91-3"><a href="reproducibility.html#cb91-3"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb91-4"><a href="reproducibility.html#cb91-4"></a>dist &lt;-<span class="st"> &quot;normal&quot;</span></span>
+<span id="cb91-5"><a href="reproducibility.html#cb91-5"></a></span>
+<span id="cb91-6"><a href="reproducibility.html#cb91-6"></a>all &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb91-7"><a href="reproducibility.html#cb91-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb91-8"><a href="reproducibility.html#cb91-8"></a>  <span class="cf">if</span> (dist <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) {</span>
+<span id="cb91-9"><a href="reproducibility.html#cb91-9"></a>    x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m)</span>
+<span id="cb91-10"><a href="reproducibility.html#cb91-10"></a>  } <span class="cf">else</span> {</span>
+<span id="cb91-11"><a href="reproducibility.html#cb91-11"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(m)</span>
+<span id="cb91-12"><a href="reproducibility.html#cb91-12"></a>  }</span>
+<span id="cb91-13"><a href="reproducibility.html#cb91-13"></a>  all &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(x), all)</span>
+<span id="cb91-14"><a href="reproducibility.html#cb91-14"></a>}</span>
+<span id="cb91-15"><a href="reproducibility.html#cb91-15"></a></span>
+<span id="cb91-16"><a href="reproducibility.html#cb91-16"></a><span class="kw">hist</span>(all, <span class="dt">breaks =</span> <span class="kw">sqrt</span>(n))</span></code></pre></div>
+<p><img src="05-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Create a Shiny App/Dashboard and/or Jupyter Dashboard that draws such a histogram and allows you to interactively change <span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span> and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as <span class="math inline">\(m\)</span> grows larger.</p>
 
 </div>
 </div>
@@ -353,8 +515,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="python-introduction-chapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="scraping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarizing-data-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

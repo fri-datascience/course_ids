@@ -1,4 +1,4 @@
-# Dealing with missing data
+# Dealing with missing data {#missing-data}
 
 In all of our data analyses so far we implicitly assumed that we don't have any missing values in our data. In practice, that is often not the case. While some statistical and machine learning methods work with missing data, many commonly used methods can't, so it is important to learn how to deal with missing values. In this chapter we will discuss a few of the most common methods.
 
@@ -273,7 +273,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09995
+## X-squared = 4.6808, df = NA, p-value = 0.09595
 ```
 
 ```r
@@ -286,7 +286,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8476
+## X-squared = 1.4154, df = NA, p-value = 0.8526
 ```
 
 ```r
@@ -325,7 +325,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.03898
+## X-squared = 5.8535, df = NA, p-value = 0.05347
 ```
 
 ```r

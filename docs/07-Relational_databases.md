@@ -1,4 +1,4 @@
-# Relational databases
+# Relational databases {#databases}
 
 Organizations have been using SQL databases almost from the time they exist. In databases they store transactional data as well as business intelligence related data. In some cases and depending on a company, they may use other types of databases such as NoSQL databases which provide their own data organization and different mechanisms to access the data. Therefore, to help companies work on their problems and provide data intelligence for them, data scientists and analysts need to understand relational data stores. Relational databases share a common basic query language - SQL using which we can perform common data science tasks, including finding, exploration, and extraction within relational databases. 
 
