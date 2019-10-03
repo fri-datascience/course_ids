@@ -4,17 +4,18 @@ output_dir: docs
 rmd_files: [
   "index.Rmd",
   "Introduction.Rmd",
-  "01-Introduction_to_Python.Rmd",
-  "02-Source_code_control.Rmd",
-  "02a-Introduction_to_Docker.Rmd",
-  "03-Web_scraping_for_data.Rmd",
-  "05-Dynamic_reports_and_reproducibility.Rmd",
-  "Summarizing-data-01.Rmd",
-  "Summarizing-data-02.Rmd",
-  "Summarizing-data-03.Rmd",
-  "07-Relational_databases.Rmd",
-  "PM-01.Rmd",
-  "Missing-data.Rmd"]
+  "01-Introduction_to_Python.Rmd"
+#  "02-Source_code_control.Rmd",
+#  "02a-Introduction_to_Docker.Rmd",
+#  "03-Web_scraping_for_data.Rmd",
+#  "05-Dynamic_reports_and_reproducibility.Rmd",
+#  "Summarizing-data-01.Rmd",
+#  "Summarizing-data-02.Rmd",
+#  "Summarizing-data-03.Rmd",
+#  "07-Relational_databases.Rmd",
+#  "PM-01.Rmd",
+#  "Missing-data.Rmd"
+  ]
 new_session: yes
 
 

@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to data science"
 author: "Slavko Žitnik, Tomaž Curk, Erik Štrumbelj"
-date: "2019-09-23"
+date: "2019-10-03"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -12,6 +12,8 @@ description: "Course notes"
 ---
 
 # Preface {-}
+
+<img src="logo.svg" width="50%">
 
 These are the course notes for the Introduction to data science course of the Data Science Master's at University of Ljubljana, Faculty of computer and information science.
 

@@ -7,4 +7,4 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Introduction to data science</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>      
+        <li><a href="https://datascience.fri.uni-lj.si/" target="blank">Data Science Master's Program</a></li>
