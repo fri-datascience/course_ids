@@ -6,3 +6,4 @@ _bookdown_files
 *.rds
 .Rapp.history
 !data/dataset.rds
+.ipynb_checkpoints
