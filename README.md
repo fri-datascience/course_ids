@@ -1,4 +1,4 @@
-https://fri-datascience.github.io/course_itds/
+https://fri-datascience.github.io/course_ids/
 
 
 Dependencies in addition to RStudio's default dependencies:
