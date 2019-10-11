@@ -49,7 +49,27 @@ R Markdown (knitr) is the most popular approach to dynamic reporting with R. It 
 Here is an example of a R markdown file (.Rmd extension) that features R code, inline R code and an image:
 
 ````
-`r paste(readLines('./R_reproducibility_examples/rmarkdown_example.Rmd'), collapse = '\n')`
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data
+
+```{r}
+set.seed(0)
+x <- rnorm(100)
+y <- rnorm(100)
+```
+
+```{r fig.width=4, fig.height=4, fig.cap = paste("Relationship between high jump and long jump performance (n =", length(x), ").")}
+plot(x,y)
+```
+
+We can also use inline R core: there are `r length(y)` observations in our data.
 ````
 
 ![](data/Reproducibility/jp_document.png)
@@ -63,7 +83,27 @@ A good starting point for learning R Markdown is the free online book [R Markdow
 A R Notebook is identical to a R Markdown document, except that we replace the output to *html_notebook*:
 
 ````
-`r paste(readLines('./R_reproducibility_examples/rnotebook_example.Rmd'), collapse = '\n')`
+---
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data
+
+```{r}
+set.seed(0)
+x <- rnorm(100)
+y <- rnorm(100)
+```
+
+```{r fig.width=4, fig.height=4, fig.cap = paste("Relationship between high jump and long jump performance (n =", length(x), ").")}
+plot(x,y)
+```
+
+We can also use inline R core: there are `r length(y)` observations in our data.
 ````
 
 ![](data/Reproducibility/jp_notebook.png)
@@ -77,7 +117,29 @@ When we require more control over the typsetting, for example, when we are tryin
 Here is an example of a Sweave file (.Rnw extension) that demonstrates the use of R code, inline R code and an image:
 
 ````
-`r paste(readLines('./R_reproducibility_examples/sweave_example.Rnw'), collapse = '\n')`
+\documentclass{article}
+
+\begin{document}
+
+\section*{Data}
+
+<<>>=
+set.seed(0)
+x <- rnorm(100)
+y <- rnorm(100)
+@
+
+Look at the nice plot in Figure \ref{fig1}.
+
+\begin{figure}[htb]
+<<fig=T>>=
+plot(x,y)
+@
+\caption{Relationship between high jump and long jump performance (n = \Sexpr{length(x)}).}\label{fig1}
+\end{figure}
+
+
+\end{document}
 ````
 
 ![](data/Reproducibility/sweave.png)
@@ -120,7 +182,8 @@ Jupyter notebooks and dashboards are also widely used, support a large number of
 
 In a combination with [jupyter widgets](https://ipywidgets.readthedocs.io/en/latest), dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data a location of a Weather station is also visualized.
 
-```{python eval=FALSE}
+
+```python
 import ipywidgets as widgets
 from ipywidgets import interact
 import urllib.request
@@ -158,7 +221,8 @@ def f(location):
 
 There exist many possible options for graph visualizations (e.g. [Plotly](https://plot.ly/)) and integrations of common libraries such as [matplotlib](https://matplotlib.org/).
 
-```{python eval=FALSE}
+
+```python
 from matplotlib import pyplot as plt
 import numpy as np
 import math
@@ -198,7 +262,8 @@ Data science students should work towards obtaining the knowledge and the skills
 
 2. Consider the following experiment of drawing $m > 1$ samples from a distribution (standard normal or uniform) and taking their average, repeating this process for $n > 1$ times and plotting the histogram of these $n$ averages:
 
-```{r}
+
+```r
 n <- 5000
 m <- 10
 set.seed(0)
@@ -216,5 +281,7 @@ for (i in 1:n) {
 
 hist(all, breaks = sqrt(n))
 ```
+
+<img src="05-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 Create a Shiny App/Dashboard and/or Jupyter Dashboard that draws such a histogram and allows you to interactively change $n$, $m$ and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as $m$ grows larger.

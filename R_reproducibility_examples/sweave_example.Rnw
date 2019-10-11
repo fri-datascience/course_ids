@@ -1,7 +1,6 @@
 \documentclass{article}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE,echo=FALSE}
 
 \section*{Data}
 
@@ -13,11 +12,11 @@ y <- rnorm(100)
 
 Look at the nice plot in Figure \ref{fig1}.
 
-\begin{figure}
+\begin{figure}[htb]
 <<fig=T>>=
 plot(x,y)
 @
-\caption{Relationship between high jump and long jump performance (n = \Sexpr{length(x))}.}\label{fig1}
+\caption{Relationship between high jump and long jump performance (n = \Sexpr{length(x)}).}\label{fig1}
 \end{figure}
 
 
