@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-10-07" />
+<meta name="date" content="2019-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -351,54 +351,54 @@ plot(x,y)
 <li>Publishing: It is simple and quick switch between the development &amp; publishing stage</li>
 </ul>
 <p>In a combination with <a href="https://ipywidgets.readthedocs.io/en/latest">jupyter widgets</a>, dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data a location of a Weather station is also visualized.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="reproducibility.html#cb4-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
-<span id="cb4-2"><a href="reproducibility.html#cb4-2"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
-<span id="cb4-3"><a href="reproducibility.html#cb4-3"></a><span class="im">import</span> urllib.request</span>
-<span id="cb4-4"><a href="reproducibility.html#cb4-4"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
-<span id="cb4-5"><a href="reproducibility.html#cb4-5"></a><span class="im">import</span> folium</span>
-<span id="cb4-6"><a href="reproducibility.html#cb4-6"></a></span>
-<span id="cb4-7"><a href="reproducibility.html#cb4-7"></a>w <span class="op">=</span> widgets.Dropdown(</span>
-<span id="cb4-8"><a href="reproducibility.html#cb4-8"></a>    options<span class="op">=</span>[(<span class="st">&quot;Ljubljana&quot;</span>, <span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>), (<span class="st">&quot;Celje&quot;</span>, <span class="st">&quot;CELJE&quot;</span>),</span>
-<span id="cb4-9"><a href="reproducibility.html#cb4-9"></a>             (<span class="st">&quot;Kočevje&quot;</span>, <span class="st">&quot;KOCEVJE&quot;</span>), (<span class="st">&quot;Novo mesto&quot;</span>, <span class="st">&quot;NOVO-MES&quot;</span>)],</span>
-<span id="cb4-10"><a href="reproducibility.html#cb4-10"></a>    value<span class="op">=</span><span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>,</span>
-<span id="cb4-11"><a href="reproducibility.html#cb4-11"></a>    description<span class="op">=</span><span class="st">&#39;Location:&#39;</span>,</span>
-<span id="cb4-12"><a href="reproducibility.html#cb4-12"></a>)</span>
-<span id="cb4-13"><a href="reproducibility.html#cb4-13"></a></span>
-<span id="cb4-14"><a href="reproducibility.html#cb4-14"></a><span class="at">@interact</span>(location<span class="op">=</span>w)</span>
-<span id="cb4-15"><a href="reproducibility.html#cb4-15"></a><span class="kw">def</span> f(location):</span>
-<span id="cb4-16"><a href="reproducibility.html#cb4-16"></a>    url <span class="op">=</span> <span class="ss">f&quot;http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/en/observation_</span><span class="sc">{</span>location<span class="sc">}</span><span class="ss">_latest.xml&quot;</span></span>
-<span id="cb4-17"><a href="reproducibility.html#cb4-17"></a>    xml <span class="op">=</span> etree.XML(urllib.request.urlopen(url).read())</span>
-<span id="cb4-18"><a href="reproducibility.html#cb4-18"></a>    lat <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lat/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-19"><a href="reproducibility.html#cb4-19"></a>    lon<span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lon/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-20"><a href="reproducibility.html#cb4-20"></a>    station_name <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_title/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-21"><a href="reproducibility.html#cb4-21"></a>    last_updated <span class="op">=</span> etree.XPath(<span class="st">&quot;//tsUpdated/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-22"><a href="reproducibility.html#cb4-22"></a>    weather <span class="op">=</span> etree.XPath(<span class="st">&quot;//nn_shortText/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-23"><a href="reproducibility.html#cb4-23"></a>    temp <span class="op">=</span> etree.XPath(<span class="st">&quot;//t/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-24"><a href="reproducibility.html#cb4-24"></a>    humidity <span class="op">=</span> etree.XPath(<span class="st">&quot;//rh/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb4-25"><a href="reproducibility.html#cb4-25"></a>    </span>
-<span id="cb4-26"><a href="reproducibility.html#cb4-26"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Location: </span><span class="sc">{</span>station_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Last updated: </span><span class="sc">{</span>last_updated<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">&quot;</span>)</span>
-<span id="cb4-27"><a href="reproducibility.html#cb4-27"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Weather info: </span><span class="sc">{</span>weather<span class="sc">}</span><span class="ch">\n</span><span class="ss">Temperature: </span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C</span><span class="ch">\n</span><span class="ss">Humidity: </span><span class="sc">{</span>humidity<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
-<span id="cb4-28"><a href="reproducibility.html#cb4-28"></a>    </span>
-<span id="cb4-29"><a href="reproducibility.html#cb4-29"></a>    slovenia_map <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">46</span>, <span class="fl">14.5</span>], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">&#39;Stamen Terrain&#39;</span>)</span>
-<span id="cb4-30"><a href="reproducibility.html#cb4-30"></a>    folium.Marker([<span class="fl">46.0658</span>,<span class="fl">14.5172</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">&#39;green&#39;</span>,  icon<span class="op">=</span><span class="st">&#39;ok-sign&#39;</span>)).add_to(slovenia_map)</span>
-<span id="cb4-31"><a href="reproducibility.html#cb4-31"></a>    display(slovenia_map)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="reproducibility.html#cb72-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
+<span id="cb72-2"><a href="reproducibility.html#cb72-2"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
+<span id="cb72-3"><a href="reproducibility.html#cb72-3"></a><span class="im">import</span> urllib.request</span>
+<span id="cb72-4"><a href="reproducibility.html#cb72-4"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
+<span id="cb72-5"><a href="reproducibility.html#cb72-5"></a><span class="im">import</span> folium</span>
+<span id="cb72-6"><a href="reproducibility.html#cb72-6"></a></span>
+<span id="cb72-7"><a href="reproducibility.html#cb72-7"></a>w <span class="op">=</span> widgets.Dropdown(</span>
+<span id="cb72-8"><a href="reproducibility.html#cb72-8"></a>    options<span class="op">=</span>[(<span class="st">&quot;Ljubljana&quot;</span>, <span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>), (<span class="st">&quot;Celje&quot;</span>, <span class="st">&quot;CELJE&quot;</span>),</span>
+<span id="cb72-9"><a href="reproducibility.html#cb72-9"></a>             (<span class="st">&quot;Kočevje&quot;</span>, <span class="st">&quot;KOCEVJE&quot;</span>), (<span class="st">&quot;Novo mesto&quot;</span>, <span class="st">&quot;NOVO-MES&quot;</span>)],</span>
+<span id="cb72-10"><a href="reproducibility.html#cb72-10"></a>    value<span class="op">=</span><span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>,</span>
+<span id="cb72-11"><a href="reproducibility.html#cb72-11"></a>    description<span class="op">=</span><span class="st">&#39;Location:&#39;</span>,</span>
+<span id="cb72-12"><a href="reproducibility.html#cb72-12"></a>)</span>
+<span id="cb72-13"><a href="reproducibility.html#cb72-13"></a></span>
+<span id="cb72-14"><a href="reproducibility.html#cb72-14"></a><span class="at">@interact</span>(location<span class="op">=</span>w)</span>
+<span id="cb72-15"><a href="reproducibility.html#cb72-15"></a><span class="kw">def</span> f(location):</span>
+<span id="cb72-16"><a href="reproducibility.html#cb72-16"></a>    url <span class="op">=</span> <span class="ss">f&quot;http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/en/observation_</span><span class="sc">{</span>location<span class="sc">}</span><span class="ss">_latest.xml&quot;</span></span>
+<span id="cb72-17"><a href="reproducibility.html#cb72-17"></a>    xml <span class="op">=</span> etree.XML(urllib.request.urlopen(url).read())</span>
+<span id="cb72-18"><a href="reproducibility.html#cb72-18"></a>    lat <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lat/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-19"><a href="reproducibility.html#cb72-19"></a>    lon<span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lon/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-20"><a href="reproducibility.html#cb72-20"></a>    station_name <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_title/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-21"><a href="reproducibility.html#cb72-21"></a>    last_updated <span class="op">=</span> etree.XPath(<span class="st">&quot;//tsUpdated/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-22"><a href="reproducibility.html#cb72-22"></a>    weather <span class="op">=</span> etree.XPath(<span class="st">&quot;//nn_shortText/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-23"><a href="reproducibility.html#cb72-23"></a>    temp <span class="op">=</span> etree.XPath(<span class="st">&quot;//t/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-24"><a href="reproducibility.html#cb72-24"></a>    humidity <span class="op">=</span> etree.XPath(<span class="st">&quot;//rh/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb72-25"><a href="reproducibility.html#cb72-25"></a>    </span>
+<span id="cb72-26"><a href="reproducibility.html#cb72-26"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Location: </span><span class="sc">{</span>station_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Last updated: </span><span class="sc">{</span>last_updated<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">&quot;</span>)</span>
+<span id="cb72-27"><a href="reproducibility.html#cb72-27"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Weather info: </span><span class="sc">{</span>weather<span class="sc">}</span><span class="ch">\n</span><span class="ss">Temperature: </span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C</span><span class="ch">\n</span><span class="ss">Humidity: </span><span class="sc">{</span>humidity<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
+<span id="cb72-28"><a href="reproducibility.html#cb72-28"></a>    </span>
+<span id="cb72-29"><a href="reproducibility.html#cb72-29"></a>    slovenia_map <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">46</span>, <span class="fl">14.5</span>], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">&#39;Stamen Terrain&#39;</span>)</span>
+<span id="cb72-30"><a href="reproducibility.html#cb72-30"></a>    folium.Marker([<span class="fl">46.0658</span>,<span class="fl">14.5172</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">&#39;green&#39;</span>,  icon<span class="op">=</span><span class="st">&#39;ok-sign&#39;</span>)).add_to(slovenia_map)</span>
+<span id="cb72-31"><a href="reproducibility.html#cb72-31"></a>    display(slovenia_map)</span></code></pre></div>
 <p><img src="data/Reproducibility/general.png" /></p>
 <p>There exist many possible options for graph visualizations (e.g. <a href="https://plot.ly/">Plotly</a>) and integrations of common libraries such as <a href="https://matplotlib.org/">matplotlib</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="reproducibility.html#cb5-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb5-2"><a href="reproducibility.html#cb5-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-3"><a href="reproducibility.html#cb5-3"></a><span class="im">import</span> math</span>
-<span id="cb5-4"><a href="reproducibility.html#cb5-4"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb5-5"><a href="reproducibility.html#cb5-5"></a></span>
-<span id="cb5-6"><a href="reproducibility.html#cb5-6"></a><span class="kw">def</span> showGraph(scale):</span>
-<span id="cb5-7"><a href="reproducibility.html#cb5-7"></a>    x <span class="op">=</span> np.arange(<span class="dv">0</span>, math.pi<span class="op">*</span>scale, <span class="fl">0.05</span>)</span>
-<span id="cb5-8"><a href="reproducibility.html#cb5-8"></a>    y <span class="op">=</span> np.sin(x)</span>
-<span id="cb5-9"><a href="reproducibility.html#cb5-9"></a>    fig <span class="op">=</span> plt.figure()</span>
-<span id="cb5-10"><a href="reproducibility.html#cb5-10"></a>    ax <span class="op">=</span> fig.add_axes([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb5-11"><a href="reproducibility.html#cb5-11"></a>    ax.plot(x, y)</span>
-<span id="cb5-12"><a href="reproducibility.html#cb5-12"></a>    ax.set_xlabel(<span class="st">&quot;Angle&quot;</span>)</span>
-<span id="cb5-13"><a href="reproducibility.html#cb5-13"></a>    ax.set_ylabel(<span class="st">&quot;sine&quot;</span>)</span>
-<span id="cb5-14"><a href="reproducibility.html#cb5-14"></a></span>
-<span id="cb5-15"><a href="reproducibility.html#cb5-15"></a>interact(showGraph, scale <span class="op">=</span> widgets.IntSlider(value<span class="op">=</span><span class="dv">4</span>, description<span class="op">=</span><span class="st">&#39;Scale&#39;</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">10</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="reproducibility.html#cb73-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb73-2"><a href="reproducibility.html#cb73-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb73-3"><a href="reproducibility.html#cb73-3"></a><span class="im">import</span> math</span>
+<span id="cb73-4"><a href="reproducibility.html#cb73-4"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb73-5"><a href="reproducibility.html#cb73-5"></a></span>
+<span id="cb73-6"><a href="reproducibility.html#cb73-6"></a><span class="kw">def</span> showGraph(scale):</span>
+<span id="cb73-7"><a href="reproducibility.html#cb73-7"></a>    x <span class="op">=</span> np.arange(<span class="dv">0</span>, math.pi<span class="op">*</span>scale, <span class="fl">0.05</span>)</span>
+<span id="cb73-8"><a href="reproducibility.html#cb73-8"></a>    y <span class="op">=</span> np.sin(x)</span>
+<span id="cb73-9"><a href="reproducibility.html#cb73-9"></a>    fig <span class="op">=</span> plt.figure()</span>
+<span id="cb73-10"><a href="reproducibility.html#cb73-10"></a>    ax <span class="op">=</span> fig.add_axes([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb73-11"><a href="reproducibility.html#cb73-11"></a>    ax.plot(x, y)</span>
+<span id="cb73-12"><a href="reproducibility.html#cb73-12"></a>    ax.set_xlabel(<span class="st">&quot;Angle&quot;</span>)</span>
+<span id="cb73-13"><a href="reproducibility.html#cb73-13"></a>    ax.set_ylabel(<span class="st">&quot;sine&quot;</span>)</span>
+<span id="cb73-14"><a href="reproducibility.html#cb73-14"></a></span>
+<span id="cb73-15"><a href="reproducibility.html#cb73-15"></a>interact(showGraph, scale <span class="op">=</span> widgets.IntSlider(value<span class="op">=</span><span class="dv">4</span>, description<span class="op">=</span><span class="st">&#39;Scale&#39;</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">10</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
 <p><img src="data/Reproducibility/sine.png" /></p>
 </div>
 </div>
@@ -424,22 +424,22 @@ plot(x,y)
 <li><p>Create a short R Markdown, Sweave and/or Jupyter Notebook that loads some data, draws a plot, prints a table and contains some text with an example of inline use of code.</p></li>
 <li><p>Consider the following experiment of drawing <span class="math inline">\(m &gt; 1\)</span> samples from a distribution (standard normal or uniform) and taking their average, repeating this process for <span class="math inline">\(n &gt; 1\)</span> times and plotting the histogram of these <span class="math inline">\(n\)</span> averages:</p></li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="reproducibility.html#cb6-1"></a>n &lt;-<span class="st"> </span><span class="dv">5000</span></span>
-<span id="cb6-2"><a href="reproducibility.html#cb6-2"></a>m &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb6-3"><a href="reproducibility.html#cb6-3"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb6-4"><a href="reproducibility.html#cb6-4"></a>dist &lt;-<span class="st"> &quot;normal&quot;</span></span>
-<span id="cb6-5"><a href="reproducibility.html#cb6-5"></a></span>
-<span id="cb6-6"><a href="reproducibility.html#cb6-6"></a>all &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb6-7"><a href="reproducibility.html#cb6-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
-<span id="cb6-8"><a href="reproducibility.html#cb6-8"></a>  <span class="cf">if</span> (dist <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) {</span>
-<span id="cb6-9"><a href="reproducibility.html#cb6-9"></a>    x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m)</span>
-<span id="cb6-10"><a href="reproducibility.html#cb6-10"></a>  } <span class="cf">else</span> {</span>
-<span id="cb6-11"><a href="reproducibility.html#cb6-11"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(m)</span>
-<span id="cb6-12"><a href="reproducibility.html#cb6-12"></a>  }</span>
-<span id="cb6-13"><a href="reproducibility.html#cb6-13"></a>  all &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(x), all)</span>
-<span id="cb6-14"><a href="reproducibility.html#cb6-14"></a>}</span>
-<span id="cb6-15"><a href="reproducibility.html#cb6-15"></a></span>
-<span id="cb6-16"><a href="reproducibility.html#cb6-16"></a><span class="kw">hist</span>(all, <span class="dt">breaks =</span> <span class="kw">sqrt</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="reproducibility.html#cb74-1"></a>n &lt;-<span class="st"> </span><span class="dv">5000</span></span>
+<span id="cb74-2"><a href="reproducibility.html#cb74-2"></a>m &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb74-3"><a href="reproducibility.html#cb74-3"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb74-4"><a href="reproducibility.html#cb74-4"></a>dist &lt;-<span class="st"> &quot;normal&quot;</span></span>
+<span id="cb74-5"><a href="reproducibility.html#cb74-5"></a></span>
+<span id="cb74-6"><a href="reproducibility.html#cb74-6"></a>all &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb74-7"><a href="reproducibility.html#cb74-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb74-8"><a href="reproducibility.html#cb74-8"></a>  <span class="cf">if</span> (dist <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) {</span>
+<span id="cb74-9"><a href="reproducibility.html#cb74-9"></a>    x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m)</span>
+<span id="cb74-10"><a href="reproducibility.html#cb74-10"></a>  } <span class="cf">else</span> {</span>
+<span id="cb74-11"><a href="reproducibility.html#cb74-11"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(m)</span>
+<span id="cb74-12"><a href="reproducibility.html#cb74-12"></a>  }</span>
+<span id="cb74-13"><a href="reproducibility.html#cb74-13"></a>  all &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(x), all)</span>
+<span id="cb74-14"><a href="reproducibility.html#cb74-14"></a>}</span>
+<span id="cb74-15"><a href="reproducibility.html#cb74-15"></a></span>
+<span id="cb74-16"><a href="reproducibility.html#cb74-16"></a><span class="kw">hist</span>(all, <span class="dt">breaks =</span> <span class="kw">sqrt</span>(n))</span></code></pre></div>
 <p><img src="05-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Create a Shiny App/Dashboard and/or Jupyter Dashboard that draws such a histogram and allows you to interactively change <span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span> and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as <span class="math inline">\(m\)</span> grows larger.</p>
 
