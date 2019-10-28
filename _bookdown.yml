@@ -7,9 +7,9 @@ rmd_files: [
   "01-Introduction_to_Python.Rmd",
 #  "02-Source_code_control.Rmd",
   "05-Dynamic_reports_and_reproducibility.Rmd",
-  "03-Web_scraping_for_data.Rmd"
+  "03-Web_scraping_for_data.Rmd",
+  "Summarizing-data-01.Rmd"
 #  "02a-Introduction_to_Docker.Rmd",
-#  "Summarizing-data-01.Rmd",
 #  "Summarizing-data-02.Rmd",
 #  "Summarizing-data-03.Rmd",
 #  "07-Relational_databases.Rmd",

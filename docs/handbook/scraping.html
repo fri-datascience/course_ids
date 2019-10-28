@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik, Tomaž Curk, Erik Štrumbelj" />
 
 
-<meta name="date" content="2019-10-24" />
+<meta name="date" content="2019-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="reproducibility.html"/>
-
+<link rel="next" href="summarizing-data-basics.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -189,6 +189,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="scraping.html"><a href="scraping.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>3.3</b> Further reading and references</a></li>
 <li class="chapter" data-level="3.4" data-path="scraping.html"><a href="scraping.html#learning-outcomes-2"><i class="fa fa-check"></i><b>3.4</b> Learning outcomes</a></li>
 <li class="chapter" data-level="3.5" data-path="scraping.html"><a href="scraping.html#practice-problems-2"><i class="fa fa-check"></i><b>3.5</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html"><i class="fa fa-check"></i><b>4</b> Summarizing data - the basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>4.1</b> Descriptive statistics for univariate distributions</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#central-tendency"><i class="fa fa-check"></i><b>4.1.1</b> Central tendency</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#dispersion"><i class="fa fa-check"></i><b>4.1.2</b> Dispersion</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>4.1.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="4.1.4" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#nominal-variables"><i class="fa fa-check"></i><b>4.1.4</b> Nominal variables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>4.1.5</b> Testing the shape of a distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>4.2</b> Descriptive statistics for bivariate distributions</a></li>
+<li class="chapter" data-level="4.3" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>4.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="4.4" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#learning-outcomes-3"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="4.5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#practice-problems-3"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://datascience.fri.uni-lj.si/" target="blank">Data Science Master's Program</a></li>
@@ -446,32 +459,6 @@ Figure 3.2: Web crawler architecture.
 <li>An example project: Recently, <a href="http://gov.si">gov.si</a> Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account <em>robots.txt</em>, etc. Store rendered HTML data and also extracted data into a database.</li>
 </ul>
 
-<div id="refs" class="references">
-<div>
-<p>Aggarwal, Charu C, and ChengXiang Zhai. 2012. <em>Mining Text Data</em>. Springer Science &amp; Business Media.</p>
-</div>
-<div>
-<p>Christopher, D Manning, Raghavan Prabhakar, and Schacetzel Hinrich. 2008. “Introduction to Information Retrieval.” <em>An Introduction to Information Retrieval</em> 151 (177): 5.</p>
-</div>
-<div>
-<p>Deitel, Paul, Harvey Deitel, and Abbey Deitel. 2011. <em>Internet &amp; World Wide Web: How to Program</em>. 5th ed. Pearson. <a href="https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006">https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006</a>.</p>
-</div>
-<div>
-<p>Ferrara, Emilio, Pasquale De Meo, Giacomo Fiumara, and Robert Baumgartner. 2014. “Web Data Extraction, Applications and Techniques: A Survey.” <em>Knowledge-Based Systems</em> 70: 301–23.</p>
-</div>
-<div>
-<p>Internet World Stats. 2017. “Usage and Population Statistics.” 2017. <a href="http://www.internetworldstats.com/stats.htm">http://www.internetworldstats.com/stats.htm</a>.</p>
-</div>
-<div>
-<p>Kushmerick, Nicholas, Daniel S Weld, and Robert Doorenbos. 1997. “Wrapper Induction for Information Extraction.”</p>
-</div>
-<div>
-<p>Liu, Bing. 2011. <em>Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data</em>. 2nd ed. Springer Publishing Company, Incorporated.</p>
-</div>
-<div>
-<p>Tai, Kuo-Chung. 1979. “The Tree-to-Tree Correction Problem.” <em>J. ACM</em> 26 (3): 422–33. <a href="https://doi.org/10.1145/322139.322143">https://doi.org/10.1145/322139.322143</a>.</p>
-</div>
-</div>
 </div>
 </div>
 <h3>References</h3>
@@ -514,8 +501,8 @@ Figure 3.2: Web crawler architecture.
           </div>
         </div>
       </div>
-<a href="reproducibility.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="reproducibility.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarizing-data-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
