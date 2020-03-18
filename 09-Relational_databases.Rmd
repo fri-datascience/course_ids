@@ -147,12 +147,12 @@ Sqlite seems like a simple database implementation. It lacks performance over la
 
 ### Environment setup
 
-To install an SQLite database we just do need download a binary version from [the official SQLite web site](https://www.sqlite.org/download.html). There exist also installation packages that install SQLite program to our computer and update the $PATH variable so that the `sqlite` command is directly accessible from command line. 
+To install an SQLite database we just do need to download a binary version from [the official SQLite web site](https://www.sqlite.org/download.html). There exist also installation packages that install SQLite program to our computer and update the $PATH variable so that the `sqlite` command is directly accessible from command line. 
 
 The sqlite 3 download package consists of three executables:
 
 * `sqldiff`: The utility that displays the differences between SQLite databases.
-* `sqlite3`: The main exacutable to create and manage SQLite databases.
+* `sqlite3`: The main executable to create and manage SQLite databases.
 * `sqlite3_analyzer`: The utility that outputs a human-readable ASCII text report which provides information on the space utilization of the database file.
 
 To start working with a database, just run the `sqlite3` command in the command-line:
@@ -166,25 +166,23 @@ Use ".open FILENAME" to reopen on a persistent database.
 sqlite>
 ```
 
-We exit the console by entering the *CTRL+C* command twice. The example above created just a temporary database in our memory, so no data was stored on disk. To work with or create a newd database if not exists, we need to provide a filename when starting the executable - `sqlite3 itds_course.db`. When we change the defaults of the database or enter some data, the database file will be created.
+We exit the console by entering the *CTRL+C* command twice. The example above created just a temporary database in our memory, so no data was stored on disk. To work with or create a new database if not exists, we need to provide a filename when starting the executable - `sqlite3 itds_course.db`. When we change the defaults of the database or enter some data, the database file will be created.
 
 There exist a lot of standalone graphical user interfaces to work with SQLite database files. An example of a nice and lightweight software to create, open or manage SQLite databases is [DB Browser for SQLite](https://sqlitebrowser.org/) and is available for multiple operating systems.
 
-<div class="figure" style="text-align: center">
-<img src="data/SQL/screenshot.png" alt="DB Browser for SQLite graphical user interface."  />
-<p class="caption">(\#fig:unnamed-chunk-1)DB Browser for SQLite graphical user interface.</p>
-</div>
+```{r, echo=FALSE, fig.align='center', fig.cap='DB Browser for SQLite graphical user interface.'}
+knitr::include_graphics("data/SQL/screenshot.png")
+```
 
 ### SQLite database usage {#sqlite-example}
 
 In this section we show how to create a new SQLite database and manage it manually using SQL language directly. First we create a new database file called `itds_course.db`. 
 
-We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be quite complex task, especially for larger databases consisting of many tables. The modeler needs to to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
+We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be quite complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
 
-<div class="figure" style="text-align: center">
-<img src="data/SQL/model.png" alt="Employee logical database model."  />
-<p class="caption">(\#fig:model)Employee logical database model.</p>
-</div>
+```{r model, echo=FALSE, fig.align='center', fig.cap='Employee logical database model.'}
+knitr::include_graphics("data/SQL/model.png")
+```
 
 Let's first create the model from the Figure \@ref(fig:model). The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text. 
 
@@ -326,7 +324,7 @@ GROUP BY b.id, b.name;
 1|Grosuplje's Fried Chicken|9|2140.99
 ```
 
-* The query above does not return branches with no employees, which is not expected. To improve the query, we need to introduce outer joins. They enable outputs even of there are no matching records in a related table. You may think also of other solutions to solve the problem.
+* The query above does not return branches with no employees, which is not expected. To improve the query, we need to introduce outer joins. They enable outputs even if there are no matching records in a related table. You may think also of other solutions to solve the problem.
 
 ```sql
 -- Grouping and outer joins

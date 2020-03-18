@@ -116,13 +116,13 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) +
   annotate("text", x = 1970, y = 192, label = "guards", colour = "blue")
 ```
 
-We've equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). We've also made the points transparent, to put more focus on the lines. There is always something we can tweek and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.
+We've equipped the above plot with a caption that states the information that we would like to point out to the reader (the plot serves as a visual summary and argument). We've also made the points transparent, to put more focus on the lines. There is always something we can tweak and improve in a plot, depending on the situation, but if all of our plots will be at least at the level of this plot, that will be of sufficient standards.
 
 ## Histograms and density plots
 
 The most elementary way of summarizing data is to plot their density. Of course, the true density is unknown and we can only estimate it by using a model or a non-parametric (smoothing) kernel density estimation. A histogram (binning the data and plotting the frequencies) can be viewed as a more coarse or discrete way of estimating the density of the data.
 
-In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most built-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smooting and reveal more characterisics of the underlying distribution.
+In both density plots and histograms we need to specify the amount of smoothing (smoothing kernel width or bin size) - most built-in functions do it for us, but there is no optimal way of doing it, so we can often improve the plot by selecting a more appropriate degree of smoothing. When we have more data, we can get away with less smoothing and reveal more characterisics of the underlying distribution.
 
 We illustrate these two plots by summarizing the NBA players' weight:
 
@@ -208,7 +208,7 @@ ggplot(dat, aes(x = height, y = weight, colour = position)) +
 
 Density plots should be read as maps - the contours represent points of equal height (in our case, density). Where contour lines lie closer together, we have a steeper hill.
 
-Note that drawing a density plot from a point cloud requires some sort of density estimation or smoothing. Statistical graphics packages typically use non-parameteric smooting which has at least one relevant parameter with which we can control the amount of smoothing (for example, smoothing kernel width). The default or automatic selection of this parameter gives satisfactory results in most cases, but sometimes we can improve the plot by manually selecting the parameter value.
+Note that drawing a density plot from a point cloud requires some sort of density estimation or smoothing. Statistical graphics packages typically use non-parameteric smoothing which has at least one relevant parameter with which we can control the amount of smoothing (for example, smoothing kernel width). The default or automatic selection of this parameter gives satisfactory results in most cases, but sometimes we can improve the plot by manually selecting the parameter value.
 
 ## Boxplot
 

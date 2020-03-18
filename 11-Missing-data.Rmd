@@ -63,37 +63,9 @@ Throughout the remainder of the chapter we will be using a dataset from
 
 as an illustrative example:
 
-
-```r
+```{r}
 dat <- read.csv("./data/imputationDATASET.csv")
 summary(dat)
-```
-
-```
-##      GCSEgrade      Course      Disposition      SelfEfficacy    
-##  1_intC   :201   ASTrad:1014   Min.   :-6.840   Min.   :-4.5500  
-##  2_higherC: 80   UoM   : 360   1st Qu.: 0.500   1st Qu.: 0.0000  
-##  3_intB   :354                 Median : 2.830   Median : 0.5800  
-##  4_higherB:353                 Mean   : 2.176   Mean   : 0.7243  
-##  5_A      :294                 3rd Qu.: 4.320   3rd Qu.: 1.3500  
-##  6_A*     : 92                 Max.   : 4.320   Max.   : 6.0500  
-##                                                                  
-##  dropOUTretrieved dropOUToriginal    Gender         Language     EMA     
-##  no :780          no  :289        female:513   BILINGUAL:273   no  :617  
-##  yes:594          yes :206        male  :860   ENGLISH  :985   yes :698  
-##                   NA's:879        NA's  :  1   OTHER    : 70   NA's: 59  
-##                                                NA's     : 46             
-##                                                                          
-##                                                                          
-##                                                                          
-##    Ethnicity     LPN          HEFCE                   uniFAM   
-##  ASIAN  :251   NO  :907   Min.   :1.000   firstgeneration:497  
-##  BLACK  :105   YES :302   1st Qu.:2.000   parents        :342  
-##  CHINESE: 17   NA's:165   Median :3.000   siblings       :499  
-##  OTHER  : 58              Mean   :3.843   NA's           : 36  
-##  WHITE  :449              3rd Qu.:6.000                        
-##  NA's   :494              Max.   :6.000                        
-##                           NA's   :167
 ```
 
 In this analysis, the authors were interested in modelling dropout from mathematics courses (*dropOUToriginal*) which had a lot of missing values. The actual values were later retreived (*dropOUTretrieved*), but we will only use these to verify the quality of our methods.
@@ -101,22 +73,16 @@ In this analysis, the authors were interested in modelling dropout from mathemat
 The other variables include their previous GCSE qualifications results in mathematics (*GCSEgrade*), type of course (*Course*), their disposition to study mathematics at a higher level (*Disposition*), their self-efficacy rating (*SelfEfficacy*), gender, language, whether the student was holding an Educational Maintenance Allowance (*EMA*), ethnicity, whether the student was from Low Participation Neighbourhood (*LPN*), socio-economic status (*HEFCE*) and whether the student was not first generation at HE (*uniFAM*).
 
 If our dataset does not have too many variables, a visual summary such as this one can be very effective at revealing the extend and patterns of missingness in our data:
-
-```r
+```{r}
 library(naniar)
 vis_miss(dat, warn_large_data = F)
 ```
 
-<img src="Missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" />
-
 Another useful visualization is the frequency of different patterns of missingness:
-
-```r
+```{r}
 library(UpSetR)
 gg_miss_upset(dat)
 ```
-
-<img src="Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.
 
 ## Deletion methods
@@ -140,8 +106,7 @@ The most common deletion approach is to delete all rows with missing values. If 
 
 However, we must be aware that unless the missingness mechanism is MCAR, we will be introducing a bias into our data. Let's estimate the dropout rate from the data that are available. That is, we remove all rows where we don't know whether the student dropped out or not:
 
-
-```r
+```{r}
 stderr <- function(x) {
   N  <- sum(!is.na(x), na.rm = T)
   sd(x, na.rm = T) / sqrt(N)
@@ -154,56 +119,34 @@ SE <- stderr(x)
 cat(sprintf("%.2f +/- %.3f (n = %d)\n", mu, SE, N))
 ```
 
-```
-## 0.42 +/- 0.022 (n = 495)
-```
-
 So, this suggest that we can be reasonably certain that the dropout rate is around 42%. However, this is only valid if the observed values are also a representative sample from our original data (we're assuming that the original data are a representative sample from the population). That will always be the case if the missingness mechanism is MCAR - if missingness is completely random then row deletion will also be completely random.
 
 As we stated at the begining, there is no way of proving that the mechanism is MCAR, however, we can do our best to show that it is not and then account for it. We'll do the latter in the imputation methods section. Here, we just show how incorrect conclusions could be reached if we rely only on row deletion.
 
 Observe that the relative frequency of missing values depends on ethnicity:
 
-
-```r
+```{r}
 x  <- is.na(dat$dropOUToriginal)[dat$Ethnicity == "WHITE"]
 mu <- mean(x, na.rm = T)
 N  <- sum(!is.na(x), na.rm = T)
 SE <- sd(x, na.rm = T) / sqrt(N)
 cat(sprintf("==WHITE: %.2f +/- %.3f (n = %d)\n", mu, SE, N))
-```
 
-```
-## ==WHITE: 0.61 +/- 0.023 (n = 449)
-```
-
-```r
 x  <- is.na(dat$dropOUToriginal)[dat$Ethnicity != "WHITE"]
 mu <- mean(x, na.rm = T)
 N  <- sum(!is.na(x), na.rm = T)
 SE <- stderr(x)
 cat(sprintf("!=WHITE: %.2f +/- %.3f (n = %d)\n", mu, SE, N))
 ```
-
-```
-## !=WHITE: 0.70 +/- 0.022 (n = 431)
-```
 So, we can be reasonably certain that the missingness mechanism is at least MAR! Now, if those of white ethnicity would be more (less) prone to dropping out, our estimate of 42% from above would underestimate (overestimate) true dropout rate! Before using row deletion, we should check if dropout rate depends on ethnicity:
 
-
-```r
+```{r}
 x  <- (dat$dropOUToriginal == "yes")[dat$Ethnicity == "WHITE"]
 mu <- mean(x, na.rm = T)
 N  <- sum(!is.na(x), na.rm = T)
 SE <- stderr(x)
 cat(sprintf("==WHITE: %.2f +/- %.3f (n = %d)\n", mu, SE, N))
-```
 
-```
-## ==WHITE: 0.45 +/- 0.037 (n = 177)
-```
-
-```r
 x  <- (dat$dropOUToriginal == "yes")[dat$Ethnicity != "WHITE"]
 mu <- mean(x, na.rm = T)
 N  <- sum(!is.na(x), na.rm = T)
@@ -211,37 +154,22 @@ SE <- stderr(x)
 cat(sprintf("!=WHITE: %.2f +/- %.3f (n = %d)\n", mu, SE, N))
 ```
 
-```
-## !=WHITE: 0.43 +/- 0.044 (n = 130)
-```
-
 In this case, there is no discernible difference. So, the bias that we might be introducing, is small. Of course, we should do this check for every variable that can reasonably be dependent on/off missigness of dropout!
 
 If the missingness mechanism is MNAR, there is not much we can do. For example, it is not unreasonable to assume that people that dropped out might be less likely to report the dropout information. However, we could not be able to verify if that is the case unless we gathered some of the missing data. Our illustrative example is one of those rare exceptions - the authors gathered the true values hidden behind the missing values, so we can compare:
 
-
-```r
+```{r}
 x  <- dat$dropOUToriginal == "yes"
 mu <- mean(x, na.rm = T)
 N  <- sum(!is.na(x), na.rm = T)
 SE <- stderr(x)
 cat(sprintf("ORIGINAL: %.2f +/- %.3f (n = %d)\n", mu, SE, N))
-```
 
-```
-## ORIGINAL: 0.42 +/- 0.022 (n = 495)
-```
-
-```r
 x  <- dat[is.na(dat$dropOUToriginal),]$dropOUTretrieved == "yes" 
 mu <- mean(x, na.rm = T)
 N  <- sum(!is.na(x), na.rm = T)
 SE <- stderr(x)
 cat(sprintf(" MISSING: %.2f +/- %.3f (n = %d)\n", mu, SE, N))
-```
-
-```
-##  MISSING: 0.44 +/- 0.017 (n = 879)
 ```
 
 There is no discernible difference, so, for practical purposes, we'll conclude that the missingness mechanism is MAR and not MNAR.
@@ -252,126 +180,34 @@ To summarize this section: row deletion can be useful, but if we are deleting ma
 
 Pairwise deletion is a special case of row deletion where we delete only the rows with missing values in the variables of interest for a particular part of the analysis. For example, suppose that we are interested in whether or not there is a dependency between dropout, language and ethnicity. First, lets investigate this on the subset of the three columns where we also drop all rows with missing values. We'll use a Chi-squared test (see Basic summarization chapter for details) to test for dependency between the categorical variables:
 
-
-```r
+```{r}
 tmp <- dat[,c(6,8,10)]
 tmp <- tmp[complete.cases(tmp),]
 cat(sprintf("Rows before = %d, rows after deletion = %d\n", nrow(dat), nrow(tmp)))
-```
 
-```
-## Rows before = 1374, rows after deletion = 291
-```
-
-```r
 chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
-```
-
-```
-## 
-## 	Pearson's Chi-squared test with simulated p-value (based on 2000
-## 	replicates)
-## 
-## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09295
-```
-
-```r
 chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
-```
-
-```
-## 
-## 	Pearson's Chi-squared test with simulated p-value (based on 2000
-## 	replicates)
-## 
-## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8481
-```
-
-```r
 chisq.test(table(tmp$Ethnicity, tmp$Language), simulate.p.value = T)
-```
-
-```
-## 
-## 	Pearson's Chi-squared test with simulated p-value (based on 2000
-## 	replicates)
-## 
-## data:  table(tmp$Ethnicity, tmp$Language)
-## X-squared = 123.1, df = NA, p-value = 0.0004998
 ```
 
 So, if we dropped all rows with missing values in any of the three columns, we'd be left with 291 observations. If we instead remove for each pair only the rows that are missing one of those values, we get 474, 307 and 841 observations, respectively. If we had used a 5% risk level, we'd in fact reject the null hypothesis with pairwise deletion but not with row deletion:
 
-
-```r
+```{r}
 tmp <- dat[,c(6,8)]
 tmp <- tmp[complete.cases(tmp),]
 cat(sprintf("Rows before = %d, rows after deletion = %d\n", nrow(dat), nrow(tmp)))
-```
-
-```
-## Rows before = 1374, rows after deletion = 474
-```
-
-```r
 chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
-```
 
-```
-## 
-## 	Pearson's Chi-squared test with simulated p-value (based on 2000
-## 	replicates)
-## 
-## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04598
-```
-
-```r
 tmp <- dat[,c(6,10)]
 tmp <- tmp[complete.cases(tmp),]
 cat(sprintf("Rows before = %d, rows after deletion = %d\n", nrow(dat), nrow(tmp)))
-```
-
-```
-## Rows before = 1374, rows after deletion = 307
-```
-
-```r
 chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
-```
 
-```
-## 
-## 	Pearson's Chi-squared test with simulated p-value (based on 2000
-## 	replicates)
-## 
-## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9535
-```
 
-```r
 tmp <- dat[,c(8,10)]
 tmp <- tmp[complete.cases(tmp),]
 cat(sprintf("Rows before = %d, rows after deletion = %d\n", nrow(dat), nrow(tmp)))
-```
-
-```
-## Rows before = 1374, rows after deletion = 841
-```
-
-```r
 chisq.test(table(tmp$Ethnicity, tmp$Language), simulate.p.value = T)
-```
-
-```
-## 
-## 	Pearson's Chi-squared test with simulated p-value (based on 2000
-## 	replicates)
-## 
-## data:  table(tmp$Ethnicity, tmp$Language)
-## X-squared = 285.5, df = NA, p-value = 0.0004998
 ```
 
 So, pairwise deletion allows us to use more data. Note, however, that all that we've discussed for row deletion also applies to pairwise deletion. And with pairwise deletion, we have to deal with each sub-analysis separately.
@@ -391,30 +227,19 @@ Replacing missing values with the median or mode (with categorical variables mod
 A major disadvantage of single imputation is that it typically reduces the variance of the variable. Subsequently, it also reduces any covariance of that variable with other variables. Observe how the variability of the HEFCE variable and its correlation with SelfEfficacy reduce after mean imputation:
 
 
-
-```r
+```{r}
 x  <- dat$HEFCE
 mu <- mean(x, na.rm = T)
 sd <- sd(x, na.rm = T)
 pr <- cor(x, dat$SelfEfficacy, use = "complete.obs")
 cat(sprintf("row deletion   : mu = %.3f  sd = %.3f  cor = %.3f \n",  mu, sd, pr))
-```
 
-```
-## row deletion   : mu = 3.843  sd = 2.011  cor = -0.064
-```
-
-```r
 x  <- dat$HEFCE
 x[is.na(x)] <- mean(x, na.rm = T)
 mu <- mean(x, na.rm = T)
 sd <- sd(x, na.rm = T)
 pr <- cor(x, dat$SelfEfficacy, use = "complete.obs")
 cat(sprintf("mean imputation: mu = %.3f  sd = %.3f  cor = %.3f \n",  mu, sd, pr))
-```
-
-```
-## mean imputation: mu = 3.843  sd = 1.885  cor = -0.060
 ```
 
 Such underestimation of variability would also transfer to underestimating uncertainty in our predictions or parameter estimates, which is a serious problem if the goal is to understand uncertainty and not just point estimates.
@@ -425,8 +250,7 @@ A generalization of imputation with the mean is to predict the missing value usi
 
 We demonstrate the approach by using logistic regression to predict missing dropout values from all variables without missing values:
 
-
-```r
+```{r}
 tmp <- dat[,c(1:4, 6)]
 mod <- glm(dropOUToriginal ~ ., tmp, family = "binomial")  # prediction model
 idx <- is.na(dat$dropOUToriginal)
@@ -438,21 +262,8 @@ tmp$dropOUToriginal <- ifelse(idx, pre, dat$dropOUToriginal)
 y <- tmp$dropOUToriginal[idx] == dat$dropOUTretrieved[idx]
 
 cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
-```
-
-```
-## 0.65 +/- 0.016
-```
-
-```r
 round(mean(dat$dropOUTretrieved[idx] == "no"), 2)
-```
 
-```
-## [1] 0.56
-```
-
-```r
 # 
 ```
 
@@ -460,8 +271,7 @@ The predictions are not very accurate, but still above the relative frequency of
 
 We could take the extra step of imputing the remaining variables with mean/mode and using them in the model as well:
 
-
-```r
+```{r}
 mode <- function(x) {
   ux <- unique(x)
   ux[which.max(tabulate(match(x, ux)))]
@@ -488,13 +298,6 @@ tmp$dropOUToriginal <- ifelse(idx, pre, dat$dropOUToriginal)
 # accuracy on missing values, compared to relative freq.
 y <- tmp$dropOUToriginal[idx] == dat$dropOUTretrieved[idx]
 cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
-```
-
-```
-## 0.67 +/- 0.016
-```
-
-```r
 # 
 ```
 
@@ -524,43 +327,14 @@ Those familiar with Gibbs sampling, a popular inference algorithm in Bayesian st
 
 Implementations of MICE typically do all the work for us. We only need to specify the number of imputed datasets we need. We'll use the R package [mice](https://cran.r-project.org/web/packages/mice/index.html) to create 50 imputed datasets for our data. We then use logistic regression to predict dropout for each of those datasets and combine the predictions of all the models into a final prediction of dropout. First, we impute the predictor variables:
 
-
-```r
+```{r}
 tmp <- dat[,-c(5,6)]
 tgt <- dat$dropOUToriginal
 
 # multiple imputation
 
 library(mice)
-```
 
-```
-## Loading required package: lattice
-```
-
-```
-## 
-## Attaching package: 'lattice'
-```
-
-```
-## The following object is masked from 'package:UpSetR':
-## 
-##     histogram
-```
-
-```
-## 
-## Attaching package: 'mice'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     cbind, rbind
-```
-
-```r
 # Uncomment the lines below to generate tmp data first time
 #imputed_tmp <- mice(tmp, m = 50, seed = 0)
 #saveRDS(imputed_tmp, "./data/imputed_tmp.rds")
@@ -569,23 +343,13 @@ imputed_tmp <- readRDS("./data/imputed_tmp.rds") # we load the precomputed data 
 ```
 
 We can inspect which types of models were used:
-
-```r
+```{r}
 print(imputed_tmp$method)
 ```
 
-```
-##    GCSEgrade       Course  Disposition SelfEfficacy       Gender 
-##           ""           ""           ""           ""     "logreg" 
-##     Language          EMA    Ethnicity          LPN        HEFCE 
-##    "polyreg"     "logreg"    "polyreg"     "logreg"        "pmm" 
-##       uniFAM 
-##    "polyreg"
-```
-
 Now we iterate through all the imputed datasets, predict outcome and pool the predictions:
+```{r}
 
-```r
 pre <- rep(0, length(x))
 for (i in 1:50) {
   df <- complete(imputed_tmp, 1)
@@ -601,13 +365,6 @@ tmp$tgt <- ifelse(idx, pre, dat$dropOUToriginal)
 # accuracy on missing values, compared to relative freq.
 y <- tmp$tgt[idx] == dat$dropOUTretrieved[idx]
 cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
-```
-
-```
-## 0.64 +/- 0.016
-```
-
-```r
 # 
 ```
 
@@ -641,7 +398,7 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. We prepared a subset of the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (*football-manager-complete.rds*). We then introduced missing values to this data based on various missingness mechanisms (*football-manager-missing.rds*) and in a way that could also have a reasonable practical explanation. Your task is to:
+1. We prepared a subset of the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/data) dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (*football-manager-complete.rds*). We then introduced missing values to this data based on various missingness mechanisms (*football-manager-missing.rds*) and in a way that could also have a reasonable practical explanation. Your task is to:
 
 a. Identify and, as much as it is possible, characterize missingness mechanisms and patterns in the data.
 b. Use information from (a) to impute missing values in all numerical variables (all variables except *PositionsDesc*, which can be ignored throughout this problem).
