@@ -2,7 +2,7 @@ book_filename: "bookdown-itds"
 chapter_name: "Chapter "
 output_dir: docs/handbook
 rmd_files: [
-  "00-Index.Rmd",
+  "index.Rmd",
   "00-Introduction.Rmd",
   "01-Introduction_to_Python.Rmd",
   "02-Source_code_control.Rmd",

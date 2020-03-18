@@ -273,7 +273,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.1029
+## X-squared = 4.6808, df = NA, p-value = 0.09695
 ```
 
 ```r
@@ -286,7 +286,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8361
+## X-squared = 1.4154, df = NA, p-value = 0.8516
 ```
 
 ```r
@@ -325,7 +325,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05647
+## X-squared = 5.8535, df = NA, p-value = 0.05097
 ```
 
 ```r
@@ -348,7 +348,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.946
+## X-squared = 0.72928, df = NA, p-value = 0.9505
 ```
 
 ```r

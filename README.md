@@ -20,4 +20,4 @@ install.packages(c("factoextra", "GPArotation", "bookdown", "reticulate",
 "ggplot2", "gbm"))
 ```
 
-After that build the *bookdown* project (using RStudio or provided *build.sh* script) and the newly compiled materials will be available in folder */docs/handbook.*
+After that build the *bookdown* project, the newly compiled materials will be available in folder */docs/handbook.*
