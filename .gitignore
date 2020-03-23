@@ -6,4 +6,6 @@ _bookdown_files
 *.rds
 .Rapp.history
 !data/dataset.rds
+!data/football-manager-missing.rds
+!data/football-manager-complete.rds
 .ipynb_checkpoints
