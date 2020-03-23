@@ -8,4 +8,7 @@ _bookdown_files
 !data/dataset.rds
 !data/football-manager-missing.rds
 !data/football-manager-complete.rds
+!docs/handbook/data/dataset.rds
+!docs/handbook/data/football-manager-missing.rds
+!docs/handbook/data/football-manager-complete.rds
 .ipynb_checkpoints
