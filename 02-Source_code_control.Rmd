@@ -1,3 +1,76 @@
 # Source code control {#git}
 
-Now let's talk details.
+## Overview
+
+Source code control systems, version control systems or revision control systems are systems that ease software development in groups. Wikipedia defines them as follows:
+
+> A component of software configuration management, version control, also known as revision control, source control, or source code management systems are systems responsible for the management of changes to documents, computer programs, large web sites, and other collections of information. Changes are usually identified by a number or letter code, termed the "revision number", "revision level", or simply "revision". For example, an initial set of files is "revision 1". When the first change is made, the resulting set is "revision 2", and so on. Each revision is associated with a timestamp and the person making the change. Revisions can be compared, restored, and with some types of files, merged.
+
+There exist a number of different source control systems such as [Subversion](https://subversion.apache.org/), [Mercurial](https://www.mercurial-scm.org/), Microsoft Visual SourceSafe, SourceDepot, [Git](https://git-scm.com/), etc.. Currently, the most popular system is Git which is the most widely used modern version control system in the world today. It is the most recognized and popular approach to contribute to a project (open source or commercial) in a distributed and collaborative manner. Beyond distributed version control system, Git has been designed with performance, security and flexibility in mind.
+
+If you are new to Git it is important for you to differentiate between Git and GitHub:
+
+* *Git* is a widely used Version Control System (VCS) that lets you keep track of all the modifications you make to your code. This means that if a new feature is causing any errors, you can easily roll back to a previous version.
+* *GitHub* is a widely used platform for version control that uses Git at its core. It lets you host the remote version of your project from where all the collaborators can have access to it. GitHub is like a social platform where you can find a plethora of open-source projects with their codes. All the new and emerging technologies can be found on this platform. You can collaborate on many projects and have discussions on your contributions. There exist also other platforms that enable you hosting of remote Git repositories such as [GitLab](https://about.gitlab.com/) or [BitBucket](https://bitbucket.org/).
+
+## Why should I know about Git
+
+Where people are often working in groups that are small enough they feel comfortable just keeping their code on Dropbox and trying to make sure that collaborators never work on the same file at the same time (in the hopes of never creating a dreaded Conflicted Copy file). But git has much to offer the modern data scientist, even if they only work on small teams and don’t want to contribute to larger software projects. Some major benefits of using git are:
+
+1. *Keep an archive of every version of your project*: Git works by logging the work you do on your project into a series of discrete sets of changes called “commits”. Crucially, it remembers all of your commits, making it possible to easily go back to a previous version of the project any time you want. Suddenly discover that your co-author deleted the code for your favorite graph weeks ago and you didn’t notice till now? No problem! You can easily recover the version of that file that existed before your co-author’s mistake.
+2. *All you and your co-authors to work at the same time*: Git is much more forgiving when it comes to allowing people to edit the same document at the same time. Git treats each line in a text document separately, so if your co-author is editing the introduction of your paper (assuming it’s in a text format like 𝐿𝐴𝑇𝐸𝑋) while you’re editing the conclusion, git can easily integrate your simultaneous edits. Moreover, if you do both edit the same line of code or text, then git will help you resolve those conflicting edits in a very efficient manner instead of what dropbox does, and leave you to figure out what changes conflicted and how to integrate both authors’ changes.
+3. *You can easily see what changes you’re co-author has made*: Because git is organized around keeping track of changes (again, called commits), when your co-author makes changes to a document, git allows you to easily see just the changes your co-author has made. This makes it much easier for colleagues to be aware of how their project is changing to watch out of problems (e.g. you can easily see if your co-author recoded a variable in a way that is problematic for code you wrote later). 
+4. *Allows you to contribute to open source projects*: This may not be something you’re planning to jump into, but learning git will make this an option. If you find that a package you use doesn’t have a feature you need, the ability to use git will make it possible for you to add that feature to the package, not only allowing you to do what you want to do, but also making that fix available to the broader community.
+5. *Allows you to make your project open source so others can contribute to your project*: The time may come when you want to write a software package and share it with the world. If you know git, you can also share that code in a way that makes it easy for other people to contribute code and improve that package. Open source isn’t just for big things like Python programming language – it’s also used for lots of little projects, like packages for TODO. And you’ll be amazed how many people contribute to these kinds of projects. Indeed, even these tutorials have a github repositoriy where people can submit improvements!
+
+## Basic Git terminology
+
+![](data/Git/git.png)
+
+### Repository
+_Repository_ or _Repo_ is a folder that contains all the project files and the history of the revisions made to each file. The repo stores its data within a _.git_ hidden folder in your project. It contains all the history related to your repository. In general you will work with at least two repositories throughout the lifetime of your project – _Remote repo_ and _Local repo_:
+
+* _Remote repo_ contains your project that can be accessed from anywhere and by anyone that has access and sufficent rights to the git server (e.g. GitHub). In general you can have multiple remote repositories and push changes selectively to each of them. When you clone a repositroy for the first time from a remote repo, that remote repo will be named _origin_ and you will be albe to push or pull code from it. You can manage connections to the remote repositories using `git remote` commands. 
+* _Local repo_ is a copy of the remote repo that resides on your local machine. All the changes you make are saved in your local repo. Your collaborators will not be able to see them until you push them to the remote repo (and after they browse the remote repo or pull the code locally).
+
+### Cloning
+
+```{bash, eval=FALSE}
+$ git clone <Repo URL>
+```
+
+_Cloning_ means creating a copy of the remote repo on your local machine. After that you can make changes to the local copy of the files, commit them to the local repo and publish (i.e. push) commits back to the remote repo.
+
+If you would like to create a new repository locally without cloning an existing one, you can use the `git init` command and an empty repository will be created in you current folder. If you would like to publish your repository remotely, you will need to add a connection to the empty remote Git repository (`git remote` command) and then push commits to it. _CAUTION_: You cannot merge two different repositories together. So, when you start the project, only one collaborator needs to create the repository and all others should be using the same one.
+
+## Example
+
+follow this: https://towardsdatascience.com/the-easiest-github-tutorial-ever-4a3aa0396039
+
+-----
+
+PLATFROMS WORKFLOW
+
+Forks
+
+Pull requests
+Pull requests are an important part of the development workflow. A pull request is a request to have our branch merged with the master branch. In other words, it’s a request to make our work, which has until now been happening on its isolated branch, become a part of the live project.
+
+When we submit a pull request, we should provide a detailed description of the changes we made and the reasons we made those changes. If our changes are fixing an issue on the issue tracker, we'll want to include that information as well. For each pull request, GitHub provides a window that highlights all the differences between our branch and the master branch. Usually, another member of the project will review all of our changes. Almost always, there will be feedback that we will have to take action on. After everything looks good to a reviewer or two, our changes will merged.
+
+GUI Programs
+
+- Source
+
+----
+
+Further:
+
+Git-lfs
+git-scm page
+trygit page
+
+pages:
+
+https://www.practicaldatascience.org/html/git_and_github.html
+guide: https://www.analyticsvidhya.com/blog/2020/05/git-github-essential-guide-beginners/
