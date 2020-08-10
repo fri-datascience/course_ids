@@ -19,38 +19,27 @@ summary(dat)
 ```
 
 ```
-##        ilkid        firstname        lastname    position  firstseason  
-##  ABDELAL01:   1   John   :  90   Williams:  66   C: 627   Min.   :1946  
-##  ABDULKA01:   1   Bob    :  88   Smith   :  54   F:1665   1st Qu.:1967  
-##  ABDULMA01:   1   Jim    :  70   Johnson :  52   G:1614   Median :1980  
-##  ABDULTA01:   1   Mike   :  66   Jones   :  44            Mean   :1979  
-##  ABDURSH01:   1   Bill   :  54   Davis   :  37            3rd Qu.:1995  
-##  ABERNTO01:   1   Tom    :  46   Brown   :  34            Max.   :2009  
-##  (Other)  :3900   (Other):3492   (Other) :3619                          
-##    lastseason       h_feet         h_inches          weight      
-##  Min.   :1946   Min.   :5.000   Min.   :-6.000   Min.   : 60.33  
-##  1st Qu.:1970   1st Qu.:6.000   1st Qu.: 3.000   1st Qu.: 83.92  
-##  Median :1985   Median :6.000   Median : 6.000   Median : 92.99  
-##  Mean   :1983   Mean   :6.022   Mean   : 5.581   Mean   : 93.91  
-##  3rd Qu.:2001   3rd Qu.:6.000   3rd Qu.: 8.000   3rd Qu.:102.06  
-##  Max.   :2009   Max.   :7.000   Max.   :11.500   Max.   :149.69  
-##                                                                  
-##                                    college                   birthdate   
-##                                        : 200   1945-01-01 00:00:00:   8  
-##  University of California - Los Angeles:  72   1944-01-01 00:00:00:   5  
-##  University of North Carolina          :  71   1921-01-01 00:00:00:   4  
-##  University of Kentucky                :  67   1931-01-01 00:00:00:   4  
-##  Indiana University                    :  54   1919-01-01 00:00:00:   3  
-##  University of Kansas                  :  52   1923-09-18 00:00:00:   3  
-##  (Other)                               :3390   (Other)            :3879  
-##      height     
-##  Min.   :160.0  
-##  1st Qu.:190.5  
-##  Median :198.1  
-##  Mean   :197.7  
-##  3rd Qu.:205.7  
-##  Max.   :231.1  
-## 
+##     ilkid            firstname           lastname           position        
+##  Length:3906        Length:3906        Length:3906        Length:3906       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##   firstseason     lastseason       h_feet         h_inches     
+##  Min.   :1946   Min.   :1946   Min.   :5.000   Min.   :-6.000  
+##  1st Qu.:1967   1st Qu.:1970   1st Qu.:6.000   1st Qu.: 3.000  
+##  Median :1980   Median :1985   Median :6.000   Median : 6.000  
+##  Mean   :1979   Mean   :1983   Mean   :6.022   Mean   : 5.581  
+##  3rd Qu.:1995   3rd Qu.:2001   3rd Qu.:6.000   3rd Qu.: 8.000  
+##  Max.   :2009   Max.   :2009   Max.   :7.000   Max.   :11.500  
+##      weight         college           birthdate             height     
+##  Min.   : 60.33   Length:3906        Length:3906        Min.   :160.0  
+##  1st Qu.: 83.92   Class :character   Class :character   1st Qu.:190.5  
+##  Median : 92.99   Mode  :character   Mode  :character   Median :198.1  
+##  Mean   : 93.91                                         Mean   :197.7  
+##  3rd Qu.:102.06                                         3rd Qu.:205.7  
+##  Max.   :149.69                                         Max.   :231.1
 ```
 
 Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guideline for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!

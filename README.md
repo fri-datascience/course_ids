@@ -16,7 +16,7 @@ To make updates we propose to use RStudio with the following dependencies:
 
 ```
 install.packages(c("factoextra", "GPArotation", "bookdown", "reticulate", 
-"moments", "ggcorrplot", "psych", "Rtsne", "naniar", "mice", "caret", 
+"moments", "ggcorrplot", "tmvnsim", "mnormt", "psych", "Rtsne", "naniar", "mice", "caret", 
 "ggplot2", "gbm"))
 ```
 
