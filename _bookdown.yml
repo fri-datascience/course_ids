@@ -17,5 +17,6 @@ rmd_files: [
   "11-Missing-data.Rmd"
   ]
 new_session: yes
+delete_merged_file: True
 
 

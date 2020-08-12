@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Predictive modelling | Introduction to data science</title>
+  <meta name="description" content="Course notes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Predictive modelling | Introduction to data science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
+  
+  <meta property="og:description" content="Course notes" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Predictive modelling | Introduction to data science" />
+  
+  <meta name="twitter:description" content="Course notes" />
+  
+
+<meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
+
+
+<meta name="date" content="2020-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="databases.html"/>
+<link rel="next" href="missing-data.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to data science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html#the-role-of-this-course"><i class="fa fa-check"></i><b>0.1</b> The role of this course</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basic-characteristics"><i class="fa fa-check"></i><b>1.1</b> Basic characteristics</a></li>
+<li class="chapter" data-level="1.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#why-python"><i class="fa fa-check"></i><b>1.2</b> Why Python?</a></li>
+<li class="chapter" data-level="1.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>1.3</b> Setting up the environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#anaconda-distribution-installation"><i class="fa fa-check"></i><b>1.3.1</b> Anaconda distribution installation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#pure-python-distribution-installation"><i class="fa fa-check"></i><b>1.3.2</b> Pure Python distribution installation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#installing-dependencies"><i class="fa fa-check"></i><b>1.4</b> Installing dependencies</a></li>
+<li class="chapter" data-level="1.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#jupyter-notebooks"><i class="fa fa-check"></i><b>1.5</b> Jupyter notebooks</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#running-a-jupyter-notebook"><i class="fa fa-check"></i><b>1.5.1</b> Running a Jupyter notebook</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> Short introduction to Python</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="1.6.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#flow-control"><i class="fa fa-check"></i><b>1.6.1</b> Flow control</a></li>
+<li class="chapter" data-level="1.6.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#functions"><i class="fa fa-check"></i><b>1.6.2</b> Functions</a></li>
+<li class="chapter" data-level="1.6.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#classes-and-objects"><i class="fa fa-check"></i><b>1.6.3</b> Classes and objects</a></li>
+<li class="chapter" data-level="1.6.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#reading-and-writing-files"><i class="fa fa-check"></i><b>1.6.4</b> Reading and writing files</a></li>
+<li class="chapter" data-level="1.6.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#python-ides-and-code-editors"><i class="fa fa-check"></i><b>1.6.5</b> Python IDE’s and code editors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#python-ecosystem-for-data-science"><i class="fa fa-check"></i><b>1.7</b> Python ecosystem for Data Science</a></li>
+<li class="chapter" data-level="1.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>1.8</b> Further reading and references</a></li>
+<li class="chapter" data-level="1.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>1.9</b> Learning outcomes</a></li>
+<li class="chapter" data-level="1.10" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>1.10</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>2</b> Source code control</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="git.html"><a href="git.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="git.html"><a href="git.html#why-should-i-know-about-git"><i class="fa fa-check"></i><b>2.2</b> Why should I know about Git</a></li>
+<li class="chapter" data-level="2.3" data-path="git.html"><a href="git.html#basic-git-terminology"><i class="fa fa-check"></i><b>2.3</b> Basic Git terminology</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="git.html"><a href="git.html#repository"><i class="fa fa-check"></i><b>2.3.1</b> Repository</a></li>
+<li class="chapter" data-level="2.3.2" data-path="git.html"><a href="git.html#clone"><i class="fa fa-check"></i><b>2.3.2</b> Clone</a></li>
+<li class="chapter" data-level="2.3.3" data-path="git.html"><a href="git.html#adding"><i class="fa fa-check"></i><b>2.3.3</b> Adding</a></li>
+<li class="chapter" data-level="2.3.4" data-path="git.html"><a href="git.html#commit"><i class="fa fa-check"></i><b>2.3.4</b> Commit</a></li>
+<li class="chapter" data-level="2.3.5" data-path="git.html"><a href="git.html#push"><i class="fa fa-check"></i><b>2.3.5</b> Push</a></li>
+<li class="chapter" data-level="2.3.6" data-path="git.html"><a href="git.html#pull"><i class="fa fa-check"></i><b>2.3.6</b> Pull</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="git.html"><a href="git.html#a-beginner-git-example"><i class="fa fa-check"></i><b>2.4</b> A beginner Git example</a></li>
+<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#advanced-git-usage"><i class="fa fa-check"></i><b>2.5</b> “Advanced” Git usage</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="git.html"><a href="git.html#conflict-resolution"><i class="fa fa-check"></i><b>2.5.1</b> Conflict resolution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="git.html"><a href="git.html#git-branching"><i class="fa fa-check"></i><b>2.5.2</b> Branching</a></li>
+<li class="chapter" data-level="2.5.3" data-path="git.html"><a href="git.html#forking"><i class="fa fa-check"></i><b>2.5.3</b> Forking</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="git.html"><a href="git.html#git-guis"><i class="fa fa-check"></i><b>2.6</b> GUI Programs</a></li>
+<li class="chapter" data-level="2.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>2.7</b> Further reading and references</a></li>
+<li class="chapter" data-level="2.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>2.8</b> Learning outcomes</a></li>
+<li class="chapter" data-level="2.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>2.9</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>3</b> Reproducible research</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="reproducibility.html"><a href="reproducibility.html#scientific-inquiry"><i class="fa fa-check"></i><b>3.1</b> Scientific inquiry</a></li>
+<li class="chapter" data-level="3.2" data-path="reproducibility.html"><a href="reproducibility.html#from-principles-to-practice"><i class="fa fa-check"></i><b>3.2</b> From principles to practice</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="reproducibility.html"><a href="reproducibility.html#preregistration---the-future-standard"><i class="fa fa-check"></i><b>3.2.1</b> Preregistration - the future standard</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-r"><i class="fa fa-check"></i><b>3.3</b> Reproducibility tools in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#r-notebook"><i class="fa fa-check"></i>R Notebook</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#sweave"><i class="fa fa-check"></i>Sweave</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#shiny-web-apps-and-dashboards"><i class="fa fa-check"></i>Shiny web apps and dashboards</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-python"><i class="fa fa-check"></i><b>3.4</b> Reproducibility tools in Python</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#jupyter-dashboards"><i class="fa fa-check"></i>Jupyter Dashboards</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>3.5</b> Further reading and references</a></li>
+<li class="chapter" data-level="3.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>3.6</b> Learning outcomes</a></li>
+<li class="chapter" data-level="3.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>3.7</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="scraping.html"><a href="scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scraping.html"><a href="scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a>
+<ul>
+<li class="chapter" data-level="" data-path="scraping.html"><a href="scraping.html#the-challenges-of-web-data-extraction"><i class="fa fa-check"></i>The challenges of Web data extraction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="scraping.html"><a href="scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="scraping.html"><a href="scraping.html#html-dom"><i class="fa fa-check"></i><b>4.2.1</b> HTML DOM</a></li>
+<li class="chapter" data-level="4.2.2" data-path="scraping.html"><a href="scraping.html#xpath"><i class="fa fa-check"></i><b>4.2.2</b> XPath</a></li>
+<li class="chapter" data-level="4.2.3" data-path="scraping.html"><a href="scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.2.3</b> Modern Web sites and JS frameworks</a></li>
+<li class="chapter" data-level="4.2.4" data-path="scraping.html"><a href="scraping.html#crawling-resources-and-policies"><i class="fa fa-check"></i><b>4.2.4</b> Crawling, resources and policies</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>4.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="4.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="4.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html"><i class="fa fa-check"></i><b>5</b> Summarizing data - the basics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#central-tendency"><i class="fa fa-check"></i><b>5.1.1</b> Central tendency</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Dispersion</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>5.1.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="5.1.4" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#nominal-variables"><i class="fa fa-check"></i><b>5.1.4</b> Nominal variables</a></li>
+<li class="chapter" data-level="5.1.5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>5.1.5</b> Testing the shape of a distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>5.2</b> Descriptive statistics for bivariate distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>5.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="5.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>5.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="5.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>5.5</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="docker.html"><a href="docker.html"><i class="fa fa-check"></i><b>6</b> Docker container platform</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="docker.html"><a href="docker.html#why-docker"><i class="fa fa-check"></i><b>6.1</b> Why Docker?</a></li>
+<li class="chapter" data-level="6.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>6.2</b> Setting up the environment</a></li>
+<li class="chapter" data-level="6.3" data-path="docker.html"><a href="docker.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>6.3</b> Short introduction to Docker</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basics"><i class="fa fa-check"></i><b>6.3.1</b> Basics</a></li>
+<li class="chapter" data-level="6.3.2" data-path="docker.html"><a href="docker.html#docker-application-example"><i class="fa fa-check"></i><b>6.3.2</b> Docker application example</a></li>
+<li class="chapter" data-level="6.3.3" data-path="docker.html"><a href="docker.html#volumes"><i class="fa fa-check"></i><b>6.3.3</b> Volumes</a></li>
+<li class="chapter" data-level="6.3.4" data-path="docker.html"><a href="docker.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>6.3.4</b> Docker application example with multiple services</a></li>
+<li class="chapter" data-level="6.3.5" data-path="docker.html"><a href="docker.html#dockerfile-optimizations"><i class="fa fa-check"></i><b>6.3.5</b> Dockerfile optimizations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>6.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="6.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>6.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="6.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>6.6</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summarize2.html"><a href="summarize2.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="summarize2.html"><a href="summarize2.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>7.1</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="7.2" data-path="summarize2.html"><a href="summarize2.html#bar-plot"><i class="fa fa-check"></i><b>7.2</b> Bar plot</a></li>
+<li class="chapter" data-level="7.3" data-path="summarize2.html"><a href="summarize2.html#pie-chart"><i class="fa fa-check"></i><b>7.3</b> Pie chart</a></li>
+<li class="chapter" data-level="7.4" data-path="summarize2.html"><a href="summarize2.html#scatterplot"><i class="fa fa-check"></i><b>7.4</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.5" data-path="summarize2.html"><a href="summarize2.html#d-density-plot"><i class="fa fa-check"></i><b>7.5</b> 2D density plot</a></li>
+<li class="chapter" data-level="7.6" data-path="summarize2.html"><a href="summarize2.html#boxplot"><i class="fa fa-check"></i><b>7.6</b> Boxplot</a></li>
+<li class="chapter" data-level="7.7" data-path="summarize2.html"><a href="summarize2.html#violin-plot"><i class="fa fa-check"></i><b>7.7</b> Violin plot</a></li>
+<li class="chapter" data-level="7.8" data-path="summarize2.html"><a href="summarize2.html#correlogram"><i class="fa fa-check"></i><b>7.8</b> Correlogram</a></li>
+<li class="chapter" data-level="7.9" data-path="summarize2.html"><a href="summarize2.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>7.9</b> A comprehensive summary</a></li>
+<li class="chapter" data-level="7.10" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>7.10</b> Further reading and references</a></li>
+<li class="chapter" data-level="7.11" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
+<li class="chapter" data-level="7.12" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#factor-analysis-fa"><i class="fa fa-check"></i><b>8.2</b> Factor analysis (FA)</a></li>
+<li class="chapter" data-level="8.3" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.3</b> Multi-dimensional scaling (MDS)</a></li>
+<li class="chapter" data-level="8.4" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.4</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+<li class="chapter" data-level="8.5" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#clustering"><i class="fa fa-check"></i><b>8.5</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#k-means-clustering"><i class="fa fa-check"></i><b>8.5.1</b> k-means clustering</a></li>
+<li class="chapter" data-level="8.5.2" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.5.2</b> Determining the number of clusters</a></li>
+<li class="chapter" data-level="8.5.3" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.5.3</b> Agglomerative hierarchical clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>8.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="8.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="8.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="databases.html"><a href="databases.html#introduction-to-sql"><i class="fa fa-check"></i><b>9.1</b> Introduction to SQL</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="databases.html"><a href="databases.html#data-definition-language"><i class="fa fa-check"></i><b>9.1.1</b> Data definition language</a></li>
+<li class="chapter" data-level="9.1.2" data-path="databases.html"><a href="databases.html#data-manipulation-language"><i class="fa fa-check"></i><b>9.1.2</b> Data manipulation language</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="databases.html"><a href="databases.html#sqlite"><i class="fa fa-check"></i><b>9.2</b> SQLite</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="databases.html"><a href="databases.html#environment-setup"><i class="fa fa-check"></i><b>9.2.1</b> Environment setup</a></li>
+<li class="chapter" data-level="9.2.2" data-path="databases.html"><a href="databases.html#sqlite-example"><i class="fa fa-check"></i><b>9.2.2</b> SQLite database usage</a></li>
+<li class="chapter" data-level="9.2.3" data-path="databases.html"><a href="databases.html#sqlite-in-python"><i class="fa fa-check"></i><b>9.2.3</b> SQLite in Python</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="databases.html"><a href="databases.html#postgresql"><i class="fa fa-check"></i><b>9.3</b> PostgreSQL</a></li>
+<li class="chapter" data-level="9.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>9.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="9.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="9.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="predictive.html"><a href="predictive.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="predictive.html"><a href="predictive.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#key-terms"><i class="fa fa-check"></i>Key terms</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#an-illustrative-example"><i class="fa fa-check"></i>An illustrative example</a></li>
+<li class="chapter" data-level="10.1.1" data-path="predictive.html"><a href="predictive.html#the-process-of-predictive-modelling"><i class="fa fa-check"></i><b>10.1.1</b> The process of predictive modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="predictive.html"><a href="predictive.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a>
+<ul>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#generalized-linear-models"><i class="fa fa-check"></i>Generalized linear models</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#decision-trees"><i class="fa fa-check"></i>Decision trees</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#neural-networks"><i class="fa fa-check"></i>Neural networks</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#kernel-based-learning"><i class="fa fa-check"></i>Kernel-based learning</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#ensemble-learning"><i class="fa fa-check"></i>Ensemble learning</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#common-predictive-modelling-paradigms"><i class="fa fa-check"></i>Common predictive modelling paradigms</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="predictive.html"><a href="predictive.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#measuring-predictive-performance"><i class="fa fa-check"></i>Measuring predictive performance</a></li>
+<li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#estimating-how-performance-will-generalize"><i class="fa fa-check"></i>Estimating how performance will generalize</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="predictive.html"><a href="predictive.html#practical-considerations"><i class="fa fa-check"></i><b>10.4</b> Practical considerations</a></li>
+<li class="chapter" data-level="10.5" data-path="predictive.html"><a href="predictive.html#putting-it-all-together-with-r"><i class="fa fa-check"></i><b>10.5</b> Putting it all together with R</a></li>
+<li class="chapter" data-level="10.6" data-path="predictive.html"><a href="predictive.html#putting-it-all-together-with-python"><i class="fa fa-check"></i><b>10.6</b> Putting it all together with Python</a></li>
+<li class="chapter" data-level="10.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>10.7</b> Further reading and references</a></li>
+<li class="chapter" data-level="10.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>10.8</b> Learning outcomes</a></li>
+<li class="chapter" data-level="10.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>10.9</b> Practice problems</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="missing-data.html"><a href="missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a>
+<ul>
+<li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#three-classes-of-missingness"><i class="fa fa-check"></i>Three classes of missingness</a></li>
+<li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#determining-the-missingness-mechanism"><i class="fa fa-check"></i>Determining the missingness mechanism</a></li>
+<li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#causes-for-missing-data"><i class="fa fa-check"></i>Causes for missing data</a></li>
+<li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#introducing-bias"><i class="fa fa-check"></i>Introducing bias</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="missing-data.html"><a href="missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>11.2</b> Visually exploring missingness</a></li>
+<li class="chapter" data-level="11.3" data-path="missing-data.html"><a href="missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="missing-data.html"><a href="missing-data.html#column-deletion"><i class="fa fa-check"></i><b>11.3.1</b> Column deletion</a></li>
+<li class="chapter" data-level="11.3.2" data-path="missing-data.html"><a href="missing-data.html#row-deletion"><i class="fa fa-check"></i><b>11.3.2</b> Row deletion</a></li>
+<li class="chapter" data-level="11.3.3" data-path="missing-data.html"><a href="missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>11.3.3</b> Pairwise deletion</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="missing-data.html"><a href="missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="missing-data.html"><a href="missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>11.4.1</b> Single imputation with the mean</a></li>
+<li class="chapter" data-level="11.4.2" data-path="missing-data.html"><a href="missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>11.4.2</b> Single imputation with prediction</a></li>
+<li class="chapter" data-level="11.4.3" data-path="missing-data.html"><a href="missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>11.4.3</b> Multiple imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="missing-data.html"><a href="missing-data.html#summary"><i class="fa fa-check"></i><b>11.5</b> Summary</a></li>
+<li class="chapter" data-level="11.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>11.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="11.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>11.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="11.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>11.8</b> Practice problems</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://datascience.fri.uni-lj.si/" target="blank">Data Science Master's Program</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to data science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="predictive" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Predictive modelling</h1>
+<div id="introduction" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Introduction</h2>
+<p>For the purposes of this text, we will define <strong>predictive modelling</strong> as a family of practical problems where the focus is on utilizing current and historical data to predict the outcome of future or unknown events. This is a very broad family - in fact, it encompasses the majority of practical data analysis problems, for example, classifying images, comparing groups, forecasting stock prices, automated translation, making recommendations, customer profiling, personalized advertising, etc.</p>
+<p>Note that predictive modelling is also referred to as <a href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> (learning a functional relationship based on example input-target variable pairs) in contrast with <a href="https://en.wikipedia.org/wiki/unsupervised_learning">unsupervised learning</a> (no variable is the target variable - our goal is to learn structure of the data - see Chapter <a href="multivariate-data-chapter.html#multivariate-data-chapter">8</a> and <a href="https://en.wikipedia.org/wiki/semi-supervised_learning">semi-supervised learning</a> (some observations are labelled and some are not and we want to utilize both).</p>
+<p>Note that predictive modeling is not restricted to machine learning models and techniques. Predictive modelling, while traditionally a more machine learning task, utilizes methods from statistics, machine learning, and computer science.</p>
+<div id="key-terms" class="section level3 unnumbered">
+<h3>Key terms</h3>
+<p>Before we discuss predictive modelling in more detail, let us define some common terms. The main goal of predictive modelling is to define a relationship between known data and the unknown outcome that we are trying to predict. Looking at it from a more abstract perspective, we are trying to find a useful functional relationship between what we know and what we don’t know. We will call this functional relationship <strong>a model</strong>. While it might in some cases be possible to determine a model by hand, we will in most cases be using a <strong>training algorithm</strong> to produce a model from our data. This process is called <strong>training a model</strong>, learning, fitting a model or inference, depending on whether we are in a machine learning, statistical or some other community.</p>
+<p>Every training algoritm has some degree of freedom or flexibility to adapt to the given data - without that, learning would not be possible. We will refer to this flexibility as <strong>model parameters</strong> and we will make a distinction between parameters that will be fit automatically and parameters that the user has to set (<strong>tunable parameters</strong>). This distinction is purely practical - every parameter can be a <strong>tunable parameter</strong> or just a parameter, depending on how we set up our training process. For example, coefficients in linear regression (or weights in a neural network or splits in a decision tree) are typically trained on data and not set by the user, on the other hand, the regularization parameter in linear regression (or the number of layers in a neural network or the splitting criterion in a decision tree) is often set by the user.</p>
+<p>We’ll call the data that we use to train our model <strong>training data</strong> to distinguish them from data that are used to test the model’s performance - the <strong>test data</strong> or holdout data. When we introduce an intermediate step of setting tunable parameters automatically, we often refer to the data that are used to test the model’s performance for a particular setting of the tunable parameters as the <strong>validation data</strong>. Within the data we also distinguish between the known data (or data that will be known when making a prediction) and data that will be unknown (but are available in some historical cases, which we use to train the model). The latter are called <strong>target variables</strong> (or labels, classes, input variables, dependent variables) while the former are called <strong>input variables</strong> (or features, attributes, predictors, independent variables). We will refer to the basic unit of prediction (one set of inputs and the target) as <strong>an observation</strong> (or instance, example).</p>
+</div>
+<div id="an-illustrative-example" class="section level3 unnumbered">
+<h3>An illustrative example</h3>
+<p>Let’s reinforce the terms from the previous section with an illustrative example. We’ll use a simple data set with 200 <em>observations</em> and 2 variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The task is to predict the value of <span class="math inline">\(Y\)</span> from the value of <span class="math inline">\(X\)</span>. That is, we have a single <em>input variable</em> (<span class="math inline">\(X\)</span>) and a single <em>target variable</em> (<span class="math inline">\(Y\)</span>). Before we proceed, we’ll randomly split the dataset into two subsets of equal size. We’ll use one set to <em>train</em> our model and the other to <em>test</em> its performance.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="predictive.html#cb266-1" aria-hidden="true"></a><span class="co"># Simple linear regression example ---------------------------------------------</span></span>
+<span id="cb266-2"><a href="predictive.html#cb266-2" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb266-3"><a href="predictive.html#cb266-3" aria-hidden="true"></a></span>
+<span id="cb266-4"><a href="predictive.html#cb266-4" aria-hidden="true"></a><span class="co"># read dataset</span></span>
+<span id="cb266-5"><a href="predictive.html#cb266-5" aria-hidden="true"></a>dataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/simpleReg.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">h =</span> T)</span>
+<span id="cb266-6"><a href="predictive.html#cb266-6" aria-hidden="true"></a></span>
+<span id="cb266-7"><a href="predictive.html#cb266-7" aria-hidden="true"></a><span class="co"># train-test split</span></span>
+<span id="cb266-8"><a href="predictive.html#cb266-8" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb266-9"><a href="predictive.html#cb266-9" aria-hidden="true"></a>idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">200</span>, <span class="dv">100</span>, <span class="dt">rep =</span> F)</span>
+<span id="cb266-10"><a href="predictive.html#cb266-10" aria-hidden="true"></a>dataset<span class="op">$</span>IsTest &lt;-<span class="st"> </span>T</span>
+<span id="cb266-11"><a href="predictive.html#cb266-11" aria-hidden="true"></a>dataset<span class="op">$</span>IsTest[idx] &lt;-<span class="st"> </span>F</span>
+<span id="cb266-12"><a href="predictive.html#cb266-12" aria-hidden="true"></a><span class="co"># plot the data</span></span>
+<span id="cb266-13"><a href="predictive.html#cb266-13" aria-hidden="true"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset, <span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb266-14"><a href="predictive.html#cb266-14" aria-hidden="true"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
+<p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-1-1.png" width="470.4" /></p>
+<p>Now we have to choose a <em>training algorithm</em> that we’ll use to produce a <em>model</em> for the process that generated this dataset. We’ll use simple least-squares linear regression. This tranining algorithm assumes that the functional relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is <span class="math inline">\(Y_i = kX_i+n + \epsilon_i\)</span>. Or, in simpler terms, we assume that the points lie on a straight line and we account for the deviations with the residual terms <span class="math inline">\(\epsilon_i\)</span>. Clearly, the data suggest a non-linear relationship and that linear regression is not the best choice, but we’ll ignore that for now.</p>
+<p>The next step is to run the linear regression algorithm to find the best values of our two model <em>parameters</em> slope (<span class="math inline">\(k\)</span>) and intercept (<span class="math inline">\(n\)</span>). In the case of least-squares linear regression, best is defined as the one that minimizes the sum of squared residuals <span class="math inline">\(\epsilon_i\)</span>. That is, within the black-box of least-squares regression we’d find just a simple optimization algorithm:</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="predictive.html#cb267-1" aria-hidden="true"></a><span class="co"># train the model</span></span>
+<span id="cb267-2"><a href="predictive.html#cb267-2" aria-hidden="true"></a>train_data &lt;-<span class="st"> </span>dataset[dataset<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>F,]</span>
+<span id="cb267-3"><a href="predictive.html#cb267-3" aria-hidden="true"></a>test_data  &lt;-<span class="st"> </span>dataset[dataset<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>T,]</span>
+<span id="cb267-4"><a href="predictive.html#cb267-4" aria-hidden="true"></a></span>
+<span id="cb267-5"><a href="predictive.html#cb267-5" aria-hidden="true"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, <span class="dt">data =</span> train_data)</span>
+<span id="cb267-6"><a href="predictive.html#cb267-6" aria-hidden="true"></a>n  &lt;-<span class="st"> </span>lr<span class="op">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb267-7"><a href="predictive.html#cb267-7" aria-hidden="true"></a>k  &lt;-<span class="st"> </span>lr<span class="op">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb267-8"><a href="predictive.html#cb267-8" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;n = %.2f, k = %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, n, k))</span></code></pre></div>
+<pre><code>## n = -6.31, k = 6.38</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="predictive.html#cb269-1" aria-hidden="true"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset, <span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n)</span>
+<span id="cb269-2"><a href="predictive.html#cb269-2" aria-hidden="true"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
+<p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-2-1.png" width="470.4" /></p>
+<p>We can see that the best linear model is probably not the best model for this data, but it still captures part of the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and could be used to predict new values better than the naive approach of just predicting with the mean. Note that in practice the term <em>model</em> is used interchangeably for the training algorithm and the model it produces (in our case <span class="math inline">\(Y_i = 6.65X_i - 8.60\)</span>). That is, the term <em>linear regression model</em> is often used to refer to the entire algorithm of assuming a liner relationship and finding the parameters using optimization.</p>
+<p>Now we’ll try to produce a better model. We’ll use the least-squares algorithm, but we’ll add the squared and cubic terms <span class="math inline">\(X^2\)</span> and <span class="math inline">\(X^3\)</span>. This is also called polynomial regression:</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="predictive.html#cb270-1" aria-hidden="true"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)</span>
+<span id="cb270-2"><a href="predictive.html#cb270-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb270-3"><a href="predictive.html#cb270-3" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))</span>
+<span id="cb270-4"><a href="predictive.html#cb270-4" aria-hidden="true"></a></span>
+<span id="cb270-5"><a href="predictive.html#cb270-5" aria-hidden="true"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n) <span class="op">+</span></span>
+<span id="cb270-6"><a href="predictive.html#cb270-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb270-7"><a href="predictive.html#cb270-7" aria-hidden="true"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
+<p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-3-1.png" width="470.4" /></p>
+<p>The cubic polynomial appears to be a much better fit for the training data and the test data. Let’s check if that is indeed the case:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="predictive.html#cb271-1" aria-hidden="true"></a>lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, <span class="dt">data =</span> train_data)</span>
+<span id="cb271-2"><a href="predictive.html#cb271-2" aria-hidden="true"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)</span>
+<span id="cb271-3"><a href="predictive.html#cb271-3" aria-hidden="true"></a>e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb271-4"><a href="predictive.html#cb271-4" aria-hidden="true"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)</span>
+<span id="cb271-5"><a href="predictive.html#cb271-5" aria-hidden="true"></a>e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb271-6"><a href="predictive.html#cb271-6" aria-hidden="true"></a></span>
+<span id="cb271-7"><a href="predictive.html#cb271-7" aria-hidden="true"></a>lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)</span>
+<span id="cb271-8"><a href="predictive.html#cb271-8" aria-hidden="true"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)</span>
+<span id="cb271-9"><a href="predictive.html#cb271-9" aria-hidden="true"></a>e2_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb271-10"><a href="predictive.html#cb271-10" aria-hidden="true"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)</span>
+<span id="cb271-11"><a href="predictive.html#cb271-11" aria-hidden="true"></a>e2_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb271-12"><a href="predictive.html#cb271-12" aria-hidden="true"></a></span>
+<span id="cb271-13"><a href="predictive.html#cb271-13" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;test and training data mean squared error for line: %.2f / %.2f and poly: %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr, e2_te, e2_tr))</span></code></pre></div>
+<pre><code>## test and training data mean squared error for line: 462.06 / 477.82 and poly: 184.59 / 229.72</code></pre>
+<p>The numbers confirm that the polynomial regression model has lower training and test error. The latter implies that the polynomial regression model will better generalize to new or unseen examples and should be, in terms of predictive performance, used instead of the linear regression model.</p>
+<p>To illustrate another important concept, we’ll also use a 25th degree polynomial model.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="predictive.html#cb273-1" aria-hidden="true"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">3</span>), <span class="dt">data =</span> train_data)</span>
+<span id="cb273-2"><a href="predictive.html#cb273-2" aria-hidden="true"></a>x  &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb273-3"><a href="predictive.html#cb273-3" aria-hidden="true"></a>y1 &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))</span>
+<span id="cb273-4"><a href="predictive.html#cb273-4" aria-hidden="true"></a></span>
+<span id="cb273-5"><a href="predictive.html#cb273-5" aria-hidden="true"></a>lr &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">25</span>, <span class="dt">raw =</span> T), <span class="dt">data =</span> train_data)</span>
+<span id="cb273-6"><a href="predictive.html#cb273-6" aria-hidden="true"></a>y2 &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">X =</span> x))</span>
+<span id="cb273-7"><a href="predictive.html#cb273-7" aria-hidden="true"></a></span>
+<span id="cb273-8"><a href="predictive.html#cb273-8" aria-hidden="true"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb273-9"><a href="predictive.html#cb273-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="op">+</span></span>
+<span id="cb273-10"><a href="predictive.html#cb273-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> k, <span class="dt">intercept =</span> n) <span class="op">+</span></span>
+<span id="cb273-11"><a href="predictive.html#cb273-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb273-12"><a href="predictive.html#cb273-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y2), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y2), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb273-13"><a href="predictive.html#cb273-13" aria-hidden="true"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" width="470.4" /></p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="predictive.html#cb277-1" aria-hidden="true"></a>lr    &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(X, <span class="dv">25</span>, <span class="dt">raw =</span> T), <span class="dt">data =</span> train_data)</span>
+<span id="cb277-2"><a href="predictive.html#cb277-2" aria-hidden="true"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> test_data)</span>
+<span id="cb277-3"><a href="predictive.html#cb277-3" aria-hidden="true"></a>e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb277-4"><a href="predictive.html#cb277-4" aria-hidden="true"></a>y     &lt;-<span class="st"> </span><span class="kw">predict</span>(lr, <span class="dt">newdata =</span> train_data)</span>
+<span id="cb277-5"><a href="predictive.html#cb277-5" aria-hidden="true"></a>e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb277-6"><a href="predictive.html#cb277-6" aria-hidden="true"></a></span>
+<span id="cb277-7"><a href="predictive.html#cb277-7" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;poly (25): %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
+<pre><code>## poly (25): 71336.92 / 162.80</code></pre>
+<p>We can see that the 20th degree polynomial model, which has 17 more parameters than the 3rd degree polynomial model, is able to fit the training data better. However, its performance on the test data is worse! This is an important concept that we call <em>overfitting</em> - the model was too expressive for the amount of data we have and it started fitting not just the underlying true functional relationship but also the noise in the data. An extreme example of this would be using a 100th degree polynomial, which would be able to perfectly fit the training data, but it would perform very poorly on test data.</p>
+<p>Finally, let’s use a <span class="math inline">\(k\)</span>-nearest neighbors model with <span class="math inline">\(k = 10\)</span>. In other words, we assume that the value of an observation is the average of the 10 nearest points:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="predictive.html#cb279-1" aria-hidden="true"></a><span class="co"># we&#39;ll manually code k-nearest neighbors for this simple example</span></span>
+<span id="cb279-2"><a href="predictive.html#cb279-2" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dataset</span>
+<span id="cb279-3"><a href="predictive.html#cb279-3" aria-hidden="true"></a>tmp<span class="op">$</span>PredictedY &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb279-4"><a href="predictive.html#cb279-4" aria-hidden="true"></a></span>
+<span id="cb279-5"><a href="predictive.html#cb279-5" aria-hidden="true"></a>knearest &lt;-<span class="st"> </span><span class="cf">function</span>(x, df, k) {</span>
+<span id="cb279-6"><a href="predictive.html#cb279-6" aria-hidden="true"></a>  <span class="kw">mean</span>(df[<span class="kw">rank</span>(<span class="kw">abs</span>(df<span class="op">$</span>X <span class="op">-</span><span class="st"> </span>x)) <span class="op">&lt;=</span><span class="st"> </span>k,]<span class="op">$</span>Y)</span>
+<span id="cb279-7"><a href="predictive.html#cb279-7" aria-hidden="true"></a>}</span>
+<span id="cb279-8"><a href="predictive.html#cb279-8" aria-hidden="true"></a></span>
+<span id="cb279-9"><a href="predictive.html#cb279-9" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {</span>
+<span id="cb279-10"><a href="predictive.html#cb279-10" aria-hidden="true"></a>  tmp[i,]<span class="op">$</span>PredictedY &lt;-<span class="st"> </span><span class="kw">knearest</span>(tmp<span class="op">$</span>X[i], train_data, <span class="dv">10</span>)</span>
+<span id="cb279-11"><a href="predictive.html#cb279-11" aria-hidden="true"></a>}</span>
+<span id="cb279-12"><a href="predictive.html#cb279-12" aria-hidden="true"></a></span>
+<span id="cb279-13"><a href="predictive.html#cb279-13" aria-hidden="true"></a>y     &lt;-<span class="st"> </span>tmp[tmp<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>T,]<span class="op">$</span>PredictedY</span>
+<span id="cb279-14"><a href="predictive.html#cb279-14" aria-hidden="true"></a>e1_te &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>test_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb279-15"><a href="predictive.html#cb279-15" aria-hidden="true"></a>y     &lt;-<span class="st"> </span>tmp[tmp<span class="op">$</span>IsTest <span class="op">==</span><span class="st"> </span>F,]<span class="op">$</span>PredictedY</span>
+<span id="cb279-16"><a href="predictive.html#cb279-16" aria-hidden="true"></a>e1_tr &lt;-<span class="st"> </span><span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>train_data<span class="op">$</span>Y)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb279-17"><a href="predictive.html#cb279-17" aria-hidden="true"></a></span>
+<span id="cb279-18"><a href="predictive.html#cb279-18" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;knn (10): %.2f / %.2f</span><span class="ch">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
+<pre><code>## knn (10): 214.64 / 257.63</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="predictive.html#cb281-1" aria-hidden="true"></a>y  &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb281-2"><a href="predictive.html#cb281-2" aria-hidden="true"></a>x  &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb281-3"><a href="predictive.html#cb281-3" aria-hidden="true"></a><span class="cf">for</span> (pt <span class="cf">in</span> x) {</span>
+<span id="cb281-4"><a href="predictive.html#cb281-4" aria-hidden="true"></a>  y &lt;-<span class="st"> </span><span class="kw">c</span>(y, <span class="kw">knearest</span>(pt, train_data, <span class="dv">10</span>))</span>
+<span id="cb281-5"><a href="predictive.html#cb281-5" aria-hidden="true"></a>}</span>
+<span id="cb281-6"><a href="predictive.html#cb281-6" aria-hidden="true"></a></span>
+<span id="cb281-7"><a href="predictive.html#cb281-7" aria-hidden="true"></a></span>
+<span id="cb281-8"><a href="predictive.html#cb281-8" aria-hidden="true"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y, <span class="dt">colour =</span> IsTest)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb281-9"><a href="predictive.html#cb281-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="op">+</span></span>
+<span id="cb281-10"><a href="predictive.html#cb281-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y), <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y1))</span>
+<span id="cb281-11"><a href="predictive.html#cb281-11" aria-hidden="true"></a><span class="kw">plot</span>(g1)</span></code></pre></div>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" width="470.4" /></p>
+<p>The performance of the 10-nearest neighbor model is relatively good, only slightly worse on the test set than the cubic polynomial model.</p>
+</div>
+<div id="the-process-of-predictive-modelling" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> The process of predictive modelling</h3>
+<p>In general, predictive modelling is a complex task that requires mathematical, statistical, computational and programming knowledge and skills. However, in most practical scenarios we can get reasonably good results by following a simpler systematic process and utilizing existing tools and libraries. The process can be divided into three main steps:</p>
+<ol style="list-style-type: decimal">
+<li>Analyze the given scenario and identify into which case(s) of predictive modelling it falls under.</li>
+<li>Based on desired predictive quality and other practical considerations, select candidate training algorithms.</li>
+<li>Estimate the error of the models produced by the training algorithms and select the best one.</li>
+</ol>
+<p>This process allows us to handle most practical predictive modelling scenarios and will almost always be used as a starting point. Steps (1) and (2) rely on our knowledge of and practical experience with different approaches to modelling - we will introduce a few in the next section. And later in the chapter we will see that we can handle (3) in a systematic and relatively general way, treating the training algorithms and models as black-boxes with tunable parameters.</p>
+<p>Before we proceed, let us briefly discuss some of the most common reasons why the process could fail. That is, why we would not be able to use existing algorithms and just choose the best one:</p>
+<ul>
+<li><p><strong>None of the existing algorithms (or implementations) apply to our case</strong>: Some cases are very common in predictive modelling. So common, that they have special names and entire fields dedicated to them. For example, when the target variable is categorical (<strong>classification</strong>), numerical (<strong>regression</strong>) or ordinal (<strong>ordinal regression</strong>). If our problem fits into one of these standard paradigms, we’ll have many different training algorithms to choose from. However, if it doesn’t, for example, if we have non-standard input or target variables, such as a matrix or a graph, we will either have to translate our problem to a standard case or produce some methodological innovation. The latter typically requires in-depth machine learning, statistical, and/or computational knowledge and skills and is in the domain of data science experts and researchers.</p></li>
+<li><p><strong>Models trained with existing algorithms make poor predictions, are computationally infeasible, not transparent enough, etc.</strong>: In the best-case scenario this again requires methodological innovation. In the worst-case scenario it might be infeasible or impossible to solve the problem with the data and resources at our disposal.</p></li>
+</ul>
+<p>To summarize - this <em>engineering</em> approach to predictive modelling that we’ll focus on is very systematic and can be applied in most cases. However, there are cases where it can’t be applied or where it doesn’t produce good-enough results. Such cases are a few orders of magnitude more difficult.</p>
+</div>
+</div>
+<div id="commonly-used-prediction-models-and-paradigms" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Commonly used prediction models and paradigms</h2>
+<p>If we have some experience with statistics or machine learning, we already know that there exist many different algorithms for predictive modelling - linear regression, decision trees, neural networks, etc. This already hints at one of the fundamental principles of modelling - <strong>there is no single best algorithm or model</strong>!</p>
+<p>A well-known theorem, known as the <strong>no-free-lunch theorem</strong> for machine learning, states that no single algorithm that is better than all other algorithms over all possible problems. The theorem in a way assumes that all functional relationships are equally probable, so it does not apply to applied predictive modelling. In practice, in the real world, some functional relationships are more common than others. It does, however, imply, that in any scenario or for any dataset, a more specialized algorithm (one that exploits the structure of the problem) will outperform a more general algorithm.</p>
+<p>On a related note, an important thing to remember is that by selecting a particular training algorithm, we limit ourselves to a subset of possible models that the training algorithm can produce. For example, as we saw before, by choosing least-squares regression, we limit ourselves to a line or, more generally, a hyperplane. This is also known as the <strong>inductive bias</strong> of a training algorithm. Some algorithms have a very good inductive bias - the functional relationships they prefer are those that we more commonly encounter in practice, overall or in a particular application domain. These are the algorithms that are typically implemented in statistical or machine learning libraries.</p>
+<p>So, it is inevitable that we have many general-purpose predictive modelling training algorithms and a plethora of specialized methods, each with its own advantages and disadvantages. Taking into account that there are also other practical considerations, such as model simplicity, time complexity, etc. (covered in more detail later in the chapter), we can conclude that a practitioner must familiarize himself with many different training algorithms and models. Here we briefly discuss a few of the most common ones:</p>
+<div id="generalized-linear-models" class="section level3 unnumbered">
+<h3>Generalized linear models</h3>
+<p>Linear regression is a special case of <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">generalized linear models</a>, which generalize the linear combination approach to other types of target variables, such as logistic regression for classification and Poisson regression for count data. Linear models are computationally simple, relatively easy to interpret and are less likely to overfit, due to their limited expressiveness. Linear models can also be used to model non-linear relationships by transforming the input space. This is the idea behind polynomial regression, spline models, etc.</p>
+</div>
+<div id="decision-trees" class="section level3 unnumbered">
+<h3>Decision trees</h3>
+<p><a href="https://en.wikipedia.org/wiki/Decision_tree">Decision trees</a> are a broad family of models, which are based on partitioning the input variable space into different regions. The prediction of a new observation is based on the values of other observations in its region. The model is typically derived via recursive partitioning of the input space and can be represented with a tree structure. This makes decision trees very useful when model interpretability is important. In fact, (small) decision trees are the most easy-to-understand representation for non-experts.</p>
+</div>
+<div id="neural-networks" class="section level3 unnumbered">
+<h3>Neural networks</h3>
+<p>The prototypical artificial neural nework is the <a href="https://en.wikipedia.org/wiki/Feedforward_neural_network">feed-forward neural network</a>. In particular, the multi-layer perceptron. It is based on the <em>input layer</em> followed by zero or more <em>hidden layers</em> of interconnected neurons and the <em>output layer</em>. Every neuron is typically connected with one or more neurons from the next layer and the connections are weighted. Typically, every neuron also has a threshold or activation function that determines under what inputs the neuron will activate its output.</p>
+<p>In essence, a feed-forward neural network is a very flexible functional representation of the relationship between the inputs and outputs. In fact, they are capable of approximating almost all functional relationships we’ll encounter in practice, given enough data. Artificial neural networks are more complicated to apply and have more parameters to tune than most other models, including the topology (number of layers, how they are interconnected, etc.). Due to their complexity, they are also more prone to overfitting.</p>
+<p>Artificial neural networks have recently again grown in popularity with modern <a href="https://en.wikipedia.org/wiki/Deep_learning">deep learning</a> approaches such as <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">convolutional neural networks</a>. These approaches perform particularly well on tasks where we have large amounts of observations but very little understanding of what the functional relationship might be, such as image recognition, video analysis, speech recognition, natural language processing, etc.</p>
+</div>
+<div id="kernel-based-learning" class="section level3 unnumbered">
+<h3>Kernel-based learning</h3>
+<p>An alternative to explicitly specifying the functional relationship is to say that the target variable of new or unseen observations is likely to be similar to the target variables of nearby observations. In essence, similar observations should have similar target variables. The nearest-neighbors approach from the introductory example is a representative of this approach.</p>
+<p>Similarity-based learning is an elegant and powerful concept and the basis for many different training algorithms. Of course, in order to transfer this concept into practice, we must be able to define what we mean by similar (or <a href="https://en.wikipedia.org/wiki/Kernel_method">a kernel</a>). Many different kernels exist and while some are more popular than others, choosing the appropriate kernel and its parameters is problem-specific and should be treated as any other model tuning parameter. Kernel-based methods also include <a href="https://en.wikipedia.org/wiki/Support-vector_machine">Support Vector Machines</a> and <a href="https://en.wikipedia.org/wiki/Gaussian_process">Gaussian Processes</a>. More traditional methods such as PCA and even linear regression can also be interpreted as kernel-based methods.</p>
+<p>Note that with this type of learning the functional relationship can become arbitrarily complex/refined as we get more observations. We call such models <strong>non-parameteric models</strong>. As opposed to <strong>parametric models</strong> such as linear models or neural networks, where the functional relationship remains fixed, only the parameters/weights change. Decision trees are also an example of a non-parametric model. Non-parametric models tend to require more data and are more likely to overfit, but they are also more convenient, because we don’t have to specify a functional form for the relationship between the inputs and outputs.</p>
+</div>
+<div id="ensemble-learning" class="section level3 unnumbered">
+<h3>Ensemble learning</h3>
+<p>Instead of using a single model, we can often get a better result by combining several models or, as it is commonly known in machine learning circles, by <a href="https://en.wikipedia.org/wiki/Ensemble_learning">ensemble learning</a>. Different models can each learn better different parts of the relationship. Methods like <a href="https://en.wikipedia.org/wiki/Random_forest">random forests</a> are based on deliberately training biased models on subsets of the observations and input data to reduce overall variability and improve prediction quality.</p>
+</div>
+<div id="common-predictive-modelling-paradigms" class="section level3 unnumbered">
+<h3>Common predictive modelling paradigms</h3>
+<p>Some distinct predictive modelling patterns (paradigms) are so common that we give them names. We already mentioned the two most common ones, standard <strong>classification</strong> (target variable is categorical) and standard <strong>regression</strong> (target variable is numerical), where by standard we refer to having several independent and identically distributed observations, each with one or more numerical input variables.</p>
+<p>If we can recognize that our predictive modelling case fits into a well-known paradigm, our job will typically be easier, because we can utilize existing methods and implementations. Note that common predictive models are designed for classification and/or regression (in fact all of the models that we listed in this section). This is also due to the fact that most paradigms can be reduced to classification or regression, albeit possibly with a loss of relevant problem structure.</p>
+<p>Other common paradigms include:</p>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Multivariate_analysis">multivariate analysis and prediction</a>: When we have <span class="math inline">\(k &gt; 1\)</span> target variables. This can be reduced to <span class="math inline">\(k\)</span> independent classification/regression problems, but we lose information that is potentially contained in the dependency structure.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Multi-label_classification">multi-label classification</a>: Predicting not just one category (classification) but a subset of categories (labels) associated with an observation. That is, predicting which labels the observation has. Again, this can be reduced to an independent binary (yes/no) classification problem for each label (we lose dependency structure) or a single classification problem over the cartesian product of the labels (computationally infeasible due to exponential growth in the number of labels).</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Multiple_instance_learning">multi-instance learning</a>: Instead of individual observations, observations are grouped in labeled bags, each with one or more observations. The label of the bag depends on the (unobserved) labels of its instances, for example, positive if at least one is positive and negative otherwise. The objective is to learn and predict labels of individual observations and/or bags.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Online_machine_learning">online learning</a>: Sometimes we do not want to or even can’t learn from all the past observations together (<strong>batch training</strong>). For example, when storage is limited, when computational resources are limited or when we are dealing with a varying functional relationship. In such cases, we might prefer models that are able to update their functional relationship with a single observation. There exist online variants of many standard classification and regression models.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Forecasting">time-series forecasting</a>: When there is also a temporal component to the observations, we typically refer to the data as time-series data. Many specialized algorithms exist for such data, but time-series forecasting can also be viewed as a special case of classification/regression, where we can only use data that are available prior to the time point where the prediction has to be made. A special or related case is <a href="https://en.wikipedia.org/wiki/Data_stream_mining">data stream mining</a>. Data stream mining focuses on extracting patterns or making predictions from continuous and often rapid streams of data. Additional restrictions that typically apply are that data points can be read only once and that computing and storage capabilities are limited. Therefore, online learning approaches are often utilized in data stream mining.</p></li>
+</ul>
+</div>
+</div>
+<div id="model-selection" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Model selection</h2>
+<p>In this section we will focus on the most important subtask, selecting the model that has the best predictions. Note that in practice, the best model for us might not be the one that gives the best predictions - we discuss this in the next section - but for now we focus on models’ predictive quality.</p>
+<p>First, we let us unwrap the statement <em>selecting the model that has the best predictions</em>. Best predictions where? And what do we mean by best? Making this statement precise is key to desiging a proper <strong>model selection process</strong> for the problem at hand.</p>
+<p>We can provide a very general answer to the <em>where</em> question - we want the model that will perform the best not on the data we have, but on future on unseen observations. The model that best <strong>generalizes</strong> the underlying functional relationship, not the observed relationships in the data. The <strong>what do we mean by best</strong> question, however, has to be answered on a case-by-case basis, because it depends highly on what we are trying to achieve.
+So, every model selection process has two main components: (1) choosing the appropriate measure(s) of quality and (2) estimating the expected value of those measures on future or unseen observations.</p>
+<div id="measuring-predictive-performance" class="section level3 unnumbered">
+<h3>Measuring predictive performance</h3>
+<p>Our choice of measure of predictive preformance (also known as prediction error, loss, score) should depend on what we are trying to achieve. There are, however, some common scenarios and commonly used measures.</p>
+<p>For regression and when we are evaluating point predictions of the mean, <a href="https://en.wikipedia.org/wiki/Mean_squared_error">mean squared error</a> (MSE) is the natural choice. However, if we are interested in predicting the most likely values, MSE may be a very poor choice. To understand why we can revisit the Gamma distribution example from Chapter <a href="multivariate-data-chapter.html#multivariate-data-chapter">8</a>: if the error or noise in our target variable is very skewed, then there will be a large difference between the mean and the most likely value. Models that are trained by minimizing MSE will estimate the mean and therefore not the most likely value. In such cases it is better to use a measure that is less sensitive to extreme values, such as <a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">mean or median absolute error</a>.</p>
+<p>A more general measure for regression is the logarithmic scoring rule or <a href="https://en.wikipedia.org/wiki/Scoring_rule#Logarithmic_scoring_rule">log-score</a>. The log-score is proportional to the logarithm of the model’s density prediction for the true value of the target variable, so it is proportional to the log-likelihood of the model. Assuming that our error or noise is normally distributed, the log-score and MSE are equivalent. Unfortunately, the log-score for regression can only be used if the models we are evaluating give density predictions and not just point predictions. The MSE can be viewed as a reasonable approximation to the log-score when density predictions are not available.</p>
+<p>For classification and when the models output only the predicted target value (that is, crisp 1/0 and not probabilistic predictions), we are limited to computing the <strong>classification accuracy</strong> - the ratio of correctly predicted values. If not all mistakes are equal, however, we might prefer the false positive and false negative rate or, in general, a <a href="https://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> or measures derived from it.</p>
+<p>Unless we are restricted to crisp preditcions for some other reasons, we should rarely prefer accuracy over a measure that evaluates the probabilistic predictions output by the model. In particular, we should use the log-score or, alternatively, the Brier score or [quadratic scoring rule(<a href="https://en.wikipedia.org/wiki/Scoring_rule#Brier/quadratic_scoring_rule" class="uri">https://en.wikipedia.org/wiki/Scoring_rule#Brier/quadratic_scoring_rule</a>). Classification accuracy is flawed - computing it for classifiers that output probabilistic forecasts requires us to set a threshold that determines which probabilities consitute as 1s and which as 0s (0.5 being the natural choice in binary classification). This threshold may introduce a bias but more importantly, we can see how in order to get the optimal accuracy, we only need to be above the threshold when and only when the hypothetical optimal probabilistic classifier is above the threshold. That is, we can hypothetially take the optimal classifier and change its probabilities to any value and, as long as we don’t cross the threshold, we will retain the same classification accuracy. This implies that classification accuracy does not force classifiers to output optimal probabilistic forecasts in order to maximize their accuracy, which is not a desirable property.</p>
+<p>Other, more specialized predictive modeling paradigms may prefer other measures of predictive performance. When encountering a new measure or new scenario, we should always review what we are trying to achieve and if the chosen measure actually measures what we are trying to achieve.</p>
+</div>
+<div id="estimating-how-performance-will-generalize" class="section level3 unnumbered">
+<h3>Estimating how performance will generalize</h3>
+<p>We now assume that we have decided on the measure of predictive performance we want to use. Our goal now is to estimate how our model will perform on new or unseen examples. Our estimation is typically based on computing the measure on a finite number of test observations. For example, the average of squared errors if we are interested in estimating the MSE. The first and most important thing is that <strong>the model’s performance on test cases is just an estimate of its expected performance on new or unseen examples</strong>.</p>
+<p>Indeed, what we are faced with is a proper statistical estimation problem. The average performance on the test data will differ from the unknown expected performance that we are trying to estimate due to bias and variability. We have already pointed out one possible source of bias - if we test on the data we trained on, we introduce a positive bias - we will on average overestimate the model’s quality! This is very undesirable, so as a rule, we should never test on data that the model was trained on!</p>
+<p>In practice, we, once we select the best training algorithm, use that algorithm on all available data to produce the model that will be used in <em>production</em>. Note that such testing would have a negative bias - we will on average underestimate the model’s performance, because it uses less training data in testing than it will use in production. However, such negative bias typically of less concern than a positive bias.</p>
+<p>Even if we don’t have a background in statistics, we will agree that the more (independent) test observations we have, the less variability there will be in our estimate of the model’s performance. The same applies to model training - the more training examples we have, the less variability there will be in our estimates of model parameters. That puts us in a predicament - if we use more data for testing, we’ll get a better estimate of performance but for a model that is more likely to be far away from the model trained on all data. On the other hand, if we use more data for training, we’ll have better estimates of model parameters, but more uncertainty in how well the model will perform.</p>
+<p>So, unless we have large amounts of data, using a training-test split is not the best idea. Instead, we should use <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">cross-validation</a> - a process that fully utilizes all data for training and testing, without violating the rule of not using the same data for training and testing. The key idea is to randomly partition the data into <span class="math inline">\(k\)</span>-folds of approximately equal size (hence <span class="math inline">\(k\)</span>-fold cross-validation) and repeating <span class="math inline">\(k\)</span>-times, once for each fold, the process of training on all but that fold and testing on that fold. Finally, we average the errors across all observations. Because there is some randomness involved in partitioning the data, it is important to use the same partitions for all models, so that we do not introduce unnecessary variability. Practitioners often also repeat <span class="math inline">\(k\)</span>-fold cross-validation <span class="math inline">\(m\)</span> times for different partitions, to further reduce variability.</p>
+<p>Non-standard cases: There are cases where cross-validation does not apply. In particular, when the observations are not independent, as is the case with temporal or spatial data. The latter is beyond the scope of this chapter, while in the former case we can rely on a rolling window approach - we test on every observation but for each observation we train only on observations that precede it temporally.</p>
+</div>
+</div>
+<div id="practical-considerations" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Practical considerations</h2>
+<p>Although predictive model quality is typically synonymous with its prediction quality, there are many other practical things that we may need to consider when choosing the <em>best</em> model for the task at hand:</p>
+<ul>
+<li><p><strong>Model interpretability</strong>: Being able to understand or explain what the model does is sometimes as important if not more important than its predictive quality. For example, in sensitive high-risk domains where the decision maker and person responsible is a non-technical non-data science expert, such as medicine or business. In such cases we might prefer decision tables, decision trees or linear models over neural networks or ensembles. Model explanation is an important and active subfield of machine learning and statistics (see Further reading and references).</p></li>
+<li><p><strong>Computational complexity, computation time</strong>: We will often have limitations on how long we can run the training or prediction part of our model. Sometimes the issues can be resolved with more resources, if available. However, if the computational complexity of the algorithm prevents us from scaling to the size of our problem, we must either make a compromise (reduce the dimensionality of the problem) or choose another training algorithm.</p></li>
+<li><p><strong>Cost of implementation and maintenance</strong>: The practical cost of implementing a novel method or integrating an unsupported third-party implementation is very high. When predictive quality is crucial and every improvement results in substantial gain, for example, algorithmic trading, the benefits of better predictive quality will outweigh the practical costs of implementing, integrating and/or buying the software. In most other cases, the benefits of having a well-supported and easy-to-use library outweigh some loss in predictive quality, transparency and/or speed compared to the state-of-the-art new but more difficult to use method.</p></li>
+</ul>
+<p>The above also applies when we are developing new methodology. We should always consider what is important to our user base and if we want others to use our methods, we must make them as easy to use as possible.</p>
+</div>
+<div id="putting-it-all-together-with-r" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Putting it all together with R</h2>
+<p>We’ll apply what we have learned to an interesting dataset from the paper <em>Stengos, T., &amp; Zacharias, E. (2006). Intertemporal pricing and price discrimination: a semiparametric hedonic analysis of the personal computer market. Journal of Applied Econometrics, 21(3), 371-386.</em></p>
+<p>The dataset contains PC price and specifications from the 90:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="predictive.html#cb284-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/computers.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> T)[,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]</span>
+<span id="cb284-2"><a href="predictive.html#cb284-2" aria-hidden="true"></a><span class="kw">summary</span>(df)</span></code></pre></div>
+<pre><code>##      price          speed              hd              ram        
+##  Min.   : 949   Min.   : 25.00   Min.   :  80.0   Min.   : 2.000  
+##  1st Qu.:1794   1st Qu.: 33.00   1st Qu.: 214.0   1st Qu.: 4.000  
+##  Median :2144   Median : 50.00   Median : 340.0   Median : 8.000  
+##  Mean   :2220   Mean   : 52.01   Mean   : 416.6   Mean   : 8.287  
+##  3rd Qu.:2595   3rd Qu.: 66.00   3rd Qu.: 528.0   3rd Qu.: 8.000  
+##  Max.   :5399   Max.   :100.00   Max.   :2100.0   Max.   :32.000  
+##      screen        cd       multi     
+##  Min.   :14.00   no :3351   no :5386  
+##  1st Qu.:14.00   yes:2908   yes: 873  
+##  Median :14.00                        
+##  Mean   :14.61                        
+##  3rd Qu.:15.00                        
+##  Max.   :17.00</code></pre>
+<p>Although this is probably not true, we’ll assume, for the purposes of this analysis, that all observations are independent observations from the distribution of computers in that time period.</p>
+<p>The goal is to predict PC price and the input variables we’ll use are <em>…the clock speed (in MHz) of the 486 processor, the size of the hard drive (in MB), the size of the RAM (in MB), the size of the screen (in inches), the presence of a CD-ROM, the presence of a multi-media kit that includes speakers and a sound card..</em>.</p>
+<p>Now we are ready to proceed. First, before we do anything, we will set aside 1000 randomly chosen observations. These will be used as the final test set after we have decided on the best model. We can afford this, because we have a lot of observations (relative to the size of the input space). We will also recode the yes/no variables as binary:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="predictive.html#cb286-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb286-2"><a href="predictive.html#cb286-2" aria-hidden="true"></a>idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), <span class="dv">1000</span>, <span class="dt">rep =</span> F)</span>
+<span id="cb286-3"><a href="predictive.html#cb286-3" aria-hidden="true"></a>df<span class="op">$</span>cd &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>cd)</span>
+<span id="cb286-4"><a href="predictive.html#cb286-4" aria-hidden="true"></a>df<span class="op">$</span>multi &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>multi)</span>
+<span id="cb286-5"><a href="predictive.html#cb286-5" aria-hidden="true"></a>df.main &lt;-<span class="st"> </span>df[<span class="op">-</span>idx,]</span>
+<span id="cb286-6"><a href="predictive.html#cb286-6" aria-hidden="true"></a>df.test &lt;-<span class="st"> </span>df[ idx,]</span></code></pre></div>
+<p>Next, we identify that the target variable is numerical, so we are dealing with a regression problem. Some input variables are numerical and some are binary, which means that we have a standard regression problem.</p>
+<p>To minimize the amount of effort, we’ll utilize the <em>caret</em> package for R. The package includes many functions and interfaces over 100 different classification and regression models.</p>
+<p>We will consider 3 different regression training algorithms - linear regression (no tunable parameters), a stochastic gradient boosting (we’ll run it over a range of values suggested by caret) and k-nearest neighbors (we’ll test it across several manually selected values of <span class="math inline">\(k\)</span>).</p>
+<p>We’ll choose (root) mean squared error as our measure of quality, because our objective is to get the best predictor of the mean. And we’ll estimate how the models’ errors will generalize using 10 repetitions of 10-fold cross-validation:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="predictive.html#cb287-1" aria-hidden="true"></a><span class="kw">library</span>(caret)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="predictive.html#cb289-1" aria-hidden="true"></a><span class="co"># setting-up the cross validation</span></span>
+<span id="cb289-2"><a href="predictive.html#cb289-2" aria-hidden="true"></a>fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="co">## 10-fold CV</span></span>
+<span id="cb289-3"><a href="predictive.html#cb289-3" aria-hidden="true"></a>                           <span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</span>
+<span id="cb289-4"><a href="predictive.html#cb289-4" aria-hidden="true"></a>                           <span class="dt">number =</span> <span class="dv">10</span>,</span>
+<span id="cb289-5"><a href="predictive.html#cb289-5" aria-hidden="true"></a>                           <span class="dt">repeats =</span> <span class="dv">10</span>)</span>
+<span id="cb289-6"><a href="predictive.html#cb289-6" aria-hidden="true"></a></span>
+<span id="cb289-7"><a href="predictive.html#cb289-7" aria-hidden="true"></a>all &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb289-8"><a href="predictive.html#cb289-8" aria-hidden="true"></a></span>
+<span id="cb289-9"><a href="predictive.html#cb289-9" aria-hidden="true"></a><span class="co"># gradient boosting</span></span>
+<span id="cb289-10"><a href="predictive.html#cb289-10" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>) <span class="co"># set seed to get the same folds for all models</span></span>
+<span id="cb289-11"><a href="predictive.html#cb289-11" aria-hidden="true"></a>fit_gb &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, </span>
+<span id="cb289-12"><a href="predictive.html#cb289-12" aria-hidden="true"></a>                <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>, </span>
+<span id="cb289-13"><a href="predictive.html#cb289-13" aria-hidden="true"></a>                <span class="dt">trControl =</span> fitControl,</span>
+<span id="cb289-14"><a href="predictive.html#cb289-14" aria-hidden="true"></a>                <span class="dt">tuneLength =</span> <span class="dv">2</span>,</span>
+<span id="cb289-15"><a href="predictive.html#cb289-15" aria-hidden="true"></a>                <span class="dt">verbose =</span> F)</span>
+<span id="cb289-16"><a href="predictive.html#cb289-16" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>fit_gb<span class="op">$</span>results</span>
+<span id="cb289-17"><a href="predictive.html#cb289-17" aria-hidden="true"></a></span>
+<span id="cb289-18"><a href="predictive.html#cb289-18" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {</span>
+<span id="cb289-19"><a href="predictive.html#cb289-19" aria-hidden="true"></a>  all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="kw">paste</span>(<span class="st">&quot;gb[&quot;</span>, <span class="kw">paste</span>(tmp[i,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE[i], <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD[i]))</span>
+<span id="cb289-20"><a href="predictive.html#cb289-20" aria-hidden="true"></a>}</span>
+<span id="cb289-21"><a href="predictive.html#cb289-21" aria-hidden="true"></a></span>
+<span id="cb289-22"><a href="predictive.html#cb289-22" aria-hidden="true"></a><span class="co"># k-nn</span></span>
+<span id="cb289-23"><a href="predictive.html#cb289-23" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb289-24"><a href="predictive.html#cb289-24" aria-hidden="true"></a>grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">k=</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>))</span>
+<span id="cb289-25"><a href="predictive.html#cb289-25" aria-hidden="true"></a>fit_nn &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, </span>
+<span id="cb289-26"><a href="predictive.html#cb289-26" aria-hidden="true"></a>                 <span class="dt">method =</span> <span class="st">&quot;knn&quot;</span>, </span>
+<span id="cb289-27"><a href="predictive.html#cb289-27" aria-hidden="true"></a>                 <span class="dt">trControl =</span> fitControl,</span>
+<span id="cb289-28"><a href="predictive.html#cb289-28" aria-hidden="true"></a>                 <span class="dt">tuneGrid =</span> grid)</span>
+<span id="cb289-29"><a href="predictive.html#cb289-29" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>fit_nn<span class="op">$</span>results</span>
+<span id="cb289-30"><a href="predictive.html#cb289-30" aria-hidden="true"></a></span>
+<span id="cb289-31"><a href="predictive.html#cb289-31" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp)) {</span>
+<span id="cb289-32"><a href="predictive.html#cb289-32" aria-hidden="true"></a>  all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="kw">paste</span>(<span class="st">&quot;nn[&quot;</span>, <span class="kw">paste</span>(tmp[i,<span class="dv">1</span>], <span class="dt">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE[i], <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD[i]))</span>
+<span id="cb289-33"><a href="predictive.html#cb289-33" aria-hidden="true"></a>}</span>
+<span id="cb289-34"><a href="predictive.html#cb289-34" aria-hidden="true"></a></span>
+<span id="cb289-35"><a href="predictive.html#cb289-35" aria-hidden="true"></a><span class="co"># linear regression</span></span>
+<span id="cb289-36"><a href="predictive.html#cb289-36" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb289-37"><a href="predictive.html#cb289-37" aria-hidden="true"></a>fit_lm &lt;-<span class="st"> </span><span class="kw">train</span>(price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df.main, </span>
+<span id="cb289-38"><a href="predictive.html#cb289-38" aria-hidden="true"></a>                 <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb289-39"><a href="predictive.html#cb289-39" aria-hidden="true"></a>                 <span class="dt">trControl =</span> fitControl)</span>
+<span id="cb289-40"><a href="predictive.html#cb289-40" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>fit_lm<span class="op">$</span>results</span>
+<span id="cb289-41"><a href="predictive.html#cb289-41" aria-hidden="true"></a></span>
+<span id="cb289-42"><a href="predictive.html#cb289-42" aria-hidden="true"></a>all &lt;-<span class="st"> </span><span class="kw">rbind</span>(all, <span class="kw">data.frame</span>(<span class="dt">Model =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">RMSE =</span> tmp<span class="op">$</span>RMSE, <span class="dt">SD =</span> tmp<span class="op">$</span>RMSESD))</span></code></pre></div>
+<p>Now we can summarize the results, ordered by predictive quality:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="predictive.html#cb290-1" aria-hidden="true"></a>all[<span class="kw">order</span>(all<span class="op">$</span>RMSE),]</span></code></pre></div>
+<pre><code>##                 Model     RMSE       SD
+## 5             nn[,1,] 292.6001 15.38815
+## 6             nn[,2,] 299.6639 14.76814
+## 7             nn[,3,] 306.2012 14.37591
+## 8             nn[,5,] 319.4619 15.12788
+## 9             nn[,7,] 328.1494 15.58832
+## 10           nn[,10,] 338.8986 15.71369
+## 4  gb[,0.1,2,10,100,] 373.1816 16.46013
+## 2   gb[,0.1,2,10,50,] 397.5234 18.73404
+## 3  gb[,0.1,1,10,100,] 405.8163 18.78367
+## 1   gb[,0.1,1,10,50,] 422.1510 18.91172
+## 11                 lm 422.7391 20.96899</code></pre>
+<p>When interpreting results of estimation, we should always keep in mind that estimates are not the underlying truth - there is a degree of uncertainty (variability) associated with them and possibly bias. Differences between models that are of the same size as the uncertainty or smaller are likely due to chance and not due to actual differences.</p>
+<p>The field of statistics offers many different approaches to estimation and quantifying uncertainty. Here, we’ll use a relatively simple but often sufficient approach - the standard deviation of the root mean squared error (SD). That is, how RMSE deviates across different folds of cross-validation. This deviation captures the variability due to models being trained and tested on different data and the variability of cross-validation itself, because we made 10 repetitions of 10-fold cross-validation.</p>
+<p>1-nearest neighbors is estimated to be the best model. However, the differences are small (relative to the scale of random noise, measured by SD), so based solely on these numbers, we can’t be certain that k = 2 or k = 3 are not better models. We can, however, with reasonable certainty conclude that the best nearest neighbors model is better than the best gradient boosting model which is in turn better than linear regression.</p>
+<p>Once we are happy with our choice of model, we proceed with the final check - how the model performs on the held-out final test data. This final test is extremely important as it will catch any errors that we might have made in the estimation procedure. It will also catch any overfitting due to so-called <em>user’s degrees of freedom</em>. In practice, we typically don’t run the estimation procedure only once. Instead, it is an iterative process - if we aren’t happy with the results, we try to improve them by trying another model, setting different tuning parameters, inspecting and possiblty transforming the data, etc. With this we create a feedback loop where models and transformations with good cross-validation results are more likely to be included in the next iteration. This creates a positive bias - the estimate for the model we finally select is more likely than not to overestimate its predictive quality. In practice, this bias will typically be very small, unless we have very little data and we many different models. However, if we can afford a separate final test set, we should always use it.</p>
+<p>The problem from the previous paragraph can be illustrated by an extreme example. Imagine a training algorithm that creates a model that makes completely random predictions (its prediction for the same observation will always be the same, but the value is chosen at random for every observation). If we created a sufficient number of such models, we will eventually get a model that gets an estimated error of close to 0, even if we use cross-validation. But if we took that model and evaluated it on a held-out test set or in <em>production</em>, it would perform as poorly as random predictions. In practice, the problem is not nearly as extreme, but we should always be aware of the fact that cross-validation helps us detect models that overfit, but we can still overfit by repeating the process or by testing many different models.</p>
+<p>Finally, we test the estimated best (k = 1) nearest neighbors model on the held-out final test set:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="predictive.html#cb292-1" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_nn<span class="op">$</span>finalModel, <span class="dt">newdata =</span> df.test[,<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb292-2"><a href="predictive.html#cb292-2" aria-hidden="true"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="kw">mean</span>((p <span class="op">-</span><span class="st"> </span>df.test<span class="op">$</span>price)<span class="op">^</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 296.16</code></pre>
+<p>This estimate is even better than the one on the main data we used for cross-validation-based estimation. However, the difference is withing the above estimates of standard error of our measure of predictive quality, so there is no reason for concern. At this point we can conclude that our previous estimate of the generalized performance of the 1-nearest neighbor model is valid. We can also conclude that for this data predicting the price of the most similar PC performs at least as well as all the other models that we have tested.</p>
+</div>
+<div id="putting-it-all-together-with-python" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Putting it all together with Python</h2>
+<p>A substantial part of our predictive modelling scenario can be simplified by utilizing existing implementations of models and model selection procedures. The most commonly used Python libraries and packages are <a href="https://pandas.pydata.org/">pandas</a>, <a href="https://numpy.org/">numpy</a>, <a href="https://scikit-learn.org/stable/">scikit-learn</a> and <a href="https://matplotlib.org/">matplotlib</a>. You can read more about them also in Chapter <a href="python-introduction-chapter.html#python-introduction-chapter">1</a>.</p>
+<p>Below we show how to use the same type of the algorithms as we used in the R example above in Python. First we load and overview the dataset:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb294-1"><a href="predictive.html#cb294-1" aria-hidden="true"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb294-2"><a href="predictive.html#cb294-2" aria-hidden="true"></a></span>
+<span id="cb294-3"><a href="predictive.html#cb294-3" aria-hidden="true"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;../data/computers.csv&quot;</span>)</span>
+<span id="cb294-4"><a href="predictive.html#cb294-4" aria-hidden="true"></a>df <span class="op">=</span> df.<span class="bu">filter</span>(items<span class="op">=</span>df.columns[<span class="dv">0</span>:<span class="dv">7</span>])</span>
+<span id="cb294-5"><a href="predictive.html#cb294-5" aria-hidden="true"></a>df.describe(include<span class="op">=</span><span class="st">&#39;all&#39;</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="0" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+price
+</th>
+<th>
+speed
+</th>
+<th>
+hd
+</th>
+<th>
+ram
+</th>
+<th>
+screen
+</th>
+<th>
+cd
+</th>
+<th>
+multi
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+count
+</td>
+<td>
+6259.00
+</td>
+<td>
+6259.00
+</td>
+<td>
+6259.00
+</td>
+<td>
+6259.00
+</td>
+<td>
+6259.00
+</td>
+<td>
+6259
+</td>
+<td>
+6259
+</td>
+</tr>
+<tr>
+<td>
+unique
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+2
+</td>
+<td>
+2
+</td>
+</tr>
+<tr>
+<td>
+top
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+no
+</td>
+<td>
+no
+</td>
+</tr>
+<tr>
+<td>
+freq
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+<td>
+3351
+</td>
+<td>
+5386
+</td>
+</tr>
+<tr>
+<td>
+mean
+</td>
+<td>
+2219.58
+</td>
+<td>
+52.01
+</td>
+<td>
+416.60
+</td>
+<td>
+8.29
+</td>
+<td>
+14.61
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+<tr>
+<td>
+std
+</td>
+<td>
+580.80
+</td>
+<td>
+21.16
+</td>
+<td>
+258.55
+</td>
+<td>
+5.63
+</td>
+<td>
+0.91
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+<tr>
+<td>
+min
+</td>
+<td>
+949.00
+</td>
+<td>
+25.00
+</td>
+<td>
+80.00
+</td>
+<td>
+2.00
+</td>
+<td>
+14.00
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+<tr>
+<td>
+25%
+</td>
+<td>
+1794.00
+</td>
+<td>
+33.00
+</td>
+<td>
+214.00
+</td>
+<td>
+4.00
+</td>
+<td>
+14.00
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+<tr>
+<td>
+50%
+</td>
+<td>
+2144.00
+</td>
+<td>
+50.00
+</td>
+<td>
+340.00
+</td>
+<td>
+8.00
+</td>
+<td>
+14.00
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+<tr>
+<td>
+75%
+</td>
+<td>
+2595.00
+</td>
+<td>
+66.00
+</td>
+<td>
+528.00
+</td>
+<td>
+8.00
+</td>
+<td>
+15.00
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+<tr>
+<td>
+max
+</td>
+<td>
+5399.00
+</td>
+<td>
+100.00
+</td>
+<td>
+2100.00
+</td>
+<td>
+32.00
+</td>
+<td>
+17.00
+</td>
+<td>
+NaN
+</td>
+<td>
+NaN
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>As some of the parameters are categorical (i.e. <em>cd</em> and <em>multi</em>), we need to add parameter to include all of them in to the output. Still, the values are still treated similar to numeric types, so if we want to see counts for each categor value, we need to output them separately:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb295-1"><a href="predictive.html#cb295-1" aria-hidden="true"></a>df[<span class="st">&#39;cd&#39;</span>].value_counts()</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb296-1"><a href="predictive.html#cb296-1" aria-hidden="true"></a><span class="co">## no     3351</span></span>
+<span id="cb296-2"><a href="predictive.html#cb296-2" aria-hidden="true"></a><span class="co">## yes    2908</span></span>
+<span id="cb296-3"><a href="predictive.html#cb296-3" aria-hidden="true"></a><span class="co">## Name: cd, dtype: int6</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="predictive.html#cb297-1" aria-hidden="true"></a>df[<span class="st">&#39;multi&#39;</span>].value_counts()</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb298-1"><a href="predictive.html#cb298-1" aria-hidden="true"></a><span class="co">## no     5386</span></span>
+<span id="cb298-2"><a href="predictive.html#cb298-2" aria-hidden="true"></a><span class="co">## yes     873</span></span>
+<span id="cb298-3"><a href="predictive.html#cb298-3" aria-hidden="true"></a><span class="co">## Name: multi, dtype: int64</span></span></code></pre></div>
+<p>Now we recode yes/no variables to binary and prepare the training and testing dataset.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb299-1"><a href="predictive.html#cb299-1" aria-hidden="true"></a>df[<span class="st">&#39;cd&#39;</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">&#39;cd&#39;</span>], categories<span class="op">=</span>df[<span class="st">&#39;cd&#39;</span>].unique()).codes</span>
+<span id="cb299-2"><a href="predictive.html#cb299-2" aria-hidden="true"></a>df[<span class="st">&#39;multi&#39;</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">&#39;multi&#39;</span>], categories<span class="op">=</span>df[<span class="st">&#39;multi&#39;</span>].unique()).codes</span>
+<span id="cb299-3"><a href="predictive.html#cb299-3" aria-hidden="true"></a>test_set <span class="op">=</span> df.sample(n<span class="op">=</span><span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb299-4"><a href="predictive.html#cb299-4" aria-hidden="true"></a>main_set <span class="op">=</span> df.drop(test_set.index)</span></code></pre></div>
+<p>Scikit-learn library works on numpy-based objects, so we need to transform the pandas data frames into numpy arrays (alternatively there also exist transformers to do this automatically by scikit-learn):</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb300-1"><a href="predictive.html#cb300-1" aria-hidden="true"></a>X <span class="op">=</span> main_set.loc[:, main_set.columns <span class="op">!=</span> <span class="st">&#39;price&#39;</span>].to_numpy()</span>
+<span id="cb300-2"><a href="predictive.html#cb300-2" aria-hidden="true"></a>y <span class="op">=</span> main_set[<span class="st">&#39;price&#39;</span>].to_numpy()</span>
+<span id="cb300-3"><a href="predictive.html#cb300-3" aria-hidden="true"></a>X_test <span class="op">=</span> test_set.loc[:, test_set.columns <span class="op">!=</span> <span class="st">&#39;price&#39;</span>].to_numpy()</span>
+<span id="cb300-4"><a href="predictive.html#cb300-4" aria-hidden="true"></a>y_test <span class="op">=</span> test_set[<span class="st">&#39;price&#39;</span>].to_numpy()</span></code></pre></div>
+<p>Scikit-learn does not include RMSE scoring function by default, that is why we need to prepare it first. We also prepare a fold iterator for cross validation techniques and en empty data frame to store results.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="predictive.html#cb301-1" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb301-2"><a href="predictive.html#cb301-2" aria-hidden="true"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RepeatedKFold, cross_validate, GridSearchCV, RandomizedSearchCV</span>
+<span id="cb301-3"><a href="predictive.html#cb301-3" aria-hidden="true"></a></span>
+<span id="cb301-4"><a href="predictive.html#cb301-4" aria-hidden="true"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> GradientBoostingRegressor</span>
+<span id="cb301-5"><a href="predictive.html#cb301-5" aria-hidden="true"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, make_scorer</span>
+<span id="cb301-6"><a href="predictive.html#cb301-6" aria-hidden="true"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
+<span id="cb301-7"><a href="predictive.html#cb301-7" aria-hidden="true"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb301-8"><a href="predictive.html#cb301-8" aria-hidden="true"></a></span>
+<span id="cb301-9"><a href="predictive.html#cb301-9" aria-hidden="true"></a><span class="kw">def</span> mean_squared_error_(ground_truth, predictions):</span>
+<span id="cb301-10"><a href="predictive.html#cb301-10" aria-hidden="true"></a>    <span class="cf">return</span> np.sqrt(mean_squared_error(ground_truth, predictions))</span>
+<span id="cb301-11"><a href="predictive.html#cb301-11" aria-hidden="true"></a>RMSE <span class="op">=</span> make_scorer(mean_squared_error_, greater_is_better<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb301-12"><a href="predictive.html#cb301-12" aria-hidden="true"></a></span>
+<span id="cb301-13"><a href="predictive.html#cb301-13" aria-hidden="true"></a>rkf <span class="op">=</span> RepeatedKFold(n_splits<span class="op">=</span><span class="dv">10</span>, n_repeats<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb301-14"><a href="predictive.html#cb301-14" aria-hidden="true"></a></span>
+<span id="cb301-15"><a href="predictive.html#cb301-15" aria-hidden="true"></a><span class="bu">all</span> <span class="op">=</span> pd.DataFrame() </span></code></pre></div>
+<p>The R gradient boosting training was tuning the parameters <em>n.trees</em> and <em>interaction.depth</em>, while <em>shrinkage</em> and <em>n.minobsinnode</em> were left fixed. To tell the algorithm which parameters to tune, we need to prepare distributions to sample from and then run the cross validation method for a selected classifier.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb302-1"><a href="predictive.html#cb302-1" aria-hidden="true"></a><span class="co"># gradient boosting</span></span>
+<span id="cb302-2"><a href="predictive.html#cb302-2" aria-hidden="true"></a>clf <span class="op">=</span> GradientBoostingRegressor() </span>
+<span id="cb302-3"><a href="predictive.html#cb302-3" aria-hidden="true"></a>param_distributions <span class="op">=</span> {<span class="st">&#39;learning_rate&#39;</span>: [<span class="fl">0.1</span>], <span class="st">&#39;min_samples_leaf&#39;</span>: [<span class="dv">10</span>], <span class="st">&#39;n_estimators&#39;</span>: [<span class="dv">50</span>, <span class="dv">100</span>], <span class="st">&#39;max_depth&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>]}</span>
+<span id="cb302-4"><a href="predictive.html#cb302-4" aria-hidden="true"></a>tmp <span class="op">=</span> RandomizedSearchCV(clf, param_distributions, n_iter<span class="op">=</span><span class="dv">4</span>, scoring<span class="op">=</span>RMSE, cv<span class="op">=</span>rkf, random_state<span class="op">=</span><span class="dv">0</span>).fit(X, y)</span>
+<span id="cb302-5"><a href="predictive.html#cb302-5" aria-hidden="true"></a></span>
+<span id="cb302-6"><a href="predictive.html#cb302-6" aria-hidden="true"></a><span class="cf">for</span> param_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(tmp.cv_results_[<span class="st">&#39;params&#39;</span>])):</span>
+<span id="cb302-7"><a href="predictive.html#cb302-7" aria-hidden="true"></a>    tmp_test_scores <span class="op">=</span> []</span>
+<span id="cb302-8"><a href="predictive.html#cb302-8" aria-hidden="true"></a>    <span class="cf">for</span> split_scores_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>): </span>
+<span id="cb302-9"><a href="predictive.html#cb302-9" aria-hidden="true"></a>        tmp_test_scores.append(tmp.cv_results_[<span class="ss">f&#39;split</span><span class="sc">{</span>split_scores_id<span class="sc">}</span><span class="ss">_test_score&#39;</span>][param_id])</span>
+<span id="cb302-10"><a href="predictive.html#cb302-10" aria-hidden="true"></a>    params <span class="op">=</span> tmp.cv_results_[<span class="st">&quot;params&quot;</span>][param_id]</span>
+<span id="cb302-11"><a href="predictive.html#cb302-11" aria-hidden="true"></a>    params_list <span class="op">=</span> [params[<span class="st">&#39;learning_rate&#39;</span>], params[<span class="st">&#39;max_depth&#39;</span>], params[<span class="st">&#39;min_samples_leaf&#39;</span>], params[<span class="st">&#39;n_estimators&#39;</span>]]</span>
+<span id="cb302-12"><a href="predictive.html#cb302-12" aria-hidden="true"></a>    <span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="ss">f&#39;gb[,</span><span class="sc">{</span><span class="st">&quot;,&quot;</span><span class="sc">.</span>join(<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span> params_list)<span class="sc">}</span><span class="ss">,]&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp_test_scores), <span class="st">&quot;SD&quot;</span>: np.std(tmp_test_scores)}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb302-13"><a href="predictive.html#cb302-13" aria-hidden="true"></a></span>
+<span id="cb302-14"><a href="predictive.html#cb302-14" aria-hidden="true"></a><span class="co"># k-nn</span></span>
+<span id="cb302-15"><a href="predictive.html#cb302-15" aria-hidden="true"></a>parameters <span class="op">=</span> {<span class="st">&#39;n_neighbors&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">10</span>]}</span>
+<span id="cb302-16"><a href="predictive.html#cb302-16" aria-hidden="true"></a>tmp <span class="op">=</span> GridSearchCV(KNeighborsRegressor(), parameters, cv<span class="op">=</span>rkf, scoring<span class="op">=</span>RMSE).fit(X, y)</span>
+<span id="cb302-17"><a href="predictive.html#cb302-17" aria-hidden="true"></a></span>
+<span id="cb302-18"><a href="predictive.html#cb302-18" aria-hidden="true"></a>bestNNModel <span class="op">=</span> tmp.best_estimator_</span>
+<span id="cb302-19"><a href="predictive.html#cb302-19" aria-hidden="true"></a><span class="cf">for</span> param_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(tmp.cv_results_[<span class="st">&#39;params&#39;</span>])):</span>
+<span id="cb302-20"><a href="predictive.html#cb302-20" aria-hidden="true"></a>    tmp_test_scores <span class="op">=</span> []</span>
+<span id="cb302-21"><a href="predictive.html#cb302-21" aria-hidden="true"></a>    <span class="cf">for</span> split_scores_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>): </span>
+<span id="cb302-22"><a href="predictive.html#cb302-22" aria-hidden="true"></a>        tmp_test_scores.append(tmp.cv_results_[<span class="ss">f&#39;split</span><span class="sc">{</span>split_scores_id<span class="sc">}</span><span class="ss">_test_score&#39;</span>][param_id])</span>
+<span id="cb302-23"><a href="predictive.html#cb302-23" aria-hidden="true"></a>    <span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="ss">f&#39;nn[,</span><span class="sc">{</span>tmp<span class="sc">.</span>cv_results_[<span class="st">&quot;params&quot;</span>][param_id][<span class="st">&quot;n_neighbors&quot;</span>]<span class="sc">}</span><span class="ss">,]&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp_test_scores), <span class="st">&quot;SD&quot;</span>: np.std(tmp_test_scores)}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb302-24"><a href="predictive.html#cb302-24" aria-hidden="true"></a>    </span>
+<span id="cb302-25"><a href="predictive.html#cb302-25" aria-hidden="true"></a><span class="co"># linear regression</span></span>
+<span id="cb302-26"><a href="predictive.html#cb302-26" aria-hidden="true"></a>clf <span class="op">=</span> LinearRegression()</span>
+<span id="cb302-27"><a href="predictive.html#cb302-27" aria-hidden="true"></a></span>
+<span id="cb302-28"><a href="predictive.html#cb302-28" aria-hidden="true"></a>tmp <span class="op">=</span> cross_validate(clf, X, y, cv<span class="op">=</span>rkf, scoring<span class="op">=</span>RMSE)</span>
+<span id="cb302-29"><a href="predictive.html#cb302-29" aria-hidden="true"></a><span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="st">&#39;lm&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp[<span class="st">&#39;test_score&#39;</span>]), <span class="st">&quot;SD&quot;</span>: np.std(tmp[<span class="st">&#39;test_score&#39;</span>])}, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>Now we can summarize the results, ordered by predictive quality:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb303-1"><a href="predictive.html#cb303-1" aria-hidden="true"></a><span class="bu">all</span>.sort_values(<span class="st">&#39;RMSE&#39;</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="0" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+Model
+</th>
+<th>
+RMSE
+</th>
+<th>
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+7
+</td>
+<td>
+nn[,5,]
+</td>
+<td>
+370.264823
+</td>
+<td>
+14.634447
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+nn[,7,]
+</td>
+<td>
+371.455809
+</td>
+<td>
+15.485513
+</td>
+</tr>
+<tr>
+<td>
+6
+</td>
+<td>
+nn[,3,]
+</td>
+<td>
+371.771094
+</td>
+<td>
+14.135298
+</td>
+</tr>
+<tr>
+<td>
+9
+</td>
+<td>
+nn[,10,]
+</td>
+<td>
+380.230663
+</td>
+<td>
+16.406543
+</td>
+</tr>
+<tr>
+<td>
+5
+</td>
+<td>
+nn[,2,]
+</td>
+<td>
+384.245843
+</td>
+<td>
+15.759044
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+gb[,0.1,2,10,100,]
+</td>
+<td>
+407.898817
+</td>
+<td>
+15.229875
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+nn[,1,]
+</td>
+<td>
+423.044016
+</td>
+<td>
+18.534263
+</td>
+</tr>
+<tr>
+<td>
+2
+</td>
+<td>
+gb[,0.1,2,10,50,]
+</td>
+<td>
+433.891617
+</td>
+<td>
+17.185479
+</td>
+</tr>
+<tr>
+<td>
+1
+</td>
+<td>
+gb[,0.1,1,10,100,]
+</td>
+<td>
+447.622174
+</td>
+<td>
+17.133322
+</td>
+</tr>
+<tr>
+<td>
+0
+</td>
+<td>
+gb[,0.1,1,10,50,]
+</td>
+<td>
+465.734108
+</td>
+<td>
+17.891289
+</td>
+</tr>
+<tr>
+<td>
+10
+</td>
+<td>
+lm
+</td>
+<td>
+474.878803
+</td>
+<td>
+17.341011
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Finally, we test the estimated best (k = 5) nearest neighbors model on the held-out final test set:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb304-1"><a href="predictive.html#cb304-1" aria-hidden="true"></a>y_predicted <span class="op">=</span> bestNNModel.predict(X_test)</span>
+<span id="cb304-2"><a href="predictive.html#cb304-2" aria-hidden="true"></a><span class="bu">round</span>(np.sqrt(np.mean((y_predicted <span class="op">-</span> y_test)<span class="op">**</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb305-1"><a href="predictive.html#cb305-1" aria-hidden="true"></a><span class="co">## 320.45</span></span></code></pre></div>
+</div>
+<div id="further-reading-and-references" class="section level2" number="10.7">
+<h2><span class="header-section-number">10.7</span> Further reading and references</h2>
+<ul>
+<li>An excellent introductory book that provides a balanced treatment of the machine learning, statistical, and computational aspects of predictive modeling: <em>James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2013). An introduction to statistical learning (Vol. 112, p. 18). New York: springer.</em></li>
+<li>Predictive and/or computational performance of models can often be improved by selecting a subset of features or transforming the feature space. We covered the latter at least to some extent in Chapter <a href="multivariate-data-chapter.html#multivariate-data-chapter">8</a>, a good introduction to the former is: <em>Guyon, I., &amp; Elisseeff, A. (2003). An introduction to variable and feature selection. Journal of machine learning research, 3(Mar), 1157-1182.</em></li>
+<li>Interpretability of models is an important aspect. There exist model-specific methods, but better-suited for practical purposesa re model-agnostic (or black-box) approaches that can be applied to all models (or a general class of models, such as all classifiers). A recent survey of this very active field in machine learning and statistics: <em>Guidotti, R., Monreale, A., Ruggieri, S., Turini, F., Giannotti, F., &amp; Pedreschi, D. (2019). A survey of methods for explaining black box models. ACM computing surveys (CSUR), 51(5), 93.</em></li>
+</ul>
+</div>
+<div id="learning-outcomes" class="section level2" number="10.8">
+<h2><span class="header-section-number">10.8</span> Learning outcomes</h2>
+<p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
+<ul>
+<li>Recognize and describe the case of predictive modelling that applies to the task at hand.</li>
+<li>Use software tools to perform predictive modelling in standard cases.</li>
+<li>Understand the problem of overfitting and how to avoid it.</li>
+<li>Understand the advantages and disadvantages of common of predictive modelling algorithms.</li>
+<li>Choose the best training algorithm for the task at hand, depending on all the dimensions of quality that apply.</li>
+</ul>
+</div>
+<div id="practice-problems" class="section level2" number="10.9">
+<h2><span class="header-section-number">10.9</span> Practice problems</h2>
+<ol style="list-style-type: decimal">
+<li>Use cross-validation to find the optimal power of the polynomial regression on the toy 2-variable dataset from the beginning of this chapter.</li>
+<li>On the toy 2-variable dataset compare polynomial regression with a regression tree, random forests, a feed-forward neural network and another traning algorithm of choice. Comment on the models’ predictive performance, computation time (training and prediction) and interpretability.</li>
+<li>Consider 4 different classification training algorithms: logistic regression, k-nearest neighbors, a feed-forward neural network (with 1 hidden layer with no more than 10 neurons) and a decision tree (for example CART). Create 4 different binary classification datasets, each with two input variables <span class="math inline">\(x \in [0,1]\)</span> and <span class="math inline">\(y \in [0,1]\)</span> and a binary outcome <span class="math inline">\(c \in \{0,1\}\)</span>, such that each of the four training algorithms will produce the best model for one of the datasets. That is, so that each dataset is most suited to the inductive bias of one of the training algorithms.</li>
+</ol>
+
+</div>
+</div>
+<script type="application/json" class="js-hypothesis-config">
+	{
+	  "openSidebar": false,
+	  "showHighlights": "whenSidebarOpen",
+	  "enableShareLinks": false
+	}
+</script>
+<script src="https://hypothes.is/embed.js" async></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="databases.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

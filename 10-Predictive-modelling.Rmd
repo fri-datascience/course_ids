@@ -288,7 +288,7 @@ We'll apply what we have learned to an interesting dataset from the paper *Steng
 The dataset contains PC price and specifications from the 90:
 
 ```{r fig.width=4.9, fig.height=3.5}
-df <- read.csv("./data/computers.csv")[,1:7]
+df <- read.csv("./data/computers.csv", stringsAsFactors = T)[,1:7]
 summary(df)
 ```
 

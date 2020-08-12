@@ -18,7 +18,7 @@ If you are new to Git it is important for you to differentiate between Git and G
 Where people are often working in groups that are small enough they feel comfortable just keeping their code on Dropbox and trying to make sure that collaborators never work on the same file at the same time (in the hope of never changing the same file). But git has much to offer the modern data scientist, even if they only work on small teams and don’t want to contribute to larger software projects. Some major benefits of using git are:
 
 1. *Keep an archive of every version of your project*: Git works by logging the work you do on your project into a series of discrete sets of changes called “commits”. Crucially, it remembers all of your commits, making it possible to easily go back to a previous version of the project any time you want. If you discover that your collaborator deleted part of your code and you did not notice, can easily recover the version of that file that existed before.
-2. *All you and your co-authors to work at the same time*: Git treats each line in a text document separately, so if your collaborator is editing the introduction of your paper (assuming it’s in a text format like 𝐿𝐴𝑇𝐸𝑋) while you’re editing the conclusion, git can easily integrate your simultaneous edits. Moreover, if you do both edit the same line of code or text, then git will help you resolve those conflicting edits in a very efficient manner instead of what Dropbox does, and leave you to figure out what changes conflicted and how to integrate both authors’ changes.
+2. *All you and your co-authors to work at the same time*: Git treats each line in a text document separately, so if your collaborator is editing the introduction of your paper (assuming it’s in a text format such as LaTeX) while you’re editing the conclusion, git can easily integrate your simultaneous edits. Moreover, if you do both edit the same line of code or text, then git will help you resolve those conflicting edits in a very efficient manner instead of what Dropbox does, and leave you to figure out what changes conflicted and how to integrate both authors’ changes.
 3. *You can easily see what changes you’re collaborator has made*: Because git is organized around keeping track of changes (again, called commits), when your collaborator makes changes to a document, git allows you to easily see just the changes your collaborator has made. This makes it much easier for colleagues to be aware of how their project is changing to watch out of problems (e.g. you can easily see if your collaborator recoded a variable in a way that is problematic for code you wrote later). 
 4. *Allows you to contribute to open source projects*: This may not be something you’re planning to jump into, but learning git will make this an option. If you find that a package you use doesn’t have a feature you need, the ability to use git will make it possible for you to add that feature to the package, not only allowing you to do what you want to do, but also making that fix available to the broader community.
 5. *Allows you to make your project open source so others can contribute to your project*: If you know git, you can also share that code in a way that makes it easy for other people to contribute code and improve that package. Also, being active in the open-source community or showing code of your hobby projects in public source code repositories may help you getting a better job.
@@ -94,6 +94,8 @@ usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
 ....
 ```
 
+Further in the example we use GitHub and if you wish to use SSH links, you need to generate a local SSH key and add it to your GitHub account as described in [the documentation](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
+
 *Step 1:* Let's say you have started with a hobby mini project and wrote a simple script in a file _greeter.py_:
 
 ```{python, eval=FALSE}
@@ -164,7 +166,7 @@ nothing to commit, working tree clean
 
 After all the changes are committed we double-check there are no uncommited changes in the project. Also, if we do not provide message parameter (-m) to the _git commit_ command, our default editor is opened to write a commit message - it is obligatory to write a commit message. Commit messages should contain description of changes or issue id we were working on.
 
-*Step 4:* In the greeter script we created a typo, so we change the text "Ehlo World!" to "Hello Data Science!" (We must save file in our text editor so the changes are written to disk!). If we check the status of the repo, we will see our file is changed and all the changed files can be commited directly using `git commit -a -m "..."` command (otherwise we would need to explicitly add files we wanted to include in the repo). 
+*Step 4:* In the greeter script we created a typo, so we change the text "Ehlo World!" to "Hello Data Science!" (We must save file in our text editor so the changes are written to disk!). If we check the status of the repo, we will see our file is changed and all the changed files can be commited directly using `git commit -a -m "..."` command. If we do not use `-a` parameter, we need to first add files to a commit and then issue commit command. 
 
 ```{bash, eval=FALSE}
 $ git status
@@ -250,10 +252,10 @@ As we can see, each commit is identified using a GUID which can be used to move 
 
 There also exist a number of tools work with Git projects (see \@ref(git-guis)).
 
-To get a remote repository, create a new [GitHub account](https://github.com) and then create a new public repository, named "DS-Project" (DO NOT select to add README or .gitignore!).
+To create a remote Git repository on GitHub, create a new [GitHub account](https://github.com) and then create a new public repository, named "DS-Project" (DO NOT select to add README or .gitignore!).
 
 ![](data/Git/github-new.png)
-We already have a local repository and the second set of commands is useful for us. The first command adds a link to the remote repository and names it "origin" - we could also use any other name. The second command copies all the changes (three commits) to the remote repository to branch named master (default branch). The parameter _-u_ sets "origin" as the default remote repository, so we can use commands _git push_/_git pull_ without any parameters.
+We already have a local repository and the second set of commands is useful for us. The first command adds a link to the remote repository and names it "origin" - we could also use any other name. The second command copies all the changes (three commits) to the remote repository to branch named master (default branch). The parameter _-u_ sets "origin" as the default remote repository, so we can later use commands _git push_/_git pull_ without any parameters.
 
 ```{bash, eval=FALSE}
 $ git remote add origin https://github.com/szitnik/DS-Project.git

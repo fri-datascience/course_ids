@@ -64,7 +64,7 @@ Throughout the remainder of the chapter we will be using a dataset from
 as an illustrative example:
 
 ```{r}
-dat <- read.csv("./data/imputationDATASET.csv")
+dat <- read.csv("./data/imputationDATASET.csv", stringsAsFactors = T)
 summary(dat)
 ```
 
