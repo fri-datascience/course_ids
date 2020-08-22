@@ -26,7 +26,7 @@ Disadvantages:
 
 ## Why Python?
 
-The Python language is one of the two most popular languages for data science (the other being R). The two main reasons are:
+The Python language is one of the two most popular languages for data science (the other being R). The three main reasons are:
 
 * The advantages of Python fit the typical data science workflow and its disadvantages are not that deterimental to the data science workflow.
 * Python has a large ecosystem of packages, libraries and tools for data science, some of which are discussed later in this chapter.
@@ -38,33 +38,35 @@ The advantages of Python are extremely beneficial to such a workflow: Being simp
 
 The disadvantages of Python are of minor consequence: The data science workflow is not time-critical - even an order-of-magnitude slowdown typically makes little difference. Memory and time consumption can be significantly decreased by using popular libraries such as numpy and scipy. Code maintainability is less important - data science scripts are often short and discarded after use. Specific platforms development or enterprise-level applications development are also not part of the typical data science workflow. Data science products used in such applications are normally rewritten as final models in a production-ready code.
 
+That being said, Python is in most cases much more suitable than R in terms of development, maintainability, speed and other considerations that are relevant to in-production use. Python dominates R as the language of choice in industry projects where solutions have to be deployed, such as typical machine learning tasks. On the other hand, R dominates Python as the language of choice for data science consultants, government and not-for-profic organizations and academia.
+
 
 ## Setting up the environment
 
-Before using Python, we need to select and install a desired Python distribution. We can choose to install a pure Python distribution or an Anaconda Python distribution. Some advantages of using an Anaconda distribution are:
+Before using Python, we need to select and install a Python distribution. We can choose to install a pure Python distribution or an Anaconda Python distribution. Some advantages of using an Anaconda distribution are:
 
 * Anaconda makes it easy for the user to install the Python version of choice. Anaconda will also resolve issues with administrator privileges if a user does not have administrative rights for his system.
 * [Anaconda Accelerate](https://docs.continuum.io/accelerate/index.html) can provide the user with high performance computing and several other components.
-* Anaconda removes bottlenecks involved in installing the right packages while taking into considerations their compatibility with various other packages as might be encountered while using the traditional package manager (pip).
+* Anaconda removes bottlenecks involved in installing the right packages while taking into considerations their compatibility with various other packages as might be encountered while using the standard *pip* package manager.
 * There is no risk of breaking required system libraries. There are also many open source packages available for Anaconda, which are not within the pip repository.
 
 We encourage you to use the Anaconda Python distribution.
 
 ### Anaconda distribution installation
 
-Install the desired [Anaconda Python distribution](https://www.anaconda.com/distribution/). A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment with a name *itds*, issue the following command:
+Install the desired [Anaconda Python distribution](https://www.anaconda.com/distribution/). A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment named *ids*, issue the following command:
 
 
 ```bash
-$ conda create -n itds
-$ conda activate itds
+$ conda create -n ids
+$ conda activate ids
 ```
 
 At the beginning of a line in the console you can see currently active environment. To run Python within this evironment, issue the `python` command in the console. You should see something similar to the following:
 
 
 ```bash
-(itds)$ python
+(ids)$ python
 Python 3.6.8 |Anaconda, Inc.| (default, Dec 29 2018, 19:04:46)
 [GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
@@ -77,7 +79,7 @@ To exit the environment, use `conda deactivate`. To show existing environments a
 
 ### Pure Python distribution installation
 
-You can also install a pure Python distributiondirectly to your system from [the official Python Downloads web page](https://www.python.org/downloads/).
+You can also install a pure Python distribution directly to your system from [the official Python Downloads web page](https://www.python.org/downloads/).
 
 To run Python, issue the `python` command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using `python3.5`). After running the command, you should see something similar to the following:
 
@@ -99,20 +101,20 @@ $ virtualenv --version
 16.6.1
 ```
 
-To set up a virtual environment for a project, first create a project folder and set up a new environment in that folder. The latter will create Python executables within that folder and a copy of *pip* library that is used to install libraries local to the environment (parameter *p* is optional).
+To set up a virtual environment for a project first create a project folder and set up a new environment in that folder. The latter will create Python executables within that folder and a copy of the *pip* library that is used to install libraries local to the environment (parameter *p* is optional).
 
 
 ```bash
-$ cd itds_project
-$ virtualenv -p /usr/local/bin/python2 itds
+$ cd ids_project
+$ virtualenv -p /usr/local/bin/python2 ids
 ```
 
 To activate the environment, run the script `venv/bin/activate` from the project folder and use project specific Python:
 
 
 ```bash
-$ source itds/bin/activate
-(itds)$ python
+$ source ids/bin/activate
+(ids)$ python
 Python 2.7.14 (default, Mar  9 2018, 23:57:12)
 [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
@@ -123,7 +125,7 @@ After you finish working on your project, deactivate the current virtual environ
 
 
 ```bash
-(itds)$ deactivate
+(ids)$ deactivate
 $
 ```
 
@@ -143,7 +145,7 @@ If a package is not available in the official repository, it may be available fr
 $ conda install -c conda-forge pyspark
 ```
 
-Many useful libraries are available online, mostly in the [Python Package Index (PyPI) repository](https://pypi.org/) which can also be used directly in a conda environment. Well-built libraries consist of installation instructions and a *setup.py* file to install them. The common location for installing libraries is the folder *%PYTHON_BASE%/lib*, *%PYTHON_BASE%/site-packages* or *%PYTHON_BASE%/Lib*.
+Many useful libraries are available online, mostly in the [Python Package Index (PyPI) repository](https://pypi.org/), which can also be used directly in a conda environment. Well-built libraries consist of installation instructions and a *setup.py* installation file. The common location for installing libraries is the folder *%PYTHON_BASE%/lib*, *%PYTHON_BASE%/site-packages* or *%PYTHON_BASE%/Lib*.
  
 Packages can be installed using the `pip` command. For example, to install the [NLTK library](https://www.nltk.org/), we issue the following command: 
 
@@ -161,7 +163,7 @@ $ pip install YOUR_DOWNLOADED_PACKAGE.whl
 
 ## Jupyter notebooks
 
-The [Jupyter Notebook](https://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+The [Jupyter Notebook](https://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning and much more.
 
 To add support for Anaconda environments to Jupyter, issue the command below. This will add Conda extensions to Jupyter. The feature will be installed for currently active environment. When running Jupyter, you will notice a Conda tab in the file browser, which will enable the listing and selection of existing Anaconda environments, overview of the installed packages in the environment, installing new packages from the available package list, checking for updates packages and updating packages in the environment.
 
@@ -192,7 +194,7 @@ As you notice, a notebook consists of linearly ordered blocks of types *Markdown
 Sometimes we just want to view or execute a notebook online. There exist multiple services offering this functionality, for example [https://gke.mybinder.org/](https://gke.mybinder.org/).
 
 
-## Short introduction to Python
+## A short introduction to Python
 
 All the examples presented in this section are also provided in a [Jupyter notebook](data/Python programming language.ipynb).
 
@@ -735,7 +737,7 @@ Writing content to a file:
 
 
 ```python
-file = open("itds.txt","w+")
+file = open("ids.txt","w+")
 for i in range(10):
      file.write(f"This is line {i}.\r\n")
 file.close()
@@ -746,7 +748,7 @@ Reading content (output omitted):
 
 ```python
 #Open the file and read the contents
-file = open("itds.txt", "r")
+file = open("ids.txt", "r")
 
 # Reading the whole content into a variable
 contents = file.read()
@@ -767,7 +769,7 @@ It is also useful to read and write JSON data directly. Python can automatically
 ```python
 import json
 
-json_obj = {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'ITDS': 6, 'WIER': 10}]}
+json_obj = {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'IDS': 6, 'WIER': 10}]}
 
 # Write json to a file
 json.dump(json_obj, open('json_output.json', 'w'))
@@ -778,7 +780,7 @@ print(janez)
 ```
 
 ```bash
-## {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'ITDS': 6, 'WIER': 10}]}
+## {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'IDS': 6, 'WIER': 10}]}
 ```
 
 ### Python IDE's and code editors
@@ -786,7 +788,7 @@ print(janez)
 An IDE (Integrated Development Environment) is software dedicated to software development. As the name implies, IDEs integrate several tools specifically designed for software development. These tools usually include:
 
 * An editor designed to handle code with features such as syntax highlighting and auto-completion.
-* Build, execution, and debugging tools.
+* Build, execution and debugging tools.
 * Some form of source control support.
 
 IDEs are generally large and take time to download and install. You may also need advanced knowledge to use them properly. In contrast, a dedicated code editor can be as simple as a text editor with syntax highlighting and code formatting capabilities. Most good code editors can execute code and control a debugger. The very best ones interact with source control systems as well. Compared to an IDE, a good dedicated code editor is usually smaller and quicker, but often less feature rich.
