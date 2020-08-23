@@ -4,7 +4,7 @@
 
 The term *data science* contains the word science. It is our view that data science is more or less synonimous with with modern empirical science and as such it should adhere to the standards for scientific inquiry.
 
-Ideally, scientific inquiry would always be objective and correct. However, these are unattainable  ideals! Science will always be subjective at least in the sense of what we investigate and how we choose to investigate it. And scientists like all people, even with the best intentions and practices, make mistakes. Instead, the realistic standard is lower, albeit still surprisingly difficult to attain - research should be **reproducible**.
+Ideally, scientific inquiry would always be objective and correct. However, these are unattainable  ideals! Science will always be subjective at least in the sense of what we investigate and how we choose to investigate it. And scientists, like all people, even with the best intentions and practices, make mistakes. Instead, the realistic standard is lower, albeit still surprisingly difficult to attain - research should be **reproducible**.
 
 We will borrow two definitions from the [American Statistical Association](https://www.amstat.org/asa/files/pdfs/POL-ReproducibleResearchRecommendations.pdf):
 
@@ -15,7 +15,7 @@ from the study.
 > **Replicability:** This is the act of repeating an entire study, independently of the original
 investigator without the use of original data (but generally using the same methods).
 
-In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, **if our research is not reproducible it is of much less value!**
+In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, **if our research is not reproducible, then it is of much less value!**
 
 **Reproducibility will be our minimum standard for scientific enquiry** and is also a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.
 
@@ -29,7 +29,7 @@ Such code together with the original data and a precise description of the platf
 
 ### Preregistration - the future standard
 
-As we already discussed above, reproduciblity is concerned only with the completeness and unambiguity of the description of the study. All studies should be reproducible, but we expect that some studies will not replicate. Some due to the inherent risk of statistical procedures, some due to researchers' mistakes and some due to accidental or deliberate manipulation of the *researcher's degrees of freedom* or *data dredging*. These refer to the choices that we make during a study (some of which should strictly be made before the study). For example:
+As we already discussed above, reproduciblity is concerned only with the completeness and unambiguity of the description of the study. All studies should be reproducible, but we expect that some studies will not replicate. Some due to the inherent risk of statistical procedures, some due to researchers' mistakes and some due to accidental or deliberate manipulation of the [researcher's degrees of freedom](https://en.wikipedia.org/wiki/Researcher_degrees_of_freedom) or [data dredging](https://en.wikipedia.org/wiki/Data_dredging). These refer to the choices that we make during a study (some of which should strictly be made before the study). For example:
 
 * the researcher chooses the method or statistical test that confirms the desired hypothesis,
 * the researcher selects the hypotheses only after seeing the data,
@@ -154,33 +154,33 @@ Shiny is useful for rapid development of user-friendly interfaces to interactive
 
 ## Reproducibility tools in Python
 
-Python offers a variety of similar tools to R. It provides Jupyter notebooks with multiple options to create reproducible Python code with dynamic visualizations, presentations and exports to different formats. We already presented installation of Jupyter notebooks in Chapter \@ref(python-introduction-chapter). 
+Python offers a variety of tools similar to R. It provides Jupyter notebooks with multiple options to create reproducible Python code with dynamic visualizations and presentations and exports to different formats. We already showed how to install Jupyter notebooks in Chapter \@ref(python-introduction-chapter). 
 
 The *NBConvert* tool allows you to convert a Jupyter *.ipynb* notebook document file into another format. The [nbconvert documentation](https://media.readthedocs.org/pdf/nbconvert/latest/nbconvert.pdf) contains a complete description of this tool’s capabilities. It allows for:
 
-* presentation of information in familiar formats, such as PDF.
-* publishing of research using LaTeX and opens the door for embedding notebooks in papers.
-* collaboration with others who may not use the notebook in their work.
-* sharing contents with many people via the web using HTML.
+* Presentation of information in familiar formats, such as PDF.
+* Pblishing of research using LaTeX and opens the door for embedding notebooks in papers.
+* Collaboration with others who may not use the notebook in their work.
+* Sharing content with many people via the web using HTML.
 
 Overall, notebook conversion and the nbconvert tool give scientists and researchers the flexibility to deliver information in a timely way across different formats. Primarily, the nbconvert tool allows you to convert a Jupyter *.ipynb* notebook document file into another static format including HTML, LaTeX, PDF, Markdown, reStructuredText, and more. The nbconvert tool can also add productivity to your workflow when used to execute notebooks programmatically.
 
-If used as a Python library (`import nbconvert`), nbconvert adds notebook conversion within a project. For example, nbconvert is used to implement the “Download as” feature within the Jupyter Notebook web application. When used as a command line tool (`jupyter nbconvert`), users can conveniently convert just one or a batch of notebook files to another format.
+If used as a Python library (`import nbconvert`), nbconvert adds notebook conversion within a project. For example, nbconvert is used to implement the “Download as” feature in the Jupyter notebook web application. When used as a command line tool (`jupyter nbconvert`), users can conveniently convert just one or a batch of notebook files to another format.
 
 ### Jupyter Dashboards {-}
 
-A [jupyter dashboard](https://jupyter-dashboards-layout.readthedocs.io/en/latest/) is a jupyter notebook with the dashboards layout extension, where we can arrange your notebook outputs (text, plots, widgets, etc.) in a grid - or report-like layouts. The layouts are saved in the notebook document. When in a jupyter notebook, we should see the dashboard view extension to control the dashboard settings:
+A [jupyter dashboard](https://jupyter-dashboards-layout.readthedocs.io/en/latest/) is a Jupyter notebook with the dashboards layout extension, where we can arrange our notebook outputs (text, plots, widgets, etc.) in a grid - or report-like layouts. The layouts are saved in the notebook document. When in a Jpyter notebook, we should see the dashboard view extension to control the dashboard settings:
 
 ![](data/Reproducibility/jupyter_dashboard.png)
 
 Jupyter notebooks and dashboards are also widely used, support a large number of programming languages and they provide: 
 
 * Documentation and literate programming by combining rich-text narrative concepts & machine-readable code. The notebeook itself is a data-structure with metadata that can be easily read and parsed.
-* Exploration & development: Intermediate steps are saved in a clean, well documented format
-* Communication/Collaboration: sharing research with peers, collaborators, reviewers, public
+* Exploration & development: Intermediate steps are saved in a clean, well documented format.
+* Communication/Collaboration: sharing research with peers, collaborators, reviewers, public.
 * Publishing: It is simple and quick switch between the development & publishing stage
 
-In a combination with [jupyter widgets](https://ipywidgets.readthedocs.io/en/latest), dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data a location of a Weather station is also visualized.
+In combination with [jupyter widgets](https://ipywidgets.readthedocs.io/en/latest), dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data the location of a weather station is also visualized.
 
 
 ```python
@@ -284,4 +284,4 @@ hist(all, breaks = sqrt(n))
 
 <img src="03-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-Create a Shiny App/Dashboard and/or Jupyter Dashboard that draws such a histogram and allows you to interactively change $n$, $m$ and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as $m$ grows larger.
+Create a Shiny App, Shiny Dashboard or Jupyter Dashboard that draws such a histogram and allows you to interactively change $n$, $m$ and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as $m$ grows larger.
