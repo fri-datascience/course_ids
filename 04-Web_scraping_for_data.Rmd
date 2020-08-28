@@ -1,12 +1,12 @@
 # Web scraping {#scraping}
 
-Today there are more than **3.7 billion Internet users**, which almost **50% of the entire population** [@InternetWorldStats]. Taking into account all the existing Internet-enabled devices, we can estimate that approximatelly 30 billion devices are connected to the network [@deitel2011].
+Today there are more than **3.7 billion Internet users**, which almost **50% of the entire population** [@InternetWorldStats]. Taking into account all the existing Internet-enabled devices, we can estimate that approximatelly 30 billion devices are connected to the internet [@deitel2011].
 
 In this chapter we focus on Web data extraction (Web scraping) -  automatically extracting data from websites and storing it in a structured format. However, the broader field of Web information extraction also requires the knowledge of natural language processing techniques such as text pre-processing, information extraction (entity extraction, relationship extraction, coreference resolution), sentiment analysis, text categorization/classification and language models. Students that are interested in learning more about these techniques are encouraged to enrol in a Natural language processing course. For introduction to natural language techniques please see the Further reading references [@liu2011] (Chapter 11), [@manning2008] (Chapters 12, 13, 15-17, 20), [@aggarwal2012] (Chapters 1-8, 12-14) or other specialized books on natural language processing. 
 
 ## Introduction to Web data extraction
 
-Web data extraction systems [@ferrara2014] are a broad class of software applications that focus on extracting data from Web sources. A Web data extraction system usually interacts with a Web source and extracts data stored in it: for instance, if the source is an HTML Web page, the extracted content could consist of elements in the page as well as the full-text of the page itself. Eventually, extracted data might be post-processed, converted to the most convenient structured format and stored for further usage. The design and implementation of Web data extraction systems has been discussed from different perspectives and it leverages on scientific methods from different disciplines including machine learning, logic and natural language processing.
+Web data extraction systems [@ferrara2014] are a broad class of software applications that focus on extracting data from Web sources. A Web data extraction system usually interacts with a Web source and extracts data stored in it: for example, if the source is an HTML Web page, the extracted content could consist of elements in the page as well as the full-text of the page itself. Eventually, extracted data might be post-processed, converted to the most convenient structured format and stored for further usage. The design and implementation of Web data extraction systems has been discussed from different perspectives and it leverages on scientific methods from different disciplines including machine learning, logic and natural language processing.
 
 Web data extraction systems find extensive use in a wide range of applications including the analysis of text-based documents available to a company (like e-mails, support forums, technical and legal documentation, and so on), Business and Competitive Intelligence, crawling of Social Web platforms, Bioinformatics and so on. The importance of Web data extraction systems depends on the fact that a large (and steadily growing) amount of data is continuously produced, shared and consumed online: Web data extraction systems allow us to efficiently collect these data with limited human effort. The availability and analysis of collected data is vital to understanding complex social, scientific and economic phenomena which generate the data. For example, collecting digital traces produced by users of social Web platforms such as Facebook, YouTube or Flickr is the key step to understand, model and predict human behavior.
 
@@ -14,13 +14,13 @@ In commercial fields, the Web provides a wealth of public information. A company
 
 ### The challenges of Web data extraction {-}
 
-In its most general formulation, the problem of extracting data from the Web is hard because it is constrained by several requirements. The key challenges we can encounter in the design of a Web Data Extraction system can be summarized as follows:
+In its most general formulation, the problem of extracting data from the Web is very hard because it is constrained by several requirements. The key challenges we can encounter in the design of a Web Data Extraction system can be summarized as follows:
 
 * Web data extraction techniques implemented in a Web data extraction system often require human input. The first challenge consists of providing a high degree of automation by reducing human efforts as much as possible. Human feedback, however, may play an important role in raising the level of accuracy achieved by a Web data extraction system. A related challenge is to identify a reasonable tradeoff between building highly automated Web data extraction procedures and the requirement of achieving accurate performance.
 * Web data extraction techniques should be able to process large volumes of data in relatively short time. This requirement is particularly stringent in the field of Business and Competitive Intelligence because a company needs to perform timely analysis of market conditions.
-* Applications in the field of Social Web or, more in general, those dealing with personal data must provide solid privacy guarantees. Therefore, potential (even if unintentional) attempts to violate user privacy should be timely and adequately identified and counteracted.
-* Approaches relying on machine learning often require a significantly large training set of manually labeled Web pages. In general, the task of labeling pages is time-expensive and error-prone and, therefore, in many cases we cannot assume the existence of labeled pages.
-* Often, a Web data extraction tool has to routinely extract data from a Web Data source which can evolve over time. Web sources are continuously evolving and structural changes happen with no forewarning, and are thus unpredictable. In real-world scenarios such systems have to be maintained, because they are likely to eventually stop working correctly, in particular if they lack the flexibility to detect and face structural modifications of the target Web sources.
+* Applications in the field of Social Web or, more in general, those dealing with personal data, must provide solid privacy guarantees. Therefore, potential (even if unintentional) attempts to violate user privacy should be timely and adequately identified and counteracted.
+* Approaches relying on machine learning often require a large training set of manually labeled Web pages. In general, the task of labeling pages is time comnsuming and error prone and, therefore, in many cases we cannot assume the existence of labeled pages.
+* Often, a Web data extraction tool has to routinely extract data from a Web Data source which can evolve over time. Web sources are continuously evolving and structural changes happen with no forewarning and are thus unpredictable. In real-world scenarios such systems have to be maintained, because they are likely to eventually stop working correctly, in particular if they lack the flexibility to detect and face structural modifications of the target Web sources.
 
 The first attempts to extract data from the Web date back to the early 90s. In the early days, this discipline borrowed approaches and techniques from Information Extraction (IE) literature. In particular, two classes of strategies emerged: *learning techniques* and *knowledge engineering techniques* – also called *learning-based* and *rule-based approaches*, respectively. These classes share a common rationale: the former was thought to develop systems that require human expertise to define rules (for example, *regular expressions*) to successfully accomplish the data extraction. These approaches require specific domain expertise: users that design and implement the rules and train the system must have programming experience and a good knowledge of the domain in which the data extraction system will operate; they will also have the ability to envisage potential usage scenarios and tasks assigned to the system. On the other hand, also some approaches of the latter class involve strong familiarity with both the requirements and the functions of the platform, so human input is essential.
 
@@ -126,7 +126,7 @@ Modern Web sites still use HTML to render their data within Web browsers. Below 
 </tr>
 </table>
 
-However, Web sites are becoming more dynamic - loading data in the background, not refreshing the entire view, etc. These functionalities require dynamic code to be executed directly on the client, that is, inside the Web browser. The main language that can be interpreted by a Web browser is Javascript. Although best practices instruct the programmers to support non-Javascript browsers, there are many Web pages that malfunction if the browser does not support Javascript. With the advent of Single page application (SPA) Web sites the content does not even partially load as the whole Web page is driven by the Javascript. Popular frameworks that enable SPA development are for example [Angular](https://angular.io/), [Vue.js](https://vuejs.org/) or [React](https://reactjs.org/). Below we show some examples of rendering Web pages when a browser runs with Javascript enabled or disabled:
+However, Web sites are becoming more dynamic - loading data in the background, not refreshing the entire view, etc. These functionalities require dynamic code to be executed directly on the client, that is, inside the Web browser. The main language that can be interpreted by a Web browser is Javascript. Although best practices instruct the programmers to support non-Javascript browsers, there are many Web pages that malfunction if the browser does not support Javascript. With the advent of Single page application (SPA) Web sites the content does not even partially load as the whole Web page is driven by the Javascript. Popular frameworks that enable SPA development are, for example [Angular](https://angular.io/), [Vue.js](https://vuejs.org/) or [React](https://reactjs.org/). Below we show some examples of rendering Web pages when a browser runs with Javascript enabled or disabled:
 
 <table class="additionalSources">
 <tr>
@@ -143,19 +143,19 @@ However, Web sites are becoming more dynamic - loading data in the background, n
 </tr>
 </table>
 
-When we develop a Web extraction system we should first review how the target Web site is built and which frontend technologies are used. Then we can also more efficiently use a library to implement a final Web wrapper to extract the desired data. When we need to execute Javascript, our extraction library needs to implement *headless browser* functionality. This functionality runs a hidden browser to construct a final HTML content which is then used for further manipulation. Libraries that support such functionality are for example:
+When we develop a Web extraction system we should first review how the target Web site is built and which frontend technologies are used. Then we can also more efficiently use a library to implement a final Web wrapper to extract the desired data. When we need to execute Javascript, our extraction library needs to implement *headless browser* functionality. This functionality runs a hidden browser to construct a final HTML content which is then used for further manipulation. Libraries that support such functionality are, for example:
 
-* [Selenium](https://www.seleniumhq.org/)
-* [phantomJS](http://phantomjs.org/)
-* [HTMLUnit](http://htmlunit.sourceforge.net/)
+* [Selenium](https://www.seleniumhq.org/),
+* [phantomJS](http://phantomjs.org/) and
+* [HTMLUnit](http://htmlunit.sourceforge.net/).
 
 Running a headless browser and executing Javascript can be time consuming and prone to errors. So, whenever we can, we should rather use just an HTML parsing library. There exist many of such libraries and we mention just a few: 
 
-  * [HTML Cleaner](http://htmlcleaner.sourceforge.net/)
-  * [HTML Parser](http://htmlparser.sourceforge.net/)
-  * [JSoup](https://jsoup.org/) (Java) or [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) (Python)
-  * [Jaunt API](https://jaunt-api.com/)
-  * [HTTP Client](http://hc.apache.org/)
+  * [HTML Cleaner](http://htmlcleaner.sourceforge.net/),
+  * [HTML Parser](http://htmlparser.sourceforge.net/),
+  * [JSoup](https://jsoup.org/) (Java) or [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) (Python),
+  * [Jaunt API](https://jaunt-api.com/) and
+  * [HTTP Client](http://hc.apache.org/).
 
 ### Crawling, resources and policies
 
@@ -211,6 +211,6 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-* Explore the Web and find some dynamic Web sites. Using your favourite browser inspect the structure of specific Web pages and try to load the same Web pages with Javascript disabled.
-* Implement and run a crawler that will target https://fri.uni-lj.si/sl/o-fakulteti/osebje and extract the following information about every employee: name, email, phone number, title/job position, and the number of courses they teach and number of projects they have listed. Save the data in CSV format.
-* An example project: Recently, [gov.si](http://gov.si) Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account *robots.txt*, etc. Store rendered HTML data and also extracted data into a database.
+1. Explore the Web and find some dynamic Web sites. Inspect the structure of a few Web pages with your favorite browser and try to load the same Web pages with Javascript disabled.
+2. Implement and run a crawler that will target https://fri.uni-lj.si/sl/o-fakulteti/osebje and extract the following information about every employee: name, email, phone number, title/job position and the number of courses they teach and number of projects they have listed. Save the data in CSV format.
+3. An example project: Recently, [gov.si](http://gov.si) Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account *robots.txt*, etc. Store rendered HTML data and also extracted data in a database.
