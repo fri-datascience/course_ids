@@ -1,18 +1,16 @@
 # Relational databases {#databases}
 
-Organizations have been using SQL databases almost from the time they exist. In databases they store transactional data as well as business intelligence related data. In some cases and depending on a company, they may use other types of databases such as NoSQL databases which provide their own data organization and different mechanisms to access the data. Therefore, to help companies work on their problems and provide data intelligence for them, data scientists and analysts need to understand relational data stores. Relational databases share a common basic query language - SQL using which we can perform common data science tasks, including finding, exploration, and extraction within relational databases. 
-
-Software that implements a specific database is called a database management system. It provides a whole software solution to work with larger data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provide a common interface using SQL query language. Examples of such datases used in real-world scenarios are [Oracle](http://www.oracle.com/index.html), [IBM DB2](http://www-306.ibm.com/software/data/db2/), [MSSQL](http://www.microsoft.com/sql/default.mspx), [MySQL](http://www.mysql.com/),  [PostgreSQL](http://www.postgresql.org/) or [SQLite](https://www.sqlite.org/index.html).
+Organizations, researchers and other individuals have been using databases to store and work with data since they exist. Software that implements a specific database is called a database management system. It provides a complete software solution to work with data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on the type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provide a common interface using the SQL query language -- a common basic query language, which we use for searching and manipulating data in relational databases. Example database management systems are [Oracle](http://www.oracle.com/index.html), [IBM DB2](http://www-306.ibm.com/software/data/db2/), [MSSQL](http://www.microsoft.com/sql/default.mspx), [MySQL](http://www.mysql.com/),  [PostgreSQL](http://www.postgresql.org/) or [SQLite](https://www.sqlite.org/index.html).
 
 ## Introduction to SQL
 
-Structure query language - SQL, pronounced as "sequel" is a domain-specific language used in programming and designed for managing data held in a relational database management system. It is originally based on relational algebra and tuple relational calculus. SQL consists of many types of statements, such as a data manipulation language, a data definition language or a data control language. Although SQL is a declarative language, its extensions include also procedural elements. SQL became a standard in 1986 and since then, the standard has been revised a few times to include a larger set of features. Despite the existence of standards, most SQL code is not completely portable among different database systems without adjustments.
+Structure Query Language (SQL), pronounced as "sequel" is a domain-specific language used in programming and designed for managing data held in a relational database management system. It is based on relational algebra and tuple relational calculus. SQL consists of many types of statements, such as a data manipulation language, a data definition language or a data control language. Although SQL is a declarative language, its extensions include also procedural elements. SQL became a standard in 1986 and has been revised a few times since to include new features. Despite the existence of standards, most SQL code is not completely portable among different database systems.
 
-As for data science, data modelling and querying is the most important, we cover only these two aspects of the SQL which is also the most common to all database systems. In order to use advanced mechanisms such as security management, procedural functionalities or locking, please review the documentation of your selected database system.
+For the data scientist, data modelling and querying are the most important. We will focus only on these two aspects of the SQL which are also the most common to all database systems. In order to use advanced mechanisms such as security management, procedural functionalities or locking, please review the documentation of your selected database system.
 
 ### Data definition language
 
-Data definition language type of SQL sentences enable us to manipulate with the structure of the database. They define SQL data types and provide mechanisms to manipulate with database objects, data quality assertion mechanisms, transactions and definition of procedural objects such as procedures and functions.
+Data definition language SQL sentences enable us to manipulate with the structure of the database. They define SQL data types and provide mechanisms to manipulate with database objects, data quality assertion mechanisms, transactions and definition of procedural objects such as procedures and functions.
 
 The data types of data columns in tables are defined as follows (ANSI SQL):
 
@@ -23,7 +21,7 @@ The data types of data columns in tables are defined as follows (ANSI SQL):
 | number | DECIMAL, REAL, DOUBLE PRECISION, FLOAT, SMALLINT, INTEGER, INTERVAL |
 | text | CHARACTER, CHARACTER VARYING, NATIONAL CHARACTER, NATIONAL CHARACTER VARYING |
 
-Many database management systems can host multiple schemas or databases and therefore we need first to create the database using `CREATE DATABASE DatabaseName`. After that we need to explicity say which database will be used by the following commands using `USE DatabaseName`. If we do not issue that command, we need to addres every database object as `DatabaseName.ObjectName`.
+Many database management systems can host multiple schemas or databases, so we need first to create the database using `CREATE DATABASE DatabaseName`. After that we need to explicity say which database will be used by the following commands using `USE DatabaseName`. If we do not issue that command, we need to addres every database object as `DatabaseName.ObjectName`.
 
 To create new tables, we use the CREATE TABLE statement, which looks as follows:
 
@@ -41,7 +39,7 @@ CREATE TABLE TableName (
     {[CHECK (searchCondition)]}) 
 ```
 
-Apart from the data types, constraints are useful to use so that the database's referential integrity protection will take care of data correctness. With the command `NULL` or `NOT NULL` we define that a column may or may not contain a missing value. The parameter `UNIQUE` defines a constraint on a specific column that must not contain duplicated values in the whole table. We can also define it separately for more columns at once, similarly to the primary key syntax.
+Constraints are useful, because they allow the database's referential integrity protection to take care of data correctness. With the command `NULL` or `NOT NULL` we define that a column may or may not contain a missing value. The parameter `UNIQUE` defines a constraint on a specific column that must not contain duplicated values in the whole table. We can also define it separately for more columns at once, similarly to the primary key syntax.
 
 Using this statement we can also define column specifics, such as data type, constraints, foreign keys or primary keys. All of these can be changed later using ALTER commands. For example, to drop an existing constraint or foreign key, we use:
 
@@ -178,7 +176,7 @@ knitr::include_graphics("data/SQL/screenshot.png")
 
 In this section we show how to create a new SQLite database and manage it manually using SQL language directly. First we create a new database file called `itds_course.db`. 
 
-We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be quite complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
+We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
 
 ```{r model, echo=FALSE, fig.align='center', fig.cap='Employee logical database model.'}
 knitr::include_graphics("data/SQL/model.png")
@@ -195,7 +193,7 @@ PRAGMA foreign_keys = ON;
 PRAGMA foreign_keys;
 ```
 
-We observe that by default, each SQL statement is terminated using a semicolon. Now we can continue and create all the tables:
+We observe that, by default, each SQL statement is terminated using a semicolon. Now we can continue and create all the tables:
 
 ```sql
 -- Creating Branch table
@@ -267,7 +265,7 @@ INSERT INTO Salary (year, month, id_employee, amount) VALUES
     (2010, 07, 8, 2099.11);
 ```
 
-Now the data is in the database and we can perform querying. Below we show just some basic queries. The command-line does not include column names in the output, so when they are not defined in the query, their order from the table is followed.
+Now the data are in the database and we can query them. Below we show just some basic queries. The command-line output does not include column names, so when they are not defined in the query, their order is as in the table.
 
 ```sql
 -- Selecting all columns
@@ -382,7 +380,7 @@ SELECT * FROM SalaryAnalysis;
 8|2010-04-22|2022-01-01|2010-7-01|2099.11
 ```
 
-Another option is to create a dynamic object, called VIEW. The CREATE VIEW command assigns a name to a pre-packaged SELECT statement. Once the view is created, it can be used in the FROM clause of another SELECT in place of a table name. We can also rename columns when creating a view. The same example as we used above for creating a table, we now use to create a VIEW:
+Another option is to create a dynamic object called VIEW. The CREATE VIEW command assigns a name to a pre-packaged SELECT statement. Once the view is created, it can be used in the FROM clause of another SELECT in place of a table name. We can also rename columns when creating a view. We now use the same example as above to create a VIEW:
 
 ```sql
 CREATE VIEW SalaryAnalysisView (id, start, end, month, amount) AS
@@ -419,13 +417,13 @@ UPDATE Employee
  WHERE id = 3;
 ```
 
-The DELETE statements are similar to the UPDATE statements. In both cases we must be careful about the WHERE condition as we may quickly delete or update too many rows.
+DELETE statements are similar to UPDATE statements. In both cases we must be careful about the WHERE condition as we may quickly delete or update too many rows.
 
 ```sql
 DELETE FROM Employee WHERE employment_end IS NOT NULL;
 ```
 
-The statement above could not delete Employees as there exist rows in the Salary table that refer to the rows in the Employee table. Therefore, we need first delete the rows from the Salary table and then from the Employee table. More advanced databases support the CASCADE mechanism in the DELETE statement already which can be used for such scenarios.
+The statement above could not delete Employees as there exist rows in the Salary table that refer to the rows in the Employee table. Therefore, we need to first delete the rows from the Salary table and then from the Employee table. More advanced databases support the CASCADE mechanism in the DELETE statement already which can be used for such scenarios.
 
 ```sql 
 DELETE FROM Salary WHERE id_employee IN (
@@ -541,9 +539,9 @@ postgres=# \c courseitds
 You are now connected to database "courseitds" as user "postgres".
 ```
 
-Now we can use the SQL statements from the example above (Section \@ref(sqlite-example)). PostgreSQL supports a SQL a little bit differently, so we need to adapt the following:
+Now we can use the SQL statements from the example above (Section \@ref(sqlite-example)). PostgreSQL supports SQL a bit differently, so we need to adapt the following:
 
-* Foreign key constraint check are enabled by default so there is no need to enable them.
+* Foreign key constraint checks are enabled by default so there is no need to enable them.
 * The command AUTOINCREMENT is not supported. We can use a data type SERIAL which already includes the functionality. Foreign keys can still be of INTEGER type.
 * Dates can used the data type DATE. Also functions for querying are different. For example, `EXTRACT (YEAR FROM t.employment_end)` extracts a year value from a date.
 * We should not use double quotes for values. Therefore we change all double quotes to single quotes. Single quotes that are part of a value should be escaped with an additional single quote.
@@ -563,11 +561,11 @@ When running a database using Docker, do not forget about the data storage! Usin
 Data science students should work towards obtaining the knowledge and the skills that enable them to:
 
 * Use SQL to model, query and update a relational database.
-* Setup an arbitrary relational database and use it from a desired programming language.
-* Import/export datasets or analysis data into a database.
+* Setup a relational database and use it from your programming language of choice.
+* Import and export data to and from a database.
 
 ## Practice problems
 
-* Select one of the machine learning datasets, design a database for it and import it into a database. Use Python visualization library and visualize the data direclty from querying the database.
-* Use the examples above and adapt them for another relational database management system - e.g. MySQL, MSSQL or Oracle.
+* Select one of the machine learning datasets, design a database for it and import it into a database. Use the Python visualization library and visualize the data queried directly from the database.
+* Adapt the examples from above for use with another relational database management system - e.g. MySQL, MSSQL or Oracle.
 
