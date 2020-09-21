@@ -85,7 +85,7 @@ f6a55e492493        docker-app          "/bin/sh -c 'python3…"   14 seconds ag
 
 ### Docker application example
 
-To better understand everything, let's develop a simple web application and run it within a docker container (solution of this part is available in folder *app_only* in [the GitHub repository](https://github.com/szitnik/docker-itds)).
+To better understand everything, let's develop a simple web application and run it from within a docker container (solution of this part is available in folder *app_only* in [the GitHub repository](https://github.com/szitnik/docker-itds)).
 
 We have a simple Python web server implementation (*server.py*)
 
@@ -430,7 +430,7 @@ To shutdown the containers, press CTRL+C (or run `docker-compose down` if you st
 
 #### Image registries {#registries}
 
-We have already mentioned that there exist prepared images, which can be retried from the public repositories. Repositories can be public or private. Two main public registries are [Docker Hub](https://docs.docker.com/docker-hub) and Docker Cloud. Docker Hub is the default registry where Docker looks for images. Docker clients connect to Docker repositories to download (*pull*) images for use or upload (*push*) images that they have built. 
+We have already mentioned that there exist prepared images, which can be retried from public or private repositories. The two main public registries are [Docker Hub](https://docs.docker.com/docker-hub) and Docker Cloud. Docker Hub is the default registry where Docker looks for images. Docker clients connect to Docker repositories to download (*pull*) images for use or upload (*push*) images that they have built. 
 
 We have published the image of the first example in the repository *szitnik/docker-ds-app* ([link](https://hub.docker.com/r/szitnik/docker-ds-app)). You can pull the image (*docker pull* command) or run it directly with the command:
 
@@ -457,11 +457,11 @@ If we do not define the tag, it will be *latest* by default. We can access our i
 
 ### Dockerfile optimizations
 
-The Dockerfile for image running the Flask server we created above is not written directly according to good practices. Some major remarks:
+The Dockerfile for the image running the Flask server we created above is not written completely according to good practices:
 
-* If we copy project files as a first step, this invalidates Docker cache and causes all others step to execute again. This means that it will install all the further requirements and this causes a significant delay as it has to fetch and install them all from the Internet. In Dockerfiles, a proper ordering of commands in very important. Files (as they change frequently) have to be copied into the container as late as possible.
-* For Python, it is a good practice to use *virtualenv* even in the container. But using virtualenv in the container may introduce some adaptations in how to activate the environment and run an application in it. 
-* Python modules in the official Ubuntu repository are old. It is a good practice (very important in production environments!) to lock dependency versions in *requirements.txt* file. If you do not lock the versions, the build is not deterministic as it can brake later when a new version of a package is introduced.
+* Copying project files as a first step invalidates Docker cache and causes all others step to execute again. This means that it will install all further requirements, which causes a significant delay as it has to download and install all of them. In Dockerfiles, a proper ordering of commands in very important. Files (as they change frequently) have to be copied into the container as late as possible.
+* For Python it is a good practice to use *virtualenv* even in the container. But using virtualenv in the container may introduce some adaptations in how to activate the environment and run an application in it. 
+* Python modules in the official Ubuntu repository are old. It is a good practice (very important in production environments!) to lock dependency versions in a *requirements.txt* file. If you do not lock the versions, the build is not deterministic as it can brake later when a new version of a package is introduced.
 
 Below we show an updated version of a Dockerfile:
 

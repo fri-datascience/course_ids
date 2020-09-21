@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2020-08-12" />
+<meta name="date" content="2020-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.5.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#running-a-jupyter-notebook"><i class="fa fa-check"></i><b>1.5.1</b> Running a Jupyter notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> Short introduction to Python</a>
+<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#a-short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> A short introduction to Python</a>
 <ul>
 <li class="chapter" data-level="" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="1.6.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#flow-control"><i class="fa fa-check"></i><b>1.6.1</b> Flow control</a></li>
@@ -180,13 +180,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.6" data-path="git.html"><a href="git.html#pull"><i class="fa fa-check"></i><b>2.3.6</b> Pull</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="git.html"><a href="git.html#a-beginner-git-example"><i class="fa fa-check"></i><b>2.4</b> A beginner Git example</a></li>
-<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#advanced-git-usage"><i class="fa fa-check"></i><b>2.5</b> “Advanced” Git usage</a>
+<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#beyond-the-basics"><i class="fa fa-check"></i><b>2.5</b> Beyond the basics</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="git.html"><a href="git.html#conflict-resolution"><i class="fa fa-check"></i><b>2.5.1</b> Conflict resolution</a></li>
 <li class="chapter" data-level="2.5.2" data-path="git.html"><a href="git.html#git-branching"><i class="fa fa-check"></i><b>2.5.2</b> Branching</a></li>
 <li class="chapter" data-level="2.5.3" data-path="git.html"><a href="git.html#forking"><i class="fa fa-check"></i><b>2.5.3</b> Forking</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="git.html"><a href="git.html#git-guis"><i class="fa fa-check"></i><b>2.6</b> GUI Programs</a></li>
+<li class="chapter" data-level="2.6" data-path="git.html"><a href="git.html#git-guis"><i class="fa fa-check"></i><b>2.6</b> Git tools</a></li>
 <li class="chapter" data-level="2.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>2.7</b> Further reading and references</a></li>
 <li class="chapter" data-level="2.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>2.8</b> Learning outcomes</a></li>
 <li class="chapter" data-level="2.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>2.9</b> Practice problems</a></li>
@@ -474,8 +474,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Another useful visualization is the frequency of different patterns of missingness:</p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="missing-data.html#cb309-1" aria-hidden="true"></a><span class="kw">library</span>(UpSetR)</span>
 <span id="cb309-2"><a href="missing-data.html#cb309-2" aria-hidden="true"></a><span class="kw">gg_miss_upset</span>(dat)</span></code></pre></div>
-<p><img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
-From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.</p>
+<p><img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.</p>
 </div>
 <div id="deletion-methods" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Deletion methods</h2>
@@ -560,14 +560,14 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09695</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.08496</code></pre>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="missing-data.html#cb328-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8456</code></pre>
+## X-squared = 1.4154, df = NA, p-value = 0.8326</code></pre>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="missing-data.html#cb330-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -586,7 +586,7 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05997</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.04998</code></pre>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="missing-data.html#cb336-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
 <span id="cb336-2"><a href="missing-data.html#cb336-2" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
 <span id="cb336-3"><a href="missing-data.html#cb336-3" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
@@ -597,7 +597,7 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9525</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.9585</code></pre>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="missing-data.html#cb340-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
 <span id="cb340-2"><a href="missing-data.html#cb340-2" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
 <span id="cb340-3"><a href="missing-data.html#cb340-3" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
@@ -684,7 +684,6 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <span id="cb353-25"><a href="missing-data.html#cb353-25" aria-hidden="true"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>dropOUToriginal[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
 <span id="cb353-26"><a href="missing-data.html#cb353-26" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
 <pre><code>## 0.67 +/- 0.016</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="missing-data.html#cb355-1" aria-hidden="true"></a><span class="co"># </span></span></code></pre></div>
 <p>Using the other variables did not lead to an improvement in accuracy. Either there is nothing more we can extract from the given variables or we would need to pick a better model or engineer better input variables.</p>
 <p>The advantage of a predictive approach over imputation with mean is that, if we manage to capture the relationships in the data, imputation with a predictive model can account for bias caused by a MAR missingness regime! However, as with any single imputation method, we will still underestimate variability. In order to fully capture variability, we must use a distribution or multiple values - multiple imputation.</p>
 </div>
@@ -702,46 +701,45 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <p>This generates one imputed dataset. We repeate steps (2-4) several times to generate multiple imputed datasets. Any further analysis we do should be based on all those datasets, because they capture the variability in the missing data - our uncertainty about what the missing data values might be.</p>
 <p>Those familiar with Gibbs sampling, a popular inference algorithm in Bayesian statistics, will quickly recognize that MICE is based on the same ideas. A full generative model can be specified by specifying just the full conditional distributions (a distribution of a variable with all other variables known) and we can use Markov Chain Monte Carlo (in this case Gibbs sampling) to generate samples from the posterior of that model.</p>
 <p>Implementations of MICE typically do all the work for us. We only need to specify the number of imputed datasets we need. We’ll use the R package <a href="https://cran.r-project.org/web/packages/mice/index.html">mice</a> to create 50 imputed datasets for our data. We then use logistic regression to predict dropout for each of those datasets and combine the predictions of all the models into a final prediction of dropout. First, we impute the predictor variables:</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="missing-data.html#cb356-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
-<span id="cb356-2"><a href="missing-data.html#cb356-2" aria-hidden="true"></a>tgt &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal</span>
-<span id="cb356-3"><a href="missing-data.html#cb356-3" aria-hidden="true"></a></span>
-<span id="cb356-4"><a href="missing-data.html#cb356-4" aria-hidden="true"></a><span class="co"># multiple imputation</span></span>
-<span id="cb356-5"><a href="missing-data.html#cb356-5" aria-hidden="true"></a></span>
-<span id="cb356-6"><a href="missing-data.html#cb356-6" aria-hidden="true"></a><span class="kw">library</span>(mice)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="missing-data.html#cb355-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
+<span id="cb355-2"><a href="missing-data.html#cb355-2" aria-hidden="true"></a>tgt &lt;-<span class="st"> </span>dat<span class="op">$</span>dropOUToriginal</span>
+<span id="cb355-3"><a href="missing-data.html#cb355-3" aria-hidden="true"></a></span>
+<span id="cb355-4"><a href="missing-data.html#cb355-4" aria-hidden="true"></a><span class="co"># multiple imputation</span></span>
+<span id="cb355-5"><a href="missing-data.html#cb355-5" aria-hidden="true"></a></span>
+<span id="cb355-6"><a href="missing-data.html#cb355-6" aria-hidden="true"></a><span class="kw">library</span>(mice)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;mice&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     cbind, rbind</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="missing-data.html#cb359-1" aria-hidden="true"></a><span class="co"># Uncomment the lines below to generate tmp data first time</span></span>
-<span id="cb359-2"><a href="missing-data.html#cb359-2" aria-hidden="true"></a><span class="co">#imputed_tmp &lt;- mice(tmp, m = 50, seed = 0)</span></span>
-<span id="cb359-3"><a href="missing-data.html#cb359-3" aria-hidden="true"></a><span class="co">#saveRDS(imputed_tmp, &quot;./data/imputed_tmp.rds&quot;)</span></span>
-<span id="cb359-4"><a href="missing-data.html#cb359-4" aria-hidden="true"></a></span>
-<span id="cb359-5"><a href="missing-data.html#cb359-5" aria-hidden="true"></a>imputed_tmp &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/imputed_tmp.rds&quot;</span>) <span class="co"># we load the precomputed data to save time</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="missing-data.html#cb358-1" aria-hidden="true"></a><span class="co"># Uncomment the lines below to generate tmp data first time</span></span>
+<span id="cb358-2"><a href="missing-data.html#cb358-2" aria-hidden="true"></a><span class="co">#imputed_tmp &lt;- mice(tmp, m = 50, seed = 0)</span></span>
+<span id="cb358-3"><a href="missing-data.html#cb358-3" aria-hidden="true"></a><span class="co">#saveRDS(imputed_tmp, &quot;./data/imputed_tmp.rds&quot;)</span></span>
+<span id="cb358-4"><a href="missing-data.html#cb358-4" aria-hidden="true"></a></span>
+<span id="cb358-5"><a href="missing-data.html#cb358-5" aria-hidden="true"></a>imputed_tmp &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/imputed_tmp.rds&quot;</span>) <span class="co"># we load the precomputed data to save time</span></span></code></pre></div>
 <p>We can inspect which types of models were used:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="missing-data.html#cb360-1" aria-hidden="true"></a><span class="kw">print</span>(imputed_tmp<span class="op">$</span>method)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="missing-data.html#cb359-1" aria-hidden="true"></a><span class="kw">print</span>(imputed_tmp<span class="op">$</span>method)</span></code></pre></div>
 <pre><code>##    GCSEgrade       Course  Disposition SelfEfficacy       Gender     Language 
 ##           &quot;&quot;           &quot;&quot;           &quot;&quot;           &quot;&quot;     &quot;logreg&quot;    &quot;polyreg&quot; 
 ##          EMA    Ethnicity          LPN        HEFCE       uniFAM 
 ##     &quot;logreg&quot;    &quot;polyreg&quot;     &quot;logreg&quot;        &quot;pmm&quot;    &quot;polyreg&quot;</code></pre>
 <p>Now we iterate through all the imputed datasets, predict outcome and pool the predictions:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="missing-data.html#cb362-1" aria-hidden="true"></a>pre &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(x))</span>
-<span id="cb362-2"><a href="missing-data.html#cb362-2" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>) {</span>
-<span id="cb362-3"><a href="missing-data.html#cb362-3" aria-hidden="true"></a>  df &lt;-<span class="st"> </span><span class="kw">complete</span>(imputed_tmp, <span class="dv">1</span>)</span>
-<span id="cb362-4"><a href="missing-data.html#cb362-4" aria-hidden="true"></a>  df<span class="op">$</span>tgt &lt;-<span class="st"> </span>tgt <span class="co"># add dropout</span></span>
-<span id="cb362-5"><a href="missing-data.html#cb362-5" aria-hidden="true"></a>  mod &lt;-<span class="st"> </span><span class="kw">glm</span>(tgt <span class="op">~</span><span class="st"> </span>., df, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb362-6"><a href="missing-data.html#cb362-6" aria-hidden="true"></a>  idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb362-7"><a href="missing-data.html#cb362-7" aria-hidden="true"></a>  pre &lt;-<span class="st"> </span>pre <span class="op">+</span><span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> df, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">/</span><span class="st"> </span><span class="dv">50</span></span>
-<span id="cb362-8"><a href="missing-data.html#cb362-8" aria-hidden="true"></a>}</span>
-<span id="cb362-9"><a href="missing-data.html#cb362-9" aria-hidden="true"></a></span>
-<span id="cb362-10"><a href="missing-data.html#cb362-10" aria-hidden="true"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pre <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
-<span id="cb362-11"><a href="missing-data.html#cb362-11" aria-hidden="true"></a>tmp<span class="op">$</span>tgt &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
-<span id="cb362-12"><a href="missing-data.html#cb362-12" aria-hidden="true"></a></span>
-<span id="cb362-13"><a href="missing-data.html#cb362-13" aria-hidden="true"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
-<span id="cb362-14"><a href="missing-data.html#cb362-14" aria-hidden="true"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>tgt[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
-<span id="cb362-15"><a href="missing-data.html#cb362-15" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="missing-data.html#cb361-1" aria-hidden="true"></a>pre &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(x))</span>
+<span id="cb361-2"><a href="missing-data.html#cb361-2" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>) {</span>
+<span id="cb361-3"><a href="missing-data.html#cb361-3" aria-hidden="true"></a>  df &lt;-<span class="st"> </span><span class="kw">complete</span>(imputed_tmp, <span class="dv">1</span>)</span>
+<span id="cb361-4"><a href="missing-data.html#cb361-4" aria-hidden="true"></a>  df<span class="op">$</span>tgt &lt;-<span class="st"> </span>tgt <span class="co"># add dropout</span></span>
+<span id="cb361-5"><a href="missing-data.html#cb361-5" aria-hidden="true"></a>  mod &lt;-<span class="st"> </span><span class="kw">glm</span>(tgt <span class="op">~</span><span class="st"> </span>., df, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb361-6"><a href="missing-data.html#cb361-6" aria-hidden="true"></a>  idx &lt;-<span class="st"> </span><span class="kw">is.na</span>(dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb361-7"><a href="missing-data.html#cb361-7" aria-hidden="true"></a>  pre &lt;-<span class="st"> </span>pre <span class="op">+</span><span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> df, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">/</span><span class="st"> </span><span class="dv">50</span></span>
+<span id="cb361-8"><a href="missing-data.html#cb361-8" aria-hidden="true"></a>}</span>
+<span id="cb361-9"><a href="missing-data.html#cb361-9" aria-hidden="true"></a></span>
+<span id="cb361-10"><a href="missing-data.html#cb361-10" aria-hidden="true"></a>pre &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pre <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>) <span class="co"># predicted values</span></span>
+<span id="cb361-11"><a href="missing-data.html#cb361-11" aria-hidden="true"></a>tmp<span class="op">$</span>tgt &lt;-<span class="st"> </span><span class="kw">ifelse</span>(idx, pre, dat<span class="op">$</span>dropOUToriginal)</span>
+<span id="cb361-12"><a href="missing-data.html#cb361-12" aria-hidden="true"></a></span>
+<span id="cb361-13"><a href="missing-data.html#cb361-13" aria-hidden="true"></a><span class="co"># accuracy on missing values, compared to relative freq.</span></span>
+<span id="cb361-14"><a href="missing-data.html#cb361-14" aria-hidden="true"></a>y &lt;-<span class="st"> </span>tmp<span class="op">$</span>tgt[idx] <span class="op">==</span><span class="st"> </span>dat<span class="op">$</span>dropOUTretrieved[idx]</span>
+<span id="cb361-15"><a href="missing-data.html#cb361-15" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%.2f +/- %.3f</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">mean</span>(y), <span class="kw">stderr</span>(y)))</span></code></pre></div>
 <pre><code>## 0.64 +/- 0.016</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="missing-data.html#cb364-1" aria-hidden="true"></a><span class="co"># </span></span></code></pre></div>
 <p>In this case MICE doesn’t seem to have helped. In general, MICE is a very robust procedure and it performs really well in many different situations. The main issue with MICE is that it is computationally very intensive.</p>
 </div>
 </div>
@@ -772,15 +770,13 @@ From the above plot we can see that dropout and ethnicity have the most missing 
 <div id="practice-problems" class="section level2" number="11.8">
 <h2><span class="header-section-number">11.8</span> Practice problems</h2>
 <ol style="list-style-type: decimal">
-<li>We prepared a subset of the <a href="https://www.kaggle.com/ajinkyablaze/football-manager-data/data">Football Manager Players</a> dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (<em><a href="data/football-manager-complete.rds">football-manager-complete.rds</a></em>). We then introduced missing values to this data based on various missingness mechanisms (<em><a href="data/football-manager-missing.rds">football-manager-missing.rds</a></em>) and in a way that could also have a reasonable practical explanation. Your task is to:</li>
-</ol>
+<li>We prepared a subset of the <a href="data/football-manager-data.zip">Football Manager Players</a> dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (<em><a href="data/football-manager-complete.rds">football-manager-complete.rds</a></em>). We then introduced missing values to this data based on various missingness mechanisms (<em><a href="data/football-manager-missing.rds">football-manager-missing.rds</a></em>) and in a way that could also have a reasonable practical explanation. Your task is to:
 <ol style="list-style-type: lower-alpha">
 <li>Identify and, as much as it is possible, characterize missingness mechanisms and patterns in the data.</li>
 <li>Use information from (a) to impute missing values in all numerical variables (all variables except <em>PositionsDesc</em>, which can be ignored throughout this problem).</li>
 <li>Estimate the mean of all numerical variables.</li>
 <li>Only once you have completed your analysis, use <em>football-manager-complete.rds</em> to compare your estimated means with column averages on the complete dataset. Discuss which mechanisms you correctly detected and characterized. Discuss the discrepancies between your estimates and actual column means - was there anything you could have done better?</li>
-</ol>
-<ol start="2" style="list-style-type: decimal">
+</ol></li>
 <li>In the same setting as (1) try to predict players’ playing position (<em>PositionsDesc</em>) using <em>football-manager-missing.rds</em>. once you have completed your analysis, use <em>football-manager-complete.rds</em> to evaluate your model on the observations that had missing playing position. Discuss what you could have done better.</li>
 </ol>
 

@@ -117,6 +117,7 @@ gg_miss_upset(dat)
 ```
 
 <img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
 From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.
 
 ## Deletion methods
@@ -273,7 +274,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09695
+## X-squared = 4.6808, df = NA, p-value = 0.08496
 ```
 
 ```r
@@ -286,7 +287,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8456
+## X-squared = 1.4154, df = NA, p-value = 0.8326
 ```
 
 ```r
@@ -325,7 +326,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05997
+## X-squared = 5.8535, df = NA, p-value = 0.04998
 ```
 
 ```r
@@ -348,7 +349,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9525
+## X-squared = 0.72928, df = NA, p-value = 0.9585
 ```
 
 ```r
@@ -494,10 +495,6 @@ cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
 ## 0.67 +/- 0.016
 ```
 
-```r
-# 
-```
-
 Using the other variables did not lead to an improvement in accuracy. Either there is nothing more we can extract from the given variables or we would need to pick a better model or engineer better input variables.
 
 The advantage of a predictive approach over imputation with mean is that, if we manage to capture the relationships in the data, imputation with a predictive model can account for bias caused by a MAR missingness regime! However, as with any single imputation method, we will still underestimate variability. In order to fully capture variability, we must use a distribution or multiple values - multiple imputation.
@@ -590,10 +587,6 @@ cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
 ## 0.64 +/- 0.016
 ```
 
-```r
-# 
-```
-
 In this case MICE doesn't seem to have helped. In general, MICE is a very robust procedure and it performs really well in many different situations. The main issue with MICE is that it is computationally very intensive.
 
 ## Summary
@@ -624,12 +617,11 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. We prepared a subset of the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/data) dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (*[football-manager-complete.rds](data/football-manager-complete.rds)*). We then introduced missing values to this data based on various missingness mechanisms (*[football-manager-missing.rds](data/football-manager-missing.rds)*) and in a way that could also have a reasonable practical explanation. Your task is to:
-
-a. Identify and, as much as it is possible, characterize missingness mechanisms and patterns in the data.
-b. Use information from (a) to impute missing values in all numerical variables (all variables except *PositionsDesc*, which can be ignored throughout this problem).
-c. Estimate the mean of all numerical variables.
-d. Only once you have completed your analysis, use *football-manager-complete.rds* to compare your estimated means with column averages on the complete dataset. Discuss which mechanisms you correctly detected and characterized. Discuss the discrepancies between your estimates and actual column means - was there anything you could have done better?
+1. We prepared a subset of the [Football Manager Players](data/football-manager-data.zip) dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (*[football-manager-complete.rds](data/football-manager-complete.rds)*). We then introduced missing values to this data based on various missingness mechanisms (*[football-manager-missing.rds](data/football-manager-missing.rds)*) and in a way that could also have a reasonable practical explanation. Your task is to:
+    a. Identify and, as much as it is possible, characterize missingness mechanisms and patterns in the data.
+    b. Use information from (a) to impute missing values in all numerical variables (all variables except *PositionsDesc*, which can be ignored throughout this problem).
+    c. Estimate the mean of all numerical variables.
+    d. Only once you have completed your analysis, use *football-manager-complete.rds* to compare your estimated means with column averages on the complete dataset. Discuss which mechanisms you correctly detected and characterized. Discuss the discrepancies between your estimates and actual column means - was there anything you could have done better?
 
 2. In the same setting as (1) try to predict players' playing position (*PositionsDesc*) using *football-manager-missing.rds*. once you have completed your analysis, use *football-manager-complete.rds* to evaluate your model on the observations that had missing playing position. Discuss what you could have done better.
 

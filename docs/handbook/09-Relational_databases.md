@@ -2,6 +2,15 @@
 
 Organizations, researchers and other individuals have been using databases to store and work with data since they exist. Software that implements a specific database is called a database management system. It provides a complete software solution to work with data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on the type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provide a common interface using the SQL query language -- a common basic query language, which we use for searching and manipulating data in relational databases. Example database management systems are [Oracle](http://www.oracle.com/index.html), [IBM DB2](http://www-306.ibm.com/software/data/db2/), [MSSQL](http://www.microsoft.com/sql/default.mspx), [MySQL](http://www.mysql.com/),  [PostgreSQL](http://www.postgresql.org/) or [SQLite](https://www.sqlite.org/index.html).
 
+Relational model implemented by the relational databases represents the database as a collection of relations. Relation as defined in theory is most easily represented as a table (note that a concept of a relation is not a table!). Tuple of data is represented as a row. Generally each row describes an entity, e.g. a person. Each tuple contains a number of columns/attributes. Each value is defined within a domain of possible values. Special fields (e.g. primary key) define relational integrity constraints, that is conditions which must be present for a valid relation. Constraints on the Relational database management system is mostly divided into three main categories are (a) domain constraints, (b) key constraints and (c) referential integrity constraints. An example of a relation representation is shown in the Figure below. 
+
+
+
+<div class="figure" style="text-align: center">
+<img src="data/SQL/relation.png" alt="Relation representation."  />
+<p class="caption">(\#fig:unnamed-chunk-1)Relation representation.</p>
+</div>
+
 ## Introduction to SQL
 
 Structure Query Language (SQL), pronounced as "sequel" is a domain-specific language used in programming and designed for managing data held in a relational database management system. It is based on relational algebra and tuple relational calculus. SQL consists of many types of statements, such as a data manipulation language, a data definition language or a data control language. Although SQL is a declarative language, its extensions include also procedural elements. SQL became a standard in 1986 and has been revised a few times since to include new features. Despite the existence of standards, most SQL code is not completely portable among different database systems.
@@ -170,7 +179,7 @@ There exist a lot of standalone graphical user interfaces to work with SQLite da
 
 <div class="figure" style="text-align: center">
 <img src="data/SQL/screenshot.png" alt="DB Browser for SQLite graphical user interface."  />
-<p class="caption">(\#fig:unnamed-chunk-1)DB Browser for SQLite graphical user interface.</p>
+<p class="caption">(\#fig:unnamed-chunk-2)DB Browser for SQLite graphical user interface.</p>
 </div>
 
 ### SQLite database usage {#sqlite-example}

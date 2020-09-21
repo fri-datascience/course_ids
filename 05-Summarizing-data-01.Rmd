@@ -102,7 +102,7 @@ And, again, for multi-modal distributions, we can adequately summarize them only
 
 As mentioned above, ranges can be used to indicate a distributions asymmetry (skewness) or fat-tailedness (kurtosis). Although less commonly used, there exist numerical summaries of skewness and kurtosis that can be used instead.
 
-The following example shows the kurtosis and skewness for a gamma, normal, logistic and bimodal distribution. Observe how how the standard way of calculating kurtosis fails for the bimodal and assigns it the lowest kurtosis:
+The following example shows the kurtosis and skewness for a gamma, normal, logistic and bimodal distribution. Observe how the standard way of calculating kurtosis fails for the bimodal and assigns it the lowest kurtosis:
 
 
 ```{r fig.width=5, fig.height=3.5}
@@ -312,5 +312,5 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the summarization techniques from this chapter.
+1. Download the [Football Manager Players](data/football-manager-data.zip) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the summarization techniques from this chapter.
 2. Find one or more real-world examples (data sets) where a standard summary of univariate or bivariate data fails. That is, where important information is lost in the summary.

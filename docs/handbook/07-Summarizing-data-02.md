@@ -6,7 +6,7 @@ In this chapter we will focus on the basic visualization techniques for univaria
 
 We will be using R and ggplot2 but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!
 
-In most examples in this section we'll be using the NBA players dataset that contains some basic information about NBA players in the period up to year 2009.
+In most examples in this section we'll be using the [NBA players dataset](data/NBAplayers.csv) that contains some basic information about NBA players in the period up to year 2009.
 
 
 ```r
@@ -405,4 +405,4 @@ Data science students should work towards obtaining the knowledge and the skills
 
 1. Read Chapter 1 of Tufte's book (see Further reading).
 2. Gather 3-5 statistical plots from popular media and 3-5 statistical plots from scientific research papers. Comment on if and how each plot could be improved. 
-3. Download the [Football Manager Players](https://www.kaggle.com/ajinkyablaze/football-manager-data/downloads/football-manager-data.zip/2) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the visualization techniques from this chapter.
+3. Download the [Football Manager Players](data/football-manager-data.zip) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the visualization techniques from this chapter.

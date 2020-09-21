@@ -267,6 +267,8 @@ There also exist a number of tools work with Git projects (see \@ref(git-guis)).
 
 We can upload our project to GitHub or some other host, so that it is stored in the cloud and, if we make the repository public, that others can contribute. To create a remote Git repository on GitHub, create a new [GitHub account](https://github.com) and then create a new public repository, named "DS-Project" (DO NOT select to add README or .gitignore!).
 
+When creating a public repository it may be important to define a license for your files in the repository. If a repository has no license, then all rights are reserved and it is not Open Source or Free. You cannot modify or redistribute this code without explicit permission from the copyright holder. It is therefore advisable that you select appropriate license for your source (check [GitHub licensing help](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#choosing-the-right-license) or [Licensing choice helper](https://choosealicense.com/)).
+
 ![](data/Git/github-new.png)
 We already have a local repository so we refer to the second set of commands. The first of those commands adds a link to the remote repository and names it "origin" - we could also use any other name. The second command copies all the changes (three commits) to the remote repository to branch named master (default branch). The parameter '-u' sets "origin" as the default remote repository, so we can later use commands _git push_/_git pull_ without parameters.
 
@@ -469,7 +471,7 @@ A typical example of a Git GUI (GitKraken):
 
 ## Further reading and references
 
-* Official Git source with extensive documentation: [git-scm](https://git-scm.com). They provide a free book called [Pro Git] (https://git-scm.com/book/en).
+* Official Git source with extensive documentation: [git-scm](https://git-scm.com). They provide a free book called [Pro Git](https://git-scm.com/book/en).
 
 * Git tutorials along with more advanced topics such as Git large file storage can be found here: [Atlassian Git](https://www.atlassian.com/git). 
 
@@ -487,6 +489,6 @@ Students should also consciously use source control to systematically keep track
 
 ## Practice problems
 
-1. Think of a large data science project and organization of a Git repository. Create a repository and set up multiple branches, define security roles for them, enable Git LFS, ... Search for Git workflows and best practices that are used by larger teams. 
+1. Take one of your (finished) faculty projects, create an empty GitHub repository and add all of its files to the repository. In a separate commit create a *.gitignore* file (populate it with common ignores related to your project) and a *README.md* file. Push everything to remote GitHub repository. Create a separate branch named *cleaning* and check it out. Now, remove any un-needed files, update few files, update *README.md*, commit and push changes. Go back to the *master* branch and change the same line in *README.md*, commit and push. Then merge branch *cleaning* into *master* and resolve conflicts. After merge commit and push, remove *cleaning* branch locally and remotely.
 
 2. Try to find an error or potential improvement to this Introduction to datascience book. Clone the book's Git repository, make the change and submit a pull request. Then make at least one suggestion of a more comprehensive change to the book (for example, what could be explained in more or less detail, is there an improtant topic that isn't covered, etc.) by submitting an issue.
