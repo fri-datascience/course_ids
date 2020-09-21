@@ -560,14 +560,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.08496</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.09345</code></pre>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="missing-data.html#cb328-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>dropOUToriginal, tmp<span class="op">$</span>Ethnicity), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8326</code></pre>
+## X-squared = 1.4154, df = NA, p-value = 0.8521</code></pre>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="missing-data.html#cb330-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(tmp<span class="op">$</span>Ethnicity, tmp<span class="op">$</span>Language), <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -586,7 +586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04998</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.05947</code></pre>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="missing-data.html#cb336-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
 <span id="cb336-2"><a href="missing-data.html#cb336-2" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
 <span id="cb336-3"><a href="missing-data.html#cb336-3" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
@@ -597,7 +597,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9585</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.952</code></pre>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="missing-data.html#cb340-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>dat[,<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
 <span id="cb340-2"><a href="missing-data.html#cb340-2" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span>tmp[<span class="kw">complete.cases</span>(tmp),]</span>
 <span id="cb340-3"><a href="missing-data.html#cb340-3" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">nrow</span>(dat), <span class="kw">nrow</span>(tmp)))</span></code></pre></div>
