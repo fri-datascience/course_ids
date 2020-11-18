@@ -274,7 +274,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.08646
+## X-squared = 4.6808, df = NA, p-value = 0.09945
 ```
 
 ```r
@@ -287,7 +287,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8661
+## X-squared = 1.4154, df = NA, p-value = 0.8616
 ```
 
 ```r
@@ -326,7 +326,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04698
+## X-squared = 5.8535, df = NA, p-value = 0.05347
 ```
 
 ```r
@@ -349,7 +349,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.944
+## X-squared = 0.72928, df = NA, p-value = 0.951
 ```
 
 ```r
@@ -534,6 +534,12 @@ library(mice)
 ```
 ## 
 ## Attaching package: 'mice'
+```
+
+```
+## The following object is masked from 'package:stats':
+## 
+##     filter
 ```
 
 ```

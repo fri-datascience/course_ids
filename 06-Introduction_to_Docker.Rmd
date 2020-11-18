@@ -6,7 +6,7 @@ Docker is a set of tools that use operating system-level virtualization to devel
 
 Docker containers are isolated from each other and they bundle their own software, libraries and configuration files. If our application consists of multiple services, containers can communicate with each other through internal or external network configuations. All containers are run by a single host operating system kernel and are thus more lightweight than virtual machines. They are instantiated from Docker images that specify their precise contents. We often create images by combining and modifying existing standard images downloaded from public repositories, also known as image registries. An instance of an image (a container) thus contains configured networking, storage, logging, etc. Furthermore, Docker defines an abstraction for these machine-specific settings and the exact same Docker container can run without any changes on many different machines with many different configurations.
 
-There exist other tools similar to Docker, which may not be that well known or are used for different scenarios, such as [Singularity](https://sylabs.io/), [Nanobox](https://nanobox.io/) or [LXC](https://linuxcontainers.org/). Another approach of bundling applications into separate environment is using virtual machines, where each virtual machine contains its own operating system. Most common virtualization technologies are [VMWare products](https://www.vmware.com/) or [Virtualbox](https://www.virtualbox.org/). A technology in-between both worlds is [Vagrant](https://www.vagrantup.com/), which enables a user to script the entire environment but when running the app, Vagrant creates a separate virtual machine (e.g. using Virtualbox) and runs it. 
+There exist other tools similar to Docker, which may not be that well known or are used for different scenarios, such as [Singularity](https://sylabs.io/), [Nanobox](https://nanobox.io/), [LXC](https://linuxcontainers.org/) or [NVIDIA/enroot](https://github.com/NVIDIA/enroot). Another approach of bundling applications into separate environment is using virtual machines, where each virtual machine contains its own operating system. Most common virtualization technologies are [VMWare products](https://www.vmware.com/) or [Virtualbox](https://www.virtualbox.org/). A technology in-between both worlds is [Vagrant](https://www.vagrantup.com/), which enables a user to script the entire environment but when running the app, Vagrant creates a separate virtual machine (e.g. using Virtualbox) and runs it. 
 
 ## Why Docker?
 
@@ -500,7 +500,8 @@ Flask==1.1.1
 
 ## Further reading and references
 
-* Check [the Docker official web page](https://www.docker.com) and [the Docker tutorial](https://docs.docker.com/get-started/).
+* Check [the Docker official web page](https://www.docker.com) and [the Docker tutorial](https://docs.docker.com/get-started/). 
+* Depending on your OS, newest version of Docker also includes a nice tutorial you can follow (issue `docker run -dp 80:80 docker/getting-started` and then navigate to [http://localhost/tutorial/](http://localhost/tutorial/). Another useful hands-on tutorial is available at [https://labs.play-with-docker.com](https://labs.play-with-docker.com).
 * For more advanced topics get to know container orchestration solutions like [Docker Swarm](https://docs.docker.com/engine/swarm/) or [Kubernetes](https://kubernetes.io/).
 * [Docker in Action](https://www.manning.com/books/docker-in-action) book teaches readers how to create, deploy, and manage applications hosted in Docker containers.
 * [The Docker Book](https://dockerbook.com/) is inteded for complete beginners offering 268 pages of demos and live tutorials.

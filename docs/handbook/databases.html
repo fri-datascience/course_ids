@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Relational databases | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Relational databases | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="multivariate-data-chapter.html"/>
 <link rel="next" href="predictive.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,20 +50,24 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,26 +137,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a>
-<ul>
+<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a><ul>
 <li class="chapter" data-level="0.1" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html#the-role-of-this-course"><i class="fa fa-check"></i><b>0.1</b> The role of this course</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a>
-<ul>
+<li class="chapter" data-level="1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a><ul>
 <li class="chapter" data-level="1.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basic-characteristics"><i class="fa fa-check"></i><b>1.1</b> Basic characteristics</a></li>
 <li class="chapter" data-level="1.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#why-python"><i class="fa fa-check"></i><b>1.2</b> Why Python?</a></li>
-<li class="chapter" data-level="1.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>1.3</b> Setting up the environment</a>
-<ul>
+<li class="chapter" data-level="1.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>1.3</b> Setting up the environment</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#anaconda-distribution-installation"><i class="fa fa-check"></i><b>1.3.1</b> Anaconda distribution installation</a></li>
 <li class="chapter" data-level="1.3.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#pure-python-distribution-installation"><i class="fa fa-check"></i><b>1.3.2</b> Pure Python distribution installation</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#installing-dependencies"><i class="fa fa-check"></i><b>1.4</b> Installing dependencies</a></li>
-<li class="chapter" data-level="1.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#jupyter-notebooks"><i class="fa fa-check"></i><b>1.5</b> Jupyter notebooks</a>
-<ul>
+<li class="chapter" data-level="1.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#jupyter-notebooks"><i class="fa fa-check"></i><b>1.5</b> Jupyter notebooks</a><ul>
 <li class="chapter" data-level="1.5.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#running-a-jupyter-notebook"><i class="fa fa-check"></i><b>1.5.1</b> Running a Jupyter notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#a-short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> A short introduction to Python</a>
-<ul>
+<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#a-short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> A short introduction to Python</a><ul>
 <li class="chapter" data-level="" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="1.6.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#flow-control"><i class="fa fa-check"></i><b>1.6.1</b> Flow control</a></li>
 <li class="chapter" data-level="1.6.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#functions"><i class="fa fa-check"></i><b>1.6.2</b> Functions</a></li>
@@ -166,12 +164,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>1.9</b> Learning outcomes</a></li>
 <li class="chapter" data-level="1.10" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>1.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>2</b> Source code control</a>
-<ul>
+<li class="chapter" data-level="2" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>2</b> Source code control</a><ul>
 <li class="chapter" data-level="2.1" data-path="git.html"><a href="git.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
 <li class="chapter" data-level="2.2" data-path="git.html"><a href="git.html#why-should-i-know-about-git"><i class="fa fa-check"></i><b>2.2</b> Why should I know about Git</a></li>
-<li class="chapter" data-level="2.3" data-path="git.html"><a href="git.html#basic-git-terminology"><i class="fa fa-check"></i><b>2.3</b> Basic Git terminology</a>
-<ul>
+<li class="chapter" data-level="2.3" data-path="git.html"><a href="git.html#basic-git-terminology"><i class="fa fa-check"></i><b>2.3</b> Basic Git terminology</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="git.html"><a href="git.html#repository"><i class="fa fa-check"></i><b>2.3.1</b> Repository</a></li>
 <li class="chapter" data-level="2.3.2" data-path="git.html"><a href="git.html#clone"><i class="fa fa-check"></i><b>2.3.2</b> Clone</a></li>
 <li class="chapter" data-level="2.3.3" data-path="git.html"><a href="git.html#adding"><i class="fa fa-check"></i><b>2.3.3</b> Adding</a></li>
@@ -180,60 +176,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.6" data-path="git.html"><a href="git.html#pull"><i class="fa fa-check"></i><b>2.3.6</b> Pull</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="git.html"><a href="git.html#a-beginner-git-example"><i class="fa fa-check"></i><b>2.4</b> A beginner Git example</a></li>
-<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#beyond-the-basics"><i class="fa fa-check"></i><b>2.5</b> Beyond the basics</a>
-<ul>
+<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#beyond-the-basics"><i class="fa fa-check"></i><b>2.5</b> Beyond the basics</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="git.html"><a href="git.html#conflict-resolution"><i class="fa fa-check"></i><b>2.5.1</b> Conflict resolution</a></li>
 <li class="chapter" data-level="2.5.2" data-path="git.html"><a href="git.html#git-branching"><i class="fa fa-check"></i><b>2.5.2</b> Branching</a></li>
 <li class="chapter" data-level="2.5.3" data-path="git.html"><a href="git.html#forking"><i class="fa fa-check"></i><b>2.5.3</b> Forking</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="git.html"><a href="git.html#git-guis"><i class="fa fa-check"></i><b>2.6</b> Git tools</a></li>
-<li class="chapter" data-level="2.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>2.7</b> Further reading and references</a></li>
-<li class="chapter" data-level="2.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>2.8</b> Learning outcomes</a></li>
-<li class="chapter" data-level="2.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>2.9</b> Practice problems</a></li>
+<li class="chapter" data-level="2.7" data-path="git.html"><a href="git.html#further-reading-and-references-1"><i class="fa fa-check"></i><b>2.7</b> Further reading and references</a></li>
+<li class="chapter" data-level="2.8" data-path="git.html"><a href="git.html#learning-outcomes-1"><i class="fa fa-check"></i><b>2.8</b> Learning outcomes</a></li>
+<li class="chapter" data-level="2.9" data-path="git.html"><a href="git.html#practice-problems-1"><i class="fa fa-check"></i><b>2.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>3</b> Reproducible research</a>
-<ul>
+<li class="chapter" data-level="3" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>3</b> Reproducible research</a><ul>
 <li class="chapter" data-level="3.1" data-path="reproducibility.html"><a href="reproducibility.html#scientific-inquiry"><i class="fa fa-check"></i><b>3.1</b> Scientific inquiry</a></li>
-<li class="chapter" data-level="3.2" data-path="reproducibility.html"><a href="reproducibility.html#from-principles-to-practice"><i class="fa fa-check"></i><b>3.2</b> From principles to practice</a>
-<ul>
+<li class="chapter" data-level="3.2" data-path="reproducibility.html"><a href="reproducibility.html#from-principles-to-practice"><i class="fa fa-check"></i><b>3.2</b> From principles to practice</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="reproducibility.html"><a href="reproducibility.html#preregistration---the-future-standard"><i class="fa fa-check"></i><b>3.2.1</b> Preregistration - the future standard</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-r"><i class="fa fa-check"></i><b>3.3</b> Reproducibility tools in R</a>
-<ul>
+<li class="chapter" data-level="3.3" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-r"><i class="fa fa-check"></i><b>3.3</b> Reproducibility tools in R</a><ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#r-notebook"><i class="fa fa-check"></i>R Notebook</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#sweave"><i class="fa fa-check"></i>Sweave</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#shiny-web-apps-and-dashboards"><i class="fa fa-check"></i>Shiny web apps and dashboards</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-python"><i class="fa fa-check"></i><b>3.4</b> Reproducibility tools in Python</a>
-<ul>
+<li class="chapter" data-level="3.4" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-python"><i class="fa fa-check"></i><b>3.4</b> Reproducibility tools in Python</a><ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#jupyter-dashboards"><i class="fa fa-check"></i>Jupyter Dashboards</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>3.5</b> Further reading and references</a></li>
-<li class="chapter" data-level="3.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>3.6</b> Learning outcomes</a></li>
-<li class="chapter" data-level="3.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>3.7</b> Practice problems</a></li>
+<li class="chapter" data-level="3.5" data-path="reproducibility.html"><a href="reproducibility.html#data-dashboards---tooling-and-libraries"><i class="fa fa-check"></i><b>3.5</b> Data dashboards - tooling and libraries</a></li>
+<li class="chapter" data-level="3.6" data-path="reproducibility.html"><a href="reproducibility.html#further-reading-and-references-2"><i class="fa fa-check"></i><b>3.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="3.7" data-path="reproducibility.html"><a href="reproducibility.html#learning-outcomes-2"><i class="fa fa-check"></i><b>3.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="3.8" data-path="reproducibility.html"><a href="reproducibility.html#practice-problems-2"><i class="fa fa-check"></i><b>3.8</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="scraping.html"><a href="scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="scraping.html"><a href="scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a>
-<ul>
+<li class="chapter" data-level="4" data-path="scraping.html"><a href="scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a><ul>
+<li class="chapter" data-level="4.1" data-path="scraping.html"><a href="scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a><ul>
 <li class="chapter" data-level="" data-path="scraping.html"><a href="scraping.html#the-challenges-of-web-data-extraction"><i class="fa fa-check"></i>The challenges of Web data extraction</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="scraping.html"><a href="scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a>
-<ul>
+<li class="chapter" data-level="4.2" data-path="scraping.html"><a href="scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="scraping.html"><a href="scraping.html#html-dom"><i class="fa fa-check"></i><b>4.2.1</b> HTML DOM</a></li>
 <li class="chapter" data-level="4.2.2" data-path="scraping.html"><a href="scraping.html#xpath"><i class="fa fa-check"></i><b>4.2.2</b> XPath</a></li>
 <li class="chapter" data-level="4.2.3" data-path="scraping.html"><a href="scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.2.3</b> Modern Web sites and JS frameworks</a></li>
 <li class="chapter" data-level="4.2.4" data-path="scraping.html"><a href="scraping.html#crawling-resources-and-policies"><i class="fa fa-check"></i><b>4.2.4</b> Crawling, resources and policies</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>4.3</b> Further reading and references</a></li>
-<li class="chapter" data-level="4.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
-<li class="chapter" data-level="4.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
+<li class="chapter" data-level="4.3" data-path="scraping.html"><a href="scraping.html#further-reading-and-references-3"><i class="fa fa-check"></i><b>4.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="4.4" data-path="scraping.html"><a href="scraping.html#learning-outcomes-3"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="4.5" data-path="scraping.html"><a href="scraping.html#practice-problems-3"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html"><i class="fa fa-check"></i><b>5</b> Summarizing data - the basics</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a>
-<ul>
+<li class="chapter" data-level="5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html"><i class="fa fa-check"></i><b>5</b> Summarizing data - the basics</a><ul>
+<li class="chapter" data-level="5.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#central-tendency"><i class="fa fa-check"></i><b>5.1.1</b> Central tendency</a></li>
 <li class="chapter" data-level="5.1.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Dispersion</a></li>
 <li class="chapter" data-level="5.1.3" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>5.1.3</b> Skewness and kurtosis</a></li>
@@ -241,28 +228,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#testing-the-shape-of-a-distribution"><i class="fa fa-check"></i><b>5.1.5</b> Testing the shape of a distribution</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-bivariate-distributions"><i class="fa fa-check"></i><b>5.2</b> Descriptive statistics for bivariate distributions</a></li>
-<li class="chapter" data-level="5.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>5.3</b> Further reading and references</a></li>
-<li class="chapter" data-level="5.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>5.4</b> Learning outcomes</a></li>
-<li class="chapter" data-level="5.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>5.5</b> Practice problems</a></li>
+<li class="chapter" data-level="5.3" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#further-reading-and-references-4"><i class="fa fa-check"></i><b>5.3</b> Further reading and references</a></li>
+<li class="chapter" data-level="5.4" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#learning-outcomes-4"><i class="fa fa-check"></i><b>5.4</b> Learning outcomes</a></li>
+<li class="chapter" data-level="5.5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#practice-problems-4"><i class="fa fa-check"></i><b>5.5</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="docker.html"><a href="docker.html"><i class="fa fa-check"></i><b>6</b> Docker container platform</a>
-<ul>
+<li class="chapter" data-level="6" data-path="docker.html"><a href="docker.html"><i class="fa fa-check"></i><b>6</b> Docker container platform</a><ul>
 <li class="chapter" data-level="6.1" data-path="docker.html"><a href="docker.html#why-docker"><i class="fa fa-check"></i><b>6.1</b> Why Docker?</a></li>
-<li class="chapter" data-level="6.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>6.2</b> Setting up the environment</a></li>
-<li class="chapter" data-level="6.3" data-path="docker.html"><a href="docker.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>6.3</b> Short introduction to Docker</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basics"><i class="fa fa-check"></i><b>6.3.1</b> Basics</a></li>
+<li class="chapter" data-level="6.2" data-path="docker.html"><a href="docker.html#setting-up-the-environment-1"><i class="fa fa-check"></i><b>6.2</b> Setting up the environment</a></li>
+<li class="chapter" data-level="6.3" data-path="docker.html"><a href="docker.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>6.3</b> Short introduction to Docker</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="docker.html"><a href="docker.html#basics-1"><i class="fa fa-check"></i><b>6.3.1</b> Basics</a></li>
 <li class="chapter" data-level="6.3.2" data-path="docker.html"><a href="docker.html#docker-application-example"><i class="fa fa-check"></i><b>6.3.2</b> Docker application example</a></li>
 <li class="chapter" data-level="6.3.3" data-path="docker.html"><a href="docker.html#volumes"><i class="fa fa-check"></i><b>6.3.3</b> Volumes</a></li>
 <li class="chapter" data-level="6.3.4" data-path="docker.html"><a href="docker.html#docker-application-example-with-multiple-services"><i class="fa fa-check"></i><b>6.3.4</b> Docker application example with multiple services</a></li>
 <li class="chapter" data-level="6.3.5" data-path="docker.html"><a href="docker.html#dockerfile-optimizations"><i class="fa fa-check"></i><b>6.3.5</b> Dockerfile optimizations</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>6.4</b> Further reading and references</a></li>
-<li class="chapter" data-level="6.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>6.5</b> Learning outcomes</a></li>
-<li class="chapter" data-level="6.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>6.6</b> Practice problems</a></li>
+<li class="chapter" data-level="6.4" data-path="docker.html"><a href="docker.html#further-reading-and-references-5"><i class="fa fa-check"></i><b>6.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="6.5" data-path="docker.html"><a href="docker.html#learning-outcomes-5"><i class="fa fa-check"></i><b>6.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="6.6" data-path="docker.html"><a href="docker.html#practice-problems-5"><i class="fa fa-check"></i><b>6.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="summarize2.html"><a href="summarize2.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a>
-<ul>
+<li class="chapter" data-level="7" data-path="summarize2.html"><a href="summarize2.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a><ul>
 <li class="chapter" data-level="7.1" data-path="summarize2.html"><a href="summarize2.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>7.1</b> Histograms and density plots</a></li>
 <li class="chapter" data-level="7.2" data-path="summarize2.html"><a href="summarize2.html#bar-plot"><i class="fa fa-check"></i><b>7.2</b> Bar plot</a></li>
 <li class="chapter" data-level="7.3" data-path="summarize2.html"><a href="summarize2.html#pie-chart"><i class="fa fa-check"></i><b>7.3</b> Pie chart</a></li>
@@ -272,54 +256,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="summarize2.html"><a href="summarize2.html#violin-plot"><i class="fa fa-check"></i><b>7.7</b> Violin plot</a></li>
 <li class="chapter" data-level="7.8" data-path="summarize2.html"><a href="summarize2.html#correlogram"><i class="fa fa-check"></i><b>7.8</b> Correlogram</a></li>
 <li class="chapter" data-level="7.9" data-path="summarize2.html"><a href="summarize2.html#a-comprehensive-summary"><i class="fa fa-check"></i><b>7.9</b> A comprehensive summary</a></li>
-<li class="chapter" data-level="7.10" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>7.10</b> Further reading and references</a></li>
-<li class="chapter" data-level="7.11" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
-<li class="chapter" data-level="7.12" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
+<li class="chapter" data-level="7.10" data-path="summarize2.html"><a href="summarize2.html#further-reading-and-references-6"><i class="fa fa-check"></i><b>7.10</b> Further reading and references</a></li>
+<li class="chapter" data-level="7.11" data-path="summarize2.html"><a href="summarize2.html#learning-outcomes-6"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
+<li class="chapter" data-level="7.12" data-path="summarize2.html"><a href="summarize2.html#practice-problems-6"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a>
-<ul>
+<li class="chapter" data-level="8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a><ul>
 <li class="chapter" data-level="8.1" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
 <li class="chapter" data-level="8.2" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#factor-analysis-fa"><i class="fa fa-check"></i><b>8.2</b> Factor analysis (FA)</a></li>
 <li class="chapter" data-level="8.3" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.3</b> Multi-dimensional scaling (MDS)</a></li>
 <li class="chapter" data-level="8.4" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.4</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
-<li class="chapter" data-level="8.5" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#clustering"><i class="fa fa-check"></i><b>8.5</b> Clustering</a>
-<ul>
+<li class="chapter" data-level="8.5" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#clustering"><i class="fa fa-check"></i><b>8.5</b> Clustering</a><ul>
 <li class="chapter" data-level="8.5.1" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#k-means-clustering"><i class="fa fa-check"></i><b>8.5.1</b> k-means clustering</a></li>
 <li class="chapter" data-level="8.5.2" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.5.2</b> Determining the number of clusters</a></li>
 <li class="chapter" data-level="8.5.3" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.5.3</b> Agglomerative hierarchical clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>8.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="8.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="8.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
+<li class="chapter" data-level="8.6" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#further-reading-and-references-7"><i class="fa fa-check"></i><b>8.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="8.7" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#learning-outcomes-7"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="8.8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#practice-problems-7"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="databases.html"><a href="databases.html#introduction-to-sql"><i class="fa fa-check"></i><b>9.1</b> Introduction to SQL</a>
-<ul>
+<li class="chapter" data-level="9" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a><ul>
+<li class="chapter" data-level="9.1" data-path="databases.html"><a href="databases.html#introduction-to-sql"><i class="fa fa-check"></i><b>9.1</b> Introduction to SQL</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="databases.html"><a href="databases.html#data-definition-language"><i class="fa fa-check"></i><b>9.1.1</b> Data definition language</a></li>
 <li class="chapter" data-level="9.1.2" data-path="databases.html"><a href="databases.html#data-manipulation-language"><i class="fa fa-check"></i><b>9.1.2</b> Data manipulation language</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="databases.html"><a href="databases.html#sqlite"><i class="fa fa-check"></i><b>9.2</b> SQLite</a>
-<ul>
+<li class="chapter" data-level="9.2" data-path="databases.html"><a href="databases.html#sqlite"><i class="fa fa-check"></i><b>9.2</b> SQLite</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="databases.html"><a href="databases.html#environment-setup"><i class="fa fa-check"></i><b>9.2.1</b> Environment setup</a></li>
 <li class="chapter" data-level="9.2.2" data-path="databases.html"><a href="databases.html#sqlite-example"><i class="fa fa-check"></i><b>9.2.2</b> SQLite database usage</a></li>
 <li class="chapter" data-level="9.2.3" data-path="databases.html"><a href="databases.html#sqlite-in-python"><i class="fa fa-check"></i><b>9.2.3</b> SQLite in Python</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="databases.html"><a href="databases.html#postgresql"><i class="fa fa-check"></i><b>9.3</b> PostgreSQL</a></li>
-<li class="chapter" data-level="9.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>9.4</b> Further reading and references</a></li>
-<li class="chapter" data-level="9.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
-<li class="chapter" data-level="9.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
+<li class="chapter" data-level="9.4" data-path="databases.html"><a href="databases.html#further-reading-and-references-8"><i class="fa fa-check"></i><b>9.4</b> Further reading and references</a></li>
+<li class="chapter" data-level="9.5" data-path="databases.html"><a href="databases.html#learning-outcomes-8"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
+<li class="chapter" data-level="9.6" data-path="databases.html"><a href="databases.html#practice-problems-8"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="predictive.html"><a href="predictive.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="predictive.html"><a href="predictive.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
-<ul>
+<li class="chapter" data-level="10" data-path="predictive.html"><a href="predictive.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a><ul>
+<li class="chapter" data-level="10.1" data-path="predictive.html"><a href="predictive.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#key-terms"><i class="fa fa-check"></i>Key terms</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#an-illustrative-example"><i class="fa fa-check"></i>An illustrative example</a></li>
 <li class="chapter" data-level="10.1.1" data-path="predictive.html"><a href="predictive.html#the-process-of-predictive-modelling"><i class="fa fa-check"></i><b>10.1.1</b> The process of predictive modelling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="predictive.html"><a href="predictive.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a>
-<ul>
+<li class="chapter" data-level="10.2" data-path="predictive.html"><a href="predictive.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a><ul>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#generalized-linear-models"><i class="fa fa-check"></i>Generalized linear models</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#decision-trees"><i class="fa fa-check"></i>Decision trees</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#neural-networks"><i class="fa fa-check"></i>Neural networks</a></li>
@@ -327,44 +303,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#ensemble-learning"><i class="fa fa-check"></i>Ensemble learning</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#common-predictive-modelling-paradigms"><i class="fa fa-check"></i>Common predictive modelling paradigms</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="predictive.html"><a href="predictive.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a>
-<ul>
+<li class="chapter" data-level="10.3" data-path="predictive.html"><a href="predictive.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a><ul>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#measuring-predictive-performance"><i class="fa fa-check"></i>Measuring predictive performance</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#estimating-how-performance-will-generalize"><i class="fa fa-check"></i>Estimating how performance will generalize</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="predictive.html"><a href="predictive.html#practical-considerations"><i class="fa fa-check"></i><b>10.4</b> Practical considerations</a></li>
 <li class="chapter" data-level="10.5" data-path="predictive.html"><a href="predictive.html#putting-it-all-together-with-r"><i class="fa fa-check"></i><b>10.5</b> Putting it all together with R</a></li>
 <li class="chapter" data-level="10.6" data-path="predictive.html"><a href="predictive.html#putting-it-all-together-with-python"><i class="fa fa-check"></i><b>10.6</b> Putting it all together with Python</a></li>
-<li class="chapter" data-level="10.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>10.7</b> Further reading and references</a></li>
-<li class="chapter" data-level="10.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>10.8</b> Learning outcomes</a></li>
-<li class="chapter" data-level="10.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>10.9</b> Practice problems</a></li>
+<li class="chapter" data-level="10.7" data-path="predictive.html"><a href="predictive.html#further-reading-and-references-9"><i class="fa fa-check"></i><b>10.7</b> Further reading and references</a></li>
+<li class="chapter" data-level="10.8" data-path="predictive.html"><a href="predictive.html#learning-outcomes-9"><i class="fa fa-check"></i><b>10.8</b> Learning outcomes</a></li>
+<li class="chapter" data-level="10.9" data-path="predictive.html"><a href="predictive.html#practice-problems-9"><i class="fa fa-check"></i><b>10.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="missing-data.html"><a href="missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a>
-<ul>
+<li class="chapter" data-level="11" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="11.1" data-path="missing-data.html"><a href="missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a><ul>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#three-classes-of-missingness"><i class="fa fa-check"></i>Three classes of missingness</a></li>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#determining-the-missingness-mechanism"><i class="fa fa-check"></i>Determining the missingness mechanism</a></li>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#causes-for-missing-data"><i class="fa fa-check"></i>Causes for missing data</a></li>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#introducing-bias"><i class="fa fa-check"></i>Introducing bias</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="missing-data.html"><a href="missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>11.2</b> Visually exploring missingness</a></li>
-<li class="chapter" data-level="11.3" data-path="missing-data.html"><a href="missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a>
-<ul>
+<li class="chapter" data-level="11.3" data-path="missing-data.html"><a href="missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="missing-data.html"><a href="missing-data.html#column-deletion"><i class="fa fa-check"></i><b>11.3.1</b> Column deletion</a></li>
 <li class="chapter" data-level="11.3.2" data-path="missing-data.html"><a href="missing-data.html#row-deletion"><i class="fa fa-check"></i><b>11.3.2</b> Row deletion</a></li>
 <li class="chapter" data-level="11.3.3" data-path="missing-data.html"><a href="missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>11.3.3</b> Pairwise deletion</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="missing-data.html"><a href="missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a>
-<ul>
+<li class="chapter" data-level="11.4" data-path="missing-data.html"><a href="missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a><ul>
 <li class="chapter" data-level="11.4.1" data-path="missing-data.html"><a href="missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>11.4.1</b> Single imputation with the mean</a></li>
 <li class="chapter" data-level="11.4.2" data-path="missing-data.html"><a href="missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>11.4.2</b> Single imputation with prediction</a></li>
 <li class="chapter" data-level="11.4.3" data-path="missing-data.html"><a href="missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>11.4.3</b> Multiple imputation</a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="missing-data.html"><a href="missing-data.html#summary"><i class="fa fa-check"></i><b>11.5</b> Summary</a></li>
-<li class="chapter" data-level="11.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#further-reading-and-references"><i class="fa fa-check"></i><b>11.6</b> Further reading and references</a></li>
-<li class="chapter" data-level="11.7" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>11.7</b> Learning outcomes</a></li>
-<li class="chapter" data-level="11.8" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>11.8</b> Practice problems</a></li>
+<li class="chapter" data-level="11.6" data-path="missing-data.html"><a href="missing-data.html#further-reading-and-references-10"><i class="fa fa-check"></i><b>11.6</b> Further reading and references</a></li>
+<li class="chapter" data-level="11.7" data-path="missing-data.html"><a href="missing-data.html#learning-outcomes-10"><i class="fa fa-check"></i><b>11.7</b> Learning outcomes</a></li>
+<li class="chapter" data-level="11.8" data-path="missing-data.html"><a href="missing-data.html#practice-problems-10"><i class="fa fa-check"></i><b>11.8</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://datascience.fri.uni-lj.si/" target="blank">Data Science Master's Program</a></li>
@@ -386,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="databases" class="section level1" number="9">
+<div id="databases" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Relational databases</h1>
 <p>Organizations, researchers and other individuals have been using databases to store and work with data since they exist. Software that implements a specific database is called a database management system. It provides a complete software solution to work with data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on the type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provide a common interface using the SQL query language – a common basic query language, which we use for searching and manipulating data in relational databases. Example database management systems are <a href="http://www.oracle.com/index.html">Oracle</a>, <a href="http://www-306.ibm.com/software/data/db2/">IBM DB2</a>, <a href="http://www.microsoft.com/sql/default.mspx">MSSQL</a>, <a href="http://www.mysql.com/">MySQL</a>, <a href="http://www.postgresql.org/">PostgreSQL</a> or <a href="https://www.sqlite.org/index.html">SQLite</a>.</p>
 <p>Relational model implemented by the relational databases represents the database as a collection of relations. Relation as defined in theory is most easily represented as a table (note that a concept of a relation is not a table!). Tuple of data is represented as a row. Generally each row describes an entity, e.g. a person. Each tuple contains a number of columns/attributes. Each value is defined within a domain of possible values. Special fields (e.g. primary key) define relational integrity constraints, that is conditions which must be present for a valid relation. Constraints on the Relational database management system is mostly divided into three main categories are (a) domain constraints, (b) key constraints and (c) referential integrity constraints. An example of a relation representation is shown in the Figure below.</p>
@@ -396,11 +367,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 6.1: Relation representation.
 </p>
 </div>
-<div id="introduction-to-sql" class="section level2" number="9.1">
+<div id="introduction-to-sql" class="section level2">
 <h2><span class="header-section-number">9.1</span> Introduction to SQL</h2>
 <p>Structure Query Language (SQL), pronounced as “sequel” is a domain-specific language used in programming and designed for managing data held in a relational database management system. It is based on relational algebra and tuple relational calculus. SQL consists of many types of statements, such as a data manipulation language, a data definition language or a data control language. Although SQL is a declarative language, its extensions include also procedural elements. SQL became a standard in 1986 and has been revised a few times since to include new features. Despite the existence of standards, most SQL code is not completely portable among different database systems.</p>
 <p>For the data scientist, data modelling and querying are the most important. We will focus only on these two aspects of the SQL which are also the most common to all database systems. In order to use advanced mechanisms such as security management, procedural functionalities or locking, please review the documentation of your selected database system.</p>
-<div id="data-definition-language" class="section level3" number="9.1.1">
+<div id="data-definition-language" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Data definition language</h3>
 <p>Data definition language SQL sentences enable us to manipulate with the structure of the database. They define SQL data types and provide mechanisms to manipulate with database objects, data quality assertion mechanisms, transactions and definition of procedural objects such as procedures and functions.</p>
 <p>The data types of data columns in tables are defined as follows (ANSI SQL):</p>
@@ -436,68 +407,68 @@ Figure 6.1: Relation representation.
 </table>
 <p>Many database management systems can host multiple schemas or databases, so we need first to create the database using <code>CREATE DATABASE DatabaseName</code>. After that we need to explicity say which database will be used by the following commands using <code>USE DatabaseName</code>. If we do not issue that command, we need to addres every database object as <code>DatabaseName.ObjectName</code>.</p>
 <p>To create new tables, we use the CREATE TABLE statement, which looks as follows:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb227-1"><a href="databases.html#cb227-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TableName (</span>
-<span id="cb227-2"><a href="databases.html#cb227-2" aria-hidden="true"></a>    {colName dataType [<span class="kw">NOT</span> <span class="kw">NULL</span>] [<span class="kw">UNIQUE</span>]</span>
-<span id="cb227-3"><a href="databases.html#cb227-3" aria-hidden="true"></a>    [<span class="kw">DEFAULT</span> defaultOption]</span>
-<span id="cb227-4"><a href="databases.html#cb227-4" aria-hidden="true"></a>    [<span class="kw">CHECK</span> searchCondition] [,<span class="op">..</span>.]}</span>
-<span id="cb227-5"><a href="databases.html#cb227-5" aria-hidden="true"></a>    [<span class="kw">PRIMARY</span> <span class="kw">KEY</span> (listOfColumns),]</span>
-<span id="cb227-6"><a href="databases.html#cb227-6" aria-hidden="true"></a>    {[<span class="kw">UNIQUE</span> (listOfColumns),] [<span class="op">..</span>.,]}</span>
-<span id="cb227-7"><a href="databases.html#cb227-7" aria-hidden="true"></a>    {[<span class="kw">FOREIGN</span> <span class="kw">KEY</span> (listOfFKColumns)</span>
-<span id="cb227-8"><a href="databases.html#cb227-8" aria-hidden="true"></a>       <span class="kw">REFERENCES</span> ParentTableName [(listOfCKColumns)],</span>
-<span id="cb227-9"><a href="databases.html#cb227-9" aria-hidden="true"></a>       [<span class="kw">ON</span> <span class="kw">UPDATE</span> referentialAction]</span>
-<span id="cb227-10"><a href="databases.html#cb227-10" aria-hidden="true"></a>       [<span class="kw">ON</span> <span class="kw">DELETE</span> referentialAction ]] [,<span class="op">..</span>.]}</span>
-<span id="cb227-11"><a href="databases.html#cb227-11" aria-hidden="true"></a>    {[<span class="kw">CHECK</span> (searchCondition)]}) </span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb227-1"><a href="databases.html#cb227-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TableName (</span>
+<span id="cb227-2"><a href="databases.html#cb227-2"></a>    {colName dataType [<span class="kw">NOT</span> <span class="kw">NULL</span>] [<span class="kw">UNIQUE</span>]</span>
+<span id="cb227-3"><a href="databases.html#cb227-3"></a>    [<span class="kw">DEFAULT</span> defaultOption]</span>
+<span id="cb227-4"><a href="databases.html#cb227-4"></a>    [<span class="kw">CHECK</span> searchCondition] [,<span class="op">..</span>.]}</span>
+<span id="cb227-5"><a href="databases.html#cb227-5"></a>    [<span class="kw">PRIMARY</span> <span class="kw">KEY</span> (listOfColumns),]</span>
+<span id="cb227-6"><a href="databases.html#cb227-6"></a>    {[<span class="kw">UNIQUE</span> (listOfColumns),] [<span class="op">..</span>.,]}</span>
+<span id="cb227-7"><a href="databases.html#cb227-7"></a>    {[<span class="kw">FOREIGN</span> <span class="kw">KEY</span> (listOfFKColumns)</span>
+<span id="cb227-8"><a href="databases.html#cb227-8"></a>       <span class="kw">REFERENCES</span> ParentTableName [(listOfCKColumns)],</span>
+<span id="cb227-9"><a href="databases.html#cb227-9"></a>       [<span class="kw">ON</span> <span class="kw">UPDATE</span> referentialAction]</span>
+<span id="cb227-10"><a href="databases.html#cb227-10"></a>       [<span class="kw">ON</span> <span class="kw">DELETE</span> referentialAction ]] [,<span class="op">..</span>.]}</span>
+<span id="cb227-11"><a href="databases.html#cb227-11"></a>    {[<span class="kw">CHECK</span> (searchCondition)]}) </span></code></pre></div>
 <p>Constraints are useful, because they allow the database’s referential integrity protection to take care of data correctness. With the command <code>NULL</code> or <code>NOT NULL</code> we define that a column may or may not contain a missing value. The parameter <code>UNIQUE</code> defines a constraint on a specific column that must not contain duplicated values in the whole table. We can also define it separately for more columns at once, similarly to the primary key syntax.</p>
 <p>Using this statement we can also define column specifics, such as data type, constraints, foreign keys or primary keys. All of these can be changed later using ALTER commands. For example, to drop an existing constraint or foreign key, we use:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb228-1"><a href="databases.html#cb228-1" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">DROP</span> <span class="kw">CONSTRAINT</span> fkName;</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb228-1"><a href="databases.html#cb228-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">DROP</span> <span class="kw">CONSTRAINT</span> fkName;</span></code></pre></div>
 <p>To add a new integer-type column that must not be undefined and has a specific default value if not set to database, we issue:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb229-1"><a href="databases.html#cb229-1" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">ADD</span> NewColumnName <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb229-1"><a href="databases.html#cb229-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TableName <span class="kw">ADD</span> NewColumnName <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>;</span></code></pre></div>
 <p>When we create a table, an index is created for the columns that represent the primary key. There exist a number of different indexes, which are various and implemented differently across the database management systems. Indexes can improve our query performances but are costly to build and can consume a lot of space, so they need to be created wisely when needed. To create an index, we use the following syntax:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb230-1"><a href="databases.html#cb230-1" aria-hidden="true"></a><span class="kw">CREATE</span> [<span class="kw">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="kw">INDEX</span> index_name</span>
-<span id="cb230-2"><a href="databases.html#cb230-2" aria-hidden="true"></a>   <span class="kw">ON</span> table_name</span>
-<span id="cb230-3"><a href="databases.html#cb230-3" aria-hidden="true"></a>      (column1 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
-<span id="cb230-4"><a href="databases.html#cb230-4" aria-hidden="true"></a>       column2 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
-<span id="cb230-5"><a href="databases.html#cb230-5" aria-hidden="true"></a><span class="op">..</span>.);</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb230-1"><a href="databases.html#cb230-1"></a><span class="kw">CREATE</span> [<span class="kw">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="kw">INDEX</span> index_name</span>
+<span id="cb230-2"><a href="databases.html#cb230-2"></a>   <span class="kw">ON</span> table_name</span>
+<span id="cb230-3"><a href="databases.html#cb230-3"></a>      (column1 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
+<span id="cb230-4"><a href="databases.html#cb230-4"></a>       column2 [<span class="kw">ASC</span>|<span class="kw">DESC</span>],</span>
+<span id="cb230-5"><a href="databases.html#cb230-5"></a><span class="op">..</span>.);</span></code></pre></div>
 <p>To delete a database object, a DROP command is used. Using a DROP command we can delete any database object or a whole database. To delete a table, we use following command:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb231-1"><a href="databases.html#cb231-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> TableName [<span class="kw">RESTRICT</span> | <span class="kw">CASCADE</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb231-1"><a href="databases.html#cb231-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> TableName [<span class="kw">RESTRICT</span> | <span class="kw">CASCADE</span>]</span></code></pre></div>
 <p>Analogously, the command is used for constraints, indexes, users, databases, etc. In the example above we see two additional arguments - RESTRICT and CASCADE. They specifically define, whether the table can be deleted if there exist some columns in other tables that reference columns in the table we wish to delete.</p>
 </div>
-<div id="data-manipulation-language" class="section level3" number="9.1.2">
+<div id="data-manipulation-language" class="section level3">
 <h3><span class="header-section-number">9.1.2</span> Data manipulation language</h3>
 <p>When a database and tables or other objects are created, we can focus on inserting, updating, deleting and querying data.</p>
-<div id="inserting" class="section level4" number="9.1.2.1">
+<div id="inserting" class="section level4">
 <h4><span class="header-section-number">9.1.2.1</span> Inserting</h4>
 <p>Statements for inserting rows into a database table looks as follows:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb232-1"><a href="databases.html#cb232-1" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TableName [ (columnList) ] <span class="kw">VALUES</span></span>
-<span id="cb232-2"><a href="databases.html#cb232-2" aria-hidden="true"></a>  (dataValueList)[, (dataValueList), <span class="op">..</span>.]</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb232-1"><a href="databases.html#cb232-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TableName [ (columnList) ] <span class="kw">VALUES</span></span>
+<span id="cb232-2"><a href="databases.html#cb232-2"></a>  (dataValueList)[, (dataValueList), <span class="op">..</span>.]</span></code></pre></div>
 <p>The list of columns is not necessary if we provide all the columns in the same order that were defined at the table creation time. In the data values we need to provide at least all the values that are of NOT NULL type and do not have the default value set. The order of values in the list need correspond to the column list.</p>
 <p>To insert more rows at a time, multiple data value lists can be used. When doing a bulk inserts, this will speed up our insertion time. To insert enormous amounts of data into relational database, some database management systems provide their own mechanisms of bulk data importing, as well as for data export.</p>
 </div>
-<div id="updating" class="section level4" number="9.1.2.2">
+<div id="updating" class="section level4">
 <h4><span class="header-section-number">9.1.2.2</span> Updating</h4>
 <p>The UPDATE statements allows us to change values within the existing data rows. It is defined as follows:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb233-1"><a href="databases.html#cb233-1" aria-hidden="true"></a><span class="kw">UPDATE</span> TableName</span>
-<span id="cb233-2"><a href="databases.html#cb233-2" aria-hidden="true"></a><span class="kw">SET</span> columnName1 <span class="op">=</span> dataValue1</span>
-<span id="cb233-3"><a href="databases.html#cb233-3" aria-hidden="true"></a>   [, columnName2 <span class="op">=</span> dataValue2<span class="op">..</span>.]</span>
-<span id="cb233-4"><a href="databases.html#cb233-4" aria-hidden="true"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb233-1"><a href="databases.html#cb233-1"></a><span class="kw">UPDATE</span> TableName</span>
+<span id="cb233-2"><a href="databases.html#cb233-2"></a><span class="kw">SET</span> columnName1 <span class="op">=</span> dataValue1</span>
+<span id="cb233-3"><a href="databases.html#cb233-3"></a>   [, columnName2 <span class="op">=</span> dataValue2<span class="op">..</span>.]</span>
+<span id="cb233-4"><a href="databases.html#cb233-4"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
 <p>We can update one or more column values in the selected table. The statement will update all the rows that initially satisfy the search condition. The search condition is optional but we must take care when updating or deleting rows as our command may change too many rows if search condition not defined correctly.</p>
 </div>
-<div id="deleting" class="section level4" number="9.1.2.3">
+<div id="deleting" class="section level4">
 <h4><span class="header-section-number">9.1.2.3</span> Deleting</h4>
 <p>Statement for deleting rows is similar to updating without setting new values. The sentence deletes all the rows in a table that match the search condition is defined as follows:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb234-1"><a href="databases.html#cb234-1" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> TableName</span>
-<span id="cb234-2"><a href="databases.html#cb234-2" aria-hidden="true"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb234-1"><a href="databases.html#cb234-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> TableName</span>
+<span id="cb234-2"><a href="databases.html#cb234-2"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
 </div>
-<div id="querying" class="section level4" number="9.1.2.4">
+<div id="querying" class="section level4">
 <h4><span class="header-section-number">9.1.2.4</span> Querying</h4>
 <p>Querying is enabled by the SELECT statement which is the most comprehensive as provides multiple mechanisms to access the data from a database:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb235-1"><a href="databases.html#cb235-1" aria-hidden="true"></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span> | <span class="kw">ALL</span>] {<span class="op">*</span> | [columnExpression [<span class="kw">AS</span> newName]] [,<span class="op">..</span>.] }</span>
-<span id="cb235-2"><a href="databases.html#cb235-2" aria-hidden="true"></a><span class="kw">FROM</span> </span>
-<span id="cb235-3"><a href="databases.html#cb235-3" aria-hidden="true"></a>  TableName [alias] [, <span class="op">..</span>.] </span>
-<span id="cb235-4"><a href="databases.html#cb235-4" aria-hidden="true"></a>[<span class="kw">WHERE</span> condition]</span>
-<span id="cb235-5"><a href="databases.html#cb235-5" aria-hidden="true"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> columnList] </span>
-<span id="cb235-6"><a href="databases.html#cb235-6" aria-hidden="true"></a>[<span class="kw">HAVING</span> condition]</span>
-<span id="cb235-7"><a href="databases.html#cb235-7" aria-hidden="true"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> columnList [<span class="kw">ASC</span>|<span class="kw">DESC</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb235-1"><a href="databases.html#cb235-1"></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span> | <span class="kw">ALL</span>] {<span class="op">*</span> | [columnExpression [<span class="kw">AS</span> newName]] [,<span class="op">..</span>.] }</span>
+<span id="cb235-2"><a href="databases.html#cb235-2"></a><span class="kw">FROM</span> </span>
+<span id="cb235-3"><a href="databases.html#cb235-3"></a>  TableName [alias] [, <span class="op">..</span>.] </span>
+<span id="cb235-4"><a href="databases.html#cb235-4"></a>[<span class="kw">WHERE</span> condition]</span>
+<span id="cb235-5"><a href="databases.html#cb235-5"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> columnList] </span>
+<span id="cb235-6"><a href="databases.html#cb235-6"></a>[<span class="kw">HAVING</span> condition]</span>
+<span id="cb235-7"><a href="databases.html#cb235-7"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> columnList [<span class="kw">ASC</span>|<span class="kw">DESC</span>]]</span></code></pre></div>
 <p>In the SELECT part we can define whether the returned results must be distinct or not. Then we list columns that should be returned as the result. The columns may be named or changed using a special function provided by a database management system (DBMS). Some DBMS also support nested SELECT statements in this part when statement returns only one value.</p>
 <p>In the FROM part we list tables that are needed for the query to execute. It is possible to nest a SELECT statement instead of using a table - write a query within brackets and give it an alias. Depending on our needs we can use joins in this part to connect the rows between tables. To see which joins are supported by a specific DBMS, we need to check its documentation.</p>
 <p>In the WHERE part we provide conditions that need to be true for the row to be returned. In this part we can use equality operators (&gt;, &lt;, =, &lt;=, &gt;=, BETWEEN), text comparisons (LIKE), set comparisons (IN, ALL, ANY), null value comparisons (IS NULL, IS NOT NULL) or specific functions supported by our DBMS.</p>
@@ -507,12 +478,12 @@ Figure 6.1: Relation representation.
 </div>
 </div>
 </div>
-<div id="sqlite" class="section level2" number="9.2">
+<div id="sqlite" class="section level2">
 <h2><span class="header-section-number">9.2</span> SQLite</h2>
 <p>In the previous part we pointed out some basics about data management in relational databases. In this part we will show SQL in practice using an SQLite database.</p>
 <p>SQLite is an open source, zero-configuration, self-contained, stand-alone, transaction relational database engine designed to be embedded into an application. This type of the database is used by our desktop applications, mobile applications, etc. and it does not need a special server-based database management system. Its structure is contained in a special file, which can be handled by a sqlite database management library.</p>
 <p>Sqlite seems like a simple database implementation. It lacks performance over large amounts of data, reliability, scalability, redundancy, concurrent access/transactions and other advanced features such as referential integrity, special indexing capabilities and functions, procedural SQL, etc. In the case of data science needs we often need a database only as a simple data storage that is better than storing the data in raw files. Therefore the choice of SQLite of our main database would be enough for the most of our needs.</p>
-<div id="environment-setup" class="section level3" number="9.2.1">
+<div id="environment-setup" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Environment setup</h3>
 <p>To install an SQLite database we just do need to download a binary version from <a href="https://www.sqlite.org/download.html">the official SQLite web site</a>. There exist also installation packages that install SQLite program to our computer and update the $PATH variable so that the <code>sqlite</code> command is directly accessible from command line.</p>
 <p>The sqlite 3 download package consists of three executables:</p>
@@ -522,12 +493,12 @@ Figure 6.1: Relation representation.
 <li><code>sqlite3_analyzer</code>: The utility that outputs a human-readable ASCII text report which provides information on the space utilization of the database file.</li>
 </ul>
 <p>To start working with a database, just run the <code>sqlite3</code> command in the command-line:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb236-1"><a href="databases.html#cb236-1" aria-hidden="true"></a>$ <span class="ex">sqlite3</span></span>
-<span id="cb236-2"><a href="databases.html#cb236-2" aria-hidden="true"></a><span class="ex">SQLite</span> version 3.23.1 2018-04-10 17:39:29</span>
-<span id="cb236-3"><a href="databases.html#cb236-3" aria-hidden="true"></a><span class="ex">Enter</span> <span class="st">&quot;.help&quot;</span> for usage hints.</span>
-<span id="cb236-4"><a href="databases.html#cb236-4" aria-hidden="true"></a><span class="ex">Connected</span> to a transient in-memory database.</span>
-<span id="cb236-5"><a href="databases.html#cb236-5" aria-hidden="true"></a><span class="ex">Use</span> <span class="st">&quot;.open FILENAME&quot;</span> to reopen on a persistent database.</span>
-<span id="cb236-6"><a href="databases.html#cb236-6" aria-hidden="true"></a><span class="ex">sqlite</span><span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb236-1"><a href="databases.html#cb236-1"></a>$ <span class="ex">sqlite3</span></span>
+<span id="cb236-2"><a href="databases.html#cb236-2"></a><span class="ex">SQLite</span> version 3.23.1 2018-04-10 17:39:29</span>
+<span id="cb236-3"><a href="databases.html#cb236-3"></a><span class="ex">Enter</span> <span class="st">&quot;.help&quot;</span> for usage hints.</span>
+<span id="cb236-4"><a href="databases.html#cb236-4"></a><span class="ex">Connected</span> to a transient in-memory database.</span>
+<span id="cb236-5"><a href="databases.html#cb236-5"></a><span class="ex">Use</span> <span class="st">&quot;.open FILENAME&quot;</span> to reopen on a persistent database.</span>
+<span id="cb236-6"><a href="databases.html#cb236-6"></a><span class="ex">sqlite</span><span class="op">&gt;</span></span></code></pre></div>
 <p>We exit the console by entering the <em>CTRL+C</em> command twice. The example above created just a temporary database in our memory, so no data was stored on disk. To work with or create a new database if not exists, we need to provide a filename when starting the executable - <code>sqlite3 itds_course.db</code>. When we change the defaults of the database or enter some data, the database file will be created.</p>
 <p>There exist a lot of standalone graphical user interfaces to work with SQLite database files. An example of a nice and lightweight software to create, open or manage SQLite databases is <a href="https://sqlitebrowser.org/">DB Browser for SQLite</a> and is available for multiple operating systems.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
@@ -537,7 +508,7 @@ Figure 9.1: DB Browser for SQLite graphical user interface.
 </p>
 </div>
 </div>
-<div id="sqlite-example" class="section level3" number="9.2.2">
+<div id="sqlite-example" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> SQLite database usage</h3>
 <p>In this section we show how to create a new SQLite database and manage it manually using SQL language directly. First we create a new database file called <code>itds_course.db</code>.</p>
 <p>We will create a new database model, presented in the Figure <a href="databases.html#fig:model">9.2</a>. Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.</p>
@@ -549,256 +520,256 @@ Figure 9.2: Employee logical database model.
 </div>
 <p>Let’s first create the model from the Figure <a href="databases.html#fig:model">9.2</a>. The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text.</p>
 <p>SQLite supports foreign keys but it does not enforce their referential integrity if we do not say this explicitly at each database connection session. To enable checks, we need to issue the following command:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb237-1"><a href="databases.html#cb237-1" aria-hidden="true"></a><span class="co">-- Set the foreign keys checking on</span></span>
-<span id="cb237-2"><a href="databases.html#cb237-2" aria-hidden="true"></a>PRAGMA foreign_keys <span class="op">=</span> <span class="kw">ON</span>;</span>
-<span id="cb237-3"><a href="databases.html#cb237-3" aria-hidden="true"></a><span class="co">-- Check the foreign keys setting (1=ON, 0=OFF)</span></span>
-<span id="cb237-4"><a href="databases.html#cb237-4" aria-hidden="true"></a>PRAGMA foreign_keys;</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb237-1"><a href="databases.html#cb237-1"></a><span class="co">-- Set the foreign keys checking on</span></span>
+<span id="cb237-2"><a href="databases.html#cb237-2"></a>PRAGMA foreign_keys <span class="op">=</span> <span class="kw">ON</span>;</span>
+<span id="cb237-3"><a href="databases.html#cb237-3"></a><span class="co">-- Check the foreign keys setting (1=ON, 0=OFF)</span></span>
+<span id="cb237-4"><a href="databases.html#cb237-4"></a>PRAGMA foreign_keys;</span></code></pre></div>
 <p>We observe that, by default, each SQL statement is terminated using a semicolon. Now we can continue and create all the tables:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb238-1"><a href="databases.html#cb238-1" aria-hidden="true"></a><span class="co">-- Creating Branch table</span></span>
-<span id="cb238-2"><a href="databases.html#cb238-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Branch (</span>
-<span id="cb238-3"><a href="databases.html#cb238-3" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
-<span id="cb238-4"><a href="databases.html#cb238-4" aria-hidden="true"></a>    name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-5"><a href="databases.html#cb238-5" aria-hidden="true"></a>    address TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-6"><a href="databases.html#cb238-6" aria-hidden="true"></a>    telephone TEXT</span>
-<span id="cb238-7"><a href="databases.html#cb238-7" aria-hidden="true"></a>);</span>
-<span id="cb238-8"><a href="databases.html#cb238-8" aria-hidden="true"></a></span>
-<span id="cb238-9"><a href="databases.html#cb238-9" aria-hidden="true"></a><span class="co">-- Employee</span></span>
-<span id="cb238-10"><a href="databases.html#cb238-10" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Employee (</span>
-<span id="cb238-11"><a href="databases.html#cb238-11" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
-<span id="cb238-12"><a href="databases.html#cb238-12" aria-hidden="true"></a>    id_branch <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-13"><a href="databases.html#cb238-13" aria-hidden="true"></a>    first_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-14"><a href="databases.html#cb238-14" aria-hidden="true"></a>    last_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-15"><a href="databases.html#cb238-15" aria-hidden="true"></a>    employment_start TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-16"><a href="databases.html#cb238-16" aria-hidden="true"></a>    employment_end TEXT,</span>
-<span id="cb238-17"><a href="databases.html#cb238-17" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_branch) <span class="kw">REFERENCES</span> Branch(<span class="kw">id</span>)</span>
-<span id="cb238-18"><a href="databases.html#cb238-18" aria-hidden="true"></a>);</span>
-<span id="cb238-19"><a href="databases.html#cb238-19" aria-hidden="true"></a></span>
-<span id="cb238-20"><a href="databases.html#cb238-20" aria-hidden="true"></a><span class="co">-- Salary</span></span>
-<span id="cb238-21"><a href="databases.html#cb238-21" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Salary (</span>
-<span id="cb238-22"><a href="databases.html#cb238-22" aria-hidden="true"></a>    <span class="dt">year</span> <span class="dt">INTEGER</span>,</span>
-<span id="cb238-23"><a href="databases.html#cb238-23" aria-hidden="true"></a>    <span class="dt">month</span> <span class="dt">INTEGER</span>,</span>
-<span id="cb238-24"><a href="databases.html#cb238-24" aria-hidden="true"></a>    id_employee <span class="dt">INTEGER</span>,</span>
-<span id="cb238-25"><a href="databases.html#cb238-25" aria-hidden="true"></a>    amount <span class="dt">REAL</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb238-26"><a href="databases.html#cb238-26" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="dt">year</span>, <span class="dt">month</span>, id_employee),</span>
-<span id="cb238-27"><a href="databases.html#cb238-27" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_employee) <span class="kw">REFERENCES</span> Employee(<span class="kw">id</span>)</span>
-<span id="cb238-28"><a href="databases.html#cb238-28" aria-hidden="true"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb238-1"><a href="databases.html#cb238-1"></a><span class="co">-- Creating Branch table</span></span>
+<span id="cb238-2"><a href="databases.html#cb238-2"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Branch (</span>
+<span id="cb238-3"><a href="databases.html#cb238-3"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
+<span id="cb238-4"><a href="databases.html#cb238-4"></a>    name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-5"><a href="databases.html#cb238-5"></a>    address TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-6"><a href="databases.html#cb238-6"></a>    telephone TEXT</span>
+<span id="cb238-7"><a href="databases.html#cb238-7"></a>);</span>
+<span id="cb238-8"><a href="databases.html#cb238-8"></a></span>
+<span id="cb238-9"><a href="databases.html#cb238-9"></a><span class="co">-- Employee</span></span>
+<span id="cb238-10"><a href="databases.html#cb238-10"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Employee (</span>
+<span id="cb238-11"><a href="databases.html#cb238-11"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
+<span id="cb238-12"><a href="databases.html#cb238-12"></a>    id_branch <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-13"><a href="databases.html#cb238-13"></a>    first_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-14"><a href="databases.html#cb238-14"></a>    last_name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-15"><a href="databases.html#cb238-15"></a>    employment_start TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-16"><a href="databases.html#cb238-16"></a>    employment_end TEXT,</span>
+<span id="cb238-17"><a href="databases.html#cb238-17"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_branch) <span class="kw">REFERENCES</span> Branch(<span class="kw">id</span>)</span>
+<span id="cb238-18"><a href="databases.html#cb238-18"></a>);</span>
+<span id="cb238-19"><a href="databases.html#cb238-19"></a></span>
+<span id="cb238-20"><a href="databases.html#cb238-20"></a><span class="co">-- Salary</span></span>
+<span id="cb238-21"><a href="databases.html#cb238-21"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Salary (</span>
+<span id="cb238-22"><a href="databases.html#cb238-22"></a>    <span class="dt">year</span> <span class="dt">INTEGER</span>,</span>
+<span id="cb238-23"><a href="databases.html#cb238-23"></a>    <span class="dt">month</span> <span class="dt">INTEGER</span>,</span>
+<span id="cb238-24"><a href="databases.html#cb238-24"></a>    id_employee <span class="dt">INTEGER</span>,</span>
+<span id="cb238-25"><a href="databases.html#cb238-25"></a>    amount <span class="dt">REAL</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb238-26"><a href="databases.html#cb238-26"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="dt">year</span>, <span class="dt">month</span>, id_employee),</span>
+<span id="cb238-27"><a href="databases.html#cb238-27"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_employee) <span class="kw">REFERENCES</span> Employee(<span class="kw">id</span>)</span>
+<span id="cb238-28"><a href="databases.html#cb238-28"></a>);</span></code></pre></div>
 <p>When creating tables, we should be consistent in naming them - capitalization, singular/plural and similarly for the columns, especially foreign keys. The most readable tables have clearly identifiable primary key and foreign keys. Naming of the foreign key columns should reflect the name of the related table. In the Branch and Employee tables we defined the primary key columns as AUTOINCREMENT. This enables the database to automatically set the id of a new record and we do not need to define it explicitly.</p>
 <p>Now we can insert some data into our tables. The insertion into the Employee table could be done also using one statement only. For the still employed employees we would just set their employment_end value to NULL.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb239-1"><a href="databases.html#cb239-1" aria-hidden="true"></a><span class="co">-- Branches</span></span>
-<span id="cb239-2"><a href="databases.html#cb239-2" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address, telephone) <span class="kw">VALUES</span> </span>
-<span id="cb239-3"><a href="databases.html#cb239-3" aria-hidden="true"></a>    (<span class="ot">&quot;Grosuplje&#39;s Fried Chicken&quot;</span>, <span class="ot">&quot;Kolodvorska 1, Grosuplje&quot;</span>, <span class="ot">&quot;01/786-42-31&quot;</span>);</span>
-<span id="cb239-4"><a href="databases.html#cb239-4" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address) <span class="kw">VALUES</span> </span>
-<span id="cb239-5"><a href="databases.html#cb239-5" aria-hidden="true"></a>    (<span class="ot">&quot;Hot Pork Wings&quot;</span>, <span class="ot">&quot;Cesta v Kranj 35, Ljubljana&quot;</span>);</span>
-<span id="cb239-6"><a href="databases.html#cb239-6" aria-hidden="true"></a></span>
-<span id="cb239-7"><a href="databases.html#cb239-7" aria-hidden="true"></a><span class="co">-- Employees (still employed)</span></span>
-<span id="cb239-8"><a href="databases.html#cb239-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start) <span class="kw">VALUES</span></span>
-<span id="cb239-9"><a href="databases.html#cb239-9" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Marko&quot;</span>, <span class="ot">&quot;Novaković&quot;</span>, <span class="ot">&quot;1972-01-25&quot;</span>),</span>
-<span id="cb239-10"><a href="databases.html#cb239-10" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jože&quot;</span>, <span class="ot">&quot;Novak&quot;</span>, <span class="ot">&quot;1995-08-22&quot;</span>),</span>
-<span id="cb239-11"><a href="databases.html#cb239-11" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Janez&quot;</span>, <span class="ot">&quot;Gruden&quot;</span>, <span class="ot">&quot;1999-12-07&quot;</span>),</span>
-<span id="cb239-12"><a href="databases.html#cb239-12" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Tine&quot;</span>, <span class="ot">&quot;Stegel&quot;</span>, <span class="ot">&quot;2002-04-28&quot;</span>),</span>
-<span id="cb239-13"><a href="databases.html#cb239-13" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Nina&quot;</span>, <span class="ot">&quot;Gec&quot;</span>, <span class="ot">&quot;2010-03-08&quot;</span>),</span>
-<span id="cb239-14"><a href="databases.html#cb239-14" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Petar&quot;</span>, <span class="ot">&quot;Stankovski&quot;</span>, <span class="ot">&quot;2018-10-01&quot;</span>);</span>
-<span id="cb239-15"><a href="databases.html#cb239-15" aria-hidden="true"></a></span>
-<span id="cb239-16"><a href="databases.html#cb239-16" aria-hidden="true"></a><span class="co">-- Employees (retired)</span></span>
-<span id="cb239-17"><a href="databases.html#cb239-17" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start, employment_end) <span class="kw">VALUES</span></span>
-<span id="cb239-18"><a href="databases.html#cb239-18" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jana&quot;</span>, <span class="ot">&quot;Žitnik&quot;</span>, <span class="ot">&quot;1987-06-07&quot;</span>, <span class="ot">&quot;1987-06-12&quot;</span>),</span>
-<span id="cb239-19"><a href="databases.html#cb239-19" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Patricio&quot;</span>, <span class="ot">&quot;Rozman&quot;</span>, <span class="ot">&quot;2010-04-22&quot;</span>, <span class="ot">&quot;2022-01-01&quot;</span>),</span>
-<span id="cb239-20"><a href="databases.html#cb239-20" aria-hidden="true"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Robert&quot;</span>, <span class="ot">&quot;Demšar&quot;</span>, <span class="ot">&quot;1996-12-06&quot;</span>, <span class="ot">&quot;1997-07-02&quot;</span>);</span>
-<span id="cb239-21"><a href="databases.html#cb239-21" aria-hidden="true"></a></span>
-<span id="cb239-22"><a href="databases.html#cb239-22" aria-hidden="true"></a><span class="co">-- Salaries</span></span>
-<span id="cb239-23"><a href="databases.html#cb239-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Salary (<span class="dt">year</span>, <span class="dt">month</span>, id_employee, amount) <span class="kw">VALUES</span> </span>
-<span id="cb239-24"><a href="databases.html#cb239-24" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">2</span>, <span class="fl">950.37</span>),</span>
-<span id="cb239-25"><a href="databases.html#cb239-25" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">2</span>, <span class="fl">955.2</span>),</span>
-<span id="cb239-26"><a href="databases.html#cb239-26" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">2</span>, <span class="fl">990.49</span>),</span>
-<span id="cb239-27"><a href="databases.html#cb239-27" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">08</span>, <span class="dv">2</span>, <span class="fl">1200.5</span>),</span>
-<span id="cb239-28"><a href="databases.html#cb239-28" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">6</span>, <span class="fl">980.43</span>),</span>
-<span id="cb239-29"><a href="databases.html#cb239-29" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">7</span>, <span class="fl">1320.2</span>),</span>
-<span id="cb239-30"><a href="databases.html#cb239-30" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">8</span>, <span class="fl">2100.67</span>),</span>
-<span id="cb239-31"><a href="databases.html#cb239-31" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">8</span>, <span class="fl">2140.99</span>),</span>
-<span id="cb239-32"><a href="databases.html#cb239-32" aria-hidden="true"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">8</span>, <span class="fl">2099.11</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb239-1"><a href="databases.html#cb239-1"></a><span class="co">-- Branches</span></span>
+<span id="cb239-2"><a href="databases.html#cb239-2"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address, telephone) <span class="kw">VALUES</span> </span>
+<span id="cb239-3"><a href="databases.html#cb239-3"></a>    (<span class="ot">&quot;Grosuplje&#39;s Fried Chicken&quot;</span>, <span class="ot">&quot;Kolodvorska 1, Grosuplje&quot;</span>, <span class="ot">&quot;01/786-42-31&quot;</span>);</span>
+<span id="cb239-4"><a href="databases.html#cb239-4"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Branch (name, address) <span class="kw">VALUES</span> </span>
+<span id="cb239-5"><a href="databases.html#cb239-5"></a>    (<span class="ot">&quot;Hot Pork Wings&quot;</span>, <span class="ot">&quot;Cesta v Kranj 35, Ljubljana&quot;</span>);</span>
+<span id="cb239-6"><a href="databases.html#cb239-6"></a></span>
+<span id="cb239-7"><a href="databases.html#cb239-7"></a><span class="co">-- Employees (still employed)</span></span>
+<span id="cb239-8"><a href="databases.html#cb239-8"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start) <span class="kw">VALUES</span></span>
+<span id="cb239-9"><a href="databases.html#cb239-9"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Marko&quot;</span>, <span class="ot">&quot;Novaković&quot;</span>, <span class="ot">&quot;1972-01-25&quot;</span>),</span>
+<span id="cb239-10"><a href="databases.html#cb239-10"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jože&quot;, &quot;</span>Novak<span class="ot">&quot;, &quot;</span><span class="dv">1995</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">22</span><span class="ot">&quot;),</span></span>
+<span id="cb239-11"><a href="databases.html#cb239-11"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Janez&quot;</span>, <span class="ot">&quot;Gruden&quot;</span>, <span class="ot">&quot;1999-12-07&quot;</span>),</span>
+<span id="cb239-12"><a href="databases.html#cb239-12"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Tine&quot;</span>, <span class="ot">&quot;Stegel&quot;</span>, <span class="ot">&quot;2002-04-28&quot;</span>),</span>
+<span id="cb239-13"><a href="databases.html#cb239-13"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Nina&quot;</span>, <span class="ot">&quot;Gec&quot;</span>, <span class="ot">&quot;2010-03-08&quot;</span>),</span>
+<span id="cb239-14"><a href="databases.html#cb239-14"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Petar&quot;</span>, <span class="ot">&quot;Stankovski&quot;</span>, <span class="ot">&quot;2018-10-01&quot;</span>);</span>
+<span id="cb239-15"><a href="databases.html#cb239-15"></a></span>
+<span id="cb239-16"><a href="databases.html#cb239-16"></a><span class="co">-- Employees (retired)</span></span>
+<span id="cb239-17"><a href="databases.html#cb239-17"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employee (id_branch, first_name, last_name, employment_start, employment_end) <span class="kw">VALUES</span></span>
+<span id="cb239-18"><a href="databases.html#cb239-18"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Jana&quot;</span>, <span class="ot">&quot;Žitnik&quot;</span>, <span class="ot">&quot;1987-06-07&quot;</span>, <span class="ot">&quot;1987-06-12&quot;</span>),</span>
+<span id="cb239-19"><a href="databases.html#cb239-19"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Patricio&quot;</span>, <span class="ot">&quot;Rozman&quot;</span>, <span class="ot">&quot;2010-04-22&quot;</span>, <span class="ot">&quot;2022-01-01&quot;</span>),</span>
+<span id="cb239-20"><a href="databases.html#cb239-20"></a>    (<span class="dv">1</span>, <span class="ot">&quot;Robert&quot;</span>, <span class="ot">&quot;Demšar&quot;</span>, <span class="ot">&quot;1996-12-06&quot;</span>, <span class="ot">&quot;1997-07-02&quot;</span>);</span>
+<span id="cb239-21"><a href="databases.html#cb239-21"></a></span>
+<span id="cb239-22"><a href="databases.html#cb239-22"></a><span class="co">-- Salaries</span></span>
+<span id="cb239-23"><a href="databases.html#cb239-23"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Salary (<span class="dt">year</span>, <span class="dt">month</span>, id_employee, amount) <span class="kw">VALUES</span> </span>
+<span id="cb239-24"><a href="databases.html#cb239-24"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">2</span>, <span class="fl">950.37</span>),</span>
+<span id="cb239-25"><a href="databases.html#cb239-25"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">2</span>, <span class="fl">955.2</span>),</span>
+<span id="cb239-26"><a href="databases.html#cb239-26"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">2</span>, <span class="fl">990.49</span>),</span>
+<span id="cb239-27"><a href="databases.html#cb239-27"></a>    (<span class="dv">2010</span>, <span class="dv">08</span>, <span class="dv">2</span>, <span class="fl">1200.5</span>),</span>
+<span id="cb239-28"><a href="databases.html#cb239-28"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">6</span>, <span class="fl">980.43</span>),</span>
+<span id="cb239-29"><a href="databases.html#cb239-29"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">7</span>, <span class="fl">1320.2</span>),</span>
+<span id="cb239-30"><a href="databases.html#cb239-30"></a>    (<span class="dv">2010</span>, <span class="dv">05</span>, <span class="dv">8</span>, <span class="fl">2100.67</span>),</span>
+<span id="cb239-31"><a href="databases.html#cb239-31"></a>    (<span class="dv">2010</span>, <span class="dv">06</span>, <span class="dv">8</span>, <span class="fl">2140.99</span>),</span>
+<span id="cb239-32"><a href="databases.html#cb239-32"></a>    (<span class="dv">2010</span>, <span class="dv">07</span>, <span class="dv">8</span>, <span class="fl">2099.11</span>);</span></code></pre></div>
 <p>Now the data are in the database and we can query them. Below we show just some basic queries. The command-line output does not include column names, so when they are not defined in the query, their order is as in the table.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb240-1"><a href="databases.html#cb240-1" aria-hidden="true"></a><span class="co">-- Selecting all columns</span></span>
-<span id="cb240-2"><a href="databases.html#cb240-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Branch;</span></code></pre></div>
-<div class="sourceCode" id="cb241"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb241-1"><a href="databases.html#cb241-1" aria-hidden="true"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|Kolodvorska 1, Grosuplje|01/786-42-31</span></span>
-<span id="cb241-2"><a href="databases.html#cb241-2" aria-hidden="true"></a><span class="st">2|Hot Pork Wings|Cesta v Kranj 35, Ljubljana|</span></span></code></pre></div>
-<div class="sourceCode" id="cb242"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb242-1"><a href="databases.html#cb242-1" aria-hidden="true"></a><span class="co">-- Selecting a column with a condition</span></span>
-<span id="cb242-2"><a href="databases.html#cb242-2" aria-hidden="true"></a><span class="kw">SELECT</span> employment_start </span>
-<span id="cb242-3"><a href="databases.html#cb242-3" aria-hidden="true"></a><span class="kw">FROM</span> Employee </span>
-<span id="cb242-4"><a href="databases.html#cb242-4" aria-hidden="true"></a><span class="kw">WHERE</span> last_name <span class="op">=</span> <span class="ot">&quot;Gec&quot;</span>;</span></code></pre></div>
-<div class="sourceCode" id="cb243"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb243-1"><a href="databases.html#cb243-1" aria-hidden="true"></a><span class="ex">2010-03-08</span></span></code></pre></div>
-<div class="sourceCode" id="cb244"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb244-1"><a href="databases.html#cb244-1" aria-hidden="true"></a><span class="co">-- Result value concatenation</span></span>
-<span id="cb244-2"><a href="databases.html#cb244-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="kw">id</span>, first_name <span class="op">||</span> <span class="st">&#39; &#39;</span> <span class="op">||</span> last_name <span class="kw">AS</span> name </span>
-<span id="cb244-3"><a href="databases.html#cb244-3" aria-hidden="true"></a><span class="kw">FROM</span> Employee </span>
-<span id="cb244-4"><a href="databases.html#cb244-4" aria-hidden="true"></a><span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div>
-<div class="sourceCode" id="cb245"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb245-1"><a href="databases.html#cb245-1" aria-hidden="true"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Marko</span> Novaković</span>
-<span id="cb245-2"><a href="databases.html#cb245-2" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">Joe</span> Novak</span>
-<span id="cb245-3"><a href="databases.html#cb245-3" aria-hidden="true"></a><span class="ex">3</span><span class="kw">|</span><span class="ex">Janez</span> Gruden</span>
-<span id="cb245-4"><a href="databases.html#cb245-4" aria-hidden="true"></a><span class="ex">4</span><span class="kw">|</span><span class="ex">Tine</span> Stegel</span>
-<span id="cb245-5"><a href="databases.html#cb245-5" aria-hidden="true"></a><span class="ex">5</span><span class="kw">|</span><span class="ex">Nina</span> Gec</span>
-<span id="cb245-6"><a href="databases.html#cb245-6" aria-hidden="true"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">Petar</span> Stankovski</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb240-1"><a href="databases.html#cb240-1"></a><span class="co">-- Selecting all columns</span></span>
+<span id="cb240-2"><a href="databases.html#cb240-2"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Branch;</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb241-1"><a href="databases.html#cb241-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|Kolodvorska 1, Grosuplje|01/786-42-31</span></span>
+<span id="cb241-2"><a href="databases.html#cb241-2"></a><span class="st">2|Hot Pork Wings|Cesta v Kranj 35, Ljubljana|</span></span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb242-1"><a href="databases.html#cb242-1"></a><span class="co">-- Selecting a column with a condition</span></span>
+<span id="cb242-2"><a href="databases.html#cb242-2"></a><span class="kw">SELECT</span> employment_start </span>
+<span id="cb242-3"><a href="databases.html#cb242-3"></a><span class="kw">FROM</span> Employee </span>
+<span id="cb242-4"><a href="databases.html#cb242-4"></a><span class="kw">WHERE</span> last_name <span class="op">=</span> <span class="ot">&quot;Gec&quot;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb243-1"><a href="databases.html#cb243-1"></a><span class="ex">2010-03-08</span></span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb244-1"><a href="databases.html#cb244-1"></a><span class="co">-- Result value concatenation</span></span>
+<span id="cb244-2"><a href="databases.html#cb244-2"></a><span class="kw">SELECT</span> <span class="kw">id</span>, first_name <span class="op">||</span> <span class="st">&#39; &#39;</span> <span class="op">||</span> last_name <span class="kw">AS</span> name </span>
+<span id="cb244-3"><a href="databases.html#cb244-3"></a><span class="kw">FROM</span> Employee </span>
+<span id="cb244-4"><a href="databases.html#cb244-4"></a><span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb245-1"><a href="databases.html#cb245-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Marko</span> Novaković</span>
+<span id="cb245-2"><a href="databases.html#cb245-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">Joe</span> Novak</span>
+<span id="cb245-3"><a href="databases.html#cb245-3"></a><span class="ex">3</span><span class="kw">|</span><span class="ex">Janez</span> Gruden</span>
+<span id="cb245-4"><a href="databases.html#cb245-4"></a><span class="ex">4</span><span class="kw">|</span><span class="ex">Tine</span> Stegel</span>
+<span id="cb245-5"><a href="databases.html#cb245-5"></a><span class="ex">5</span><span class="kw">|</span><span class="ex">Nina</span> Gec</span>
+<span id="cb245-6"><a href="databases.html#cb245-6"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">Petar</span> Stankovski</span></code></pre></div>
 <p>SQLite also supports advanced querying, for example:</p>
 <ul>
 <li>Show the number of employees and a maximum salary for each branch.</li>
 </ul>
-<div class="sourceCode" id="cb246"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb246-1"><a href="databases.html#cb246-1" aria-hidden="true"></a><span class="co">-- Grouping and aggregations</span></span>
-<span id="cb246-2"><a href="databases.html#cb246-2" aria-hidden="true"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
-<span id="cb246-3"><a href="databases.html#cb246-3" aria-hidden="true"></a><span class="kw">FROM</span> Branch b, Employee e, Salary s</span>
-<span id="cb246-4"><a href="databases.html#cb246-4" aria-hidden="true"></a><span class="kw">WHERE</span></span>
-<span id="cb246-5"><a href="databases.html#cb246-5" aria-hidden="true"></a>    e.id_branch <span class="op">=</span> b.<span class="kw">id</span> <span class="kw">AND</span>  </span>
-<span id="cb246-6"><a href="databases.html#cb246-6" aria-hidden="true"></a>    s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
-<span id="cb246-7"><a href="databases.html#cb246-7" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
-<div class="sourceCode" id="cb247"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb247-1"><a href="databases.html#cb247-1" aria-hidden="true"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|9|2140.99</span></span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb246-1"><a href="databases.html#cb246-1"></a><span class="co">-- Grouping and aggregations</span></span>
+<span id="cb246-2"><a href="databases.html#cb246-2"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
+<span id="cb246-3"><a href="databases.html#cb246-3"></a><span class="kw">FROM</span> Branch b, Employee e, Salary s</span>
+<span id="cb246-4"><a href="databases.html#cb246-4"></a><span class="kw">WHERE</span></span>
+<span id="cb246-5"><a href="databases.html#cb246-5"></a>    e.id_branch <span class="op">=</span> b.<span class="kw">id</span> <span class="kw">AND</span>  </span>
+<span id="cb246-6"><a href="databases.html#cb246-6"></a>    s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
+<span id="cb246-7"><a href="databases.html#cb246-7"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb247-1"><a href="databases.html#cb247-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|9|2140.99</span></span></code></pre></div>
 <ul>
 <li>The query above does not return branches with no employees, which is not expected. To improve the query, we need to introduce outer joins. They enable outputs even if there are no matching records in a related table. You may think also of other solutions to solve the problem.</li>
 </ul>
-<div class="sourceCode" id="cb248"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb248-1"><a href="databases.html#cb248-1" aria-hidden="true"></a><span class="co">-- Grouping and outer joins</span></span>
-<span id="cb248-2"><a href="databases.html#cb248-2" aria-hidden="true"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
-<span id="cb248-3"><a href="databases.html#cb248-3" aria-hidden="true"></a><span class="kw">FROM</span> Branch b <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Employee e <span class="kw">ON</span> e.id_branch <span class="op">=</span> b.<span class="kw">id</span></span>
-<span id="cb248-4"><a href="databases.html#cb248-4" aria-hidden="true"></a>     <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
-<span id="cb248-5"><a href="databases.html#cb248-5" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
-<div class="sourceCode" id="cb249"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb249-1"><a href="databases.html#cb249-1" aria-hidden="true"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|14|2140.99</span></span>
-<span id="cb249-2"><a href="databases.html#cb249-2" aria-hidden="true"></a><span class="st">2|Hot Pork Wings|0|</span></span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb248-1"><a href="databases.html#cb248-1"></a><span class="co">-- Grouping and outer joins</span></span>
+<span id="cb248-2"><a href="databases.html#cb248-2"></a><span class="kw">SELECT</span> b.<span class="kw">id</span>, b.name, <span class="fu">COUNT</span>(e.<span class="kw">id</span>), <span class="fu">MAX</span>(s.amount)</span>
+<span id="cb248-3"><a href="databases.html#cb248-3"></a><span class="kw">FROM</span> Branch b <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Employee e <span class="kw">ON</span> e.id_branch <span class="op">=</span> b.<span class="kw">id</span></span>
+<span id="cb248-4"><a href="databases.html#cb248-4"></a>     <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> s.id_employee <span class="op">=</span> e.<span class="kw">id</span></span>
+<span id="cb248-5"><a href="databases.html#cb248-5"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.<span class="kw">id</span>, b.name;</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb249-1"><a href="databases.html#cb249-1"></a><span class="ex">1</span><span class="kw">|</span><span class="ex">Grosuplje</span><span class="st">&#39;s Fried Chicken|14|2140.99</span></span>
+<span id="cb249-2"><a href="databases.html#cb249-2"></a><span class="st">2|Hot Pork Wings|0|</span></span></code></pre></div>
 <ul>
 <li>Select all the employees that got their salary even though they were not employed any more by a branch. Instead of using data from a table directly, we pre-prepare the data using a nested query which is used then in the same way as a new table in a query.</li>
 </ul>
-<div class="sourceCode" id="cb250"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb250-1"><a href="databases.html#cb250-1" aria-hidden="true"></a><span class="co">-- Nested select statement</span></span>
-<span id="cb250-2"><a href="databases.html#cb250-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb250-3"><a href="databases.html#cb250-3" aria-hidden="true"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> e.<span class="kw">id</span>, e.first_name, e.last_name, s.amount, e.employment_end, s.<span class="dt">year</span>, s.<span class="dt">month</span></span>
-<span id="cb250-4"><a href="databases.html#cb250-4" aria-hidden="true"></a>      <span class="kw">FROM</span> Employee e, Salary s</span>
-<span id="cb250-5"><a href="databases.html#cb250-5" aria-hidden="true"></a>      <span class="kw">WHERE</span></span>
-<span id="cb250-6"><a href="databases.html#cb250-6" aria-hidden="true"></a>         e.<span class="kw">id</span> <span class="op">=</span> s.id_employee <span class="kw">AND</span></span>
-<span id="cb250-7"><a href="databases.html#cb250-7" aria-hidden="true"></a>         e.employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>) t</span>
-<span id="cb250-8"><a href="databases.html#cb250-8" aria-hidden="true"></a><span class="kw">WHERE</span></span>
-<span id="cb250-9"><a href="databases.html#cb250-9" aria-hidden="true"></a>    strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">year</span> <span class="kw">OR</span></span>
-<span id="cb250-10"><a href="databases.html#cb250-10" aria-hidden="true"></a>    (strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">=</span> t.<span class="dt">year</span> <span class="kw">AND</span></span>
-<span id="cb250-11"><a href="databases.html#cb250-11" aria-hidden="true"></a>     strftime(<span class="st">&#39;%m&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">month</span>);</span></code></pre></div>
-<div class="sourceCode" id="cb251"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb251-1"><a href="databases.html#cb251-1" aria-hidden="true"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">Jana</span><span class="kw">|</span>Ž<span class="ex">itnik</span><span class="kw">|</span><span class="ex">1320.2</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010</span><span class="kw">|</span><span class="ex">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb250-1"><a href="databases.html#cb250-1"></a><span class="co">-- Nested select statement</span></span>
+<span id="cb250-2"><a href="databases.html#cb250-2"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb250-3"><a href="databases.html#cb250-3"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> e.<span class="kw">id</span>, e.first_name, e.last_name, s.amount, e.employment_end, s.<span class="dt">year</span>, s.<span class="dt">month</span></span>
+<span id="cb250-4"><a href="databases.html#cb250-4"></a>      <span class="kw">FROM</span> Employee e, Salary s</span>
+<span id="cb250-5"><a href="databases.html#cb250-5"></a>      <span class="kw">WHERE</span></span>
+<span id="cb250-6"><a href="databases.html#cb250-6"></a>         e.<span class="kw">id</span> <span class="op">=</span> s.id_employee <span class="kw">AND</span></span>
+<span id="cb250-7"><a href="databases.html#cb250-7"></a>         e.employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>) t</span>
+<span id="cb250-8"><a href="databases.html#cb250-8"></a><span class="kw">WHERE</span></span>
+<span id="cb250-9"><a href="databases.html#cb250-9"></a>    strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">year</span> <span class="kw">OR</span></span>
+<span id="cb250-10"><a href="databases.html#cb250-10"></a>    (strftime(<span class="st">&#39;%Y&#39;</span>, t.employment_end) <span class="op">=</span> t.<span class="dt">year</span> <span class="kw">AND</span></span>
+<span id="cb250-11"><a href="databases.html#cb250-11"></a>     strftime(<span class="st">&#39;%m&#39;</span>, t.employment_end) <span class="op">&lt;</span> t.<span class="dt">month</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb251-1"><a href="databases.html#cb251-1"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">Jana</span><span class="kw">|</span>Ž<span class="ex">itnik</span><span class="kw">|</span><span class="ex">1320.2</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010</span><span class="kw">|</span><span class="ex">5</span></span></code></pre></div>
 <p>Sometimes we would like our results of a query to be stored into a new table. We can achieve this using a CREATE AS statement. The example above prepares a table with all the employees and their salaries that we can further analyse using data science methods:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb252-1"><a href="databases.html#cb252-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> SalaryAnalysis <span class="kw">AS</span></span>
-<span id="cb252-2"><a href="databases.html#cb252-2" aria-hidden="true"></a><span class="kw">SELECT</span> e.<span class="kw">id</span>, e.employment_start, e.employment_end, </span>
-<span id="cb252-3"><a href="databases.html#cb252-3" aria-hidden="true"></a>       s.<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-&#39;</span> <span class="op">||</span> s.<span class="dt">month</span> <span class="op">||</span> <span class="st">&#39;-01&#39;</span> <span class="kw">AS</span> <span class="dt">month</span>, s.amount </span>
-<span id="cb252-4"><a href="databases.html#cb252-4" aria-hidden="true"></a><span class="kw">FROM</span> Employee e <span class="kw">INNER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> e.<span class="kw">id</span> <span class="op">=</span> s.id_employee;</span>
-<span id="cb252-5"><a href="databases.html#cb252-5" aria-hidden="true"></a></span>
-<span id="cb252-6"><a href="databases.html#cb252-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SalaryAnalysis;</span></code></pre></div>
-<div class="sourceCode" id="cb253"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb253-1"><a href="databases.html#cb253-1" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">950.37</span></span>
-<span id="cb253-2"><a href="databases.html#cb253-2" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">955.2</span></span>
-<span id="cb253-3"><a href="databases.html#cb253-3" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">990.49</span></span>
-<span id="cb253-4"><a href="databases.html#cb253-4" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-8-01</span><span class="kw">|</span><span class="ex">1200.5</span></span>
-<span id="cb253-5"><a href="databases.html#cb253-5" aria-hidden="true"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">2018-10-01</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">980.43</span></span>
-<span id="cb253-6"><a href="databases.html#cb253-6" aria-hidden="true"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">1987-06-07</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">1320.2</span></span>
-<span id="cb253-7"><a href="databases.html#cb253-7" aria-hidden="true"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">2100.67</span></span>
-<span id="cb253-8"><a href="databases.html#cb253-8" aria-hidden="true"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">2140.99</span></span>
-<span id="cb253-9"><a href="databases.html#cb253-9" aria-hidden="true"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">2099.11</span></span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb252-1"><a href="databases.html#cb252-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> SalaryAnalysis <span class="kw">AS</span></span>
+<span id="cb252-2"><a href="databases.html#cb252-2"></a><span class="kw">SELECT</span> e.<span class="kw">id</span>, e.employment_start, e.employment_end, </span>
+<span id="cb252-3"><a href="databases.html#cb252-3"></a>       s.<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-&#39;</span> <span class="op">||</span> s.<span class="dt">month</span> <span class="op">||</span> <span class="st">&#39;-01&#39;</span> <span class="kw">AS</span> <span class="dt">month</span>, s.amount </span>
+<span id="cb252-4"><a href="databases.html#cb252-4"></a><span class="kw">FROM</span> Employee e <span class="kw">INNER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> e.<span class="kw">id</span> <span class="op">=</span> s.id_employee;</span>
+<span id="cb252-5"><a href="databases.html#cb252-5"></a></span>
+<span id="cb252-6"><a href="databases.html#cb252-6"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SalaryAnalysis;</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb253-1"><a href="databases.html#cb253-1"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">950.37</span></span>
+<span id="cb253-2"><a href="databases.html#cb253-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">955.2</span></span>
+<span id="cb253-3"><a href="databases.html#cb253-3"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">990.49</span></span>
+<span id="cb253-4"><a href="databases.html#cb253-4"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-8-01</span><span class="kw">|</span><span class="ex">1200.5</span></span>
+<span id="cb253-5"><a href="databases.html#cb253-5"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">2018-10-01</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">980.43</span></span>
+<span id="cb253-6"><a href="databases.html#cb253-6"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">1987-06-07</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">1320.2</span></span>
+<span id="cb253-7"><a href="databases.html#cb253-7"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">2100.67</span></span>
+<span id="cb253-8"><a href="databases.html#cb253-8"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">2140.99</span></span>
+<span id="cb253-9"><a href="databases.html#cb253-9"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">2099.11</span></span></code></pre></div>
 <p>Another option is to create a dynamic object called VIEW. The CREATE VIEW command assigns a name to a pre-packaged SELECT statement. Once the view is created, it can be used in the FROM clause of another SELECT in place of a table name. We can also rename columns when creating a view. We now use the same example as above to create a VIEW:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb254-1"><a href="databases.html#cb254-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> SalaryAnalysisView (<span class="kw">id</span>, <span class="kw">start</span>, <span class="cf">end</span>, <span class="dt">month</span>, amount) <span class="kw">AS</span></span>
-<span id="cb254-2"><a href="databases.html#cb254-2" aria-hidden="true"></a><span class="kw">SELECT</span> e.<span class="kw">id</span>, e.employment_start, e.employment_end, </span>
-<span id="cb254-3"><a href="databases.html#cb254-3" aria-hidden="true"></a>       s.<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-&#39;</span> <span class="op">||</span> s.<span class="dt">month</span> <span class="op">||</span> <span class="st">&#39;-01&#39;</span> <span class="kw">AS</span> <span class="dt">month</span>, s.amount </span>
-<span id="cb254-4"><a href="databases.html#cb254-4" aria-hidden="true"></a><span class="kw">FROM</span> Employee e <span class="kw">INNER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> e.<span class="kw">id</span> <span class="op">=</span> s.id_employee;</span>
-<span id="cb254-5"><a href="databases.html#cb254-5" aria-hidden="true"></a></span>
-<span id="cb254-6"><a href="databases.html#cb254-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SalaryAnalysisView;</span></code></pre></div>
-<div class="sourceCode" id="cb255"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb255-1"><a href="databases.html#cb255-1" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">950.37</span></span>
-<span id="cb255-2"><a href="databases.html#cb255-2" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">955.2</span></span>
-<span id="cb255-3"><a href="databases.html#cb255-3" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">990.49</span></span>
-<span id="cb255-4"><a href="databases.html#cb255-4" aria-hidden="true"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-8-01</span><span class="kw">|</span><span class="ex">1200.5</span></span>
-<span id="cb255-5"><a href="databases.html#cb255-5" aria-hidden="true"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">2018-10-01</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">980.43</span></span>
-<span id="cb255-6"><a href="databases.html#cb255-6" aria-hidden="true"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">1987-06-07</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">1320.2</span></span>
-<span id="cb255-7"><a href="databases.html#cb255-7" aria-hidden="true"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">2100.67</span></span>
-<span id="cb255-8"><a href="databases.html#cb255-8" aria-hidden="true"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">2140.99</span></span>
-<span id="cb255-9"><a href="databases.html#cb255-9" aria-hidden="true"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">2099.11</span></span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb254-1"><a href="databases.html#cb254-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> SalaryAnalysisView (<span class="kw">id</span>, <span class="kw">start</span>, <span class="cf">end</span>, <span class="dt">month</span>, amount) <span class="kw">AS</span></span>
+<span id="cb254-2"><a href="databases.html#cb254-2"></a><span class="kw">SELECT</span> e.<span class="kw">id</span>, e.employment_start, e.employment_end, </span>
+<span id="cb254-3"><a href="databases.html#cb254-3"></a>       s.<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-&#39;</span> <span class="op">||</span> s.<span class="dt">month</span> <span class="op">||</span> <span class="st">&#39;-01&#39;</span> <span class="kw">AS</span> <span class="dt">month</span>, s.amount </span>
+<span id="cb254-4"><a href="databases.html#cb254-4"></a><span class="kw">FROM</span> Employee e <span class="kw">INNER</span> <span class="kw">JOIN</span> Salary s <span class="kw">ON</span> e.<span class="kw">id</span> <span class="op">=</span> s.id_employee;</span>
+<span id="cb254-5"><a href="databases.html#cb254-5"></a></span>
+<span id="cb254-6"><a href="databases.html#cb254-6"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SalaryAnalysisView;</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb255-1"><a href="databases.html#cb255-1"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">950.37</span></span>
+<span id="cb255-2"><a href="databases.html#cb255-2"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">955.2</span></span>
+<span id="cb255-3"><a href="databases.html#cb255-3"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">990.49</span></span>
+<span id="cb255-4"><a href="databases.html#cb255-4"></a><span class="ex">2</span><span class="kw">|</span><span class="ex">1995-08-22</span><span class="kw">||</span><span class="ex">2010-8-01</span><span class="kw">|</span><span class="ex">1200.5</span></span>
+<span id="cb255-5"><a href="databases.html#cb255-5"></a><span class="ex">6</span><span class="kw">|</span><span class="ex">2018-10-01</span><span class="kw">||</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">980.43</span></span>
+<span id="cb255-6"><a href="databases.html#cb255-6"></a><span class="ex">7</span><span class="kw">|</span><span class="ex">1987-06-07</span><span class="kw">|</span><span class="ex">1987-06-12</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">1320.2</span></span>
+<span id="cb255-7"><a href="databases.html#cb255-7"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-5-01</span><span class="kw">|</span><span class="ex">2100.67</span></span>
+<span id="cb255-8"><a href="databases.html#cb255-8"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-6-01</span><span class="kw">|</span><span class="ex">2140.99</span></span>
+<span id="cb255-9"><a href="databases.html#cb255-9"></a><span class="ex">8</span><span class="kw">|</span><span class="ex">2010-04-22</span><span class="kw">|</span><span class="ex">2022-01-01</span><span class="kw">|</span><span class="ex">2010-7-01</span><span class="kw">|</span><span class="ex">2099.11</span></span></code></pre></div>
 <p>There is also option to update our data using the UPDATE statement:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb256-1"><a href="databases.html#cb256-1" aria-hidden="true"></a><span class="co">-- Set new phone number to the Hot Pork Wings branch</span></span>
-<span id="cb256-2"><a href="databases.html#cb256-2" aria-hidden="true"></a><span class="kw">UPDATE</span> Branch</span>
-<span id="cb256-3"><a href="databases.html#cb256-3" aria-hidden="true"></a> <span class="kw">SET</span> telephone <span class="op">=</span> <span class="ot">&quot;05/869-22-54&quot;</span></span>
-<span id="cb256-4"><a href="databases.html#cb256-4" aria-hidden="true"></a> <span class="kw">WHERE</span> name <span class="op">=</span> <span class="ot">&quot;Hot Pork Wings&quot;</span>;</span>
-<span id="cb256-5"><a href="databases.html#cb256-5" aria-hidden="true"></a></span>
-<span id="cb256-6"><a href="databases.html#cb256-6" aria-hidden="true"></a><span class="co">-- Retire the Employee 3 starting today</span></span>
-<span id="cb256-7"><a href="databases.html#cb256-7" aria-hidden="true"></a><span class="kw">UPDATE</span> Employee</span>
-<span id="cb256-8"><a href="databases.html#cb256-8" aria-hidden="true"></a> <span class="kw">SET</span> employment_end <span class="op">=</span> <span class="dt">date</span>(<span class="st">&#39;now&#39;</span>)</span>
-<span id="cb256-9"><a href="databases.html#cb256-9" aria-hidden="true"></a> <span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> <span class="dv">3</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb256-1"><a href="databases.html#cb256-1"></a><span class="co">-- Set new phone number to the Hot Pork Wings branch</span></span>
+<span id="cb256-2"><a href="databases.html#cb256-2"></a><span class="kw">UPDATE</span> Branch</span>
+<span id="cb256-3"><a href="databases.html#cb256-3"></a> <span class="kw">SET</span> telephone <span class="op">=</span> <span class="ot">&quot;05/869-22-54&quot;</span></span>
+<span id="cb256-4"><a href="databases.html#cb256-4"></a> <span class="kw">WHERE</span> name <span class="op">=</span> <span class="ot">&quot;Hot Pork Wings&quot;</span>;</span>
+<span id="cb256-5"><a href="databases.html#cb256-5"></a></span>
+<span id="cb256-6"><a href="databases.html#cb256-6"></a><span class="co">-- Retire the Employee 3 starting today</span></span>
+<span id="cb256-7"><a href="databases.html#cb256-7"></a><span class="kw">UPDATE</span> Employee</span>
+<span id="cb256-8"><a href="databases.html#cb256-8"></a> <span class="kw">SET</span> employment_end <span class="op">=</span> <span class="dt">date</span>(<span class="st">&#39;now&#39;</span>)</span>
+<span id="cb256-9"><a href="databases.html#cb256-9"></a> <span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> <span class="dv">3</span>;</span></code></pre></div>
 <p>DELETE statements are similar to UPDATE statements. In both cases we must be careful about the WHERE condition as we may quickly delete or update too many rows.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb257-1"><a href="databases.html#cb257-1" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb257-1"><a href="databases.html#cb257-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
 <p>The statement above could not delete Employees as there exist rows in the Salary table that refer to the rows in the Employee table. Therefore, we need to first delete the rows from the Salary table and then from the Employee table. More advanced databases support the CASCADE mechanism in the DELETE statement already which can be used for such scenarios.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb258-1"><a href="databases.html#cb258-1" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Salary <span class="kw">WHERE</span> id_employee <span class="kw">IN</span> (</span>
-<span id="cb258-2"><a href="databases.html#cb258-2" aria-hidden="true"></a>    <span class="kw">SELECT</span> <span class="kw">id</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb258-3"><a href="databases.html#cb258-3" aria-hidden="true"></a>);</span>
-<span id="cb258-4"><a href="databases.html#cb258-4" aria-hidden="true"></a></span>
-<span id="cb258-5"><a href="databases.html#cb258-5" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb258-1"><a href="databases.html#cb258-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Salary <span class="kw">WHERE</span> id_employee <span class="kw">IN</span> (</span>
+<span id="cb258-2"><a href="databases.html#cb258-2"></a>    <span class="kw">SELECT</span> <span class="kw">id</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb258-3"><a href="databases.html#cb258-3"></a>);</span>
+<span id="cb258-4"><a href="databases.html#cb258-4"></a></span>
+<span id="cb258-5"><a href="databases.html#cb258-5"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
 <p>We presented just some basic examples of how to use an SQLite database. Feel free to investigate its possibilities further.</p>
 </div>
-<div id="sqlite-in-python" class="section level3" number="9.2.3">
+<div id="sqlite-in-python" class="section level3">
 <h3><span class="header-section-number">9.2.3</span> SQLite in Python</h3>
 <p>SQLite can be used by many different programming languages. We show an example of how to use an SQLite database from Python. The database we prepared in the previous section is also available <a href="data/SQL/itds_course.db">here</a>.</p>
 <p>First we need to install library for SQLite database file manipulation. If you use Anaconda Python distribution, just issue the <code>conda install -c anaconda sqlite</code> command.</p>
 <p>Then we need to connect to a database. If the database file does not exist in the path provided, an empty database file will be created automatically.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb259-1"><a href="databases.html#cb259-1" aria-hidden="true"></a><span class="im">import</span> sqlite3</span>
-<span id="cb259-2"><a href="databases.html#cb259-2" aria-hidden="true"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;itds_course.db&#39;</span>)</span></code></pre></div>
-<div id="inserting-data" class="section level4" number="9.2.3.1">
+<div class="sourceCode" id="cb259"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb259-1"><a href="databases.html#cb259-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb259-2"><a href="databases.html#cb259-2"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;itds_course.db&#39;</span>)</span></code></pre></div>
+<div id="inserting-data" class="section level4">
 <h4><span class="header-section-number">9.2.3.1</span> Inserting data</h4>
 <p>We assume that we are connected to the database from the previous section. Let’s first insert a record.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb260-1"><a href="databases.html#cb260-1" aria-hidden="true"></a>c <span class="op">=</span> conn.cursor()</span>
-<span id="cb260-2"><a href="databases.html#cb260-2" aria-hidden="true"></a></span>
-<span id="cb260-3"><a href="databases.html#cb260-3" aria-hidden="true"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb260-4"><a href="databases.html#cb260-4" aria-hidden="true"></a><span class="st">    INSERT INTO Employee (id_branch, first_name, last_name, employment_start) VALUES</span></span>
-<span id="cb260-5"><a href="databases.html#cb260-5" aria-hidden="true"></a><span class="st">      (2, &quot;Mija&quot;, &quot;Zblaznela&quot;, &quot;1999-07-12&quot;);</span></span>
-<span id="cb260-6"><a href="databases.html#cb260-6" aria-hidden="true"></a><span class="st">&#39;&#39;&#39;</span>)</span>
-<span id="cb260-7"><a href="databases.html#cb260-7" aria-hidden="true"></a></span>
-<span id="cb260-8"><a href="databases.html#cb260-8" aria-hidden="true"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb260-9"><a href="databases.html#cb260-9" aria-hidden="true"></a><span class="st">    INSERT INTO Salary (year, month, id_employee, amount) VALUES </span></span>
-<span id="cb260-10"><a href="databases.html#cb260-10" aria-hidden="true"></a><span class="st">      (2010, 05, last_insert_rowid(), 1243.67);</span></span>
-<span id="cb260-11"><a href="databases.html#cb260-11" aria-hidden="true"></a><span class="st">&#39;&#39;&#39;</span>)</span>
-<span id="cb260-12"><a href="databases.html#cb260-12" aria-hidden="true"></a></span>
-<span id="cb260-13"><a href="databases.html#cb260-13" aria-hidden="true"></a></span>
-<span id="cb260-14"><a href="databases.html#cb260-14" aria-hidden="true"></a><span class="co"># Save (commit) the changes</span></span>
-<span id="cb260-15"><a href="databases.html#cb260-15" aria-hidden="true"></a>conn.commit()</span>
-<span id="cb260-16"><a href="databases.html#cb260-16" aria-hidden="true"></a></span>
-<span id="cb260-17"><a href="databases.html#cb260-17" aria-hidden="true"></a><span class="co"># We can also close the connection if we are done with it.</span></span>
-<span id="cb260-18"><a href="databases.html#cb260-18" aria-hidden="true"></a><span class="co"># Just be sure any changes have been committed or they will be lost.</span></span>
-<span id="cb260-19"><a href="databases.html#cb260-19" aria-hidden="true"></a><span class="co"># conn.close()</span></span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb260-1"><a href="databases.html#cb260-1"></a>c <span class="op">=</span> conn.cursor()</span>
+<span id="cb260-2"><a href="databases.html#cb260-2"></a></span>
+<span id="cb260-3"><a href="databases.html#cb260-3"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb260-4"><a href="databases.html#cb260-4"></a><span class="st">    INSERT INTO Employee (id_branch, first_name, last_name, employment_start) VALUES</span></span>
+<span id="cb260-5"><a href="databases.html#cb260-5"></a><span class="st">      (2, &quot;Mija&quot;, &quot;Zblaznela&quot;, &quot;1999-07-12&quot;);</span></span>
+<span id="cb260-6"><a href="databases.html#cb260-6"></a><span class="st">&#39;&#39;&#39;</span>)</span>
+<span id="cb260-7"><a href="databases.html#cb260-7"></a></span>
+<span id="cb260-8"><a href="databases.html#cb260-8"></a>c.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb260-9"><a href="databases.html#cb260-9"></a><span class="st">    INSERT INTO Salary (year, month, id_employee, amount) VALUES </span></span>
+<span id="cb260-10"><a href="databases.html#cb260-10"></a><span class="st">      (2010, 05, last_insert_rowid(), 1243.67);</span></span>
+<span id="cb260-11"><a href="databases.html#cb260-11"></a><span class="st">&#39;&#39;&#39;</span>)</span>
+<span id="cb260-12"><a href="databases.html#cb260-12"></a></span>
+<span id="cb260-13"><a href="databases.html#cb260-13"></a></span>
+<span id="cb260-14"><a href="databases.html#cb260-14"></a><span class="co"># Save (commit) the changes</span></span>
+<span id="cb260-15"><a href="databases.html#cb260-15"></a>conn.commit()</span>
+<span id="cb260-16"><a href="databases.html#cb260-16"></a></span>
+<span id="cb260-17"><a href="databases.html#cb260-17"></a><span class="co"># We can also close the connection if we are done with it.</span></span>
+<span id="cb260-18"><a href="databases.html#cb260-18"></a><span class="co"># Just be sure any changes have been committed or they will be lost.</span></span>
+<span id="cb260-19"><a href="databases.html#cb260-19"></a><span class="co"># conn.close()</span></span></code></pre></div>
 <p>After every change to a database, we must call the commit command which actually saves the results into the database.</p>
 <p>Now let’s examine if our insert statement was successful. You may have noticed the call to the function <code>last_insert_rowid()</code>. This function returns the id of the last inserted row when we are using AUTOINCREMENT option for the primary key.</p>
 </div>
-<div id="selecting-data" class="section level4" number="9.2.3.2">
+<div id="selecting-data" class="section level4">
 <h4><span class="header-section-number">9.2.3.2</span> Selecting data</h4>
 <p>Let’s check, what is in the database.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb261-1"><a href="databases.html#cb261-1" aria-hidden="true"></a>cursor <span class="op">=</span> c.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb261-2"><a href="databases.html#cb261-2" aria-hidden="true"></a><span class="st">    SELECT b.id, b.name, COUNT(e.id), MAX(s.amount)</span></span>
-<span id="cb261-3"><a href="databases.html#cb261-3" aria-hidden="true"></a><span class="st">    FROM Branch b LEFT OUTER JOIN Employee e ON e.id_branch = b.id</span></span>
-<span id="cb261-4"><a href="databases.html#cb261-4" aria-hidden="true"></a><span class="st">         LEFT OUTER JOIN Salary s ON s.id_employee = e.id</span></span>
-<span id="cb261-5"><a href="databases.html#cb261-5" aria-hidden="true"></a><span class="st">    GROUP BY b.id, b.name;</span></span>
-<span id="cb261-6"><a href="databases.html#cb261-6" aria-hidden="true"></a><span class="st">&#39;&#39;&#39;</span>)</span>
-<span id="cb261-7"><a href="databases.html#cb261-7" aria-hidden="true"></a></span>
-<span id="cb261-8"><a href="databases.html#cb261-8" aria-hidden="true"></a><span class="cf">for</span> row <span class="kw">in</span> cursor:</span>
-<span id="cb261-9"><a href="databases.html#cb261-9" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\t</span><span class="st">Branch id: </span><span class="sc">%d</span><span class="ch">\n\t\t</span><span class="st">Branch name: &#39;</span><span class="sc">%s</span><span class="st">&#39;</span><span class="ch">\n\t\t</span><span class="st">Employee number: \</span></span>
-<span id="cb261-10"><a href="databases.html#cb261-10" aria-hidden="true"></a><span class="st">    </span><span class="sc">%s</span><span class="ch">\n\t\t</span><span class="st">Maximum salary: </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>], row[<span class="dv">3</span>]))</span>
-<span id="cb261-11"><a href="databases.html#cb261-11" aria-hidden="true"></a></span>
-<span id="cb261-12"><a href="databases.html#cb261-12" aria-hidden="true"></a><span class="co"># You should close the connection when stopped using the database.</span></span>
-<span id="cb261-13"><a href="databases.html#cb261-13" aria-hidden="true"></a>conn.close()</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb261-1"><a href="databases.html#cb261-1"></a>cursor <span class="op">=</span> c.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb261-2"><a href="databases.html#cb261-2"></a><span class="st">    SELECT b.id, b.name, COUNT(e.id), MAX(s.amount)</span></span>
+<span id="cb261-3"><a href="databases.html#cb261-3"></a><span class="st">    FROM Branch b LEFT OUTER JOIN Employee e ON e.id_branch = b.id</span></span>
+<span id="cb261-4"><a href="databases.html#cb261-4"></a><span class="st">         LEFT OUTER JOIN Salary s ON s.id_employee = e.id</span></span>
+<span id="cb261-5"><a href="databases.html#cb261-5"></a><span class="st">    GROUP BY b.id, b.name;</span></span>
+<span id="cb261-6"><a href="databases.html#cb261-6"></a><span class="st">&#39;&#39;&#39;</span>)</span>
+<span id="cb261-7"><a href="databases.html#cb261-7"></a></span>
+<span id="cb261-8"><a href="databases.html#cb261-8"></a><span class="cf">for</span> row <span class="kw">in</span> cursor:</span>
+<span id="cb261-9"><a href="databases.html#cb261-9"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\t</span><span class="st">Branch id: </span><span class="sc">%d</span><span class="ch">\n\t\t</span><span class="st">Branch name: &#39;</span><span class="sc">%s</span><span class="st">&#39;</span><span class="ch">\n\t\t</span><span class="st">Employee number: \</span></span>
+<span id="cb261-10"><a href="databases.html#cb261-10"></a><span class="st">    </span><span class="sc">%s</span><span class="ch">\n\t\t</span><span class="st">Maximum salary: </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>], row[<span class="dv">3</span>]))</span>
+<span id="cb261-11"><a href="databases.html#cb261-11"></a></span>
+<span id="cb261-12"><a href="databases.html#cb261-12"></a><span class="co"># You should close the connection when stopped using the database.</span></span>
+<span id="cb261-13"><a href="databases.html#cb261-13"></a>conn.close()</span></code></pre></div>
 <p>We can observe that now also the Hot Pork Wings branch employs an employee.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb262-1"><a href="databases.html#cb262-1" aria-hidden="true"></a>	<span class="ex">Branch</span> id: 1</span>
-<span id="cb262-2"><a href="databases.html#cb262-2" aria-hidden="true"></a>		<span class="ex">Branch</span> name: <span class="st">&#39;Grosuplje&#39;</span>s Fried Chicken<span class="st">&#39;</span></span>
-<span id="cb262-3"><a href="databases.html#cb262-3" aria-hidden="true"></a><span class="st">		Employee number: 14</span></span>
-<span id="cb262-4"><a href="databases.html#cb262-4" aria-hidden="true"></a><span class="st">		Maximum salary: 2140.99</span></span>
-<span id="cb262-5"><a href="databases.html#cb262-5" aria-hidden="true"></a><span class="st">	Branch id: 2</span></span>
-<span id="cb262-6"><a href="databases.html#cb262-6" aria-hidden="true"></a><span class="st">		Branch name: &#39;</span>Hot Pork Wings<span class="st">&#39;</span></span>
-<span id="cb262-7"><a href="databases.html#cb262-7" aria-hidden="true"></a><span class="st">		Employee number: 1</span></span>
-<span id="cb262-8"><a href="databases.html#cb262-8" aria-hidden="true"></a><span class="st">		Maximum salary: 1243.67</span></span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb262-1"><a href="databases.html#cb262-1"></a>    <span class="ex">Branch</span> id: 1</span>
+<span id="cb262-2"><a href="databases.html#cb262-2"></a>        <span class="ex">Branch</span> name: <span class="st">&#39;Grosuplje&#39;</span>s Fried Chicken<span class="st">&#39;</span></span>
+<span id="cb262-3"><a href="databases.html#cb262-3"></a><span class="st">        Employee number: 14</span></span>
+<span id="cb262-4"><a href="databases.html#cb262-4"></a><span class="st">        Maximum salary: 2140.99</span></span>
+<span id="cb262-5"><a href="databases.html#cb262-5"></a><span class="st">    Branch id: 2</span></span>
+<span id="cb262-6"><a href="databases.html#cb262-6"></a><span class="st">        Branch name: &#39;</span>Hot Pork Wings<span class="st">&#39;</span></span>
+<span id="cb262-7"><a href="databases.html#cb262-7"></a><span class="st">        Employee number: 1</span></span>
+<span id="cb262-8"><a href="databases.html#cb262-8"></a><span class="st">        Maximum salary: 1243.67</span></span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="postgresql" class="section level2" number="9.3">
+<div id="postgresql" class="section level2">
 <h2><span class="header-section-number">9.3</span> PostgreSQL</h2>
 <p>In some cases we need more powerful relational database features. In this case we propose to use a more advanced relational database management system, such as PostgreSQL, MS SQL, MySQL or others.</p>
 <p>In previous chapters we introduced Docker environment. Now we will use <a href="https://hub.docker.com/_/postgres">an official PostgreSQL database image</a> and run it:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb263-1"><a href="databases.html#cb263-1" aria-hidden="true"></a><span class="ex">docker</span> run --name pg-server -e POSTGRES_PASSWORD=BeReSeMi.DataScience <span class="kw">\</span></span>
-<span id="cb263-2"><a href="databases.html#cb263-2" aria-hidden="true"></a>  <span class="ex">-d</span> -p 5432:5432 postgres:10</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb263-1"><a href="databases.html#cb263-1"></a><span class="ex">docker</span> run --name pg-server -e POSTGRES_PASSWORD=BeReSeMi.DataScience \</span>
+<span id="cb263-2"><a href="databases.html#cb263-2"></a>  -d -p 5432:5432 postgres:10</span></code></pre></div>
 <p>The command will run a PostgreSQL v10.0 database in a Docker container. Also, it will name the container <code>pg-server</code>, set the default database user’s postgres’ password to <code>BeReSeMi.DataScience</code> and share the port 5432 to the host machine.</p>
 <p>When the container is running, we can use our preffered database client and connect to the database server. We can also directly connect to the database using the following command:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb264-1"><a href="databases.html#cb264-1" aria-hidden="true"></a><span class="ex">docker</span> exec -it pg-server psql -U postgres -W</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb264-1"><a href="databases.html#cb264-1"></a><span class="ex">docker</span> exec -it pg-server psql -U postgres -W</span></code></pre></div>
 <p>First we need to create a database, called <code>courseitds</code> and connect to it:</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb265-1"><a href="databases.html#cb265-1" aria-hidden="true"></a><span class="va">postgres=</span># <span class="ex">create</span> database courseitds<span class="kw">;</span></span>
-<span id="cb265-2"><a href="databases.html#cb265-2" aria-hidden="true"></a><span class="ex">CREATE</span> DATABASE</span>
-<span id="cb265-3"><a href="databases.html#cb265-3" aria-hidden="true"></a><span class="va">postgres=</span># \<span class="ex">c</span> courseitds</span>
-<span id="cb265-4"><a href="databases.html#cb265-4" aria-hidden="true"></a><span class="ex">You</span> are now connected to database <span class="st">&quot;courseitds&quot;</span> as user <span class="st">&quot;postgres&quot;</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb265-1"><a href="databases.html#cb265-1"></a><span class="va">postgres=</span># <span class="ex">create</span> database courseitds<span class="kw">;</span></span>
+<span id="cb265-2"><a href="databases.html#cb265-2"></a><span class="ex">CREATE</span> DATABASE</span>
+<span id="cb265-3"><a href="databases.html#cb265-3"></a><span class="va">postgres=</span># \<span class="ex">c</span> courseitds</span>
+<span id="cb265-4"><a href="databases.html#cb265-4"></a><span class="ex">You</span> are now connected to database <span class="st">&quot;courseitds&quot;</span> as user <span class="st">&quot;postgres&quot;</span>.</span></code></pre></div>
 <p>Now we can use the SQL statements from the example above (Section <a href="databases.html#sqlite-example">9.2.2</a>). PostgreSQL supports SQL a bit differently, so we need to adapt the following:</p>
 <ul>
 <li>Foreign key constraint checks are enabled by default so there is no need to enable them.</li>
@@ -809,7 +780,7 @@ Figure 9.2: Employee logical database model.
 <p>We provided adapted SQL queries in <a href="data/SQL/statements_PostgreSQL.sql">a single SQL file</a>.</p>
 <p>When running a database using Docker, do not forget about the data storage! Using the container storage directly is not safe, so we should use volumes instead.</p>
 </div>
-<div id="further-reading-and-references" class="section level2" number="9.4">
+<div id="further-reading-and-references-8" class="section level2">
 <h2><span class="header-section-number">9.4</span> Further reading and references</h2>
 <ul>
 <li><a href="https://www.sqlite.org/index.html">SQLite official website</a> and <a href="https://pysqlite.readthedocs.io/en/latest/sqlite3.html">Sqlite 3 Python library documentation</a>.</li>
@@ -817,7 +788,7 @@ Figure 9.2: Employee logical database model.
 <li><a href="https://www.postgresql.org/">PostgreSQL official documentation</a>.</li>
 </ul>
 </div>
-<div id="learning-outcomes" class="section level2" number="9.5">
+<div id="learning-outcomes-8" class="section level2">
 <h2><span class="header-section-number">9.5</span> Learning outcomes</h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
@@ -826,7 +797,7 @@ Figure 9.2: Employee logical database model.
 <li>Import and export data to and from a database.</li>
 </ul>
 </div>
-<div id="practice-problems" class="section level2" number="9.6">
+<div id="practice-problems-8" class="section level2">
 <h2><span class="header-section-number">9.6</span> Practice problems</h2>
 <ul>
 <li>Select one of the machine learning datasets, design a database for it and import it into a database. Use the Python visualization library and visualize the data queried directly from the database.</li>

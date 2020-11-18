@@ -28,8 +28,11 @@ After that build the *bookdown* project, the newly compiled materials will be av
 # Clean existing book data
 bookdown::clean_book(TRUE)
 
+# Clean R environment
+rm(list = ls()) 
+
 # Build HTML gitbook
-bookdown::render_book('index.Rmd', 'bookdown::gitbook', clean_envir = TRUE)
+bookdown::render_book('index.Rmd', 'bookdown::gitbook')
 ```
 
 --

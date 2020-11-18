@@ -242,11 +242,32 @@ interact(showGraph, scale = widgets.IntSlider(value=4, description='Scale', max=
 
 ![](data/Reproducibility/sine.png)
 
+## Data dashboards - tooling and libraries
+
+Data dashboards can make data more accessible to your non-technical teams. That is why it is valuable to include visualizations along with explanations in your reports. A data dashboard consists of many different components and needs to provide the following functionalities:
+
+* *Analyze*: Manipulate and summarize data using a backend library such as Pandas.
+* *Visualize*: Create plots and graphs of the data using a graphing library such as Bokeh.
+* *Interact*: Accept user input using a frontend library such as React.
+* *Serve*: Listen for user requests and return webpages using a web server such as Flask.
+
+![](data/Reproducibility/dashboard_comparison.png)
+Some of the possible tools are listed in the previous chapters but new tools appear very often out there, so you should keep pace with the trends (at least for testing multiple options). To better decide, you can try to choose between the following (based on [a blog post](https://towardsdatascience.com/streamlit-vs-dash-vs-shiny-vs-voila-vs-flask-vs-jupyter-24739ab5d569)):
+
+* *Dash* if you already use Python for your analytics and you want to build production-ready data dashboards for a larger company.
+* *Streamlit* if you already use Python for your analytics and you want to get a prototype of your dashboard up and running as quickly as possible.
+* *Shiny* if you already use R for your analytics and you want to make the results more accessible to non-technical teams.
+* *Jupyter* if your team is very technical and doesn’t mind installing and running developer tools to view analytics.
+* *Voila* if you already have Jupyter Notebooks and you want to make them accessible to non-technical teams.
+* *Flask* if you want to build your own solution from the ground up (generally not an option due to time constraints).
+
 ## Further reading and references
 
 * Science is in a replication and reproducibility crisis. In some fields more than half of published studes fail to replicate and most studies are not reproducible: *Baker, M. (2016). 1,500 scientists lift the lid on reproducibility. Nature News, 533(7604), 452.*
 
 * Preregistration will eventually become the standard for publication of empirical research: *Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. Proceedings of the National Academy of Sciences, 115(11), 2600-2606.*
+
+* There are many new tools appearing, so search for new options from time to time and select the most suitable for you (e.g. [comparison of a few](https://towardsdatascience.com/streamlit-vs-dash-vs-shiny-vs-voila-vs-flask-vs-jupyter-24739ab5d569)).
 
 ## Learning outcomes
 
