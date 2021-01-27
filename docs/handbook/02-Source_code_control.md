@@ -73,7 +73,7 @@ _HINT_: If your commit would consist of only the files that Git is already track
 $ git push <remote name> <branch name>
 ```
 
-_Push_ command allows you to copy all the changes from the remote repo to your local repo. Now all the collaborators will have access to the changes and will be able to update their local repositories. You can sync code with multiple remote repositories which is defined by the first parameter (by default it is named _origin_). The second parameter defines which branch we would like our changes to be copied (by default it is named _master_ - we will cover more about branching in \@ref(git-branching)).
+_Push_ command allows you to copy all the changes from the local repo to your remote repo. Now all the collaborators will have access to the changes and will be able to update their local repositories. You can sync code with multiple remote repositories which is defined by the first parameter (by default it is named _origin_). The second parameter defines which branch we would like our changes to be copied (by default it is named _master_ - we will cover more about branching in \@ref(git-branching)).
 
 ### Pull
 
