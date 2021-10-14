@@ -155,7 +155,7 @@ cat(sprintf("poly (25): %.2f / %.2f\n", e1_te, e1_tr))
 ```
 
 ```
-## poly (25): 71336.92 / 162.80
+## poly (25): 71336.91 / 162.80
 ```
 
 We can see that the 20th degree polynomial model, which has 17 more parameters than the 3rd degree polynomial model, is able to fit the training data better. However, its performance on the test data is worse! This is an important concept that we call *overfitting* - the model was too expressive for the amount of data we have and it started fitting not just the underlying true functional relationship but also the noise in the data. An extreme example of this would be using a 100th degree polynomial, which would be able to perfectly fit the training data, but it would perform very poorly on test data.

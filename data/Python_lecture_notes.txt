@@ -1,0 +1,40 @@
+# which python
+# python
+    >> import sys
+    >> sys.path
+
+-- Virtual environment:
+
+# python3 -m venv ids-env
+# . ids-venv/bin/activate
+(ids-env)# python
+    >> import sys
+    >> sys.path
+# deactivate
+
+-- Conda: 
+
+# conda create -n ids_environment
+(ids_environment)# conda activate ids_environment
+# conda install python=3.8
+    -- ali definirati Python že ob kreiranju okolja!!!
+(ids_environment)# python
+    >> import sys
+    >> sys.path
+# conda deactivate
+
+-- Jupyter
+
+(ids_environment)# conda install nb_conda
+(ids_environment)# jupyter notebook
+    -- download jupyter notebook from handbook
+    -- check avail kernels
+
+
+-- Export installed libraries
+
+(ids_environment)# conda env export > environment.yml
+
+-- Remove environment
+
+(ids_environment)# conda remove --name ids_environment --all

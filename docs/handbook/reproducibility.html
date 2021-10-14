@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Reproducible research | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Reproducible research | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-10-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,9 @@
   
 <link rel="prev" href="git.html"/>
 <link rel="next" href="scraping.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,25 +51,22 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -120,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -137,21 +137,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html"><i class="fa fa-check"></i>What is data science anyway?</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="what-is-data-science-anyway.html"><a href="what-is-data-science-anyway.html#the-role-of-this-course"><i class="fa fa-check"></i><b>0.1</b> The role of this course</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a><ul>
+<li class="chapter" data-level="1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html"><i class="fa fa-check"></i><b>1</b> Python programming language</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basic-characteristics"><i class="fa fa-check"></i><b>1.1</b> Basic characteristics</a></li>
 <li class="chapter" data-level="1.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#why-python"><i class="fa fa-check"></i><b>1.2</b> Why Python?</a></li>
-<li class="chapter" data-level="1.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>1.3</b> Setting up the environment</a><ul>
+<li class="chapter" data-level="1.3" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#setting-up-the-environment"><i class="fa fa-check"></i><b>1.3</b> Setting up the environment</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#anaconda-distribution-installation"><i class="fa fa-check"></i><b>1.3.1</b> Anaconda distribution installation</a></li>
 <li class="chapter" data-level="1.3.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#pure-python-distribution-installation"><i class="fa fa-check"></i><b>1.3.2</b> Pure Python distribution installation</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#installing-dependencies"><i class="fa fa-check"></i><b>1.4</b> Installing dependencies</a></li>
-<li class="chapter" data-level="1.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#jupyter-notebooks"><i class="fa fa-check"></i><b>1.5</b> Jupyter notebooks</a><ul>
+<li class="chapter" data-level="1.5" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#jupyter-notebooks"><i class="fa fa-check"></i><b>1.5</b> Jupyter notebooks</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#running-a-jupyter-notebook"><i class="fa fa-check"></i><b>1.5.1</b> Running a Jupyter notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#a-short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> A short introduction to Python</a><ul>
+<li class="chapter" data-level="1.6" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#a-short-introduction-to-python"><i class="fa fa-check"></i><b>1.6</b> A short introduction to Python</a>
+<ul>
 <li class="chapter" data-level="" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="1.6.1" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#flow-control"><i class="fa fa-check"></i><b>1.6.1</b> Flow control</a></li>
 <li class="chapter" data-level="1.6.2" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#functions"><i class="fa fa-check"></i><b>1.6.2</b> Functions</a></li>
@@ -164,10 +169,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#learning-outcomes"><i class="fa fa-check"></i><b>1.9</b> Learning outcomes</a></li>
 <li class="chapter" data-level="1.10" data-path="python-introduction-chapter.html"><a href="python-introduction-chapter.html#practice-problems"><i class="fa fa-check"></i><b>1.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>2</b> Source code control</a><ul>
+<li class="chapter" data-level="2" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>2</b> Source code control</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="git.html"><a href="git.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
 <li class="chapter" data-level="2.2" data-path="git.html"><a href="git.html#why-should-i-know-about-git"><i class="fa fa-check"></i><b>2.2</b> Why should I know about Git</a></li>
-<li class="chapter" data-level="2.3" data-path="git.html"><a href="git.html#basic-git-terminology"><i class="fa fa-check"></i><b>2.3</b> Basic Git terminology</a><ul>
+<li class="chapter" data-level="2.3" data-path="git.html"><a href="git.html#basic-git-terminology"><i class="fa fa-check"></i><b>2.3</b> Basic Git terminology</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="git.html"><a href="git.html#repository"><i class="fa fa-check"></i><b>2.3.1</b> Repository</a></li>
 <li class="chapter" data-level="2.3.2" data-path="git.html"><a href="git.html#clone"><i class="fa fa-check"></i><b>2.3.2</b> Clone</a></li>
 <li class="chapter" data-level="2.3.3" data-path="git.html"><a href="git.html#adding"><i class="fa fa-check"></i><b>2.3.3</b> Adding</a></li>
@@ -176,7 +183,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.6" data-path="git.html"><a href="git.html#pull"><i class="fa fa-check"></i><b>2.3.6</b> Pull</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="git.html"><a href="git.html#a-beginner-git-example"><i class="fa fa-check"></i><b>2.4</b> A beginner Git example</a></li>
-<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#beyond-the-basics"><i class="fa fa-check"></i><b>2.5</b> Beyond the basics</a><ul>
+<li class="chapter" data-level="2.5" data-path="git.html"><a href="git.html#beyond-the-basics"><i class="fa fa-check"></i><b>2.5</b> Beyond the basics</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="git.html"><a href="git.html#conflict-resolution"><i class="fa fa-check"></i><b>2.5.1</b> Conflict resolution</a></li>
 <li class="chapter" data-level="2.5.2" data-path="git.html"><a href="git.html#git-branching"><i class="fa fa-check"></i><b>2.5.2</b> Branching</a></li>
 <li class="chapter" data-level="2.5.3" data-path="git.html"><a href="git.html#forking"><i class="fa fa-check"></i><b>2.5.3</b> Forking</a></li>
@@ -186,18 +194,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="git.html"><a href="git.html#learning-outcomes-1"><i class="fa fa-check"></i><b>2.8</b> Learning outcomes</a></li>
 <li class="chapter" data-level="2.9" data-path="git.html"><a href="git.html#practice-problems-1"><i class="fa fa-check"></i><b>2.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>3</b> Reproducible research</a><ul>
+<li class="chapter" data-level="3" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>3</b> Reproducible research</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="reproducibility.html"><a href="reproducibility.html#scientific-inquiry"><i class="fa fa-check"></i><b>3.1</b> Scientific inquiry</a></li>
-<li class="chapter" data-level="3.2" data-path="reproducibility.html"><a href="reproducibility.html#from-principles-to-practice"><i class="fa fa-check"></i><b>3.2</b> From principles to practice</a><ul>
+<li class="chapter" data-level="3.2" data-path="reproducibility.html"><a href="reproducibility.html#from-principles-to-practice"><i class="fa fa-check"></i><b>3.2</b> From principles to practice</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="reproducibility.html"><a href="reproducibility.html#preregistration---the-future-standard"><i class="fa fa-check"></i><b>3.2.1</b> Preregistration - the future standard</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-r"><i class="fa fa-check"></i><b>3.3</b> Reproducibility tools in R</a><ul>
+<li class="chapter" data-level="3.3" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-r"><i class="fa fa-check"></i><b>3.3</b> Reproducibility tools in R</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#r-notebook"><i class="fa fa-check"></i>R Notebook</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#sweave"><i class="fa fa-check"></i>Sweave</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#shiny-web-apps-and-dashboards"><i class="fa fa-check"></i>Shiny web apps and dashboards</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-python"><i class="fa fa-check"></i><b>3.4</b> Reproducibility tools in Python</a><ul>
+<li class="chapter" data-level="3.4" data-path="reproducibility.html"><a href="reproducibility.html#reproducibility-tools-in-python"><i class="fa fa-check"></i><b>3.4</b> Reproducibility tools in Python</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#jupyter-dashboards"><i class="fa fa-check"></i>Jupyter Dashboards</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="reproducibility.html"><a href="reproducibility.html#data-dashboards---tooling-and-libraries"><i class="fa fa-check"></i><b>3.5</b> Data dashboards - tooling and libraries</a></li>
@@ -205,11 +217,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7" data-path="reproducibility.html"><a href="reproducibility.html#learning-outcomes-2"><i class="fa fa-check"></i><b>3.7</b> Learning outcomes</a></li>
 <li class="chapter" data-level="3.8" data-path="reproducibility.html"><a href="reproducibility.html#practice-problems-2"><i class="fa fa-check"></i><b>3.8</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="scraping.html"><a href="scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a><ul>
-<li class="chapter" data-level="4.1" data-path="scraping.html"><a href="scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a><ul>
+<li class="chapter" data-level="4" data-path="scraping.html"><a href="scraping.html"><i class="fa fa-check"></i><b>4</b> Web scraping</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scraping.html"><a href="scraping.html#introduction-to-web-data-extraction"><i class="fa fa-check"></i><b>4.1</b> Introduction to Web data extraction</a>
+<ul>
 <li class="chapter" data-level="" data-path="scraping.html"><a href="scraping.html#the-challenges-of-web-data-extraction"><i class="fa fa-check"></i>The challenges of Web data extraction</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="scraping.html"><a href="scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a><ul>
+<li class="chapter" data-level="4.2" data-path="scraping.html"><a href="scraping.html#web-wrapper"><i class="fa fa-check"></i><b>4.2</b> Web wrapper</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="scraping.html"><a href="scraping.html#html-dom"><i class="fa fa-check"></i><b>4.2.1</b> HTML DOM</a></li>
 <li class="chapter" data-level="4.2.2" data-path="scraping.html"><a href="scraping.html#xpath"><i class="fa fa-check"></i><b>4.2.2</b> XPath</a></li>
 <li class="chapter" data-level="4.2.3" data-path="scraping.html"><a href="scraping.html#modern-web-sites-and-js-frameworks"><i class="fa fa-check"></i><b>4.2.3</b> Modern Web sites and JS frameworks</a></li>
@@ -219,8 +234,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="scraping.html"><a href="scraping.html#learning-outcomes-3"><i class="fa fa-check"></i><b>4.4</b> Learning outcomes</a></li>
 <li class="chapter" data-level="4.5" data-path="scraping.html"><a href="scraping.html#practice-problems-3"><i class="fa fa-check"></i><b>4.5</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html"><i class="fa fa-check"></i><b>5</b> Summarizing data - the basics</a><ul>
-<li class="chapter" data-level="5.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a><ul>
+<li class="chapter" data-level="5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html"><i class="fa fa-check"></i><b>5</b> Summarizing data - the basics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions"><i class="fa fa-check"></i><b>5.1</b> Descriptive statistics for univariate distributions</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#central-tendency"><i class="fa fa-check"></i><b>5.1.1</b> Central tendency</a></li>
 <li class="chapter" data-level="5.1.2" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Dispersion</a></li>
 <li class="chapter" data-level="5.1.3" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>5.1.3</b> Skewness and kurtosis</a></li>
@@ -232,10 +249,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#learning-outcomes-4"><i class="fa fa-check"></i><b>5.4</b> Learning outcomes</a></li>
 <li class="chapter" data-level="5.5" data-path="summarizing-data-basics.html"><a href="summarizing-data-basics.html#practice-problems-4"><i class="fa fa-check"></i><b>5.5</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="docker.html"><a href="docker.html"><i class="fa fa-check"></i><b>6</b> Docker container platform</a><ul>
+<li class="chapter" data-level="6" data-path="docker.html"><a href="docker.html"><i class="fa fa-check"></i><b>6</b> Docker container platform</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="docker.html"><a href="docker.html#why-docker"><i class="fa fa-check"></i><b>6.1</b> Why Docker?</a></li>
 <li class="chapter" data-level="6.2" data-path="docker.html"><a href="docker.html#setting-up-the-environment-1"><i class="fa fa-check"></i><b>6.2</b> Setting up the environment</a></li>
-<li class="chapter" data-level="6.3" data-path="docker.html"><a href="docker.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>6.3</b> Short introduction to Docker</a><ul>
+<li class="chapter" data-level="6.3" data-path="docker.html"><a href="docker.html#short-introduction-to-docker"><i class="fa fa-check"></i><b>6.3</b> Short introduction to Docker</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="docker.html"><a href="docker.html#basics-1"><i class="fa fa-check"></i><b>6.3.1</b> Basics</a></li>
 <li class="chapter" data-level="6.3.2" data-path="docker.html"><a href="docker.html#docker-application-example"><i class="fa fa-check"></i><b>6.3.2</b> Docker application example</a></li>
 <li class="chapter" data-level="6.3.3" data-path="docker.html"><a href="docker.html#volumes"><i class="fa fa-check"></i><b>6.3.3</b> Volumes</a></li>
@@ -246,7 +265,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="docker.html"><a href="docker.html#learning-outcomes-5"><i class="fa fa-check"></i><b>6.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="6.6" data-path="docker.html"><a href="docker.html#practice-problems-5"><i class="fa fa-check"></i><b>6.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="summarize2.html"><a href="summarize2.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a><ul>
+<li class="chapter" data-level="7" data-path="summarize2.html"><a href="summarize2.html"><i class="fa fa-check"></i><b>7</b> Summarizing data - visualization</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="summarize2.html"><a href="summarize2.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>7.1</b> Histograms and density plots</a></li>
 <li class="chapter" data-level="7.2" data-path="summarize2.html"><a href="summarize2.html#bar-plot"><i class="fa fa-check"></i><b>7.2</b> Bar plot</a></li>
 <li class="chapter" data-level="7.3" data-path="summarize2.html"><a href="summarize2.html#pie-chart"><i class="fa fa-check"></i><b>7.3</b> Pie chart</a></li>
@@ -260,12 +280,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11" data-path="summarize2.html"><a href="summarize2.html#learning-outcomes-6"><i class="fa fa-check"></i><b>7.11</b> Learning outcomes</a></li>
 <li class="chapter" data-level="7.12" data-path="summarize2.html"><a href="summarize2.html#practice-problems-6"><i class="fa fa-check"></i><b>7.12</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a><ul>
+<li class="chapter" data-level="8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html"><i class="fa fa-check"></i><b>8</b> Summarizing data - multivariate data</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.1</b> Principal Component Analysis (PCA)</a></li>
 <li class="chapter" data-level="8.2" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#factor-analysis-fa"><i class="fa fa-check"></i><b>8.2</b> Factor analysis (FA)</a></li>
 <li class="chapter" data-level="8.3" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#multi-dimensional-scaling-mds"><i class="fa fa-check"></i><b>8.3</b> Multi-dimensional scaling (MDS)</a></li>
 <li class="chapter" data-level="8.4" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.4</b> t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
-<li class="chapter" data-level="8.5" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#clustering"><i class="fa fa-check"></i><b>8.5</b> Clustering</a><ul>
+<li class="chapter" data-level="8.5" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#clustering"><i class="fa fa-check"></i><b>8.5</b> Clustering</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#k-means-clustering"><i class="fa fa-check"></i><b>8.5.1</b> k-means clustering</a></li>
 <li class="chapter" data-level="8.5.2" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#determining-the-number-of-clusters"><i class="fa fa-check"></i><b>8.5.2</b> Determining the number of clusters</a></li>
 <li class="chapter" data-level="8.5.3" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#agglomerative-hierarchical-clustering"><i class="fa fa-check"></i><b>8.5.3</b> Agglomerative hierarchical clustering</a></li>
@@ -274,12 +296,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#learning-outcomes-7"><i class="fa fa-check"></i><b>8.7</b> Learning outcomes</a></li>
 <li class="chapter" data-level="8.8" data-path="multivariate-data-chapter.html"><a href="multivariate-data-chapter.html#practice-problems-7"><i class="fa fa-check"></i><b>8.8</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a><ul>
-<li class="chapter" data-level="9.1" data-path="databases.html"><a href="databases.html#introduction-to-sql"><i class="fa fa-check"></i><b>9.1</b> Introduction to SQL</a><ul>
+<li class="chapter" data-level="9" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>9</b> Relational databases</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="databases.html"><a href="databases.html#introduction-to-sql"><i class="fa fa-check"></i><b>9.1</b> Introduction to SQL</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="databases.html"><a href="databases.html#data-definition-language"><i class="fa fa-check"></i><b>9.1.1</b> Data definition language</a></li>
 <li class="chapter" data-level="9.1.2" data-path="databases.html"><a href="databases.html#data-manipulation-language"><i class="fa fa-check"></i><b>9.1.2</b> Data manipulation language</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="databases.html"><a href="databases.html#sqlite"><i class="fa fa-check"></i><b>9.2</b> SQLite</a><ul>
+<li class="chapter" data-level="9.2" data-path="databases.html"><a href="databases.html#sqlite"><i class="fa fa-check"></i><b>9.2</b> SQLite</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="databases.html"><a href="databases.html#environment-setup"><i class="fa fa-check"></i><b>9.2.1</b> Environment setup</a></li>
 <li class="chapter" data-level="9.2.2" data-path="databases.html"><a href="databases.html#sqlite-example"><i class="fa fa-check"></i><b>9.2.2</b> SQLite database usage</a></li>
 <li class="chapter" data-level="9.2.3" data-path="databases.html"><a href="databases.html#sqlite-in-python"><i class="fa fa-check"></i><b>9.2.3</b> SQLite in Python</a></li>
@@ -289,13 +314,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="databases.html"><a href="databases.html#learning-outcomes-8"><i class="fa fa-check"></i><b>9.5</b> Learning outcomes</a></li>
 <li class="chapter" data-level="9.6" data-path="databases.html"><a href="databases.html#practice-problems-8"><i class="fa fa-check"></i><b>9.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="predictive.html"><a href="predictive.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a><ul>
-<li class="chapter" data-level="10.1" data-path="predictive.html"><a href="predictive.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="10" data-path="predictive.html"><a href="predictive.html"><i class="fa fa-check"></i><b>10</b> Predictive modelling</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="predictive.html"><a href="predictive.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#key-terms"><i class="fa fa-check"></i>Key terms</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#an-illustrative-example"><i class="fa fa-check"></i>An illustrative example</a></li>
 <li class="chapter" data-level="10.1.1" data-path="predictive.html"><a href="predictive.html#the-process-of-predictive-modelling"><i class="fa fa-check"></i><b>10.1.1</b> The process of predictive modelling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="predictive.html"><a href="predictive.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a><ul>
+<li class="chapter" data-level="10.2" data-path="predictive.html"><a href="predictive.html#commonly-used-prediction-models-and-paradigms"><i class="fa fa-check"></i><b>10.2</b> Commonly used prediction models and paradigms</a>
+<ul>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#generalized-linear-models"><i class="fa fa-check"></i>Generalized linear models</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#decision-trees"><i class="fa fa-check"></i>Decision trees</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#neural-networks"><i class="fa fa-check"></i>Neural networks</a></li>
@@ -303,7 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#ensemble-learning"><i class="fa fa-check"></i>Ensemble learning</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#common-predictive-modelling-paradigms"><i class="fa fa-check"></i>Common predictive modelling paradigms</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="predictive.html"><a href="predictive.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a><ul>
+<li class="chapter" data-level="10.3" data-path="predictive.html"><a href="predictive.html#model-selection"><i class="fa fa-check"></i><b>10.3</b> Model selection</a>
+<ul>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#measuring-predictive-performance"><i class="fa fa-check"></i>Measuring predictive performance</a></li>
 <li class="chapter" data-level="" data-path="predictive.html"><a href="predictive.html#estimating-how-performance-will-generalize"><i class="fa fa-check"></i>Estimating how performance will generalize</a></li>
 </ul></li>
@@ -314,20 +343,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.8" data-path="predictive.html"><a href="predictive.html#learning-outcomes-9"><i class="fa fa-check"></i><b>10.8</b> Learning outcomes</a></li>
 <li class="chapter" data-level="10.9" data-path="predictive.html"><a href="predictive.html#practice-problems-9"><i class="fa fa-check"></i><b>10.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
-<li class="chapter" data-level="11.1" data-path="missing-data.html"><a href="missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a><ul>
+<li class="chapter" data-level="11" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="missing-data.html"><a href="missing-data.html#the-severity-of-the-missing-data-problem"><i class="fa fa-check"></i><b>11.1</b> The severity of the missing data problem</a>
+<ul>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#three-classes-of-missingness"><i class="fa fa-check"></i>Three classes of missingness</a></li>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#determining-the-missingness-mechanism"><i class="fa fa-check"></i>Determining the missingness mechanism</a></li>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#causes-for-missing-data"><i class="fa fa-check"></i>Causes for missing data</a></li>
 <li class="chapter" data-level="" data-path="missing-data.html"><a href="missing-data.html#introducing-bias"><i class="fa fa-check"></i>Introducing bias</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="missing-data.html"><a href="missing-data.html#visually-exploring-missingness"><i class="fa fa-check"></i><b>11.2</b> Visually exploring missingness</a></li>
-<li class="chapter" data-level="11.3" data-path="missing-data.html"><a href="missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a><ul>
+<li class="chapter" data-level="11.3" data-path="missing-data.html"><a href="missing-data.html#deletion-methods"><i class="fa fa-check"></i><b>11.3</b> Deletion methods</a>
+<ul>
 <li class="chapter" data-level="11.3.1" data-path="missing-data.html"><a href="missing-data.html#column-deletion"><i class="fa fa-check"></i><b>11.3.1</b> Column deletion</a></li>
 <li class="chapter" data-level="11.3.2" data-path="missing-data.html"><a href="missing-data.html#row-deletion"><i class="fa fa-check"></i><b>11.3.2</b> Row deletion</a></li>
 <li class="chapter" data-level="11.3.3" data-path="missing-data.html"><a href="missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>11.3.3</b> Pairwise deletion</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="missing-data.html"><a href="missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a><ul>
+<li class="chapter" data-level="11.4" data-path="missing-data.html"><a href="missing-data.html#imputation-methods"><i class="fa fa-check"></i><b>11.4</b> Imputation methods</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="missing-data.html"><a href="missing-data.html#single-imputation-with-the-mean"><i class="fa fa-check"></i><b>11.4.1</b> Single imputation with the mean</a></li>
 <li class="chapter" data-level="11.4.2" data-path="missing-data.html"><a href="missing-data.html#single-imputation-with-prediction"><i class="fa fa-check"></i><b>11.4.2</b> Single imputation with prediction</a></li>
 <li class="chapter" data-level="11.4.3" data-path="missing-data.html"><a href="missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>11.4.3</b> Multiple imputation</a></li>
@@ -357,9 +390,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reproducibility" class="section level1">
+<div id="reproducibility" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Reproducible research</h1>
-<div id="scientific-inquiry" class="section level2">
+<div id="scientific-inquiry" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Scientific inquiry</h2>
 <p>The term <em>data science</em> contains the word science. It is our view that data science is more or less synonimous with with modern empirical science and as such it should adhere to the standards for scientific inquiry.</p>
 <p>Ideally, scientific inquiry would always be objective and correct. However, these are unattainable ideals! Science will always be subjective at least in the sense of what we investigate and how we choose to investigate it. And scientists, like all people, even with the best intentions and practices, make mistakes. Instead, the realistic standard is lower, albeit still surprisingly difficult to attain - research should be <strong>reproducible</strong>.</p>
@@ -376,12 +409,12 @@ investigator without the use of original data (but generally using the same meth
 <p>In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, <strong>if our research is not reproducible, then it is of much less value!</strong></p>
 <p><strong>Reproducibility will be our minimum standard for scientific enquiry</strong> and is also a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.</p>
 </div>
-<div id="from-principles-to-practice" class="section level2">
+<div id="from-principles-to-practice" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> From principles to practice</h2>
 <p>Perfect reproducibility is also unattainable, because not all factors can be feasibly accounted for (time, location, hardware used, etc.). Instead, we will strive for a high but practically feasible level of reproducibility. We will also introduce the practical dimension of how <em>easy to reproduce</em> research is. For example, if we precisely describe all data manipulations in a text document, the data manipulation part of our research will be reproducible. However, it will be much more difficult to reproduce than, for example, if we provided well-documented code that did the same manipulations.</p>
 <p>The modern standard for reproduciblity from data to results is to use computer code for everything. This includes even minimal changes to the original data (for example, renaming a column), generating and including plots and tables and even single-number data in the text of our report or paper. Computer code is, by definition, clear and unambiguous - there is no room for misinterpretation of what has been done. And, if we have everything in code, we completely avoid the possiblity of introducing errors or undetectable changes through manual manipulation of the data or copying the results</p>
 <p>Such code together with the original data and a precise description of the platform and software used (relevant hardware, operating system, packages, including versions) constitutes as highly and easily reproducible research. This process can be made much easier with the use of standard tools. In particular, integrated analyses and reports, such as Jupyter notebooks and R markdown and notebooks, which we introduce later in the chapter.</p>
-<div id="preregistration---the-future-standard" class="section level3">
+<div id="preregistration---the-future-standard" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Preregistration - the future standard</h3>
 <p>As we already discussed above, reproduciblity is concerned only with the completeness and unambiguity of the description of the study. All studies should be reproducible, but we expect that some studies will not replicate. Some due to the inherent risk of statistical procedures, some due to researchers’ mistakes and some due to accidental or deliberate manipulation of the <a href="https://en.wikipedia.org/wiki/Researcher_degrees_of_freedom">researcher’s degrees of freedom</a> or <a href="https://en.wikipedia.org/wiki/Data_dredging">data dredging</a>. These refer to the choices that we make during a study (some of which should strictly be made before the study). For example:</p>
 <ul>
@@ -393,7 +426,7 @@ investigator without the use of original data (but generally using the same meth
 <p>In order to deal with this problem and enforce a higher standard of research (and subsequently fewer studies that do not replicate) <strong>preregistration</strong> is very slowly but surely becoming the norm for professional research. In essence, preregistration is the practice of registering all relevant aspects of a scientific study (how the data will be collected, hypotheses, methods used, etc.) before we begin with the study itself. Preregistration is made with some central authority, such as the <a href="https://osf.io/">Open science framework</a> and many reputable scientific journals already promote and support preregistered research.</p>
 </div>
 </div>
-<div id="reproducibility-tools-in-r" class="section level2">
+<div id="reproducibility-tools-in-r" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Reproducibility tools in R</h2>
 <p>In this section we introduce four different approaches to integrating R code and text to produce dynamic reports, fully reproducible reports that can automatically be updated if the data change. All four approaches are integrated into RStudio.</p>
 <div id="r-markdown" class="section level3 unnumbered">
@@ -488,7 +521,7 @@ plot(x,y)
 <p>Shiny is useful for rapid development of user-friendly interfaces to interactive analyses of our data. These <a href="https://shiny.rstudio.com/tutorial/">Shiny tutorials</a> are a good starting point for further study.</p>
 </div>
 </div>
-<div id="reproducibility-tools-in-python" class="section level2">
+<div id="reproducibility-tools-in-python" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Reproducibility tools in Python</h2>
 <p>Python offers a variety of tools similar to R. It provides Jupyter notebooks with multiple options to create reproducible Python code with dynamic visualizations and presentations and exports to different formats. We already showed how to install Jupyter notebooks in Chapter <a href="python-introduction-chapter.html#python-introduction-chapter">1</a>.</p>
 <p>The <em>NBConvert</em> tool allows you to convert a Jupyter <em>.ipynb</em> notebook document file into another format. The <a href="https://media.readthedocs.org/pdf/nbconvert/latest/nbconvert.pdf">nbconvert documentation</a> contains a complete description of this tool’s capabilities. It allows for:</p>
@@ -512,58 +545,58 @@ plot(x,y)
 <li>Publishing: It is simple and quick switch between the development &amp; publishing stage</li>
 </ul>
 <p>In combination with <a href="https://ipywidgets.readthedocs.io/en/latest">jupyter widgets</a>, dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data the location of a weather station is also visualized.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="reproducibility.html#cb94-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
-<span id="cb94-2"><a href="reproducibility.html#cb94-2"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
-<span id="cb94-3"><a href="reproducibility.html#cb94-3"></a><span class="im">import</span> urllib.request</span>
-<span id="cb94-4"><a href="reproducibility.html#cb94-4"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
-<span id="cb94-5"><a href="reproducibility.html#cb94-5"></a><span class="im">import</span> folium</span>
-<span id="cb94-6"><a href="reproducibility.html#cb94-6"></a></span>
-<span id="cb94-7"><a href="reproducibility.html#cb94-7"></a>w <span class="op">=</span> widgets.Dropdown(</span>
-<span id="cb94-8"><a href="reproducibility.html#cb94-8"></a>    options<span class="op">=</span>[(<span class="st">&quot;Ljubljana&quot;</span>, <span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>), (<span class="st">&quot;Celje&quot;</span>, <span class="st">&quot;CELJE&quot;</span>),</span>
-<span id="cb94-9"><a href="reproducibility.html#cb94-9"></a>             (<span class="st">&quot;Kočevje&quot;</span>, <span class="st">&quot;KOCEVJE&quot;</span>), (<span class="st">&quot;Novo mesto&quot;</span>, <span class="st">&quot;NOVO-MES&quot;</span>)],</span>
-<span id="cb94-10"><a href="reproducibility.html#cb94-10"></a>    value<span class="op">=</span><span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>,</span>
-<span id="cb94-11"><a href="reproducibility.html#cb94-11"></a>    description<span class="op">=</span><span class="st">&#39;Location:&#39;</span>,</span>
-<span id="cb94-12"><a href="reproducibility.html#cb94-12"></a>)</span>
-<span id="cb94-13"><a href="reproducibility.html#cb94-13"></a></span>
-<span id="cb94-14"><a href="reproducibility.html#cb94-14"></a><span class="at">@interact</span>(location<span class="op">=</span>w)</span>
-<span id="cb94-15"><a href="reproducibility.html#cb94-15"></a><span class="kw">def</span> f(location):</span>
-<span id="cb94-16"><a href="reproducibility.html#cb94-16"></a>    url <span class="op">=</span> <span class="ss">f&quot;http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/en/observation_</span><span class="sc">{</span>location<span class="sc">}</span><span class="ss">_latest.xml&quot;</span></span>
-<span id="cb94-17"><a href="reproducibility.html#cb94-17"></a>    xml <span class="op">=</span> etree.XML(urllib.request.urlopen(url).read())</span>
-<span id="cb94-18"><a href="reproducibility.html#cb94-18"></a>    lat <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lat/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-19"><a href="reproducibility.html#cb94-19"></a>    lon<span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lon/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-20"><a href="reproducibility.html#cb94-20"></a>    station_name <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_title/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-21"><a href="reproducibility.html#cb94-21"></a>    last_updated <span class="op">=</span> etree.XPath(<span class="st">&quot;//tsUpdated/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-22"><a href="reproducibility.html#cb94-22"></a>    weather <span class="op">=</span> etree.XPath(<span class="st">&quot;//nn_shortText/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-23"><a href="reproducibility.html#cb94-23"></a>    temp <span class="op">=</span> etree.XPath(<span class="st">&quot;//t/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-24"><a href="reproducibility.html#cb94-24"></a>    humidity <span class="op">=</span> etree.XPath(<span class="st">&quot;//rh/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-25"><a href="reproducibility.html#cb94-25"></a>    </span>
-<span id="cb94-26"><a href="reproducibility.html#cb94-26"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Location: </span><span class="sc">{</span>station_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Last updated: </span><span class="sc">{</span>last_updated<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">&quot;</span>)</span>
-<span id="cb94-27"><a href="reproducibility.html#cb94-27"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Weather info: </span><span class="sc">{</span>weather<span class="sc">}</span><span class="ch">\n</span><span class="ss">Temperature: </span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C</span><span class="ch">\n</span><span class="ss">Humidity: </span><span class="sc">{</span>humidity<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
-<span id="cb94-28"><a href="reproducibility.html#cb94-28"></a>    </span>
-<span id="cb94-29"><a href="reproducibility.html#cb94-29"></a>    slovenia_map <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">46</span>, <span class="fl">14.5</span>], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">&#39;Stamen Terrain&#39;</span>)</span>
-<span id="cb94-30"><a href="reproducibility.html#cb94-30"></a>    folium.Marker([<span class="fl">46.0658</span>,<span class="fl">14.5172</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">&#39;green&#39;</span>,  icon<span class="op">=</span><span class="st">&#39;ok-sign&#39;</span>)).add_to(slovenia_map)</span>
-<span id="cb94-31"><a href="reproducibility.html#cb94-31"></a>    display(slovenia_map)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="reproducibility.html#cb94-1" aria-hidden="true"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
+<span id="cb94-2"><a href="reproducibility.html#cb94-2" aria-hidden="true"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
+<span id="cb94-3"><a href="reproducibility.html#cb94-3" aria-hidden="true"></a><span class="im">import</span> urllib.request</span>
+<span id="cb94-4"><a href="reproducibility.html#cb94-4" aria-hidden="true"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
+<span id="cb94-5"><a href="reproducibility.html#cb94-5" aria-hidden="true"></a><span class="im">import</span> folium</span>
+<span id="cb94-6"><a href="reproducibility.html#cb94-6" aria-hidden="true"></a></span>
+<span id="cb94-7"><a href="reproducibility.html#cb94-7" aria-hidden="true"></a>w <span class="op">=</span> widgets.Dropdown(</span>
+<span id="cb94-8"><a href="reproducibility.html#cb94-8" aria-hidden="true"></a>    options<span class="op">=</span>[(<span class="st">&quot;Ljubljana&quot;</span>, <span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>), (<span class="st">&quot;Celje&quot;</span>, <span class="st">&quot;CELJE&quot;</span>),</span>
+<span id="cb94-9"><a href="reproducibility.html#cb94-9" aria-hidden="true"></a>             (<span class="st">&quot;Kočevje&quot;</span>, <span class="st">&quot;KOCEVJE&quot;</span>), (<span class="st">&quot;Novo mesto&quot;</span>, <span class="st">&quot;NOVO-MES&quot;</span>)],</span>
+<span id="cb94-10"><a href="reproducibility.html#cb94-10" aria-hidden="true"></a>    value<span class="op">=</span><span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>,</span>
+<span id="cb94-11"><a href="reproducibility.html#cb94-11" aria-hidden="true"></a>    description<span class="op">=</span><span class="st">&#39;Location:&#39;</span>,</span>
+<span id="cb94-12"><a href="reproducibility.html#cb94-12" aria-hidden="true"></a>)</span>
+<span id="cb94-13"><a href="reproducibility.html#cb94-13" aria-hidden="true"></a></span>
+<span id="cb94-14"><a href="reproducibility.html#cb94-14" aria-hidden="true"></a><span class="at">@interact</span>(location<span class="op">=</span>w)</span>
+<span id="cb94-15"><a href="reproducibility.html#cb94-15" aria-hidden="true"></a><span class="kw">def</span> f(location):</span>
+<span id="cb94-16"><a href="reproducibility.html#cb94-16" aria-hidden="true"></a>    url <span class="op">=</span> <span class="ss">f&quot;http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/en/observation_</span><span class="sc">{</span>location<span class="sc">}</span><span class="ss">_latest.xml&quot;</span></span>
+<span id="cb94-17"><a href="reproducibility.html#cb94-17" aria-hidden="true"></a>    xml <span class="op">=</span> etree.XML(urllib.request.urlopen(url).read())</span>
+<span id="cb94-18"><a href="reproducibility.html#cb94-18" aria-hidden="true"></a>    lat <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lat/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-19"><a href="reproducibility.html#cb94-19" aria-hidden="true"></a>    lon<span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lon/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-20"><a href="reproducibility.html#cb94-20" aria-hidden="true"></a>    station_name <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_title/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-21"><a href="reproducibility.html#cb94-21" aria-hidden="true"></a>    last_updated <span class="op">=</span> etree.XPath(<span class="st">&quot;//tsUpdated/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-22"><a href="reproducibility.html#cb94-22" aria-hidden="true"></a>    weather <span class="op">=</span> etree.XPath(<span class="st">&quot;//nn_shortText/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-23"><a href="reproducibility.html#cb94-23" aria-hidden="true"></a>    temp <span class="op">=</span> etree.XPath(<span class="st">&quot;//t/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-24"><a href="reproducibility.html#cb94-24" aria-hidden="true"></a>    humidity <span class="op">=</span> etree.XPath(<span class="st">&quot;//rh/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-25"><a href="reproducibility.html#cb94-25" aria-hidden="true"></a>    </span>
+<span id="cb94-26"><a href="reproducibility.html#cb94-26" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Location: </span><span class="sc">{</span>station_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Last updated: </span><span class="sc">{</span>last_updated<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">&quot;</span>)</span>
+<span id="cb94-27"><a href="reproducibility.html#cb94-27" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Weather info: </span><span class="sc">{</span>weather<span class="sc">}</span><span class="ch">\n</span><span class="ss">Temperature: </span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C</span><span class="ch">\n</span><span class="ss">Humidity: </span><span class="sc">{</span>humidity<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
+<span id="cb94-28"><a href="reproducibility.html#cb94-28" aria-hidden="true"></a>    </span>
+<span id="cb94-29"><a href="reproducibility.html#cb94-29" aria-hidden="true"></a>    slovenia_map <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">46</span>, <span class="fl">14.5</span>], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">&#39;Stamen Terrain&#39;</span>)</span>
+<span id="cb94-30"><a href="reproducibility.html#cb94-30" aria-hidden="true"></a>    folium.Marker([<span class="fl">46.0658</span>,<span class="fl">14.5172</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">&#39;green&#39;</span>,  icon<span class="op">=</span><span class="st">&#39;ok-sign&#39;</span>)).add_to(slovenia_map)</span>
+<span id="cb94-31"><a href="reproducibility.html#cb94-31" aria-hidden="true"></a>    display(slovenia_map)</span></code></pre></div>
 <p><img src="data/Reproducibility/general.png" /></p>
 <p>There exist many possible options for graph visualizations (e.g. <a href="https://plot.ly/">Plotly</a>) and integrations of common libraries such as <a href="https://matplotlib.org/">matplotlib</a>.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="reproducibility.html#cb95-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb95-2"><a href="reproducibility.html#cb95-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb95-3"><a href="reproducibility.html#cb95-3"></a><span class="im">import</span> math</span>
-<span id="cb95-4"><a href="reproducibility.html#cb95-4"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb95-5"><a href="reproducibility.html#cb95-5"></a></span>
-<span id="cb95-6"><a href="reproducibility.html#cb95-6"></a><span class="kw">def</span> showGraph(scale):</span>
-<span id="cb95-7"><a href="reproducibility.html#cb95-7"></a>    x <span class="op">=</span> np.arange(<span class="dv">0</span>, math.pi<span class="op">*</span>scale, <span class="fl">0.05</span>)</span>
-<span id="cb95-8"><a href="reproducibility.html#cb95-8"></a>    y <span class="op">=</span> np.sin(x)</span>
-<span id="cb95-9"><a href="reproducibility.html#cb95-9"></a>    fig <span class="op">=</span> plt.figure()</span>
-<span id="cb95-10"><a href="reproducibility.html#cb95-10"></a>    ax <span class="op">=</span> fig.add_axes([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb95-11"><a href="reproducibility.html#cb95-11"></a>    ax.plot(x, y)</span>
-<span id="cb95-12"><a href="reproducibility.html#cb95-12"></a>    ax.set_xlabel(<span class="st">&quot;Angle&quot;</span>)</span>
-<span id="cb95-13"><a href="reproducibility.html#cb95-13"></a>    ax.set_ylabel(<span class="st">&quot;sine&quot;</span>)</span>
-<span id="cb95-14"><a href="reproducibility.html#cb95-14"></a></span>
-<span id="cb95-15"><a href="reproducibility.html#cb95-15"></a>interact(showGraph, scale <span class="op">=</span> widgets.IntSlider(value<span class="op">=</span><span class="dv">4</span>, description<span class="op">=</span><span class="st">&#39;Scale&#39;</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">10</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="reproducibility.html#cb95-1" aria-hidden="true"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb95-2"><a href="reproducibility.html#cb95-2" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb95-3"><a href="reproducibility.html#cb95-3" aria-hidden="true"></a><span class="im">import</span> math</span>
+<span id="cb95-4"><a href="reproducibility.html#cb95-4" aria-hidden="true"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb95-5"><a href="reproducibility.html#cb95-5" aria-hidden="true"></a></span>
+<span id="cb95-6"><a href="reproducibility.html#cb95-6" aria-hidden="true"></a><span class="kw">def</span> showGraph(scale):</span>
+<span id="cb95-7"><a href="reproducibility.html#cb95-7" aria-hidden="true"></a>    x <span class="op">=</span> np.arange(<span class="dv">0</span>, math.pi<span class="op">*</span>scale, <span class="fl">0.05</span>)</span>
+<span id="cb95-8"><a href="reproducibility.html#cb95-8" aria-hidden="true"></a>    y <span class="op">=</span> np.sin(x)</span>
+<span id="cb95-9"><a href="reproducibility.html#cb95-9" aria-hidden="true"></a>    fig <span class="op">=</span> plt.figure()</span>
+<span id="cb95-10"><a href="reproducibility.html#cb95-10" aria-hidden="true"></a>    ax <span class="op">=</span> fig.add_axes([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb95-11"><a href="reproducibility.html#cb95-11" aria-hidden="true"></a>    ax.plot(x, y)</span>
+<span id="cb95-12"><a href="reproducibility.html#cb95-12" aria-hidden="true"></a>    ax.set_xlabel(<span class="st">&quot;Angle&quot;</span>)</span>
+<span id="cb95-13"><a href="reproducibility.html#cb95-13" aria-hidden="true"></a>    ax.set_ylabel(<span class="st">&quot;sine&quot;</span>)</span>
+<span id="cb95-14"><a href="reproducibility.html#cb95-14" aria-hidden="true"></a></span>
+<span id="cb95-15"><a href="reproducibility.html#cb95-15" aria-hidden="true"></a>interact(showGraph, scale <span class="op">=</span> widgets.IntSlider(value<span class="op">=</span><span class="dv">4</span>, description<span class="op">=</span><span class="st">&#39;Scale&#39;</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">10</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
 <p><img src="data/Reproducibility/sine.png" /></p>
 </div>
 </div>
-<div id="data-dashboards---tooling-and-libraries" class="section level2">
+<div id="data-dashboards---tooling-and-libraries" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Data dashboards - tooling and libraries</h2>
 <p>Data dashboards can make data more accessible to your non-technical teams. That is why it is valuable to include visualizations along with explanations in your reports. A data dashboard consists of many different components and needs to provide the following functionalities:</p>
 <ul>
@@ -583,7 +616,7 @@ Some of the possible tools are listed in the previous chapters but new tools app
 <li><em>Flask</em> if you want to build your own solution from the ground up (generally not an option due to time constraints).</li>
 </ul>
 </div>
-<div id="further-reading-and-references-2" class="section level2">
+<div id="further-reading-and-references-2" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Further reading and references</h2>
 <ul>
 <li><p>Science is in a replication and reproducibility crisis. In some fields more than half of published studes fail to replicate and most studies are not reproducible: <em>Baker, M. (2016). 1,500 scientists lift the lid on reproducibility. Nature News, 533(7604), 452.</em></p></li>
@@ -591,7 +624,7 @@ Some of the possible tools are listed in the previous chapters but new tools app
 <li><p>There are many new tools appearing, so search for new options from time to time and select the most suitable for you (e.g. <a href="https://towardsdatascience.com/streamlit-vs-dash-vs-shiny-vs-voila-vs-flask-vs-jupyter-24739ab5d569">comparison of a few</a>).</p></li>
 </ul>
 </div>
-<div id="learning-outcomes-2" class="section level2">
+<div id="learning-outcomes-2" class="section level2" number="3.7">
 <h2><span class="header-section-number">3.7</span> Learning outcomes</h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
@@ -600,28 +633,28 @@ Some of the possible tools are listed in the previous chapters but new tools app
 <li>Distinguish between reproducibility and replication.</li>
 </ul>
 </div>
-<div id="practice-problems-2" class="section level2">
+<div id="practice-problems-2" class="section level2" number="3.8">
 <h2><span class="header-section-number">3.8</span> Practice problems</h2>
 <ol style="list-style-type: decimal">
 <li><p>Create a short R Markdown, Sweave and/or Jupyter Notebook that loads some data, draws a plot, prints a table and contains some text with an example of inline use of code.</p></li>
 <li><p>Consider the following experiment of drawing <span class="math inline">\(m &gt; 1\)</span> samples from a distribution (standard normal or uniform) and taking their average, repeating this process for <span class="math inline">\(n &gt; 1\)</span> times and plotting the histogram of these <span class="math inline">\(n\)</span> averages:</p></li>
 </ol>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="reproducibility.html#cb96-1"></a>n &lt;-<span class="st"> </span><span class="dv">5000</span></span>
-<span id="cb96-2"><a href="reproducibility.html#cb96-2"></a>m &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb96-3"><a href="reproducibility.html#cb96-3"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb96-4"><a href="reproducibility.html#cb96-4"></a>dist &lt;-<span class="st"> &quot;normal&quot;</span></span>
-<span id="cb96-5"><a href="reproducibility.html#cb96-5"></a></span>
-<span id="cb96-6"><a href="reproducibility.html#cb96-6"></a>all &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb96-7"><a href="reproducibility.html#cb96-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
-<span id="cb96-8"><a href="reproducibility.html#cb96-8"></a>  <span class="cf">if</span> (dist <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) {</span>
-<span id="cb96-9"><a href="reproducibility.html#cb96-9"></a>    x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m)</span>
-<span id="cb96-10"><a href="reproducibility.html#cb96-10"></a>  } <span class="cf">else</span> {</span>
-<span id="cb96-11"><a href="reproducibility.html#cb96-11"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(m)</span>
-<span id="cb96-12"><a href="reproducibility.html#cb96-12"></a>  }</span>
-<span id="cb96-13"><a href="reproducibility.html#cb96-13"></a>  all &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(x), all)</span>
-<span id="cb96-14"><a href="reproducibility.html#cb96-14"></a>}</span>
-<span id="cb96-15"><a href="reproducibility.html#cb96-15"></a></span>
-<span id="cb96-16"><a href="reproducibility.html#cb96-16"></a><span class="kw">hist</span>(all, <span class="dt">breaks =</span> <span class="kw">sqrt</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="reproducibility.html#cb96-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="dv">5000</span></span>
+<span id="cb96-2"><a href="reproducibility.html#cb96-2" aria-hidden="true"></a>m &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb96-3"><a href="reproducibility.html#cb96-3" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb96-4"><a href="reproducibility.html#cb96-4" aria-hidden="true"></a>dist &lt;-<span class="st"> &quot;normal&quot;</span></span>
+<span id="cb96-5"><a href="reproducibility.html#cb96-5" aria-hidden="true"></a></span>
+<span id="cb96-6"><a href="reproducibility.html#cb96-6" aria-hidden="true"></a>all &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb96-7"><a href="reproducibility.html#cb96-7" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb96-8"><a href="reproducibility.html#cb96-8" aria-hidden="true"></a>  <span class="cf">if</span> (dist <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) {</span>
+<span id="cb96-9"><a href="reproducibility.html#cb96-9" aria-hidden="true"></a>    x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m)</span>
+<span id="cb96-10"><a href="reproducibility.html#cb96-10" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
+<span id="cb96-11"><a href="reproducibility.html#cb96-11" aria-hidden="true"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(m)</span>
+<span id="cb96-12"><a href="reproducibility.html#cb96-12" aria-hidden="true"></a>  }</span>
+<span id="cb96-13"><a href="reproducibility.html#cb96-13" aria-hidden="true"></a>  all &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(x), all)</span>
+<span id="cb96-14"><a href="reproducibility.html#cb96-14" aria-hidden="true"></a>}</span>
+<span id="cb96-15"><a href="reproducibility.html#cb96-15" aria-hidden="true"></a></span>
+<span id="cb96-16"><a href="reproducibility.html#cb96-16" aria-hidden="true"></a><span class="kw">hist</span>(all, <span class="dt">breaks =</span> <span class="kw">sqrt</span>(n))</span></code></pre></div>
 <p><img src="03-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Create a Shiny App, Shiny Dashboard or Jupyter Dashboard that draws such a histogram and allows you to interactively change <span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span> and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as <span class="math inline">\(m\)</span> grows larger.</p>
 
@@ -645,7 +678,6 @@ Some of the possible tools are listed in the previous chapters but new tools app
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -664,6 +696,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -684,6 +717,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

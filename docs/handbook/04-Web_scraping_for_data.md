@@ -61,7 +61,7 @@ Below we show a simple HTML Web page and its representation as a HTML DOM tree.
 ```
 
 <div class="figure" style="text-align: center">
-<img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page."  />
+<img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page." width="744" />
 <p class="caption">(\#fig:htmlDOM)DOM tree representation of the above HTML Web page.</p>
 </div>
 
@@ -176,7 +176,7 @@ Generally, a crawler architecture will consist of the following components (Figu
 * Datastore: To store the data and additional metadata used by the crawler.
 
 <div class="figure" style="text-align: center">
-<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture."  />
+<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture." width="1710" />
 <p class="caption">(\#fig:crawlerArchitecture)Web crawler architecture.</p>
 </div>
 

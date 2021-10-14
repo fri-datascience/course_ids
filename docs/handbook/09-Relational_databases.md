@@ -7,7 +7,7 @@ Relational model implemented by the relational databases represents the database
 
 
 <div class="figure" style="text-align: center">
-<img src="data/SQL/relation.png" alt="Relation representation."  />
+<img src="data/SQL/relation.png" alt="Relation representation." width="512" />
 <p class="caption">(\#fig:unnamed-chunk-1)Relation representation.</p>
 </div>
 
@@ -178,7 +178,7 @@ We exit the console by entering the *CTRL+C* command twice. The example above cr
 There exist a lot of standalone graphical user interfaces to work with SQLite database files. An example of a nice and lightweight software to create, open or manage SQLite databases is [DB Browser for SQLite](https://sqlitebrowser.org/) and is available for multiple operating systems.
 
 <div class="figure" style="text-align: center">
-<img src="data/SQL/screenshot.png" alt="DB Browser for SQLite graphical user interface."  />
+<img src="data/SQL/screenshot.png" alt="DB Browser for SQLite graphical user interface." width="362" />
 <p class="caption">(\#fig:unnamed-chunk-2)DB Browser for SQLite graphical user interface.</p>
 </div>
 
@@ -189,7 +189,7 @@ In this section we show how to create a new SQLite database and manage it manual
 We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
 
 <div class="figure" style="text-align: center">
-<img src="data/SQL/model.png" alt="Employee logical database model."  />
+<img src="data/SQL/model.png" alt="Employee logical database model." width="426" />
 <p class="caption">(\#fig:model)Employee logical database model.</p>
 </div>
 
