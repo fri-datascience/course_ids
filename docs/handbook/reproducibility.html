@@ -24,7 +24,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2021-10-14" />
+<meta name="date" content="2021-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -119,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -545,54 +568,54 @@ plot(x,y)
 <li>Publishing: It is simple and quick switch between the development &amp; publishing stage</li>
 </ul>
 <p>In combination with <a href="https://ipywidgets.readthedocs.io/en/latest">jupyter widgets</a>, dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data the location of a weather station is also visualized.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="reproducibility.html#cb94-1" aria-hidden="true"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
-<span id="cb94-2"><a href="reproducibility.html#cb94-2" aria-hidden="true"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
-<span id="cb94-3"><a href="reproducibility.html#cb94-3" aria-hidden="true"></a><span class="im">import</span> urllib.request</span>
-<span id="cb94-4"><a href="reproducibility.html#cb94-4" aria-hidden="true"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
-<span id="cb94-5"><a href="reproducibility.html#cb94-5" aria-hidden="true"></a><span class="im">import</span> folium</span>
-<span id="cb94-6"><a href="reproducibility.html#cb94-6" aria-hidden="true"></a></span>
-<span id="cb94-7"><a href="reproducibility.html#cb94-7" aria-hidden="true"></a>w <span class="op">=</span> widgets.Dropdown(</span>
-<span id="cb94-8"><a href="reproducibility.html#cb94-8" aria-hidden="true"></a>    options<span class="op">=</span>[(<span class="st">&quot;Ljubljana&quot;</span>, <span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>), (<span class="st">&quot;Celje&quot;</span>, <span class="st">&quot;CELJE&quot;</span>),</span>
-<span id="cb94-9"><a href="reproducibility.html#cb94-9" aria-hidden="true"></a>             (<span class="st">&quot;Kočevje&quot;</span>, <span class="st">&quot;KOCEVJE&quot;</span>), (<span class="st">&quot;Novo mesto&quot;</span>, <span class="st">&quot;NOVO-MES&quot;</span>)],</span>
-<span id="cb94-10"><a href="reproducibility.html#cb94-10" aria-hidden="true"></a>    value<span class="op">=</span><span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>,</span>
-<span id="cb94-11"><a href="reproducibility.html#cb94-11" aria-hidden="true"></a>    description<span class="op">=</span><span class="st">&#39;Location:&#39;</span>,</span>
-<span id="cb94-12"><a href="reproducibility.html#cb94-12" aria-hidden="true"></a>)</span>
-<span id="cb94-13"><a href="reproducibility.html#cb94-13" aria-hidden="true"></a></span>
-<span id="cb94-14"><a href="reproducibility.html#cb94-14" aria-hidden="true"></a><span class="at">@interact</span>(location<span class="op">=</span>w)</span>
-<span id="cb94-15"><a href="reproducibility.html#cb94-15" aria-hidden="true"></a><span class="kw">def</span> f(location):</span>
-<span id="cb94-16"><a href="reproducibility.html#cb94-16" aria-hidden="true"></a>    url <span class="op">=</span> <span class="ss">f&quot;http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/en/observation_</span><span class="sc">{</span>location<span class="sc">}</span><span class="ss">_latest.xml&quot;</span></span>
-<span id="cb94-17"><a href="reproducibility.html#cb94-17" aria-hidden="true"></a>    xml <span class="op">=</span> etree.XML(urllib.request.urlopen(url).read())</span>
-<span id="cb94-18"><a href="reproducibility.html#cb94-18" aria-hidden="true"></a>    lat <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lat/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-19"><a href="reproducibility.html#cb94-19" aria-hidden="true"></a>    lon<span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lon/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-20"><a href="reproducibility.html#cb94-20" aria-hidden="true"></a>    station_name <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_title/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-21"><a href="reproducibility.html#cb94-21" aria-hidden="true"></a>    last_updated <span class="op">=</span> etree.XPath(<span class="st">&quot;//tsUpdated/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-22"><a href="reproducibility.html#cb94-22" aria-hidden="true"></a>    weather <span class="op">=</span> etree.XPath(<span class="st">&quot;//nn_shortText/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-23"><a href="reproducibility.html#cb94-23" aria-hidden="true"></a>    temp <span class="op">=</span> etree.XPath(<span class="st">&quot;//t/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-24"><a href="reproducibility.html#cb94-24" aria-hidden="true"></a>    humidity <span class="op">=</span> etree.XPath(<span class="st">&quot;//rh/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
-<span id="cb94-25"><a href="reproducibility.html#cb94-25" aria-hidden="true"></a>    </span>
-<span id="cb94-26"><a href="reproducibility.html#cb94-26" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Location: </span><span class="sc">{</span>station_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Last updated: </span><span class="sc">{</span>last_updated<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">&quot;</span>)</span>
-<span id="cb94-27"><a href="reproducibility.html#cb94-27" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Weather info: </span><span class="sc">{</span>weather<span class="sc">}</span><span class="ch">\n</span><span class="ss">Temperature: </span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C</span><span class="ch">\n</span><span class="ss">Humidity: </span><span class="sc">{</span>humidity<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
-<span id="cb94-28"><a href="reproducibility.html#cb94-28" aria-hidden="true"></a>    </span>
-<span id="cb94-29"><a href="reproducibility.html#cb94-29" aria-hidden="true"></a>    slovenia_map <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">46</span>, <span class="fl">14.5</span>], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">&#39;Stamen Terrain&#39;</span>)</span>
-<span id="cb94-30"><a href="reproducibility.html#cb94-30" aria-hidden="true"></a>    folium.Marker([<span class="fl">46.0658</span>,<span class="fl">14.5172</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">&#39;green&#39;</span>,  icon<span class="op">=</span><span class="st">&#39;ok-sign&#39;</span>)).add_to(slovenia_map)</span>
-<span id="cb94-31"><a href="reproducibility.html#cb94-31" aria-hidden="true"></a>    display(slovenia_map)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="reproducibility.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
+<span id="cb94-2"><a href="reproducibility.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
+<span id="cb94-3"><a href="reproducibility.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb94-4"><a href="reproducibility.html#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
+<span id="cb94-5"><a href="reproducibility.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb94-6"><a href="reproducibility.html#cb94-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-7"><a href="reproducibility.html#cb94-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> widgets.Dropdown(</span>
+<span id="cb94-8"><a href="reproducibility.html#cb94-8" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>[(<span class="st">&quot;Ljubljana&quot;</span>, <span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>), (<span class="st">&quot;Celje&quot;</span>, <span class="st">&quot;CELJE&quot;</span>),</span>
+<span id="cb94-9"><a href="reproducibility.html#cb94-9" aria-hidden="true" tabindex="-1"></a>             (<span class="st">&quot;Kočevje&quot;</span>, <span class="st">&quot;KOCEVJE&quot;</span>), (<span class="st">&quot;Novo mesto&quot;</span>, <span class="st">&quot;NOVO-MES&quot;</span>)],</span>
+<span id="cb94-10"><a href="reproducibility.html#cb94-10" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span><span class="st">&quot;LJUBL-ANA_BEZIGRAD&quot;</span>,</span>
+<span id="cb94-11"><a href="reproducibility.html#cb94-11" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">&#39;Location:&#39;</span>,</span>
+<span id="cb94-12"><a href="reproducibility.html#cb94-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb94-13"><a href="reproducibility.html#cb94-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-14"><a href="reproducibility.html#cb94-14" aria-hidden="true" tabindex="-1"></a><span class="at">@interact</span>(location<span class="op">=</span>w)</span>
+<span id="cb94-15"><a href="reproducibility.html#cb94-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(location):</span>
+<span id="cb94-16"><a href="reproducibility.html#cb94-16" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f&quot;http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/en/observation_</span><span class="sc">{</span>location<span class="sc">}</span><span class="ss">_latest.xml&quot;</span></span>
+<span id="cb94-17"><a href="reproducibility.html#cb94-17" aria-hidden="true" tabindex="-1"></a>    xml <span class="op">=</span> etree.XML(urllib.request.urlopen(url).read())</span>
+<span id="cb94-18"><a href="reproducibility.html#cb94-18" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lat/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-19"><a href="reproducibility.html#cb94-19" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_lon/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-20"><a href="reproducibility.html#cb94-20" aria-hidden="true" tabindex="-1"></a>    station_name <span class="op">=</span> etree.XPath(<span class="st">&quot;//domain_title/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-21"><a href="reproducibility.html#cb94-21" aria-hidden="true" tabindex="-1"></a>    last_updated <span class="op">=</span> etree.XPath(<span class="st">&quot;//tsUpdated/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-22"><a href="reproducibility.html#cb94-22" aria-hidden="true" tabindex="-1"></a>    weather <span class="op">=</span> etree.XPath(<span class="st">&quot;//nn_shortText/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-23"><a href="reproducibility.html#cb94-23" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> etree.XPath(<span class="st">&quot;//t/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-24"><a href="reproducibility.html#cb94-24" aria-hidden="true" tabindex="-1"></a>    humidity <span class="op">=</span> etree.XPath(<span class="st">&quot;//rh/text()&quot;</span>)(xml)[<span class="dv">0</span>]</span>
+<span id="cb94-25"><a href="reproducibility.html#cb94-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb94-26"><a href="reproducibility.html#cb94-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Location: </span><span class="sc">{</span>station_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Last updated: </span><span class="sc">{</span>last_updated<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">&quot;</span>)</span>
+<span id="cb94-27"><a href="reproducibility.html#cb94-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Weather info: </span><span class="sc">{</span>weather<span class="sc">}</span><span class="ch">\n</span><span class="ss">Temperature: </span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C</span><span class="ch">\n</span><span class="ss">Humidity: </span><span class="sc">{</span>humidity<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
+<span id="cb94-28"><a href="reproducibility.html#cb94-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb94-29"><a href="reproducibility.html#cb94-29" aria-hidden="true" tabindex="-1"></a>    slovenia_map <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">46</span>, <span class="fl">14.5</span>], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">&#39;Stamen Terrain&#39;</span>)</span>
+<span id="cb94-30"><a href="reproducibility.html#cb94-30" aria-hidden="true" tabindex="-1"></a>    folium.Marker([<span class="fl">46.0658</span>,<span class="fl">14.5172</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">&#39;green&#39;</span>,  icon<span class="op">=</span><span class="st">&#39;ok-sign&#39;</span>)).add_to(slovenia_map)</span>
+<span id="cb94-31"><a href="reproducibility.html#cb94-31" aria-hidden="true" tabindex="-1"></a>    display(slovenia_map)</span></code></pre></div>
 <p><img src="data/Reproducibility/general.png" /></p>
 <p>There exist many possible options for graph visualizations (e.g. <a href="https://plot.ly/">Plotly</a>) and integrations of common libraries such as <a href="https://matplotlib.org/">matplotlib</a>.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="reproducibility.html#cb95-1" aria-hidden="true"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb95-2"><a href="reproducibility.html#cb95-2" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb95-3"><a href="reproducibility.html#cb95-3" aria-hidden="true"></a><span class="im">import</span> math</span>
-<span id="cb95-4"><a href="reproducibility.html#cb95-4" aria-hidden="true"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb95-5"><a href="reproducibility.html#cb95-5" aria-hidden="true"></a></span>
-<span id="cb95-6"><a href="reproducibility.html#cb95-6" aria-hidden="true"></a><span class="kw">def</span> showGraph(scale):</span>
-<span id="cb95-7"><a href="reproducibility.html#cb95-7" aria-hidden="true"></a>    x <span class="op">=</span> np.arange(<span class="dv">0</span>, math.pi<span class="op">*</span>scale, <span class="fl">0.05</span>)</span>
-<span id="cb95-8"><a href="reproducibility.html#cb95-8" aria-hidden="true"></a>    y <span class="op">=</span> np.sin(x)</span>
-<span id="cb95-9"><a href="reproducibility.html#cb95-9" aria-hidden="true"></a>    fig <span class="op">=</span> plt.figure()</span>
-<span id="cb95-10"><a href="reproducibility.html#cb95-10" aria-hidden="true"></a>    ax <span class="op">=</span> fig.add_axes([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb95-11"><a href="reproducibility.html#cb95-11" aria-hidden="true"></a>    ax.plot(x, y)</span>
-<span id="cb95-12"><a href="reproducibility.html#cb95-12" aria-hidden="true"></a>    ax.set_xlabel(<span class="st">&quot;Angle&quot;</span>)</span>
-<span id="cb95-13"><a href="reproducibility.html#cb95-13" aria-hidden="true"></a>    ax.set_ylabel(<span class="st">&quot;sine&quot;</span>)</span>
-<span id="cb95-14"><a href="reproducibility.html#cb95-14" aria-hidden="true"></a></span>
-<span id="cb95-15"><a href="reproducibility.html#cb95-15" aria-hidden="true"></a>interact(showGraph, scale <span class="op">=</span> widgets.IntSlider(value<span class="op">=</span><span class="dv">4</span>, description<span class="op">=</span><span class="st">&#39;Scale&#39;</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">10</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="reproducibility.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb95-2"><a href="reproducibility.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb95-3"><a href="reproducibility.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb95-4"><a href="reproducibility.html#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb95-5"><a href="reproducibility.html#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="reproducibility.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> showGraph(scale):</span>
+<span id="cb95-7"><a href="reproducibility.html#cb95-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.arange(<span class="dv">0</span>, math.pi<span class="op">*</span>scale, <span class="fl">0.05</span>)</span>
+<span id="cb95-8"><a href="reproducibility.html#cb95-8" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.sin(x)</span>
+<span id="cb95-9"><a href="reproducibility.html#cb95-9" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure()</span>
+<span id="cb95-10"><a href="reproducibility.html#cb95-10" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> fig.add_axes([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb95-11"><a href="reproducibility.html#cb95-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(x, y)</span>
+<span id="cb95-12"><a href="reproducibility.html#cb95-12" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">&quot;Angle&quot;</span>)</span>
+<span id="cb95-13"><a href="reproducibility.html#cb95-13" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">&quot;sine&quot;</span>)</span>
+<span id="cb95-14"><a href="reproducibility.html#cb95-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-15"><a href="reproducibility.html#cb95-15" aria-hidden="true" tabindex="-1"></a>interact(showGraph, scale <span class="op">=</span> widgets.IntSlider(value<span class="op">=</span><span class="dv">4</span>, description<span class="op">=</span><span class="st">&#39;Scale&#39;</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">10</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
 <p><img src="data/Reproducibility/sine.png" /></p>
 </div>
 </div>
@@ -639,22 +662,22 @@ Some of the possible tools are listed in the previous chapters but new tools app
 <li><p>Create a short R Markdown, Sweave and/or Jupyter Notebook that loads some data, draws a plot, prints a table and contains some text with an example of inline use of code.</p></li>
 <li><p>Consider the following experiment of drawing <span class="math inline">\(m &gt; 1\)</span> samples from a distribution (standard normal or uniform) and taking their average, repeating this process for <span class="math inline">\(n &gt; 1\)</span> times and plotting the histogram of these <span class="math inline">\(n\)</span> averages:</p></li>
 </ol>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="reproducibility.html#cb96-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="dv">5000</span></span>
-<span id="cb96-2"><a href="reproducibility.html#cb96-2" aria-hidden="true"></a>m &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb96-3"><a href="reproducibility.html#cb96-3" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb96-4"><a href="reproducibility.html#cb96-4" aria-hidden="true"></a>dist &lt;-<span class="st"> &quot;normal&quot;</span></span>
-<span id="cb96-5"><a href="reproducibility.html#cb96-5" aria-hidden="true"></a></span>
-<span id="cb96-6"><a href="reproducibility.html#cb96-6" aria-hidden="true"></a>all &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb96-7"><a href="reproducibility.html#cb96-7" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
-<span id="cb96-8"><a href="reproducibility.html#cb96-8" aria-hidden="true"></a>  <span class="cf">if</span> (dist <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) {</span>
-<span id="cb96-9"><a href="reproducibility.html#cb96-9" aria-hidden="true"></a>    x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(m)</span>
-<span id="cb96-10"><a href="reproducibility.html#cb96-10" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
-<span id="cb96-11"><a href="reproducibility.html#cb96-11" aria-hidden="true"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(m)</span>
-<span id="cb96-12"><a href="reproducibility.html#cb96-12" aria-hidden="true"></a>  }</span>
-<span id="cb96-13"><a href="reproducibility.html#cb96-13" aria-hidden="true"></a>  all &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(x), all)</span>
-<span id="cb96-14"><a href="reproducibility.html#cb96-14" aria-hidden="true"></a>}</span>
-<span id="cb96-15"><a href="reproducibility.html#cb96-15" aria-hidden="true"></a></span>
-<span id="cb96-16"><a href="reproducibility.html#cb96-16" aria-hidden="true"></a><span class="kw">hist</span>(all, <span class="dt">breaks =</span> <span class="kw">sqrt</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="reproducibility.html#cb96-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb96-2"><a href="reproducibility.html#cb96-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb96-3"><a href="reproducibility.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb96-4"><a href="reproducibility.html#cb96-4" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="st">&quot;normal&quot;</span></span>
+<span id="cb96-5"><a href="reproducibility.html#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="reproducibility.html#cb96-6" aria-hidden="true" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb96-7"><a href="reproducibility.html#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb96-8"><a href="reproducibility.html#cb96-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (dist <span class="sc">==</span> <span class="st">&quot;normal&quot;</span>) {</span>
+<span id="cb96-9"><a href="reproducibility.html#cb96-9" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(m)</span>
+<span id="cb96-10"><a href="reproducibility.html#cb96-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb96-11"><a href="reproducibility.html#cb96-11" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">runif</span>(m)</span>
+<span id="cb96-12"><a href="reproducibility.html#cb96-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb96-13"><a href="reproducibility.html#cb96-13" aria-hidden="true" tabindex="-1"></a>  all <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(x), all)</span>
+<span id="cb96-14"><a href="reproducibility.html#cb96-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb96-15"><a href="reproducibility.html#cb96-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-16"><a href="reproducibility.html#cb96-16" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(all, <span class="at">breaks =</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
 <p><img src="03-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Create a Shiny App, Shiny Dashboard or Jupyter Dashboard that draws such a histogram and allows you to interactively change <span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span> and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as <span class="math inline">\(m\)</span> grows larger.</p>
 

@@ -211,6 +211,6 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. Explore the Web and find some dynamic Web sites. Inspect the structure of a few Web pages with your favorite browser and try to load the same Web pages with Javascript disabled.
+1. Explore the Web and find some dynamic Web sites. Inspect the structure of a few Web pages with your favorite browser and try to load the same Web pages with Javascript disabled. Go through [basic Web crawling example](data/WebDataExtraction/Web crawling - basic tools.ipynb) and practise using the library as it allows for powerful features.
 2. Implement and run a crawler that will target https://fri.uni-lj.si/sl/o-fakulteti/osebje and extract the following information about every employee: name, email, phone number, title/job position and the number of courses they teach and number of projects they have listed. Save the data in CSV format.
 3. An example project: Recently, [gov.si](http://gov.si) Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account *robots.txt*, etc. Store rendered HTML data and also extracted data in a database.
