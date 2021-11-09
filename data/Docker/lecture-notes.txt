@@ -1,0 +1,151 @@
+1. razlaga, kaj je Docker
+    - izgled Virtualbox:
+        hardware, Host OS, Hypervisor, Virtualke (OS, App)
+    - prava virtualizacija
+        hardware, Hypervisor, Virtualke (OS, App)
+    - Docker, Singularity, NVIDIA/enroot
+        hardware, Host OS, Docker, App
+
+2. Osnovni ukazi Docker
+
+docker info
+
+docker ps
+
+docker run hello-world
+    - razlaga glede slik in vsebnikov
+    - docker repository -> local repository -> instance = container
+-> pregled kontejnerjev
+docker container ls -a
+
+Zagon obstoječega kontejnerja (parameter i !): 
+
+docker container start -i sharp_easly
+
+- pregled obstoječih slik   
+docker image ls
+
+PRIMER 1:
+ - ustvari index.html, server.py
+ - naredi nov conda environment, namesti flask in poženi python skripto
+
+ PRIMER 1- docker
+
+ # Use an official Ubuntu runtime as a parent image
+FROM ubuntu:18.04
+
+# Set the current working directory to /work
+WORKDIR /work
+
+# Copy the current directory contents into the container at /work
+ADD ./ .
+
+# Install and configure your environment
+RUN apt-get update \
+    && apt-get install -y python3 python3-pip \
+    && pip3 install flask
+
+# Make port 8787 available to the world outside this container (i.e. docker world)
+EXPOSE 8787
+
+# Run server.py when the container launches
+ENTRYPOINT python3 server.py
+----
+
+How to know the commands:
+docker run -it ubuntu:18.04 /bin/bash
+
+docker build -t docker-app .
+
+docker run -p 8787:8787 docker-app
+
+docker run -d -p 8787:8787 docker-app
+
+docker exec -it CONTAINER_ID /bin/bash
+
+docker logs CONTAINER_ID
+
+PRIMER 2:
+ - copy new versions of index.html, server.py; Dockerfile is the same (with mysql-connector-python dependency addition)
+ - create database folder, copy createDatabase.sql and Dockerfile inside
+
+ # Parent image
+FROM mysql:5
+
+# Copying all files in curent dir to container
+ADD ./ /docker-entrypoint-initdb.d
+
+# Updating permissions for the copied files
+RUN /bin/bash -c 'chmod a+rx /docker-entrypoint-initdb.d/*'
+
+----
+
+- how did I know this?
+    - Google docker mysql image 
+
+- test database (move to database folder)
+
+docker build -t docker-db .
+docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=BeReSeMi docker-db
+
+- mysql workbench connect
+
+---
+
+- create docker-compose.yml in root
+
+version: '3.7'
+
+services:
+
+  database:
+    image: database
+    build: ./database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: BeReSeMi.DataScience
+    ports:
+      - 3306:3306
+    volumes:
+      - ds_databases:/var/lib/mysql
+    networks:
+      - dsnet
+
+  application:
+    image: application
+    build: ./application    
+    depends_on:
+      - database
+    restart: always
+    ports:
+      - "8787:8787"
+    networks:
+      - dsnet
+
+networks:
+  dsnet:
+    driver: bridge
+
+volumes:
+  ds_databases:  
+
+----
+
+- zaženi (parameter d, parameter do fajla - isto kot za Dockerfile!):
+docker-compose up -d
+docker-compose logs -f
+
+- stop vs. down
+docker-compose stop/down
+
+-----
+VOLUMES:
+- map to folder named db_data
+- change in docker-compose (remove line below and add path to folder directly)
+----
+IMAGE REGISTRIES:
+- follow handbook
+----
+OPTIMIZATIONS:
+- follow optimizations
