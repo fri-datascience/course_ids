@@ -576,4 +576,5 @@ Data science students should work towards obtaining the knowledge and the skills
 
 * Select one of the machine learning datasets, design a database for it and import it into a database. Use the Python visualization library and visualize the data queried directly from the database.
 * Adapt the examples from above for use with another relational database management system - e.g. MySQL, MSSQL or Oracle.
+5. Go through [SQL hands-on tutorial](data/SQL/Databases - hands on.zip) and practise using SQL (SQLite and PostgreSQL). Think of different options, such as using other database, domain, ...
 

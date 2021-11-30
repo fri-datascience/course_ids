@@ -449,7 +449,7 @@ Forking is not a Git feature but a feature that platforms like GitHub offer to d
 
 ![](data/Git/fork.png)
 
-He then implements additional features and creates a pull request.
+He then implements additional features and [creates a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
 ![](data/Git/create-pull.png)
 
