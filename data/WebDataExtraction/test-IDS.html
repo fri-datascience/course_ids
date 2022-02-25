@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>..:: IDS Test Case Page ::..</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>            
+            .red-text    {color: red;}
+        </style>
+    </head>
+
+    <body>
+        <h1>Hello IDS!</h1>
+        <p>
+            Here 
+            <span style="font-weight: bold;">I will</span> 
+            write 
+            <span class="red-text">some text</span> 
+            ...
+        </p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Coiledblueracersnake.jpg/440px-Coiledblueracersnake.jpg" alt="Very nice image!" />
+        
+        <placeholder>
+
+        </placeholder>
+
+        <script>
+            $(document).ready(function(){
+                $( "placeholder" ).html( "<p>\"I am <b>blue racer</b>!!!\"<p>" );
+            });
+        </script>
+    </body>
+</html>
