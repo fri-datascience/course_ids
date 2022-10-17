@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Relational databases | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Relational databases | Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
   <meta property="og:description" content="Course notes" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2022-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="multivariate-data-chapter.html"/>
 <link rel="next" href="predictive.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -413,8 +412,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="databases" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Relational databases</h1>
+<div id="databases" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Relational databases<a href="databases.html#databases" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Organizations, researchers and other individuals have been using databases to store and work with data since they exist. Software that implements a specific database is called a database management system. It provides a complete software solution to work with data and implements security, consistency, simultaniety, administration, etc. There exist different types of database management systems, depending on the type of data they store - for example relational, object, document, XML, noSQL, etc. In this section we focus on the relational databases which provide a common interface using the SQL query language – a common basic query language, which we use for searching and manipulating data in relational databases. Example database management systems are <a href="http://www.oracle.com/index.html">Oracle</a>, <a href="http://www-306.ibm.com/software/data/db2/">IBM DB2</a>, <a href="http://www.microsoft.com/sql/default.mspx">MSSQL</a>, <a href="http://www.mysql.com/">MySQL</a>, <a href="http://www.postgresql.org/">PostgreSQL</a> or <a href="https://www.sqlite.org/index.html">SQLite</a>.</p>
 <p>Relational model implemented by the relational databases represents the database as a collection of relations. Relation as defined in theory is most easily represented as a table (note that a concept of a relation is not a table!). Tuple of data is represented as a row. Generally each row describes an entity, e.g. a person. Each tuple contains a number of columns/attributes. Each value is defined within a domain of possible values. Special fields (e.g. primary key) define relational integrity constraints, that is conditions which must be present for a valid relation. Constraints on the Relational database management system is mostly divided into three main categories are (a) domain constraints, (b) key constraints and (c) referential integrity constraints. An example of a relation representation is shown in the Figure below.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
@@ -423,12 +422,12 @@ div.csl-indent {
 Figure 6.1: Relation representation.
 </p>
 </div>
-<div id="introduction-to-sql" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Introduction to SQL</h2>
+<div id="introduction-to-sql" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction to SQL<a href="databases.html#introduction-to-sql" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Structure Query Language (SQL), pronounced as “sequel” is a domain-specific language used in programming and designed for managing data held in a relational database management system. It is based on relational algebra and tuple relational calculus. SQL consists of many types of statements, such as a data manipulation language, a data definition language or a data control language. Although SQL is a declarative language, its extensions include also procedural elements. SQL became a standard in 1986 and has been revised a few times since to include new features. Despite the existence of standards, most SQL code is not completely portable among different database systems.</p>
 <p>For the data scientist, data modelling and querying are the most important. We will focus only on these two aspects of the SQL which are also the most common to all database systems. In order to use advanced mechanisms such as security management, procedural functionalities or locking, please review the documentation of your selected database system.</p>
-<div id="data-definition-language" class="section level3" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> Data definition language</h3>
+<div id="data-definition-language" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Data definition language<a href="databases.html#data-definition-language" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Data definition language SQL sentences enable us to manipulate with the structure of the database. They define SQL data types and provide mechanisms to manipulate with database objects, data quality assertion mechanisms, transactions and definition of procedural objects such as procedures and functions.</p>
 <p>The data types of data columns in tables are defined as follows (ANSI SQL):</p>
 <table>
@@ -489,19 +488,19 @@ Figure 6.1: Relation representation.
 <div class="sourceCode" id="cb231"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb231-1"><a href="databases.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> TableName [<span class="kw">RESTRICT</span> | <span class="kw">CASCADE</span>]</span></code></pre></div>
 <p>Analogously, the command is used for constraints, indexes, users, databases, etc. In the example above we see two additional arguments - RESTRICT and CASCADE. They specifically define, whether the table can be deleted if there exist some columns in other tables that reference columns in the table we wish to delete.</p>
 </div>
-<div id="data-manipulation-language" class="section level3" number="9.1.2">
-<h3><span class="header-section-number">9.1.2</span> Data manipulation language</h3>
+<div id="data-manipulation-language" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Data manipulation language<a href="databases.html#data-manipulation-language" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When a database and tables or other objects are created, we can focus on inserting, updating, deleting and querying data.</p>
-<div id="inserting" class="section level4" number="9.1.2.1">
-<h4><span class="header-section-number">9.1.2.1</span> Inserting</h4>
+<div id="inserting" class="section level4 hasAnchor" number="9.1.2.1">
+<h4><span class="header-section-number">9.1.2.1</span> Inserting<a href="databases.html#inserting" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Statements for inserting rows into a database table looks as follows:</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb232-1"><a href="databases.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TableName [ (columnList) ] <span class="kw">VALUES</span></span>
 <span id="cb232-2"><a href="databases.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  (dataValueList)[, (dataValueList), <span class="op">..</span>.]</span></code></pre></div>
 <p>The list of columns is not necessary if we provide all the columns in the same order that were defined at the table creation time. In the data values we need to provide at least all the values that are of NOT NULL type and do not have the default value set. The order of values in the list need correspond to the column list.</p>
 <p>To insert more rows at a time, multiple data value lists can be used. When doing a bulk inserts, this will speed up our insertion time. To insert enormous amounts of data into relational database, some database management systems provide their own mechanisms of bulk data importing, as well as for data export.</p>
 </div>
-<div id="updating" class="section level4" number="9.1.2.2">
-<h4><span class="header-section-number">9.1.2.2</span> Updating</h4>
+<div id="updating" class="section level4 hasAnchor" number="9.1.2.2">
+<h4><span class="header-section-number">9.1.2.2</span> Updating<a href="databases.html#updating" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The UPDATE statements allows us to change values within the existing data rows. It is defined as follows:</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb233-1"><a href="databases.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> TableName</span>
 <span id="cb233-2"><a href="databases.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> columnName1 <span class="op">=</span> dataValue1</span>
@@ -509,14 +508,14 @@ Figure 6.1: Relation representation.
 <span id="cb233-4"><a href="databases.html#cb233-4" aria-hidden="true" tabindex="-1"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
 <p>We can update one or more column values in the selected table. The statement will update all the rows that initially satisfy the search condition. The search condition is optional but we must take care when updating or deleting rows as our command may change too many rows if search condition not defined correctly.</p>
 </div>
-<div id="deleting" class="section level4" number="9.1.2.3">
-<h4><span class="header-section-number">9.1.2.3</span> Deleting</h4>
+<div id="deleting" class="section level4 hasAnchor" number="9.1.2.3">
+<h4><span class="header-section-number">9.1.2.3</span> Deleting<a href="databases.html#deleting" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Statement for deleting rows is similar to updating without setting new values. The sentence deletes all the rows in a table that match the search condition is defined as follows:</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb234-1"><a href="databases.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> TableName</span>
 <span id="cb234-2"><a href="databases.html#cb234-2" aria-hidden="true" tabindex="-1"></a>[<span class="kw">WHERE</span> searchCondition]</span></code></pre></div>
 </div>
-<div id="querying" class="section level4" number="9.1.2.4">
-<h4><span class="header-section-number">9.1.2.4</span> Querying</h4>
+<div id="querying" class="section level4 hasAnchor" number="9.1.2.4">
+<h4><span class="header-section-number">9.1.2.4</span> Querying<a href="databases.html#querying" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Querying is enabled by the SELECT statement which is the most comprehensive as provides multiple mechanisms to access the data from a database:</p>
 <div class="sourceCode" id="cb235"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb235-1"><a href="databases.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span> | <span class="kw">ALL</span>] {<span class="op">*</span> | [columnExpression [<span class="kw">AS</span> newName]] [,<span class="op">..</span>.] }</span>
 <span id="cb235-2"><a href="databases.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> </span>
@@ -534,13 +533,13 @@ Figure 6.1: Relation representation.
 </div>
 </div>
 </div>
-<div id="sqlite" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> SQLite</h2>
+<div id="sqlite" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> SQLite<a href="databases.html#sqlite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the previous part we pointed out some basics about data management in relational databases. In this part we will show SQL in practice using an SQLite database.</p>
 <p>SQLite is an open source, zero-configuration, self-contained, stand-alone, transaction relational database engine designed to be embedded into an application. This type of the database is used by our desktop applications, mobile applications, etc. and it does not need a special server-based database management system. Its structure is contained in a special file, which can be handled by a sqlite database management library.</p>
 <p>Sqlite seems like a simple database implementation. It lacks performance over large amounts of data, reliability, scalability, redundancy, concurrent access/transactions and other advanced features such as referential integrity, special indexing capabilities and functions, procedural SQL, etc. In the case of data science needs we often need a database only as a simple data storage that is better than storing the data in raw files. Therefore the choice of SQLite of our main database would be enough for the most of our needs.</p>
-<div id="environment-setup" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Environment setup</h3>
+<div id="environment-setup" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Environment setup<a href="databases.html#environment-setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To install an SQLite database we just do need to download a binary version from <a href="https://www.sqlite.org/download.html">the official SQLite web site</a>. There exist also installation packages that install SQLite program to our computer and update the $PATH variable so that the <code>sqlite</code> command is directly accessible from command line.</p>
 <p>The sqlite 3 download package consists of three executables:</p>
 <ul>
@@ -564,8 +563,8 @@ Figure 9.1: DB Browser for SQLite graphical user interface.
 </p>
 </div>
 </div>
-<div id="sqlite-example" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> SQLite database usage</h3>
+<div id="sqlite-example" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> SQLite database usage<a href="databases.html#sqlite-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this section we show how to create a new SQLite database and manage it manually using SQL language directly. First we create a new database file called <code>itds_course.db</code>.</p>
 <p>We will create a new database model, presented in the Figure <a href="databases.html#fig:model">9.2</a>. Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:model"></span>
@@ -752,15 +751,15 @@ Figure 9.2: Employee logical database model.
 <span id="cb258-5"><a href="databases.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Employee <span class="kw">WHERE</span> employment_end <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
 <p>We presented just some basic examples of how to use an SQLite database. Feel free to investigate its possibilities further.</p>
 </div>
-<div id="sqlite-in-python" class="section level3" number="9.2.3">
-<h3><span class="header-section-number">9.2.3</span> SQLite in Python</h3>
+<div id="sqlite-in-python" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> SQLite in Python<a href="databases.html#sqlite-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>SQLite can be used by many different programming languages. We show an example of how to use an SQLite database from Python. The database we prepared in the previous section is also available <a href="data/SQL/itds_course.db">here</a>.</p>
 <p>First we need to install library for SQLite database file manipulation. If you use Anaconda Python distribution, just issue the <code>conda install -c anaconda sqlite</code> command.</p>
 <p>Then we need to connect to a database. If the database file does not exist in the path provided, an empty database file will be created automatically.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb259-1"><a href="databases.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb259-2"><a href="databases.html#cb259-2" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;itds_course.db&#39;</span>)</span></code></pre></div>
-<div id="inserting-data" class="section level4" number="9.2.3.1">
-<h4><span class="header-section-number">9.2.3.1</span> Inserting data</h4>
+<div id="inserting-data" class="section level4 hasAnchor" number="9.2.3.1">
+<h4><span class="header-section-number">9.2.3.1</span> Inserting data<a href="databases.html#inserting-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We assume that we are connected to the database from the previous section. Let’s first insert a record.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb260-1"><a href="databases.html#cb260-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> conn.cursor()</span>
 <span id="cb260-2"><a href="databases.html#cb260-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -784,8 +783,8 @@ Figure 9.2: Employee logical database model.
 <p>After every change to a database, we must call the commit command which actually saves the results into the database.</p>
 <p>Now let’s examine if our insert statement was successful. You may have noticed the call to the function <code>last_insert_rowid()</code>. This function returns the id of the last inserted row when we are using AUTOINCREMENT option for the primary key.</p>
 </div>
-<div id="selecting-data" class="section level4" number="9.2.3.2">
-<h4><span class="header-section-number">9.2.3.2</span> Selecting data</h4>
+<div id="selecting-data" class="section level4 hasAnchor" number="9.2.3.2">
+<h4><span class="header-section-number">9.2.3.2</span> Selecting data<a href="databases.html#selecting-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s check, what is in the database.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb261-1"><a href="databases.html#cb261-1" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> c.execute(<span class="st">&#39;&#39;&#39;</span></span>
 <span id="cb261-2"><a href="databases.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT b.id, b.name, COUNT(e.id), MAX(s.amount)</span></span>
@@ -795,7 +794,7 @@ Figure 9.2: Employee logical database model.
 <span id="cb261-6"><a href="databases.html#cb261-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&#39;&#39;</span>)</span>
 <span id="cb261-7"><a href="databases.html#cb261-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb261-8"><a href="databases.html#cb261-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> cursor:</span>
-<span id="cb261-9"><a href="databases.html#cb261-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\t</span><span class="st">Branch id: </span><span class="sc">%d</span><span class="ch">\n\t\t</span><span class="st">Branch name: &#39;</span><span class="sc">%s</span><span class="st">&#39;</span><span class="ch">\n\t\t</span><span class="st">Employee number: \</span></span>
+<span id="cb261-9"><a href="databases.html#cb261-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\t</span><span class="st">Branch id: </span><span class="sc">%d</span><span class="ch">\n\t\t</span><span class="st">Branch name: &#39;</span><span class="sc">%s</span><span class="st">&#39;</span><span class="ch">\n\t\t</span><span class="st">Employee number: </span><span class="ch">\</span></span>
 <span id="cb261-10"><a href="databases.html#cb261-10" aria-hidden="true" tabindex="-1"></a><span class="st">    </span><span class="sc">%s</span><span class="ch">\n\t\t</span><span class="st">Maximum salary: </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>], row[<span class="dv">3</span>]))</span>
 <span id="cb261-11"><a href="databases.html#cb261-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb261-12"><a href="databases.html#cb261-12" aria-hidden="true" tabindex="-1"></a><span class="co"># You should close the connection when stopped using the database.</span></span>
@@ -812,8 +811,8 @@ Figure 9.2: Employee logical database model.
 </div>
 </div>
 </div>
-<div id="postgresql" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> PostgreSQL</h2>
+<div id="postgresql" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> PostgreSQL<a href="databases.html#postgresql" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In some cases we need more powerful relational database features. In this case we propose to use a more advanced relational database management system, such as PostgreSQL, MS SQL, MySQL or others.</p>
 <p>In previous chapters we introduced Docker environment. Now we will use <a href="https://hub.docker.com/_/postgres">an official PostgreSQL database image</a> and run it:</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb263-1"><a href="databases.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> pg-server <span class="at">-e</span> POSTGRES_PASSWORD=BeReSeMi.DataScience <span class="dt">\</span></span>
@@ -822,9 +821,9 @@ Figure 9.2: Employee logical database model.
 <p>When the container is running, we can use our preffered database client and connect to the database server. We can also directly connect to the database using the following command:</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb264-1"><a href="databases.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> pg-server psql <span class="at">-U</span> postgres <span class="at">-W</span></span></code></pre></div>
 <p>First we need to create a database, called <code>courseitds</code> and connect to it:</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb265-1"><a href="databases.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="va">postgres=</span># <span class="ex">create</span> database courseitds<span class="kw">;</span></span>
+<div class="sourceCode" id="cb265"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb265-1"><a href="databases.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="va">postgres</span><span class="op">=</span># <span class="ex">create</span> database courseitds<span class="kw">;</span></span>
 <span id="cb265-2"><a href="databases.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="ex">CREATE</span> DATABASE</span>
-<span id="cb265-3"><a href="databases.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="va">postgres=</span># <span class="ex">\c</span> courseitds</span>
+<span id="cb265-3"><a href="databases.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="va">postgres</span><span class="op">=</span># <span class="ex">\c</span> courseitds</span>
 <span id="cb265-4"><a href="databases.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> are now connected to database <span class="st">&quot;courseitds&quot;</span> as user <span class="st">&quot;postgres&quot;</span>.</span></code></pre></div>
 <p>Now we can use the SQL statements from the example above (Section <a href="databases.html#sqlite-example">9.2.2</a>). PostgreSQL supports SQL a bit differently, so we need to adapt the following:</p>
 <ul>
@@ -836,16 +835,16 @@ Figure 9.2: Employee logical database model.
 <p>We provided adapted SQL queries in <a href="data/SQL/statements_PostgreSQL.sql">a single SQL file</a>.</p>
 <p>When running a database using Docker, do not forget about the data storage! Using the container storage directly is not safe, so we should use volumes instead.</p>
 </div>
-<div id="further-reading-and-references-8" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Further reading and references</h2>
+<div id="further-reading-and-references-8" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Further reading and references<a href="databases.html#further-reading-and-references-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="https://www.sqlite.org/index.html">SQLite official website</a> and <a href="https://pysqlite.readthedocs.io/en/latest/sqlite3.html">Sqlite 3 Python library documentation</a>.</li>
 <li>There are lots of SQLite tutorial, such as <a href="http://www.sqlitetutorial.net/">SQLite tutorial.net</a>.</li>
 <li><a href="https://www.postgresql.org/">PostgreSQL official documentation</a>.</li>
 </ul>
 </div>
-<div id="learning-outcomes-8" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> Learning outcomes</h2>
+<div id="learning-outcomes-8" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Learning outcomes<a href="databases.html#learning-outcomes-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
 <li>Use SQL to model, query and update a relational database.</li>
@@ -853,8 +852,8 @@ Figure 9.2: Employee logical database model.
 <li>Import and export data to and from a database.</li>
 </ul>
 </div>
-<div id="practice-problems-8" class="section level2" number="9.6">
-<h2><span class="header-section-number">9.6</span> Practice problems</h2>
+<div id="practice-problems-8" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Practice problems<a href="databases.html#practice-problems-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Select one of the machine learning datasets, design a database for it and import it into a database. Use the Python visualization library and visualize the data queried directly from the database.</li>
 <li>Adapt the examples from above for use with another relational database management system - e.g. MySQL, MSSQL or Oracle.</li>
@@ -939,7 +938,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

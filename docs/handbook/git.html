@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Source code control | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Source code control | Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
   <meta property="og:description" content="Course notes" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2022-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="python-introduction-chapter.html"/>
 <link rel="next" href="reproducibility.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -413,13 +412,13 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Source code control</h1>
-<div id="overview" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Overview</h2>
+<div id="git" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Source code control<a href="git.html#git" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Overview<a href="git.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Source code control systems, version control systems or revision control systems are systems that ease software development in groups. Wikipedia defines them as follows:</p>
 <blockquote>
-<p>A component of software configuration management, version control, also known as revision control, source control, or source code management systems are systems responsible for the management of changes to documents, computer programs, large web sites, and other collections of information. Changes are usually identified by a number or letter code, termed the “revision number,” “revision level,” or simply “revision.” For example, an initial set of files is “revision 1.” When the first change is made, the resulting set is “revision 2,” and so on. Each revision is associated with a timestamp and the person making the change. Revisions can be compared, restored, and with some types of files, merged.</p>
+<p>A component of software configuration management, version control, also known as revision control, source control, or source code management systems are systems responsible for the management of changes to documents, computer programs, large web sites, and other collections of information. Changes are usually identified by a number or letter code, termed the “revision number”, “revision level”, or simply “revision”. For example, an initial set of files is “revision 1”. When the first change is made, the resulting set is “revision 2”, and so on. Each revision is associated with a timestamp and the person making the change. Revisions can be compared, restored, and with some types of files, merged.</p>
 </blockquote>
 <p>There exist a number of different source control systems such as <a href="https://subversion.apache.org/">Subversion</a>, <a href="https://www.mercurial-scm.org/">Mercurial</a>, Microsoft Visual SourceSafe, SourceDepot, <a href="https://git-scm.com/">Git</a>, etc.. Git is currently the most widely used version control system in the world. It is the most recognized and popular approach to contribute to a project, whether it be open source or commercial, in a distributed and collaborative manner. Beyond being a distributed version control system, Git has been designed with performance, security and flexibility in mind.</p>
 <p>If you are new to Git it is important for you to differentiate between Git and GitHub:</p>
@@ -428,59 +427,59 @@ div.csl-indent {
 <li><em>GitHub</em> is a widely used platform for version control that uses Git at its core. It lets you host the remote version of your project from where all the collaborators can have access to it. GitHub is like a social platform where you can find a plethora of open-source projects with their codes. All the new and emerging technologies can be found on this platform. You can collaborate on many projects and have discussions on your contributions. There exist also other platforms that enable you hosting of remote Git repositories such as <a href="https://about.gitlab.com/">GitLab</a> and <a href="https://bitbucket.org/">BitBucket</a>.</li>
 </ul>
 </div>
-<div id="why-should-i-know-about-git" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Why should I know about Git</h2>
+<div id="why-should-i-know-about-git" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Why should I know about Git<a href="git.html#why-should-i-know-about-git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Where people are often working in groups that are small enough they feel comfortable just keeping their code on Dropbox and trying to make sure that collaborators never work on the same file at the same time (in the hope of never changing the same file). But Git has much to offer to the modern data scientist, even if they only work on small teams and don’t want to contribute to larger software projects or even for personal projects. Some major benefits of using Git are:</p>
 <ol style="list-style-type: decimal">
-<li><em>Keep an archive of every version of your project</em>: Git works by logging the work you do on your project into a series of discrete sets of changes called “commits.” Crucially, it remembers all of your commits, making it possible at any time to go back to a previous version of the project. If you discover that you or your collaborator deleted part of your code and you did not notice, can easily recover the version of that file that existed before. Systematically keeping track of the history of your work is also an important component of modern reproducible research, which we discuss in Chapter <a href="reproducibility.html#reproducibility">3</a>.</li>
+<li><em>Keep an archive of every version of your project</em>: Git works by logging the work you do on your project into a series of discrete sets of changes called “commits”. Crucially, it remembers all of your commits, making it possible at any time to go back to a previous version of the project. If you discover that you or your collaborator deleted part of your code and you did not notice, can easily recover the version of that file that existed before. Systematically keeping track of the history of your work is also an important component of modern reproducible research, which we discuss in Chapter <a href="reproducibility.html#reproducibility">3</a>.</li>
 <li><em>All you and your co-authors to work at the same time</em>: Git treats each line in a text document separately, so if your collaborator is editing the introduction of your paper (assuming it’s in a text format such as LaTeX) while you’re editing the conclusion, Git can easily integrate your simultaneous edits. Moreover, if you do both edit the same line of code or text, then Git will help you resolve those conflicting edits in a very efficient manner instead of what Dropbox does, and leave you to figure out what changes conflicted and how to integrate both authors’ changes.</li>
 <li><em>You can easily see what changes were made and by whom</em>: Git is organized around keeping track of commits. When your or your collaborator make changes to a file, Git allows you to easily see just the changes your collaborator has made. This makes it much easier for colleagues to be aware of how their project is changing and to watch out of potential issues. For example, you can easily see if your collaborator recoded a variable in a way that is problematic for code you wrote later.</li>
 <li><em>Allows you to contribute to open source projects</em>: This may not be something you’re planning to do, but learning Git will make this an option. If you find that a package you use doesn’t have a feature you need, the ability to use Git will make it possible for you to add that feature to the package, not only allowing you to do what you want to do, but also making that fix available to the broader community.</li>
 <li><em>Allows you to make your project open source so others can contribute to your project</em>: If you know Git, you can also share that code in a way that makes it easy for other people to contribute code and improve that package. Also, being active in the open-source community or showing code of your hobby projects in public source code repositories may help you getting a better job.</li>
 </ol>
 </div>
-<div id="basic-git-terminology" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Basic Git terminology</h2>
+<div id="basic-git-terminology" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Basic Git terminology<a href="git.html#basic-git-terminology" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="data/Git/git.png" /></p>
-<div id="repository" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Repository</h3>
+<div id="repository" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Repository<a href="git.html#repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <em>Repository</em> or <em>Repo</em> is a folder that contains all the project files and the history of the revisions made to each file. The repo stores its data within a <em>.git</em> hidden folder in your project. It contains all the history related to your repository. In general you will work with at least two repositories throughout the lifetime of your project – a <em>Remote repo</em> and a <em>Local repo</em>:</p>
 <ul>
 <li>A <em>Remote repo</em> contains your project that can be accessed from anywhere and by anyone that has access and sufficent rights to the git server (e.g. GitHub). In general you can have multiple remote repositories and push changes selectively to each of them. When you clone a repository for the first time from a remote repo, that remote repo will be named <em>origin</em> and you will be able to push or pull code from it. You can manage connections to the remote repositories using <code>git remote</code> commands.</li>
 <li><em>Local repo</em> is a copy of the remote repo that resides on your local machine. All the changes you make are saved in your local repo. Your collaborators will not be able to see them until you push them to the remote repo (and after they browse the remote repo or pull the code locally).</li>
 </ul>
 </div>
-<div id="clone" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Clone</h3>
+<div id="clone" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Clone<a href="git.html#clone" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb69"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="git.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git clone <span class="op">&lt;</span>Repo URL<span class="op">&gt;</span></span></code></pre></div>
 <p><em>Cloning</em> means creating a copy of the remote repo on your local machine. After that you can make changes to the local copy of the files, commit them to the local repo and push them back to the remote repo.</p>
 <p>If you would like to create a new repository locally without cloning an existing one, you can use the <code>git init</code> command and an empty repository will be created in you current folder. If you would like to publish your repository remotely, you will need to add a connection to the empty remote Git repository (<code>git remote</code> command) and then push commits to it.</p>
 <p><em>CAUTION</em>: You cannot merge two different locallrepositories. So, at project start we create a single repository and all collaborators start by using that repository.</p>
 </div>
-<div id="adding" class="section level3" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Adding</h3>
+<div id="adding" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Adding<a href="git.html#adding" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb70"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb70-1"><a href="git.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add <span class="op">&lt;</span>filename or folder<span class="op">&gt;</span></span></code></pre></div>
 <p>By default, Git monitors the project folder for changes in files. When you add new files or change existing ones, you need to tell git, which files would you like to include in the next <em>commit</em> using <code>git add</code> command. To check which files will already be included or which files are changed from the last repository state, you can use command <code>git status</code>.</p>
 </div>
-<div id="commit" class="section level3" number="2.3.4">
-<h3><span class="header-section-number">2.3.4</span> Commit</h3>
+<div id="commit" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Commit<a href="git.html#commit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb71"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb71-1"><a href="git.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">&quot;&lt;commit message&gt;&quot;</span></span></code></pre></div>
 <p>When you <em>commit</em> changes, you save the changes you made to files in the repo. The changes will consist only of files you had previously added using <em>git add</em> command and will be saved to your local Git repository. To make changes available to others, you need to send changes to the remote repo using the <code>push</code> command.</p>
 <p><em>HINT</em>: If your commit would consist of only the files that Git is already tracking (i.e. no new files), you can use command <code>git commit -a -m "&lt;commit message&gt;"</code>.</p>
 </div>
-<div id="push" class="section level3" number="2.3.5">
-<h3><span class="header-section-number">2.3.5</span> Push</h3>
+<div id="push" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Push<a href="git.html#push" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb72"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb72-1"><a href="git.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push <span class="op">&lt;</span>remote name<span class="op">&gt;</span> <span class="op">&lt;</span>branch name<span class="op">&gt;</span></span></code></pre></div>
 <p><em>Push</em> command allows you to copy all the changes from the local repo to your remote repo. Now all the collaborators will have access to the changes and will be able to update their local repositories. You can sync code with multiple remote repositories which is defined by the first parameter (by default it is named <em>origin</em>). The second parameter defines which branch we would like our changes to be copied (by default it is named <em>master</em> - we will cover more about branching in <a href="git.html#git-branching">2.5.2</a>).</p>
 </div>
-<div id="pull" class="section level3" number="2.3.6">
-<h3><span class="header-section-number">2.3.6</span> Pull</h3>
+<div id="pull" class="section level3 hasAnchor" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> Pull<a href="git.html#pull" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb73"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb73-1"><a href="git.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git pull <span class="op">&lt;</span>remote name<span class="op">&gt;</span> <span class="op">&lt;</span>branch name<span class="op">&gt;</span></span></code></pre></div>
 <p>The <em>pull</em> command is analogous to the push command but is intended to copy changes from the remote repository to the local repository.</p>
 </div>
 </div>
-<div id="a-beginner-git-example" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> A beginner Git example</h2>
+<div id="a-beginner-git-example" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> A beginner Git example<a href="git.html#a-beginner-git-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Step 0:</em> First we need to install Git. Visit <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a>, download the package for your system and install. Depending on your OS there might also exist package managers that provide Git. After you install Git, the ‘git’ command should be available to you in the terminal:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb74-1"><a href="git.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git</span>
 <span id="cb74-2"><a href="git.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="ex">usage:</span> git [--version] [--help] [-C <span class="op">&lt;</span>path<span class="op">&gt;</span>] [-c <span class="op">&lt;</span>name<span class="op">&gt;</span>=<span class="op">&lt;</span>value<span class="op">&gt;</span>]</span>
@@ -539,7 +538,7 @@ div.csl-indent {
 <span id="cb79-7"><a href="git.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
 <span id="cb79-8"><a href="git.html#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code></pre></div>
 <p>After all the changes are committed, we double-check there are no uncommited changes in the project. If we do not provide message parameter ‘-m’ to the <em>git commit</em> command, our default editor is opened to write a commit message. Commit messages should contain a description of the changes we made or and ID of the issue we were working on.</p>
-<p><em>Step 4:</em> In the greeter script we have a typo, so we change the text “Ehlo World!” to “Hello Data Science!” We must save the file in our text editor so the changes are written to disk, before we proceed! If we check the status of the repo, we will see our file has changed. All the changed files can be commited directly using the <code>git commit -a -m "..."</code> command. If we do not use the <code>-a</code> parameter, we need to first add files to a commit and then issue the commit command.</p>
+<p><em>Step 4:</em> In the greeter script we have a typo, so we change the text “Ehlo World!” to “Hello Data Science!”. We must save the file in our text editor so the changes are written to disk, before we proceed! If we check the status of the repo, we will see our file has changed. All the changed files can be commited directly using the <code>git commit -a -m "..."</code> command. If we do not use the <code>-a</code> parameter, we need to first add files to a commit and then issue the commit command.</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb80-1"><a href="git.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
 <span id="cb80-2"><a href="git.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
 <span id="cb80-3"><a href="git.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
@@ -629,15 +628,15 @@ We already have a local repository so we refer to the second set of commands. Th
 <p>It is good practice to include a short description of your project, installation instructions or other useful data to your repository landing page. This is done by creating a README.md file in the root of your project (read more about this in Chapter <a href="reproducibility.html#reproducibility">3</a>).</p>
 <p>Sometimes we don’t want certain files to be uploaded to the repository. For example, sensitive files, such as passwords, temporary files created by our IDES, compiled programs etc. To ignore files, we can create a <em>.gitignore</em> file and add names of files or folders we would like to ignore (one line per file). Commit and push your file to the repo and Git will automatically ignore them (they will not appear in Git status listing). Note that we can ignore not just individual files but files that match a specific folder structure or pattern, such as extension. Check some examples of ignore files at <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a>.</p>
 </div>
-<div id="beyond-the-basics" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> Beyond the basics</h2>
+<div id="beyond-the-basics" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Beyond the basics<a href="git.html#beyond-the-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section we describe three essential uses of Git: conflict resolution, branching and forking.</p>
 <p>We continue with our project from the previous section.</p>
-<div id="conflict-resolution" class="section level3" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Conflict resolution</h3>
+<div id="conflict-resolution" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Conflict resolution<a href="git.html#conflict-resolution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s say that two developers A and B are working on a project and have 3 synced repositories (local repo at devevoper A, local repo at developer B and public GitHub repo).</p>
-<p>Developer B now changes the text in code to “… you in the Data Science track at the University of Maribor!” commits and pushes the change to the remote repo.</p>
-<p><em>Step 7:</em> Developer A later changes the text in the code to “… you in the Data Science track at the University of Ljubljana!” commits file and tries to push the file to the remote repo, after the change by developer B has already been pushed:</p>
+<p>Developer B now changes the text in code to “… you in the Data Science track at the University of Maribor!”, commits and pushes the change to the remote repo.</p>
+<p><em>Step 7:</em> Developer A later changes the text in the code to “… you in the Data Science track at the University of Ljubljana!”, commits file and tries to push the file to the remote repo, after the change by developer B has already been pushed:</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb85-1"><a href="git.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">&quot;Uni. Ljubljana added.&quot;</span></span>
 <span id="cb85-2"><a href="git.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[master</span> d263b01] Uni. Ljubljana added.</span>
 <span id="cb85-3"><a href="git.html#cb85-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 1 insertion<span class="er">(</span><span class="ex">+</span><span class="kw">)</span><span class="ex">,</span> 1 deletion<span class="er">(</span><span class="ex">-</span><span class="kw">)</span></span>
@@ -684,8 +683,8 @@ We already have a local repository so we refer to the second set of commands. Th
 <span id="cb87-16"><a href="git.html#cb87-16" aria-hidden="true" tabindex="-1"></a>   <span class="ex">11483e3..e6deaf6</span>  master <span class="at">-</span><span class="op">&gt;</span> master</span></code></pre></div>
 <p>Git includes the tool <code>git mergetool</code> which simplifies conflict resolution. The developer just selects which lines to include in the final decision. Git tools provide further useful features for conflict resolution (see <a href="git.html#git-guis">2.6</a>).</p>
 </div>
-<div id="git-branching" class="section level3" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Branching</h3>
+<div id="git-branching" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Branching<a href="git.html#git-branching" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have already mentioned that the default branch of a Git repository is a branch named <em>master</em>. When working on a larger project we would like to have the stable code always accessible and separate from development code. Git branches in essence allow us to create multiple repositories in a single Git repository. Therefore we can have a master branch with the tested code that is available to download and other branches which are based on the master branch and contain new features in development.</p>
 <p><img src="data/Git/branching.png" /></p>
 <p><em>Step 8:</em> Let’s say our project is mature and many people use it daily. We would like to add parameters to the application and when we complete development and are satisfied with the solution, merge it into the master branch.</p>
@@ -728,8 +727,8 @@ We already have a local repository so we refer to the second set of commands. Th
 <p>If other changes were made to master while we were developing new features in our branch, they would be merged together. In the case of conflicting changes, we would have resolve them using the procedures we described in the previous section.</p>
 <p>A good practice when merging branches is to first merge the main branch into the feature branch, then resolve conflicts, test and then finally merge back into the main branch. Command <code>git log</code> and Git GUIs in particular (see <a href="git.html#git-guis">2.6</a>) implement nice visualizations of connections between branches.</p>
 </div>
-<div id="forking" class="section level3" number="2.5.3">
-<h3><span class="header-section-number">2.5.3</span> Forking</h3>
+<div id="forking" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Forking<a href="git.html#forking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Forking is not a Git feature but a feature that platforms like GitHub offer to developers. Let’s say a Korean developer finds our repository and would like to translate our project and then publish his addition to our repository. <em>Forking</em> enables him to create a separate clone of our repository under his username. He has all the rights to that repository, but any changes he makes will not affect our repository. After he completes his translation he can send us a <em>pull request</em> to merge his changes into our repository. We can review his changes, ask him to improve the code, and finally reject or accept his changes. In the latter case the changes are then merged with the work in our repository.</p>
 <p><em>Step 9:</em> Let’s say there is Korean developer that is interested in our application and he forks our repo on GitHub.</p>
 <p><img src="data/Git/fork.png" /></p>
@@ -740,23 +739,23 @@ We already have a local repository so we refer to the second set of commands. Th
 <p><a href="https://github.com/szitnik/DS-Project">Our repository</a> is now updated with Korean changes.</p>
 </div>
 </div>
-<div id="git-guis" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> Git tools</h2>
+<div id="git-guis" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Git tools<a href="git.html#git-guis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the beginning we advise to you to use Git commands manually, so that you are in complete control of what is going on and that you develop a fundamental understanding of what Git does and how it works.</p>
 <p>However, in practice, especially if your work includes many Git repositories, collaborators or advanced Git functionalities, you can benefit from using a Git GUI such as <a href="https://www.sourcetreeapp.com/">SourceTree</a>, <a href="https://www.gitkraken.com/">GitKraken</a> and <a href="https://www.git-tower.com/">Tower</a>. These tools provide a high level interface which makes it easier to visually keep track of changes, manage repositories, resolve conflicts, review merge pull requests, etc. Note that some IDEs such as VS Code and IntelliJ integrate Git functionalities.</p>
 <p>A typical example of a Git GUI (GitKraken):
 <img src="data/Git/gk-product-2.png" /></p>
 </div>
-<div id="further-reading-and-references-1" class="section level2" number="2.7">
-<h2><span class="header-section-number">2.7</span> Further reading and references</h2>
+<div id="further-reading-and-references-1" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Further reading and references<a href="git.html#further-reading-and-references-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Official Git source with extensive documentation: <a href="https://git-scm.com">git-scm</a>. They provide a free book called <a href="https://git-scm.com/book/en">Pro Git</a>.</p></li>
 <li><p>Git tutorials along with more advanced topics such as Git large file storage can be found here: <a href="https://www.atlassian.com/git">Atlassian Git</a>.</p></li>
 <li><p>There are many online Git resources and courses, such as <a href="https://www.analyticsvidhya.com/blog/2020/05/git-github-essential-guide-beginners">A beginners guide</a>.</p></li>
 </ul>
 </div>
-<div id="learning-outcomes-1" class="section level2" number="2.8">
-<h2><span class="header-section-number">2.8</span> Learning outcomes</h2>
+<div id="learning-outcomes-1" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Learning outcomes<a href="git.html#learning-outcomes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
 <li>Create their own Git repositories and clone existing repositories.</li>
@@ -765,8 +764,8 @@ We already have a local repository so we refer to the second set of commands. Th
 </ul>
 <p>Students should also consciously use source control to systematically keep track of their work, including homework, projects and other coursework.</p>
 </div>
-<div id="practice-problems-1" class="section level2" number="2.9">
-<h2><span class="header-section-number">2.9</span> Practice problems</h2>
+<div id="practice-problems-1" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Practice problems<a href="git.html#practice-problems-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Take one of your (finished) faculty projects, create an empty GitHub repository and add all of its files to the repository. In a separate commit create a <em>.gitignore</em> file (populate it with common ignores related to your project) and a <em>README.md</em> file. Push everything to remote GitHub repository. Create a separate branch named <em>cleaning</em> and check it out. Now, remove any un-needed files, update few files, update <em>README.md</em>, commit and push changes. Go back to the <em>master</em> branch and change the same line in <em>README.md</em>, commit and push. Then merge branch <em>cleaning</em> into <em>master</em> and resolve conflicts. After merge commit and push. Remove <em>cleaning</em> branch locally and remotely.</p></li>
 <li><p>Try to find an error or potential improvement to this Introduction to datascience book. Clone the book’s Git repository, make the change and submit a pull request. Then make at least one suggestion of a more comprehensive change to the book (for example, what could be explained in more or less detail, is there an important topic that isn’t covered, etc.) by submitting an issue.</p></li>
@@ -848,7 +847,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -336,8 +336,8 @@ tgt <- dat$dropOUToriginal
 library(mice)
 
 # Uncomment the lines below to generate tmp data first time
-#imputed_tmp <- mice(tmp, m = 50, seed = 0)
-#saveRDS(imputed_tmp, "./data/imputed_tmp.rds")
+imputed_tmp <- mice(tmp, m = 50, seed = 0)
+saveRDS(imputed_tmp, "./data/imputed_tmp.rds")
 
 imputed_tmp <- readRDS("./data/imputed_tmp.rds") # we load the precomputed data to save time
 ```

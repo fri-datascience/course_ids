@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Reproducible research | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Reproducible research | Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
   <meta property="og:description" content="Course notes" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2022-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="git.html"/>
 <link rel="next" href="scraping.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -413,10 +412,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reproducibility" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Reproducible research</h1>
-<div id="scientific-inquiry" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Scientific inquiry</h2>
+<div id="reproducibility" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Reproducible research<a href="reproducibility.html#reproducibility" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="scientific-inquiry" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Scientific inquiry<a href="reproducibility.html#scientific-inquiry" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The term <em>data science</em> contains the word science. It is our view that data science is more or less synonimous with with modern empirical science and as such it should adhere to the standards for scientific inquiry.</p>
 <p>Ideally, scientific inquiry would always be objective and correct. However, these are unattainable ideals! Science will always be subjective at least in the sense of what we investigate and how we choose to investigate it. And scientists, like all people, even with the best intentions and practices, make mistakes. Instead, the realistic standard is lower, albeit still surprisingly difficult to attain - research should be <strong>reproducible</strong>.</p>
 <p>We will borrow two definitions from the <a href="https://www.amstat.org/asa/files/pdfs/POL-ReproducibleResearchRecommendations.pdf">American Statistical Association</a>:</p>
@@ -432,13 +431,13 @@ investigator without the use of original data (but generally using the same meth
 <p>In other words, reproducibilty refers to providing a complete and unambiguous description of the entire process from the original raw data to the final numerical results. Reproducibility does not concern itself with the correctness of the results or the process. Our research might even have major bugs in the code or completely flawed methodology, but if it is reproducible, those bugs and those flaws are transparent and will be found by those trying to reproduce or replicate our results. That is, as long as our research is reproducible, scientific critique and progress can be made! However, <strong>if our research is not reproducible, then it is of much less value!</strong></p>
 <p><strong>Reproducibility will be our minimum standard for scientific enquiry</strong> and is also a prerequisite for replicability. Replicability, on the other hand, does concern itself with the correctness of the original research. If we independently repeat a study, we expect to get the same results or at least within some margin of error due to sampling and other sources of variability. Sometimes we might replicate our own study to validate it, but in most cases, replication of our studies is done by others.</p>
 </div>
-<div id="from-principles-to-practice" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> From principles to practice</h2>
+<div id="from-principles-to-practice" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> From principles to practice<a href="reproducibility.html#from-principles-to-practice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Perfect reproducibility is also unattainable, because not all factors can be feasibly accounted for (time, location, hardware used, etc.). Instead, we will strive for a high but practically feasible level of reproducibility. We will also introduce the practical dimension of how <em>easy to reproduce</em> research is. For example, if we precisely describe all data manipulations in a text document, the data manipulation part of our research will be reproducible. However, it will be much more difficult to reproduce than, for example, if we provided well-documented code that did the same manipulations.</p>
 <p>The modern standard for reproduciblity from data to results is to use computer code for everything. This includes even minimal changes to the original data (for example, renaming a column), generating and including plots and tables and even single-number data in the text of our report or paper. Computer code is, by definition, clear and unambiguous - there is no room for misinterpretation of what has been done. And, if we have everything in code, we completely avoid the possiblity of introducing errors or undetectable changes through manual manipulation of the data or copying the results</p>
 <p>Such code together with the original data and a precise description of the platform and software used (relevant hardware, operating system, packages, including versions) constitutes as highly and easily reproducible research. This process can be made much easier with the use of standard tools. In particular, integrated analyses and reports, such as Jupyter notebooks and R markdown and notebooks, which we introduce later in the chapter.</p>
-<div id="preregistration---the-future-standard" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Preregistration - the future standard</h3>
+<div id="preregistration---the-future-standard" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Preregistration - the future standard<a href="reproducibility.html#preregistration---the-future-standard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As we already discussed above, reproduciblity is concerned only with the completeness and unambiguity of the description of the study. All studies should be reproducible, but we expect that some studies will not replicate. Some due to the inherent risk of statistical procedures, some due to researchers’ mistakes and some due to accidental or deliberate manipulation of the <a href="https://en.wikipedia.org/wiki/Researcher_degrees_of_freedom">researcher’s degrees of freedom</a> or <a href="https://en.wikipedia.org/wiki/Data_dredging">data dredging</a>. These refer to the choices that we make during a study (some of which should strictly be made before the study). For example:</p>
 <ul>
 <li>the researcher chooses the method or statistical test that confirms the desired hypothesis,</li>
@@ -449,11 +448,11 @@ investigator without the use of original data (but generally using the same meth
 <p>In order to deal with this problem and enforce a higher standard of research (and subsequently fewer studies that do not replicate) <strong>preregistration</strong> is very slowly but surely becoming the norm for professional research. In essence, preregistration is the practice of registering all relevant aspects of a scientific study (how the data will be collected, hypotheses, methods used, etc.) before we begin with the study itself. Preregistration is made with some central authority, such as the <a href="https://osf.io/">Open science framework</a> and many reputable scientific journals already promote and support preregistered research.</p>
 </div>
 </div>
-<div id="reproducibility-tools-in-r" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Reproducibility tools in R</h2>
+<div id="reproducibility-tools-in-r" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Reproducibility tools in R<a href="reproducibility.html#reproducibility-tools-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section we introduce four different approaches to integrating R code and text to produce dynamic reports, fully reproducible reports that can automatically be updated if the data change. All four approaches are integrated into RStudio.</p>
-<div id="r-markdown" class="section level3 unnumbered">
-<h3>R Markdown</h3>
+<div id="r-markdown" class="section level3 unnumbered hasAnchor">
+<h3>R Markdown<a href="reproducibility.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R Markdown (knitr) is the most popular approach to dynamic reporting with R. It combines the lightweight <a href="https://www.markdownguide.org/basic-syntax">Markdown language</a> with R code <em>chunks</em>. R Markdown documents can be rendered as html, pdf, word, etc.</p>
 <p>Here is an example of a R markdown file (.Rmd extension) that features R code, inline R code and an image:</p>
 <pre><code>---
@@ -481,8 +480,8 @@ We can also use inline R core: there are `r length(y)` observations in our data.
 <p>R Markdown is very easy to use and can produce nice documents. However, it lacks the control of more specialized typesetting languages such as LaTeX.</p>
 <p>A good starting point for learning R Markdown is the free online book <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a>. Note that the textbook you are reading was also produced with R Markdown and the <a href="https://bookdown.org/">Bookdown</a> extension. R Markdown can also be used with chunks from other programming languages, for example, Python, with the help of the <a href="https://cloud.r-project.org/web/packages/reticulate/index.html">reticulate</a> package.</p>
 </div>
-<div id="r-notebook" class="section level3 unnumbered">
-<h3>R Notebook</h3>
+<div id="r-notebook" class="section level3 unnumbered hasAnchor">
+<h3>R Notebook<a href="reproducibility.html#r-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A R Notebook is identical to a R Markdown document, except that we replace the output to <em>html_notebook</em>:</p>
 <pre><code>---
 output: html_notebook
@@ -508,8 +507,8 @@ We can also use inline R core: there are `r length(y)` observations in our data.
 <p><img src="data/Reproducibility/jp_notebook.png" /></p>
 <p>R Notebooks are more interactive - code chunk results are shown inline and are rendered in real time. That is, we can render individual chunks instead of the entire document.</p>
 </div>
-<div id="sweave" class="section level3 unnumbered">
-<h3>Sweave</h3>
+<div id="sweave" class="section level3 unnumbered hasAnchor">
+<h3>Sweave<a href="reproducibility.html#sweave" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we require more control over the typsetting, for example, when we are trying to produce an elegant pdf document or adhere to the typsetting standards of an academic journal, we might prefer <em>Sweave</em>. Sweave is an integration of LaTeX and R code - in essence, a LaTeX document with R code chunks. R code is executed when we compile the Sweave document with Sweave and LaTeX.</p>
 <p>Here is an example of a Sweave file (.Rnw extension) that demonstrates the use of R code, inline R code and an image:</p>
 <pre><code>\documentclass{article}
@@ -538,14 +537,14 @@ plot(x,y)
 <p><img src="data/Reproducibility/sweave.png" /></p>
 <p>Sweave gives us all the typsetting control of LaTeX at the expense of more code and having to compile the LaTeX as well. A good starting point for Sweave is this compact <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/doc/Sweave.pdf">Sweave manual</a>.</p>
 </div>
-<div id="shiny-web-apps-and-dashboards" class="section level3 unnumbered">
-<h3>Shiny web apps and dashboards</h3>
+<div id="shiny-web-apps-and-dashboards" class="section level3 unnumbered hasAnchor">
+<h3>Shiny web apps and dashboards<a href="reproducibility.html#shiny-web-apps-and-dashboards" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="https://cran.r-project.org/web/packages/shiny/index.html">Shiny</a> is an R package that makes it easy to build interactive applications with R. Shiny can be used to produce standalone web apps and dashboards or it can be embedded into R Markdown documents.</p>
 <p>Shiny is useful for rapid development of user-friendly interfaces to interactive analyses of our data. These <a href="https://shiny.rstudio.com/tutorial/">Shiny tutorials</a> are a good starting point for further study.</p>
 </div>
 </div>
-<div id="reproducibility-tools-in-python" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Reproducibility tools in Python</h2>
+<div id="reproducibility-tools-in-python" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Reproducibility tools in Python<a href="reproducibility.html#reproducibility-tools-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Python offers a variety of tools similar to R. It provides Jupyter notebooks with multiple options to create reproducible Python code with dynamic visualizations and presentations and exports to different formats. We already showed how to install Jupyter notebooks in Chapter <a href="python-introduction-chapter.html#python-introduction-chapter">1</a>.</p>
 <p>The <em>NBConvert</em> tool allows you to convert a Jupyter <em>.ipynb</em> notebook document file into another format. The <a href="https://media.readthedocs.org/pdf/nbconvert/latest/nbconvert.pdf">nbconvert documentation</a> contains a complete description of this tool’s capabilities. It allows for:</p>
 <ul>
@@ -556,8 +555,8 @@ plot(x,y)
 </ul>
 <p>Overall, notebook conversion and the nbconvert tool give scientists and researchers the flexibility to deliver information in a timely way across different formats. Primarily, the nbconvert tool allows you to convert a Jupyter <em>.ipynb</em> notebook document file into another static format including HTML, LaTeX, PDF, Markdown, reStructuredText, and more. The nbconvert tool can also add productivity to your workflow when used to execute notebooks programmatically.</p>
 <p>If used as a Python library (<code>import nbconvert</code>), nbconvert adds notebook conversion within a project. For example, nbconvert is used to implement the “Download as” feature in the Jupyter notebook web application. When used as a command line tool (<code>jupyter nbconvert</code>), users can conveniently convert just one or a batch of notebook files to another format.</p>
-<div id="jupyter-dashboards" class="section level3 unnumbered">
-<h3>Jupyter Dashboards</h3>
+<div id="jupyter-dashboards" class="section level3 unnumbered hasAnchor">
+<h3>Jupyter Dashboards<a href="reproducibility.html#jupyter-dashboards" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <a href="https://jupyter-dashboards-layout.readthedocs.io/en/latest/">jupyter dashboard</a> is a Jupyter notebook with the dashboards layout extension, where we can arrange our notebook outputs (text, plots, widgets, etc.) in a grid - or report-like layouts. The layouts are saved in the notebook document. When in a Jpyter notebook, we should see the dashboard view extension to control the dashboard settings:</p>
 <p><img src="data/Reproducibility/jupyter_dashboard.png" /></p>
 <p>Jupyter notebooks and dashboards are also widely used, support a large number of programming languages and they provide:</p>
@@ -619,8 +618,8 @@ plot(x,y)
 <p><img src="data/Reproducibility/sine.png" /></p>
 </div>
 </div>
-<div id="data-dashboards---tooling-and-libraries" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Data dashboards - tooling and libraries</h2>
+<div id="data-dashboards---tooling-and-libraries" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Data dashboards - tooling and libraries<a href="reproducibility.html#data-dashboards---tooling-and-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data dashboards can make data more accessible to your non-technical teams. That is why it is valuable to include visualizations along with explanations in your reports. A data dashboard consists of many different components and needs to provide the following functionalities:</p>
 <ul>
 <li><em>Analyze</em>: Manipulate and summarize data using a backend library such as Pandas.</li>
@@ -639,16 +638,16 @@ Some of the possible tools are listed in the previous chapters but new tools app
 <li><em>Flask</em> if you want to build your own solution from the ground up (generally not an option due to time constraints).</li>
 </ul>
 </div>
-<div id="further-reading-and-references-2" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Further reading and references</h2>
+<div id="further-reading-and-references-2" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Further reading and references<a href="reproducibility.html#further-reading-and-references-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Science is in a replication and reproducibility crisis. In some fields more than half of published studes fail to replicate and most studies are not reproducible: <em>Baker, M. (2016). 1,500 scientists lift the lid on reproducibility. Nature News, 533(7604), 452.</em></p></li>
 <li><p>Preregistration will eventually become the standard for publication of empirical research: <em>Nosek, B. A., Ebersole, C. R., DeHaven, A. C., &amp; Mellor, D. T. (2018). The preregistration revolution. Proceedings of the National Academy of Sciences, 115(11), 2600-2606.</em></p></li>
 <li><p>There are many new tools appearing, so search for new options from time to time and select the most suitable for you (e.g. <a href="https://towardsdatascience.com/streamlit-vs-dash-vs-shiny-vs-voila-vs-flask-vs-jupyter-24739ab5d569">comparison of a few</a>).</p></li>
 </ul>
 </div>
-<div id="learning-outcomes-2" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Learning outcomes</h2>
+<div id="learning-outcomes-2" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Learning outcomes<a href="reproducibility.html#learning-outcomes-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
 <li>Produce reproducible data science analyses.</li>
@@ -656,8 +655,8 @@ Some of the possible tools are listed in the previous chapters but new tools app
 <li>Distinguish between reproducibility and replication.</li>
 </ul>
 </div>
-<div id="practice-problems-2" class="section level2" number="3.8">
-<h2><span class="header-section-number">3.8</span> Practice problems</h2>
+<div id="practice-problems-2" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Practice problems<a href="reproducibility.html#practice-problems-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Create a short R Markdown, Sweave and/or Jupyter Notebook that loads some data, draws a plot, prints a table and contains some text with an example of inline use of code.</p></li>
 <li><p>Consider the following experiment of drawing <span class="math inline">\(m &gt; 1\)</span> samples from a distribution (standard normal or uniform) and taking their average, repeating this process for <span class="math inline">\(n &gt; 1\)</span> times and plotting the histogram of these <span class="math inline">\(n\)</span> averages:</p></li>
@@ -757,7 +756,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

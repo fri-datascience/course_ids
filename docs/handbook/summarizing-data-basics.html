@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Summarizing data - the basics | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Summarizing data - the basics | Introduction to data science" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://fri-datascience.github.io/course_itds/" />
   
   <meta property="og:description" content="Course notes" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2022-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="scraping.html"/>
 <link rel="next" href="docker.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -413,19 +412,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="summarizing-data-basics" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Summarizing data - the basics</h1>
+<div id="summarizing-data-basics" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Summarizing data - the basics<a href="summarizing-data-basics.html#summarizing-data-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Data summarization is the science and art of conveying information more effectivelly and efficiently. Data summarization is typically numerical, visual or a combination of the two. It is a key skill in data analysis - we use it to provide insights both to others and to ourselves. Data summarization is also an integral part of exploratory data analysis.</p>
 <p>In this chapter we focus on the basic techniques for univariate and bivariate data. Visualization and more advanced data summarization techniques will be covered in later chapters.</p>
 <p>We will be using R and ggplot2 but the contents of this chapter are meant to be tool-agnostic. Readers should use the programming language and tools that they are most comfortable with. However, do not sacrifice expresiveness or profesionallism for the sake of convenience - if your current toolbox limits you in any way, learn new tools!</p>
-<div id="descriptive-statistics-for-univariate-distributions" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Descriptive statistics for univariate distributions</h2>
+<div id="descriptive-statistics-for-univariate-distributions" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Descriptive statistics for univariate distributions<a href="summarizing-data-basics.html#descriptive-statistics-for-univariate-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We humans are not particularly good at thinking in multiple dimensions, so, in practice, there will be a tendency to look at individual variables and dimensions. That is, in practice, we will most of the time be summarizing univariate distributions.</p>
 <p>Univariate distributions come from various sources. It might be a theoretical distribution, an empirical distribution of a data sample, a probabilistic opinion from a person, a posterior distribution of a parameter from a Bayesian model, and many others. Descriptive statistics apply to all of these cases in the same way, regardless of the source of the distribution.</p>
 <p>Before we proceed with introducing the most commonly used descriptive statistics, we discuss their main purpose. The main purpose of any sort of data summarization technique is to (a) reduce the time and effort of delivering information to the reader in a way that (b) we lose as little relevant information as possible. That is, to compress the information.</p>
 <p>All summarization methods do (a) but we must be careful to choose an appropriate method so that we also get (b). Summarizing out relevant information can lead to misleading summaries, as we will illustrate with several examples.</p>
-<div id="central-tendency" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Central tendency</h3>
+<div id="central-tendency" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Central tendency<a href="summarizing-data-basics.html#central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The most common first summary of a distribution is its typical value, also known as the location or central tendency of a distribution.</p>
 <p>The most common summaries of the location of a distribution are:</p>
 <ul>
@@ -465,8 +464,8 @@ div.csl-indent {
 <span id="cb100-12"><a href="summarizing-data-basics.html#cb100-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">median</span>(z) <span class="sc">+</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.025</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">label =</span> <span class="st">&quot;median&quot;</span>, <span class="at">angle =</span> <span class="dv">90</span>)</span></code></pre></div>
 <p><img src="05-Summarizing-data-01_files/figure-html/unnamed-chunk-2-1.png" width="384" /></p>
 </div>
-<div id="dispersion" class="section level3" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> Dispersion</h3>
+<div id="dispersion" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Dispersion<a href="summarizing-data-basics.html#dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once location is established, we are typically interested in whether the values of the distribution cluster close to the location or are spread far from the location.</p>
 <p>The most common ways of measuring such dispersion (or spread or scale) of a distribution are:</p>
 <ul>
@@ -488,8 +487,8 @@ div.csl-indent {
 <pre><code>## 14.66, IQR = [5.72, 20.76], 95pct = [1.18, 46.09]</code></pre>
 <p>And, again, for multi-modal distributions, we can adequately summarize them only by identifying the modes visually and/or describing each mode individually.</p>
 </div>
-<div id="skewness-and-kurtosis" class="section level3" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> Skewness and kurtosis</h3>
+<div id="skewness-and-kurtosis" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Skewness and kurtosis<a href="summarizing-data-basics.html#skewness-and-kurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As mentioned above, ranges can be used to indicate a distributions asymmetry (skewness) or fat-tailedness (kurtosis). Although less commonly used, there exist numerical summaries of skewness and kurtosis that can be used instead.</p>
 <p>The following example shows the kurtosis and skewness for a gamma, normal, logistic and bimodal distribution. Observe how the standard way of calculating kurtosis fails for the bimodal and assigns it the lowest kurtosis:</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="summarizing-data-basics.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
@@ -509,8 +508,8 @@ div.csl-indent {
 <span id="cb105-15"><a href="summarizing-data-basics.html#cb105-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tmp, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(.<span class="sc">~</span>name)</span></code></pre></div>
 <p><img src="05-Summarizing-data-01_files/figure-html/unnamed-chunk-5-1.png" width="480" /></p>
 </div>
-<div id="nominal-variables" class="section level3" number="5.1.4">
-<h3><span class="header-section-number">5.1.4</span> Nominal variables</h3>
+<div id="nominal-variables" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Nominal variables<a href="summarizing-data-basics.html#nominal-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Nominal variables are typically represented with the relative frequencies or probabilities, numerically or visually. Note that the methods discussed so far in this chapter apply to numerical variables (rational, interval and to some extent, ordinal) but not nominal variables, because the notions of location and distance (dispersion) do not exist in the nominal case. The only exception to this is the mode, which is the level of the nominal variable with the highest relative frequency or probability.</p>
 <p>One summary that is often useful for summarizing the dispersion or the uncertainty associated with a nominal variable is <strong>entropy</strong>. Observe the following example:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="summarizing-data-basics.html#cb106-1" aria-hidden="true" tabindex="-1"></a>entropy <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
@@ -532,8 +531,8 @@ div.csl-indent {
 <pre><code>## [1] 2.584963</code></pre>
 <p>Note that entropy can easily be calculated for any discrete random variable. Entropy also has a continuous analogue - differential entropy, which we will not discuss here.</p>
 </div>
-<div id="testing-the-shape-of-a-distribution" class="section level3" number="5.1.5">
-<h3><span class="header-section-number">5.1.5</span> Testing the shape of a distribution</h3>
+<div id="testing-the-shape-of-a-distribution" class="section level3 hasAnchor" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Testing the shape of a distribution<a href="summarizing-data-basics.html#testing-the-shape-of-a-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Often we want to check if the distribution that underlies our data has the shape of some hypothesized distribution (for example, the normal distribution) or if two samples come from the same distribution.</p>
 <p>Here, we will present two of the most common methods used: the <strong>Kolmogorov-Smirnov</strong> test and the <strong>Chi-squared goodness-of-fit</strong> test. Both of these are Null-hypothesis significance tests (NHST), so, before we proceed, be aware of two things. First, do not use NHST blindly, without a good understanding of their properties and how to interpret their results. And second, if you are more comfortable with thinking in terms of probabilities of hypotheses as opposed to significance and p-values, there always exist Bayesian alternatives to NHST.</p>
 <p>The <strong>Kolmogorov-Smirnov test</strong> (KS) is a non-parametric test for testing the equality of two cumulative distribution functions (CDF). These can be two empirical CDFs or an empirical CDF and a theoretical CDF. The KS test statistic is the maximum distance between the two corresponding CDFs. That is, we compute the distribution of this statistic under the null-hypothesis that the CDFs are the same and then observe how extreme the maximum distance is on the sample.</p>
@@ -543,21 +542,21 @@ div.csl-indent {
 <span id="cb116-3"><a href="summarizing-data-basics.html#cb116-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb116-4"><a href="summarizing-data-basics.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x1, <span class="at">y =</span> <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 
-##  One-sample Kolmogorov-Smirnov test
+##  Exact one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x1
 ## D = 0.1575, p-value = 0.03362
 ## alternative hypothesis: two-sided</code></pre>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="summarizing-data-basics.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x2, <span class="at">y =</span> <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 
-##  One-sample Kolmogorov-Smirnov test
+##  Exact one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x2
 ## D = 0.070067, p-value = 0.801
 ## alternative hypothesis: two-sided</code></pre>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="summarizing-data-basics.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x1, x2)</span></code></pre></div>
 <pre><code>## 
-##  Two-sample Kolmogorov-Smirnov test
+##  Exact two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x1 and x2
 ## D = 0.175, p-value = 0.173
@@ -641,8 +640,8 @@ div.csl-indent {
 <p>Still, we can at most typical levels of confidence reject the null-hypothesis and conclude that that there is a pattern here as well.</p>
 </div>
 </div>
-<div id="descriptive-statistics-for-bivariate-distributions" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Descriptive statistics for bivariate distributions</h2>
+<div id="descriptive-statistics-for-bivariate-distributions" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Descriptive statistics for bivariate distributions<a href="summarizing-data-basics.html#descriptive-statistics-for-bivariate-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When dealing with a joint distribution of two variables (that is, paired samples), the first thing we are typically interested in is dependence between the two variables or lack thereof. <strong>If two distributions are independent, we can summarize each separately without loss of information.</strong> If they are not, then the distributions carry information about eachother. The predictability of one variable from another is another (equivalent) way of looking at dependence of variables.</p>
 <p>The most commonly used numerical summary of dependence is the <strong>Pearson correlation coefficient</strong> or Pearson’s <span class="math inline">\(\rho\)</span>. It summarizes the linear dependence, with <span class="math inline">\(\rho = 1\)</span> and <span class="math inline">\(\rho = - 1\)</span> indicating perfect colinearity (increasing or decreasing) and <span class="math inline">\(\rho = 0\)</span> indicating linear independence. As such, Pearson’s <span class="math inline">\(\rho\)</span> is directly related (the squared root) to the coefficient of determination <span class="math inline">\(R^2\)</span>, a goodness-of-fit measure for linear models and the proportion of variance in one explained by the other variable. An important consideration is that the statement that linear independence implies independence is not true in general (the converse implication is). One notable exception where this implication is true is the multivariate Normal distribution, where the dependence structure is expressed through linear dependence only.</p>
 <p>Two of the most popular alternatives to Pearson’s <span class="math inline">\(\rho\)</span> are Spearman’s <span class="math inline">\(\rho\)</span> and Kendalls <span class="math inline">\(\tau\)</span>. The former measures the degree to which one variable can be expressed as monotonic function of the other. The latter measures the proportion of concordant pairs among all possible pairs (pairs (x1,y1) and (x2, y2), where if x1 &gt; x2 then y1 &gt; y2). As such, they can capture non-linear dependence and are more appropriate for data with outliers or data where distance might have no meaning, such as ordinal data. Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> are more robust but do not have as clear an interpretation as Pearson’s <span class="math inline">\(\rho\)</span>. Kendall’s tau is also computationally more expensive.</p>
@@ -695,15 +694,15 @@ div.csl-indent {
 <p><img src="05-Summarizing-data-01_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
 <p>Like similar questions about other parameters of interest, the question <em>Is <insert number here> a strong correlation?</em> is a practical question. Unless the correlation is 0 (no correlation) or 1/-1 (perfectly correlated, can’t be more correlated than this), the meaning of the magnitude of correlation depends on the practical setting and its interpretation depends on some reference level. Even a very low correlation, such as 0.001 (if we are reasonably sure that it is around 0.001) can be practically meaningful. For example, if it is correlation between neighboring numbers in sequences generated by a uniform random number generator (RNG), that would be more than enough correlation to stop using this RNG.</p>
 </div>
-<div id="further-reading-and-references-4" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Further reading and references</h2>
+<div id="further-reading-and-references-4" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Further reading and references<a href="summarizing-data-basics.html#further-reading-and-references-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>For a more comprehensive treatment of the most commonly used summarization techniques see: <em>Holcomb, Z. C. (2016). Fundamentals of descriptive statistics. Routledge.</em></li>
-<li>More on the practice of summarization techniques and hypothesis testing: <em>Bruce, P., &amp; Bruce, A. (2017). Practical statistics for data scientists: 50 essential concepts. " O’Reilly Media, Inc.".</em> <em>(Chapters 1 and 3)</em></li>
+<li>More on the practice of summarization techniques and hypothesis testing: <em>Bruce, P., &amp; Bruce, A. (2017). Practical statistics for data scientists: 50 essential concepts. ” O’Reilly Media, Inc.”.</em> <em>(Chapters 1 and 3)</em></li>
 </ul>
 </div>
-<div id="learning-outcomes-4" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Learning outcomes</h2>
+<div id="learning-outcomes-4" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Learning outcomes<a href="summarizing-data-basics.html#learning-outcomes-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data science students should work towards obtaining the knowledge and the skills that enable them to:</p>
 <ul>
 <li>Reproduce the techniques demonstrated in this chapter using their language/tool of choice.</li>
@@ -712,8 +711,8 @@ div.csl-indent {
 <li>Once introduced to the bootstrap and other estimation techniques, to be able to combine descriptive statistics with a quantification of uncertainty, such as confidence intervals.</li>
 </ul>
 </div>
-<div id="practice-problems-4" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> Practice problems</h2>
+<div id="practice-problems-4" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Practice problems<a href="summarizing-data-basics.html#practice-problems-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li>Download the <a href="data/football-manager-data.zip">Football Manager Players</a> dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the summarization techniques from this chapter.</li>
 <li>Find one or more real-world examples (data sets) where a standard summary of univariate or bivariate data fails. That is, where important information is lost in the summary.</li>
@@ -795,7 +794,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

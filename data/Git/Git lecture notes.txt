@@ -1,0 +1,65 @@
+First lecture outline:
+    - GitHub overview (course guidelines + discussions)
+    - Vaje/predavanja - lastni laptopi
+    - Git hands-on
+    - Project 0 setup
+-----------------------------------------------------
+GIT HANDS-ON
+
+- Začetna diskusija
+- Git init/Git clone
+
+Programmer 1:
+- koda 
+def main():
+  print("Ehlo World!")
+  
+main()
+- git init
+- git status
+- git add
+- git commit
+Shorthand:
+- git commit -a
+
+- koda update:
+def main():
+  student = input("Please enter your name: ")
+  
+  print(f"Dear {student}, we are happy to have you in the Data Science track!")
+  
+main()
+- git status
+- git commit
+- git log
+---------------------------------
+Nov repo na Github-u (init vs. add remote)
+
+- git remote add
+- git push
+---------------------------------
+Programmer 2:
+
+- git clone
+
+Programmer 1:
+
+- update tekst v kodi
+- git commit -a
+- git push
+
+Programmer 2:
+
+- update tekst v kodi
+- git commit -a
+- git push ---> error
+- git pull
+
+--------------------------
+Branching: 
+- git branch
+- git checkout/git switch (experimental in 2022)
+- git merge
+
+
+

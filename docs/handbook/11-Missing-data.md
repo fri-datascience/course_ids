@@ -107,6 +107,13 @@ library(naniar)
 vis_miss(dat, warn_large_data = F)
 ```
 
+```
+## Warning: `gather_()` was deprecated in tidyr 1.2.0.
+## ℹ Please use `gather()` instead.
+## ℹ The deprecated feature was likely used in the visdat package.
+##   Please report the issue at <https://github.com/ropensci/visdat/issues>.
+```
+
 <img src="11-Missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 Another useful visualization is the frequency of different patterns of missingness:
@@ -274,7 +281,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.08896
+## X-squared = 4.6808, df = NA, p-value = 0.08496
 ```
 
 ```r
@@ -287,7 +294,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8486
+## X-squared = 1.4154, df = NA, p-value = 0.8496
 ```
 
 ```r
@@ -326,7 +333,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04748
+## X-squared = 5.8535, df = NA, p-value = 0.04598
 ```
 
 ```r
@@ -349,7 +356,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9455
+## X-squared = 0.72928, df = NA, p-value = 0.9525
 ```
 
 ```r
@@ -550,8 +557,266 @@ library(mice)
 
 ```r
 # Uncomment the lines below to generate tmp data first time
-#imputed_tmp <- mice(tmp, m = 50, seed = 0)
-#saveRDS(imputed_tmp, "./data/imputed_tmp.rds")
+imputed_tmp <- mice(tmp, m = 50, seed = 0)
+```
+
+```
+## 
+##  iter imp variable
+##   1   1  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   2  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   3  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   4  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   5  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   6  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   7  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   8  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   9  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   10  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   11  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   12  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   13  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   14  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   15  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   16  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   17  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   18  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   19  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   20  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   21  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   22  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   23  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   24  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   25  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   26  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   27  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   28  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   29  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   30  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   31  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   32  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   33  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   34  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   35  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   36  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   37  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   38  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   39  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   40  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   41  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   42  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   43  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   44  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   45  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   46  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   47  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   48  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   49  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   1   50  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   1  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   2  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   3  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   4  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   5  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   6  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   7  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   8  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   9  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   10  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   11  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   12  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   13  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   14  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   15  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   16  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   17  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   18  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   19  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   20  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   21  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   22  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   23  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   24  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   25  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   26  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   27  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   28  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   29  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   30  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   31  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   32  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   33  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   34  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   35  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   36  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   37  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   38  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   39  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   40  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   41  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   42  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   43  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   44  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   45  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   46  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   47  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   48  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   49  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   2   50  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   1  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   2  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   3  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   4  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   5  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   6  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   7  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   8  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   9  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   10  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   11  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   12  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   13  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   14  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   15  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   16  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   17  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   18  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   19  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   20  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   21  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   22  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   23  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   24  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   25  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   26  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   27  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   28  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   29  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   30  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   31  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   32  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   33  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   34  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   35  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   36  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   37  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   38  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   39  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   40  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   41  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   42  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   43  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   44  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   45  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   46  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   47  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   48  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   49  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   3   50  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   1  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   2  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   3  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   4  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   5  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   6  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   7  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   8  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   9  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   10  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   11  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   12  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   13  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   14  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   15  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   16  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   17  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   18  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   19  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   20  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   21  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   22  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   23  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   24  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   25  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   26  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   27  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   28  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   29  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   30  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   31  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   32  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   33  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   34  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   35  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   36  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   37  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   38  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   39  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   40  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   41  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   42  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   43  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   44  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   45  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   46  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   47  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   48  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   49  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   4   50  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   1  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   2  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   3  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   4  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   5  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   6  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   7  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   8  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   9  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   10  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   11  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   12  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   13  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   14  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   15  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   16  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   17  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   18  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   19  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   20  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   21  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   22  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   23  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   24  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   25  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   26  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   27  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   28  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   29  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   30  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   31  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   32  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   33  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   34  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   35  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   36  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   37  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   38  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   39  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   40  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   41  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   42  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   43  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   44  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   45  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   46  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   47  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   48  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   49  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+##   5   50  Gender  Language  EMA  Ethnicity  LPN  HEFCE  uniFAM
+```
+
+```r
+saveRDS(imputed_tmp, "./data/imputed_tmp.rds")
 
 imputed_tmp <- readRDS("./data/imputed_tmp.rds") # we load the precomputed data to save time
 ```
@@ -590,7 +855,7 @@ cat(sprintf("%.2f +/- %.3f\n", mean(y), stderr(y)))
 ```
 
 ```
-## 0.64 +/- 0.016
+## 0.66 +/- 0.016
 ```
 
 In this case MICE doesn't seem to have helped. In general, MICE is a very robust procedure and it performs really well in many different situations. The main issue with MICE is that it is computationally very intensive.

@@ -216,7 +216,7 @@ x <- table(tmp)
 x <- x[x >= 5]
 x <- sample(x, 10, rep = F)
 x <- sort(x)
-ggplot(data.frame(x), aes(x = tmp, y = Freq)) + 
+ggplot(as.data.frame(x), aes(x = University, y = Freq)) + 
   geom_bar(stat = "identity") + coord_flip() +
   xlab("University") + ylab("number of players")
 ```
@@ -235,7 +235,7 @@ Pie charts are quite possibly the easiest chart type to work with, because there
 
 ```r
 y <- x / sum(x)
-ggplot(data.frame(y), aes(x = "", y = Freq, fill = tmp)) + 
+ggplot(data.frame(y), aes(x = "", y = Freq, fill = University)) + 
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + labs(fill = "University")
 ```
 

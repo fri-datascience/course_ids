@@ -222,7 +222,7 @@ ks.test(x1, y = "pnorm", 0, 1)
 
 ```
 ## 
-## 	One-sample Kolmogorov-Smirnov test
+## 	Exact one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x1
 ## D = 0.1575, p-value = 0.03362
@@ -235,7 +235,7 @@ ks.test(x2, y = "pnorm", 0, 1)
 
 ```
 ## 
-## 	One-sample Kolmogorov-Smirnov test
+## 	Exact one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x2
 ## D = 0.070067, p-value = 0.801
@@ -248,7 +248,7 @@ ks.test(x1, x2)
 
 ```
 ## 
-## 	Two-sample Kolmogorov-Smirnov test
+## 	Exact two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x1 and x2
 ## D = 0.175, p-value = 0.173
