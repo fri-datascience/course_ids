@@ -464,7 +464,7 @@ We are notified of his pull request and can review it. We decide that his work w
 
 In the beginning we advise to you to use Git commands manually, so that you are in complete control of what is going on and that you develop a fundamental understanding of what Git does and how it works.
 
-However, in practice, especially if your work includes many Git repositories, collaborators or advanced Git functionalities, you can benefit from using a Git GUI such as [SourceTree](https://www.sourcetreeapp.com/), [GitKraken](https://www.gitkraken.com/) and [Tower](https://www.git-tower.com/). These tools provide a high level interface which makes it easier to visually keep track of changes, manage repositories, resolve conflicts, review merge pull requests, etc. Note that some IDEs such as VS Code and IntelliJ integrate Git functionalities.
+However, in practice, especially if your work includes many Git repositories, collaborators or advanced Git functionalities, you can benefit from using a Git GUI such as the official [GitHub Desktop for Windows and Mac](https://desktop.github.com) or [Linux distributions](https://github.com/shiftkey/desktop/releases), [SourceTree](https://www.sourcetreeapp.com/), [GitKraken](https://www.gitkraken.com/) and [Tower](https://www.git-tower.com/). These tools provide a high level interface which makes it easier to visually keep track of changes, manage repositories, resolve conflicts, review merge pull requests, etc. Note that some IDEs such as VS Code and IntelliJ integrate Git functionalities.
 
 A typical example of a Git GUI (GitKraken):
 ![](data/Git/gk-product-2.png)
