@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2022-10-11" />
+<meta name="date" content="2022-10-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -499,7 +499,7 @@ div.csl-indent {
 <pre><code>## Warning: `gather_()` was deprecated in tidyr 1.2.0.
 ## ℹ Please use `gather()` instead.
 ## ℹ The deprecated feature was likely used in the visdat package.
-##   Please report the issue at &lt;]8;;https://github.com/ropensci/visdat/issueshttps://github.com/ropensci/visdat/issues]8;;&gt;.</code></pre>
+##   Please report the issue at &lt;https://github.com/ropensci/visdat/issues&gt;.</code></pre>
 <p><img src="11-Missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Another useful visualization is the frequency of different patterns of missingness:</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="missing-data.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(UpSetR)</span>
@@ -590,14 +590,14 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.08446</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.1019</code></pre>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="missing-data.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>dropOUToriginal, tmp<span class="sc">$</span>Ethnicity), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8616</code></pre>
+## X-squared = 1.4154, df = NA, p-value = 0.8461</code></pre>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="missing-data.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>Ethnicity, tmp<span class="sc">$</span>Language), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -616,7 +616,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04648</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.05497</code></pre>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="missing-data.html#cb337-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
 <span id="cb337-2"><a href="missing-data.html#cb337-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb337-3"><a href="missing-data.html#cb337-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>
@@ -627,7 +627,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.953</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.943</code></pre>
 <div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="missing-data.html#cb341-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
 <span id="cb341-2"><a href="missing-data.html#cb341-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb341-3"><a href="missing-data.html#cb341-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>

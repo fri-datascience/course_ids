@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to data science"
 author: "Slavko Žitnik and Erik Štrumbelj"
-date: "2022-10-17"
+date: "2022-10-31"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
