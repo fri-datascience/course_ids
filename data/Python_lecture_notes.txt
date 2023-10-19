@@ -2,7 +2,12 @@
 # python
     >> import sys
     >> sys.path
+-----------------------------------------------------
+Koda:
+import sys
 
+print(f"My Python path is:\n\t{sys.path}")
+-----------------------------------------------------
 -- Virtual environment:
 
 # python3 -m venv ids-env
@@ -11,30 +16,63 @@
     >> import sys
     >> sys.path
 # deactivate
+-----------------------------------------------------
+pip install jupyter
+jupyter notebook
+* create notebook and check which Python -> not the right one ???
+* pravi ukaz:
+./ids-venv/bin/jupyter notebook
+* preveri in pokaži, da je pravi
+jupyter kernelspec list
+python -m ipykernel install --user --name=ids-python-kernel
+* zaženi jupyter notebook in preveri
+* izbriši kernelspec
+-----------------------------------------------------
+pip freeze > requirements.txt
+pip install -r requirements.txt
+-----------------------------------------------------
+deactivate
 
+-----------------------------------------------------
+-----------------------------------------------------
 -- Conda: 
 
+#Setup conda from .zshrc
+conda env list
+
+-----------------------------------------------------
 # conda create -n ids_environment
 (ids_environment)# conda activate ids_environment
-# conda install python=3.8
+# conda install python=3.10
     -- ali definirati Python že ob kreiranju okolja!!!
 (ids_environment)# python
     >> import sys
     >> sys.path
-# conda deactivate
+-----------------------------------------------------
 
 -- Jupyter
-
+# run jupyter and check libraries
 (ids_environment)# conda install nb_conda
 (ids_environment)# jupyter notebook
-    -- download jupyter notebook from handbook
-    -- check avail kernels
+# Check jupyter 
+# ALTERNATIVE:
+conda install ipykernel
+python -m ipykernel install --user --name=ids-python-kernel
 
 
 -- Export installed libraries
 
-(ids_environment)# conda env export > environment.yml
+(ids_environment)# conda env export -h
+(ids_environment)# conda env export --no-builds > environment.yml
+
+-- Deactivate
+conda deactivate
 
 -- Remove environment
 
 (ids_environment)# conda remove --name ids_environment --all
+
+-----------------------------------------------------
+- Pandas showcase - self-study lab session.
+
+- 10 minutes to Pandas (google it).

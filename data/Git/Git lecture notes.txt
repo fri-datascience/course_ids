@@ -15,13 +15,14 @@ def main():
   print("Ehlo World!")
   
 main()
+-----------------------------------------------------
 - git init
 - git status
 - git add
 - git commit
 Shorthand:
 - git commit -a
-
+-----------------------------------------------------
 - koda update:
 def main():
   student = input("Please enter your name: ")
@@ -29,6 +30,7 @@ def main():
   print(f"Dear {student}, we are happy to have you in the Data Science track!")
   
 main()
+-----------------------------------------------------
 - git status
 - git commit
 - git log
@@ -58,7 +60,7 @@ Programmer 2:
 --------------------------
 Branching: 
 - git branch
-- git checkout/git switch (experimental in 2022)
+- git checkout/git switch (experimental in 2023)
 - git merge
 
 
