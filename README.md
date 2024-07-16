@@ -23,7 +23,7 @@ remotes::install_github("slowkow/ggrepel")
 install.packages(c("FactoMineR", "ggpubr"))
 devtools::install_github("kassambara/factoextra")
 
-install.packages(c("GPArotation", "bookdown", "reticulate", "moments", "ggcorrplot", "tmvnsim", "mnormt", "psych", "Rtsne", "naniar", "mice", "caret", "ggplot2", "gbm"), repos="https://cran.wu.ac.at/")
+install.packages(c("GPArotation", "bookdown", "reticulate", "moments", "ggcorrplot", "tmvnsim", "mnormt", "psych", "Rtsne", "naniar", "mice", "caret", "ggplot2", "gbm"))
 ```
 
 After that build the *bookdown* project, the newly compiled materials will be available in folder */docs/handbook.* Use R commands as follows:
