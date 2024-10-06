@@ -761,7 +761,9 @@ Data science students should work towards obtaining the knowledge and the skills
 ## Practice problems
 
 1. Install Anaconda Python, run the [provided Jupyter notebook](data/Python programming language.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additional packages manually).
-2. Try different Python IDEs and form a personal opinion of their advantages and disadvantages.
+2. One of the most common tools for data manipulation in Python are the Pandas and NumPy libraries. Explore the [10 minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html) and [NumPy quickstart](https://numpy.org/devdocs/user/quickstart.html) guides. Try solving some of the exercises from:
+   - [100 Pandas puzzles](https://github.com/ajcr/100-pandas-puzzles),
+   - [100 NumPy exercises](https://github.com/rougier/numpy-100)
 3. Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras-io/tree/master/examples).
 4. Download [the CMU Seminar Announcements dataset](https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz) and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar announcement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.
 5. Go through [Pandas showcase](data/Pandas showcase.zip) and practise using the library as it allows for powerful features.
