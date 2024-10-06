@@ -46,7 +46,6 @@ That being said, Python is in most cases much more suitable than R in terms of d
 Before using Python, we need to select and install a Python distribution. We can choose to install a pure Python distribution or an Anaconda Python distribution. Some advantages of using an Anaconda distribution are:
 
 * Anaconda makes it easy for the user to install the Python version of choice. Anaconda will also resolve issues with administrator privileges if a user does not have administrative rights for his system.
-* [Anaconda Accelerate](https://docs.continuum.io/accelerate/index.html) can provide the user with high performance computing and several other components.
 * Anaconda removes bottlenecks involved in installing the right packages while taking into considerations their compatibility with various other packages as might be encountered while using the standard *pip* package manager.
 * There is no risk of breaking required system libraries. There are also many open source packages available for Anaconda, which are not within the pip repository.
 
@@ -54,7 +53,7 @@ We encourage you to use the Anaconda Python distribution.
 
 ### Anaconda distribution installation
 
-Install the desired [Anaconda Python distribution](https://www.anaconda.com/distribution/). A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment named *ids*, issue the following command:
+We suggest you install [Miniconda](https://docs.anaconda.com/miniconda/), which is a minimal installer for conda. A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment named *ids*, issue the following command:
 
 ```{bash, eval=FALSE}
 $ conda create -n ids
@@ -722,7 +721,7 @@ IDEs are generally large and take time to download and install. You may also nee
 Below we list some popular Python IDEs/code editors that are available for major operating systems (Windows, Linux and Mac OS):
 
 * [**IDLE**](https://docs.python.org/3/library/idle.html) - the default code editor that installs together with the Python distribution. It includes a Python shell window (interactive interpreter), auto-completion, syntax highlighting, smart indentation and a basic integrated debugger. We do not recommend it for larger projects.
-* [**Sublime Text**](https://www.sublimetext.com/), [**Atom**](https://atom.io/), [**Visual Studio Code**](https://code.visualstudio.com/) - highly customizable code editors with rich features of an IDE. They support installation of additional extensions and also provide intelligent code completion, linting for potential errors, debugging, unit testing and so on. These editors are becoming quite popular among Python and web developers.
+* [**Sublime Text**](https://www.sublimetext.com/), [**Visual Studio Code**](https://code.visualstudio.com/) - highly customizable code editors with rich features of an IDE. They support installation of additional extensions and also provide intelligent code completion, linting for potential errors, debugging, unit testing and so on. These editors are becoming quite popular among Python and web developers.
 * [**PyCharm**](https://www.jetbrains.com/pycharm/) - an IDE for professional developers. There are two versions available: a free Community version and a paid Professional version which is free for students only. PyCharm provides all major features of a good IDE: code completion, code inspections, error-highlighting and fixes, debugging, version control system and code refactoring, etc..
 
 ## Python ecosystem for Data Science
