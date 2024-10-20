@@ -1,0 +1,9 @@
+name: idswebscraping
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - selenium
+  - beautifulsoup4
+  - requests

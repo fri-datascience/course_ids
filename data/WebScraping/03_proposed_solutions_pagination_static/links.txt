@@ -1,0 +1,10 @@
+https://quotes.toscrape.com/page/1
+https://quotes.toscrape.com/page/2
+https://quotes.toscrape.com/page/3
+https://quotes.toscrape.com/page/4
+https://quotes.toscrape.com/page/5
+https://quotes.toscrape.com/page/6
+https://quotes.toscrape.com/page/7
+https://quotes.toscrape.com/page/8
+https://quotes.toscrape.com/page/9
+https://quotes.toscrape.com/page/10
