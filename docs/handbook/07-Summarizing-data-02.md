@@ -9,7 +9,7 @@ We will be using R and ggplot2 but the contents of this chapter are meant to be 
 In most examples in this section we'll be using the [NBA players dataset](data/NBAplayers.csv) that contains some basic information about NBA players in the period up to year 2009.
 
 
-```r
+``` r
 library(ggplot2)
 dat <- read.csv("./data/NBAplayers.csv")
 dat <- dat[complete.cases(dat),]
@@ -49,21 +49,21 @@ We'll illustrate this point with an example that features some common mistakes o
 Let's plot the averages over time:
 
 
-```r
+``` r
 tmp <- dat[dat$position == "G",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" width="480" />
 
-```r
+``` r
 tmp <- dat[dat$position == "F",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" width="480" />
 
-```r
+``` r
 tmp <- dat[dat$position == "C",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
@@ -78,7 +78,7 @@ Let's remedy this mistake:
 
 
 
-```r
+``` r
 tmp <- dat[dat$position == "G",]
 plot(tapply(tmp$height, tmp$firstseason, mean), col = "green", 
      ylim = c(180, 220))
@@ -95,7 +95,7 @@ This plot uses up only a third of the space and simplifies comparison. This reve
 However, there are several things that we can still improve on. The first will be one of the fundamental rules of statistical plotting - **always label your axes**! The reader should never look elsewhere for information about what is plotted. We will also take this opportunity to reorganize our data:
 
 
-```r
+``` r
 library(reshape2)
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
@@ -109,7 +109,7 @@ plot(tmp$year, tmp$height,
 This is starting to look better. However, we should also include the legend - if we describe the meaning of the colors in the figure caption (or worse, in text), the reader will have to jump from text to figure, wasting time. Additionally, some people (and publications) prefer to add a title to their plot, explaining concisely what is in it, therefore making it more self containes. Others prefer to explain the plot in the caption. We'll add a title:
 
 
-```r
+``` r
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 plot(tmp$year, tmp$height, col = tmp$position, 
@@ -124,7 +124,7 @@ title("The average height of NBA rookies by playing position over time.")
 This is now a quite decent and self-contained plot. Next, we'll add a bit of polish. Pleasing aesthetics might not add much to the informativeness of a plot, but they do make our work look more professional. They are also indicate that we put in the extra effort. Of course, we should never let aesthetics get in the way of efficiency and informativeness (see pie-chart example in the following section):
 
 
-```r
+``` r
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
@@ -139,7 +139,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() +
 By using ggplot2 we can make our visualizations look better, but it is also very convenient for adding some extra layers to our plots. Additional layers are draw on top of eachother, in order. For example, let's add a smoothed line with standard errors to help us focus on the trend and not the individual data points:
 
 
-```r
+``` r
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
@@ -151,7 +151,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) +
 ```
 
 ```
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 ```
 
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-7-1.png" width="672" />
@@ -159,7 +159,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) +
 There is one more thing that we can typically do in such cases - label the data directly and omit the legend. Always keep related objects visually close! This saves both space and user's time, especially if we have several lines/colors in our plot:
 
 
-```r
+``` r
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
@@ -174,7 +174,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) +
 ```
 
 ```
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 ```
 
 <div class="figure">
@@ -193,10 +193,17 @@ In both density plots and histograms we need to specify the amount of smoothing 
 We illustrate these two plots by summarizing the NBA players' weight:
 
 
-```r
+``` r
 ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5, 
                 position="identity", binwidth = 7) + 
   geom_density(lwd = 1, col = "black") + theme_bw()
+```
+
+```
+## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(density)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 <div class="figure">
@@ -209,7 +216,7 @@ ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5,
 Bar plots are the most common choice for summarizing the (relative) frequencies for categorical or ordinal data with a manageable number of unique values. It is similar to a histogram, except that the categories/values provide a natural way of binning the data:
 
 
-```r
+``` r
 set.seed(0)
 tmp <- data.frame(University = dat$college)
 x <- table(tmp)
@@ -233,7 +240,7 @@ When the number of unique values is large, it will not be not possible to visual
 Pie charts are quite possibly the easiest chart type to work with, because there is only one rule to using pie charts - **don't use pie charts**. Let's visualize the data from the bar chart example:
 
 
-```r
+``` r
 y <- x / sum(x)
 ggplot(data.frame(y), aes(x = "", y = Freq, fill = University)) + 
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + labs(fill = "University")
@@ -249,7 +256,7 @@ The pie chart is a great example (and warning!) of how aesthetics can get in the
 Angles can also play tricks on our eyes. Which color pie slice is the largest on the first plot below? Which on the second plot?
 
 
-```r
+``` r
 y <- data.frame(Name = c("A", "B", "C"), Value = rep(1, 3))
 ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + 
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
@@ -257,7 +264,7 @@ ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) +
 
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" width="384" />
 
-```r
+``` r
 ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + 
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=pi/3) + 
   theme_bw() + theme(legend.position = "none")
@@ -272,7 +279,7 @@ For more information on how people perceive visual objects and relationships bet
 The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we've already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.
 
 
-```r
+``` r
 ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3, alpha = 0.3) + 
   theme_bw() + facet_wrap(.~position)
 ```
@@ -287,7 +294,7 @@ ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3, alpha = 0.3) +
 When individual points are of little interest and we just want to summarize the density of the joint distribution, a 2D density plot is a good alternative to the scatterplot:
 
 
-```r
+``` r
 ggplot(dat, aes(x = height, y = weight, colour = position)) + 
   geom_density_2d() + theme_bw() + 
   theme_bw() + theme(legend.position = "none") + 
@@ -311,7 +318,7 @@ The boxes (where the boxplot gets is name) typicaly summarize the quartiles of t
 
 
 
-```r
+``` r
 ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_bw()
 ```
 
@@ -325,7 +332,7 @@ ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_b
 The boxplot shows only the quartiles so it can sometimes hide relevant information and mislead us. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.
 
 
-```r
+``` r
 ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") + 
   geom_boxplot(width = 0.05) + theme_bw()
 ```
@@ -340,7 +347,7 @@ ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") +
 When we want to quickly inspect if there are any correlations between numerical variables, we can summarize correlation coefficients in a single plot. Such a plot is also known as a correlogram. Here we do it for the iris dataset:
 
 
-```r
+``` r
 library(ggcorrplot)
 corr <- round(cor(iris[,-5]),2)
 ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T)
@@ -356,7 +363,7 @@ ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T
 Sometimes it will be useful to summarize the density/histogram of several numerical variables and the correlation between them. Here is an example of how we can combine histograms/density plots, scatterplots, and information about correlation:
 
 
-```r
+``` r
 library(psych)
 ```
 
@@ -371,7 +378,7 @@ library(psych)
 ##     %+%, alpha
 ```
 
-```r
+``` r
 pairs.panels(iris[,-5])
 ```
 

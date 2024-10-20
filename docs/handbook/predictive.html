@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Predictive modelling | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Predictive modelling | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2022-10-31" />
+<meta name="date" content="2024-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -120,10 +120,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -428,121 +433,126 @@ div.csl-indent {
 <div id="an-illustrative-example" class="section level3 unnumbered hasAnchor">
 <h3>An illustrative example<a href="predictive.html#an-illustrative-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s reinforce the terms from the previous section with an illustrative example. We’ll use a simple data set with 200 <em>observations</em> and 2 variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The task is to predict the value of <span class="math inline">\(Y\)</span> from the value of <span class="math inline">\(X\)</span>. That is, we have a single <em>input variable</em> (<span class="math inline">\(X\)</span>) and a single <em>target variable</em> (<span class="math inline">\(Y\)</span>). Before we proceed, we’ll randomly split the dataset into two subsets of equal size. We’ll use one set to <em>train</em> our model and the other to <em>test</em> its performance.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="predictive.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple linear regression example ---------------------------------------------</span></span>
-<span id="cb266-2"><a href="predictive.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb266-3"><a href="predictive.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb266-4"><a href="predictive.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataset</span></span>
-<span id="cb266-5"><a href="predictive.html#cb266-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./data/simpleReg.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">h =</span> T)</span>
-<span id="cb266-6"><a href="predictive.html#cb266-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb266-7"><a href="predictive.html#cb266-7" aria-hidden="true" tabindex="-1"></a><span class="co"># train-test split</span></span>
-<span id="cb266-8"><a href="predictive.html#cb266-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb266-9"><a href="predictive.html#cb266-9" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>, <span class="dv">100</span>, <span class="at">rep =</span> F)</span>
-<span id="cb266-10"><a href="predictive.html#cb266-10" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>IsTest <span class="ot">&lt;-</span> T</span>
-<span id="cb266-11"><a href="predictive.html#cb266-11" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>IsTest[idx] <span class="ot">&lt;-</span> F</span>
-<span id="cb266-12"><a href="predictive.html#cb266-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the data</span></span>
-<span id="cb266-13"><a href="predictive.html#cb266-13" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb266-14"><a href="predictive.html#cb266-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="predictive.html#cb270-1" tabindex="-1"></a><span class="co"># Simple linear regression example ---------------------------------------------</span></span>
+<span id="cb270-2"><a href="predictive.html#cb270-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb270-3"><a href="predictive.html#cb270-3" tabindex="-1"></a></span>
+<span id="cb270-4"><a href="predictive.html#cb270-4" tabindex="-1"></a><span class="co"># read dataset</span></span>
+<span id="cb270-5"><a href="predictive.html#cb270-5" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./data/simpleReg.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">h =</span> T)</span>
+<span id="cb270-6"><a href="predictive.html#cb270-6" tabindex="-1"></a></span>
+<span id="cb270-7"><a href="predictive.html#cb270-7" tabindex="-1"></a><span class="co"># train-test split</span></span>
+<span id="cb270-8"><a href="predictive.html#cb270-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb270-9"><a href="predictive.html#cb270-9" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>, <span class="dv">100</span>, <span class="at">rep =</span> F)</span>
+<span id="cb270-10"><a href="predictive.html#cb270-10" tabindex="-1"></a>dataset<span class="sc">$</span>IsTest <span class="ot">&lt;-</span> T</span>
+<span id="cb270-11"><a href="predictive.html#cb270-11" tabindex="-1"></a>dataset<span class="sc">$</span>IsTest[idx] <span class="ot">&lt;-</span> F</span>
+<span id="cb270-12"><a href="predictive.html#cb270-12" tabindex="-1"></a><span class="co"># plot the data</span></span>
+<span id="cb270-13"><a href="predictive.html#cb270-13" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb270-14"><a href="predictive.html#cb270-14" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-1-1.png" width="470.4" /></p>
 <p>Now we have to choose a <em>training algorithm</em> that we’ll use to produce a <em>model</em> for the process that generated this dataset. We’ll use simple least-squares linear regression. This tranining algorithm assumes that the functional relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is <span class="math inline">\(Y_i = kX_i+n + \epsilon_i\)</span>. Or, in simpler terms, we assume that the points lie on a straight line and we account for the deviations with the residual terms <span class="math inline">\(\epsilon_i\)</span>. Clearly, the data suggest a non-linear relationship and that linear regression is not the best choice, but we’ll ignore that for now.</p>
 <p>The next step is to run the linear regression algorithm to find the best values of our two model <em>parameters</em> slope (<span class="math inline">\(k\)</span>) and intercept (<span class="math inline">\(n\)</span>). In the case of least-squares linear regression, best is defined as the one that minimizes the sum of squared residuals <span class="math inline">\(\epsilon_i\)</span>. That is, within the black-box of least-squares regression we’d find just a simple optimization algorithm:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="predictive.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># train the model</span></span>
-<span id="cb267-2"><a href="predictive.html#cb267-2" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> dataset[dataset<span class="sc">$</span>IsTest <span class="sc">==</span> F,]</span>
-<span id="cb267-3"><a href="predictive.html#cb267-3" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> dataset[dataset<span class="sc">$</span>IsTest <span class="sc">==</span> T,]</span>
-<span id="cb267-4"><a href="predictive.html#cb267-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-5"><a href="predictive.html#cb267-5" aria-hidden="true" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> train_data)</span>
-<span id="cb267-6"><a href="predictive.html#cb267-6" aria-hidden="true" tabindex="-1"></a>n  <span class="ot">&lt;-</span> lr<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
-<span id="cb267-7"><a href="predictive.html#cb267-7" aria-hidden="true" tabindex="-1"></a>k  <span class="ot">&lt;-</span> lr<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
-<span id="cb267-8"><a href="predictive.html#cb267-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;n = %.2f, k = %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, n, k))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="predictive.html#cb271-1" tabindex="-1"></a><span class="co"># train the model</span></span>
+<span id="cb271-2"><a href="predictive.html#cb271-2" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> dataset[dataset<span class="sc">$</span>IsTest <span class="sc">==</span> F,]</span>
+<span id="cb271-3"><a href="predictive.html#cb271-3" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> dataset[dataset<span class="sc">$</span>IsTest <span class="sc">==</span> T,]</span>
+<span id="cb271-4"><a href="predictive.html#cb271-4" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="predictive.html#cb271-5" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> train_data)</span>
+<span id="cb271-6"><a href="predictive.html#cb271-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> lr<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb271-7"><a href="predictive.html#cb271-7" tabindex="-1"></a>k  <span class="ot">&lt;-</span> lr<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb271-8"><a href="predictive.html#cb271-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;n = %.2f, k = %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, n, k))</span></code></pre></div>
 <pre><code>## n = -6.31, k = 6.38</code></pre>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="predictive.html#cb269-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> k, <span class="at">intercept =</span> n)</span>
-<span id="cb269-2"><a href="predictive.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="predictive.html#cb273-1" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> k, <span class="at">intercept =</span> n)</span>
+<span id="cb273-2"><a href="predictive.html#cb273-2" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-2-1.png" width="470.4" /></p>
 <p>We can see that the best linear model is probably not the best model for this data, but it still captures part of the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and could be used to predict new values better than the naive approach of just predicting with the mean. Note that in practice the term <em>model</em> is used interchangeably for the training algorithm and the model it produces (in our case <span class="math inline">\(Y_i = 6.65X_i - 8.60\)</span>). That is, the term <em>linear regression model</em> is often used to refer to the entire algorithm of assuming a liner relationship and finding the parameters using optimization.</p>
 <p>Now we’ll try to produce a better model. We’ll use the least-squares algorithm, but we’ll add the squared and cubic terms <span class="math inline">\(X^2\)</span> and <span class="math inline">\(X^3\)</span>. This is also called polynomial regression:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="predictive.html#cb270-1" aria-hidden="true" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">3</span>), <span class="at">data =</span> train_data)</span>
-<span id="cb270-2"><a href="predictive.html#cb270-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
-<span id="cb270-3"><a href="predictive.html#cb270-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">X =</span> x))</span>
-<span id="cb270-4"><a href="predictive.html#cb270-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb270-5"><a href="predictive.html#cb270-5" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> k, <span class="at">intercept =</span> n) <span class="sc">+</span></span>
-<span id="cb270-6"><a href="predictive.html#cb270-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb270-7"><a href="predictive.html#cb270-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="predictive.html#cb274-1" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">3</span>), <span class="at">data =</span> train_data)</span>
+<span id="cb274-2"><a href="predictive.html#cb274-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb274-3"><a href="predictive.html#cb274-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">X =</span> x))</span>
+<span id="cb274-4"><a href="predictive.html#cb274-4" tabindex="-1"></a></span>
+<span id="cb274-5"><a href="predictive.html#cb274-5" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> k, <span class="at">intercept =</span> n) <span class="sc">+</span></span>
+<span id="cb274-6"><a href="predictive.html#cb274-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb274-7"><a href="predictive.html#cb274-7" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-3-1.png" width="470.4" /></p>
 <p>The cubic polynomial appears to be a much better fit for the training data and the test data. Let’s check if that is indeed the case:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="predictive.html#cb271-1" aria-hidden="true" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> train_data)</span>
-<span id="cb271-2"><a href="predictive.html#cb271-2" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
-<span id="cb271-3"><a href="predictive.html#cb271-3" aria-hidden="true" tabindex="-1"></a>e1_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb271-4"><a href="predictive.html#cb271-4" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> train_data)</span>
-<span id="cb271-5"><a href="predictive.html#cb271-5" aria-hidden="true" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb271-6"><a href="predictive.html#cb271-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb271-7"><a href="predictive.html#cb271-7" aria-hidden="true" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">3</span>), <span class="at">data =</span> train_data)</span>
-<span id="cb271-8"><a href="predictive.html#cb271-8" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
-<span id="cb271-9"><a href="predictive.html#cb271-9" aria-hidden="true" tabindex="-1"></a>e2_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb271-10"><a href="predictive.html#cb271-10" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> train_data)</span>
-<span id="cb271-11"><a href="predictive.html#cb271-11" aria-hidden="true" tabindex="-1"></a>e2_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb271-12"><a href="predictive.html#cb271-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb271-13"><a href="predictive.html#cb271-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;test and training data mean squared error for line: %.2f / %.2f and poly: %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr, e2_te, e2_tr))</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="predictive.html#cb275-1" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> train_data)</span>
+<span id="cb275-2"><a href="predictive.html#cb275-2" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
+<span id="cb275-3"><a href="predictive.html#cb275-3" tabindex="-1"></a>e1_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb275-4"><a href="predictive.html#cb275-4" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> train_data)</span>
+<span id="cb275-5"><a href="predictive.html#cb275-5" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb275-6"><a href="predictive.html#cb275-6" tabindex="-1"></a></span>
+<span id="cb275-7"><a href="predictive.html#cb275-7" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">3</span>), <span class="at">data =</span> train_data)</span>
+<span id="cb275-8"><a href="predictive.html#cb275-8" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
+<span id="cb275-9"><a href="predictive.html#cb275-9" tabindex="-1"></a>e2_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb275-10"><a href="predictive.html#cb275-10" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> train_data)</span>
+<span id="cb275-11"><a href="predictive.html#cb275-11" tabindex="-1"></a>e2_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb275-12"><a href="predictive.html#cb275-12" tabindex="-1"></a></span>
+<span id="cb275-13"><a href="predictive.html#cb275-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;test and training data mean squared error for line: %.2f / %.2f and poly: %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr, e2_te, e2_tr))</span></code></pre></div>
 <pre><code>## test and training data mean squared error for line: 462.06 / 477.82 and poly: 184.59 / 229.72</code></pre>
 <p>The numbers confirm that the polynomial regression model has lower training and test error. The latter implies that the polynomial regression model will better generalize to new or unseen examples and should be, in terms of predictive performance, used instead of the linear regression model.</p>
 <p>To illustrate another important concept, we’ll also use a 25th degree polynomial model.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="predictive.html#cb273-1" aria-hidden="true" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">3</span>), <span class="at">data =</span> train_data)</span>
-<span id="cb273-2"><a href="predictive.html#cb273-2" aria-hidden="true" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
-<span id="cb273-3"><a href="predictive.html#cb273-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">X =</span> x))</span>
-<span id="cb273-4"><a href="predictive.html#cb273-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-5"><a href="predictive.html#cb273-5" aria-hidden="true" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">25</span>, <span class="at">raw =</span> T), <span class="at">data =</span> train_data)</span>
-<span id="cb273-6"><a href="predictive.html#cb273-6" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">X =</span> x))</span>
-<span id="cb273-7"><a href="predictive.html#cb273-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-8"><a href="predictive.html#cb273-8" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> </span>
-<span id="cb273-9"><a href="predictive.html#cb273-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb273-10"><a href="predictive.html#cb273-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> k, <span class="at">intercept =</span> n) <span class="sc">+</span></span>
-<span id="cb273-11"><a href="predictive.html#cb273-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb273-12"><a href="predictive.html#cb273-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb273-13"><a href="predictive.html#cb273-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
-<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 row(s) containing missing values (geom_path).</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="predictive.html#cb277-1" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">3</span>), <span class="at">data =</span> train_data)</span>
+<span id="cb277-2"><a href="predictive.html#cb277-2" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb277-3"><a href="predictive.html#cb277-3" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">X =</span> x))</span>
+<span id="cb277-4"><a href="predictive.html#cb277-4" tabindex="-1"></a></span>
+<span id="cb277-5"><a href="predictive.html#cb277-5" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">25</span>, <span class="at">raw =</span> T), <span class="at">data =</span> train_data)</span>
+<span id="cb277-6"><a href="predictive.html#cb277-6" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">X =</span> x))</span>
+<span id="cb277-7"><a href="predictive.html#cb277-7" tabindex="-1"></a></span>
+<span id="cb277-8"><a href="predictive.html#cb277-8" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> </span>
+<span id="cb277-9"><a href="predictive.html#cb277-9" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb277-10"><a href="predictive.html#cb277-10" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> k, <span class="at">intercept =</span> n) <span class="sc">+</span></span>
+<span id="cb277-11"><a href="predictive.html#cb277-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb277-12"><a href="predictive.html#cb277-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb277-13"><a href="predictive.html#cb277-13" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
+<pre><code>## Warning: Removed 7 rows containing missing values or values outside the scale
+## range (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" width="470.4" /></p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="predictive.html#cb277-1" aria-hidden="true" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">25</span>, <span class="at">raw =</span> T), <span class="at">data =</span> train_data)</span>
-<span id="cb277-2"><a href="predictive.html#cb277-2" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
-<span id="cb277-3"><a href="predictive.html#cb277-3" aria-hidden="true" tabindex="-1"></a>e1_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb277-4"><a href="predictive.html#cb277-4" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> train_data)</span>
-<span id="cb277-5"><a href="predictive.html#cb277-5" aria-hidden="true" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb277-6"><a href="predictive.html#cb277-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-7"><a href="predictive.html#cb277-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;poly (25): %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="predictive.html#cb281-1" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">25</span>, <span class="at">raw =</span> T), <span class="at">data =</span> train_data)</span>
+<span id="cb281-2"><a href="predictive.html#cb281-2" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
+<span id="cb281-3"><a href="predictive.html#cb281-3" tabindex="-1"></a>e1_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb281-4"><a href="predictive.html#cb281-4" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> train_data)</span>
+<span id="cb281-5"><a href="predictive.html#cb281-5" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb281-6"><a href="predictive.html#cb281-6" tabindex="-1"></a></span>
+<span id="cb281-7"><a href="predictive.html#cb281-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;poly (25): %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
 <pre><code>## poly (25): 71336.91 / 162.80</code></pre>
 <p>We can see that the 20th degree polynomial model, which has 17 more parameters than the 3rd degree polynomial model, is able to fit the training data better. However, its performance on the test data is worse! This is an important concept that we call <em>overfitting</em> - the model was too expressive for the amount of data we have and it started fitting not just the underlying true functional relationship but also the noise in the data. An extreme example of this would be using a 100th degree polynomial, which would be able to perfectly fit the training data, but it would perform very poorly on test data.</p>
 <p>Finally, let’s use a <span class="math inline">\(k\)</span>-nearest neighbors model with <span class="math inline">\(k = 10\)</span>. In other words, we assume that the value of an observation is the average of the 10 nearest points:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="predictive.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we&#39;ll manually code k-nearest neighbors for this simple example</span></span>
-<span id="cb279-2"><a href="predictive.html#cb279-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dataset</span>
-<span id="cb279-3"><a href="predictive.html#cb279-3" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>PredictedY <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb279-4"><a href="predictive.html#cb279-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-5"><a href="predictive.html#cb279-5" aria-hidden="true" tabindex="-1"></a>knearest <span class="ot">&lt;-</span> <span class="cf">function</span>(x, df, k) {</span>
-<span id="cb279-6"><a href="predictive.html#cb279-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(df[<span class="fu">rank</span>(<span class="fu">abs</span>(df<span class="sc">$</span>X <span class="sc">-</span> x)) <span class="sc">&lt;=</span> k,]<span class="sc">$</span>Y)</span>
-<span id="cb279-7"><a href="predictive.html#cb279-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb279-8"><a href="predictive.html#cb279-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-9"><a href="predictive.html#cb279-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tmp)) {</span>
-<span id="cb279-10"><a href="predictive.html#cb279-10" aria-hidden="true" tabindex="-1"></a>  tmp[i,]<span class="sc">$</span>PredictedY <span class="ot">&lt;-</span> <span class="fu">knearest</span>(tmp<span class="sc">$</span>X[i], train_data, <span class="dv">10</span>)</span>
-<span id="cb279-11"><a href="predictive.html#cb279-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb279-12"><a href="predictive.html#cb279-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-13"><a href="predictive.html#cb279-13" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> tmp[tmp<span class="sc">$</span>IsTest <span class="sc">==</span> T,]<span class="sc">$</span>PredictedY</span>
-<span id="cb279-14"><a href="predictive.html#cb279-14" aria-hidden="true" tabindex="-1"></a>e1_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb279-15"><a href="predictive.html#cb279-15" aria-hidden="true" tabindex="-1"></a>y     <span class="ot">&lt;-</span> tmp[tmp<span class="sc">$</span>IsTest <span class="sc">==</span> F,]<span class="sc">$</span>PredictedY</span>
-<span id="cb279-16"><a href="predictive.html#cb279-16" aria-hidden="true" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb279-17"><a href="predictive.html#cb279-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-18"><a href="predictive.html#cb279-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;knn (10): %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="predictive.html#cb283-1" tabindex="-1"></a><span class="co"># we&#39;ll manually code k-nearest neighbors for this simple example</span></span>
+<span id="cb283-2"><a href="predictive.html#cb283-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dataset</span>
+<span id="cb283-3"><a href="predictive.html#cb283-3" tabindex="-1"></a>tmp<span class="sc">$</span>PredictedY <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb283-4"><a href="predictive.html#cb283-4" tabindex="-1"></a></span>
+<span id="cb283-5"><a href="predictive.html#cb283-5" tabindex="-1"></a>knearest <span class="ot">&lt;-</span> <span class="cf">function</span>(x, df, k) {</span>
+<span id="cb283-6"><a href="predictive.html#cb283-6" tabindex="-1"></a>  <span class="fu">mean</span>(df[<span class="fu">rank</span>(<span class="fu">abs</span>(df<span class="sc">$</span>X <span class="sc">-</span> x)) <span class="sc">&lt;=</span> k,]<span class="sc">$</span>Y)</span>
+<span id="cb283-7"><a href="predictive.html#cb283-7" tabindex="-1"></a>}</span>
+<span id="cb283-8"><a href="predictive.html#cb283-8" tabindex="-1"></a></span>
+<span id="cb283-9"><a href="predictive.html#cb283-9" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tmp)) {</span>
+<span id="cb283-10"><a href="predictive.html#cb283-10" tabindex="-1"></a>  tmp[i,]<span class="sc">$</span>PredictedY <span class="ot">&lt;-</span> <span class="fu">knearest</span>(tmp<span class="sc">$</span>X[i], train_data, <span class="dv">10</span>)</span>
+<span id="cb283-11"><a href="predictive.html#cb283-11" tabindex="-1"></a>}</span>
+<span id="cb283-12"><a href="predictive.html#cb283-12" tabindex="-1"></a></span>
+<span id="cb283-13"><a href="predictive.html#cb283-13" tabindex="-1"></a>y     <span class="ot">&lt;-</span> tmp[tmp<span class="sc">$</span>IsTest <span class="sc">==</span> T,]<span class="sc">$</span>PredictedY</span>
+<span id="cb283-14"><a href="predictive.html#cb283-14" tabindex="-1"></a>e1_te <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> test_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb283-15"><a href="predictive.html#cb283-15" tabindex="-1"></a>y     <span class="ot">&lt;-</span> tmp[tmp<span class="sc">$</span>IsTest <span class="sc">==</span> F,]<span class="sc">$</span>PredictedY</span>
+<span id="cb283-16"><a href="predictive.html#cb283-16" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb283-17"><a href="predictive.html#cb283-17" tabindex="-1"></a></span>
+<span id="cb283-18"><a href="predictive.html#cb283-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;knn (10): %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
 <pre><code>## knn (10): 214.64 / 257.63</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="predictive.html#cb281-1" aria-hidden="true" tabindex="-1"></a>y  <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb281-2"><a href="predictive.html#cb281-2" aria-hidden="true" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
-<span id="cb281-3"><a href="predictive.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pt <span class="cf">in</span> x) {</span>
-<span id="cb281-4"><a href="predictive.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="fu">knearest</span>(pt, train_data, <span class="dv">10</span>))</span>
-<span id="cb281-5"><a href="predictive.html#cb281-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb281-6"><a href="predictive.html#cb281-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb281-7"><a href="predictive.html#cb281-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb281-8"><a href="predictive.html#cb281-8" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> </span>
-<span id="cb281-9"><a href="predictive.html#cb281-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb281-10"><a href="predictive.html#cb281-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1))</span>
-<span id="cb281-11"><a href="predictive.html#cb281-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
-<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="predictive.html#cb285-1" tabindex="-1"></a>y  <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb285-2"><a href="predictive.html#cb285-2" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb285-3"><a href="predictive.html#cb285-3" tabindex="-1"></a><span class="cf">for</span> (pt <span class="cf">in</span> x) {</span>
+<span id="cb285-4"><a href="predictive.html#cb285-4" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="fu">knearest</span>(pt, train_data, <span class="dv">10</span>))</span>
+<span id="cb285-5"><a href="predictive.html#cb285-5" tabindex="-1"></a>}</span>
+<span id="cb285-6"><a href="predictive.html#cb285-6" tabindex="-1"></a></span>
+<span id="cb285-7"><a href="predictive.html#cb285-7" tabindex="-1"></a></span>
+<span id="cb285-8"><a href="predictive.html#cb285-8" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dataset) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> IsTest)) <span class="sc">+</span> </span>
+<span id="cb285-9"><a href="predictive.html#cb285-9" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb285-10"><a href="predictive.html#cb285-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1))</span>
+<span id="cb285-11"><a href="predictive.html#cb285-11" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
+<pre><code>## Warning: Removed 7 rows containing missing values or values outside the scale
+## range (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" width="470.4" /></p>
 <p>The performance of the 10-nearest neighbor model is relatively good, only slightly worse on the test set than the cubic polynomial model.</p>
 </div>
@@ -646,8 +656,8 @@ So, every model selection process has two main components: (1) choosing the appr
 <h2><span class="header-section-number">10.5</span> Putting it all together with R<a href="predictive.html#putting-it-all-together-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We’ll apply what we have learned to an interesting dataset from the paper <em>Stengos, T., &amp; Zacharias, E. (2006). Intertemporal pricing and price discrimination: a semiparametric hedonic analysis of the personal computer market. Journal of Applied Econometrics, 21(3), 371-386.</em></p>
 <p>The dataset contains PC price and specifications from the 90:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="predictive.html#cb284-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/computers.csv&quot;</span>, <span class="at">stringsAsFactors =</span> T)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
-<span id="cb284-2"><a href="predictive.html#cb284-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="predictive.html#cb288-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/computers.csv&quot;</span>, <span class="at">stringsAsFactors =</span> T)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb288-2"><a href="predictive.html#cb288-2" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div>
 <pre><code>##      price          speed              hd              ram        
 ##  Min.   : 949   Min.   : 25.00   Min.   :  80.0   Min.   : 2.000  
 ##  1st Qu.:1794   1st Qu.: 33.00   1st Qu.: 214.0   1st Qu.: 4.000  
@@ -665,62 +675,62 @@ So, every model selection process has two main components: (1) choosing the appr
 <p>Although this is probably not true, we’ll assume, for the purposes of this analysis, that all observations are independent observations from the distribution of computers in that time period.</p>
 <p>The goal is to predict PC price and the input variables we’ll use are <em>…the clock speed (in MHz) of the 486 processor, the size of the hard drive (in MB), the size of the RAM (in MB), the size of the screen (in inches), the presence of a CD-ROM, the presence of a multi-media kit that includes speakers and a sound card..</em>.</p>
 <p>Now we are ready to proceed. First, before we do anything, we will set aside 1000 randomly chosen observations. These will be used as the final test set after we have decided on the best model. We can afford this, because we have a lot of observations (relative to the size of the input space). We will also recode the yes/no variables as binary:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="predictive.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb286-2"><a href="predictive.html#cb286-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df), <span class="dv">1000</span>, <span class="at">rep =</span> F)</span>
-<span id="cb286-3"><a href="predictive.html#cb286-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>cd <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>cd)</span>
-<span id="cb286-4"><a href="predictive.html#cb286-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>multi <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>multi)</span>
-<span id="cb286-5"><a href="predictive.html#cb286-5" aria-hidden="true" tabindex="-1"></a>df.main <span class="ot">&lt;-</span> df[<span class="sc">-</span>idx,]</span>
-<span id="cb286-6"><a href="predictive.html#cb286-6" aria-hidden="true" tabindex="-1"></a>df.test <span class="ot">&lt;-</span> df[ idx,]</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="predictive.html#cb290-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb290-2"><a href="predictive.html#cb290-2" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df), <span class="dv">1000</span>, <span class="at">rep =</span> F)</span>
+<span id="cb290-3"><a href="predictive.html#cb290-3" tabindex="-1"></a>df<span class="sc">$</span>cd <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>cd)</span>
+<span id="cb290-4"><a href="predictive.html#cb290-4" tabindex="-1"></a>df<span class="sc">$</span>multi <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>multi)</span>
+<span id="cb290-5"><a href="predictive.html#cb290-5" tabindex="-1"></a>df.main <span class="ot">&lt;-</span> df[<span class="sc">-</span>idx,]</span>
+<span id="cb290-6"><a href="predictive.html#cb290-6" tabindex="-1"></a>df.test <span class="ot">&lt;-</span> df[ idx,]</span></code></pre></div>
 <p>Next, we identify that the target variable is numerical, so we are dealing with a regression problem. Some input variables are numerical and some are binary, which means that we have a standard regression problem.</p>
 <p>To minimize the amount of effort, we’ll utilize the <em>caret</em> package for R. The package includes many functions and interfaces over 100 different classification and regression models.</p>
 <p>We will consider 3 different regression training algorithms - linear regression (no tunable parameters), a stochastic gradient boosting (we’ll run it over a range of values suggested by caret) and k-nearest neighbors (we’ll test it across several manually selected values of <span class="math inline">\(k\)</span>).</p>
 <p>We’ll choose (root) mean squared error as our measure of quality, because our objective is to get the best predictor of the mean. And we’ll estimate how the models’ errors will generalize using 10 repetitions of 10-fold cross-validation:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="predictive.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="predictive.html#cb291-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="predictive.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co"># setting-up the cross validation</span></span>
-<span id="cb289-2"><a href="predictive.html#cb289-2" aria-hidden="true" tabindex="-1"></a>fitControl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="do">## 10-fold CV</span></span>
-<span id="cb289-3"><a href="predictive.html#cb289-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</span>
-<span id="cb289-4"><a href="predictive.html#cb289-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">number =</span> <span class="dv">10</span>,</span>
-<span id="cb289-5"><a href="predictive.html#cb289-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">repeats =</span> <span class="dv">10</span>)</span>
-<span id="cb289-6"><a href="predictive.html#cb289-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-7"><a href="predictive.html#cb289-7" aria-hidden="true" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb289-8"><a href="predictive.html#cb289-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-9"><a href="predictive.html#cb289-9" aria-hidden="true" tabindex="-1"></a><span class="co"># gradient boosting</span></span>
-<span id="cb289-10"><a href="predictive.html#cb289-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>) <span class="co"># set seed to get the same folds for all models</span></span>
-<span id="cb289-11"><a href="predictive.html#cb289-11" aria-hidden="true" tabindex="-1"></a>fit_gb <span class="ot">&lt;-</span> <span class="fu">train</span>(price <span class="sc">~</span> ., <span class="at">data =</span> df.main, </span>
-<span id="cb289-12"><a href="predictive.html#cb289-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">&quot;gbm&quot;</span>, </span>
-<span id="cb289-13"><a href="predictive.html#cb289-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">trControl =</span> fitControl,</span>
-<span id="cb289-14"><a href="predictive.html#cb289-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">tuneLength =</span> <span class="dv">2</span>,</span>
-<span id="cb289-15"><a href="predictive.html#cb289-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">verbose =</span> F)</span>
-<span id="cb289-16"><a href="predictive.html#cb289-16" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fit_gb<span class="sc">$</span>results</span>
-<span id="cb289-17"><a href="predictive.html#cb289-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-18"><a href="predictive.html#cb289-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tmp)) {</span>
-<span id="cb289-19"><a href="predictive.html#cb289-19" aria-hidden="true" tabindex="-1"></a>  all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all, <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="fu">paste</span>(<span class="st">&quot;gb[&quot;</span>, <span class="fu">paste</span>(tmp[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="at">RMSE =</span> tmp<span class="sc">$</span>RMSE[i], <span class="at">SD =</span> tmp<span class="sc">$</span>RMSESD[i]))</span>
-<span id="cb289-20"><a href="predictive.html#cb289-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb289-21"><a href="predictive.html#cb289-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-22"><a href="predictive.html#cb289-22" aria-hidden="true" tabindex="-1"></a><span class="co"># k-nn</span></span>
-<span id="cb289-23"><a href="predictive.html#cb289-23" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb289-24"><a href="predictive.html#cb289-24" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>))</span>
-<span id="cb289-25"><a href="predictive.html#cb289-25" aria-hidden="true" tabindex="-1"></a>fit_nn <span class="ot">&lt;-</span> <span class="fu">train</span>(price <span class="sc">~</span> ., <span class="at">data =</span> df.main, </span>
-<span id="cb289-26"><a href="predictive.html#cb289-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, </span>
-<span id="cb289-27"><a href="predictive.html#cb289-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">trControl =</span> fitControl,</span>
-<span id="cb289-28"><a href="predictive.html#cb289-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tuneGrid =</span> grid)</span>
-<span id="cb289-29"><a href="predictive.html#cb289-29" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fit_nn<span class="sc">$</span>results</span>
-<span id="cb289-30"><a href="predictive.html#cb289-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-31"><a href="predictive.html#cb289-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tmp)) {</span>
-<span id="cb289-32"><a href="predictive.html#cb289-32" aria-hidden="true" tabindex="-1"></a>  all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all, <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="fu">paste</span>(<span class="st">&quot;nn[&quot;</span>, <span class="fu">paste</span>(tmp[i,<span class="dv">1</span>], <span class="at">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="at">RMSE =</span> tmp<span class="sc">$</span>RMSE[i], <span class="at">SD =</span> tmp<span class="sc">$</span>RMSESD[i]))</span>
-<span id="cb289-33"><a href="predictive.html#cb289-33" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb289-34"><a href="predictive.html#cb289-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-35"><a href="predictive.html#cb289-35" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression</span></span>
-<span id="cb289-36"><a href="predictive.html#cb289-36" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb289-37"><a href="predictive.html#cb289-37" aria-hidden="true" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">train</span>(price <span class="sc">~</span> ., <span class="at">data =</span> df.main, </span>
-<span id="cb289-38"><a href="predictive.html#cb289-38" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
-<span id="cb289-39"><a href="predictive.html#cb289-39" aria-hidden="true" tabindex="-1"></a>                 <span class="at">trControl =</span> fitControl)</span>
-<span id="cb289-40"><a href="predictive.html#cb289-40" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fit_lm<span class="sc">$</span>results</span>
-<span id="cb289-41"><a href="predictive.html#cb289-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-42"><a href="predictive.html#cb289-42" aria-hidden="true" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all, <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">RMSE =</span> tmp<span class="sc">$</span>RMSE, <span class="at">SD =</span> tmp<span class="sc">$</span>RMSESD))</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="predictive.html#cb293-1" tabindex="-1"></a><span class="co"># setting-up the cross validation</span></span>
+<span id="cb293-2"><a href="predictive.html#cb293-2" tabindex="-1"></a>fitControl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="do">## 10-fold CV</span></span>
+<span id="cb293-3"><a href="predictive.html#cb293-3" tabindex="-1"></a>                           <span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</span>
+<span id="cb293-4"><a href="predictive.html#cb293-4" tabindex="-1"></a>                           <span class="at">number =</span> <span class="dv">10</span>,</span>
+<span id="cb293-5"><a href="predictive.html#cb293-5" tabindex="-1"></a>                           <span class="at">repeats =</span> <span class="dv">10</span>)</span>
+<span id="cb293-6"><a href="predictive.html#cb293-6" tabindex="-1"></a></span>
+<span id="cb293-7"><a href="predictive.html#cb293-7" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb293-8"><a href="predictive.html#cb293-8" tabindex="-1"></a></span>
+<span id="cb293-9"><a href="predictive.html#cb293-9" tabindex="-1"></a><span class="co"># gradient boosting</span></span>
+<span id="cb293-10"><a href="predictive.html#cb293-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>) <span class="co"># set seed to get the same folds for all models</span></span>
+<span id="cb293-11"><a href="predictive.html#cb293-11" tabindex="-1"></a>fit_gb <span class="ot">&lt;-</span> <span class="fu">train</span>(price <span class="sc">~</span> ., <span class="at">data =</span> df.main, </span>
+<span id="cb293-12"><a href="predictive.html#cb293-12" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">&quot;gbm&quot;</span>, </span>
+<span id="cb293-13"><a href="predictive.html#cb293-13" tabindex="-1"></a>                <span class="at">trControl =</span> fitControl,</span>
+<span id="cb293-14"><a href="predictive.html#cb293-14" tabindex="-1"></a>                <span class="at">tuneLength =</span> <span class="dv">2</span>,</span>
+<span id="cb293-15"><a href="predictive.html#cb293-15" tabindex="-1"></a>                <span class="at">verbose =</span> F)</span>
+<span id="cb293-16"><a href="predictive.html#cb293-16" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fit_gb<span class="sc">$</span>results</span>
+<span id="cb293-17"><a href="predictive.html#cb293-17" tabindex="-1"></a></span>
+<span id="cb293-18"><a href="predictive.html#cb293-18" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tmp)) {</span>
+<span id="cb293-19"><a href="predictive.html#cb293-19" tabindex="-1"></a>  all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all, <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="fu">paste</span>(<span class="st">&quot;gb[&quot;</span>, <span class="fu">paste</span>(tmp[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="at">RMSE =</span> tmp<span class="sc">$</span>RMSE[i], <span class="at">SD =</span> tmp<span class="sc">$</span>RMSESD[i]))</span>
+<span id="cb293-20"><a href="predictive.html#cb293-20" tabindex="-1"></a>}</span>
+<span id="cb293-21"><a href="predictive.html#cb293-21" tabindex="-1"></a></span>
+<span id="cb293-22"><a href="predictive.html#cb293-22" tabindex="-1"></a><span class="co"># k-nn</span></span>
+<span id="cb293-23"><a href="predictive.html#cb293-23" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb293-24"><a href="predictive.html#cb293-24" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>))</span>
+<span id="cb293-25"><a href="predictive.html#cb293-25" tabindex="-1"></a>fit_nn <span class="ot">&lt;-</span> <span class="fu">train</span>(price <span class="sc">~</span> ., <span class="at">data =</span> df.main, </span>
+<span id="cb293-26"><a href="predictive.html#cb293-26" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, </span>
+<span id="cb293-27"><a href="predictive.html#cb293-27" tabindex="-1"></a>                 <span class="at">trControl =</span> fitControl,</span>
+<span id="cb293-28"><a href="predictive.html#cb293-28" tabindex="-1"></a>                 <span class="at">tuneGrid =</span> grid)</span>
+<span id="cb293-29"><a href="predictive.html#cb293-29" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fit_nn<span class="sc">$</span>results</span>
+<span id="cb293-30"><a href="predictive.html#cb293-30" tabindex="-1"></a></span>
+<span id="cb293-31"><a href="predictive.html#cb293-31" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tmp)) {</span>
+<span id="cb293-32"><a href="predictive.html#cb293-32" tabindex="-1"></a>  all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all, <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="fu">paste</span>(<span class="st">&quot;nn[&quot;</span>, <span class="fu">paste</span>(tmp[i,<span class="dv">1</span>], <span class="at">collapse =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;]&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>), <span class="at">RMSE =</span> tmp<span class="sc">$</span>RMSE[i], <span class="at">SD =</span> tmp<span class="sc">$</span>RMSESD[i]))</span>
+<span id="cb293-33"><a href="predictive.html#cb293-33" tabindex="-1"></a>}</span>
+<span id="cb293-34"><a href="predictive.html#cb293-34" tabindex="-1"></a></span>
+<span id="cb293-35"><a href="predictive.html#cb293-35" tabindex="-1"></a><span class="co"># linear regression</span></span>
+<span id="cb293-36"><a href="predictive.html#cb293-36" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb293-37"><a href="predictive.html#cb293-37" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">train</span>(price <span class="sc">~</span> ., <span class="at">data =</span> df.main, </span>
+<span id="cb293-38"><a href="predictive.html#cb293-38" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb293-39"><a href="predictive.html#cb293-39" tabindex="-1"></a>                 <span class="at">trControl =</span> fitControl)</span>
+<span id="cb293-40"><a href="predictive.html#cb293-40" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fit_lm<span class="sc">$</span>results</span>
+<span id="cb293-41"><a href="predictive.html#cb293-41" tabindex="-1"></a></span>
+<span id="cb293-42"><a href="predictive.html#cb293-42" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all, <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">RMSE =</span> tmp<span class="sc">$</span>RMSE, <span class="at">SD =</span> tmp<span class="sc">$</span>RMSESD))</span></code></pre></div>
 <p>Now we can summarize the results, ordered by predictive quality:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="predictive.html#cb290-1" aria-hidden="true" tabindex="-1"></a>all[<span class="fu">order</span>(all<span class="sc">$</span>RMSE),]</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="predictive.html#cb294-1" tabindex="-1"></a>all[<span class="fu">order</span>(all<span class="sc">$</span>RMSE),]</span></code></pre></div>
 <pre><code>##                 Model     RMSE       SD
 ## 5             nn[,1,] 292.6001 15.38815
 ## 6             nn[,2,] 299.6639 14.76814
@@ -739,8 +749,8 @@ So, every model selection process has two main components: (1) choosing the appr
 <p>Once we are happy with our choice of model, we proceed with the final check - how the model performs on the held-out final test data. This final test is extremely important as it will catch any errors that we might have made in the estimation procedure. It will also catch any overfitting due to so-called <em>user’s degrees of freedom</em>. In practice, we typically don’t run the estimation procedure only once. Instead, it is an iterative process - if we aren’t happy with the results, we try to improve them by trying another model, setting different tuning parameters, inspecting and possiblty transforming the data, etc. With this we create a feedback loop where models and transformations with good cross-validation results are more likely to be included in the next iteration. This creates a positive bias - the estimate for the model we finally select is more likely than not to overestimate its predictive quality. In practice, this bias will typically be very small, unless we have very little data and we many different models. However, if we can afford a separate final test set, we should always use it.</p>
 <p>The problem from the previous paragraph can be illustrated by an extreme example. Imagine a training algorithm that creates a model that makes completely random predictions (its prediction for the same observation will always be the same, but the value is chosen at random for every observation). If we created a sufficient number of such models, we will eventually get a model that gets an estimated error of close to 0, even if we use cross-validation. But if we took that model and evaluated it on a held-out test set or in <em>production</em>, it would perform as poorly as random predictions. In practice, the problem is not nearly as extreme, but we should always be aware of the fact that cross-validation helps us detect models that overfit, but we can still overfit by repeating the process or by testing many different models.</p>
 <p>Finally, we test the estimated best (k = 1) nearest neighbors model on the held-out final test set:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="predictive.html#cb292-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_nn<span class="sc">$</span>finalModel, <span class="at">newdata =</span> df.test[,<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb292-2"><a href="predictive.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="fu">mean</span>((p <span class="sc">-</span> df.test<span class="sc">$</span>price)<span class="sc">^</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="predictive.html#cb296-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_nn<span class="sc">$</span>finalModel, <span class="at">newdata =</span> df.test[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb296-2"><a href="predictive.html#cb296-2" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="fu">mean</span>((p <span class="sc">-</span> df.test<span class="sc">$</span>price)<span class="sc">^</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 296.16</code></pre>
 <p>This estimate is even better than the one on the main data we used for cross-validation-based estimation. However, the difference is withing the above estimates of standard error of our measure of predictive quality, so there is no reason for concern. At this point we can conclude that our previous estimate of the generalized performance of the 1-nearest neighbor model is valid. We can also conclude that for this data predicting the price of the most similar PC performs at least as well as all the other models that we have tested.</p>
 </div>
@@ -748,11 +758,11 @@ So, every model selection process has two main components: (1) choosing the appr
 <h2><span class="header-section-number">10.6</span> Putting it all together with Python<a href="predictive.html#putting-it-all-together-with-python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A substantial part of our predictive modelling scenario can be simplified by utilizing existing implementations of models and model selection procedures. The most commonly used Python libraries and packages are <a href="https://pandas.pydata.org/">pandas</a>, <a href="https://numpy.org/">numpy</a>, <a href="https://scikit-learn.org/stable/">scikit-learn</a> and <a href="https://matplotlib.org/">matplotlib</a>. You can read more about them also in Chapter <a href="python-introduction-chapter.html#python-introduction-chapter">1</a>.</p>
 <p>Below we show how to use the same type of the algorithms as we used in the R example above in Python. First we load and overview the dataset:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb294-1"><a href="predictive.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb294-2"><a href="predictive.html#cb294-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb294-3"><a href="predictive.html#cb294-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;../data/computers.csv&quot;</span>)</span>
-<span id="cb294-4"><a href="predictive.html#cb294-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">filter</span>(items<span class="op">=</span>df.columns[<span class="dv">0</span>:<span class="dv">7</span>])</span>
-<span id="cb294-5"><a href="predictive.html#cb294-5" aria-hidden="true" tabindex="-1"></a>df.describe(include<span class="op">=</span><span class="st">&#39;all&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb298-1"><a href="predictive.html#cb298-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb298-2"><a href="predictive.html#cb298-2" tabindex="-1"></a></span>
+<span id="cb298-3"><a href="predictive.html#cb298-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;../data/computers.csv&quot;</span>)</span>
+<span id="cb298-4"><a href="predictive.html#cb298-4" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">filter</span>(items<span class="op">=</span>df.columns[<span class="dv">0</span>:<span class="dv">7</span>])</span>
+<span id="cb298-5"><a href="predictive.html#cb298-5" tabindex="-1"></a>df.describe(include<span class="op">=</span><span class="st">&#39;all&#39;</span>)</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1086,72 +1096,72 @@ NaN
 </table>
 </div>
 <p>As some of the parameters are categorical (i.e. <em>cd</em> and <em>multi</em>), we need to add parameter to include all of them in to the output. Still, the values are still treated similar to numeric types, so if we want to see counts for each categor value, we need to output them separately:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb295-1"><a href="predictive.html#cb295-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;cd&#39;</span>].value_counts()</span></code></pre></div>
-<div class="sourceCode" id="cb296"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb296-1"><a href="predictive.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="co">## no     3351</span></span>
-<span id="cb296-2"><a href="predictive.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="co">## yes    2908</span></span>
-<span id="cb296-3"><a href="predictive.html#cb296-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Name: cd, dtype: int6</span></span></code></pre></div>
-<div class="sourceCode" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="predictive.html#cb297-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;multi&#39;</span>].value_counts()</span></code></pre></div>
-<div class="sourceCode" id="cb298"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb298-1"><a href="predictive.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co">## no     5386</span></span>
-<span id="cb298-2"><a href="predictive.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="co">## yes     873</span></span>
-<span id="cb298-3"><a href="predictive.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Name: multi, dtype: int64</span></span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb299-1"><a href="predictive.html#cb299-1" tabindex="-1"></a>df[<span class="st">&#39;cd&#39;</span>].value_counts()</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb300-1"><a href="predictive.html#cb300-1" tabindex="-1"></a><span class="co">## no     3351</span></span>
+<span id="cb300-2"><a href="predictive.html#cb300-2" tabindex="-1"></a><span class="co">## yes    2908</span></span>
+<span id="cb300-3"><a href="predictive.html#cb300-3" tabindex="-1"></a><span class="co">## Name: cd, dtype: int6</span></span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="predictive.html#cb301-1" tabindex="-1"></a>df[<span class="st">&#39;multi&#39;</span>].value_counts()</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb302-1"><a href="predictive.html#cb302-1" tabindex="-1"></a><span class="co">## no     5386</span></span>
+<span id="cb302-2"><a href="predictive.html#cb302-2" tabindex="-1"></a><span class="co">## yes     873</span></span>
+<span id="cb302-3"><a href="predictive.html#cb302-3" tabindex="-1"></a><span class="co">## Name: multi, dtype: int64</span></span></code></pre></div>
 <p>Now we recode yes/no variables to binary and prepare the training and testing dataset.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb299-1"><a href="predictive.html#cb299-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;cd&#39;</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">&#39;cd&#39;</span>], categories<span class="op">=</span>df[<span class="st">&#39;cd&#39;</span>].unique()).codes</span>
-<span id="cb299-2"><a href="predictive.html#cb299-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;multi&#39;</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">&#39;multi&#39;</span>], categories<span class="op">=</span>df[<span class="st">&#39;multi&#39;</span>].unique()).codes</span>
-<span id="cb299-3"><a href="predictive.html#cb299-3" aria-hidden="true" tabindex="-1"></a>test_set <span class="op">=</span> df.sample(n<span class="op">=</span><span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb299-4"><a href="predictive.html#cb299-4" aria-hidden="true" tabindex="-1"></a>main_set <span class="op">=</span> df.drop(test_set.index)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb303-1"><a href="predictive.html#cb303-1" tabindex="-1"></a>df[<span class="st">&#39;cd&#39;</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">&#39;cd&#39;</span>], categories<span class="op">=</span>df[<span class="st">&#39;cd&#39;</span>].unique()).codes</span>
+<span id="cb303-2"><a href="predictive.html#cb303-2" tabindex="-1"></a>df[<span class="st">&#39;multi&#39;</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">&#39;multi&#39;</span>], categories<span class="op">=</span>df[<span class="st">&#39;multi&#39;</span>].unique()).codes</span>
+<span id="cb303-3"><a href="predictive.html#cb303-3" tabindex="-1"></a>test_set <span class="op">=</span> df.sample(n<span class="op">=</span><span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb303-4"><a href="predictive.html#cb303-4" tabindex="-1"></a>main_set <span class="op">=</span> df.drop(test_set.index)</span></code></pre></div>
 <p>Scikit-learn library works on numpy-based objects, so we need to transform the pandas data frames into numpy arrays (alternatively there also exist transformers to do this automatically by scikit-learn):</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb300-1"><a href="predictive.html#cb300-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> main_set.loc[:, main_set.columns <span class="op">!=</span> <span class="st">&#39;price&#39;</span>].to_numpy()</span>
-<span id="cb300-2"><a href="predictive.html#cb300-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> main_set[<span class="st">&#39;price&#39;</span>].to_numpy()</span>
-<span id="cb300-3"><a href="predictive.html#cb300-3" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> test_set.loc[:, test_set.columns <span class="op">!=</span> <span class="st">&#39;price&#39;</span>].to_numpy()</span>
-<span id="cb300-4"><a href="predictive.html#cb300-4" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> test_set[<span class="st">&#39;price&#39;</span>].to_numpy()</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb304-1"><a href="predictive.html#cb304-1" tabindex="-1"></a>X <span class="op">=</span> main_set.loc[:, main_set.columns <span class="op">!=</span> <span class="st">&#39;price&#39;</span>].to_numpy()</span>
+<span id="cb304-2"><a href="predictive.html#cb304-2" tabindex="-1"></a>y <span class="op">=</span> main_set[<span class="st">&#39;price&#39;</span>].to_numpy()</span>
+<span id="cb304-3"><a href="predictive.html#cb304-3" tabindex="-1"></a>X_test <span class="op">=</span> test_set.loc[:, test_set.columns <span class="op">!=</span> <span class="st">&#39;price&#39;</span>].to_numpy()</span>
+<span id="cb304-4"><a href="predictive.html#cb304-4" tabindex="-1"></a>y_test <span class="op">=</span> test_set[<span class="st">&#39;price&#39;</span>].to_numpy()</span></code></pre></div>
 <p>Scikit-learn does not include RMSE scoring function by default, that is why we need to prepare it first. We also prepare a fold iterator for cross validation techniques and en empty data frame to store results.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="predictive.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb301-2"><a href="predictive.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RepeatedKFold, cross_validate, GridSearchCV, RandomizedSearchCV</span>
-<span id="cb301-3"><a href="predictive.html#cb301-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-4"><a href="predictive.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> GradientBoostingRegressor</span>
-<span id="cb301-5"><a href="predictive.html#cb301-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, make_scorer</span>
-<span id="cb301-6"><a href="predictive.html#cb301-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
-<span id="cb301-7"><a href="predictive.html#cb301-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb301-8"><a href="predictive.html#cb301-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-9"><a href="predictive.html#cb301-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_squared_error_(ground_truth, predictions):</span>
-<span id="cb301-10"><a href="predictive.html#cb301-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(mean_squared_error(ground_truth, predictions))</span>
-<span id="cb301-11"><a href="predictive.html#cb301-11" aria-hidden="true" tabindex="-1"></a>RMSE <span class="op">=</span> make_scorer(mean_squared_error_, greater_is_better<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb301-12"><a href="predictive.html#cb301-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-13"><a href="predictive.html#cb301-13" aria-hidden="true" tabindex="-1"></a>rkf <span class="op">=</span> RepeatedKFold(n_splits<span class="op">=</span><span class="dv">10</span>, n_repeats<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb301-14"><a href="predictive.html#cb301-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-15"><a href="predictive.html#cb301-15" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span> <span class="op">=</span> pd.DataFrame() </span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb305-1"><a href="predictive.html#cb305-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb305-2"><a href="predictive.html#cb305-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RepeatedKFold, cross_validate, GridSearchCV, RandomizedSearchCV</span>
+<span id="cb305-3"><a href="predictive.html#cb305-3" tabindex="-1"></a></span>
+<span id="cb305-4"><a href="predictive.html#cb305-4" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> GradientBoostingRegressor</span>
+<span id="cb305-5"><a href="predictive.html#cb305-5" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, make_scorer</span>
+<span id="cb305-6"><a href="predictive.html#cb305-6" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
+<span id="cb305-7"><a href="predictive.html#cb305-7" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb305-8"><a href="predictive.html#cb305-8" tabindex="-1"></a></span>
+<span id="cb305-9"><a href="predictive.html#cb305-9" tabindex="-1"></a><span class="kw">def</span> mean_squared_error_(ground_truth, predictions):</span>
+<span id="cb305-10"><a href="predictive.html#cb305-10" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(mean_squared_error(ground_truth, predictions))</span>
+<span id="cb305-11"><a href="predictive.html#cb305-11" tabindex="-1"></a>RMSE <span class="op">=</span> make_scorer(mean_squared_error_, greater_is_better<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb305-12"><a href="predictive.html#cb305-12" tabindex="-1"></a></span>
+<span id="cb305-13"><a href="predictive.html#cb305-13" tabindex="-1"></a>rkf <span class="op">=</span> RepeatedKFold(n_splits<span class="op">=</span><span class="dv">10</span>, n_repeats<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb305-14"><a href="predictive.html#cb305-14" tabindex="-1"></a></span>
+<span id="cb305-15"><a href="predictive.html#cb305-15" tabindex="-1"></a><span class="bu">all</span> <span class="op">=</span> pd.DataFrame() </span></code></pre></div>
 <p>The R gradient boosting training was tuning the parameters <em>n.trees</em> and <em>interaction.depth</em>, while <em>shrinkage</em> and <em>n.minobsinnode</em> were left fixed. To tell the algorithm which parameters to tune, we need to prepare distributions to sample from and then run the cross validation method for a selected classifier.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb302-1"><a href="predictive.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gradient boosting</span></span>
-<span id="cb302-2"><a href="predictive.html#cb302-2" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> GradientBoostingRegressor() </span>
-<span id="cb302-3"><a href="predictive.html#cb302-3" aria-hidden="true" tabindex="-1"></a>param_distributions <span class="op">=</span> {<span class="st">&#39;learning_rate&#39;</span>: [<span class="fl">0.1</span>], <span class="st">&#39;min_samples_leaf&#39;</span>: [<span class="dv">10</span>], <span class="st">&#39;n_estimators&#39;</span>: [<span class="dv">50</span>, <span class="dv">100</span>], <span class="st">&#39;max_depth&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>]}</span>
-<span id="cb302-4"><a href="predictive.html#cb302-4" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> RandomizedSearchCV(clf, param_distributions, n_iter<span class="op">=</span><span class="dv">4</span>, scoring<span class="op">=</span>RMSE, cv<span class="op">=</span>rkf, random_state<span class="op">=</span><span class="dv">0</span>).fit(X, y)</span>
-<span id="cb302-5"><a href="predictive.html#cb302-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-6"><a href="predictive.html#cb302-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> param_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(tmp.cv_results_[<span class="st">&#39;params&#39;</span>])):</span>
-<span id="cb302-7"><a href="predictive.html#cb302-7" aria-hidden="true" tabindex="-1"></a>    tmp_test_scores <span class="op">=</span> []</span>
-<span id="cb302-8"><a href="predictive.html#cb302-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> split_scores_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>): </span>
-<span id="cb302-9"><a href="predictive.html#cb302-9" aria-hidden="true" tabindex="-1"></a>        tmp_test_scores.append(tmp.cv_results_[<span class="ss">f&#39;split</span><span class="sc">{</span>split_scores_id<span class="sc">}</span><span class="ss">_test_score&#39;</span>][param_id])</span>
-<span id="cb302-10"><a href="predictive.html#cb302-10" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> tmp.cv_results_[<span class="st">&quot;params&quot;</span>][param_id]</span>
-<span id="cb302-11"><a href="predictive.html#cb302-11" aria-hidden="true" tabindex="-1"></a>    params_list <span class="op">=</span> [params[<span class="st">&#39;learning_rate&#39;</span>], params[<span class="st">&#39;max_depth&#39;</span>], params[<span class="st">&#39;min_samples_leaf&#39;</span>], params[<span class="st">&#39;n_estimators&#39;</span>]]</span>
-<span id="cb302-12"><a href="predictive.html#cb302-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="ss">f&#39;gb[,</span><span class="sc">{</span><span class="st">&quot;,&quot;</span><span class="sc">.</span>join(<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span> params_list)<span class="sc">}</span><span class="ss">,]&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp_test_scores), <span class="st">&quot;SD&quot;</span>: np.std(tmp_test_scores)}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb302-13"><a href="predictive.html#cb302-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-14"><a href="predictive.html#cb302-14" aria-hidden="true" tabindex="-1"></a><span class="co"># k-nn</span></span>
-<span id="cb302-15"><a href="predictive.html#cb302-15" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">&#39;n_neighbors&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">10</span>]}</span>
-<span id="cb302-16"><a href="predictive.html#cb302-16" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> GridSearchCV(KNeighborsRegressor(), parameters, cv<span class="op">=</span>rkf, scoring<span class="op">=</span>RMSE).fit(X, y)</span>
-<span id="cb302-17"><a href="predictive.html#cb302-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-18"><a href="predictive.html#cb302-18" aria-hidden="true" tabindex="-1"></a>bestNNModel <span class="op">=</span> tmp.best_estimator_</span>
-<span id="cb302-19"><a href="predictive.html#cb302-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> param_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(tmp.cv_results_[<span class="st">&#39;params&#39;</span>])):</span>
-<span id="cb302-20"><a href="predictive.html#cb302-20" aria-hidden="true" tabindex="-1"></a>    tmp_test_scores <span class="op">=</span> []</span>
-<span id="cb302-21"><a href="predictive.html#cb302-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> split_scores_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>): </span>
-<span id="cb302-22"><a href="predictive.html#cb302-22" aria-hidden="true" tabindex="-1"></a>        tmp_test_scores.append(tmp.cv_results_[<span class="ss">f&#39;split</span><span class="sc">{</span>split_scores_id<span class="sc">}</span><span class="ss">_test_score&#39;</span>][param_id])</span>
-<span id="cb302-23"><a href="predictive.html#cb302-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="ss">f&#39;nn[,</span><span class="sc">{</span>tmp<span class="sc">.</span>cv_results_[<span class="st">&quot;params&quot;</span>][param_id][<span class="st">&quot;n_neighbors&quot;</span>]<span class="sc">}</span><span class="ss">,]&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp_test_scores), <span class="st">&quot;SD&quot;</span>: np.std(tmp_test_scores)}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb302-24"><a href="predictive.html#cb302-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb302-25"><a href="predictive.html#cb302-25" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression</span></span>
-<span id="cb302-26"><a href="predictive.html#cb302-26" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LinearRegression()</span>
-<span id="cb302-27"><a href="predictive.html#cb302-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-28"><a href="predictive.html#cb302-28" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> cross_validate(clf, X, y, cv<span class="op">=</span>rkf, scoring<span class="op">=</span>RMSE)</span>
-<span id="cb302-29"><a href="predictive.html#cb302-29" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="st">&#39;lm&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp[<span class="st">&#39;test_score&#39;</span>]), <span class="st">&quot;SD&quot;</span>: np.std(tmp[<span class="st">&#39;test_score&#39;</span>])}, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb306-1"><a href="predictive.html#cb306-1" tabindex="-1"></a><span class="co"># gradient boosting</span></span>
+<span id="cb306-2"><a href="predictive.html#cb306-2" tabindex="-1"></a>clf <span class="op">=</span> GradientBoostingRegressor() </span>
+<span id="cb306-3"><a href="predictive.html#cb306-3" tabindex="-1"></a>param_distributions <span class="op">=</span> {<span class="st">&#39;learning_rate&#39;</span>: [<span class="fl">0.1</span>], <span class="st">&#39;min_samples_leaf&#39;</span>: [<span class="dv">10</span>], <span class="st">&#39;n_estimators&#39;</span>: [<span class="dv">50</span>, <span class="dv">100</span>], <span class="st">&#39;max_depth&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>]}</span>
+<span id="cb306-4"><a href="predictive.html#cb306-4" tabindex="-1"></a>tmp <span class="op">=</span> RandomizedSearchCV(clf, param_distributions, n_iter<span class="op">=</span><span class="dv">4</span>, scoring<span class="op">=</span>RMSE, cv<span class="op">=</span>rkf, random_state<span class="op">=</span><span class="dv">0</span>).fit(X, y)</span>
+<span id="cb306-5"><a href="predictive.html#cb306-5" tabindex="-1"></a></span>
+<span id="cb306-6"><a href="predictive.html#cb306-6" tabindex="-1"></a><span class="cf">for</span> param_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(tmp.cv_results_[<span class="st">&#39;params&#39;</span>])):</span>
+<span id="cb306-7"><a href="predictive.html#cb306-7" tabindex="-1"></a>    tmp_test_scores <span class="op">=</span> []</span>
+<span id="cb306-8"><a href="predictive.html#cb306-8" tabindex="-1"></a>    <span class="cf">for</span> split_scores_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>): </span>
+<span id="cb306-9"><a href="predictive.html#cb306-9" tabindex="-1"></a>        tmp_test_scores.append(tmp.cv_results_[<span class="ss">f&#39;split</span><span class="sc">{</span>split_scores_id<span class="sc">}</span><span class="ss">_test_score&#39;</span>][param_id])</span>
+<span id="cb306-10"><a href="predictive.html#cb306-10" tabindex="-1"></a>    params <span class="op">=</span> tmp.cv_results_[<span class="st">&quot;params&quot;</span>][param_id]</span>
+<span id="cb306-11"><a href="predictive.html#cb306-11" tabindex="-1"></a>    params_list <span class="op">=</span> [params[<span class="st">&#39;learning_rate&#39;</span>], params[<span class="st">&#39;max_depth&#39;</span>], params[<span class="st">&#39;min_samples_leaf&#39;</span>], params[<span class="st">&#39;n_estimators&#39;</span>]]</span>
+<span id="cb306-12"><a href="predictive.html#cb306-12" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="ss">f&#39;gb[,</span><span class="sc">{</span><span class="st">&quot;,&quot;</span><span class="sc">.</span>join(<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span> params_list)<span class="sc">}</span><span class="ss">,]&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp_test_scores), <span class="st">&quot;SD&quot;</span>: np.std(tmp_test_scores)}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb306-13"><a href="predictive.html#cb306-13" tabindex="-1"></a></span>
+<span id="cb306-14"><a href="predictive.html#cb306-14" tabindex="-1"></a><span class="co"># k-nn</span></span>
+<span id="cb306-15"><a href="predictive.html#cb306-15" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">&#39;n_neighbors&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">10</span>]}</span>
+<span id="cb306-16"><a href="predictive.html#cb306-16" tabindex="-1"></a>tmp <span class="op">=</span> GridSearchCV(KNeighborsRegressor(), parameters, cv<span class="op">=</span>rkf, scoring<span class="op">=</span>RMSE).fit(X, y)</span>
+<span id="cb306-17"><a href="predictive.html#cb306-17" tabindex="-1"></a></span>
+<span id="cb306-18"><a href="predictive.html#cb306-18" tabindex="-1"></a>bestNNModel <span class="op">=</span> tmp.best_estimator_</span>
+<span id="cb306-19"><a href="predictive.html#cb306-19" tabindex="-1"></a><span class="cf">for</span> param_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(tmp.cv_results_[<span class="st">&#39;params&#39;</span>])):</span>
+<span id="cb306-20"><a href="predictive.html#cb306-20" tabindex="-1"></a>    tmp_test_scores <span class="op">=</span> []</span>
+<span id="cb306-21"><a href="predictive.html#cb306-21" tabindex="-1"></a>    <span class="cf">for</span> split_scores_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>): </span>
+<span id="cb306-22"><a href="predictive.html#cb306-22" tabindex="-1"></a>        tmp_test_scores.append(tmp.cv_results_[<span class="ss">f&#39;split</span><span class="sc">{</span>split_scores_id<span class="sc">}</span><span class="ss">_test_score&#39;</span>][param_id])</span>
+<span id="cb306-23"><a href="predictive.html#cb306-23" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="ss">f&#39;nn[,</span><span class="sc">{</span>tmp<span class="sc">.</span>cv_results_[<span class="st">&quot;params&quot;</span>][param_id][<span class="st">&quot;n_neighbors&quot;</span>]<span class="sc">}</span><span class="ss">,]&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp_test_scores), <span class="st">&quot;SD&quot;</span>: np.std(tmp_test_scores)}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb306-24"><a href="predictive.html#cb306-24" tabindex="-1"></a>    </span>
+<span id="cb306-25"><a href="predictive.html#cb306-25" tabindex="-1"></a><span class="co"># linear regression</span></span>
+<span id="cb306-26"><a href="predictive.html#cb306-26" tabindex="-1"></a>clf <span class="op">=</span> LinearRegression()</span>
+<span id="cb306-27"><a href="predictive.html#cb306-27" tabindex="-1"></a></span>
+<span id="cb306-28"><a href="predictive.html#cb306-28" tabindex="-1"></a>tmp <span class="op">=</span> cross_validate(clf, X, y, cv<span class="op">=</span>rkf, scoring<span class="op">=</span>RMSE)</span>
+<span id="cb306-29"><a href="predictive.html#cb306-29" tabindex="-1"></a><span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="st">&#39;lm&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp[<span class="st">&#39;test_score&#39;</span>]), <span class="st">&quot;SD&quot;</span>: np.std(tmp[<span class="st">&#39;test_score&#39;</span>])}, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <p>Now we can summarize the results, ordered by predictive quality:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb303-1"><a href="predictive.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>.sort_values(<span class="st">&#39;RMSE&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb307-1"><a href="predictive.html#cb307-1" tabindex="-1"></a><span class="bu">all</span>.sort_values(<span class="st">&#39;RMSE&#39;</span>)</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1341,9 +1351,9 @@ lm
 </table>
 </div>
 <p>Finally, we test the estimated best (k = 5) nearest neighbors model on the held-out final test set:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb304-1"><a href="predictive.html#cb304-1" aria-hidden="true" tabindex="-1"></a>y_predicted <span class="op">=</span> bestNNModel.predict(X_test)</span>
-<span id="cb304-2"><a href="predictive.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(np.sqrt(np.mean((y_predicted <span class="op">-</span> y_test)<span class="op">**</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb305"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb305-1"><a href="predictive.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 320.45</span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb308-1"><a href="predictive.html#cb308-1" tabindex="-1"></a>y_predicted <span class="op">=</span> bestNNModel.predict(X_test)</span>
+<span id="cb308-2"><a href="predictive.html#cb308-2" tabindex="-1"></a><span class="bu">round</span>(np.sqrt(np.mean((y_predicted <span class="op">-</span> y_test)<span class="op">**</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb309-1"><a href="predictive.html#cb309-1" tabindex="-1"></a><span class="co">## 320.45</span></span></code></pre></div>
 </div>
 <div id="further-reading-and-references-9" class="section level2 hasAnchor" number="10.7">
 <h2><span class="header-section-number">10.7</span> Further reading and references<a href="predictive.html#further-reading-and-references-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1370,6 +1380,7 @@ lm
 <li>Use cross-validation to find the optimal power of the polynomial regression on the toy 2-variable dataset from the beginning of this chapter.</li>
 <li>On the toy 2-variable dataset compare polynomial regression with a regression tree, random forests, a feed-forward neural network and another traning algorithm of choice. Comment on the models’ predictive performance, computation time (training and prediction) and interpretability.</li>
 <li>Consider 4 different classification training algorithms: logistic regression, k-nearest neighbors, a feed-forward neural network (with 1 hidden layer with no more than 10 neurons) and a decision tree (for example CART). Create 4 different binary classification datasets, each with two input variables <span class="math inline">\(x \in [0,1]\)</span> and <span class="math inline">\(y \in [0,1]\)</span> and a binary outcome <span class="math inline">\(c \in \{0,1\}\)</span>, such that each of the four training algorithms will produce the best model for one of the datasets. That is, so that each dataset is most suited to the inductive bias of one of the training algorithms.</li>
+<li>Follow and run parts of a <a href="data/PredictiveModeling/predictive_modeling_showcase.zip">iterative modeling showcase example</a>.</li>
 </ol>
 
 </div>

@@ -36,7 +36,7 @@ A _Repository_ or _Repo_ is a folder that contains all the project files and the
 ### Clone
 
 
-```bash
+``` bash
 $ git clone <Repo URL>
 ```
 
@@ -49,7 +49,7 @@ _CAUTION_: You cannot merge two different locallrepositories. So, at project sta
 ### Adding
 
 
-```bash
+``` bash
 $ git add <filename or folder>
 ```
 
@@ -58,7 +58,7 @@ By default, Git monitors the project folder for changes in files. When you add n
 ### Commit
 
 
-```bash
+``` bash
 $ git commit -m "<commit message>"
 ```
 
@@ -69,7 +69,7 @@ _HINT_: If your commit would consist of only the files that Git is already track
 ### Push
 
 
-```bash
+``` bash
 $ git push <remote name> <branch name>
 ```
 
@@ -78,7 +78,7 @@ _Push_ command allows you to copy all the changes from the local repo to your re
 ### Pull
 
 
-```bash
+``` bash
 $ git pull <remote name> <branch name>
 ```
 
@@ -89,7 +89,7 @@ The _pull_ command is analogous to the push command but is intended to copy chan
 *Step 0:* First we need to install Git. Visit [https://git-scm.com/downloads](https://git-scm.com/downloads),  download the package for your system and install. Depending on your OS there might also exist package managers that provide Git. After you install Git, the 'git' command should be available to you in the terminal:
 
 
-```bash
+``` bash
 $ git
 usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
@@ -105,7 +105,7 @@ Later in the example we use GitHub and if you wish to use SSH links, you need to
 *Step 1:* Let's say you have started with a hobby mini project and wrote a simple script in a file _greeter.py_:
 
 
-```python
+``` python
 def main():
   print("Ehlo World!")
   
@@ -117,7 +117,7 @@ Now you would like to save it in a Git repository.
 *Step 2:* Move to the folder where _greeter.py_ is located and create an empty Git repository using a command `git init`. You can observe that a new hidden folder named .git was created in that directory and this is where your local repository resides.
 
 
-```bash
+``` bash
 $ git init
 Initialized empty Git repository in /Users/slavkoz/Downloads/ds_repo/.git/
 
@@ -132,7 +132,7 @@ drwxr-xr-x    9 slavkoz  staff   288 Aug 10 13:34 .git
 To check the status of your repo, issue `git status`:
 
 
-```bash
+``` bash
 $ git status
 On branch master
 
@@ -148,7 +148,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 *Step 3:* Let's tell Git to track our _greeter.py_ file and add it to the list for the next commit.
 
 
-```bash
+``` bash
 $ git add greeter.py
 
 $ git status
@@ -164,7 +164,7 @@ Changes to be committed:
 Now the current version of the _greeter.py_ is staged for commit and we can add it to our repository.
 
 
-```bash
+``` bash
 $ git commit -m "Initial version of greeter function."
 [master (root-commit) e2f5820] Initial version of greeter function.
  1 file changed, 4 insertions(+)
@@ -180,7 +180,7 @@ After all the changes are committed, we double-check there are no uncommited cha
 *Step 4:* In the greeter script we have a typo, so we change the text "Ehlo World!" to "Hello Data Science!". We must save the file in our text editor so the changes are written to disk, before we proceed! If we check the status of the repo, we will see our file has changed. All the changed files can be commited directly using the `git commit -a -m "..."` command. If we do not use the `-a` parameter, we need to first add files to a commit and then issue the commit command. 
 
 
-```bash
+``` bash
 $ git status
 On branch master
 Changes not staged for commit:
@@ -202,7 +202,7 @@ nothing to commit, working tree clean
 *Step 5:* We would now like to provide a more personal script, so we change the _greeter.py_ as follows: 
 
 
-```python
+``` python
 def main():
   student = input("Please enter your name: ")
   
@@ -214,7 +214,7 @@ main()
 Again, add the file to stage and commit it to the repo.
 
 
-```bash
+``` bash
 $ git status
 On branch master
 Changes not staged for commit:
@@ -238,7 +238,7 @@ The _commit_ command returns how many files were changes and how many lines were
 *Step 6:* Now our project has some history,
 
 
-```bash
+``` bash
 $ git log
 commit 29710cc16bcaca476d35456fa7453a4f9b422ea6 (HEAD -> master)
 Author: Slavko <slavko@zitnik.si>
@@ -273,7 +273,7 @@ When creating a public repository it may be important to define a license for yo
 We already have a local repository so we refer to the second set of commands. The first of those commands adds a link to the remote repository and names it "origin" - we could also use any other name. The second command copies all the changes (three commits) to the remote repository to branch named master (default branch). The parameter '-u' sets "origin" as the default remote repository, so we can later use commands _git push_/_git pull_ without parameters.
 
 
-```bash
+``` bash
 $ git remote add origin https://github.com/szitnik/DS-Project.git
 
 $ git push -u origin master
@@ -315,7 +315,7 @@ Developer B now changes the text in code to "... you in the Data Science track a
 *Step 7:* Developer A later changes the text in the code to "... you in the Data Science track at the University of Ljubljana!", commits file and tries to push the file to the remote repo, after the change by developer B has already been pushed:
 
 
-```bash
+``` bash
 $ git commit -a -m "Uni. Ljubljana added."
 [master d263b01] Uni. Ljubljana added.
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -334,7 +334,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Developer A's push is rejected, because the remote repository contains further commits before his change. A needs to issue _git pull_ to first integrate changes locally and then push them to the remote repo. 
 
 
-```bash
+``` bash
 $ git pull
 remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
@@ -355,7 +355,7 @@ Had A and B worked on separate parts of the project, the changes would be automa
 In the conflicted file we are presented both conflicting changes. To resolve the conflict we need to remove lines added by Git and keep the final code (for example, A's code). Then a new commit and push can be made with merged changes.
 
 
-```bash
+``` bash
 # Manually resolve conflict
 $ nano greeter.py 
 
@@ -387,7 +387,7 @@ We have already mentioned that the default branch of a Git repository is a branc
 First, we need to create a new branch using the command `git branch <branch-name>`. The command without the name parameter lists branches in the local repo and shows which branch is currently active.
 
 
-```bash
+``` bash
 $ git branch parameters-addition
 
 $ git branch
@@ -407,7 +407,7 @@ Everything we do with Git is done locally. To make this branch available to othe
 As we are now in a new branch, we update the _greeter.py_ code as follows:
 
 
-```python
+``` python
 def main():
   print("###################################\nSTUDENT ENROLLMENT FORM\n###################################")
 
@@ -425,7 +425,7 @@ Then we commit the change and push it to the remote repo. The testers can now te
 We move back to the master branch (our changes above are not available there) using the command `git checkout <branch-name>`. We can now merge the *parameters-addition* branch into master using the `git merge <branch name> -m "message"` command.
 
 
-```bash
+``` bash
 $ git checkout master
 Switched to branch 'master'
 Your branch is up to date with 'origin/master'.
@@ -491,4 +491,4 @@ Students should also consciously use source control to systematically keep track
 
 1. Take one of your (finished) faculty projects, create an empty GitHub repository and add all of its files to the repository. In a separate commit create a *.gitignore* file (populate it with common ignores related to your project) and a *README.md* file. Push everything to remote GitHub repository. Create a separate branch named *cleaning* and check it out. Now, remove any un-needed files, update few files, update *README.md*, commit and push changes. Go back to the *master* branch and change the same line in *README.md*, commit and push. Then merge branch *cleaning* into *master* and resolve conflicts. After merge commit and push. Remove *cleaning* branch locally and remotely.
 
-2. Try to find an error or potential improvement to this Introduction to datascience book. Clone the book's Git repository, make the change and submit a pull request. Then make at least one suggestion of a more comprehensive change to the book (for example, what could be explained in more or less detail, is there an important topic that isn't covered, etc.) by submitting an issue.
+2. Try to find an error or potential improvement to this Introduction to datascience book. Fork the [book's Git repository](https://github.com/fri-datascience/course_ids), make the change and submit a pull request. Then make at least one suggestion of a more comprehensive change to the book (for example, what could be explained in more or less detail, is there an important topic that isn't covered, etc.) by submitting an issue. If you haven't yet contributed to a public repository, first check out the [first contributions guide by Github](https://github.com/firstcontributions/first-contributions).

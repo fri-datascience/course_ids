@@ -46,7 +46,6 @@ That being said, Python is in most cases much more suitable than R in terms of d
 Before using Python, we need to select and install a Python distribution. We can choose to install a pure Python distribution or an Anaconda Python distribution. Some advantages of using an Anaconda distribution are:
 
 * Anaconda makes it easy for the user to install the Python version of choice. Anaconda will also resolve issues with administrator privileges if a user does not have administrative rights for his system.
-* [Anaconda Accelerate](https://docs.continuum.io/accelerate/index.html) can provide the user with high performance computing and several other components.
 * Anaconda removes bottlenecks involved in installing the right packages while taking into considerations their compatibility with various other packages as might be encountered while using the standard *pip* package manager.
 * There is no risk of breaking required system libraries. There are also many open source packages available for Anaconda, which are not within the pip repository.
 
@@ -54,10 +53,10 @@ We encourage you to use the Anaconda Python distribution.
 
 ### Anaconda distribution installation
 
-Install the desired [Anaconda Python distribution](https://www.anaconda.com/distribution/). A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment named *ids*, issue the following command:
+We suggest you install [Miniconda](https://docs.anaconda.com/miniconda/), which is a minimal installer for conda. A useful way of managing multiple Python projects is to use Conda environments. An environment enables you to use a specific version of Python along with specific dependencies completely separately on a single system. To create and use an environment named *ids*, issue the following command:
 
 
-```bash
+``` bash
 $ conda create -n ids
 $ conda activate ids
 ```
@@ -65,7 +64,7 @@ $ conda activate ids
 At the beginning of a line in the console you can see currently active environment. To run Python within this evironment, issue the `python` command in the console. You should see something similar to the following:
 
 
-```bash
+``` bash
 (ids)$ python
 Python 3.6.8 |Anaconda, Inc.| (default, Dec 29 2018, 19:04:46)
 [GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
@@ -84,7 +83,7 @@ You can also install a pure Python distribution directly to your system from [th
 To run Python, issue the `python` command in the console (there may be more interpreters installed on your machine and Python 3.5 might be run also using `python3.5`). After running the command, you should see something similar to the following:
 
 
-```bash
+``` bash
 $ python
 Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25)
 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
@@ -95,7 +94,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 When using the distribution directly, all packages and settings are changed system-wide, which may lead to problems when maintaining multiple Python projects (e.g. problems in having installed different versions of a specific library). Similar to an Anaconda distribution, one can use *virtualenv* virtual environments. First, we need to install *virtualenv* via *pip*:
 
 
-```bash
+``` bash
 $ pip3 install virtualenv
 $ virtualenv --version
 16.6.1
@@ -104,7 +103,7 @@ $ virtualenv --version
 To set up a virtual environment for a project first create a project folder and set up a new environment in that folder. The latter will create Python executables within that folder and a copy of the *pip* library that is used to install libraries local to the environment (parameter *p* is optional).
 
 
-```bash
+``` bash
 $ cd ids_project
 $ virtualenv -p /usr/local/bin/python2 ids
 ```
@@ -112,7 +111,7 @@ $ virtualenv -p /usr/local/bin/python2 ids
 To activate the environment, run the script `venv/bin/activate` from the project folder and use project specific Python:
 
 
-```bash
+``` bash
 $ source ids/bin/activate
 (ids)$ python
 Python 2.7.14 (default, Mar  9 2018, 23:57:12)
@@ -124,7 +123,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 After you finish working on your project, deactivate the current virtual environment:
 
 
-```bash
+``` bash
 (ids)$ deactivate
 $
 ```
@@ -134,14 +133,14 @@ $
 An Anaconda distribution provides its own [package repository](https://anaconda.org/anaconda/repo) and Anaconda packages can be installed as follows:
 
 
-```bash
+``` bash
 $ conda install nltk
 ```
 
 If a package is not available in the official repository, it may be available from some private or community-led channels, for example *conda-forge*:
 
 
-```bash
+``` bash
 $ conda install -c conda-forge pyspark
 ```
 
@@ -150,14 +149,14 @@ Many useful libraries are available online, mostly in the [Python Package Index 
 Packages can be installed using the `pip` command. For example, to install the [NLTK library](https://www.nltk.org/), we issue the following command: 
 
 
-```bash
+``` bash
 $ pip install nltk
 ```
 
 In some cases packages will be prebuilt for a specific OS, because the installation of its dependencies can be tedious. In such cases, *wheel packages* can be provided and installed using the following command:
 
 
-```bash
+``` bash
 $ pip install YOUR_DOWNLOADED_PACKAGE.whl
 ```
 
@@ -168,7 +167,7 @@ The [Jupyter Notebook](https://jupyter.org/) is an open-source web application t
 To add support for Anaconda environments to Jupyter, issue the command below. This will add Conda extensions to Jupyter. The feature will be installed for currently active environment. When running Jupyter, you will notice a Conda tab in the file browser, which will enable the listing and selection of existing Anaconda environments, overview of the installed packages in the environment, installing new packages from the available package list, checking for updates packages and updating packages in the environment.
 
 
-```bash
+``` bash
 $ conda install nb_conda
 ```
 
@@ -177,7 +176,7 @@ $ conda install nb_conda
 Prior to running a Jupyter notebook we first need to start a Jupyter web server by issuing a command:
 
 
-```bash
+``` bash
 $ jupyter notebook
 ```
 
@@ -203,7 +202,7 @@ All the examples presented in this section are also provided in a [Jupyter noteb
 Let's first say hello:
 
 
-```python
+``` python
 print("Hello Data science!")
 ```
 
@@ -214,7 +213,7 @@ print("Hello Data science!")
 Now we know how to print something to the output. Before we dive into details, let's first check how we can easily output literal values and variables. Let's have a variable *name* and *age* with specific values and form a form a final string to show to a user.
 
 
-```python
+``` python
 name = "Mark"
 age = 42
 
@@ -258,7 +257,7 @@ String values are represented as sequence of characters within \" or \'.
 A constant *None* is defined to represent the nonexistence of a value.
 
 
-```python
+``` python
 a = 2864
 print(f"Type of a is {type(a)}")
 b = 18+64j
@@ -284,7 +283,7 @@ print(f"Type of f is {type(e)}")
 Basic data manipulations:
 
 
-```python
+``` python
 a = 3  
 b = 2.5  
 c = a + b 
@@ -312,7 +311,7 @@ print(f"String multiplication: {c}")
 Basic strings manipulations:
 
 
-```python
+``` python
 a = "Data science" 
 b = 'a multi-disciplinary field' # we can use double or single quotes
 c = a + " " + b
@@ -340,7 +339,7 @@ print(f"Substring replacement: '{management}'")
 Explore more about strings in the official [Python 3 documentation for strings](https://docs.python.org/3/library/string.html).
 
 
-```python
+``` python
 # string package
 import string
 print(f"Punctuation symbols: '{string.punctuation}'")
@@ -353,7 +352,7 @@ print(f"Punctuation symbols: '{string.punctuation}'")
 String manipulation is essential for parsing and providing machine readable outputs when needed. Below we show additional two examples of how to set print length of a variable using *f-string* method. For more sophisticated examples, see [https://pyformat.info/](https://pyformat.info/) - *f-string* method is the new equivalent of the *format* method.
 
 
-```python
+``` python
 number = 6/.7
 text = "dyslexia"
 
@@ -373,7 +372,7 @@ print(format1)
 Below we create some of the data structures available in Python. Explore more of their functionality in [the official Python documentation](https://docs.python.org/3/tutorial/datastructures.html).
 
 
-```python
+``` python
 l = [1, 2, 3, "a", 10] # List  
 t = (1, 2, 3, "a", 10) # Tuple (immutable)
 s = {"a", "b", "c"}     # Set
@@ -381,7 +380,7 @@ s = {"a", "b", "c"}     # Set
 
 
 
-```python
+``` python
 dict = {
   "title": "Introduction to Data Science",
   "year": 1,
@@ -394,7 +393,7 @@ dict["classroom"] = "P03"
 We often use inline functions to map, filter or calculate values on an iterable data structure. For example, to apply a function to all values (map), filter out unnecessary values or use all values in a calculation:
 
 
-```python
+``` python
 # Python 3 import for reduce (not needed for Python 2)
 from functools import reduce 
 
@@ -416,7 +415,7 @@ print(f"Sum value: {sum}")
 Functions filter, reduce and map create a generator since Python 3. Generators enable declaring functions that behaves like an iterator. To print all the values of the aobve generator objects, we need to evaluate them, for example transform them into a list.
 
 
-```python
+``` python
 print(f"Doubled: {list(doubled)}")
 print(f"Filtered: {list(filtered)}")
 ```
@@ -429,7 +428,7 @@ print(f"Filtered: {list(filtered)}")
 In comparison to generators we propose to use list comprehension on iterable types, which is more readable and also faster.
 
 
-```python
+``` python
 l = [6, 8, 22, 4, 12]
 newList = [x**2 for x in l if x >= 5 and x <= 10]
 print(f"Squared values between 5 and 10: {newList}")
@@ -442,7 +441,7 @@ Squared values between 5 and 10: [36, 64]
 Sometimes we would like to generate a repeated sequence of select (i.e. *slice*) only specific values from a string, bytes, tuple, list or range. Slice object represents the indices specified by `range(start, stop, step)`:
 
 
-```python
+``` python
 l = list(range(10))
 print(f"List: {l}")
 
@@ -460,7 +459,7 @@ Sliced list: [2, 4, 6]
 Many operations can be written inline or using multiple lines. Let's check how to use *if* statements and *loops*. 
 
 
-```python
+``` python
 a = 2  
 if a > 1:  
     print('a is greater than 1')
@@ -475,7 +474,7 @@ else:
 ```
 
 
-```python
+``` python
 # Inline if statement
 a = 2
 print('a is greater than 1' if a > 1 else 'a is lower or equal to 2')
@@ -488,7 +487,7 @@ print('a is greater than 1' if a > 1 else 'a is lower or equal to 2')
 Loops:
 
 
-```python
+``` python
 for i in range(4, 6):
     print(i)
 ```
@@ -498,7 +497,7 @@ for i in range(4, 6):
 ## 5
 ```
 
-```python
+``` python
 people_list = ['Ann', 'Bob', 'Charles']  
 for person in people_list:
     print(person)
@@ -510,7 +509,7 @@ for person in people_list:
 ## Charles
 ```
 
-```python
+``` python
 i = 1
 while i <= 3:
   print(i)
@@ -528,7 +527,7 @@ while i <= 3:
 We organize (encapsulate) our code into logical units, so we can reuse them and reduce the amount of duplicate, boilerplate code. Below write the function *greetMe* that takes one argument (*name*) as input and prints some string. The function's code will be executed when we call the function.
 
 
-```python
+``` python
 def greetMe(name):
   print(f"Hello my friend {name}!")
   
@@ -542,7 +541,7 @@ greetMe("Janez")
 Sometimes our functions will have many arguments, some of which might be optional or have a default value. In the example below we add a argument with a default value. If there are multiple optional arguments we can set their values by naming them.
 
 
-```python
+``` python
 def greet(name, title = "Mr."):
   print(f"Hello {title} {name}!")
   
@@ -560,7 +559,7 @@ greet("Mojca", title = "Mrs.")
 A function can also call itself and return a value.
 
 
-```python
+``` python
 def sumUpTo(value):
   if value > 0:
     return value + sumUpTo(value-1)
@@ -577,7 +576,7 @@ print(f"Sum of all positive integers up to 50 is: {sumUpTo(50)}")
 Functions can also return multiple values in a tuple. Tuple can be then also automatically unpacked into separate values:
 
 
-```python
+``` python
 def calculateHealth(height_cm, weight_kg, age, gender = 'male'):
   # Body mass index
   bmi = weight_kg/(height_cm/100)**2
@@ -614,7 +613,7 @@ Mojca:
 Python encapsulates variables within functions - they are not accessible outside the function. When we want variables to be accessible globally, we can use the *global* keyword. This can result in some difficulties to predict behaviour and interactions, so use with caution!
 
 
-```python
+``` python
 def playWithVariables(value1, list1):
   global globVal 
   globVal = 3
@@ -639,7 +638,7 @@ print(f"After function: {value1} and {list1} and {globVal}")
 In some cases we can also define functions that accept an arbitrary number of unnamed (*args*) and/or named (*kwargs*) arguments.
 
 
-```python
+``` python
 def paramsWriter(*args, **kwargs):
   print(f"Non-named arguments: '{args}'\nNamed arguments: '{kwargs}'")
 
@@ -654,7 +653,7 @@ paramsWriter(1, "a", [1,5,6], studentIds = [234, 451, 842], maxScore = 100.0)
 When naming functions, classes, objects, packages, etc. we need to be careful not to overwrite existing objects. Bugs such as this one can be difficult to find:
 
 
-```python
+``` python
 def greeter():
   print("Hello to everyone!")
   
@@ -679,7 +678,7 @@ The class below consists of one class variable, one class method, three object m
 Below we show an example of object declaration and its use. A detailed explanation can be found in the [official Python documentation](https://docs.python.org/3/tutorial/classes.html).
 
 
-```python
+``` python
 class Classroom:
   class_counter = 0
   
@@ -699,7 +698,7 @@ class Classroom:
 ```
 
 
-```python
+``` python
 class1 = Classroom("best of millenials")
 class2 = Classroom("old sports")
 
@@ -736,7 +735,7 @@ To open a file, call function *open(FILENAME, MODE)*. The function returns handl
 Writing content to a file:
 
 
-```python
+``` python
 file = open("ids.txt","w+")
 for i in range(10):
      file.write(f"This is line {i}.\r\n")
@@ -746,7 +745,7 @@ file.close()
 Reading content (output omitted):
 
 
-```python
+``` python
 #Open the file and read the contents
 file = open("ids.txt", "r")
 
@@ -766,7 +765,7 @@ for line in file:
 It is also useful to read and write JSON data directly. Python can automatically write and read JSON files for built-in objects:
 
 
-```python
+``` python
 import json
 
 json_obj = {'name': 'Janez', 'age': 'Novak', 'marks': [{'OPB': 8, 'IDS': 6, 'WIER': 10}]}
@@ -796,7 +795,7 @@ IDEs are generally large and take time to download and install. You may also nee
 Below we list some popular Python IDEs/code editors that are available for major operating systems (Windows, Linux and Mac OS):
 
 * [**IDLE**](https://docs.python.org/3/library/idle.html) - the default code editor that installs together with the Python distribution. It includes a Python shell window (interactive interpreter), auto-completion, syntax highlighting, smart indentation and a basic integrated debugger. We do not recommend it for larger projects.
-* [**Sublime Text**](https://www.sublimetext.com/), [**Atom**](https://atom.io/), [**Visual Studio Code**](https://code.visualstudio.com/) - highly customizable code editors with rich features of an IDE. They support installation of additional extensions and also provide intelligent code completion, linting for potential errors, debugging, unit testing and so on. These editors are becoming quite popular among Python and web developers.
+* [**Sublime Text**](https://www.sublimetext.com/), [**Visual Studio Code**](https://code.visualstudio.com/) - highly customizable code editors with rich features of an IDE. They support installation of additional extensions and also provide intelligent code completion, linting for potential errors, debugging, unit testing and so on. These editors are becoming quite popular among Python and web developers.
 * [**PyCharm**](https://www.jetbrains.com/pycharm/) - an IDE for professional developers. There are two versions available: a free Community version and a paid Professional version which is free for students only. PyCharm provides all major features of a good IDE: code completion, code inspections, error-highlighting and fixes, debugging, version control system and code refactoring, etc..
 
 ## Python ecosystem for Data Science
@@ -836,7 +835,9 @@ Data science students should work towards obtaining the knowledge and the skills
 ## Practice problems
 
 1. Install Anaconda Python, run the [provided Jupyter notebook](data/Python programming language.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additional packages manually).
-2. Try different Python IDEs and form a personal opinion of their advantages and disadvantages.
+2. One of the most common tools for data manipulation in Python are the Pandas and NumPy libraries. Explore the [10 minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html) and [NumPy quickstart](https://numpy.org/devdocs/user/quickstart.html) guides. Try solving some of the exercises from:
+   - [100 Pandas puzzles](https://github.com/ajcr/100-pandas-puzzles),
+   - [100 NumPy exercises](https://github.com/rougier/numpy-100)
 3. Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras-io/tree/master/examples).
 4. Download [the CMU Seminar Announcements dataset](https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz) and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar announcement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.
 5. Go through [Pandas showcase](data/Pandas showcase.zip) and practise using the library as it allows for powerful features.

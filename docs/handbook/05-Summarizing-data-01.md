@@ -33,7 +33,7 @@ In the case of unimodal approximately symmetrical distributions, such as the uni
 For example, observe the Gamma(1.5, 0.1) distribution and its mean, median and mode:
 
 
-```r
+``` r
 x <- seq(0, 50, 0.01)
 a <- 1.5
 b <- 0.1
@@ -54,7 +54,7 @@ ggplot(data.frame(x,y), aes(x = x, y = y)) + geom_line() + ylab("p(x)") +
 In the case of multi-modal distributions, no single measure of central tendency will adequately summarize the distribution - they will all be misleading. For example, look at this bimodal distribution:
 
 
-```r
+``` r
 x <- seq(-10, 20, 0.01)
 y <- 0.6 * dnorm(x, 2, 1) + 0.4 * dnorm(x, 12, 2)
 z <- c(rnorm(600, 2, 1), rnorm(400, 12, 2)) # approximating the median
@@ -88,7 +88,7 @@ In the case of distributions that are approximately normal, the mean and standar
 But, as before, the more we deviate from normality, the less meaningful standard deviation becomes and it makes more sense to use quantile-based intervals. For example, if we estimate the mean and $\pm$ 2 standard deviations for samples from the Gamma distribution from before, we get the following:
 
 
-```r
+``` r
 set.seed(0)
 x <- rgamma(1000, a, b)
 cat(sprintf("%.2f +/- %.2f\n", mean(x), 2*sd(x)))
@@ -101,7 +101,7 @@ cat(sprintf("%.2f +/- %.2f\n", mean(x), 2*sd(x)))
 That is, the 95% interval estimated this way also includes negative values, which is misleading and absurd - Gamma distributed variables are positive. Computing the IQR or the 95% range interval provides a more sensible summary of this skewed distribution and, together with the mean also serve as an indicator that the distribution is skewed (the mean is not the centre of the intervals):
 
 
-```r
+``` r
 set.seed(0)
 x <- rgamma(1000, a, b)
 cat(sprintf("%.2f, IQR = [%.2f, %.2f], 95pct = [%.2f, %.2f]\n", mean(x), quantile(x, 0.25), quantile(x, 0.75), quantile(x, 0.025), quantile(x, 0.975)))
@@ -122,7 +122,7 @@ The following example shows the kurtosis and skewness for a gamma, normal, logis
 
 
 
-```r
+``` r
 library(moments)
 set.seed(0)
 tmp <- NULL
@@ -150,7 +150,7 @@ Nominal variables are typically represented with the relative frequencies or pro
 One summary that is often useful for summarizing the dispersion or the uncertainty associated with a nominal variable is **entropy**. Observe the following example:
 
 
-```r
+``` r
 entropy <- function(x) {
   x <- x[x != 0]
   -sum(x * log2(x))
@@ -163,7 +163,7 @@ entropy(c(0.5, 0.5)) # fair coin
 ## [1] 1
 ```
 
-```r
+``` r
 entropy(c(0.8, 0.2)) # biased coin
 ```
 
@@ -171,7 +171,7 @@ entropy(c(0.8, 0.2)) # biased coin
 ## [1] 0.7219281
 ```
 
-```r
+``` r
 entropy(c(1.0, 0.0)) # coin with heads on both sides
 ```
 
@@ -184,7 +184,7 @@ A fair coin has exactly 1 bit of entropy - we receive 1 bit of information by ob
 When we want to compare entropy across variables with different numbers of levels/categories, we can normalize it by dividing it with the maximum achieavable entropy. For example, observe a fair coin and a fair 6-sided die - in absolute terms, the 6-sided die has higher entropy due to having more possible values. However, relatively to the maximum achievable entropy, both represent maximally uncertain distributions:
 
 
-```r
+``` r
 entropy(c(0.5, 0.5)) # fair coin
 ```
 
@@ -192,7 +192,7 @@ entropy(c(0.5, 0.5)) # fair coin
 ## [1] 1
 ```
 
-```r
+``` r
 entropy(rep(1/6, 6)) # fair 6-sided die
 ```
 
@@ -213,7 +213,7 @@ The **Kolmogorov-Smirnov test** (KS) is a non-parametric test for testing the eq
 To illustrate the KS test, we use it to test the normality of the underlying distributions for two samples - one from a logistic distribution, one from a standard normal distribution. And then to test if the two samples come from the same distribution:
 
 
-```r
+``` r
 set.seed(0)
 x1 <- rlogis(80, 0, 1)
 x2 <- rnorm(80, 0, 1)
@@ -229,7 +229,7 @@ ks.test(x1, y = "pnorm", 0, 1)
 ## alternative hypothesis: two-sided
 ```
 
-```r
+``` r
 ks.test(x2, y = "pnorm", 0, 1)
 ```
 
@@ -242,7 +242,7 @@ ks.test(x2, y = "pnorm", 0, 1)
 ## alternative hypothesis: two-sided
 ```
 
-```r
+``` r
 ks.test(x1, x2)
 ```
 
@@ -264,7 +264,7 @@ Note that typical implementations of the KS test assume that the underlying dist
 Differences in between distributions can also be assessed visually, through the **QQ-plot**, a plot that compares the quantiles of the two distributions. If the distributions have the same shape, their quantiles, plotted together, should lie on a line. The samples from the logistic distribution obviously deviate from the theoretical quantiles of a normal distribution:
 
 
-```r
+``` r
 tmp <- data.frame(y = x1)
 ggplot(tmp, aes(sample = y)) + stat_qq() + stat_qq_line()
 ```
@@ -276,7 +276,7 @@ The **Chi-squared goodness-of-fit** (CHISQ) test is a non-parametric test for te
 We illustrate the CHISQ test by testing the samples for a biased coin against a theoretical fair coin and the samples from an unbiased 6-sided die against a theoretical fair 6-sided die.
 
 
-```r
+``` r
 set.seed(0)
 x <- table(sample(0:1, 30, rep = T, prob = c(0.7, 0.3)))
 x
@@ -288,7 +288,7 @@ x
 ## 20 10
 ```
 
-```r
+``` r
 chisq.test(x, p = c(0.5, 0.5)) # the default is to compare with uniform theoretical, but we make it explicit here
 ```
 
@@ -300,7 +300,7 @@ chisq.test(x, p = c(0.5, 0.5)) # the default is to compare with uniform theoreti
 ## X-squared = 3.3333, df = 1, p-value = 0.06789
 ```
 
-```r
+``` r
 x <- table(sample(0:1, 40, rep = T, prob = c(0.7, 0.3)))
 x
 ```
@@ -311,7 +311,7 @@ x
 ## 30 10
 ```
 
-```r
+``` r
 chisq.test(x, p = c(0.5, 0.5))
 ```
 
@@ -323,7 +323,7 @@ chisq.test(x, p = c(0.5, 0.5))
 ## X-squared = 10, df = 1, p-value = 0.001565
 ```
 
-```r
+``` r
 x <- table(sample(1:6, 40, rep = T))
 x
 ```
@@ -334,7 +334,7 @@ x
 ##  7  3  6  7  7 10
 ```
 
-```r
+``` r
 chisq.test(x)
 ```
 
@@ -351,7 +351,7 @@ So, with a 5% significance level (95% confidence), we would reject the null hypo
 For a more real-world example, let us take the exit-poll data for the 2016 US Presidential election, broken down by gender, taken from [here](https://edition.cnn.com/election/2016/results/exit-polls):
 
 
-```r
+``` r
 n <- 24588
 male     <- round(0.47 * n * c(0.41, 0.52, 0.07)) # some rounding, but it should not affect results
 female   <- round(0.53 * n * c(0.54, 0.41, 0.05))
@@ -366,7 +366,7 @@ print(x)        # this is also known as a contingency table and the subsequent t
 ## female    7037  5343             652
 ```
 
-```r
+``` r
 chisq.test(x)
 ```
 
@@ -381,7 +381,7 @@ chisq.test(x)
 So, at any reasonable confidence level, we would reject the null-hypothesis and conclude that there is a difference in how men and women voted. In fact, we do not even need a test, because the difference is so obvious and the sample size so large. The differences between those who earned less or more than 100k$, however, appear smaller, so a test makes more sense:
 
 
-```r
+``` r
 n <- 24588
 less100     <- round(0.66 * n * c(0.49, 0.45, 0.06)) # some rounding, but it should not affect results
 more100     <- round(0.34 * n * c(0.47, 0.47, 0.06))
@@ -396,7 +396,7 @@ print(x)
 ## more100    3929  3929             502
 ```
 
-```r
+``` r
 chisq.test(x)
 ```
 
@@ -421,7 +421,7 @@ Two of the most popular alternatives to Pearson's $\rho$ are Spearman's $\rho$ a
 Below are a few examples of bivariate samples that illustrate the strengths and limitations of the above correlation coefficients:
 
 
-```r
+``` r
 set.seed(0)
 library(MASS)
 m <- 100

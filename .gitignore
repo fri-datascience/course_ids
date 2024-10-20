@@ -13,3 +13,4 @@ _bookdown_files
 !docs/handbook/data/football-manager-complete.rds
 .ipynb_checkpoints
 bookdown-itds.log
+.devcontainer

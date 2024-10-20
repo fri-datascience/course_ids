@@ -21,7 +21,7 @@ We'll call the data that we use to train our model **training data** to distingu
 Let's reinforce the terms from the previous section with an illustrative example. We'll use a simple data set with 200 *observations* and 2 variables, $X$ and $Y$. The task is to predict the value of $Y$ from the value of $X$. That is, we have a single *input variable* ($X$) and a single *target variable* ($Y$). Before we proceed, we'll randomly split the dataset into two subsets of equal size. We'll use one set to *train* our model and the other to *test* its performance.
 
 
-```r
+``` r
 # Simple linear regression example ---------------------------------------------
 library(ggplot2)
 
@@ -45,7 +45,7 @@ Now we have to choose a *training algorithm* that we'll use to produce a *model*
 The next step is to run the linear regression algorithm to find the best values of our two model *parameters* slope ($k$) and intercept ($n$). In the case of least-squares linear regression, best is defined as the one that minimizes the sum of squared residuals $\epsilon_i$. That is, within the black-box of least-squares regression we'd find just a simple optimization algorithm:
 
 
-```r
+``` r
 # train the model
 train_data <- dataset[dataset$IsTest == F,]
 test_data  <- dataset[dataset$IsTest == T,]
@@ -60,7 +60,7 @@ cat(sprintf("n = %.2f, k = %.2f\n", n, k))
 ## n = -6.31, k = 6.38
 ```
 
-```r
+``` r
 g1 <- ggplot(dataset, aes(x = X, y = Y, colour = IsTest)) + geom_point() + geom_abline(slope = k, intercept = n)
 plot(g1)
 ```
@@ -73,7 +73,7 @@ Now we'll try to produce a better model. We'll use the least-squares algorithm, 
 
 
 
-```r
+``` r
 lr <- lm(Y ~ poly(X, 3), data = train_data)
 x <- seq(-10, 10, 0.1)
 y <- predict(lr, newdata = data.frame(X = x))
@@ -88,7 +88,7 @@ plot(g1)
 The cubic polynomial appears to be a much better fit for the training data and the test data. Let's check if that is indeed the case:
 
 
-```r
+``` r
 lr    <- lm(Y ~ X, data = train_data)
 y     <- predict(lr, newdata = test_data)
 e1_te <- mean((y - test_data$Y)^2)
@@ -113,7 +113,7 @@ The numbers confirm that the polynomial regression model has lower training and 
 To illustrate another important concept, we'll also use a 25th degree polynomial model.
 
 
-```r
+``` r
 lr <- lm(Y ~ poly(X, 3), data = train_data)
 x  <- seq(-10, 10, 0.1)
 y1 <- predict(lr, newdata = data.frame(X = x))
@@ -130,21 +130,24 @@ plot(g1)
 ```
 
 ```
-## Warning: Removed 7 rows containing missing values (geom_point).
+## Warning: Removed 7 rows containing missing values or values outside the scale
+## range (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 9 row(s) containing missing values (geom_path).
+## Warning: Removed 9 rows containing missing values or values outside the scale
+## range (`geom_line()`).
 ```
 
 ```
-## Warning: Removed 4 row(s) containing missing values (geom_path).
+## Warning: Removed 4 rows containing missing values or values outside the scale
+## range (`geom_line()`).
 ```
 
 <img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" width="470.4" />
 
 
-```r
+``` r
 lr    <- lm(Y ~ poly(X, 25, raw = T), data = train_data)
 y     <- predict(lr, newdata = test_data)
 e1_te <- mean((y - test_data$Y)^2)
@@ -163,7 +166,7 @@ We can see that the 20th degree polynomial model, which has 17 more parameters t
 Finally, let's use a $k$-nearest neighbors model with $k = 10$. In other words, we assume that the value of an observation is the average of the 10 nearest points:
 
 
-```r
+``` r
 # we'll manually code k-nearest neighbors for this simple example
 tmp <- dataset
 tmp$PredictedY <- NA
@@ -188,7 +191,7 @@ cat(sprintf("knn (10): %.2f / %.2f\n", e1_te, e1_tr))
 ## knn (10): 214.64 / 257.63
 ```
 
-```r
+``` r
 y  <- c()
 x  <- seq(-10, 10, 0.1)
 for (pt in x) {
@@ -203,11 +206,13 @@ plot(g1)
 ```
 
 ```
-## Warning: Removed 7 rows containing missing values (geom_point).
+## Warning: Removed 7 rows containing missing values or values outside the scale
+## range (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 9 row(s) containing missing values (geom_path).
+## Warning: Removed 9 rows containing missing values or values outside the scale
+## range (`geom_line()`).
 ```
 
 <img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" width="470.4" />
@@ -345,7 +350,7 @@ We'll apply what we have learned to an interesting dataset from the paper *Steng
 The dataset contains PC price and specifications from the 90:
 
 
-```r
+``` r
 df <- read.csv("./data/computers.csv", stringsAsFactors = T)[,1:7]
 summary(df)
 ```
@@ -374,7 +379,7 @@ The goal is to predict PC price and the input variables we'll use are *...the cl
 Now we are ready to proceed. First, before we do anything, we will set aside 1000 randomly chosen observations. These will be used as the final test set after we have decided on the best model. We can afford this, because we have a lot of observations (relative to the size of the input space). We will also recode the yes/no variables as binary:
 
 
-```r
+``` r
 set.seed(0)
 idx <- sample(1:nrow(df), 1000, rep = F)
 df$cd <- as.numeric(df$cd)
@@ -392,7 +397,7 @@ We will consider 3 different regression training algorithms - linear regression 
 We'll choose (root) mean squared error as our measure of quality, because our objective is to get the best predictor of the mean. And we'll estimate how the models' errors will generalize using 10 repetitions of 10-fold cross-validation:
 
 
-```r
+``` r
 library(caret)
 ```
 
@@ -400,7 +405,7 @@ library(caret)
 ## Loading required package: lattice
 ```
 
-```r
+``` r
 # setting-up the cross validation
 fitControl <- trainControl(## 10-fold CV
                            method = "repeatedcv",
@@ -448,7 +453,7 @@ all <- rbind(all, data.frame(Model = "lm", RMSE = tmp$RMSE, SD = tmp$RMSESD))
 Now we can summarize the results, ordered by predictive quality:
 
 
-```r
+``` r
 all[order(all$RMSE),]
 ```
 
@@ -480,7 +485,7 @@ The problem from the previous paragraph can be illustrated by an extreme example
 Finally, we test the estimated best (k = 1) nearest neighbors model on the held-out final test set:
 
 
-```r
+``` r
 p <- predict(fit_nn$finalModel, newdata = df.test[,-1])
 round(sqrt(mean((p - df.test$price)^2)), 2)
 ```
@@ -498,7 +503,7 @@ A substantial part of our predictive modelling scenario can be simplified by uti
 Below we show how to use the same type of the algorithms as we used in the R example above in Python. First we load and overview the dataset:
 
 
-```python
+``` python
 import pandas as pd 
 
 df = pd.read_csv("../data/computers.csv")
@@ -651,7 +656,7 @@ df.describe(include='all')
 As some of the parameters are categorical (i.e. *cd* and *multi*), we need to add parameter to include all of them in to the output. Still, the values are still treated similar to numeric types, so if we want to see counts for each categor value, we need to output them separately:
 
 
-```python
+``` python
 df['cd'].value_counts()
 ```
 
@@ -662,7 +667,7 @@ df['cd'].value_counts()
 ```
 
 
-```python
+``` python
 df['multi'].value_counts()
 ```
 
@@ -675,7 +680,7 @@ df['multi'].value_counts()
 Now we recode yes/no variables to binary and prepare the training and testing dataset.
 
 
-```python
+``` python
 df['cd'] = pd.Categorical(df['cd'], categories=df['cd'].unique()).codes
 df['multi'] = pd.Categorical(df['multi'], categories=df['multi'].unique()).codes
 test_set = df.sample(n=1000, random_state=0)
@@ -685,7 +690,7 @@ main_set = df.drop(test_set.index)
 Scikit-learn library works on numpy-based objects, so we need to transform the pandas data frames into numpy arrays (alternatively there also exist transformers to do this automatically by scikit-learn):
 
 
-```python
+``` python
 X = main_set.loc[:, main_set.columns != 'price'].to_numpy()
 y = main_set['price'].to_numpy()
 X_test = test_set.loc[:, test_set.columns != 'price'].to_numpy()
@@ -695,7 +700,7 @@ y_test = test_set['price'].to_numpy()
 Scikit-learn does not include RMSE scoring function by default, that is why we need to prepare it first. We also prepare a fold iterator for cross validation techniques and en empty data frame to store results.
 
 
-```python
+``` python
 import numpy as np
 from sklearn.model_selection import RepeatedKFold, cross_validate, GridSearchCV, RandomizedSearchCV
 
@@ -716,7 +721,7 @@ all = pd.DataFrame()
 The R gradient boosting training was tuning the parameters *n.trees* and *interaction.depth*, while *shrinkage* and *n.minobsinnode* were left fixed. To tell the algorithm which parameters to tune, we need to prepare distributions to sample from and then run the cross validation method for a selected classifier.
 
 
-```python
+``` python
 # gradient boosting
 clf = GradientBoostingRegressor() 
 param_distributions = {'learning_rate': [0.1], 'min_samples_leaf': [10], 'n_estimators': [50, 100], 'max_depth': [1, 2]}
@@ -751,7 +756,7 @@ all = all.append({'Model': 'lm', 'RMSE': -1*min(tmp['test_score']), "SD": np.std
 Now we can summarize the results, ordered by predictive quality:
 
 
-```python
+``` python
 all.sort_values('RMSE')
 ```
 
@@ -852,7 +857,7 @@ all.sort_values('RMSE')
 Finally, we test the estimated best (k = 5) nearest neighbors model on the held-out final test set:
 
 
-```python
+``` python
 y_predicted = bestNNModel.predict(X_test)
 round(np.sqrt(np.mean((y_predicted - y_test)**2)), 2)
 ```
@@ -882,3 +887,4 @@ Data science students should work towards obtaining the knowledge and the skills
 1. Use cross-validation to find the optimal power of the polynomial regression on the toy 2-variable dataset from the beginning of this chapter.
 2. On the toy 2-variable dataset compare polynomial regression with a regression tree, random forests, a feed-forward neural network and another traning algorithm of choice. Comment on the models' predictive performance, computation time (training and prediction) and interpretability.
 3. Consider 4 different classification training algorithms: logistic regression, k-nearest neighbors, a feed-forward neural network (with 1 hidden layer with no more than 10 neurons) and a decision tree (for example CART). Create 4 different binary classification datasets, each with two input variables $x \in [0,1]$ and $y \in [0,1]$ and a binary outcome $c \in \{0,1\}$, such that each of the four training algorithms will produce the best model for one of the datasets. That is, so that each dataset is most suited to the inductive bias of one of the training algorithms.
+4. Follow and run parts of a [iterative modeling showcase example](data/PredictiveModeling/predictive_modeling_showcase.zip).

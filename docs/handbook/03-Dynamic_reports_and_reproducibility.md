@@ -183,7 +183,7 @@ Jupyter notebooks and dashboards are also widely used, support a large number of
 In combination with [jupyter widgets](https://ipywidgets.readthedocs.io/en/latest), dynamic dashboards can be created easily. Below we show an example of a general dashboard, where a user selects a location and weather data is extracted from the Web. Along with the data the location of a weather station is also visualized.
 
 
-```python
+``` python
 import ipywidgets as widgets
 from ipywidgets import interact
 import urllib.request
@@ -222,7 +222,7 @@ def f(location):
 There exist many possible options for graph visualizations (e.g. [Plotly](https://plot.ly/)) and integrations of common libraries such as [matplotlib](https://matplotlib.org/).
 
 
-```python
+``` python
 from matplotlib import pyplot as plt
 import numpy as np
 import math
@@ -284,7 +284,7 @@ Data science students should work towards obtaining the knowledge and the skills
 2. Consider the following experiment of drawing $m > 1$ samples from a distribution (standard normal or uniform) and taking their average, repeating this process for $n > 1$ times and plotting the histogram of these $n$ averages:
 
 
-```r
+``` r
 n <- 5000
 m <- 10
 set.seed(0)

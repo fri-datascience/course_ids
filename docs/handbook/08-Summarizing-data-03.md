@@ -21,7 +21,7 @@ Note that PCA is sensitive to the relative scales of the variables. That is, sca
 We demonstrate PCA on a dataset of decathlon results. We hypothesize that decathlon results might be explained by a smaller set of dimensions that correspond to the athlete's strength, explosiveness, and stamina. We'll use the decathlon dataset that can be found in the [FactoMineR](https://cran.r-project.org/web/packages/FactoMineR/index.html) R package. First, we load the data:
 
 
-```r
+``` r
 dat <- read.csv("./data/decathlon.csv")
 dat <- dat[,2:11]
 print(summary(dat))
@@ -54,7 +54,7 @@ print(summary(dat))
 Next, we prepare the data by standardizing the columns - we don't want 1500m running to be more important just because it has a larger scale! We also take the negative value of the running events - we want all the variables to be of the type "larger is better" to simplify interpretation.
 
 
-```r
+``` r
 dat[,c(1,4,5,6,10)] <- -dat[,c(1,4,5,6,10)]
 dat <- scale(dat)
 ```
@@ -62,7 +62,7 @@ dat <- scale(dat)
 Now we are ready to do PCA:
 
 
-```r
+``` r
 res <- prcomp(dat)
 prop_explained <- res$sdev^2 / sum(res$sdev^2)
 data.frame(prop_explained, cumsum(prop_explained))
@@ -87,22 +87,22 @@ We can see that the first two principal components explain half of the variabili
 Of course, in order to produce a meaningful summary of the data, we must provide an explanation of what these principal components represent:
 
 
-```r
+``` r
 round(res$rotation,2)
 ```
 
 ```
 ##                PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8   PC9  PC10
-## X100m         0.43 -0.14  0.16 -0.04  0.37 -0.30  0.38 -0.46 -0.10  0.42
-## Long.jump     0.41 -0.26  0.15 -0.10 -0.04 -0.31 -0.63 -0.02  0.48 -0.08
-## Shot.put      0.34  0.45 -0.02 -0.19 -0.13  0.31  0.31 -0.31  0.43 -0.39
-## High.jump    -0.32 -0.27  0.22 -0.13  0.67  0.47 -0.09 -0.13  0.24 -0.11
-## X400m         0.38 -0.43 -0.11  0.03 -0.11  0.33 -0.12 -0.21 -0.55 -0.41
-## X110m.hurdle  0.41 -0.17  0.08  0.28  0.20  0.10  0.36  0.71  0.15 -0.09
-## Discus        0.31  0.46  0.04  0.25  0.13  0.45 -0.43  0.04 -0.15  0.45
-## Pole.vault    0.03 -0.14  0.58 -0.54 -0.40  0.26  0.10  0.18 -0.08  0.28
-## Javeline      0.15  0.24 -0.33 -0.69  0.37 -0.16 -0.11  0.30 -0.25 -0.09
-## X1500m        0.03 -0.36 -0.66 -0.16 -0.19  0.30  0.08 -0.01  0.31  0.43
+## X100m         0.43 -0.14  0.16 -0.04 -0.37  0.30  0.38 -0.46  0.10 -0.42
+## Long.jump     0.41 -0.26  0.15 -0.10  0.04  0.31 -0.63 -0.02 -0.48  0.08
+## Shot.put      0.34  0.45 -0.02 -0.19  0.13 -0.31  0.31 -0.31 -0.43  0.39
+## High.jump    -0.32 -0.27  0.22 -0.13 -0.67 -0.47 -0.09 -0.13 -0.24  0.11
+## X400m         0.38 -0.43 -0.11  0.03  0.11 -0.33 -0.12 -0.21  0.55  0.41
+## X110m.hurdle  0.41 -0.17  0.08  0.28 -0.20 -0.10  0.36  0.71 -0.15  0.09
+## Discus        0.31  0.46  0.04  0.25 -0.13 -0.45 -0.43  0.04  0.15 -0.45
+## Pole.vault    0.03 -0.14  0.58 -0.54  0.40 -0.26  0.10  0.18  0.08 -0.28
+## Javeline      0.15  0.24 -0.33 -0.69 -0.37  0.16 -0.11  0.30  0.25  0.09
+## X1500m        0.03 -0.36 -0.66 -0.16  0.19 -0.30  0.08 -0.01 -0.31 -0.43
 ```
 
 As we described in the beginning, each principal component is a linear combination of the original variables. Because we standardized the variables, the corresponding coefficients serve as an indicator of importance. For example, pole vaulting and 1500m running have little importance in the first principal component, while these two disciplines have the highest weight in the fourth principal components.
@@ -110,7 +110,7 @@ As we described in the beginning, each principal component is a linear combinati
 The meaning of principal components can more easily be discerend by plotting pairs of components, their relationship with the original variables, and individual observations. Typically, we first plot the first two principal components - components which explain most of the variance:
 
 
-```r
+``` r
 biplot(res, cex = 0.8)
 ```
 
@@ -124,7 +124,7 @@ Another commonly used dimensionality reduction and exploratory data analysis tec
 We demonstrate FA on the same dataset as PCA. In its basic form, FA requires us to specify the number of factors. We'll assume from previous experience that there are two main factors that explain most of the variability in decathlon results:
 
 
-```r
+``` r
 dat <- read.csv("./data/decathlon.csv")
 dat <- dat[,2:11]
 dat[,c(1,4,5,6,10)] <- -dat[,c(1,4,5,6,10)]
@@ -133,6 +133,20 @@ res <- factanal(dat, factors = 2)
 
 library(psych)
 library(GPArotation)
+```
+
+```
+## 
+## Attaching package: 'GPArotation'
+```
+
+```
+## The following objects are masked from 'package:psych':
+## 
+##     equamax, varimin
+```
+
+``` r
 res <- fa(dat, nfactors =  2, rotate = "varimax")
 biplot(res)
 ```
@@ -144,7 +158,7 @@ We can see from the plot that the results are visually similar to PCA results on
 Before we interpret the results, let's print the loadings:
 
 
-```r
+``` r
 print(res$loadings, cutoff = 0.4)
 ```
 
@@ -184,7 +198,7 @@ Unlike PCA, MDS does not assume that the high-dimensional structure of the input
 We'll be using non-metric MDS and we'll first apply it to the decathlon data from the PCA example:
 
 
-```r
+``` r
 library(MASS)
 d <- dist(dat) # compute Euclidean distances between observations
 res <- isoMDS(d, trace = F)$points
@@ -199,7 +213,7 @@ In order to understand MDS1 and MDS2 dimensions, we would have to look at the ch
 To better illustrate where PCA might fail but MDS would give reasonable results, we'll use a 3D ball.
 
 
-```r
+``` r
 library(scatterplot3d)
 library(MASS)
 dataset <- readRDS("./data/dataset.rds")$ball
@@ -211,7 +225,7 @@ scatterplot3d(dataset[,1:3], color = dataset[,4], pch = 16)
 
 All three dimensions are almost identical, so PCA can only produce principal components that are a rotation of the ball. That is, the projection on the first two components does not add any value over just visualizing the first two original dimensions:
 
-```r
+``` r
 # PCA
 res <- prcomp(dataset[,1:3])
 rot <- as.matrix(dataset[,1:3]) %*% t(res$rotation)
@@ -223,7 +237,7 @@ plot(rot[,1:2], col = dataset[,4], pch = 16, xlab = "PCA1", ylab = "PCA2")
 On the other hand, MDS works with distances (topology) and groups points that are on similar layers of the ball closer together, producing a more useful 2D projection of the layers of the ball:
 
 
-```r
+``` r
 # MDS
 d <- dist(dataset[,1:3]) # compute Euclidean distances between observations
 res <- isoMDS(d, trace = F)$points
@@ -243,7 +257,7 @@ The expressivenes of t-SNE makes it very useful for visualizing complex datasets
 We illustrate t-SNE on data known as the Swiss-roll:
 
 
-```r
+``` r
 library(scatterplot3d)
 dataset <- readRDS("./data/dataset.rds")$roll
 dataset <- dataset[sample(1:nrow(dataset),1000, rep = F),]
@@ -255,7 +269,7 @@ scatterplot3d(dataset[,1:3], color = dataset[,4], pch = 16)
 MDS and PCA preserve the x and y dimensions of the data:
 
 
-```r
+``` r
 # MDS
 d <- dist(dataset[,1:3]) # compute Euclidean distances between observations
 res <- isoMDS(d, trace = F)$points
@@ -264,7 +278,7 @@ plot(res, xlab = "MDS1", ylab = "MDS2", col = dataset[,4], pch = 16)
 
 <img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-13-1.png" width="480" />
 
-```r
+``` r
 # PCA
 res <- prcomp(dataset[,1:3])
 rot <- as.matrix(dataset[,1:3]) %*% t(res$rotation)
@@ -276,7 +290,7 @@ plot(rot[,1:2], col = dataset[,4], pch = 16)
 t-SNE on the other hand projects the data manifold into 2 dimensions, which produces an arguably more useful visualization of the characteristics of the data:
 
 
-```r
+``` r
 library(Rtsne)
 set.seed(321)
 res <- Rtsne(dataset[,1:3], perplexity = 50)
@@ -296,7 +310,7 @@ One of the most common and useful clustering methods is k-means clustering. It i
 We'll illustrate k-means clustering on the *swiss* dataset from R - data about 47 provinces of Switzerland in about 1888:
 
 
-```r
+``` r
 summary(swiss)
 ```
 
@@ -320,7 +334,7 @@ summary(swiss)
 We'll suppose that there are 2 clusters in the data (automatic determination of the number of clusters will be discussed later in this chapter):
 
 
-```r
+``` r
 res <- kmeans(swiss, centers = 2)
 print(res$cluster)
 ```
@@ -349,7 +363,7 @@ Unless we understand the meaning of the observations (in this case, province nam
 To gain more insight, we can plot the clusters. This is typically done with some dimensionality reduction method that projects the data into 2 dimensions and preserves as much information as possible - the methods we've been discussing so far in this chapter. We'll plot the clusters in the space determined by the first two principal components:
 
 
-```r
+``` r
 library(factoextra)
 ```
 
@@ -372,7 +386,7 @@ library(factoextra)
 ## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
 ```
 
-```r
+``` r
 pca <- prcomp(swiss, scale=TRUE)
 
 fviz_pca_biplot(pca, label="var", habillage=as.factor(res$cluster)) +
@@ -397,7 +411,7 @@ A very simple but often good enough way of determining the most appropriate numb
 We demonstrate this technique by plotting the within-cluster variability for different numbers of clusters (also called a *scree plot*):
 
 
-```r
+``` r
 wss  <- 0
 maxk <- 10
 for (i in 1:maxk) {
@@ -418,7 +432,7 @@ We see that after 2 clusters, the within-cluster variability decreases slowly. T
 Another popular technique is to compute the [silhouette index](https://en.wikipedia.org/wiki/Silhouette_(clustering)). The silhouette index measures how similar an observation is to its own cluster compared to other clusters ). It ranges from -1 to +1, where a high value indicates that the object is well matched to its own cluster and poorly matched to neighboring clusters. If most objects have a high value, then the clustering configuration is appropriate. If many points have a low or negative value, then the clustering configuration may have too many or too few clusters. Because it takes into account within and between-cluster variability, the silhouette index, unlike within-cluster variability, does not necessarily increase with the number of clusters - at some point it typically starts decreasing.
 
 
-```r
+``` r
 library(cluster)
 si  <- 0
 maxk <- 10
@@ -448,7 +462,7 @@ There are also several different criteria for determining the two most similar c
 Here, we'll apply hierarchical agglomerative clustering with joining clusters according to average distance. Of course, hierarchical clustering works for any distance (metric). We choose Euclidean distance. Here are the results for the swiss dataset:
 
 
-```r
+``` r
 res_hk <- hclust(dist(swiss), method = "average")
 plot(res_hk)
 ```
@@ -459,7 +473,7 @@ The above [dendrogram](https://en.wikipedia.org/wiki/Dendrogram) visualizes the 
 
 Comparing with k-means results for 2 clusters, we can see that the two methods return identical clusters:
 
-```r
+``` r
 hk2 <- cutree(res_hk, k = 2)
 
 res <- kmeans(swiss, centers = 2)
@@ -492,7 +506,7 @@ rbind(hk2, km2)
 However, for 3 clusters, the results are, at first glance, completely different:
 
 
-```r
+``` r
 hk2 <- cutree(res_hk, k = 3)
 
 res <- kmeans(swiss, centers = 3)
@@ -529,7 +543,7 @@ As a consequence, there exist special summaries for cluster similarity. One of t
 Typicaly, we would use an exisitng implementation, but here we implement the basic Rand Index ourselves:
 
 
-```r
+``` r
 concordant <- 0
 for (i in 2:length(hk2)) {
   for (j in 1:(i-1)) {
