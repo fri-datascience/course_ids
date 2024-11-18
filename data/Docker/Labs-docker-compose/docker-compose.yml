@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  redis:
+    image: "redis"
+    container_name: "redis"
+    volumes:
+      - redis-data:/data
+    # No need to specify the port mapping
+    # Useful for debugging, but not necessary since only streamlit-app needs to access Redis and not the host
+    networks:
+      - app-network
+
+  whisper:
+    image: fedirz/faster-whisper-server:latest-cpu
+    # Again, no need for port mapping to host
+    volumes:
+      - hugging_face_cache:/root/.cache/huggingface
+    networks:
+      - app-network
+
+  streamlit-app:
+    build:                  
+      context: ./webapp
+      dockerfile: Dockerfile
+    container_name: "streamlit-app"
+    ports:
+      - "8501:8501"
+    environment:
+      - REDIS_HOST=redis
+      - WHISPER_HOST=whisper
+    depends_on:
+      - redis
+      - whisper
+    networks:
+      - app-network
+
+volumes:
+  redis-data:
+  hugging_face_cache:
+
+networks:
+  app-network:
+    driver: bridge
