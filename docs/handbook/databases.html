@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2024-10-20" />
+<meta name="date" content="2024-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -525,16 +525,38 @@ Figure 6.1: Relation representation.
 <div class="sourceCode" id="cb239"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb239-1"><a href="databases.html#cb239-1" tabindex="-1"></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span> | <span class="kw">ALL</span>] {<span class="op">*</span> | [columnExpression [<span class="kw">AS</span> newName]] [,<span class="op">..</span>.] }</span>
 <span id="cb239-2"><a href="databases.html#cb239-2" tabindex="-1"></a><span class="kw">FROM</span> </span>
 <span id="cb239-3"><a href="databases.html#cb239-3" tabindex="-1"></a>  TableName [alias] [, <span class="op">..</span>.] </span>
-<span id="cb239-4"><a href="databases.html#cb239-4" tabindex="-1"></a>[<span class="kw">WHERE</span> condition]</span>
-<span id="cb239-5"><a href="databases.html#cb239-5" tabindex="-1"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> columnList] </span>
-<span id="cb239-6"><a href="databases.html#cb239-6" tabindex="-1"></a>[<span class="kw">HAVING</span> condition]</span>
-<span id="cb239-7"><a href="databases.html#cb239-7" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> columnList [<span class="kw">ASC</span>|<span class="kw">DESC</span>]]</span></code></pre></div>
+<span id="cb239-4"><a href="databases.html#cb239-4" tabindex="-1"></a>[<span class="kw">JOIN</span> table2 [alias2] <span class="kw">ON</span> condition]</span>
+<span id="cb239-5"><a href="databases.html#cb239-5" tabindex="-1"></a>[<span class="kw">WHERE</span> condition]</span>
+<span id="cb239-6"><a href="databases.html#cb239-6" tabindex="-1"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> columnList] </span>
+<span id="cb239-7"><a href="databases.html#cb239-7" tabindex="-1"></a>[<span class="kw">HAVING</span> condition]</span>
+<span id="cb239-8"><a href="databases.html#cb239-8" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> columnList [<span class="kw">ASC</span>|<span class="kw">DESC</span>]]</span></code></pre></div>
 <p>In the SELECT part we can define whether the returned results must be distinct or not. Then we list columns that should be returned as the result. The columns may be named or changed using a special function provided by a database management system (DBMS). Some DBMS also support nested SELECT statements in this part when statement returns only one value.</p>
 <p>In the FROM part we list tables that are needed for the query to execute. It is possible to nest a SELECT statement instead of using a table - write a query within brackets and give it an alias. Depending on our needs we can use joins in this part to connect the rows between tables. To see which joins are supported by a specific DBMS, we need to check its documentation.</p>
 <p>In the WHERE part we provide conditions that need to be true for the row to be returned. In this part we can use equality operators (&gt;, &lt;, =, &lt;=, &gt;=, BETWEEN), text comparisons (LIKE), set comparisons (IN, ALL, ANY), null value comparisons (IS NULL, IS NOT NULL) or specific functions supported by our DBMS.</p>
 <p>The GROUP BY part groups together rows of the same value by the defined columns. On this group of columns we can run further aggregate functions. When using grouping, we can output only columns that are grouped by or aggregate functions of other columns in the SELECT part! Use with caution as some DBMS do not provide warnings if grouping used wrongly. Standard aggregate functions are COUNT, SUM, AVG, MIN and MAX. Each DBMS provides also additional grouping functions such as GROUP_CONCAT (MySQL specific, other databases name proprietary functions differently).</p>
 <p>The HAVING part can be used only together with GROUP BY. Its role is to provide filtering of rows based on the aggregate functions - these cannot be used in the WHERE part of the query.</p>
 <p>In the last part we define the order of returned results. By default, the order of rows is undefined.</p>
+</div>
+<div id="query-order-of-execution" class="section level4 hasAnchor" number="9.1.2.5">
+<h4><span class="header-section-number">9.1.2.5</span> Query Order of Execution<a href="databases.html#query-order-of-execution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The order of execution in SQL defines the sequence in which a query’s components are evaluated. While SQL queries are written in a human-readable, declarative style, the underlying database engine processes them in a systematic order to retrieve results efficiently. Understanding this order is crucial for writing correct and optimized queries.</p>
+<p>The order is as follows:</p>
+<ol style="list-style-type: decimal">
+<li><strong>FROM</strong>: Identify and retrieve data from the tables or views specified.</li>
+<li><strong>JOIN</strong>: Combine data from multiple tables based on the join conditions.</li>
+<li><strong>WHERE</strong>: Filter rows based on specified conditions before any grouping or aggregation.</li>
+<li><strong>GROUP BY</strong>: Group the filtered data into buckets based on column values.</li>
+<li><strong>HAVING</strong>: Filter groups created by <code>GROUP BY</code> based on aggregate functions.</li>
+<li><strong>SELECT</strong>: Retrieve specified columns or calculated results from the remaining data.</li>
+<li><strong>ORDER BY</strong>: Sort the final result set.</li>
+<li><strong>LIMIT</strong>: Restrict the number of rows returned in the result set.</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="data/SQL/SQL_execution_order.png" alt="Order of SQL query execution." width="402" />
+<p class="caption">
+Figure 9.1: Order of SQL query execution.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -561,24 +583,24 @@ Figure 6.1: Relation representation.
 <span id="cb240-6"><a href="databases.html#cb240-6" tabindex="-1"></a><span class="ex">sqlite</span><span class="op">&gt;</span></span></code></pre></div>
 <p>We exit the console by entering the <em>CTRL+C</em> command twice. The example above created just a temporary database in our memory, so no data was stored on disk. To work with or create a new database if not exists, we need to provide a filename when starting the executable - <code>sqlite3 itds_course.db</code>. When we change the defaults of the database or enter some data, the database file will be created.</p>
 <p>There exist a lot of standalone graphical user interfaces to work with SQLite database files. An example of a nice and lightweight software to create, open or manage SQLite databases is <a href="https://sqlitebrowser.org/">DB Browser for SQLite</a> and is available for multiple operating systems.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="data/SQL/screenshot.png" alt="DB Browser for SQLite graphical user interface." width="362" />
 <p class="caption">
-Figure 9.1: DB Browser for SQLite graphical user interface.
+Figure 9.2: DB Browser for SQLite graphical user interface.
 </p>
 </div>
 </div>
 <div id="sqlite-example" class="section level3 hasAnchor" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> SQLite database usage<a href="databases.html#sqlite-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this section we show how to create a new SQLite database and manage it manually using SQL language directly. First we create a new database file called <code>itds_course.db</code>.</p>
-<p>We will create a new database model, presented in the Figure <a href="databases.html#fig:model">9.2</a>. Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.</p>
+<p>We will create a new database model, presented in the Figure <a href="databases.html#fig:model">9.3</a>. Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:model"></span>
 <img src="data/SQL/model.png" alt="Employee logical database model." width="426" />
 <p class="caption">
-Figure 9.2: Employee logical database model.
+Figure 9.3: Employee logical database model.
 </p>
 </div>
-<p>Let’s first create the model from the Figure <a href="databases.html#fig:model">9.2</a>. The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text.</p>
+<p>Let’s first create the model from the Figure <a href="databases.html#fig:model">9.3</a>. The model consists of three tables - Branch, Employee and Salary. Employees must be employed at one of the branches and can get a salary each month. In the model some basic restrictions are defined, such as primary and foreign keys and data types. The data types are related to the SQLite database, which does not support many different types. Therefore time-based attributes are represented as text.</p>
 <p>SQLite supports foreign keys but it does not enforce their referential integrity if we do not say this explicitly at each database connection session. To enable checks, we need to issue the following command:</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb241-1"><a href="databases.html#cb241-1" tabindex="-1"></a><span class="co">-- Set the foreign keys checking on</span></span>
 <span id="cb241-2"><a href="databases.html#cb241-2" tabindex="-1"></a>PRAGMA foreign_keys <span class="op">=</span> <span class="kw">ON</span>;</span>

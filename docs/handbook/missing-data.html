@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2024-10-20" />
+<meta name="date" content="2024-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -591,14 +591,14 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09145</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.09095</code></pre>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="missing-data.html#cb332-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>dropOUToriginal, tmp<span class="sc">$</span>Ethnicity), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8676</code></pre>
+## X-squared = 1.4154, df = NA, p-value = 0.8516</code></pre>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="missing-data.html#cb334-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>Ethnicity, tmp<span class="sc">$</span>Language), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -617,7 +617,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05747</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.04798</code></pre>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="missing-data.html#cb340-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
 <span id="cb340-2"><a href="missing-data.html#cb340-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb340-3"><a href="missing-data.html#cb340-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>
@@ -628,7 +628,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.945</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.9455</code></pre>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="missing-data.html#cb344-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
 <span id="cb344-2"><a href="missing-data.html#cb344-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb344-3"><a href="missing-data.html#cb344-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>

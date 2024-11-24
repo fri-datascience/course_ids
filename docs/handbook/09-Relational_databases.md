@@ -126,6 +126,7 @@ Querying is enabled by the SELECT statement which is the most comprehensive as p
 SELECT [DISTINCT | ALL] {* | [columnExpression [AS newName]] [,...] }
 FROM 
   TableName [alias] [, ...] 
+[JOIN table2 [alias2] ON condition]
 [WHERE condition]
 [GROUP BY columnList] 
 [HAVING condition]
@@ -143,6 +144,26 @@ The GROUP BY part groups together rows of the same value by the defined columns.
 The HAVING part can be used only together with GROUP BY. Its role is to provide filtering of rows based on the aggregate functions - these cannot be used in the WHERE part of the query.
 
 In the last part we define the order of returned results. By default, the order of rows is undefined.
+
+#### Query Order of Execution
+
+The order of execution in SQL defines the sequence in which a query's components are evaluated. While SQL queries are written in a human-readable, declarative style, the underlying database engine processes them in a systematic order to retrieve results efficiently. Understanding this order is crucial for writing correct and optimized queries.
+
+The order is as follows:
+
+1. **FROM**: Identify and retrieve data from the tables or views specified.
+2. **JOIN**: Combine data from multiple tables based on the join conditions.
+3. **WHERE**: Filter rows based on specified conditions before any grouping or aggregation.
+4. **GROUP BY**: Group the filtered data into buckets based on column values.
+5. **HAVING**: Filter groups created by `GROUP BY` based on aggregate functions.
+6. **SELECT**: Retrieve specified columns or calculated results from the remaining data.
+7. **ORDER BY**: Sort the final result set.
+8. **LIMIT**: Restrict the number of rows returned in the result set.
+
+<div class="figure" style="text-align: center">
+<img src="data/SQL/SQL_execution_order.png" alt="Order of SQL query execution." width="402" />
+<p class="caption">(\#fig:unnamed-chunk-2)Order of SQL query execution.</p>
+</div>
 
 ## SQLite
 
@@ -179,7 +200,7 @@ There exist a lot of standalone graphical user interfaces to work with SQLite da
 
 <div class="figure" style="text-align: center">
 <img src="data/SQL/screenshot.png" alt="DB Browser for SQLite graphical user interface." width="362" />
-<p class="caption">(\#fig:unnamed-chunk-2)DB Browser for SQLite graphical user interface.</p>
+<p class="caption">(\#fig:unnamed-chunk-3)DB Browser for SQLite graphical user interface.</p>
 </div>
 
 ### SQLite database usage {#sqlite-example}

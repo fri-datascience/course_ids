@@ -12,6 +12,7 @@ fig:unnamed-chunk-16
 fig:unnamed-chunk-17
 fig:unnamed-chunk-18
 fig:unnamed-chunk-2
+fig:unnamed-chunk-3
 fig:model
 the-role-of-this-course
 python-introduction-chapter
@@ -137,6 +138,7 @@ inserting
 updating
 deleting
 querying
+query-order-of-execution
 sqlite
 environment-setup
 sqlite-example
