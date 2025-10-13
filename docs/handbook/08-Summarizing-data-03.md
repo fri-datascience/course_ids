@@ -398,6 +398,16 @@ fviz_pca_biplot(pca, label="var", habillage=as.factor(res$cluster)) +
       legend.position="none")
 ```
 
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the ggpubr package.
+##   Please report the issue at <https://github.com/kassambara/ggpubr/issues>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
 <img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-17-1.png" width="480" />
 
 Now we can interpret the two clusters as predominately Catholic and predominately Protestant provinces. PCA also shows some other characteristics associated with the clusters - blue is associated with higher fertility and more agriculture, while red is associated with higher education.

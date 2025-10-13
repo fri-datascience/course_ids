@@ -203,7 +203,8 @@ ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5,
 ## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `after_stat(density)` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
 ```
 
 <div class="figure">
@@ -351,6 +352,17 @@ When we want to quickly inspect if there are any correlations between numerical 
 library(ggcorrplot)
 corr <- round(cor(iris[,-5]),2)
 ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T)
+```
+
+```
+## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation idioms with `aes()`.
+## ℹ See also `vignette("ggplot2-in-packages")` for more information.
+## ℹ The deprecated feature was likely used in the ggcorrplot package.
+##   Please report the issue at <https://github.com/kassambara/ggcorrplot/issues>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
 ```
 
 <div class="figure">

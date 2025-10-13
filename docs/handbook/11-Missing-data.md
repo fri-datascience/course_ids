@@ -116,6 +116,37 @@ library(UpSetR)
 gg_miss_upset(dat)
 ```
 
+```
+## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation idioms with `aes()`.
+## ℹ See also `vignette("ggplot2-in-packages")` for more information.
+## ℹ The deprecated feature was likely used in the UpSetR package.
+##   Please report the issue to the authors.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the UpSetR package.
+##   Please report the issue to the authors.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+```
+## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+## ℹ Please use the `linewidth` argument instead.
+## ℹ The deprecated feature was likely used in the UpSetR package.
+##   Please report the issue to the authors.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
 <img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.
@@ -274,7 +305,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09095
+## X-squared = 4.6808, df = NA, p-value = 0.08996
 ```
 
 ``` r
@@ -287,7 +318,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8516
+## X-squared = 1.4154, df = NA, p-value = 0.8546
 ```
 
 ``` r
@@ -326,7 +357,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04798
+## X-squared = 5.8535, df = NA, p-value = 0.05497
 ```
 
 ``` r
@@ -349,7 +380,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9455
+## X-squared = 0.72928, df = NA, p-value = 0.9435
 ```
 
 ``` r

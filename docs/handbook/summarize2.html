@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Summarizing data - visualization | Introduction to data science</title>
   <meta name="description" content="Course notes" />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Summarizing data - visualization | Introduction to data science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2024-11-24" />
+<meta name="date" content="2025-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -542,7 +542,8 @@ Figure 7.1: The data show that the average heights of all three groups of player
 <pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `after_stat(density)` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-9-1.png" alt="Histogram and density estimation of NBA player weight" width="384" />
 <p class="caption">
@@ -653,6 +654,14 @@ Figure 7.8: Summary of player weight by position. Note that we combined the viol
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="summarize2.html#cb184-1" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
 <span id="cb184-2"><a href="summarize2.html#cb184-2" tabindex="-1"></a>corr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(iris[,<span class="sc">-</span><span class="dv">5</span>]),<span class="dv">2</span>)</span>
 <span id="cb184-3"><a href="summarize2.html#cb184-3" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corr, <span class="at">hc.order =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="at">outline.col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lab =</span> T)</span></code></pre></div>
+<pre><code>## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation idioms with `aes()`.
+## ℹ See also `vignette(&quot;ggplot2-in-packages&quot;)` for more information.
+## ℹ The deprecated feature was likely used in the ggcorrplot package.
+##   Please report the issue at &lt;https://github.com/kassambara/ggcorrplot/issues&gt;.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-17-1.png" alt="Summary of the numerical variables in the iris dataset." width="336" />
 <p class="caption">
@@ -663,13 +672,13 @@ Figure 7.9: Summary of the numerical variables in the iris dataset.
 <div id="a-comprehensive-summary" class="section level2 hasAnchor" number="7.9">
 <h2><span class="header-section-number">7.9</span> A comprehensive summary<a href="summarize2.html#a-comprehensive-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes it will be useful to summarize the density/histogram of several numerical variables and the correlation between them. Here is an example of how we can combine histograms/density plots, scatterplots, and information about correlation:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="summarize2.html#cb185-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="summarize2.html#cb186-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;psych&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
 ## 
 ##     %+%, alpha</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="summarize2.html#cb188-1" tabindex="-1"></a><span class="fu">pairs.panels</span>(iris[,<span class="sc">-</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="summarize2.html#cb189-1" tabindex="-1"></a><span class="fu">pairs.panels</span>(iris[,<span class="sc">-</span><span class="dv">5</span>])</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
 <img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-18-1.png" alt="Summary of the numerical variables in the iris dataset." width="499.2" />
 <p class="caption">

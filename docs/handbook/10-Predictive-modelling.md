@@ -130,18 +130,18 @@ plot(g1)
 ```
 
 ```
-## Warning: Removed 7 rows containing missing values or values outside the scale
-## range (`geom_point()`).
+## Warning: Removed 7 rows containing missing values or values outside the scale range
+## (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 9 rows containing missing values or values outside the scale
-## range (`geom_line()`).
+## Warning: Removed 9 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
 ```
-## Warning: Removed 4 rows containing missing values or values outside the scale
-## range (`geom_line()`).
+## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
 <img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" width="470.4" />
@@ -206,13 +206,13 @@ plot(g1)
 ```
 
 ```
-## Warning: Removed 7 rows containing missing values or values outside the scale
-## range (`geom_point()`).
+## Warning: Removed 7 rows containing missing values or values outside the scale range
+## (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 9 rows containing missing values or values outside the scale
-## range (`geom_line()`).
+## Warning: Removed 9 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
 <img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" width="470.4" />
