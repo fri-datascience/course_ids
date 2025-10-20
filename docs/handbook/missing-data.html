@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2025-10-13" />
+<meta name="date" content="2025-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -613,7 +613,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09095</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.09795</code></pre>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="missing-data.html#cb337-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>dropOUToriginal, tmp<span class="sc">$</span>Ethnicity), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -639,7 +639,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.04848</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.05197</code></pre>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="missing-data.html#cb345-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
 <span id="cb345-2"><a href="missing-data.html#cb345-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb345-3"><a href="missing-data.html#cb345-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>
@@ -650,7 +650,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9485</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.948</code></pre>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="missing-data.html#cb349-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
 <span id="cb349-2"><a href="missing-data.html#cb349-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb349-3"><a href="missing-data.html#cb349-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>
@@ -1147,42 +1147,42 @@ Tai, Kuo-Chung. 1979. <span>“The Tree-to-Tree Correction Problem.”</span> <e
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

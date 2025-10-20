@@ -23,7 +23,7 @@
 <meta name="author" content="Slavko Žitnik and Erik Štrumbelj" />
 
 
-<meta name="date" content="2025-10-13" />
+<meta name="date" content="2025-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -574,9 +574,12 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <p>When we develop a Web extraction system we should first review how the target Web site is built and which frontend technologies are used. Then we can also more efficiently use a library to implement a final Web wrapper to extract the desired data. When we need to execute Javascript, our extraction library needs to implement <em>headless browser</em> functionality. This functionality runs a hidden browser to construct a final HTML content which is then used for further manipulation. Libraries that support such functionality are, for example:</p>
 <ul>
 <li><a href="https://www.seleniumhq.org/">Selenium</a>,</li>
+<li><a href="https://playwright.dev">Playwright</a>,</li>
+<li><a href="https://pptr.dev">Puppeteer</a>,</li>
 <li><a href="http://phantomjs.org/">phantomJS</a> and</li>
 <li><a href="http://htmlunit.sourceforge.net/">HTMLUnit</a>.</li>
 </ul>
+<p>Currently (in 2025), Selenium and Playwright are the most widely used libraries. Selenium is mature library which allows for manual control of browser actions handling. Playwright on the other hand is newer (started in 2019) and enables more automatizations (e.g., automatic waits for dynamic contents), so therefore tends to be easier to use.</p>
 <p>Running a headless browser and executing Javascript can be time consuming and prone to errors. So, whenever we can, we should rather use just an HTML parsing library. There exist many of such libraries and we mention just a few:</p>
 <ul>
 <li><a href="http://htmlcleaner.sourceforge.net/">HTML Cleaner</a>,</li>
@@ -651,6 +654,7 @@ Figure 4.2: Web crawler architecture.
 <li>Explore the Web and find some dynamic Web sites. Inspect the structure of a few Web pages with your favorite browser and try to load the same Web pages with Javascript disabled. Go through <a href="data/WebDataExtraction/Web%20crawling%20-%20basic%20tools.ipynb">basic Web crawling example</a> and practise using the library as it allows for powerful features.</li>
 <li>Implement and run a crawler that will target <a href="https://fri.uni-lj.si/sl/o-fakulteti/osebje" class="uri">https://fri.uni-lj.si/sl/o-fakulteti/osebje</a> and extract the following information about every employee: name, email, phone number, title/job position and the number of courses they teach and number of projects they have listed. Save the data in CSV format.</li>
 <li>An example project: Recently, <a href="http://gov.si">gov.si</a> Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account <em>robots.txt</em>, etc. Store rendered HTML data and also extracted data in a database.</li>
+<li>Use Selenium or Playwright to extract quotes (three different options) as described here: <a href="https://github.com/fri-datascience/course_ids/tree/master/data/WebScraping">https://github.com/fri-datascience/course_ids/tree/master/data/WebScraping</a>.</li>
 </ol>
 
 </div>
@@ -710,42 +714,42 @@ Tai, Kuo-Chung. 1979. <span>“The Tree-to-Tree Correction Problem.”</span> <e
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

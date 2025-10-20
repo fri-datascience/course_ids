@@ -147,8 +147,12 @@ However, Web sites are becoming more dynamic - loading data in the background, n
 When we develop a Web extraction system we should first review how the target Web site is built and which frontend technologies are used. Then we can also more efficiently use a library to implement a final Web wrapper to extract the desired data. When we need to execute Javascript, our extraction library needs to implement *headless browser* functionality. This functionality runs a hidden browser to construct a final HTML content which is then used for further manipulation. Libraries that support such functionality are, for example:
 
 * [Selenium](https://www.seleniumhq.org/),
+* [Playwright](https://playwright.dev),
+* [Puppeteer](https://pptr.dev),
 * [phantomJS](http://phantomjs.org/) and
 * [HTMLUnit](http://htmlunit.sourceforge.net/).
+
+Currently (in 2025), Selenium and Playwright are the most widely used libraries. Selenium is mature library which allows for manual control of browser actions handling. Playwright on the other hand is newer (started in 2019) and enables more automatizations (e.g., automatic waits for dynamic contents), so therefore tends to be easier to use.
 
 Running a headless browser and executing Javascript can be time consuming and prone to errors. So, whenever we can, we should rather use just an HTML parsing library. There exist many of such libraries and we mention just a few: 
 
@@ -216,3 +220,4 @@ Data science students should work towards obtaining the knowledge and the skills
 1. Explore the Web and find some dynamic Web sites. Inspect the structure of a few Web pages with your favorite browser and try to load the same Web pages with Javascript disabled. Go through [basic Web crawling example](data/WebDataExtraction/Web crawling - basic tools.ipynb) and practise using the library as it allows for powerful features.
 2. Implement and run a crawler that will target https://fri.uni-lj.si/sl/o-fakulteti/osebje and extract the following information about every employee: name, email, phone number, title/job position and the number of courses they teach and number of projects they have listed. Save the data in CSV format.
 3. An example project: Recently, [gov.si](http://gov.si) Web site has been launched. Build a crawler that will retrieve semi-structured data from the site only. Also, you need to obey crawler ethics, take into account *robots.txt*, etc. Store rendered HTML data and also extracted data in a database.
+4. Use Selenium or Playwright to extract quotes (three different options) as described here: [https://github.com/fri-datascience/course_ids/tree/master/data/WebScraping](https://github.com/fri-datascience/course_ids/tree/master/data/WebScraping).
