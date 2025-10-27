@@ -492,4 +492,3 @@ Data science students should work towards obtaining the knowledge and the skills
 
 1. Download the [Football Manager Players](data/football-manager-data.zip) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the summarization techniques from this chapter.
 2. Find one or more real-world examples (data sets) where a standard summary of univariate or bivariate data fails. That is, where important information is lost in the summary.
-3. Download the [Pandas and Matplotlib tutorial](data/Pandas/Labs_pandas_matplotlib.zip) to learn more about Pandas and data preparation for visualizing.
