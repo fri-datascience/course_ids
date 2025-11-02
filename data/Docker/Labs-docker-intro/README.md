@@ -1,3 +1,5 @@
+**INSTRUCTIONS:** Follow the following "guide" and update it, so that everything will work and that you will understand the project!
+
 Containerizing your Streamlit app with Docker helps you package it with all its dependencies to run consistently across different environments. Here’s a step-by-step guide:
 
 ### 1. Create a `Dockerfile`

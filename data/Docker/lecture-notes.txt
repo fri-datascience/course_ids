@@ -27,12 +27,15 @@ docker image ls
 
 PRIMER 1:
  - ustvari index.html, server.py
- - naredi nov conda environment, namesti flask in poženi python skripto
+ - naredi nov environment (virtualenv <name>), namesti flask in poženi python skripto
 
  PRIMER 1- docker
 
- # Use an official Ubuntu runtime as a parent image
-FROM ubuntu:18.04
+# Use an official Ubuntu runtime as a parent image
+FROM ubuntu:25.10
+
+# Set because of tzdata installation (since 2025)
+ENV DEBIAN_FRONTEND="noninteractive" TZ="Europe/Ljubljana"
 
 # Set the current working directory to /work
 WORKDIR /work
@@ -40,10 +43,10 @@ WORKDIR /work
 # Copy the current directory contents into the container at /work
 ADD ./ .
 
-# Install and configure your environment
+# Install and configure your environment (no default pip3 usage since 2025!)
 RUN apt-get update \
-    && apt-get install -y python3 python3-pip \
-    && pip3 install flask
+    && apt-get install -y python3 python3-flask python3-mysql.connector
+
 
 # Make port 8787 available to the world outside this container (i.e. docker world)
 EXPOSE 8787
@@ -53,7 +56,6 @@ ENTRYPOINT python3 server.py
 ----
 
 How to know the commands:
-docker run -it ubuntu:18.04 /bin/bash
 
 docker build -t docker-app .
 
@@ -61,16 +63,19 @@ docker run -p 8787:8787 docker-app
 
 docker run -d -p 8787:8787 docker-app
 
+docker run -d --rm -p 8787:8787 docker-app
+
 docker exec -it CONTAINER_ID /bin/bash
 
 docker logs CONTAINER_ID
 
+docker run -it ubuntu:25.10 /bin/bash
+
 PRIMER 2:
- - copy new versions of index.html, server.py; Dockerfile is the same (with mysql-connector-python dependency addition)
  - create database folder, copy createDatabase.sql and Dockerfile inside
 
  # Parent image
-FROM mysql:5
+FROM mysql:9
 
 # Copying all files in curent dir to container
 ADD ./ /docker-entrypoint-initdb.d
@@ -89,6 +94,17 @@ docker build -t docker-db .
 docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=BeReSeMi docker-db
 
 - mysql workbench connect
+
+---
+PRIMER 3:
+ - copy new versions of index.html, server.py; Dockerfile is the same (with mysql-connector-python dependency addition)
+
+docker build -t docker-app .  
+
+docker network create -d bridge ids-network 
+
+docker run -d -p 8787:8787 --network ids-network docker-app
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=BeReSeMi.DataScience --network ids-network -h database docker-db
 
 ---
 
