@@ -1,0 +1,72 @@
+# Delovno okolje z Docker-jem
+
+KORAK 1: Ustvari mapo "python" z datoteko Dockerfile:
+
+FROM python:3.12-bookworm
+
+WORKDIR /data
+
+ENV DATA_DIR '/data'
+ENV JUPYTER_PASSWORD 'Geslo.01'
+
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+EXPOSE 8888
+
+ENTRYPOINT jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser \
+            --NotebookApp.token=${JUPYTER_PASSWORD} --allow-root --notebook-dir=${DATA_DIR}
+
+ustvari tudi datoteko requirements.txt:
+
+notebook==7.0.6
+pandas==2.1.3
+
+
+KORAK 2: zbildaj Docker sliko python
+
+docker build -t python ./python
+
+
+KORAK 3: Do a test run of the built image as follows (update command if pwd or 
+something else is not working in your environment):
+
+docker run -it \
+  --env DATA_DIR='/data' \
+  --env JUPYTER_PASSWORD='Geslo.01' \
+  --mount type=bind,source="$(pwd)"/,target=/data \
+  -p 7878:8888 \
+  python
+
+
+You should be able to access Jupyter notebook from Docker host via http://localhost:7878.
+
+KORAK 4: skopiraj pandas-showcase v mapo in zaženi
+
+-------------------
+
+.devcontainers pristop:
+
+KORAK 1: Razlaga na spletni strani: https://code.visualstudio.com/docs/devcontainers/containers
+
+KORAK 2: Naredi .devcontainer/devcontainer.json
+
+OPCIJA A:
+KORAK 3: Zaženi VSCode ukaz "Dev Containers: Add Dev Container Configuration Files... "
+KORAK 4: Odkomentiraj postcreate command in instaliraj pandas.
+KORAK 5: Pojdi na "Remote explorer", izberi devcontainer in novega, "Open current folder in container"
+KORAK 6: Jupyter notebook - select kernel, install in run. 
+KORAK 7: Pokaži terminal.
+
+
+
+OPCIJA B (nadaljevanje od prej): 
+KORAK 8: Pojdi na "Remote explorer", "Reopen folder locally" (da spremenimo config)
+KORAK 9: Zakomentiraj build in postcreate command. Dodaj:
+
+"build": {
+  "dockerfile": "../python/Dockerfile"
+}
+
+KORAK 10: ponovi KORAK 5 (rebuild kontejnerja), KORAK 6, KORAK 7
+
