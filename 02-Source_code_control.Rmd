@@ -435,8 +435,14 @@ We are notified of his pull request and can review it. We decide that his work w
 
 ![](data/Git/merge-pull.png)
 
-[Our repository](https://github.com/szitnik/DS-Project) is now updated with Korean changes. 
+[Our repository](https://github.com/szitnik/DS-Project) is now updated with Korean changes.
 
+### Cancel commits
+
+Sometimes it can happen that by committing a new change the code can break. The `git reset` command is a tool used to undo changes. It can be used in two forms:
+1. `git reset [-q] [<tree-ish>] [--] <pathspec>` copies entries from `<tree-ish>` to the index.
+2. `git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [<commit>]` command sets the current branch head (HEAD) to `<commit>`, optionally modifying index and working tree to match.
+The `<tree-ish>`/`<commit>` defaults to HEAD in all forms.
 
 ## Git tools {#git-guis}
 
