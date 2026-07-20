@@ -159,7 +159,7 @@ Python offers a variety of tools similar to R. It provides Jupyter notebooks wit
 The *NBConvert* tool allows you to convert a Jupyter *.ipynb* notebook document file into another format. The [nbconvert documentation](https://media.readthedocs.org/pdf/nbconvert/latest/nbconvert.pdf) contains a complete description of this tool’s capabilities. It allows for:
 
 * Presentation of information in familiar formats, such as PDF.
-* Pblishing of research using LaTeX and opens the door for embedding notebooks in papers.
+* Publishing of research using LaTeX and opens the door for embedding notebooks in papers.
 * Collaboration with others who may not use the notebook in their work.
 * Sharing content with many people via the web using HTML.
 
@@ -169,7 +169,7 @@ If used as a Python library (`import nbconvert`), nbconvert adds notebook conver
 
 ### Jupyter Dashboards {-}
 
-A [jupyter dashboard](https://jupyter-dashboards-layout.readthedocs.io/en/latest/) is a Jupyter notebook with the dashboards layout extension, where we can arrange our notebook outputs (text, plots, widgets, etc.) in a grid - or report-like layouts. The layouts are saved in the notebook document. When in a Jpyter notebook, we should see the dashboard view extension to control the dashboard settings:
+A [jupyter dashboard](https://jupyter-dashboards-layout.readthedocs.io/en/latest/) is a Jupyter notebook with the dashboards layout extension, where we can arrange our notebook outputs (text, plots, widgets, etc.) in a grid - or report-like layouts. The layouts are saved in the notebook document. When in a Jupyter notebook, we should see the dashboard view extension to control the dashboard settings:
 
 ![](data/Reproducibility/jupyter_dashboard.png)
 

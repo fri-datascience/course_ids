@@ -305,7 +305,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.09645
+## X-squared = 4.6808, df = NA, p-value = 0.1034
 ```
 
 ``` r
@@ -318,7 +318,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8491
+## X-squared = 1.4154, df = NA, p-value = 0.8606
 ```
 
 ``` r
@@ -357,7 +357,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05997
+## X-squared = 5.8535, df = NA, p-value = 0.05047
 ```
 
 ``` r
@@ -380,7 +380,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.95
+## X-squared = 0.72928, df = NA, p-value = 0.9435
 ```
 
 ``` r
@@ -912,11 +912,11 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. We prepared a subset of the [Football Manager Players](data/football-manager-data.zip) dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (*[football-manager-complete.rds](data/football-manager-complete.rds)*). We then introduced missing values to this data based on various missingness mechanisms (*[football-manager-missing.rds](data/football-manager-missing.rds)*) and in a way that could also have a reasonable practical explanation. Your task is to:
+* We prepared a subset of the [Football Manager Players](data/football-manager-data.zip) dataset that contains 1000 randomly selected 19-year old players, their playing position, height, and 10 other attributes (*[football-manager-complete.rds](data/football-manager-complete.rds)*). We then introduced missing values to this data based on various missingness mechanisms (*[football-manager-missing.rds](data/football-manager-missing.rds)*) and in a way that could also have a reasonable practical explanation. Your task is to:
     a. Identify and, as much as it is possible, characterize missingness mechanisms and patterns in the data.
     b. Use information from (a) to impute missing values in all numerical variables (all variables except *PositionsDesc*, which can be ignored throughout this problem).
     c. Estimate the mean of all numerical variables.
     d. Only once you have completed your analysis, use *football-manager-complete.rds* to compare your estimated means with column averages on the complete dataset. Discuss which mechanisms you correctly detected and characterized. Discuss the discrepancies between your estimates and actual column means - was there anything you could have done better?
 
-2. In the same setting as (1) try to predict players' playing position (*PositionsDesc*) using *football-manager-missing.rds*. once you have completed your analysis, use *football-manager-complete.rds* to evaluate your model on the observations that had missing playing position. Discuss what you could have done better.
+* In the same setting as (1) try to predict players' playing position (*PositionsDesc*) using *football-manager-missing.rds*. once you have completed your analysis, use *football-manager-complete.rds* to evaluate your model on the observations that had missing playing position. Discuss what you could have done better.
 

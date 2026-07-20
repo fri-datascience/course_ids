@@ -14,6 +14,9 @@ fig:unnamed-chunk-18
 fig:unnamed-chunk-2
 fig:unnamed-chunk-3
 fig:model
+fig:aicycle
+fig:aispectrum
+fig:aiprompts
 the-role-of-this-course
 python-introduction-chapter
 basic-characteristics
@@ -102,6 +105,9 @@ database-service
 docker-compose
 registries
 dockerfile-optimizations
+development-within-docker-environment
+manual-docker-environment-management
+visual-studio-code-devcontainers
 further-reading-and-references-5
 learning-outcomes-5
 practice-problems-5
@@ -175,3 +181,16 @@ summary
 further-reading-and-references-10
 learning-outcomes-10
 practice-problems-10
+ai-tools
+from-automation-to-delegation
+where-ai-helps-and-where-it-does-not
+ai-governance
+ai-tools-for-the-topics-of-this-handbook
+tools-for-the-data-science-workflow
+prompting
+ai-guided-project
+limitations-and-what-to-watch
+further-reading-and-references-11
+learning-outcomes-11
+practice-problems-11
+acknowledgements

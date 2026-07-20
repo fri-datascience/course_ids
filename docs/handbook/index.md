@@ -1,23 +1,26 @@
 --- 
-title: "Introduction to data science"
+title: "Introduction to Data Science Handbook"
 author: "Slavko Žitnik and Erik Štrumbelj"
-date: "2025-10-27"
-site: bookdown::bookdown_site
+date: 'Last updated: 2026-07-20'
+output: pdf_document
 documentclass: book
-bibliography: [book.bib]
+bibliography: book.bib
 biblio-style: apalike
-link-citations: yes
-url: https://fri-datascience.github.io/course_itds/
-description: "Course notes"
+link-citations: true
+url: "https://fri-datascience.github.io/course_itds/"
+description: Introduction to Data Science Handbook
+site: bookdown::bookdown_site
 ---
 
 # Preface {-}
 
 <img src="logo.svg" width="50%">
 
-These are the course notes for the Introduction to data science course of the Data Science Master's at University of Ljubljana, Faculty of computer and information science.
+<br>
 
-The authors would like to thank the people who contributed to these notes with their reviews, comments and suggestions: Tomaž Curk, Janez Demšar, Jure Demšar, Dejan Lavbič, Matjaž Pančur, Gregor Pirš, Marko Robnik Šikonja.
+These are the official Introduction to data science course handbook, prepared within the Data Science initiative at University of Ljubljana, Faculty of computer and information science.
+
+The authors would like to thank the people who contributed to these notes with their reviews, comments and suggestions: Klemen Vovk (also tutor in 2024/2025), Luka Salvatore Pecoraro (also tutor in 2024/2025), Tomaž Curk, Janez Demšar, Jure Demšar, Dejan Lavbič, Matjaž Pančur, Gregor Pirš, Marko Robnik Šikonja.
 
 <br>
 <hr>

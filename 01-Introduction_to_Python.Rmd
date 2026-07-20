@@ -28,7 +28,7 @@ Disadvantages:
 
 The Python language is one of the two most popular languages for data science (the other being R). The three main reasons are:
 
-* The advantages of Python fit the typical data science workflow and its disadvantages are not that deterimental to the data science workflow.
+* The advantages of Python fit the typical data science workflow and its disadvantages are not that detrimental to the data science workflow.
 * Python has a large ecosystem of packages, libraries and tools for data science, some of which are discussed later in this chapter.
 * Often libraries and software developed in other languages provide Python API or bindings.
 
@@ -385,7 +385,7 @@ print(f"Sum value: {sum}")
 ## Sum value: 52
 ```
 
-Functions filter, reduce and map create a generator since Python 3. Generators enable declaring functions that behaves like an iterator. To print all the values of the aobve generator objects, we need to evaluate them, for example transform them into a list.
+Functions filter, reduce and map create a generator since Python 3. Generators enable declaring functions that behaves like an iterator. To print all the values of the above generator objects, we need to evaluate them, for example transform them into a list.
 
 ```{python, eval=FALSE}
 print(f"Doubled: {list(doubled)}")
@@ -659,7 +659,7 @@ To open a file, call function *open(FILENAME, MODE)*. The function returns handl
 * *a* - appending to a file,
 * *t* - opening a file in text mode,
 * *b* - opening a file in binary mode and
-* *+* - opening a file for reading and writind (updating).
+* *+* - opening a file for reading and writing (updating).
 
 Writing content to a file:
 
@@ -760,10 +760,12 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. Install Anaconda Python, run the [provided Jupyter notebook](data/Python programming language.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additional packages manually).
-2. One of the most common tools for data manipulation in Python are the Pandas and NumPy libraries. Explore the [10 minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html) and [NumPy quickstart](https://numpy.org/devdocs/user/quickstart.html) guides. Try solving some of the exercises from:
+* Install Anaconda Python, run the [provided Jupyter notebook](data/Python programming language.ipynb) within a new conda environment and then export all the installed dependencies into an *environment.yml* file (see [reference](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)). Check the file, remove not needed data (location, library versions, libraries in lower dependency trees), create a new environment based on the exported file and run the notebook again (it should work without the need to install additional packages manually).
+* One of the most common tools for data manipulation in Python are the Pandas and NumPy libraries. Explore the [10 minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html) and [NumPy quickstart](https://numpy.org/devdocs/user/quickstart.html) guides. Try solving some of the exercises from:
    - [100 Pandas puzzles](https://github.com/ajcr/100-pandas-puzzles),
    - [100 NumPy exercises](https://github.com/rougier/numpy-100)
-3. Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras-io/tree/master/examples).
-4. Download [the CMU Seminar Announcements dataset](https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz) and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar announcement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.
-5. Go through [Pandas showcase](data/Pandas/Pandas showcase.zip) and practise using the library as it allows for powerful features.
+* Download, explore and run some scripts from [the Keras examples repository](https://github.com/keras-team/keras-io/tree/master/examples).
+* Download [the CMU Seminar Announcements dataset](https://people.cs.umass.edu/~mccallum/data/sa-tagged.tar.gz) and uncompress it. The dataset consists of multiple files, whereas each file represents a seminar announcement. Write a program that reads every file and tries to extract the speaker, title, start-time, end-time and the location of the seminar. Help yourself with regular expressions and libraries mentioned above. Store all the extracted data into a Pandas data frame and lastly, export all the data into a single CSV file. In addition, compute your success rate in extraction of specific fields based on the manual tags from the documents.
+* Go through [Pandas showcase](data/Pandas/Pandas showcase.zip) and practise using the library as it allows for powerful features.
+* Follow another Python tutorial and get to know more about Pandas and visualization using Matplotlib - [Pandas and Matplotlib tutorial](data/Pandas/Labs_pandas_matplotlib.zip).
+

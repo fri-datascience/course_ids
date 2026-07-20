@@ -14,7 +14,8 @@ rmd_files: [
   "08-Summarizing-data-03.Rmd",
   "09-Relational_databases.Rmd",
   "10-Predictive-modelling.Rmd",
-  "11-Missing-data.Rmd"
+  "11-Missing-data.Rmd",
+  "12-AI-tools-for-data-science.Rmd"
   ]
 new_session: yes
 delete_merged_file: True

@@ -593,6 +593,7 @@ Data science students should work towards obtaining the knowledge and the skills
 
 ## Practice problems
 
-1. Download the [Football Manager Players](data/football-manager-data.zip) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the multivariate summarization techniques from this chapter.
+* Download the [Football Manager Players](data/football-manager-data.zip) dataset or use a similarly rich dataset with numerical, binary and categorical variables. With Python or R demonstrate the application and interpretation of results for each of the multivariate summarization techniques from this chapter.
+* Follow more examples for dimensionality reduction and clustering - [Iris dataset analyses](data/Multivariate/multivariate_demo.zip).
 
 
