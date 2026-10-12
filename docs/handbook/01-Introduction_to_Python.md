@@ -58,6 +58,19 @@ We suggest you install [Miniconda](https://docs.anaconda.com/miniconda/), which 
 
 ``` bash
 $ conda create -n ids
+```
+
+You may also specify a Python version to use in the environment:
+
+
+``` bash
+$ conda create -n ids python=3.14
+```
+
+Now, activate the environment to use it.
+
+
+``` bash
 $ conda activate ids
 ```
 
@@ -168,7 +181,7 @@ To add support for Anaconda environments to Jupyter, issue the command below. Th
 
 
 ``` bash
-$ conda install nb_conda
+$ conda install jupyter
 ```
 
 ### Running a Jupyter notebook
@@ -180,7 +193,15 @@ Prior to running a Jupyter notebook we first need to start a Jupyter web server 
 $ jupyter notebook
 ```
 
-By default the server is started in the current folder and accessible via the web interface: [http://localhost:8888](http://localhost:8888). The root web page shows a file browser where we can create a new Jupyter notebook or open an existing one: 
+To run Jupyter lab, which is a more advanced interface for Jupyter notebooks, issue the command:
+
+
+``` bash
+$ jupyter lab
+```
+
+
+By default the server is started in the current folder and accessible via the web interface: [http://localhost:8888](http://localhost:8888) (or [http://localhost:8888/lab](http://localhost:8888/lab)). The root web page shows a file browser where we can create a new Jupyter notebook or open an existing one: 
 
 ![](data/PythonIntroduction/JupyterFileBrowser.png)
 

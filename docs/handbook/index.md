@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to Data Science Handbook"
 author: "Slavko Žitnik and Erik Štrumbelj"
-date: 'Last updated: 2026-07-20'
+date: 'Last updated: 2026-10-12'
 output: pdf_document
 documentclass: book
 bibliography: book.bib

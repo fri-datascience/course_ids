@@ -38,7 +38,7 @@ g1 <- ggplot(dataset, aes(x = X, y = Y, colour = IsTest)) + geom_point()
 plot(g1)
 ```
 
-<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-1-1.png" width="470.4" />
+<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-1-1.png" alt="" width="470.4" />
 
 Now we have to choose a *training algorithm* that we'll use to produce a *model* for the process that generated this dataset. We'll use simple least-squares linear regression. This tranining algorithm assumes that the functional relationship between $X$ and $Y$ is $Y_i = kX_i+n + \epsilon_i$. Or, in simpler terms, we assume that the points lie on a straight line and we account for the deviations with the residual terms $\epsilon_i$. Clearly, the data suggest a non-linear relationship and that linear regression is not the best choice, but we'll ignore that for now.
 
@@ -65,7 +65,7 @@ g1 <- ggplot(dataset, aes(x = X, y = Y, colour = IsTest)) + geom_point() + geom_
 plot(g1)
 ```
 
-<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-2-1.png" width="470.4" />
+<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-2-1.png" alt="" width="470.4" />
 
 We can see that the best linear model is probably not the best model for this data, but it still captures part of the relationship between $X$ and $Y$ and could be used to predict new values better than the naive approach of just predicting with the mean. Note that in practice the term *model* is used interchangeably for the training algorithm and the model it produces (in our case $Y_i = 6.65X_i - 8.60$). That is, the term *linear regression model* is often used to refer to the entire algorithm of assuming a liner relationship and finding the parameters using optimization.
 
@@ -83,7 +83,7 @@ g1 <- ggplot(dataset) + geom_point(aes(x = X, y = Y, colour = IsTest)) + geom_ab
 plot(g1)
 ```
 
-<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-3-1.png" width="470.4" />
+<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-3-1.png" alt="" width="470.4" />
 
 The cubic polynomial appears to be a much better fit for the training data and the test data. Let's check if that is indeed the case:
 
@@ -144,7 +144,7 @@ plot(g1)
 ## (`geom_line()`).
 ```
 
-<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" width="470.4" />
+<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" alt="" width="470.4" />
 
 
 ``` r
@@ -158,7 +158,7 @@ cat(sprintf("poly (25): %.2f / %.2f\n", e1_te, e1_tr))
 ```
 
 ```
-## poly (25): 71336.91 / 162.80
+## poly (25): 71336.92 / 162.80
 ```
 
 We can see that the 20th degree polynomial model, which has 17 more parameters than the 3rd degree polynomial model, is able to fit the training data better. However, its performance on the test data is worse! This is an important concept that we call *overfitting* - the model was too expressive for the amount of data we have and it started fitting not just the underlying true functional relationship but also the noise in the data. An extreme example of this would be using a 100th degree polynomial, which would be able to perfectly fit the training data, but it would perform very poorly on test data.
@@ -215,7 +215,7 @@ plot(g1)
 ## (`geom_line()`).
 ```
 
-<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" width="470.4" />
+<img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" alt="" width="470.4" />
 
 The performance of the 10-nearest neighbor model is relatively good, only slightly worse on the test set than the cubic polynomial model.
 

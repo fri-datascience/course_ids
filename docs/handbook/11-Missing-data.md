@@ -78,22 +78,22 @@ summary(dat)
 ##  5_A      :294                 3rd Qu.: 4.320   3rd Qu.: 1.3500  
 ##  6_A*     : 92                 Max.   : 4.320   Max.   : 6.0500  
 ##                                                                  
-##  dropOUTretrieved dropOUToriginal    Gender         Language     EMA     
-##  no :780          no  :289        female:513   BILINGUAL:273   no  :617  
-##  yes:594          yes :206        male  :860   ENGLISH  :985   yes :698  
-##                   NA's:879        NA's  :  1   OTHER    : 70   NA's: 59  
-##                                                NA's     : 46             
-##                                                                          
-##                                                                          
-##                                                                          
-##    Ethnicity     LPN          HEFCE                   uniFAM   
-##  ASIAN  :251   NO  :907   Min.   :1.000   firstgeneration:497  
-##  BLACK  :105   YES :302   1st Qu.:2.000   parents        :342  
-##  CHINESE: 17   NA's:165   Median :3.000   siblings       :499  
-##  OTHER  : 58              Mean   :3.843   NA's           : 36  
-##  WHITE  :449              3rd Qu.:6.000                        
-##  NA's   :494              Max.   :6.000                        
-##                           NA's   :167
+##  dropOUTretrieved dropOUToriginal    Gender         Language    EMA     
+##  no :780          no :289         female:513   BILINGUAL:273   no :617  
+##  yes:594          yes:206         male  :860   ENGLISH  :985   yes:698  
+##                   NAs:879         NAs   :  1   OTHER    : 70   NAs: 59  
+##                                                NAs      : 46            
+##                                                                         
+##                                                                         
+##                                                                         
+##    Ethnicity    LPN          HEFCE                   uniFAM   
+##  ASIAN  :251   NO :907   Min.   :1.000   firstgeneration:497  
+##  BLACK  :105   YES:302   1st Qu.:2.000   parents        :342  
+##  CHINESE: 17   NAs:165   Median :3.000   siblings       :499  
+##  OTHER  : 58             Mean   :3.843   NAs            : 36  
+##  WHITE  :449             3rd Qu.:6.000                        
+##  NAs    :494             Max.   :6.000                        
+##                          NAs    :167
 ```
 
 In this analysis, the authors were interested in modelling dropout from mathematics courses (*dropOUToriginal*) which had a lot of missing values. The actual values were later retreived (*dropOUTretrieved*), but we will only use these to verify the quality of our methods.
@@ -107,7 +107,7 @@ library(naniar)
 vis_miss(dat, warn_large_data = F)
 ```
 
-<img src="11-Missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="11-Missing-data_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" />
 
 Another useful visualization is the frequency of different patterns of missingness:
 
@@ -121,8 +121,8 @@ gg_miss_upset(dat)
 ## ℹ Please use tidy evaluation idioms with `aes()`.
 ## ℹ See also `vignette("ggplot2-in-packages")` for more information.
 ## ℹ The deprecated feature was likely used in the UpSetR package.
-##   Please report the issue to the authors.
-## This warning is displayed once every 8 hours.
+##   Please report the issue at <https://github.com/hms-dbmi/UpSetR/issues>.
+## This warning is displayed once per session.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.
 ```
@@ -131,8 +131,8 @@ gg_miss_upset(dat)
 ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## ℹ The deprecated feature was likely used in the UpSetR package.
-##   Please report the issue to the authors.
-## This warning is displayed once every 8 hours.
+##   Please report the issue at <https://github.com/hms-dbmi/UpSetR/issues>.
+## This warning is displayed once per session.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.
 ```
@@ -141,13 +141,13 @@ gg_miss_upset(dat)
 ## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
 ## ℹ Please use the `linewidth` argument instead.
 ## ℹ The deprecated feature was likely used in the UpSetR package.
-##   Please report the issue to the authors.
-## This warning is displayed once every 8 hours.
+##   Please report the issue at <https://github.com/hms-dbmi/UpSetR/issues>.
+## This warning is displayed once per session.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.
 ```
 
-<img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" />
 
 From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.
 
@@ -305,7 +305,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.1034
+## X-squared = 4.6808, df = NA, p-value = 0.08646
 ```
 
 ``` r
@@ -318,7 +318,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8606
+## X-squared = 1.4154, df = NA, p-value = 0.8521
 ```
 
 ``` r
@@ -357,7 +357,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Language), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05047
+## X-squared = 5.8535, df = NA, p-value = 0.05147
 ```
 
 ``` r
@@ -380,7 +380,7 @@ chisq.test(table(tmp$dropOUToriginal, tmp$Ethnicity), simulate.p.value = T)
 ## 	replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9435
+## X-squared = 0.72928, df = NA, p-value = 0.9505
 ```
 
 ``` r

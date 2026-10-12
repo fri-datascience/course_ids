@@ -19,13 +19,13 @@ summary(dat)
 ```
 
 ```
-##     ilkid            firstname           lastname           position        
-##  Length:3906        Length:3906        Length:3906        Length:3906       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
+##        ilkid          firstname         lastname         position   
+##  Length   :3906   Length   :3906   Length   :3906   Length   :3906  
+##  N.unique :3906   N.unique :1138   N.unique :2391   N.unique :   3  
+##  N.blank  :   0   N.blank  :   0   N.blank  :   0   N.blank  :   0  
+##  Min.nchar:   7   Min.nchar:   2   Min.nchar:   3   Min.nchar:   1  
+##  Max.nchar:   9   Max.nchar:  12   Max.nchar:  15   Max.nchar:   1  
+##                                                                     
 ##   firstseason     lastseason       h_feet         h_inches     
 ##  Min.   :1946   Min.   :1946   Min.   :5.000   Min.   :-6.000  
 ##  1st Qu.:1967   1st Qu.:1970   1st Qu.:6.000   1st Qu.: 3.000  
@@ -33,13 +33,13 @@ summary(dat)
 ##  Mean   :1979   Mean   :1983   Mean   :6.022   Mean   : 5.581  
 ##  3rd Qu.:1995   3rd Qu.:2001   3rd Qu.:6.000   3rd Qu.: 8.000  
 ##  Max.   :2009   Max.   :2009   Max.   :7.000   Max.   :11.500  
-##      weight         college           birthdate             height     
-##  Min.   : 60.33   Length:3906        Length:3906        Min.   :160.0  
-##  1st Qu.: 83.92   Class :character   Class :character   1st Qu.:190.5  
-##  Median : 92.99   Mode  :character   Mode  :character   Median :198.1  
-##  Mean   : 93.91                                         Mean   :197.7  
-##  3rd Qu.:102.06                                         3rd Qu.:205.7  
-##  Max.   :149.69                                         Max.   :231.1
+##      weight            college         birthdate        height     
+##  Min.   : 60.33   Length   :3906   Length   :3906   Min.   :160.0  
+##  1st Qu.: 83.92   N.unique : 529   N.unique :3572   1st Qu.:190.5  
+##  Median : 92.99   N.blank  : 200   N.blank  :   1   Median :198.1  
+##  Mean   : 93.91   Min.nchar:   0   Min.nchar:   0   Mean   :197.7  
+##  3rd Qu.:102.06   Max.nchar:  48   Max.nchar:  19   3rd Qu.:205.7  
+##  Max.   :149.69                                     Max.   :231.1
 ```
 
 Visual summaries are often a more informative, faster and more concise alternative to numerical summaries. This will also be our guideline for improving our visualizations. Can we convey the same information in substantially less time/space? Can we convey more information without using more time/space? If the answer is yes, then we should!
@@ -54,21 +54,21 @@ tmp <- dat[dat$position == "G",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" width="480" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-1.png" alt="" width="480" />
 
 ``` r
 tmp <- dat[dat$position == "F",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" width="480" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-2.png" alt="" width="480" />
 
 ``` r
 tmp <- dat[dat$position == "C",]
 plot(tapply(tmp$height, tmp$firstseason, mean))
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-3.png" width="480" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-2-3.png" alt="" width="480" />
 
 The plots reveal information that the average height of rookies has been increasing over time for all three groups of players. We should immediately recognize that we are wasting space by plotting each plot separately. We are also wasting the reader's time, having to jump back and forth from one plot to another when making comparisons. So, by plotting all three groups together, we save space and allow the reader to make inter-group comparisons more efficiently.
 
@@ -88,7 +88,7 @@ tmp <- dat[dat$position == "C",]
 points(tapply(tmp$height, tmp$firstseason, mean), col = "black")
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" />
 
 This plot uses up only a third of the space and simplifies comparison. This reveals new information, such as that centers (black) are higher than forwards (red) who are higher than guards (green), that there was a more steep increase in the beginning of the period and that forwards these days are as high on average as centers were in the past.
 
@@ -104,7 +104,7 @@ plot(tmp$year, tmp$height,
      ylab = "average rookie height (cm)")
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" />
 
 This is starting to look better. However, we should also include the legend - if we describe the meaning of the colors in the figure caption (or worse, in text), the reader will have to jump from text to figure, wasting time. Additionally, some people (and publications) prefer to add a title to their plot, explaining concisely what is in it, therefore making it more self contained. Others prefer to explain the plot in the caption. We'll add a title:
 
@@ -119,7 +119,7 @@ legend(1997, 190, legend=c("centers", "forwards", "guards"),
 title("The average height of NBA rookies by playing position over time.")
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" />
 
 This is now a quite decent and self-contained plot. Next, we'll add a bit of polish. Pleasing aesthetics might not add much to the informativeness of a plot, but they do make our work look more professional. They are also indicate that we put in the extra effort. Of course, we should never let aesthetics get in the way of efficiency and informativeness (see pie-chart example in the following section):
 
@@ -134,7 +134,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) + geom_point() +
   theme_bw()
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" />
 
 By using ggplot2 we can make our visualizations look better, but it is also very convenient for adding some extra layers to our plots. Additional layers are draw on top of eachother, in order. For example, let's add a smoothed line with standard errors to help us focus on the trend and not the individual data points:
 
@@ -154,7 +154,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) +
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" />
 
 There is one more thing that we can typically do in such cases - label the data directly and omit the legend. Always keep related objects visually close! This saves both space and user's time, especially if we have several lines/colors in our plot:
 
@@ -202,7 +202,7 @@ ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5,
 ```
 ## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `after_stat(density)` instead.
-## This warning is displayed once every 8 hours.
+## This warning is displayed once per session.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.
 ```
@@ -263,7 +263,7 @@ ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) +
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" width="384" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" alt="" width="384" />
 
 ``` r
 ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + 
@@ -271,7 +271,7 @@ ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) +
   theme_bw() + theme(legend.position = "none")
 ```
 
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-2.png" width="384" />
+<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-2.png" alt="" width="384" />
 
 For more information on how people perceive visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland and McGill (see Further reading). Note that while a pie chart (the same applies to donut charts) is arguably a poor chart from a statistical graphics perspective, it is visually appealing and more engaging. That is, the pie chart still has merit as a techinque for visual presentation of information as witnessed by its widespread use.
 
@@ -352,17 +352,6 @@ When we want to quickly inspect if there are any correlations between numerical 
 library(ggcorrplot)
 corr <- round(cor(iris[,-5]),2)
 ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T)
-```
-
-```
-## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
-## ℹ Please use tidy evaluation idioms with `aes()`.
-## ℹ See also `vignette("ggplot2-in-packages")` for more information.
-## ℹ The deprecated feature was likely used in the ggcorrplot package.
-##   Please report the issue at <https://github.com/kassambara/ggcorrplot/issues>.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
 ```
 
 <div class="figure">

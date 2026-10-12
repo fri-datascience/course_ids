@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 AI tools for data science | Introduction to Data Science Handbook</title>
   <meta name="description" content="Chapter 12 AI tools for data science | Introduction to Data Science Handbook" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 AI tools for data science | Introduction to Data Science Handbook" />
   <meta property="og:type" content="book" />
@@ -54,8 +54,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -127,7 +128,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -529,7 +529,7 @@ Figure 12.1: The human-in-the-loop cycle for AI-assisted data science. The steps
 <div id="where-ai-helps-and-where-it-does-not" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Where AI helps, and where it does not<a href="ai-tools.html#where-ai-helps-and-where-it-does-not" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Marketing material and benchmark leaderboards give a distorted picture, in opposite directions. Vendors demonstrate the best case; sceptics demonstrate the worst. The honest summary is that current systems are extremely strong at <em>local, well-specified, verifiable</em> tasks and considerably weaker at <em>global, ambiguous, multi-step</em> tasks that require integrating heterogeneous context.</p>
-<p>The most instructive public evidence for this comes from benchmarks designed specifically around realistic analytical work rather than around isolated coding puzzles. <a href="https://arxiv.org/abs/2506.23719">DABStep</a> <span class="citation">(<a href="#ref-dabstep2025">Egg et al. 2025</a>)</span>, a benchmark of over 450 real multi-step data analysis tasks derived from a financial analytics platform, requires an agent to combine code execution with reasoning over scattered documentation — exactly the shape of a real analysis. Leading agents at the time of the benchmark’s publication solved roughly three quarters of the <em>easy</em> tasks but fewer than 15% of the <em>hard</em> ones. Benchmarks like <a href="https://ds1000-code-gen.github.io/">DS-1000</a> <span class="citation">(<a href="#ref-ds1000">Lai et al. 2023</a>)</span>, which contains 1000 self-contained data science coding problems across NumPy, pandas and Matplotlib, show much higher scores — because the tasks are local and fully specified.</p>
+<p>The most instructive public evidence for this comes from benchmarks designed specifically around realistic analytical work rather than around isolated coding puzzles. <a href="https://arxiv.org/abs/2506.23719">DABStep</a> <span class="citation">(<a href="#ref-dabstep2025"><span class="nocase">Egg et al.</span> 2025</a>)</span>, a benchmark of over 450 real multi-step data analysis tasks derived from a financial analytics platform, requires an agent to combine code execution with reasoning over scattered documentation — exactly the shape of a real analysis. Leading agents at the time of the benchmark’s publication solved roughly three quarters of the <em>easy</em> tasks but fewer than 15% of the <em>hard</em> ones. Benchmarks like <a href="https://ds1000-code-gen.github.io/">DS-1000</a> <span class="citation">(<a href="#ref-ds1000">Lai et al. 2023</a>)</span>, which contains 1000 self-contained data science coding problems across NumPy, pandas and Matplotlib, show much higher scores — because the tasks are local and fully specified.</p>
 <p>The gap between those two numbers is the most useful single fact in this chapter. It tells you where the value is, and where the risk is:</p>
 <table>
 <colgroup>
@@ -1018,12 +1018,12 @@ Figure 12.2: The deployment spectrum. Moving right buys control, auditability an
 <div id="exploratory-data-analysis" class="section level3 unnumbered hasAnchor">
 <h3>Exploratory data analysis<a href="ai-tools.html#exploratory-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The material of Chapters <a href="summarizing-data-basics.html#summarizing-data-basics">5</a> and <a href="summarize2.html#summarize2">7</a> is exactly what automated profiling tools were built for, and this is one of the clearest wins. A <code>ydata-profiling</code> report gives you, in one line and a few seconds, what would otherwise be an hour of typing: per-variable distributions, summary statistics, cardinality, missingness, correlation matrices, duplicate detection, and automatic alerts for constant, highly skewed or highly correlated columns.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb379-1"><a href="ai-tools.html#cb379-1" tabindex="-1"></a><span class="co"># The whole of a first-pass EDA, in three lines.</span></span>
-<span id="cb379-2"><a href="ai-tools.html#cb379-2" tabindex="-1"></a><span class="im">from</span> ydata_profiling <span class="im">import</span> ProfileReport</span>
-<span id="cb379-3"><a href="ai-tools.html#cb379-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb379-4"><a href="ai-tools.html#cb379-4" tabindex="-1"></a></span>
-<span id="cb379-5"><a href="ai-tools.html#cb379-5" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/computers.csv&quot;</span>)</span>
-<span id="cb379-6"><a href="ai-tools.html#cb379-6" tabindex="-1"></a>ProfileReport(df, title<span class="op">=</span><span class="st">&quot;Computers - first pass&quot;</span>, explorative<span class="op">=</span><span class="va">True</span>).to_file(<span class="st">&quot;eda.html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb382-1"><a href="ai-tools.html#cb382-1" tabindex="-1"></a><span class="co"># The whole of a first-pass EDA, in three lines.</span></span>
+<span id="cb382-2"><a href="ai-tools.html#cb382-2" tabindex="-1"></a><span class="im">from</span> ydata_profiling <span class="im">import</span> ProfileReport</span>
+<span id="cb382-3"><a href="ai-tools.html#cb382-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb382-4"><a href="ai-tools.html#cb382-4" tabindex="-1"></a></span>
+<span id="cb382-5"><a href="ai-tools.html#cb382-5" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/computers.csv&quot;</span>)</span>
+<span id="cb382-6"><a href="ai-tools.html#cb382-6" tabindex="-1"></a>ProfileReport(df, title<span class="op">=</span><span class="st">&quot;Computers - first pass&quot;</span>, explorative<span class="op">=</span><span class="va">True</span>).to_file(<span class="st">&quot;eda.html&quot;</span>)</span></code></pre></div>
 <p>The AI layer adds a second step: pasting the <em>summary</em> (never the raw data, if it is sensitive) into a model and asking for hypotheses worth testing. This is a legitimate use because the output is a list of questions, and questions are cheap to evaluate. Compare:</p>
 <blockquote>
 <p><strong>Prompt.</strong> “Below is a <code>ydata-profiling</code> summary of a dataset of personal computer prices from the mid-1990s US market: PUT SUMMARY HERE. Propose five hypotheses about price formation that are testable with these variables. For each, state the variables involved, the expected direction, one plausible confounder, and the test you would use. Flag any hypothesis that cannot be tested with these data alone.”</p>
@@ -1067,25 +1067,25 @@ Figure 12.2: The deployment spectrum. Moving right buys control, auditability an
 <li><a href="https://docs.ragas.io/">Ragas</a> — evaluation metrics for RAG systems (faithfulness, answer relevance, context precision), because a RAG pipeline you have not evaluated is a pipeline you cannot trust.</li>
 </ul>
 <p>A minimal, fully local pipeline is short enough to read in one screen:</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb380-1"><a href="ai-tools.html#cb380-1" tabindex="-1"></a><span class="co"># Local RAG over a folder of methodology PDFs. Nothing leaves the machine.</span></span>
-<span id="cb380-2"><a href="ai-tools.html#cb380-2" tabindex="-1"></a><span class="im">from</span> llama_index.core <span class="im">import</span> VectorStoreIndex, SimpleDirectoryReader, Settings</span>
-<span id="cb380-3"><a href="ai-tools.html#cb380-3" tabindex="-1"></a><span class="im">from</span> llama_index.embeddings.huggingface <span class="im">import</span> HuggingFaceEmbedding</span>
-<span id="cb380-4"><a href="ai-tools.html#cb380-4" tabindex="-1"></a><span class="im">from</span> llama_index.llms.ollama <span class="im">import</span> Ollama</span>
-<span id="cb380-5"><a href="ai-tools.html#cb380-5" tabindex="-1"></a></span>
-<span id="cb380-6"><a href="ai-tools.html#cb380-6" tabindex="-1"></a>Settings.embed_model <span class="op">=</span> HuggingFaceEmbedding(model_name<span class="op">=</span><span class="st">&quot;BAAI/bge-small-en-v1.5&quot;</span>)</span>
-<span id="cb380-7"><a href="ai-tools.html#cb380-7" tabindex="-1"></a>Settings.llm <span class="op">=</span> Ollama(model<span class="op">=</span><span class="st">&quot;qwen3:8b&quot;</span>, request_timeout<span class="op">=</span><span class="fl">120.0</span>)</span>
-<span id="cb380-8"><a href="ai-tools.html#cb380-8" tabindex="-1"></a></span>
-<span id="cb380-9"><a href="ai-tools.html#cb380-9" tabindex="-1"></a>docs  <span class="op">=</span> SimpleDirectoryReader(<span class="st">&quot;./methodology_docs&quot;</span>).load_data()</span>
-<span id="cb380-10"><a href="ai-tools.html#cb380-10" tabindex="-1"></a>index <span class="op">=</span> VectorStoreIndex.from_documents(docs)</span>
-<span id="cb380-11"><a href="ai-tools.html#cb380-11" tabindex="-1"></a></span>
-<span id="cb380-12"><a href="ai-tools.html#cb380-12" tabindex="-1"></a>engine <span class="op">=</span> index.as_query_engine(similarity_top_k<span class="op">=</span><span class="dv">4</span>, response_mode<span class="op">=</span><span class="st">&quot;compact&quot;</span>)</span>
-<span id="cb380-13"><a href="ai-tools.html#cb380-13" tabindex="-1"></a>resp   <span class="op">=</span> engine.query(<span class="st">&quot;What imputation strategy does our group&#39;s protocol mandate &quot;</span></span>
-<span id="cb380-14"><a href="ai-tools.html#cb380-14" tabindex="-1"></a>                      <span class="st">&quot;for MNAR survey items, and on what page is it stated?&quot;</span>)</span>
-<span id="cb380-15"><a href="ai-tools.html#cb380-15" tabindex="-1"></a></span>
-<span id="cb380-16"><a href="ai-tools.html#cb380-16" tabindex="-1"></a><span class="bu">print</span>(resp)</span>
-<span id="cb380-17"><a href="ai-tools.html#cb380-17" tabindex="-1"></a><span class="cf">for</span> node <span class="kw">in</span> resp.source_nodes:            <span class="co"># ALWAYS inspect the retrieved evidence</span></span>
-<span id="cb380-18"><a href="ai-tools.html#cb380-18" tabindex="-1"></a>    <span class="bu">print</span>(node.metadata[<span class="st">&quot;file_name&quot;</span>], <span class="bu">round</span>(node.score, <span class="dv">3</span>))</span>
-<span id="cb380-19"><a href="ai-tools.html#cb380-19" tabindex="-1"></a>    <span class="bu">print</span>(node.text[:<span class="dv">300</span>], <span class="st">&quot;...</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb383-1"><a href="ai-tools.html#cb383-1" tabindex="-1"></a><span class="co"># Local RAG over a folder of methodology PDFs. Nothing leaves the machine.</span></span>
+<span id="cb383-2"><a href="ai-tools.html#cb383-2" tabindex="-1"></a><span class="im">from</span> llama_index.core <span class="im">import</span> VectorStoreIndex, SimpleDirectoryReader, Settings</span>
+<span id="cb383-3"><a href="ai-tools.html#cb383-3" tabindex="-1"></a><span class="im">from</span> llama_index.embeddings.huggingface <span class="im">import</span> HuggingFaceEmbedding</span>
+<span id="cb383-4"><a href="ai-tools.html#cb383-4" tabindex="-1"></a><span class="im">from</span> llama_index.llms.ollama <span class="im">import</span> Ollama</span>
+<span id="cb383-5"><a href="ai-tools.html#cb383-5" tabindex="-1"></a></span>
+<span id="cb383-6"><a href="ai-tools.html#cb383-6" tabindex="-1"></a>Settings.embed_model <span class="op">=</span> HuggingFaceEmbedding(model_name<span class="op">=</span><span class="st">&quot;BAAI/bge-small-en-v1.5&quot;</span>)</span>
+<span id="cb383-7"><a href="ai-tools.html#cb383-7" tabindex="-1"></a>Settings.llm <span class="op">=</span> Ollama(model<span class="op">=</span><span class="st">&quot;qwen3:8b&quot;</span>, request_timeout<span class="op">=</span><span class="fl">120.0</span>)</span>
+<span id="cb383-8"><a href="ai-tools.html#cb383-8" tabindex="-1"></a></span>
+<span id="cb383-9"><a href="ai-tools.html#cb383-9" tabindex="-1"></a>docs  <span class="op">=</span> SimpleDirectoryReader(<span class="st">&quot;./methodology_docs&quot;</span>).load_data()</span>
+<span id="cb383-10"><a href="ai-tools.html#cb383-10" tabindex="-1"></a>index <span class="op">=</span> VectorStoreIndex.from_documents(docs)</span>
+<span id="cb383-11"><a href="ai-tools.html#cb383-11" tabindex="-1"></a></span>
+<span id="cb383-12"><a href="ai-tools.html#cb383-12" tabindex="-1"></a>engine <span class="op">=</span> index.as_query_engine(similarity_top_k<span class="op">=</span><span class="dv">4</span>, response_mode<span class="op">=</span><span class="st">&quot;compact&quot;</span>)</span>
+<span id="cb383-13"><a href="ai-tools.html#cb383-13" tabindex="-1"></a>resp   <span class="op">=</span> engine.query(<span class="st">&quot;What imputation strategy does our group&#39;s protocol mandate &quot;</span></span>
+<span id="cb383-14"><a href="ai-tools.html#cb383-14" tabindex="-1"></a>                      <span class="st">&quot;for MNAR survey items, and on what page is it stated?&quot;</span>)</span>
+<span id="cb383-15"><a href="ai-tools.html#cb383-15" tabindex="-1"></a></span>
+<span id="cb383-16"><a href="ai-tools.html#cb383-16" tabindex="-1"></a><span class="bu">print</span>(resp)</span>
+<span id="cb383-17"><a href="ai-tools.html#cb383-17" tabindex="-1"></a><span class="cf">for</span> node <span class="kw">in</span> resp.source_nodes:            <span class="co"># ALWAYS inspect the retrieved evidence</span></span>
+<span id="cb383-18"><a href="ai-tools.html#cb383-18" tabindex="-1"></a>    <span class="bu">print</span>(node.metadata[<span class="st">&quot;file_name&quot;</span>], <span class="bu">round</span>(node.score, <span class="dv">3</span>))</span>
+<span id="cb383-19"><a href="ai-tools.html#cb383-19" tabindex="-1"></a>    <span class="bu">print</span>(node.text[:<span class="dv">300</span>], <span class="st">&quot;...</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>The last three lines are the important ones. A RAG answer without its sources is just a chat answer with extra steps.</p>
 </div>
 <div id="agents-and-agentic-workflows" class="section level3 unnumbered hasAnchor">
@@ -1243,21 +1243,21 @@ Figure 12.2: The deployment spectrum. Moving right buys control, auditability an
 <p><strong>Prompt 1.</strong> <em>“Analyse this dataset and build a model to predict price. Tell me what drives computer prices.”</em></p>
 </blockquote>
 <p>This is what people actually do. The tool responds impressively: it profiles the data, notes there are no missing values, one-hot-encodes the three categorical columns, splits the data randomly into train and test, fits a gradient-boosting regressor, and reports:</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb382-1"><a href="ai-tools.html#cb382-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb382-2"><a href="ai-tools.html#cb382-2" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingRegressor</span>
-<span id="cb382-3"><a href="ai-tools.html#cb382-3" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score, mean_absolute_error</span>
-<span id="cb382-4"><a href="ai-tools.html#cb382-4" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb382-5"><a href="ai-tools.html#cb382-5" tabindex="-1"></a></span>
-<span id="cb382-6"><a href="ai-tools.html#cb382-6" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/computers.csv&quot;</span>)</span>
-<span id="cb382-7"><a href="ai-tools.html#cb382-7" tabindex="-1"></a>X  <span class="op">=</span> pd.get_dummies(df.drop(columns<span class="op">=</span>[<span class="st">&quot;price&quot;</span>]), drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb382-8"><a href="ai-tools.html#cb382-8" tabindex="-1"></a>y  <span class="op">=</span> df[<span class="st">&quot;price&quot;</span>]</span>
-<span id="cb382-9"><a href="ai-tools.html#cb382-9" tabindex="-1"></a></span>
-<span id="cb382-10"><a href="ai-tools.html#cb382-10" tabindex="-1"></a>X_tr, X_te, y_tr, y_te <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb382-11"><a href="ai-tools.html#cb382-11" tabindex="-1"></a>model <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X_tr, y_tr)</span>
-<span id="cb382-12"><a href="ai-tools.html#cb382-12" tabindex="-1"></a>pred  <span class="op">=</span> model.predict(X_te)</span>
-<span id="cb382-13"><a href="ai-tools.html#cb382-13" tabindex="-1"></a></span>
-<span id="cb382-14"><a href="ai-tools.html#cb382-14" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;R2  = </span><span class="sc">{</span>r2_score(y_te, pred)<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb382-15"><a href="ai-tools.html#cb382-15" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;MAE = </span><span class="sc">{</span>mean_absolute_error(y_te, pred)<span class="sc">:.0f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb385-1"><a href="ai-tools.html#cb385-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb385-2"><a href="ai-tools.html#cb385-2" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingRegressor</span>
+<span id="cb385-3"><a href="ai-tools.html#cb385-3" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score, mean_absolute_error</span>
+<span id="cb385-4"><a href="ai-tools.html#cb385-4" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb385-5"><a href="ai-tools.html#cb385-5" tabindex="-1"></a></span>
+<span id="cb385-6"><a href="ai-tools.html#cb385-6" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/computers.csv&quot;</span>)</span>
+<span id="cb385-7"><a href="ai-tools.html#cb385-7" tabindex="-1"></a>X  <span class="op">=</span> pd.get_dummies(df.drop(columns<span class="op">=</span>[<span class="st">&quot;price&quot;</span>]), drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb385-8"><a href="ai-tools.html#cb385-8" tabindex="-1"></a>y  <span class="op">=</span> df[<span class="st">&quot;price&quot;</span>]</span>
+<span id="cb385-9"><a href="ai-tools.html#cb385-9" tabindex="-1"></a></span>
+<span id="cb385-10"><a href="ai-tools.html#cb385-10" tabindex="-1"></a>X_tr, X_te, y_tr, y_te <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb385-11"><a href="ai-tools.html#cb385-11" tabindex="-1"></a>model <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X_tr, y_tr)</span>
+<span id="cb385-12"><a href="ai-tools.html#cb385-12" tabindex="-1"></a>pred  <span class="op">=</span> model.predict(X_te)</span>
+<span id="cb385-13"><a href="ai-tools.html#cb385-13" tabindex="-1"></a></span>
+<span id="cb385-14"><a href="ai-tools.html#cb385-14" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;R2  = </span><span class="sc">{</span>r2_score(y_te, pred)<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb385-15"><a href="ai-tools.html#cb385-15" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;MAE = </span><span class="sc">{</span>mean_absolute_error(y_te, pred)<span class="sc">:.0f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <pre><code>## R2  = 0.925
 ## MAE = 116</code></pre>
 <p>It then adds a linear model for interpretability and summarizes the coefficients as “what drives price”:</p>
@@ -1281,21 +1281,21 @@ Figure 12.2: The deployment spectrum. Moving right buys control, auditability an
 <p><em>Constraints: (1) the evaluation split must respect time — train on months 1–28, test on months 29–35; (2) report the baseline performance of predicting the training mean, so I can judge whether the model beats it; (3) state every assumption you make before writing code; (4) if a requested quantity cannot be identified from these data, say so rather than estimating it anyway. Use pandas and scikit-learn. Return code first, interpretation second.”</em></p>
 </blockquote>
 <p>The same model, given the same data, now produces a different analysis:</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb385-1"><a href="ai-tools.html#cb385-1" tabindex="-1"></a>train <span class="op">=</span> df[<span class="st">&quot;trend&quot;</span>] <span class="op">&lt;=</span> <span class="dv">28</span></span>
-<span id="cb385-2"><a href="ai-tools.html#cb385-2" tabindex="-1"></a>test  <span class="op">=</span> df[<span class="st">&quot;trend&quot;</span>] <span class="op">&gt;</span>  <span class="dv">28</span></span>
-<span id="cb385-3"><a href="ai-tools.html#cb385-3" tabindex="-1"></a></span>
-<span id="cb385-4"><a href="ai-tools.html#cb385-4" tabindex="-1"></a>model <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X[train], y[train])</span>
-<span id="cb385-5"><a href="ai-tools.html#cb385-5" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;temporal-split R2  = </span><span class="sc">{</span>r2_score(y[test], model.predict(X[test]))<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb385-6"><a href="ai-tools.html#cb385-6" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;temporal-split MAE = </span><span class="sc">{</span>mean_absolute_error(y[test], model.predict(X[test]))<span class="sc">:.0f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb388-1"><a href="ai-tools.html#cb388-1" tabindex="-1"></a>train <span class="op">=</span> df[<span class="st">&quot;trend&quot;</span>] <span class="op">&lt;=</span> <span class="dv">28</span></span>
+<span id="cb388-2"><a href="ai-tools.html#cb388-2" tabindex="-1"></a>test  <span class="op">=</span> df[<span class="st">&quot;trend&quot;</span>] <span class="op">&gt;</span>  <span class="dv">28</span></span>
+<span id="cb388-3"><a href="ai-tools.html#cb388-3" tabindex="-1"></a></span>
+<span id="cb388-4"><a href="ai-tools.html#cb388-4" tabindex="-1"></a>model <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X[train], y[train])</span>
+<span id="cb388-5"><a href="ai-tools.html#cb388-5" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;temporal-split R2  = </span><span class="sc">{</span>r2_score(y[test], model.predict(X[test]))<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb388-6"><a href="ai-tools.html#cb388-6" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;temporal-split MAE = </span><span class="sc">{</span>mean_absolute_error(y[test], model.predict(X[test]))<span class="sc">:.0f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <pre><code>## temporal-split R2  = -0.233
 ## temporal-split MAE = 368</code></pre>
 <p>A negative R² means the model is <em>worse than predicting a constant</em>. The 0.925 of Round 1 was an artefact of the random split: with observations from all 35 months mixed into both train and test, the model could interpolate the price level of a given month from its neighbours in the training set. This is temporal leakage, and it is precisely the failure that Chapter <a href="predictive.html#predictive">10</a> warns about. The honest out-of-time performance is catastrophic, because prices fell steadily over the period and the model has no mechanism for extrapolating that decline.</p>
 <p>The second half of the prompt — hardware versus time — produces the other correction. Fitting the linear model with and without the time index:</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb387-1"><a href="ai-tools.html#cb387-1" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb387-2"><a href="ai-tools.html#cb387-2" tabindex="-1"></a></span>
-<span id="cb387-3"><a href="ai-tools.html#cb387-3" tabindex="-1"></a>f <span class="op">=</span> <span class="st">&quot;price ~ speed + hd + ram + screen + cd + multi + premium&quot;</span></span>
-<span id="cb387-4"><a href="ai-tools.html#cb387-4" tabindex="-1"></a><span class="bu">print</span>(smf.ols(f, data<span class="op">=</span>df).fit().params.<span class="bu">round</span>(<span class="dv">2</span>))</span>
-<span id="cb387-5"><a href="ai-tools.html#cb387-5" tabindex="-1"></a><span class="bu">print</span>(smf.ols(f <span class="op">+</span> <span class="st">&quot; + trend&quot;</span>, data<span class="op">=</span>df).fit().params.<span class="bu">round</span>(<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb390-1"><a href="ai-tools.html#cb390-1" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb390-2"><a href="ai-tools.html#cb390-2" tabindex="-1"></a></span>
+<span id="cb390-3"><a href="ai-tools.html#cb390-3" tabindex="-1"></a>f <span class="op">=</span> <span class="st">&quot;price ~ speed + hd + ram + screen + cd + multi + premium&quot;</span></span>
+<span id="cb390-4"><a href="ai-tools.html#cb390-4" tabindex="-1"></a><span class="bu">print</span>(smf.ols(f, data<span class="op">=</span>df).fit().params.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb390-5"><a href="ai-tools.html#cb390-5" tabindex="-1"></a><span class="bu">print</span>(smf.ols(f <span class="op">+</span> <span class="st">&quot; + trend&quot;</span>, data<span class="op">=</span>df).fit().params.<span class="bu">round</span>(<span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##                without trend    with trend
 ## Intercept            385.09        520.18
 ## speed                  5.75          9.17
@@ -1314,18 +1314,18 @@ Figure 12.2: The deployment spectrum. Moving right buys control, auditability an
 <p>The third analyst does what the second one did, and then keeps going, using the assistant as an instrument rather than an oracle. Concretely:</p>
 <p><strong>They ask for the adversarial case.</strong> <em>“Argue that my conclusion — that prices fell by $53/month holding hardware constant — is wrong. Give me the three most likely alternative explanations and, for each, the check that would distinguish it.”</em> The model returns composition change (the mix of machines advertised changes over time), the <code>ads</code> variable being endogenous (models that are being pushed harder may be priced differently), and unmodelled non-linearity in the time effect. All three are worth checking; the third turns out to matter, because the mean price at months 34–35 jumps back up to roughly $2,375 after bottoming near $1,930 at month 28 — a pattern a linear trend cannot represent and which needs an explanation before any forecast is defensible.</p>
 <p><strong>They convert judgement into assertions.</strong> Rather than trusting that the cleaning step preserved the data, they ask the assistant to generate validation code and then read it:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb389-1"><a href="ai-tools.html#cb389-1" tabindex="-1"></a><span class="im">import</span> pandera.pandas <span class="im">as</span> pa</span>
-<span id="cb389-2"><a href="ai-tools.html#cb389-2" tabindex="-1"></a></span>
-<span id="cb389-3"><a href="ai-tools.html#cb389-3" tabindex="-1"></a>schema <span class="op">=</span> pa.DataFrameSchema({</span>
-<span id="cb389-4"><a href="ai-tools.html#cb389-4" tabindex="-1"></a>    <span class="st">&quot;price&quot;</span>:  pa.Column(<span class="bu">int</span>,   pa.Check.in_range(<span class="dv">900</span>, <span class="dv">6000</span>)),</span>
-<span id="cb389-5"><a href="ai-tools.html#cb389-5" tabindex="-1"></a>    <span class="st">&quot;speed&quot;</span>:  pa.Column(<span class="bu">int</span>,   pa.Check.isin([<span class="dv">25</span>, <span class="dv">33</span>, <span class="dv">50</span>, <span class="dv">66</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">100</span>])),</span>
-<span id="cb389-6"><a href="ai-tools.html#cb389-6" tabindex="-1"></a>    <span class="st">&quot;ram&quot;</span>:    pa.Column(<span class="bu">int</span>,   pa.Check.isin([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">24</span>, <span class="dv">32</span>])),</span>
-<span id="cb389-7"><a href="ai-tools.html#cb389-7" tabindex="-1"></a>    <span class="st">&quot;screen&quot;</span>: pa.Column(<span class="bu">int</span>,   pa.Check.isin([<span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">17</span>])),</span>
-<span id="cb389-8"><a href="ai-tools.html#cb389-8" tabindex="-1"></a>    <span class="st">&quot;cd&quot;</span>:     pa.Column(<span class="bu">str</span>,   pa.Check.isin([<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>])),</span>
-<span id="cb389-9"><a href="ai-tools.html#cb389-9" tabindex="-1"></a>    <span class="st">&quot;trend&quot;</span>:  pa.Column(<span class="bu">int</span>,   pa.Check.in_range(<span class="dv">1</span>, <span class="dv">35</span>)),</span>
-<span id="cb389-10"><a href="ai-tools.html#cb389-10" tabindex="-1"></a>}, strict<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb389-11"><a href="ai-tools.html#cb389-11" tabindex="-1"></a></span>
-<span id="cb389-12"><a href="ai-tools.html#cb389-12" tabindex="-1"></a>schema.validate(df)          <span class="co"># raises on any violation, on every run, forever</span></span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb392-1"><a href="ai-tools.html#cb392-1" tabindex="-1"></a><span class="im">import</span> pandera.pandas <span class="im">as</span> pa</span>
+<span id="cb392-2"><a href="ai-tools.html#cb392-2" tabindex="-1"></a></span>
+<span id="cb392-3"><a href="ai-tools.html#cb392-3" tabindex="-1"></a>schema <span class="op">=</span> pa.DataFrameSchema({</span>
+<span id="cb392-4"><a href="ai-tools.html#cb392-4" tabindex="-1"></a>    <span class="st">&quot;price&quot;</span>:  pa.Column(<span class="bu">int</span>,   pa.Check.in_range(<span class="dv">900</span>, <span class="dv">6000</span>)),</span>
+<span id="cb392-5"><a href="ai-tools.html#cb392-5" tabindex="-1"></a>    <span class="st">&quot;speed&quot;</span>:  pa.Column(<span class="bu">int</span>,   pa.Check.isin([<span class="dv">25</span>, <span class="dv">33</span>, <span class="dv">50</span>, <span class="dv">66</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">100</span>])),</span>
+<span id="cb392-6"><a href="ai-tools.html#cb392-6" tabindex="-1"></a>    <span class="st">&quot;ram&quot;</span>:    pa.Column(<span class="bu">int</span>,   pa.Check.isin([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">24</span>, <span class="dv">32</span>])),</span>
+<span id="cb392-7"><a href="ai-tools.html#cb392-7" tabindex="-1"></a>    <span class="st">&quot;screen&quot;</span>: pa.Column(<span class="bu">int</span>,   pa.Check.isin([<span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">17</span>])),</span>
+<span id="cb392-8"><a href="ai-tools.html#cb392-8" tabindex="-1"></a>    <span class="st">&quot;cd&quot;</span>:     pa.Column(<span class="bu">str</span>,   pa.Check.isin([<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>])),</span>
+<span id="cb392-9"><a href="ai-tools.html#cb392-9" tabindex="-1"></a>    <span class="st">&quot;trend&quot;</span>:  pa.Column(<span class="bu">int</span>,   pa.Check.in_range(<span class="dv">1</span>, <span class="dv">35</span>)),</span>
+<span id="cb392-10"><a href="ai-tools.html#cb392-10" tabindex="-1"></a>}, strict<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb392-11"><a href="ai-tools.html#cb392-11" tabindex="-1"></a></span>
+<span id="cb392-12"><a href="ai-tools.html#cb392-12" tabindex="-1"></a>schema.validate(df)          <span class="co"># raises on any violation, on every run, forever</span></span></code></pre></div>
 <p><strong>They keep the model out of the inference.</strong> The assistant wrote the code, produced the plots, drafted the docstrings and proposed the alternative explanations. It did not choose the validation scheme, did not decide that <code>trend</code> is a confounder rather than a feature, and did not write the conclusion. Those three decisions are the analysis.</p>
 <p><strong>They document the collaboration.</strong> The final notebook records which model was used, on what date, for which steps, and the prompts that produced the non-trivial code.</p>
 </div>
@@ -1414,7 +1414,7 @@ Figure 12.3: Left: the fraction of analysis steps that could be accepted as prod
 </blockquote>
 <p>All three figures in this chapter were generated with Matplotlib specifically for it and are released under the same licence as the rest of the handbook; no third-party images are reproduced. The dataset used in Section <a href="ai-tools.html#ai-guided-project">12.7</a> is the one already distributed with Chapter <a href="predictive.html#predictive">10</a>.</p>
 
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
 Aggarwal, Charu C, and ChengXiang Zhai. 2012. <em>Mining Text Data</em>. Springer Science &amp; Business Media.
 </div>
@@ -1425,48 +1425,48 @@ Christopher, D Manning, Raghavan Prabhakar, and Schacetzel Hinrich. 2008. <span>
 Deitel, Paul, Harvey Deitel, and Abbey Deitel. 2011. <em>Internet &amp; World Wide Web: How to Program</em>. 5th ed. Pearson. <a href="https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006">https://www.amazon.com/Internet-World-Wide-Web-Program/dp/0132151006</a>.
 </div>
 <div class="csl-entry">
-Egg, Alex, Martin Iglesias Goyanes, Friso Lochner, Andreu Mora Kazakov, Hugo Boulanger, et al. 2025. <span>“<span>DABstep</span>: Data Agent Benchmark for Multi-Step Reasoning.”</span> In. <a href="https://arxiv.org/abs/2506.23719">https://arxiv.org/abs/2506.23719</a>.
+<span class="nocase">Egg, Alex, Martin Iglesias Goyanes, Friso Lochner, Andreu Mora Kazakov, Hugo Boulanger, et al.</span> 2025. <span>“<span>DABstep</span>: Data Agent Benchmark for Multi-Step Reasoning.”</span> <a href="https://arxiv.org/abs/2506.23719">https://arxiv.org/abs/2506.23719</a>.
 </div>
 <div class="csl-entry">
 Ferrara, Emilio, Pasquale De Meo, Giacomo Fiumara, and Robert Baumgartner. 2014. <span>“Web Data Extraction, Applications and Techniques: A Survey.”</span> <em>Knowledge-Based Systems</em> 70: 301–23.
 </div>
 <div class="csl-entry">
-Kushmerick, Nicholas, Daniel S Weld, and Robert Doorenbos. 1997. <span>“Wrapper Induction for Information Extraction.”</span>
+Kushmerick, Nicholas, Daniel S Weld, and Robert Doorenbos. 1997. <em>Wrapper Induction for Information Extraction</em>.
 </div>
 <div class="csl-entry">
-Lai, Yuhang, Chengxi Li, Yiming Wang, Tianyi Zhang, Ruiqi Zhong, Luke Zettlemoyer, Wen-tau Yih, Daniel Fried, Sida Wang, and Tao Yu. 2023. <span>“<span>DS-1000</span>: A Natural and Reliable Benchmark for Data Science Code Generation.”</span> In <em>Proceedings of the 40th International Conference on Machine Learning (ICML)</em>. <a href="https://ds1000-code-gen.github.io/">https://ds1000-code-gen.github.io/</a>.
+Lai, Yuhang, Chengxi Li, Yiming Wang, et al. 2023. <span>“<span>DS-1000</span>: A Natural and Reliable Benchmark for Data Science Code Generation.”</span> <em>Proceedings of the 40th International Conference on Machine Learning (ICML)</em>. <a href="https://ds1000-code-gen.github.io/">https://ds1000-code-gen.github.io/</a>.
 </div>
 <div class="csl-entry">
 Liu, Bing. 2011. <em>Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data</em>. 2nd ed. Springer Publishing Company, Incorporated.
 </div>
 <div class="csl-entry">
-Noyes, Katherine. 2008. <span>“<span class="nocase">Docker: A ’Shipping Container’ for Linux Code</span>.”</span> <a href="https://www.linux.com/news/docker-shipping-container-linux-code" class="uri">https://www.linux.com/news/docker-shipping-container-linux-code</a>.
+Noyes, Katherine. 2008. <em><span class="nocase">Docker: A ’Shipping Container’ for Linux Code</span></em>. <a href="https://www.linux.com/news/docker-shipping-container-linux-code" class="uri">Https://www.linux.com/news/docker-shipping-container-linux-code</a>.
 </div>
 <div class="csl-entry">
-Spracklen, Joseph, Raveen Wijewickrama, A H M Nazmus Sakib, Anindya Maiti, Bimal Viswanath, and Murtuza Jadliwala. 2025. <span>“We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating <span>LLMs</span>.”</span> In <em>34th USENIX Security Symposium (USENIX Security 25)</em>. <a href="https://arxiv.org/abs/2406.10279">https://arxiv.org/abs/2406.10279</a>.
+Spracklen, Joseph, Raveen Wijewickrama, A H M Nazmus Sakib, Anindya Maiti, Bimal Viswanath, and Murtuza Jadliwala. 2025. <span>“We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating <span>LLMs</span>.”</span> <em>34th USENIX Security Symposium (USENIX Security 25)</em>. <a href="https://arxiv.org/abs/2406.10279">https://arxiv.org/abs/2406.10279</a>.
 </div>
 <div class="csl-entry">
-Statista Internet World Stats. 2026. <span>“Usage and Population Statistics.”</span> 2026. <a href="https://www.statista.com/topics/1145/internet-usage-worldwide">https://www.statista.com/topics/1145/internet-usage-worldwide</a>.
+Statista Internet World Stats. 2026. <span>“Usage and Population Statistics.”</span> <a href="https://www.statista.com/topics/1145/internet-usage-worldwide">https://www.statista.com/topics/1145/internet-usage-worldwide</a>.
 </div>
 <div class="csl-entry">
 Stengos, Thanasis, and Eleftherios Zacharias. 2006. <span>“Intertemporal Pricing and Price Discrimination: A Semiparametric Hedonic Analysis of the Personal Computer Market.”</span> <em>Journal of Applied Econometrics</em> 21 (3): 371–86.
 </div>
 <div class="csl-entry">
-Tai, Kuo-Chung. 1979. <span>“The Tree-to-Tree Correction Problem.”</span> <em>J. ACM</em> 26 (3): 422–33. <a href="https://doi.org/10.1145/322139.322143">https://doi.org/10.1145/322139.322143</a>.
+Tai, Kuo-Chung. 1979. <span>“The Tree-to-Tree Correction Problem.”</span> <em>J. ACM</em> (New York, NY, USA) 26 (3): 422–33. <a href="https://doi.org/10.1145/322139.322143">https://doi.org/10.1145/322139.322143</a>.
 </div>
 </div>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-dabstep2025" class="csl-entry">
-Egg, Alex, Martin Iglesias Goyanes, Friso Lochner, Andreu Mora Kazakov, Hugo Boulanger, et al. 2025. <span>“<span>DABstep</span>: Data Agent Benchmark for Multi-Step Reasoning.”</span> In. <a href="https://arxiv.org/abs/2506.23719">https://arxiv.org/abs/2506.23719</a>.
+<span class="nocase">Egg, Alex, Martin Iglesias Goyanes, Friso Lochner, Andreu Mora Kazakov, Hugo Boulanger, et al.</span> 2025. <span>“<span>DABstep</span>: Data Agent Benchmark for Multi-Step Reasoning.”</span> <a href="https://arxiv.org/abs/2506.23719">https://arxiv.org/abs/2506.23719</a>.
 </div>
 <div id="ref-ds1000" class="csl-entry">
-Lai, Yuhang, Chengxi Li, Yiming Wang, Tianyi Zhang, Ruiqi Zhong, Luke Zettlemoyer, Wen-tau Yih, Daniel Fried, Sida Wang, and Tao Yu. 2023. <span>“<span>DS-1000</span>: A Natural and Reliable Benchmark for Data Science Code Generation.”</span> In <em>Proceedings of the 40th International Conference on Machine Learning (ICML)</em>. <a href="https://ds1000-code-gen.github.io/">https://ds1000-code-gen.github.io/</a>.
+Lai, Yuhang, Chengxi Li, Yiming Wang, et al. 2023. <span>“<span>DS-1000</span>: A Natural and Reliable Benchmark for Data Science Code Generation.”</span> <em>Proceedings of the 40th International Conference on Machine Learning (ICML)</em>. <a href="https://ds1000-code-gen.github.io/">https://ds1000-code-gen.github.io/</a>.
 </div>
 <div id="ref-spracklen2025" class="csl-entry">
-Spracklen, Joseph, Raveen Wijewickrama, A H M Nazmus Sakib, Anindya Maiti, Bimal Viswanath, and Murtuza Jadliwala. 2025. <span>“We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating <span>LLMs</span>.”</span> In <em>34th USENIX Security Symposium (USENIX Security 25)</em>. <a href="https://arxiv.org/abs/2406.10279">https://arxiv.org/abs/2406.10279</a>.
+Spracklen, Joseph, Raveen Wijewickrama, A H M Nazmus Sakib, Anindya Maiti, Bimal Viswanath, and Murtuza Jadliwala. 2025. <span>“We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating <span>LLMs</span>.”</span> <em>34th USENIX Security Symposium (USENIX Security 25)</em>. <a href="https://arxiv.org/abs/2406.10279">https://arxiv.org/abs/2406.10279</a>.
 </div>
 <div id="ref-stengos1997" class="csl-entry">
 Stengos, Thanasis, and Eleftherios Zacharias. 2006. <span>“Intertemporal Pricing and Price Discrimination: A Semiparametric Hedonic Analysis of the Personal Computer Market.”</span> <em>Journal of Applied Econometrics</em> 21 (3): 371–86.

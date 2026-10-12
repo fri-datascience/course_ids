@@ -114,7 +114,7 @@ The meaning of principal components can more easily be discerend by plotting pai
 biplot(res, cex = 0.8)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-5-1.png" width="576" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-5-1.png" alt="" width="576" />
 This reveals two major axes in the data - (1) athletes that have high values in PC1 and PC2 are better at javeline, discus, and shotput (events that require strength) and worse at high jump (events where having a lot of muscle mass is detrimental) and (2) atletes that have high PC1 but low PC2 are better at all the shorter running events and long jump (events that depend on running speed). Pole vaulting and 1500m running results are not explained well by the first two principal components.
 
 ## Factor analysis (FA)
@@ -151,7 +151,12 @@ res <- fa(dat, nfactors =  2, rotate = "varimax")
 biplot(res)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-6-1.png" width="576" />
+```
+## Warning in biplot.psych(res): biplot.psych has been deprecated, please use
+## biPlot.
+```
+
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-6-1.png" alt="" width="576" />
 
 We can see from the plot that the results are visually similar to PCA results only rotated. Rotation is an important concept in FA. Because we are simultaneously fitting latent factors and the coefficients (loadings) of the linear combination of these factors, the solution is invariant to rotation. That is, there are infinitely many (equivalent) solutions to the FA problem. Before we interpret the results, we have to pick one rotation. For easier interpretation, we prefer rotations that keep the factors orthogonal and reduce the number of variables that each factor relates to (loads on). One such rotation is [Varimax](https://en.wikipedia.org/wiki/Varimax_rotation), which we used in the above example.
 
@@ -206,7 +211,7 @@ plot(res, xlab = "MDS1", ylab = "MDS2", col = "white")
 text(res, labels = 1:nrow(dat))
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-8-1.png" width="384" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-8-1.png" alt="" width="384" />
 
 In order to understand MDS1 and MDS2 dimensions, we would have to look at the characteristics of the athletes on the left-hand or right-hand side (higher and lower). Fortunately, we do not have to go through the effort, because we can readily compare this result to the result of PCA and we will quickly determine that they are very similar (up to rotation).
 
@@ -221,7 +226,7 @@ dataset <- dataset[sample(1:nrow(dataset),1000, rep = F),]
 scatterplot3d(dataset[,1:3], color = dataset[,4], pch = 16)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-9-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-9-1.png" alt="" width="480" />
 
 All three dimensions are almost identical, so PCA can only produce principal components that are a rotation of the ball. That is, the projection on the first two components does not add any value over just visualizing the first two original dimensions:
 
@@ -232,7 +237,7 @@ rot <- as.matrix(dataset[,1:3]) %*% t(res$rotation)
 plot(rot[,1:2], col = dataset[,4], pch = 16, xlab = "PCA1", ylab = "PCA2")
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-10-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-10-1.png" alt="" width="480" />
 
 On the other hand, MDS works with distances (topology) and groups points that are on similar layers of the ball closer together, producing a more useful 2D projection of the layers of the ball:
 
@@ -244,7 +249,7 @@ res <- isoMDS(d, trace = F)$points
 plot(res, xlab = "MDS1", ylab = "MDS2", col = dataset[,4], pch = 16)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-11-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-11-1.png" alt="" width="480" />
 
 ## t-Distributed Stochastic Neighbor Embedding (t-SNE) 
 
@@ -264,7 +269,7 @@ dataset <- dataset[sample(1:nrow(dataset),1000, rep = F),]
 scatterplot3d(dataset[,1:3], color = dataset[,4], pch = 16)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-12-1.png" width="576" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-12-1.png" alt="" width="576" />
 
 MDS and PCA preserve the x and y dimensions of the data:
 
@@ -276,7 +281,7 @@ res <- isoMDS(d, trace = F)$points
 plot(res, xlab = "MDS1", ylab = "MDS2", col = dataset[,4], pch = 16)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-13-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-13-1.png" alt="" width="480" />
 
 ``` r
 # PCA
@@ -285,7 +290,7 @@ rot <- as.matrix(dataset[,1:3]) %*% t(res$rotation)
 plot(rot[,1:2], col = dataset[,4], pch = 16)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-13-2.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-13-2.png" alt="" width="480" />
 
 t-SNE on the other hand projects the data manifold into 2 dimensions, which produces an arguably more useful visualization of the characteristics of the data:
 
@@ -297,7 +302,7 @@ res <- Rtsne(dataset[,1:3], perplexity = 50)
 plot(res$Y, col = dataset[,4], xlab = "t-SNE1", ylab = "t-SNE2")
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-14-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-14-1.png" alt="" width="480" />
 
 ## Clustering
 
@@ -383,7 +388,11 @@ library(factoextra)
 ```
 
 ```
-## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+## Welcome to factoextra!
+```
+
+```
+## Want to learn more? See two factoextra-related books at https://www.datanovia.com/library/principal-component-methods
 ```
 
 ``` r
@@ -398,17 +407,7 @@ fviz_pca_biplot(pca, label="var", habillage=as.factor(res$cluster)) +
       legend.position="none")
 ```
 
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the ggpubr package.
-##   Please report the issue at <https://github.com/kassambara/ggpubr/issues>.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-```
-
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-17-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-17-1.png" alt="" width="480" />
 
 Now we can interpret the two clusters as predominately Catholic and predominately Protestant provinces. PCA also shows some other characteristics associated with the clusters - blue is associated with higher fertility and more agriculture, while red is associated with higher education.
 
@@ -436,7 +435,7 @@ plot(1:maxk, wss, type = "b",
      ylab = "Within groups sum of squares")
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-18-1.png" width="480" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-18-1.png" alt="" width="480" />
 We see that after 2 clusters, the within-cluster variability decreases slowly. Therefore, according to this technique, k = 2 (or k = 3) is a good choice for the number of clusters. Sometimes there will be no distinct elbow in the scree plot and we will not be able to use this technique effectively.
 
 Another popular technique is to compute the [silhouette index](https://en.wikipedia.org/wiki/Silhouette_(clustering)). The silhouette index measures how similar an observation is to its own cluster compared to other clusters ). It ranges from -1 to +1, where a high value indicates that the object is well matched to its own cluster and poorly matched to neighboring clusters. If most objects have a high value, then the clustering configuration is appropriate. If many points have a low or negative value, then the clustering configuration may have too many or too few clusters. Because it takes into account within and between-cluster variability, the silhouette index, unlike within-cluster variability, does not necessarily increase with the number of clusters - at some point it typically starts decreasing.
@@ -477,7 +476,7 @@ res_hk <- hclust(dist(swiss), method = "average")
 plot(res_hk)
 ```
 
-<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-20-1.png" width="576" />
+<img src="08-Summarizing-data-03_files/figure-html/unnamed-chunk-20-1.png" alt="" width="576" />
 
 The above [dendrogram](https://en.wikipedia.org/wiki/Dendrogram) visualizes the entire hierarchical clustering structure. We can see how a hierarchical clustering contains not just one, but a clustering for every number of clusters between 1 and the number of points.
 

@@ -303,6 +303,6 @@ for (i in 1:n) {
 hist(all, breaks = sqrt(n))
 ```
 
-<img src="03-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="03-Dynamic_reports_and_reproducibility_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" />
 
 Create a Shiny App, Shiny Dashboard or Jupyter Dashboard that draws such a histogram and allows you to interactively change $n$, $m$ and which distribution is used (support standard normal, uniform and a third distribution of choice). Use the Dashboard to visually explore if the sample average tend to a normal distribution as $m$ grows larger.

@@ -17,7 +17,7 @@ The repository was initially created and used during the Fall 2019 and is now be
 To make updates we propose to use RStudio IDE. Prior to work on a project we advise to install the following dependencies:
 
 ```
-install.packages("devtools")
+install.packages(c("devtools", "remotes"))
 
 remotes::install_github("slowkow/ggrepel")
 install.packages(c("FactoMineR", "ggpubr"))
