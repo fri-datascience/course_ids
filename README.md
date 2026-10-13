@@ -8,7 +8,7 @@ Compiled version of the materials is accessible at [https://fri-datascience.gith
 
 Introductory lesson slides are available at [https://fri-datascience.github.io/course_ids/slides/00-intro.slides.html](https://fri-datascience.github.io/course_ids/slides/00-intro.slides.html).
 
-The course is administered by professors [Erik Štrumbelj](mailto:erik.strumbelj@fri.uni-lj.si), [Tomaž Curk](mailto:tomaz.curk@fri.uni-lj.si) and [Slavko Žitnik](mailto:slavko.zitnik@fri.uni-lj.si)
+The course is administered by professors [Erik Štrumbelj](mailto:erik.strumbelj@fri.uni-lj.si), [Tomaž Curk](mailto:tomaz.curk@fri.uni-lj.si) and [Octavian Mihai Machidon](mailto:octavian.machidon@fri.uni-lj.si).
 
 ## Repository updates
 
@@ -29,7 +29,7 @@ Build everything inside a Docker container, with no local R, Python or LaTeX ins
 
 ### Building with RStudio
 
-Alternatively, to make updates we propose to use RStudio IDE and xelatex (using [TeX Live](https://tug.org/texlive/)). Prior to work on a project we advise to install the following dependencies:
+Alternatively, to make updates we propose to use RStudio IDE and XeLaTeX (using [TeX Live](https://tug.org/texlive/)). Prior to work on a project we advise to install the following dependencies:
 
 ```
 install.packages(c("devtools", "remotes"))
