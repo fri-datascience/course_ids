@@ -1,0 +1,6 @@
+% LaTeX preamble for bookdown::pdf_book (xelatex)
+% DejaVu Serif lacks some symbols; take them from DejaVu Sans.
+\usepackage{newunicodechar}
+\newfontfamily\symbolfont{DejaVu Sans}
+\newunicodechar{✓}{{\symbolfont ✓}}
+\newunicodechar{✗}{{\symbolfont ✗}}
