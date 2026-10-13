@@ -570,7 +570,7 @@ div.csl-indent {
 <p>If our dataset does not have too many variables, a visual summary such as this one can be very effective at revealing the extend and patterns of missingness in our data:</p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="missing-data.html#cb321-1" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
 <span id="cb321-2"><a href="missing-data.html#cb321-2" tabindex="-1"></a><span class="fu">vis_miss</span>(dat, <span class="at">warn_large_data =</span> F)</span></code></pre></div>
-<p><img src="11-Missing-data_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" /></p>
+<p><img src="11-Missing-data_files/figure-html/missingnessMap-1.png" alt="" width="504" /></p>
 <p>Another useful visualization is the frequency of different patterns of missingness:</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="missing-data.html#cb322-1" tabindex="-1"></a><span class="fu">library</span>(UpSetR)</span>
 <span id="cb322-2"><a href="missing-data.html#cb322-2" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(dat)</span></code></pre></div>
@@ -580,23 +580,20 @@ div.csl-indent {
 ## ℹ The deprecated feature was likely used in the UpSetR package.
 ##   Please report the issue at &lt;https://github.com/hms-dbmi/UpSetR/issues&gt;.
 ## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## ℹ The deprecated feature was likely used in the UpSetR package.
 ##   Please report the issue at &lt;https://github.com/hms-dbmi/UpSetR/issues&gt;.
 ## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
 ## ℹ Please use the `linewidth` argument instead.
 ## ℹ The deprecated feature was likely used in the UpSetR package.
 ##   Please report the issue at &lt;https://github.com/hms-dbmi/UpSetR/issues&gt;.
 ## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<p><img src="11-Missing-data_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<p><img src="11-Missing-data_files/figure-html/missingnessUpset-1.png" alt="" width="672" /></p>
 <p>From the above plot we can see that dropout and ethnicity have the most missing values and that the other most common pattern is for both of them to be missing. If missingness of dropout and ethnicity were independent, we should expect about 64% of missing ethnicity rows to also have missing dropout. That is very likely not the case, as only about a half have missing dropout. That is, there is likely a pattern to missingness.</p>
 </div>
 <div id="deletion-methods" class="section level2 hasAnchor" number="11.3">
@@ -682,14 +679,14 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 4.6808, df = NA, p-value = 0.08646</code></pre>
+## X-squared = 4.6808, df = NA, p-value = 0.09645</code></pre>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="missing-data.html#cb344-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>dropOUToriginal, tmp<span class="sc">$</span>Ethnicity), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 1.4154, df = NA, p-value = 0.8521</code></pre>
+## X-squared = 1.4154, df = NA, p-value = 0.8551</code></pre>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="missing-data.html#cb346-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(tmp<span class="sc">$</span>Ethnicity, tmp<span class="sc">$</span>Language), <span class="at">simulate.p.value =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
@@ -708,7 +705,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Language)
-## X-squared = 5.8535, df = NA, p-value = 0.05147</code></pre>
+## X-squared = 5.8535, df = NA, p-value = 0.05447</code></pre>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="missing-data.html#cb352-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>)]</span>
 <span id="cb352-2"><a href="missing-data.html#cb352-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb352-3"><a href="missing-data.html#cb352-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>
@@ -719,7 +716,7 @@ div.csl-indent {
 ##  replicates)
 ## 
 ## data:  table(tmp$dropOUToriginal, tmp$Ethnicity)
-## X-squared = 0.72928, df = NA, p-value = 0.9505</code></pre>
+## X-squared = 0.72928, df = NA, p-value = 0.9485</code></pre>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="missing-data.html#cb356-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dat[,<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">10</span>)]</span>
 <span id="cb356-2"><a href="missing-data.html#cb356-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="fu">complete.cases</span>(tmp),]</span>
 <span id="cb356-3"><a href="missing-data.html#cb356-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Rows before = %d, rows after deletion = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">nrow</span>(dat), <span class="fu">nrow</span>(tmp)))</span></code></pre></div>
@@ -1215,7 +1212,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["IDS-handbook.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

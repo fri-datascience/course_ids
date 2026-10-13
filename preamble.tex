@@ -4,3 +4,105 @@
 \newfontfamily\symbolfont{DejaVu Sans}
 \newunicodechar{✓}{{\symbolfont ✓}}
 \newunicodechar{✗}{{\symbolfont ✗}}
+
+% Code/output blocks span the full page width (text + margin, Tufte
+% "fullwidth") and wrap long lines instead of running off the page.
+\usepackage{fvextra}
+\makeatletter
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\},fontsize=\small,xrightmargin=-\@tufte@overhang}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere,fontsize=\small,xrightmargin=-\@tufte@overhang}
+\makeatother
+
+% Allow long URLs (e.g. in the bibliography) to break anywhere
+\usepackage{xurl}
+
+% pandoc >= 3.2 wraps images in \pandocbounded, which the tufte template does
+% not define; this is the definition from pandoc's default LaTeX template.
+\makeatletter
+\@ifundefined{pandocbounded}{%
+  \newsavebox\pandoc@box
+  \newcommand*\pandocbounded[1]{%
+    \sbox\pandoc@box{#1}%
+    \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+    \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+    \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
+    \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+    \else\usebox{\pandoc@box}\fi}%
+}{}
+% The handbook's markdown images (![](...)) are uncaptioned screenshots that
+% stand in their own paragraph; outside floats, set them full width.
+\let\pandocbounded@text\pandocbounded
+\renewcommand*\pandocbounded[1]{%
+  \@ifundefined{@captype}%
+    {\par\begin{fullwidth}\centering\pandocbounded@text{#1}\par\end{fullwidth}}%
+    {\pandocbounded@text{#1}}}
+\makeatother
+
+% tufte-book forbids \subsubsection; the handbook uses a few (####), so give
+% them a quiet italic run-in style instead of failing.
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-1.5ex plus -0.5ex minus -0.2ex}{-1em}{\normalfont\itshape}}
+\makeatother
+
+% pandoc >= 3.1.8 citeproc macros, missing from the tufte template. Citations
+% are plain links to the reference list: tufte's own \cite would look for
+% BibTeX data that citeproc does not produce.
+\makeatletter
+\providecommand\citeproctext{}
+\providecommand\citeproc[2]{\hyperlink{cite.#1}{#2}}
+\def\@biblabel#1{}
+\renewenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}%
+  \setlength{\leftmargin}{0pt}%
+  \setlength{\parsep}{0pt}%
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}%
+   \setlength{\itemindent}{-1\cslhangindent}%
+  \fi
+  \setlength{\itemsep}{#2\baselineskip}}%
+  % natbib (loaded by tufte) rejects pandoc's \bibitem labels; use a plain
+  % item with an anchor for the \citeproc links instead.
+  \def\bibitem[##1]##2{\item\hypertarget{cite.##2}{}}}
+ {\end{list}}
+\makeatother
+
+% pandoc >= 3.2 sets \LTcaptype{none} on uncaptioned tables to avoid
+% incrementing the table counter; the dummy counter must exist.
+\makeatletter
+\@ifundefined{c@none}{\newcounter{none}}{}
+\makeatother
+
+% The letter-spaced title is too wide for one line on the title page; break it
+% explicitly (the optional argument keeps the running heads and PDF metadata on
+% one line). Keep in sync with the title in index.Rmd.
+\AtBeginDocument{\title[Introduction to Data Science Handbook]{Introduction to\\Data Science Handbook}}
+
+% adjustbox keys (e.g. valign=t) in \includegraphics, used via knitr out.extra
+% to top-align side-by-side images.
+\usepackage[export]{adjustbox}
+
+% The tufte title page shows no date; print the YAML date ("Last updated: ...")
+% in the publisher slot at the bottom of the title page.
+\makeatletter
+\AtBeginDocument{\publisher{\@date}}
+\makeatother
+
+% Cross-references to figures/tables (e.g. "Figure 9.2.2" instead of 9.4).
+% tufte-latex captures a float's \label and replays it after the caption, but
+% current amsmath resets \label in every float and minipage (via
+% \@arrayparboxrestore), so the capture is undone and the label records the
+% section number. Re-apply the capture after the float's minipage opens, and
+% point the hyperref anchor at the float when the label is replayed.
+\usepackage{etoolbox}
+\makeatletter
+\newcommand*\handbook@capturelabel{\renewcommand{\label}[1]{\@tufte@label{##1}}}
+\expandafter\apptocmd\csname\string\@tufte@float\endcsname{\handbook@capturelabel}
+  {}{\PackageWarning{preamble}{Could not patch tufte float label capture}}
+\patchcmd{\end@tufte@float}
+  {{\@tufte@orig@label{\@tufte@stored@label}}}
+  {{\edef\@currentHref{\@captype.\csname theH\@captype\endcsname}%
+    \@tufte@orig@label{\@tufte@stored@label}}}
+  {}{\PackageWarning{preamble}{Could not patch tufte float label anchor}}
+\makeatother

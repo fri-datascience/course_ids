@@ -102,7 +102,7 @@ ggplot(tmp, aes(x = year, y = height, colour = position)) +
 
 There is one more thing that we can typically do in such cases - label the data directly and omit the legend. Always keep related objects visually close! This saves both space and user's time, especially if we have several lines/colors in our plot:
 
-```{r fig.width=7, fig.height=5,fig.cap = c("The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates.")}
+```{r nbaHeightTrends, fig.width=7, fig.height=5,fig.cap = c("The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates.")}
 tmp <- melt(tapply(dat$height, list(dat$position, dat$firstseason), mean))
 names(tmp) <- c("position", "year", "height")
 levels(tmp$position) <- c("centers", "forwards", "guards")
@@ -126,7 +126,7 @@ In both density plots and histograms we need to specify the amount of smoothing 
 
 We illustrate these two plots by summarizing the NBA players' weight:
 
-```{r fig.width=4, fig.height=3,fig.cap = c("Histogram and density estimation of NBA player weight")}
+```{r nbaWeightHistogram, fig.width=4, fig.height=3,fig.cap = c("Histogram and density estimation of NBA player weight")}
 ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5, 
                 position="identity", binwidth = 7) + 
   geom_density(lwd = 1, col = "black") + theme_bw()
@@ -137,7 +137,7 @@ ggplot(dat, aes(x = weight)) + geom_histogram(aes(y=..density..), alpha=0.5,
 
 Bar plots are the most common choice for summarizing the (relative) frequencies for categorical or ordinal data with a manageable number of unique values. It is similar to a histogram, except that the categories/values provide a natural way of binning the data:
 
-```{r fig.width=7, fig.height=3,fig.cap = c("The number of NBA players that came from these 10 Universities.")}
+```{r nbaUniversitiesBar, fig.width=7, fig.height=3,fig.cap = c("The number of NBA players that came from these 10 Universities.")}
 set.seed(0)
 tmp <- data.frame(University = dat$college)
 x <- table(tmp)
@@ -156,7 +156,7 @@ When the number of unique values is large, it will not be not possible to visual
 
 Pie charts are quite possibly the easiest chart type to work with, because there is only one rule to using pie charts - **don't use pie charts**. Let's visualize the data from the bar chart example:
 
-```{r fig.width=7, fig.height=3,fig.cap = c("The relative frequencies of NBA players that came from these Universities.")}
+```{r nbaUniversitiesPie, fig.width=7, fig.height=3,fig.cap = c("The relative frequencies of NBA players that came from these Universities.")}
 y <- x / sum(x)
 ggplot(data.frame(y), aes(x = "", y = Freq, fill = University)) + 
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + labs(fill = "University")
@@ -167,7 +167,7 @@ The pie chart is a great example (and warning!) of how aesthetics can get in the
 
 Angles can also play tricks on our eyes. Which color pie slice is the largest on the first plot below? Which on the second plot?
 
-```{r fig.width=4, fig.height=4}
+```{r pieAngles, fig.width=7, fig.height=3}
 y <- data.frame(Name = c("A", "B", "C"), Value = rep(1, 3))
 ggplot(data.frame(y), aes(x = "", y = Value, fill = Name)) + 
   geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + theme_bw() + theme(legend.position = "none")
@@ -184,7 +184,7 @@ For more information on how people perceive visual objects and relationships bet
 
 The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we've already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.
 
-```{r fig.width=7, fig.height=3,fig.cap = c("Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data) to reveal where we have more points.")}
+```{r nbaWeightHeightFacets, fig.width=7, fig.height=3,fig.cap = c("Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data) to reveal where we have more points.")}
 
 ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3, alpha = 0.3) + 
   theme_bw() + facet_wrap(.~position)
@@ -195,7 +195,7 @@ ggplot(dat, aes(x = height, y = weight)) + geom_jitter(width = 3, alpha = 0.3) +
 
 When individual points are of little interest and we just want to summarize the density of the joint distribution, a 2D density plot is a good alternative to the scatterplot:
 
-```{r fig.width=4.2, fig.height=4, fig.cap = c("Relationship between player weight and height by player position.")}
+```{r nbaWeightHeightScatter, fig.width=4.2, fig.height=4, fig.cap = c("Relationship between player weight and height by player position.")}
 
 ggplot(dat, aes(x = height, y = weight, colour = position)) + 
   geom_density_2d() + theme_bw() + 
@@ -215,7 +215,7 @@ Note that drawing a density plot from a point cloud requires some sort of densit
 The boxes (where the boxplot gets is name) typicaly summarize the quartiles of the data (1st, meadian and 3rd quartile). Sometimes, whiskers are used to represent the IQR (Inter-Quartile Range) and points beyond that range are plotted - the IQR is a common approach to defining what an outlier is.
 
 
-```{r fig.width=4.2, fig.height=4, fig.cap = c("Summary of player weight by position.")}
+```{r nbaWeightBoxplot, fig.width=4.2, fig.height=4, fig.cap = c("Summary of player weight by position.")}
 
 ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_bw()
 
@@ -225,7 +225,7 @@ ggplot(dat, aes(x = position, y = weight)) + geom_boxplot(width = 0.1) + theme_b
 
 The boxplot shows only the quartiles so it can sometimes hide relevant information and mislead us. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.
 
-```{r fig.width=4.2, fig.height=4,fig.cap = c("Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.")}
+```{r nbaWeightViolin, fig.width=4.2, fig.height=4,fig.cap = c("Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.")}
 
 ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") + 
   geom_boxplot(width = 0.05) + theme_bw()
@@ -236,7 +236,7 @@ ggplot(dat, aes(x = position, y = weight)) + geom_violin(fill = "lightblue") +
 
 When we want to quickly inspect if there are any correlations between numerical variables, we can summarize correlation coefficients in a single plot. Such a plot is also known as a correlogram. Here we do it for the iris dataset:
 
-```{r fig.width=3.5, fig.height=3.5,fig.cap = c("Summary of the numerical variables in the iris dataset.")}
+```{r irisCorrelogram, fig.width=3.5, fig.height=3.5,fig.cap = c("Summary of the numerical variables in the iris dataset.")}
 library(ggcorrplot)
 corr <- round(cor(iris[,-5]),2)
 ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T)
@@ -246,7 +246,7 @@ ggcorrplot(corr, hc.order = TRUE, type = "lower", outline.col = "white", lab = T
 
 Sometimes it will be useful to summarize the density/histogram of several numerical variables and the correlation between them. Here is an example of how we can combine histograms/density plots, scatterplots, and information about correlation:
 
-```{r fig.width=5.2, fig.height=5,fig.cap = c("Summary of the numerical variables in the iris dataset.")}
+```{r irisPairs, fig.width=5.2, fig.height=5,fig.cap = c("Summary of the numerical variables in the iris dataset.")}
 library(psych)
 pairs.panels(iris[,-5])
 ```

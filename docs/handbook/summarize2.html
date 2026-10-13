@@ -593,8 +593,8 @@ div.csl-indent {
 <span id="cb179-10"><a href="summarize2.html#cb179-10" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">1970</span>, <span class="at">y =</span> <span class="dv">203</span>, <span class="at">label =</span> <span class="st">&quot;forwards&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
 <span id="cb179-11"><a href="summarize2.html#cb179-11" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">1970</span>, <span class="at">y =</span> <span class="dv">192</span>, <span class="at">label =</span> <span class="st">&quot;guards&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-8-1.png" alt="The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates." width="672" />
+<div class="figure"><span style="display:block;" id="fig:nbaHeightTrends"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaHeightTrends-1.png" alt="The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates." width="672" />
 <p class="caption">
 Figure 7.1: The data show that the average heights of all three groups of players have been increasing. The difference between forwards and centers is approximately the same throughout the period while the average height of guards has been increasing at a slower pace. Note that the lines are loess smoothed lines with standard error estimates.
 </p>
@@ -611,10 +611,9 @@ Figure 7.1: The data show that the average heights of all three groups of player
 <pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `after_stat(density)` instead.
 ## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-9-1.png" alt="Histogram and density estimation of NBA player weight" width="384" />
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<div class="figure"><span style="display:block;" id="fig:nbaWeightHistogram"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaWeightHistogram-1.png" alt="Histogram and density estimation of NBA player weight" width="384" />
 <p class="caption">
 Figure 7.2: Histogram and density estimation of NBA player weight
 </p>
@@ -632,8 +631,8 @@ Figure 7.2: Histogram and density estimation of NBA player weight
 <span id="cb183-7"><a href="summarize2.html#cb183-7" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(x), <span class="fu">aes</span>(<span class="at">x =</span> University, <span class="at">y =</span> Freq)) <span class="sc">+</span> </span>
 <span id="cb183-8"><a href="summarize2.html#cb183-8" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb183-9"><a href="summarize2.html#cb183-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;University&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;number of players&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-10-1.png" alt="The number of NBA players that came from these 10 Universities." width="672" />
+<div class="figure"><span style="display:block;" id="fig:nbaUniversitiesBar"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaUniversitiesBar-1.png" alt="The number of NBA players that came from these 10 Universities." width="672" />
 <p class="caption">
 Figure 7.3: The number of NBA players that came from these 10 Universities.
 </p>
@@ -646,8 +645,8 @@ Figure 7.3: The number of NBA players that came from these 10 Universities.
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="summarize2.html#cb184-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">/</span> <span class="fu">sum</span>(x)</span>
 <span id="cb184-2"><a href="summarize2.html#cb184-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(y), <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> Freq, <span class="at">fill =</span> University)) <span class="sc">+</span> </span>
 <span id="cb184-3"><a href="summarize2.html#cb184-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;University&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-11-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
+<div class="figure"><span style="display:block;" id="fig:nbaUniversitiesPie"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaUniversitiesPie-1.png" alt="The relative frequencies of NBA players that came from these Universities." width="672" />
 <p class="caption">
 Figure 7.4: The relative frequencies of NBA players that came from these Universities.
 </p>
@@ -657,11 +656,11 @@ Figure 7.4: The relative frequencies of NBA players that came from these Univers
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="summarize2.html#cb185-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">Value =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
 <span id="cb185-2"><a href="summarize2.html#cb185-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(y), <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> Value, <span class="at">fill =</span> Name)) <span class="sc">+</span> </span>
 <span id="cb185-3"><a href="summarize2.html#cb185-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-1.png" alt="" width="384" /></p>
+<p><img src="07-Summarizing-data-02_files/figure-html/pieAngles-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="summarize2.html#cb186-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(y), <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> Value, <span class="at">fill =</span> Name)) <span class="sc">+</span> </span>
 <span id="cb186-2"><a href="summarize2.html#cb186-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start=</span>pi<span class="sc">/</span><span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb186-3"><a href="summarize2.html#cb186-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-12-2.png" alt="" width="384" /></p>
+<p><img src="07-Summarizing-data-02_files/figure-html/pieAngles-2.png" alt="" width="672" /></p>
 <p>For more information on how people perceive visual objects and relationships between them (distances, angles, areas), we recommend the pioneering work of Cleveland and McGill (see Further reading). Note that while a pie chart (the same applies to donut charts) is arguably a poor chart from a statistical graphics perspective, it is visually appealing and more engaging. That is, the pie chart still has merit as a techinque for visual presentation of information as witnessed by its widespread use.</p>
 </div>
 <div id="scatterplot" class="section level2 hasAnchor" number="7.4">
@@ -669,8 +668,8 @@ Figure 7.4: The relative frequencies of NBA players that came from these Univers
 <p>The scatterplot is the most common plot for summarizing the relationship between two numerical variables. In this chapter we’ve already seen several examples of scatterplots. Here, we use three of them to summarize the relationship between player weight and player height by position.</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="summarize2.html#cb187-1" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
 <span id="cb187-2"><a href="summarize2.html#cb187-2" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(.<span class="sc">~</span>position)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-13-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data) to reveal where we have more points." width="672" />
+<div class="figure"><span style="display:block;" id="fig:nbaWeightHeightFacets"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaWeightHeightFacets-1.png" alt="Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data) to reveal where we have more points." width="672" />
 <p class="caption">
 Figure 7.5: Relationship between player weight and height by player position. Note that we introduced a bit of jitter - this is a common approach to dealing with numerical data where we have a limited number of unique values (such as rounded data) to reveal where we have more points.
 </p>
@@ -685,8 +684,8 @@ Figure 7.5: Relationship between player weight and height by player position. No
 <span id="cb188-4"><a href="summarize2.html#cb188-4" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">y =</span> <span class="dv">90</span>, <span class="at">x =</span> <span class="dv">212</span>, <span class="at">label =</span> <span class="st">&quot;centers&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb188-5"><a href="summarize2.html#cb188-5" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">y =</span> <span class="dv">80</span>, <span class="at">x =</span> <span class="dv">203</span>, <span class="at">label =</span> <span class="st">&quot;forwards&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
 <span id="cb188-6"><a href="summarize2.html#cb188-6" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">y =</span> <span class="dv">73</span>, <span class="at">x =</span> <span class="dv">192</span>, <span class="at">label =</span> <span class="st">&quot;guards&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-14-1.png" alt="Relationship between player weight and height by player position." width="403.2" />
+<div class="figure"><span style="display:block;" id="fig:nbaWeightHeightScatter"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaWeightHeightScatter-1.png" alt="Relationship between player weight and height by player position." width="403.2" />
 <p class="caption">
 Figure 7.6: Relationship between player weight and height by player position.
 </p>
@@ -698,8 +697,8 @@ Figure 7.6: Relationship between player weight and height by player position.
 <h2><span class="header-section-number">7.6</span> Boxplot<a href="summarize2.html#boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The boxes (where the boxplot gets is name) typicaly summarize the quartiles of the data (1st, meadian and 3rd quartile). Sometimes, whiskers are used to represent the IQR (Inter-Quartile Range) and points beyond that range are plotted - the IQR is a common approach to defining what an outlier is.</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="summarize2.html#cb189-1" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-15-1.png" alt="Summary of player weight by position." width="403.2" />
+<div class="figure"><span style="display:block;" id="fig:nbaWeightBoxplot"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaWeightBoxplot-1.png" alt="Summary of player weight by position." width="403.2" />
 <p class="caption">
 Figure 7.7: Summary of player weight by position.
 </p>
@@ -710,8 +709,8 @@ Figure 7.7: Summary of player weight by position.
 <p>The boxplot shows only the quartiles so it can sometimes hide relevant information and mislead us. An alternative is to plot the entire density estimates. Such a plot is called a violin plot.</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="summarize2.html#cb190-1" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb190-2"><a href="summarize2.html#cb190-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-16-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="403.2" />
+<div class="figure"><span style="display:block;" id="fig:nbaWeightViolin"></span>
+<img src="07-Summarizing-data-02_files/figure-html/nbaWeightViolin-1.png" alt="Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison." width="403.2" />
 <p class="caption">
 Figure 7.8: Summary of player weight by position. Note that we combined the violin plot with the boxplot to facilitate comparison.
 </p>
@@ -723,8 +722,8 @@ Figure 7.8: Summary of player weight by position. Note that we combined the viol
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="summarize2.html#cb191-1" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
 <span id="cb191-2"><a href="summarize2.html#cb191-2" tabindex="-1"></a>corr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(iris[,<span class="sc">-</span><span class="dv">5</span>]),<span class="dv">2</span>)</span>
 <span id="cb191-3"><a href="summarize2.html#cb191-3" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corr, <span class="at">hc.order =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="at">outline.col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lab =</span> T)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-17-1.png" alt="Summary of the numerical variables in the iris dataset." width="336" />
+<div class="figure"><span style="display:block;" id="fig:irisCorrelogram"></span>
+<img src="07-Summarizing-data-02_files/figure-html/irisCorrelogram-1.png" alt="Summary of the numerical variables in the iris dataset." width="336" />
 <p class="caption">
 Figure 7.9: Summary of the numerical variables in the iris dataset.
 </p>
@@ -740,8 +739,8 @@ Figure 7.9: Summary of the numerical variables in the iris dataset.
 ## 
 ##     %+%, alpha</code></pre>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="summarize2.html#cb195-1" tabindex="-1"></a><span class="fu">pairs.panels</span>(iris[,<span class="sc">-</span><span class="dv">5</span>])</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="07-Summarizing-data-02_files/figure-html/unnamed-chunk-18-1.png" alt="Summary of the numerical variables in the iris dataset." width="499.2" />
+<div class="figure"><span style="display:block;" id="fig:irisPairs"></span>
+<img src="07-Summarizing-data-02_files/figure-html/irisPairs-1.png" alt="Summary of the numerical variables in the iris dataset." width="499.2" />
 <p class="caption">
 Figure 7.10: Summary of the numerical variables in the iris dataset.
 </p>
@@ -834,7 +833,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["IDS-handbook.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

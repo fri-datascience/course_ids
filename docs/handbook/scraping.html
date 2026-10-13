@@ -537,7 +537,7 @@ div.csl-indent {
 <span id="cb100-8"><a href="scraping.html#cb100-8" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
 <span id="cb100-9"><a href="scraping.html#cb100-9" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:htmlDOM"></span>
-<img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page." width="744" />
+<img src="data/WebDataExtraction/HTML_DOM.png" alt="DOM tree representation of the above HTML Web page." width="100%" />
 <p class="caption">
 Figure 4.1: DOM tree representation of the above HTML Web page.
 </p>
@@ -587,59 +587,19 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <div id="modern-web-sites-and-js-frameworks" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Modern Web sites and JS frameworks<a href="scraping.html#modern-web-sites-and-js-frameworks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Modern Web sites still use HTML to render their data within Web browsers. Below we show an example of a Web page (left side) and extracted content from it (right side). When all pages follow the same structure, we can easily extract all the data.</p>
-<table class="additionalSources">
-<tr>
-<td>
-<center>
-<b>e-Commerce Web page - product description</b>
-</center>
-</td>
-<td>
-<center>
-<b>Extracted data in a structured format (JSON)</b>
-</center>
-</td>
-</tr>
-<tr>
-<td>
-<img width="350pt" src="data/WebDataExtraction/productWebPage.png" />
-</td>
-<td>
-<img width="350pt" src="data/WebDataExtraction/productWebPage_JSON.png" />
-</td>
-</tr>
-</table>
+<div class="figure"><span style="display:block;" id="fig:productExtraction"></span>
+<img src="data/WebDataExtraction/productWebPage.png" alt="Left: e-commerce Web page with a product description. Right: the data extracted from it in a structured format (JSON)." width="49%" style="vertical-align: top" /><img src="data/WebDataExtraction/productWebPage_JSON.png" alt="Left: e-commerce Web page with a product description. Right: the data extracted from it in a structured format (JSON)." width="49%" style="vertical-align: top" />
+<p class="caption">
+Figure 4.2: Left: e-commerce Web page with a product description. Right: the data extracted from it in a structured format (JSON).
+</p>
+</div>
 <p>However, Web sites are becoming more dynamic - loading data in the background, not refreshing the entire view, etc. These functionalities require dynamic code to be executed directly on the client, that is, inside the Web browser. The main language that can be interpreted by a Web browser is Javascript. Although best practices instruct the programmers to support non-Javascript browsers, there are many Web pages that malfunction if the browser does not support Javascript. With the advent of Single page application (SPA) Web sites the content does not even partially load as the whole Web page is driven by the Javascript. Popular frameworks that enable SPA development are, for example <a href="https://angular.io/">Angular</a>, <a href="https://vuejs.org/">Vue.js</a> or <a href="https://reactjs.org/">React</a>. Below we show some examples of rendering Web pages when a browser runs with Javascript enabled or disabled:</p>
-<table class="additionalSources">
-<tr>
-<td>
-<center>
-<b>Javascript enabled</b>
-</center>
-</td>
-<td>
-<center>
-<b>Javascript disabled</b>
-</center>
-</td>
-</tr>
-<tr>
-<td>
-<img src="data/WebDataExtraction/eUprava_JS.png" />
-</td>
-<td>
-<img src="data/WebDataExtraction/eUprava_noJS.png" />
-</td>
-</tr>
-<tr>
-<td>
-<img src="data/WebDataExtraction/evem_JS.png" />
-</td>
-<td>
-<img src="data/WebDataExtraction/evem_noJS.png" />
-</td>
-</tr>
-</table>
+<div class="figure"><span style="display:block;" id="fig:javascriptRendering"></span>
+<img src="data/WebDataExtraction/eUprava_JS.png" alt="The same Web pages rendered with Javascript enabled (left) and disabled (right)." width="49%" /><img src="data/WebDataExtraction/eUprava_noJS.png" alt="The same Web pages rendered with Javascript enabled (left) and disabled (right)." width="49%" /><img src="data/WebDataExtraction/evem_JS.png" alt="The same Web pages rendered with Javascript enabled (left) and disabled (right)." width="49%" /><img src="data/WebDataExtraction/evem_noJS.png" alt="The same Web pages rendered with Javascript enabled (left) and disabled (right)." width="49%" />
+<p class="caption">
+Figure 4.3: The same Web pages rendered with Javascript enabled (left) and disabled (right).
+</p>
+</div>
 <p>When we develop a Web extraction system we should first review how the target Web site is built and which frontend technologies are used. Then we can also more efficiently use a library to implement a final Web wrapper to extract the desired data. When we need to execute Javascript, our extraction library needs to implement <em>headless browser</em> functionality. This functionality runs a hidden browser to construct a final HTML content which is then used for further manipulation. Libraries that support such functionality are, for example:</p>
 <ul>
 <li><a href="https://www.seleniumhq.org/">Selenium</a>,</li>
@@ -667,7 +627,7 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <li>we must follow the rules written in <em>robots.txt</em> for each domain or should follow general crawling ethics so that we not send too many request to a specific server and</li>
 <li>we need to track changes on Web pages to identify approximate change-rate, etc.</li>
 </ol>
-<p>Generally, a crawler architecture will consist of the following components (Figure <a href="scraping.html#fig:crawlerArchitecture">4.2</a>):</p>
+<p>Generally, a crawler architecture will consist of the following components (Figure <a href="scraping.html#fig:crawlerArchitecture">4.4</a>):</p>
 <ul>
 <li>HTTP downloader and renderer: To retrieve and render a web page.</li>
 <li>Data extractor: Minimal functionalities to extract images and hyperlinks.</li>
@@ -676,9 +636,9 @@ Figure 4.1: DOM tree representation of the above HTML Web page.
 <li>Datastore: To store the data and additional metadata used by the crawler.</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:crawlerArchitecture"></span>
-<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture." width="1710" />
+<img src="data/WebDataExtraction/crawler.png" alt="Web crawler architecture." width="100%" />
 <p class="caption">
-Figure 4.2: Web crawler architecture.
+Figure 4.4: Web crawler architecture.
 </p>
 </div>
 <p>As we already mentioned before, we need to understand all the specifics how Web pages are built and generated. To make sure that we correctly gather all the needed content placed into the DOM by Javascript, we should use headless browsers. Google’s crawler Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server. A session on crawling modern web sites built using JS frameworks, link parsing and image indexing was a part of Google IO 2018 and we recommend it to get an impression of problems that we can encounter (<a href="https://www.youtube.com/watch?v=PFwUbgvpdaQ">https://www.youtube.com/watch?v=PFwUbgvpdaQ</a>):</p>
@@ -811,7 +771,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["IDS-handbook.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

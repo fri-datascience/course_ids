@@ -14,7 +14,10 @@ site: bookdown::bookdown_site
 
 # Preface {-}
 
-<img src="logo.svg" width="50%">
+```{r logo, echo=FALSE, out.width="50%"}
+# LaTeX cannot include SVG; logo.pdf is a vector conversion of logo.svg.
+knitr::include_graphics(if (knitr::is_latex_output()) "logo.pdf" else "logo.svg")
+```
 
 <br>
 
@@ -26,7 +29,9 @@ The authors would like to thank the people who contributed to these notes with t
 <hr>
 <br>
 
-<center><img src="cc_license.png"></center>
+```{r ccLicense, echo=FALSE, fig.align="center", fig.retina=NULL}
+knitr::include_graphics("cc_license.png")
+```
 
 This work is published under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license (CC BY-NC-SA)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode). Creative Commons licenses are built of four building blocks, each corresponding to a different requirement:
 

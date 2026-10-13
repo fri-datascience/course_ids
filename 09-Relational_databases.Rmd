@@ -6,7 +6,7 @@ Relational model implemented by the relational databases represents the database
 
 
 
-```{r, echo=FALSE, fig.align='center', fig.cap='Relation representation.'}
+```{r sqlRelation, echo=FALSE, fig.fullwidth=TRUE, fig.align='center', out.width='100%', fig.cap='Relation representation.'}
 knitr::include_graphics("data/SQL/relation.png")
 ```
 
@@ -159,7 +159,7 @@ The order is as follows:
 7. **ORDER BY**: Sort the final result set.
 8. **LIMIT**: Restrict the number of rows returned in the result set.
 
-```{r, echo=FALSE, fig.align='center', fig.cap='Order of SQL query execution.'}
+```{r sqlExecutionOrder, echo=FALSE, fig.align='center', out.width='75%', fig.cap='Order of SQL query execution.'}
 knitr::include_graphics("data/SQL/SQL_execution_order.png")
 ```
 
@@ -196,7 +196,7 @@ We exit the console by entering the *CTRL+C* command twice. The example above cr
 
 There exist a lot of standalone graphical user interfaces to work with SQLite database files. An example of a nice and lightweight software to create, open or manage SQLite databases is [DB Browser for SQLite](https://sqlitebrowser.org/) and is available for multiple operating systems.
 
-```{r, echo=FALSE, fig.align='center', fig.cap='DB Browser for SQLite graphical user interface.'}
+```{r sqlBrowser, echo=FALSE, fig.align='center', out.width='100%', fig.cap='DB Browser for SQLite graphical user interface.'}
 knitr::include_graphics("data/SQL/screenshot.png")
 ```
 
@@ -206,7 +206,7 @@ In this section we show how to create a new SQLite database and manage it manual
 
 We will create a new database model, presented in the Figure \@ref(fig:model). Modeling database schemas can be a complex task, especially for larger databases consisting of many tables. The modeler needs to follow rules, needs to know how the database will be used, the approximate frequency of data insertion, most common queries, etc. Generally, we first prepare a conceptual model, which is easily understandable to laypersons. Then we create a logical model which contains specifics of a database - foreign keys, constraints, indexes, etc. Lastly, a pyhsical model or SQL script is created to instantiate a database on a selected database management system. Model changes in a live database later can be quite more difficult than at the beginning.
 
-```{r model, echo=FALSE, fig.align='center', fig.cap='Employee logical database model.'}
+```{r model, echo=FALSE, fig.fullwidth=TRUE, fig.align='center', out.width='100%', fig.cap='Employee logical database model.'}
 knitr::include_graphics("data/SQL/model.png")
 ```
 

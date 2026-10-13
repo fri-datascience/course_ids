@@ -501,8 +501,8 @@ div.csl-indent {
 <p>Virtual machines and containers have similar resource isolation and allocation benefits, but containers virtualize the operating system whereas virtual machines virtualize hardware. Therefore, containers are more portable and efficient.</p>
 <p>Multiple containers can run on the same machine and share the operating system kernel with other containers, each running as isolated processes in user space. Containers images are typically tens of MBs in size, which is much less than typical virtual machines. Containers can handle more applications and require fewer operating systems.</p>
 <p>Virtual machines as an abstraction of physical hardware turn one server into many servers. The hypervisor allows multiple virtual machines to run on a single machine. Each virtual machine contains a full copy of an operating system, the application, necessary binaries and libraries. This requires GBs of data - virtual machines require more disk space, physical resources and are slower to boot. The Figure below shows a comparison between multiple running Docker containers (left hand side) and multiple virtual machines (right hand side):</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
-<img src="data/Docker/dockerVsVM.png" alt="Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com)." width="636" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dockerVsVM"></span>
+<img src="data/Docker/dockerVsVM.png" alt="Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com)." width="100%" />
 <p class="caption">
 Figure 6.1: Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com).
 </p>
@@ -985,7 +985,7 @@ As VS Code actually built and run our Dockerfile, you can expose ports (Ports ta
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-docker" class="csl-entry">
-Noyes, Katherine. 2008. <em><span class="nocase">Docker: A ’Shipping Container’ for Linux Code</span></em>. <a href="https://www.linux.com/news/docker-shipping-container-linux-code" class="uri">Https://www.linux.com/news/docker-shipping-container-linux-code</a>.
+Noyes, Katherine. 2008. <em><span class="nocase">Docker: A ’Shipping Container’ for Linux Code</span></em>. <a href="https://www.linux.com/news/docker-shipping-container-linux-code">https://www.linux.com/news/docker-shipping-container-linux-code</a>.
 </div>
 </div>
 <script type="application/json" class="js-hypothesis-config">
@@ -1044,7 +1044,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["IDS-handbook.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

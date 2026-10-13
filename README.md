@@ -14,9 +14,22 @@ The course is administered by professors [Erik Štrumbelj](mailto:erik.strumbelj
 
 The repository was initially created and used during the Fall 2019 and is now being updated each year for the course. You are also invited to contribute to the repository.
 
+### Building with Docker (preferred)
+
+Build everything inside a Docker container, with no local R, Python or LaTeX installation needed. The included [Dockerfile](Dockerfile) provides R, all required packages, pandoc and TeX Live. The image is built automatically on first use.
+
+```
+./build.sh html    # HTML gitbook into docs/handbook/
+./build.sh pdf     # docs/handbook/IDS-handbook.pdf
+./build.sh all     # both (default)
+./build.sh clean   # remove intermediate bookdown files
+./build.sh shell   # interactive shell in the build container
+./build.sh image   # rebuild the Docker image (e.g. after editing Dockerfile)
+```
+
 ### Building with RStudio
 
-To make updates we propose to use RStudio IDE. Prior to work on a project we advise to install the following dependencies:
+Alternatively, to make updates we propose to use RStudio IDE and xelatex (using [TeX Live](https://tug.org/texlive/)). Prior to work on a project we advise to install the following dependencies:
 
 ```
 install.packages(c("devtools", "remotes"))
@@ -41,20 +54,7 @@ rm(list = ls())
 bookdown::render_book('index.Rmd', 'bookdown::gitbook')
 
 # Build PDF version
-bookdown::render_book('index.Rmd', 'bookdown::pdf_book')
-```
-
-### Building with Docker
-
-Alternatively, build everything inside a Docker container, with no local R, Python or LaTeX installation needed. The included [Dockerfile](Dockerfile) provides R, all required packages, pandoc and TeX Live. The image is built automatically on first use.
-
-```
-./build.sh html    # HTML gitbook into docs/handbook/
-./build.sh pdf     # docs/handbook/bookdown-itds.pdf
-./build.sh all     # both (default)
-./build.sh clean   # remove intermediate bookdown files
-./build.sh shell   # interactive shell in the build container
-./build.sh image   # rebuild the Docker image (e.g. after editing Dockerfile)
+bookdown::render_book('index.Rmd', 'bookdown::tufte_book2')
 ```
 
 --

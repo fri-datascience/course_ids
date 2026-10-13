@@ -695,21 +695,21 @@ This reveals two major axes in the data - (1) athletes that have high values in 
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="multivariate-data-chapter.html#cb221-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(swiss, <span class="at">centers =</span> <span class="dv">2</span>)</span>
 <span id="cb221-2"><a href="multivariate-data-chapter.html#cb221-2" tabindex="-1"></a><span class="fu">print</span>(res<span class="sc">$</span>cluster)</span></code></pre></div>
 <pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy 
-##            2            1            1            2            2            1 
+##            1            2            2            1            1            2 
 ##        Broye        Glane      Gruyere       Sarine      Veveyse        Aigle 
-##            1            1            1            1            1            2 
+##            2            2            2            2            2            1 
 ##      Aubonne     Avenches     Cossonay    Echallens     Grandson     Lausanne 
-##            2            2            2            2            2            2 
-##    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe 
-##            2            2            2            2            2            2 
-##         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon 
-##            2            2            2            2            2            2 
-##      Conthey    Entremont       Herens     Martigwy      Monthey   St Maurice 
 ##            1            1            1            1            1            1 
+##    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe 
+##            1            1            1            1            1            1 
+##         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon 
+##            1            1            1            1            1            1 
+##      Conthey    Entremont       Herens     Martigwy      Monthey   St Maurice 
+##            2            2            2            2            2            2 
 ##       Sierre         Sion       Boudry La Chauxdfnd     Le Locle    Neuchatel 
-##            1            1            2            2            2            2 
+##            2            2            1            1            1            1 
 ##   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
-##            2            2            2            2            2</code></pre>
+##            1            1            1            1            1</code></pre>
 <p>Unless we understand the meaning of the observations (in this case, province names), cluster assignments carry little information. This is similar to latent factors - unless we have some domain specific knowledge, we will not be able to interpret the meaning of the clusters. In fact, clustering is only a special case of latent modeling. Instead of a set of numerical factors we have one factor that explains the data - the cluster assignment.</p>
 <p>To gain more insight, we can plot the clusters. This is typically done with some dimensionality reduction method that projects the data into 2 dimensions and preserves as much information as possible - the methods we’ve been discussing so far in this chapter. We’ll plot the clusters in the space determined by the first two principal components:</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="multivariate-data-chapter.html#cb223-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code></pre></div>
@@ -763,8 +763,8 @@ We see that after 2 clusters, the within-cluster variability decreases slowly. T
 <span id="cb231-8"><a href="multivariate-data-chapter.html#cb231-8" tabindex="-1"></a>}</span>
 <span id="cb231-9"><a href="multivariate-data-chapter.html#cb231-9" tabindex="-1"></a></span>
 <span id="cb231-10"><a href="multivariate-data-chapter.html#cb231-10" tabindex="-1"></a>si</span></code></pre></div>
-<pre><code>##  [1] 0.0000000 0.6284002 0.5368920 0.4406436 0.4495773 0.4056314 0.3703828
-##  [8] 0.3806726 0.3447439 0.3502419</code></pre>
+<pre><code>##  [1] 0.0000000 0.6284002 0.5368920 0.5303763 0.4897161 0.4039811 0.3876255
+##  [8] 0.3758918 0.3767531 0.3171386</code></pre>
 <p>In this case the Silhouette technique leads to the same conclusion - k = 2 is the best choice for the number of clusters.</p>
 <p>Alternatively, we can use clustering methods such as <a href="https://en.wikipedia.org/wiki/Affinity_propagation">Affinity propagation</a> and <a href="https://en.wikipedia.org/wiki/Mean_shift">Mean shift clustering</a> where the number of clusters is determined automatically. However, such methods introduce other parameters, such as kernel bandwidth.</p>
 </div>
@@ -811,28 +811,28 @@ We see that after 2 clusters, the within-cluster variability decreases slowly. T
 <span id="cb236-6"><a href="multivariate-data-chapter.html#cb236-6" tabindex="-1"></a><span class="fu">rbind</span>(hk2, km2)</span></code></pre></div>
 <pre><code>##     Courtelary Delemont Franches-Mnt Moutier Neuveville Porrentruy Broye Glane
 ## hk2          1        2            2       1          1          2     2     2
-## km2          1        3            3       2          2          3     3     3
+## km2          2        3            3       1          1          3     3     3
 ##     Gruyere Sarine Veveyse Aigle Aubonne Avenches Cossonay Echallens Grandson
 ## hk2       2      2       2     1       1        1        1         1        1
-## km2       3      3       3     2       2        2        2         2        2
+## km2       3      3       3     1       1        1        1         1        1
 ##     Lausanne La Vallee Lavaux Morges Moudon Nyone Orbe Oron Payerne
 ## hk2        1         1      1      1      1     1    1    1       1
-## km2        1         1      2      2      2     2    2    2       2
+## km2        2         2      1      1      1     1    1    1       1
 ##     Paysd&#39;enhaut Rolle Vevey Yverdon Conthey Entremont Herens Martigwy Monthey
 ## hk2            1     1     1       1       2         2      2        2       2
-## km2            2     2     1       2       3         3      3        3       3
+## km2            1     1     2       1       3         3      3        3       3
 ##     St Maurice Sierre Sion Boudry La Chauxdfnd Le Locle Neuchatel Val de Ruz
 ## hk2          2      2    2      1            1        1         1          1
-## km2          3      3    3      2            1        1         1          2
+## km2          3      3    3      1            2        2         2          1
 ##     ValdeTravers V. De Geneve Rive Droite Rive Gauche
 ## hk2            1            3           3           3
-## km2            1            1           1           1</code></pre>
+## km2            2            2           2           2</code></pre>
 <p>When comparing different clusterings of the same data, we must keep in mind that a clustering is invariant to relabelling. That is, the cluster label or number has no meaning - a clusters meaning is determined by the observations in that cluster. This is anoter case of the invariance to rotation problem with FA that is common to all latent models.</p>
 <p>As a consequence, there exist special summaries for cluster similarity. One of the most commonly used is the <a href="https://en.wikipedia.org/wiki/Rand_index">Rand index</a>. It is defined as the ratio of concordant pairs in all pairs of points. A pair of points is concordant if the points are either in the same cluster in both clusterings or in different clusters in both clusterings.</p>
 <p>Typicaly, we would use an exisitng implementation, but here we implement the basic Rand Index ourselves:</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="multivariate-data-chapter.html#cb238-1" tabindex="-1"></a>concordant <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb238-2"><a href="multivariate-data-chapter.html#cb238-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(hk2)) {</span>
-<span id="cb238-3"><a href="multivariate-data-chapter.html#cb238-3" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)) {</span>
+<span id="cb238-3"><a href="multivariate-data-chapter.html#cb238-3" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(i<span class="sc">-</span><span class="dv">1</span>)) {</span>
 <span id="cb238-4"><a href="multivariate-data-chapter.html#cb238-4" tabindex="-1"></a>    <span class="cf">if</span> ((hk2[i] <span class="sc">==</span> hk2[j]) <span class="sc">==</span> (km2[i] <span class="sc">==</span> km2[j])) concordant <span class="ot">&lt;-</span> concordant <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb238-5"><a href="multivariate-data-chapter.html#cb238-5" tabindex="-1"></a>  }</span>
 <span id="cb238-6"><a href="multivariate-data-chapter.html#cb238-6" tabindex="-1"></a>}</span>
@@ -930,7 +930,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["IDS-handbook.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

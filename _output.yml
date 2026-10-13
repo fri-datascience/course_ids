@@ -10,8 +10,9 @@ bookdown::gitbook:
         <li><a href="https://datascience.fri.uni-lj.si/" target="blank">Data Science Master's Program</a></li>
   includes:
     after_body: footer.html
-bookdown::pdf_book:
+bookdown::tufte_book2:
   latex_engine: xelatex
-  pandoc_args: ["-V", "mainfont=DejaVu Serif", "-V", "sansfont=DejaVu Sans", "-V", "monofont=DejaVu Sans Mono"]
+  pandoc_args: ["-V", "mainfont=TeX Gyre Pagella", "-V", "sansfont=TeX Gyre Heros",
+                "-V", "monofont=DejaVu Sans Mono", "-V", "monofontoptions=Scale=0.85"]
   includes:
     in_header: preamble.tex

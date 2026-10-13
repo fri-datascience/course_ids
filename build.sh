@@ -3,7 +3,7 @@
 #
 # Usage: ./build.sh [html|pdf|all|image|shell|clean]
 #   html   build the HTML gitbook into docs/handbook/
-#   pdf    build docs/handbook/bookdown-itds.pdf
+#   pdf    build docs/handbook/IDS-handbook.pdf
 #   all    build both (default)
 #   image  (re)build the Docker image only
 #   shell  open a bash shell in the build container
@@ -32,8 +32,8 @@ render() {
 
 case "$TARGET" in
   html)  render bookdown::gitbook ;;
-  pdf)   render bookdown::pdf_book ;;
-  all)   render bookdown::gitbook; render bookdown::pdf_book ;;
+  pdf)   render bookdown::tufte_book2 ;;
+  all)   render bookdown::gitbook; render bookdown::tufte_book2 ;;
   image) build_image ;;
   shell) run bash ;;
   clean) run Rscript -e "bookdown::clean_book(TRUE)" ;;

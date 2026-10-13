@@ -571,12 +571,12 @@ div.csl-indent {
 <span id="cb286-11"><a href="predictive.html#cb286-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
 <span id="cb286-12"><a href="predictive.html#cb286-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
 <span id="cb286-13"><a href="predictive.html#cb286-13" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
-<pre><code>## Warning: Removed 7 rows containing missing values or values outside the scale range
-## (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 9 rows containing missing values or values outside the scale range
-## (`geom_line()`).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values or values outside the scale range
-## (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values or values outside the scale
+## range (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-5-1.png" alt="" width="470.4" /></p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="predictive.html#cb290-1" tabindex="-1"></a>lr    <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">poly</span>(X, <span class="dv">25</span>, <span class="at">raw =</span> T), <span class="at">data =</span> train_data)</span>
 <span id="cb290-2"><a href="predictive.html#cb290-2" tabindex="-1"></a>y     <span class="ot">&lt;-</span> <span class="fu">predict</span>(lr, <span class="at">newdata =</span> test_data)</span>
@@ -585,7 +585,7 @@ div.csl-indent {
 <span id="cb290-5"><a href="predictive.html#cb290-5" tabindex="-1"></a>e1_tr <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> train_data<span class="sc">$</span>Y)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb290-6"><a href="predictive.html#cb290-6" tabindex="-1"></a></span>
 <span id="cb290-7"><a href="predictive.html#cb290-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;poly (25): %.2f / %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, e1_te, e1_tr))</span></code></pre></div>
-<pre><code>## poly (25): 71336.92 / 162.80</code></pre>
+<pre><code>## poly (25): 71336.91 / 162.80</code></pre>
 <p>We can see that the 20th degree polynomial model, which has 17 more parameters than the 3rd degree polynomial model, is able to fit the training data better. However, its performance on the test data is worse! This is an important concept that we call <em>overfitting</em> - the model was too expressive for the amount of data we have and it started fitting not just the underlying true functional relationship but also the noise in the data. An extreme example of this would be using a 100th degree polynomial, which would be able to perfectly fit the training data, but it would perform very poorly on test data.</p>
 <p>Finally, let’s use a <span class="math inline">\(k\)</span>-nearest neighbors model with <span class="math inline">\(k = 10\)</span>. In other words, we assume that the value of an observation is the average of the 10 nearest points:</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="predictive.html#cb292-1" tabindex="-1"></a><span class="co"># we&#39;ll manually code k-nearest neighbors for this simple example</span></span>
@@ -618,10 +618,10 @@ div.csl-indent {
 <span id="cb294-9"><a href="predictive.html#cb294-9" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>) <span class="sc">+</span></span>
 <span id="cb294-10"><a href="predictive.html#cb294-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1))</span>
 <span id="cb294-11"><a href="predictive.html#cb294-11" tabindex="-1"></a><span class="fu">plot</span>(g1)</span></code></pre></div>
-<pre><code>## Warning: Removed 7 rows containing missing values or values outside the scale range
-## (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 9 rows containing missing values or values outside the scale range
-## (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values or values outside the scale
+## range (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
 <p><img src="10-Predictive-modelling_files/figure-html/unnamed-chunk-7-1.png" alt="" width="470.4" /></p>
 <p>The performance of the 10-nearest neighbor model is relatively good, only slightly worse on the test set than the cubic polynomial model.</p>
 </div>
@@ -832,338 +832,142 @@ So, every model selection process has two main components: (1) choosing the appr
 <span id="cb307-3"><a href="predictive.html#cb307-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;../data/computers.csv&quot;</span>)</span>
 <span id="cb307-4"><a href="predictive.html#cb307-4" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">filter</span>(items<span class="op">=</span>df.columns[<span class="dv">0</span>:<span class="dv">7</span>])</span>
 <span id="cb307-5"><a href="predictive.html#cb307-5" tabindex="-1"></a>df.describe(include<span class="op">=</span><span class="st">&#39;all&#39;</span>)</span></code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="0" class="dataframe">
+<table>
+<colgroup>
+<col width="12%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="9%" />
+<col width="10%" />
+</colgroup>
 <thead>
-<tr style="text-align: right;">
-<th>
-</th>
-<th>
-price
-</th>
-<th>
-speed
-</th>
-<th>
-hd
-</th>
-<th>
-ram
-</th>
-<th>
-screen
-</th>
-<th>
-cd
-</th>
-<th>
-multi
-</th>
+<tr class="header">
+<th></th>
+<th align="right">price</th>
+<th align="right">speed</th>
+<th align="right">hd</th>
+<th align="right">ram</th>
+<th align="right">screen</th>
+<th align="right">cd</th>
+<th align="right">multi</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-count
-</td>
-<td>
-6259.00
-</td>
-<td>
-6259.00
-</td>
-<td>
-6259.00
-</td>
-<td>
-6259.00
-</td>
-<td>
-6259.00
-</td>
-<td>
-6259
-</td>
-<td>
-6259
-</td>
+<tr class="odd">
+<td>count</td>
+<td align="right">6259.00</td>
+<td align="right">6259.00</td>
+<td align="right">6259.00</td>
+<td align="right">6259.00</td>
+<td align="right">6259.00</td>
+<td align="right">6259</td>
+<td align="right">6259</td>
 </tr>
-<tr>
-<td>
-unique
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-2
-</td>
-<td>
-2
-</td>
+<tr class="even">
+<td>unique</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">2</td>
+<td align="right">2</td>
 </tr>
-<tr>
-<td>
-top
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-no
-</td>
-<td>
-no
-</td>
+<tr class="odd">
+<td>top</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">no</td>
+<td align="right">no</td>
 </tr>
-<tr>
-<td>
-freq
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-3351
-</td>
-<td>
-5386
-</td>
+<tr class="even">
+<td>freq</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">3351</td>
+<td align="right">5386</td>
 </tr>
-<tr>
-<td>
-mean
-</td>
-<td>
-2219.58
-</td>
-<td>
-52.01
-</td>
-<td>
-416.60
-</td>
-<td>
-8.29
-</td>
-<td>
-14.61
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="odd">
+<td>mean</td>
+<td align="right">2219.58</td>
+<td align="right">52.01</td>
+<td align="right">416.60</td>
+<td align="right">8.29</td>
+<td align="right">14.61</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
-<tr>
-<td>
-std
-</td>
-<td>
-580.80
-</td>
-<td>
-21.16
-</td>
-<td>
-258.55
-</td>
-<td>
-5.63
-</td>
-<td>
-0.91
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="even">
+<td>std</td>
+<td align="right">580.80</td>
+<td align="right">21.16</td>
+<td align="right">258.55</td>
+<td align="right">5.63</td>
+<td align="right">0.91</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
-<tr>
-<td>
-min
-</td>
-<td>
-949.00
-</td>
-<td>
-25.00
-</td>
-<td>
-80.00
-</td>
-<td>
-2.00
-</td>
-<td>
-14.00
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="odd">
+<td>min</td>
+<td align="right">949.00</td>
+<td align="right">25.00</td>
+<td align="right">80.00</td>
+<td align="right">2.00</td>
+<td align="right">14.00</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
-<tr>
-<td>
-25%
-</td>
-<td>
-1794.00
-</td>
-<td>
-33.00
-</td>
-<td>
-214.00
-</td>
-<td>
-4.00
-</td>
-<td>
-14.00
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="even">
+<td>25%</td>
+<td align="right">1794.00</td>
+<td align="right">33.00</td>
+<td align="right">214.00</td>
+<td align="right">4.00</td>
+<td align="right">14.00</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
-<tr>
-<td>
-50%
-</td>
-<td>
-2144.00
-</td>
-<td>
-50.00
-</td>
-<td>
-340.00
-</td>
-<td>
-8.00
-</td>
-<td>
-14.00
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="odd">
+<td>50%</td>
+<td align="right">2144.00</td>
+<td align="right">50.00</td>
+<td align="right">340.00</td>
+<td align="right">8.00</td>
+<td align="right">14.00</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
-<tr>
-<td>
-75%
-</td>
-<td>
-2595.00
-</td>
-<td>
-66.00
-</td>
-<td>
-528.00
-</td>
-<td>
-8.00
-</td>
-<td>
-15.00
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="even">
+<td>75%</td>
+<td align="right">2595.00</td>
+<td align="right">66.00</td>
+<td align="right">528.00</td>
+<td align="right">8.00</td>
+<td align="right">15.00</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
-<tr>
-<td>
-max
-</td>
-<td>
-5399.00
-</td>
-<td>
-100.00
-</td>
-<td>
-2100.00
-</td>
-<td>
-32.00
-</td>
-<td>
-17.00
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
+<tr class="odd">
+<td>max</td>
+<td align="right">5399.00</td>
+<td align="right">100.00</td>
+<td align="right">2100.00</td>
+<td align="right">32.00</td>
+<td align="right">17.00</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>As some of the parameters are categorical (i.e. <em>cd</em> and <em>multi</em>), we need to add parameter to include all of them in to the output. Still, the values are still treated similar to numeric types, so if we want to see counts for each categor value, we need to output them separately:</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb308-1"><a href="predictive.html#cb308-1" tabindex="-1"></a>df[<span class="st">&#39;cd&#39;</span>].value_counts()</span></code></pre></div>
 <div class="sourceCode" id="cb309"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb309-1"><a href="predictive.html#cb309-1" tabindex="-1"></a><span class="co">## no     3351</span></span>
@@ -1231,194 +1035,84 @@ NaN
 <span id="cb315-29"><a href="predictive.html#cb315-29" tabindex="-1"></a><span class="bu">all</span> <span class="op">=</span> <span class="bu">all</span>.append({<span class="st">&#39;Model&#39;</span>: <span class="st">&#39;lm&#39;</span>, <span class="st">&#39;RMSE&#39;</span>: <span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="bu">min</span>(tmp[<span class="st">&#39;test_score&#39;</span>]), <span class="st">&quot;SD&quot;</span>: np.std(tmp[<span class="st">&#39;test_score&#39;</span>])}, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <p>Now we can summarize the results, ordered by predictive quality:</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb316-1"><a href="predictive.html#cb316-1" tabindex="-1"></a><span class="bu">all</span>.sort_values(<span class="st">&#39;RMSE&#39;</span>)</span></code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="0" class="dataframe">
+<table>
 <thead>
-<tr style="text-align: right;">
-<th>
-</th>
-<th>
-Model
-</th>
-<th>
-RMSE
-</th>
-<th>
-SD
-</th>
+<tr class="header">
+<th></th>
+<th align="left">Model</th>
+<th align="right">RMSE</th>
+<th align="right">SD</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-7
-</td>
-<td>
-nn[,5,]
-</td>
-<td>
-370.264823
-</td>
-<td>
-14.634447
-</td>
+<tr class="odd">
+<td>7</td>
+<td align="left">nn[,5,]</td>
+<td align="right">370.264823</td>
+<td align="right">14.634447</td>
 </tr>
-<tr>
-<td>
-8
-</td>
-<td>
-nn[,7,]
-</td>
-<td>
-371.455809
-</td>
-<td>
-15.485513
-</td>
+<tr class="even">
+<td>8</td>
+<td align="left">nn[,7,]</td>
+<td align="right">371.455809</td>
+<td align="right">15.485513</td>
 </tr>
-<tr>
-<td>
-6
-</td>
-<td>
-nn[,3,]
-</td>
-<td>
-371.771094
-</td>
-<td>
-14.135298
-</td>
+<tr class="odd">
+<td>6</td>
+<td align="left">nn[,3,]</td>
+<td align="right">371.771094</td>
+<td align="right">14.135298</td>
 </tr>
-<tr>
-<td>
-9
-</td>
-<td>
-nn[,10,]
-</td>
-<td>
-380.230663
-</td>
-<td>
-16.406543
-</td>
+<tr class="even">
+<td>9</td>
+<td align="left">nn[,10,]</td>
+<td align="right">380.230663</td>
+<td align="right">16.406543</td>
 </tr>
-<tr>
-<td>
-5
-</td>
-<td>
-nn[,2,]
-</td>
-<td>
-384.245843
-</td>
-<td>
-15.759044
-</td>
+<tr class="odd">
+<td>5</td>
+<td align="left">nn[,2,]</td>
+<td align="right">384.245843</td>
+<td align="right">15.759044</td>
 </tr>
-<tr>
-<td>
-3
-</td>
-<td>
-gb[,0.1,2,10,100,]
-</td>
-<td>
-407.898817
-</td>
-<td>
-15.229875
-</td>
+<tr class="even">
+<td>3</td>
+<td align="left">gb[,0.1,2,10,100,]</td>
+<td align="right">407.898817</td>
+<td align="right">15.229875</td>
 </tr>
-<tr>
-<td>
-4
-</td>
-<td>
-nn[,1,]
-</td>
-<td>
-423.044016
-</td>
-<td>
-18.534263
-</td>
+<tr class="odd">
+<td>4</td>
+<td align="left">nn[,1,]</td>
+<td align="right">423.044016</td>
+<td align="right">18.534263</td>
 </tr>
-<tr>
-<td>
-2
-</td>
-<td>
-gb[,0.1,2,10,50,]
-</td>
-<td>
-433.891617
-</td>
-<td>
-17.185479
-</td>
+<tr class="even">
+<td>2</td>
+<td align="left">gb[,0.1,2,10,50,]</td>
+<td align="right">433.891617</td>
+<td align="right">17.185479</td>
 </tr>
-<tr>
-<td>
-1
-</td>
-<td>
-gb[,0.1,1,10,100,]
-</td>
-<td>
-447.622174
-</td>
-<td>
-17.133322
-</td>
+<tr class="odd">
+<td>1</td>
+<td align="left">gb[,0.1,1,10,100,]</td>
+<td align="right">447.622174</td>
+<td align="right">17.133322</td>
 </tr>
-<tr>
-<td>
-0
-</td>
-<td>
-gb[,0.1,1,10,50,]
-</td>
-<td>
-465.734108
-</td>
-<td>
-17.891289
-</td>
+<tr class="even">
+<td>0</td>
+<td align="left">gb[,0.1,1,10,50,]</td>
+<td align="right">465.734108</td>
+<td align="right">17.891289</td>
 </tr>
-<tr>
-<td>
-10
-</td>
-<td>
-lm
-</td>
-<td>
-474.878803
-</td>
-<td>
-17.341011
-</td>
+<tr class="odd">
+<td>10</td>
+<td align="left">lm</td>
+<td align="right">474.878803</td>
+<td align="right">17.341011</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>Finally, we test the estimated best (k = 5) nearest neighbors model on the held-out final test set:</p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb317-1"><a href="predictive.html#cb317-1" tabindex="-1"></a>y_predicted <span class="op">=</span> bestNNModel.predict(X_test)</span>
 <span id="cb317-2"><a href="predictive.html#cb317-2" tabindex="-1"></a><span class="bu">round</span>(np.sqrt(np.mean((y_predicted <span class="op">-</span> y_test)<span class="op">**</span><span class="dv">2</span>)), <span class="dv">2</span>)</span></code></pre></div>
@@ -1510,7 +1204,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["IDS-handbook.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

@@ -402,147 +402,19 @@ df = df.filter(items=df.columns[0:7])
 df.describe(include='all')
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="0" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>price</th>
-      <th>speed</th>
-      <th>hd</th>
-      <th>ram</th>
-      <th>screen</th>
-      <th>cd</th>
-      <th>multi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>count</td>
-      <td>6259.00</td>
-      <td>6259.00</td>
-      <td>6259.00</td>
-      <td>6259.00</td>
-      <td>6259.00</td>
-      <td>6259</td>
-      <td>6259</td>
-    </tr>
-    <tr>
-      <td>unique</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>top</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>no</td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>freq</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3351</td>
-      <td>5386</td>
-    </tr>
-    <tr>
-      <td>mean</td>
-      <td>2219.58</td>
-      <td>52.01</td>
-      <td>416.60</td>
-      <td>8.29</td>
-      <td>14.61</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>std</td>
-      <td>580.80</td>
-      <td>21.16</td>
-      <td>258.55</td>
-      <td>5.63</td>
-      <td>0.91</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>min</td>
-      <td>949.00</td>
-      <td>25.00</td>
-      <td>80.00</td>
-      <td>2.00</td>
-      <td>14.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>25%</td>
-      <td>1794.00</td>
-      <td>33.00</td>
-      <td>214.00</td>
-      <td>4.00</td>
-      <td>14.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>50%</td>
-      <td>2144.00</td>
-      <td>50.00</td>
-      <td>340.00</td>
-      <td>8.00</td>
-      <td>14.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>75%</td>
-      <td>2595.00</td>
-      <td>66.00</td>
-      <td>528.00</td>
-      <td>8.00</td>
-      <td>15.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>max</td>
-      <td>5399.00</td>
-      <td>100.00</td>
-      <td>2100.00</td>
-      <td>32.00</td>
-      <td>17.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|        |   price |   speed |      hd |     ram |  screen |   cd | multi |
+|--------|--------:|--------:|--------:|--------:|--------:|-----:|------:|
+| count  | 6259.00 | 6259.00 | 6259.00 | 6259.00 | 6259.00 | 6259 |  6259 |
+| unique |     NaN |     NaN |     NaN |     NaN |     NaN |    2 |     2 |
+| top    |     NaN |     NaN |     NaN |     NaN |     NaN |   no |    no |
+| freq   |     NaN |     NaN |     NaN |     NaN |     NaN | 3351 |  5386 |
+| mean   | 2219.58 |   52.01 |  416.60 |    8.29 |   14.61 |  NaN |   NaN |
+| std    |  580.80 |   21.16 |  258.55 |    5.63 |    0.91 |  NaN |   NaN |
+| min    |  949.00 |   25.00 |   80.00 |    2.00 |   14.00 |  NaN |   NaN |
+| 25%    | 1794.00 |   33.00 |  214.00 |    4.00 |   14.00 |  NaN |   NaN |
+| 50%    | 2144.00 |   50.00 |  340.00 |    8.00 |   14.00 |  NaN |   NaN |
+| 75%    | 2595.00 |   66.00 |  528.00 |    8.00 |   15.00 |  NaN |   NaN |
+| max    | 5399.00 |  100.00 | 2100.00 |   32.00 |   17.00 |  NaN |   NaN |
 
 As some of the parameters are categorical (i.e. *cd* and *multi*), we need to add parameter to include all of them in to the output. Still, the values are still treated similar to numeric types, so if we want to see counts for each categor value, we need to output them separately:
 
@@ -645,99 +517,19 @@ Now we can summarize the results, ordered by predictive quality:
 all.sort_values('RMSE')
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="0" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Model</th>
-      <th>RMSE</th>
-      <th>SD</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>7</td>
-      <td>nn[,5,]</td>
-      <td>370.264823</td>
-      <td>14.634447</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>nn[,7,]</td>
-      <td>371.455809</td>
-      <td>15.485513</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>nn[,3,]</td>
-      <td>371.771094</td>
-      <td>14.135298</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>nn[,10,]</td>
-      <td>380.230663</td>
-      <td>16.406543</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>nn[,2,]</td>
-      <td>384.245843</td>
-      <td>15.759044</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>gb[,0.1,2,10,100,]</td>
-      <td>407.898817</td>
-      <td>15.229875</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>nn[,1,]</td>
-      <td>423.044016</td>
-      <td>18.534263</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>gb[,0.1,2,10,50,]</td>
-      <td>433.891617</td>
-      <td>17.185479</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>gb[,0.1,1,10,100,]</td>
-      <td>447.622174</td>
-      <td>17.133322</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>gb[,0.1,1,10,50,]</td>
-      <td>465.734108</td>
-      <td>17.891289</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>lm</td>
-      <td>474.878803</td>
-      <td>17.341011</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|    |              Model |       RMSE |        SD |
+|----|:-------------------|-----------:|----------:|
+| 7  |            nn[,5,] | 370.264823 | 14.634447 |
+| 8  |            nn[,7,] | 371.455809 | 15.485513 |
+| 6  |            nn[,3,] | 371.771094 | 14.135298 |
+| 9  |           nn[,10,] | 380.230663 | 16.406543 |
+| 5  |            nn[,2,] | 384.245843 | 15.759044 |
+| 3  | gb[,0.1,2,10,100,] | 407.898817 | 15.229875 |
+| 4  |            nn[,1,] | 423.044016 | 18.534263 |
+| 2  |  gb[,0.1,2,10,50,] | 433.891617 | 17.185479 |
+| 1  | gb[,0.1,1,10,100,] | 447.622174 | 17.133322 |
+| 0  |  gb[,0.1,1,10,50,] | 465.734108 | 17.891289 |
+| 10 |                 lm | 474.878803 | 17.341011 |
 
 Finally, we test the estimated best (k = 5) nearest neighbors model on the held-out final test set:
 

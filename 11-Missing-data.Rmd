@@ -73,13 +73,13 @@ In this analysis, the authors were interested in modelling dropout from mathemat
 The other variables include their previous GCSE qualifications results in mathematics (*GCSEgrade*), type of course (*Course*), their disposition to study mathematics at a higher level (*Disposition*), their self-efficacy rating (*SelfEfficacy*), gender, language, whether the student was holding an Educational Maintenance Allowance (*EMA*), ethnicity, whether the student was from Low Participation Neighbourhood (*LPN*), socio-economic status (*HEFCE*) and whether the student was not first generation at HE (*uniFAM*).
 
 If our dataset does not have too many variables, a visual summary such as this one can be very effective at revealing the extend and patterns of missingness in our data:
-```{r}
+```{r missingnessMap, fig.width=7, fig.height=5, dev="png", dpi=if (knitr::is_latex_output()) 300 else 72}
 library(naniar)
 vis_miss(dat, warn_large_data = F)
 ```
 
 Another useful visualization is the frequency of different patterns of missingness:
-```{r}
+```{r missingnessUpset, fig.width=7, fig.height=5}
 library(UpSetR)
 gg_miss_upset(dat)
 ```

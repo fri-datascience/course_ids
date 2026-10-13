@@ -20,7 +20,7 @@ Multiple containers can run on the same machine and share the operating system k
 
 Virtual machines as an abstraction of physical hardware turn one server into many servers. The hypervisor allows multiple virtual machines to run on a single machine. Each virtual machine contains a full copy of an operating system, the application, necessary binaries and libraries. This requires GBs of data - virtual machines require more disk space, physical resources and are slower to boot. The Figure below shows a comparison between multiple running Docker containers (left hand side) and multiple virtual machines (right hand side):
 
-```{r, echo=FALSE, fig.align='center', fig.cap='Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com).'}
+```{r dockerVsVM, echo=FALSE, fig.fullwidth=TRUE, fig.align='center', out.width='100%', fig.cap='Dockerized applications vs. VM-virtualized applications (image courtesy of docker.com).'}
 knitr::include_graphics("data/Docker/dockerVsVM.png")
 ```
 

@@ -1,6 +1,6 @@
 # Build environment for the "Introduction to data science" handbook.
 # Renders the bookdown project to HTML (gitbook) and PDF; see build.sh.
-FROM rocker/r-ver:4.5.1
+FROM rocker/r-ver:4.6.1
 
 ENV DEBIAN_FRONTEND=noninteractive \
     RETICULATE_PYTHON=/usr/bin/python3
@@ -19,7 +19,7 @@ RUN /rocker_scripts/install_pandoc.sh \
 
 ENV PATH=/usr/local/texlive/bin/linux:$PATH
 
-# LaTeX packages used by bookdown::pdf_book
+# LaTeX packages used by bookdown::tufte_book2 (tufte-book class)
 RUN tlmgr install \
       amsfonts amsmath bookmark booktabs caption etoolbox fancyvrb float \
       framed geometry hyperref iftex lm lm-math natbib oberdiek \
@@ -28,6 +28,10 @@ RUN tlmgr install \
       pdflscape tabu varwidth threeparttable threeparttablex environ \
       makecell epstopdf-pkg grffile titling newunicodechar \
       babel-english hyphen-english cm-super ec inconsolata \
+      tufte-latex hardwrap titlesec ifmtarg changepage paralist sauerj \
+      placeins xifthen ifoddpage soul textcase units fancyhdr ragged2e \
+      tex-gyre xltxtra realscripts metalogo microtype morefloats \
+      psnfss mathpazo fpl palatino helvetic bera eurosym adjustbox collectbox \
  && tlmgr path add
 
 # R packages used in the book chapters
@@ -35,7 +39,7 @@ RUN install2.r --error --skipinstalled --ncpus -1 \
       bookdown rmarkdown knitr reticulate tinytex \
       ggplot2 ggrepel ggpubr reshape2 MASS cluster scatterplot3d \
       psych GPArotation moments ggcorrplot FactoMineR factoextra \
-      Rtsne naniar UpSetR mice caret gbm \
+      Rtsne naniar UpSetR mice caret gbm tufte \
  && rm -rf /tmp/downloaded_packages
 
 WORKDIR /book

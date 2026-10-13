@@ -44,7 +44,7 @@ Practically, you will encounter these systems in three shapes, and it is worth n
 
 **Agentic** — the system is given a goal and a set of tools (a shell, a file system, a Python interpreter, a database connection, a Web browser) and executes a multi-step loop of its own devising, observing results and deciding what to do next. This is where most of the current tooling effort is directed, and it is also where the supervision problem is hardest, because the human sees only the beginning and the end of a long chain of decisions.
 
-```{r aicycle, echo=FALSE, fig.align="center", out.width="100%", fig.cap="The human-in-the-loop cycle for AI-assisted data science. The steps in which the human is indispensable are framing, contextualizing, verifying, correcting and documenting — precisely the steps that require domain knowledge."}
+```{r aicycle, echo=FALSE, fig.fullwidth=TRUE, fig.align="center", out.width="100%", fig.cap="The human-in-the-loop cycle for AI-assisted data science. The steps in which the human is indispensable are framing, contextualizing, verifying, correcting and documenting — precisely the steps that require domain knowledge."}
 knitr::include_graphics("data/AITools/ai_workflow_cycle.png")
 ```
 
@@ -113,7 +113,7 @@ Practical rules that we ask you to follow in this course and recommend generally
 
 The practical response is to recognize that "using AI" is not one decision but a position on a spectrum.
 
-```{r aispectrum, echo=FALSE, fig.align="center", out.width="100%", fig.cap="The deployment spectrum. Moving right buys control, auditability and data residency at the price of operational effort and fixed cost; moving left buys convenience at the price of control."}
+```{r aispectrum, echo=FALSE, fig.fullwidth=TRUE, fig.align="center", out.width="100%", fig.cap="The deployment spectrum. Moving right buys control, auditability and data residency at the price of operational effort and fixed cost; moving left buys convenience at the price of control."}
 knitr::include_graphics("data/AITools/deployment_spectrum.png")
 ```
 
@@ -658,7 +658,7 @@ schema.validate(df)          # raises on any violation, on every run, forever
 
 ### What the comparison shows {-}
 
-```{r aiprompts, echo=FALSE, fig.align="center", out.width="100%", fig.cap="Left: the fraction of analysis steps that could be accepted as produced in each of the three rounds. Right: the schematic relationship between prompt quality and trustworthy output, for an analyst who can verify the result and one who cannot. Specificity helps both; only verification capability determines the ceiling."}
+```{r aiprompts, echo=FALSE, fig.fullwidth=TRUE, fig.align="center", out.width="100%", fig.cap="Left: the fraction of analysis steps that could be accepted as produced in each of the three rounds. Right: the schematic relationship between prompt quality and trustworthy output, for an analyst who can verify the result and one who cannot. Specificity helps both; only verification capability determines the ceiling."}
 knitr::include_graphics("data/AITools/prompt_quality.png")
 ```
 
