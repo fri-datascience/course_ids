@@ -249,7 +249,7 @@ The last example seems the most readable and we will use it from now on. It is a
 
 #### Variables and types
 
-Python defines whole numbers (*int*, *long*) and real numbers (*float*). Whole numbers are integers ($\pm 2^{31}$ or $\pm 2^{63}$) and long numbers, limited by the memory size. Long is a number with a trailing *L* added at the end (Python 2, in Python 3, long is merged with int). Complex numbers are also supported using a trailing *j* to the imaginary part. Bool type is based on integer - value of 1 is *True* and value of 0 is *False*. For the boolean expressions, integer value of 1 will be interpreted as *True* and all other values as *False*.
+Python defines whole numbers (*int*, *long*) and real numbers (*float*). Whole numbers are integers ($\pm 2^{31}$ or $\pm 2^{63}$) and long numbers, limited by the memory size. Long is a number with a trailing *L* added at the end (Python 2, in Python 3, long is merged with int). Complex numbers are also supported using a trailing *j* to the imaginary part. Bool type is based on integer - value of 1 is *True* and value of 0 is *False*. In Boolean expressions, zero is interpreted as *False* and any nonzero integer as *True*.
 
 String values are represented as sequence of characters within \" or \'. 
 
