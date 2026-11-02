@@ -69,7 +69,7 @@ _HINT_: If your commit would consist of only the files that Git is already track
 $ git push <remote name> <branch name>
 ```
 
-_Push_ command allows you to upload all the included changes from your local repository to the remote repository. Now all the collaborators will have access to the changes and will be able to update their local repositories. You can sync code with multiple remote repositories which is defined by the first parameter (by default it is named _origin_). The second parameter defines which branch we would like our changes to be copied (by default it is named _master_ - we will cover more about branching in \@ref(git-branching)).
+_Push_ command allows you to upload all the included changes from your local repository to the remote repository. Now all the collaborators will have access to the changes and will be able to update their local repositories. You can sync code with multiple remote repositories which is defined by the first parameter (by default it is named _origin_). The second parameter defines which branch we would like our changes to be copied (by default it is named _master_ or _main_ in newer repositories - we will cover more about branching in \@ref(git-branching)).
 
 ### Pull
 
@@ -219,7 +219,7 @@ On branch master
 nothing to commit, working tree clean
 ```
 
-The _commit_ command returns how many files were changes and how many lines were added or deleted. Still, it is a good practice to use command _git status_ to make sure that we are not forgetting something.
+The _commit_ command returns how many files were changed and how many lines were added or deleted. Still, it is a good practice to use command _git status_ to make sure that we are not forgetting something.
 
 *Step 6:* Now our project has some history,
 
