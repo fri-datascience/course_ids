@@ -26,9 +26,9 @@ knitr::include_graphics("data/Docker/dockerVsVM.png")
 
 ## Setting up the environment
 
-To install Docker on your machine, you need to download the appropriate Docker Engine Community distribution from the official [download website](https://hub.docker.com/search/?type=edition&offering=community). There also exists a *Docker Machine* installation package, which is a provisioning and installation software for Docker - we do not need it at this point as it helps us manage multiple remote Docker hosts.
+To install Docker on your machine, you need to download the appropriate Docker distribution from the official [download website](https://docs.docker.com/get-started/get-docker).
 
-After first installation we can explore different installation settings and tools. *Kitematic* is a tool which provides a handy GUI to overview downloaded images, containers, volumes and their settings. We can use it as a side-tool for command-line commands we introduce below.
+After installation, we can explore different installation settings and tools. *Docker Desktop* is a tool which provides a handy GUI to overview downloaded images, containers, volumes and their settings. We can use it as a side-tool for command-line commands we introduce below.
 
 We can check our Docker installation by running `docker info` to view some status details.
 
